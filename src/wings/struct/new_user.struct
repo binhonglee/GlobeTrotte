@@ -1,0 +1,30 @@
+go-filepath src/turbine/structs
+ts-filepath src/cockpit/structs
+
+ts-import { IWingsStruct }:wings-ts-util
+
+ts-implement IWingsStruct
+
+NewUser {
+    id          int
+    name        str
+    email       str
+    password    str
+}
+
+goFunc(
+    func (newUser NewUser) GetID() int {
+        return newUser.Id
+    }
+
+    func (newUser *NewUser) SetID(id int) {
+        newUser.Id = id
+    }
+)
+
+tsFunc(
+    public register(data: any): void {
+        this.email = data.email;
+        this.password = data.password;
+    }
+)

@@ -1,0 +1,39 @@
+go-filepath src/turbine/structs
+ts-filepath src/cockpit/structs
+
+go-import time
+go-import city:turbine/enums/city
+go-import place:turbine/structs/place
+ts-import { IWingsStruct }:wings-ts-util
+ts-import Place:./Place
+ts-import City:../enums/City
+
+ts-implement IWingsStruct
+
+Trip {
+    id              int
+    user_id         int
+    name            str
+    location        City    City.UNKNOWN
+    places          []Place
+    description     str
+    time_created    date
+    last_updated    date
+}
+
+goFunc(
+    func (trip Trip) GetID() int {
+        return trip.Id
+    }
+
+    func (trip *Trip) SetID(id int) {
+        trip.Id = id
+    }
+)
+
+tsFunc(
+    public parse(data: any): void {
+        this.userId = data.user_id;
+        this.location = data.location;
+    }
+)

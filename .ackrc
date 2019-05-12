@@ -1,0 +1,5 @@
+--ignore-dir=plz-out
+--ignore-dir=node_modules
+--ignore-dir=.vscode
+--ignore-file=is:pleasew
+-i

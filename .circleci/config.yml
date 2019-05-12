@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:latest-node
+      - image: circleci/postgres:latest-postgis
+        environment:
+          POSTGRES_USER: test
+          POSTGRES_DB: test
+          POSTGRES_PASSWORD: test
+
+    working_directory: ~/GlobeTrotte
+
+    steps:
+      - checkout
+
+      - run: sudo npm -g install pnpm
+      - run: sudo apt-get install nim
+      - run: sudo apt-get install shellcheck
+      - run: go get winterdrache.de/goformat/goformat
+      - run: cp .circleci/test.config config/psql.config
+
+      # run tests
+      - run: ./pleasew build --show_all_output
+      - run: ./pleasew gen --show_all_output
+      - run: ./pleasew test --nocache --show_all_output
+      - run: ./scripts/leftover.sh

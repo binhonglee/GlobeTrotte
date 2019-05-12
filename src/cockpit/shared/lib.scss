@@ -1,0 +1,32 @@
+$h2-height: 50px;
+$h3-height: 30px;
+$p-height: 20px;
+$edit-width: 250px;
+
+@mixin left_col($lh) {
+    display: inline;
+    line-height: $lh;
+}
+
+@mixin right_col($lh) {
+    float: right;
+    line-height: $lh
+}
+
+@mixin trip_display() {
+    padding-top: 20px;
+    text-align: left;
+}
+
+.title {
+    height: 50px;
+}
+
+.editLabel {
+    line-height: $h2-height;
+}
+
+.editInput {
+    @include right_col($h2-height);
+    width: $edit-width;
+}

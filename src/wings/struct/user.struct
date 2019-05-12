@@ -1,0 +1,26 @@
+go-filepath src/turbine/structs
+ts-filepath src/cockpit/structs
+
+go-import time
+ts-import { IWingsStruct }:wings-ts-util
+
+ts-implement IWingsStruct
+
+User {
+    id              int
+    name            str
+    email           str
+    bio             str
+    time_created    date
+    trips           []int
+}
+
+goFunc(
+    func (user User) GetID() int {
+        return user.Id
+    }
+
+    func (user *User) SetID(id int) {
+        user.Id = id
+    }
+)

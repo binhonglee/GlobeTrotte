@@ -1,0 +1,34 @@
+# Codes
+*.go    text eol=lf
+*.js    text eol=lf
+*.pug   text eol=lf
+*.scss  text eol=lf
+*.sh    text eol=lf
+*.ts    text eol=lf
+*.vue   text eol=lf
+*.yml   text eol=lf
+
+# "Special case" codes
+BUILD           text eol=lf linguist-language=Python
+*.build_defs    text eol=lf linguist-language=Python
+*.enum          text eol=lf linguist-language=Nim
+*.struct        text eol=lf linguist-language=Nim
+
+# Config files
+.ackrc          text eol=lf linguist-generated=true
+.plzconfig      text eol=lf linguist-generated=true
+goformat        text eol=lf linguist-generated=true
+sample.config   text eol=lf linguist-generated=true
+test.config     text eol=lf linguist-generated=true
+tsconfig.json   text eol=lf linguist-language=TypeScript
+tslint.json     text eol=lf linguist-language=TypeScript
+package.json    text eol=lf linguist-generated=true
+
+# Generated files
+index.html      linguist-generated=true -diff
+pleasew         linguist-generated=true -diff
+pnpm-lock.yaml  linguist-generated=true -diff
+
+# Documentations
+*.md    text eol=lf linguist-generated=true
+LICENSE text eol=lf linguist-generated=true

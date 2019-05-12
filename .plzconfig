@@ -1,0 +1,18 @@
+[Please]
+Version = 13.6.2
+
+[Build]
+PassEnv = PATH
+PassEnv = USER
+
+[Alias "gen"]
+cmd = run //src/wings:wings -- 
+
+[Alias "show"]
+cmd = run //:local_cockpit
+
+[Alias "vscode"]
+cmd = run //scripts:vscode
+
+[Alias "work"]
+cmd = run //src/turbine:main

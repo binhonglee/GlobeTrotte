@@ -1,0 +1,29 @@
+.new_user
+    h1.title Create Account
+    .newUser
+        span.editLabel Email:
+        el-input.editInput#username(
+            type='text'
+            v-on:keyup.enter='save'
+            v-model='email'
+        )
+        br
+        span.editLabel Password:
+        el-input.editInput#password(
+            type='text'
+            v-on:keyup.enter='save'
+            v-model='password'
+            show-password
+        )
+        br
+        span.editLabel Confirm Password:
+        el-input.editInput#confPassword(
+            type='text'
+            v-on:keyup.enter='save'
+            v-model='confPassword'
+            show-password
+        )
+        br
+        br
+        el-button#save(type='primary' v-on:click='confirm') Confirm
+        el-button#cancel(type='default' v-on:click='cancel') Cancel

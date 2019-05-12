@@ -1,0 +1,11 @@
+go-filepath src/turbine/structs
+ts-filepath src/cockpit/structs
+
+ts-import { IWingsStruct }:wings-ts-util
+
+ts-implement IWingsStruct
+
+Place {
+    label   str
+    url     str
+}
