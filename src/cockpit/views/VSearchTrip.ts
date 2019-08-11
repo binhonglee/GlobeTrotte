@@ -46,9 +46,7 @@ export default class VSearchTrip extends Vue {
                     }
                 }
                 this.$data.trip.init(parsedData);
-                console.log(this.$data.trip);
             } catch (e) {
-                console.log(e);
                 alert('Error. Trip not found.');
             }
         });

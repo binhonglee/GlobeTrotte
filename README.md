@@ -32,10 +32,9 @@
 
 ## Setup
 
-1. In the `config` folder, you will find a `sample.config` file.
-2. Clone that file.
-3. Fill in your postgres credentials.
-4. Rename the cloned file as `psql.config`.
+1. Run `./scripts/setup.sh`
+2. (If you have not already,) create a Postgres DB for the project.
+3. Fill in your PostgreSQL credentials in `config/psql.config`.
 
 ## Build
 

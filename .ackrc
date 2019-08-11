@@ -1,5 +1,6 @@
---ignore-dir=plz-out
+--ignore-dir=coverage
 --ignore-dir=node_modules
+--ignore-dir=plz-out
 --ignore-dir=.vscode
 --ignore-file=is:pleasew
 -i

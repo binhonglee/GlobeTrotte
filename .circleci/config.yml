@@ -21,7 +21,6 @@ jobs:
       - run: cp .circleci/test.config config/psql.config
 
       # run tests
-      - run: ./pleasew build --show_all_output
-      - run: ./pleasew gen --show_all_output
+      - run: ./pleasew --show_all_output gen
       - run: ./pleasew test --nocache --show_all_output
       - run: ./scripts/leftover.sh

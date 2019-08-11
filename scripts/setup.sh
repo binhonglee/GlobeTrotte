@@ -10,6 +10,7 @@ showHelp() {
 Specific options to install only specific requirement.
     [default / no option] install all of below
 
+    -c config
     -g Go (and goformat)
     -m node (and pnpm)
     -n nim
@@ -23,6 +24,24 @@ Note: You will need to have all the requirements installed for the
     program to run properly.
 
 EOF
+}
+
+config() {
+    CURRENT=$(pwd | awk -F'/' '{print $NF}')
+
+    if [ "$CURRENT" != "GlobeTrotte" ]; then
+        echo "Invalid location. Config file not set up."
+        echo "Please run this script again (with -c option) from the top level folder of the project."
+        return
+    fi
+
+    if [ -e "config/psql.config" ]; then
+        echo "Seems like \`psql.config\` file already exist. Skipping..."
+        return
+    fi
+
+    cp config/sample.config config/psql.config
+    echo "Please fill in the information in psql.config file."
 }
 
 installGo() {
@@ -168,41 +187,40 @@ if ! echo "$SUPPORTED_OS" | grep -w "$OS" > /dev/null; then
     exit 1
 fi
 
-while getopts ghnpqs opt; do
+if [ ${#*} -lt 1 ]; then
+    installGo
+    installPNPM
+    installNim
+    installPostgreSQL
+    installShellcheck
+    config
+fi
+
+while getopts cghnpqs opt; do
     case $opt in
+        c)
+            config
+            ;;
         g)
             installGo
-            exit
             ;;
         h)
             showHelp
-            exit
             ;;
         m)
             installPNPM
-            exit
             ;;
         n)
             installNim
-            exit
             ;;
         p)
             installPlease
-            exit
             ;;
         q)
             installPostgreSQL
-            exit
             ;;
         s)
             installShellcheck
-            exit
             ;;
     esac
 done
-
-installGo
-installPNPM
-installNim
-installPostgreSQL
-installShellcheck
