@@ -15,7 +15,7 @@ var addedUser user.User
 
 func TestAddUser(t *testing.T) {
     var newUser = newuser.NewUser{
-        Email:       "tester@testuser.com",
+        Email:       "test@test.com",
         Password:    "shouldReplaceThisWithRand",
     }
 

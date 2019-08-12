@@ -28,4 +28,6 @@ jobs:
       # run tests
       - run: ./pleasew --show_all_output gen
       - run: ./pleasew test --nocache --show_all_output
+      - run: ./pleasew cover --show_all_output
+      - run: bash <(curl -s https://codecov.io/bash)
       - run: ./scripts/leftover.sh
