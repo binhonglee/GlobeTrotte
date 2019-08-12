@@ -14,8 +14,13 @@ jobs:
     steps:
       - checkout
 
+      - run: echo 'export CHOOSENIM_NO_ANALYTICS=1' >> $BASH_ENV
+      - run: echo 'export PATH=/home/circleci/.nimble/bin:$PATH' >> $BASH_ENV
+      - run: echo 'export USER="circleci"' >> $BASH_ENV
+      - run: sudo apt-get update
+      - run: sudo apt-get install libssl-dev
       - run: sudo npm -g install pnpm
-      - run: sudo apt-get install nim
+      - run: curl https://nim-lang.org/choosenim/init.sh -sSf | sh
       - run: sudo apt-get install shellcheck
       - run: go get winterdrache.de/goformat/goformat
       - run: cp .circleci/test.config config/psql.config

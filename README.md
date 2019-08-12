@@ -21,7 +21,7 @@
 - [go](https://golang.org/)
   - [goformat](https://github.com/mbenkmann/goformat) (Go files lint)
 - [Nim](https://nim-lang.org/)
-  - [Nimble](https://github.com/nim-lang/nimble) (Should come installed with Nim)
+  - [choosenim](https://github.com/dom96/choosenim)
 - [node](https://nodejs.org/en/)
   - [pnpm](https://pnpm.js.org)
 - [please](https://please.build) (optional)

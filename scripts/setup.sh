@@ -116,21 +116,14 @@ installPNPM() {
 }
 
 installNim() {
-    TEST_NIM=$(nim)
+    TEST_NIM=$(choosenim -h)
 
     if [ "$TEST_NIM" != "" ]; then
-        echo "Seems like \`nim\` is already installed. Skipping..."
+        echo "Seems like \`choosenim\` is already installed. Skipping..."
         return
     fi
 
-    case $OS in
-        "Darwin")
-            brew install nim
-            ;;
-        "Linux")
-            sudo apt-get install nim
-            ;;
-    esac
+    curl https://nim-lang.org/choosenim/init.sh -sSf | sh
 }
 
 installPlease() {
@@ -196,7 +189,7 @@ if [ ${#*} -lt 1 ]; then
     config
 fi
 
-while getopts cghnpqs opt; do
+while getopts cghmnpqs opt; do
     case $opt in
         c)
             config
@@ -222,5 +215,7 @@ while getopts cghnpqs opt; do
         s)
             installShellcheck
             ;;
+        *)
+            "Invalid flag $opt. Use -h to show usage."
     esac
 done

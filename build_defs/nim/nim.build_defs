@@ -4,13 +4,21 @@ def nimble_install(name:str, pkg_name:str=None, revision:str=None, test_only:boo
 
     cmd = ' && '.join([
         _nimble_path(),
-        "$TOOL --accept --noColor --verbose --nimbleDir:$NIMBLE_PATH install " + pkg_name + "@" + revision,
+        _choosenim_path(),
+        _nim_version(),
+        "PATH=$CHOOSENIM_PATH/bin:$NIMBLE_PATH/bin:$PATH",
+        "$TOOLS_CHOOSENIM --y --noColor --nimbleDir:$NIMBLE_PATH --choosenimDir:$CHOOSENIM_PATH $NIM_VERSION",
+        "ln -t ./ -s $CHOOSENIM_PATH",
+        "$TOOLS_NIMBLE --accept --noColor --verbose --nimbleDir:$NIMBLE_PATH install " + pkg_name + "@" + revision,
         "ln -t ./ -s $NIMBLE_PATH/pkgs/" + pkg_name + "* " + pkg_name,
     ])
 
     return build_rule(
         name = name,
-        tools = [CONFIG.NIMBLE_TOOL],
+        tools = {
+            'choosenim': [CONFIG.CHOOSENIM_TOOL],
+            'nimble': [CONFIG.NIMBLE_TOOL],
+        },
         cmd = cmd,
         deps = deps,
         outs = [pkg_name],
@@ -23,14 +31,22 @@ def nim_binary(name:str, main:str, srcs:list=[], out:str=None, test_only:bool=Fa
 
     cmd = ' && '.join([
         _nimble_path(),
-        "$TOOL --verbosity:2 --colors:off --NimblePath:$NIMBLE_PATH/pkgs -o:" + out + " c $PKG_DIR/" + main,
+        _choosenim_path(),
+        _nim_version(),
+        "PATH=$CHOOSENIM_PATH/bin:$NIMBLE_PATH/bin:$PATH",
+        "$TOOLS_CHOOSENIM --y --noColor --nimbleDir:$NIMBLE_PATH --choosenimDir:$CHOOSENIM_PATH $NIM_VERSION",
+        "ln -t ./ -s $CHOOSENIM_PATH",
+        "$TOOLS_NIM --verbosity:2 --colors:off --NimblePath:$NIMBLE_PATH/pkgs/ -o:" + out + " c $PKG_DIR/" + main,
     ])
 
     return build_rule(
         name = name,
         srcs = srcs + [main],
         outs = [out],
-        tools = [CONFIG.NIM_TOOL],
+        tools = {
+            'choosenim': [CONFIG.CHOOSENIM_TOOL],
+            'nim': [CONFIG.NIM_TOOL],
+        },
         cmd = cmd,
         deps = deps,
         requires = ["nim"],
@@ -42,5 +58,12 @@ def nim_binary(name:str, main:str, srcs:list=[], out:str=None, test_only:bool=Fa
 def _nimble_path():
     return "NIMBLE_PATH=$(pwd | awk -F'plz-out' '{print $1}')\"plz-out/.nimble\""
 
+def _choosenim_path():
+    return "CHOOSENIM_PATH=$(pwd | awk -F'plz-out' '{print $1}')\"plz-out/.choosenim\""
+
+def _nim_version():
+    return "NIM_VERSION=\"0.17.2\""
+
 CONFIG.setdefault('NIM_TOOL', 'nim')
 CONFIG.setdefault('NIMBLE_TOOL', 'nimble')
+CONFIG.setdefault('CHOOSENIM_TOOL', 'choosenim')

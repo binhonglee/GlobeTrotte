@@ -25,7 +25,7 @@ for FOLDER in $FOLDERS; do
         LINT=$(goformat -style $FORMAT_FILE -w "$f")
         
         if [ "$LINT" != "" ]; then
-            OUT="\n$LINT"
+            OUT='\n'"$LINT"
         fi
     done
 done
