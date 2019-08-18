@@ -3,7 +3,8 @@
         h2#name {{ trip.name }}
         span#id {{ trip.id }}
         p#description(v-if="trip.description !== ''") {{ trip.description }}
-        CPlaces(v-if="trip.places.length !== 0" :locations='trip.places')
+        p(v-if="trip.places.length !== 0")
+            CPlaces(:places='trip.places')
         p#city {{ city }}
         p#creatorInfo Author: {{ trip.userId }}
         p#createdDate Created on: {{ trip.timeCreated.toLocaleDateString() }}

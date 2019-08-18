@@ -38,7 +38,9 @@ export default class VSearchTrip extends Vue {
             try {
                 this.$data.trip = new Trip();
                 const parsedData = JSON.parse(data);
-                if (parsedData.places !== null) {
+                if (parsedData.places === null) {
+                    parsedData.places = [];
+                } else {
                     for (let i = 0; i < parsedData.places.length; i++) {
                         const temp = new Place();
                         temp.init(parsedData.places[i]);

@@ -9,11 +9,12 @@ import TripEditable from '../shared/TripEditable';
 @Component({
     data() {
         return {
+            city: '',
             cities: [],
             editables: [],
             items: [],
-            places: [],
-            value: '',
+            locations: [],
+            saving: false,
         };
     },
     components: {
@@ -25,15 +26,11 @@ import TripEditable from '../shared/TripEditable';
 export default class CEditTrip extends Vue {
     @Prop() private trip!: Trip;
 
-    private tripToItem(itemType: string): TripEditable {
-        return new TripEditable(itemType, this.trip[itemType]);
-    }
-
     private beforeMount(): void {
         this.$data.cities = CityUtil.allActiveCities();
         this.$data.editables = TripEditable.getAllTypes();
-        this.$data.places = this.trip.places;
-        this.$data.value = this.trip.location;
+        this.$data.locations = this.trip.places.slice();
+        this.$data.city = this.trip.location;
         for (const field in this.$data.editables) {
             if (typeof field === 'string') {
                 this.$data.items.push(this.tripToItem(this.$data.editables[field]));
@@ -41,11 +38,16 @@ export default class CEditTrip extends Vue {
         }
     }
 
+    private cancel(): void {
+        this.$emit('cancel');
+    }
+
     private save(): void {
-        if (typeof this.$data.value === 'number') {
-            this.trip.location = this.$data.value;
+        this.$data.saving = true;
+        if (typeof this.$data.city === 'number') {
+            this.trip.location = this.$data.city;
         } else {
-            this.trip.location = parseInt(City[this.$data.value], 10);
+            this.trip.location = parseInt(City[this.$data.city], 10);
         }
 
         for (const item of this.$data.items) {
@@ -59,11 +61,13 @@ export default class CEditTrip extends Vue {
         }
 
         this.trip.userId = 213;
-        this.trip.places = this.$data.places;
+        this.trip.places = this.$data.locations;
+
         this.$emit('save', this.trip);
+        this.$data.saving = false;
     }
 
-    private cancel(): void {
-        this.$emit('cancel');
+    private tripToItem(itemType: string): TripEditable {
+        return new TripEditable(itemType, this.trip[itemType]);
     }
 }

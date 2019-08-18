@@ -1,7 +1,7 @@
 <template lang="pug">
     .places
-        ul#places(v-if="locations !== null") Places: 
-            div#place(v-for="place in locations" v-bind:key="place.url")
+        ul#places(v-if="places !== null") Places: 
+            div#place(v-for="place in places" v-bind:key="place.url")
                 a(target="_blank" rel="noopener noreferrer" :href="place.url") {{ place.label }}
 </template>
 
@@ -10,7 +10,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class CPlaces extends Vue {
-    @Prop() private locations!: object;
+    @Prop() private places!: object;
 }
 </script>
 
