@@ -6,59 +6,36 @@
     "private": true,
     "license": "AGPL 3.0",
     "scripts": {
-        "serve": "export NODE_ENV=dev && vue-cli-service serve src/cockpit/main.ts",
-        "build": "export NODE_ENV=prod && vue-cli-service build src/cockpit/main.ts",
-        "lint": "export NODE_ENV=test && vue-cli-service lint src/cockpit/**/*.ts",
-        "test:unit": "export NODE_ENV=test && vue-cli-service test:unit src/cockpit/**/*.test.ts",
-        "cover:unit": "export NODE_ENV=test && nyc pnpm run test:unit"
+        "serve": "parcel index.html",
+        "build": "parcel build index.html --no-cache --public-url 'https://globetrotte.com'",
+        "lint": "tslint --project tsconfig.json --fix",
+        "test": "mocha",
+        "cover": "nyc mocha"
     },
     "dependencies": {
-        "@babel/core": "7.4.5",
-        "@types/node": "12.0.8",
-        "@vue/babel-preset-app": "3.8.0",
-        "axios": "0.19.0",
-        "element-ui": "2.10.1",
+        "element-ui": "2.11.1",
+        "tslib": "1.10.0",
         "vue": "2.6.10",
-        "vue-class-component": "7.1.0",
+        "vue-hot-reload-api": "2.3.3",
         "vue-property-decorator": "8.2.1",
-        "vue-router": "3.0.6",
-        "vue-style-loader": "4.1.2",
-        "webpack-env": "0.8.0",
-        "wings-ts-util": "0.0.2"
+        "vue-router": "3.1.2",
+        "wings-ts-util": "0.0.5"
     },
     "devDependencies": {
-        "@types/chai": "4.1.7",
+        "@types/assert": "1.4.3",
+        "@types/chai": "4.2.0",
         "@types/mocha": "5.2.7",
-        "@vue/cli-plugin-babel": "3.8.0",
-        "@vue/cli-plugin-e2e-nightwatch": "3.8.0",
-        "@vue/cli-plugin-typescript": "3.8.1",
-        "@vue/cli-plugin-unit-mocha": "3.8.0",
-        "@vue/cli-service": "3.8.4",
-        "@vue/test-utils": "1.0.0-beta.29",
-        "babel-loader": "8.0.6",
-        "cache-loader": "3.0.1",
+        "@vue/component-compiler-utils": "3.0.0",
         "chai": "4.2.0",
-        "core-js": "2.6.9",
-        "css-loader": "2.1.1",
-        "istanbul-instrumenter-loader": "3.0.1",
-        "node-sass": "4.12.0",
+        "mocha": "6.2.0",
         "nyc": "14.1.1",
-        "pug": "2.0.3",
-        "pug-plain-loader": "1.0.0",
-        "sass-loader": "7.1.0",
-        "thread-loader": "2.1.2",
-        "ts-loader": "6.0.3",
-        "tslib": "1.10.0",
-        "typescript": "3.5.2",
-        "url-loader": "1.1.2",
-        "vue-loader": "15.7.0",
-        "vue-template-compiler": "2.6.10",
-        "webpack": "4.34.0"
-    },
-    "babel": {
-        "presets": [
-            "@vue/app"
-        ]
+        "parcel-bundler": "1.12.3",
+        "pug": "2.0.4",
+        "sass": "1.22.10",
+        "ts-node": "8.3.0",
+        "tslint": "5.18.0",
+        "typescript": "3.5.3",
+        "vue-template-compiler": "2.6.10"
     },
     "nyc": {
         "instrument": true,
@@ -81,7 +58,7 @@
             "text",
             "text-summary"
         ],
-        "report-dir": "./coverage",
+        "report-dir": "./plz-out/coverage",
         "extension": [
             ".ts",
             ".vue"

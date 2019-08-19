@@ -1,9 +1,6 @@
-import TripEditable from './TripEditable';
-
-import * as chai from 'chai';
+import { expect } from 'chai';
 import Trip from '../structs/Trip';
-
-const expect = chai.expect;
+import TripEditable from './TripEditable';
 
 describe('All editables should have specified labels.', () => {
     const allTypes = TripEditable.getAllTypes();

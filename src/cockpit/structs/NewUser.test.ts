@@ -2,9 +2,7 @@ import NewUser from './NewUser';
 
 import { equal } from 'assert';
 import { WingsStructUtil } from 'wings-ts-util';
-import * as chai from 'chai';
-
-const expect = chai.expect;
+import { expect } from 'chai';
 
 describe('WingsStructUtil.stringify(NewUser) from init() should include all values in NewUser.', () => {
     const newUser = new NewUser();

@@ -19,7 +19,6 @@ jobs:
       - run: echo 'export USER="circleci"' >> $BASH_ENV
       - run: sudo apt-get update
       - run: sudo apt-get install libssl-dev
-      - run: sudo npm -g install pnpm
       - run: curl https://nim-lang.org/choosenim/init.sh -sSf | sh
       - run: sudo apt-get install shellcheck
       - run: go get winterdrache.de/goformat/goformat
@@ -27,7 +26,6 @@ jobs:
 
       # run tests
       - run: ./pleasew --show_all_output gen
-      - run: ./pleasew test --nocache --show_all_output
       - run: ./pleasew cover --show_all_output
       - run: bash <(curl -s https://codecov.io/bash)
       - run: ./scripts/leftover.sh

@@ -23,7 +23,7 @@
 - [Nim](https://nim-lang.org/)
   - [choosenim](https://github.com/dom96/choosenim)
 - [node](https://nodejs.org/en/)
-  - [pnpm](https://pnpm.js.org)
+  - [yarn](https://yarnpkg.com/)
 - [please](https://please.build) (optional)
 - [postgresql](https://www.postgresql.org/)
 - [shellcheck](https://github.com/koalaman/shellcheck) (Shell script lint)

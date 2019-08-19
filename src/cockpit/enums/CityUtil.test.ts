@@ -1,9 +1,7 @@
 import { equal } from 'assert';
-import * as chai from 'chai';
+import { expect } from 'chai';
 import City from './City';
 import CityUtil from './CityUtil';
-
-const expect = chai.expect;
 
 describe('Every city should have conversion in CityUtil.toString().', () => {
     for (const city in City) {

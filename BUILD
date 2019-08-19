@@ -1,11 +1,11 @@
 genrule(
-    name = 'pnpm',
+    name = 'yarn',
     visibility = ['PUBLIC'],
     outs = ['node_modules'],
     cmd = ' && '.join([
         "HOME=\"/home/$USER\"",
         "top_level=$(pwd | awk -F'plz-out' '{print $1}')",
-        "pnpm i",
+        "yarn",
         "ln -s \"$top_level\"\"node_modules\" \"node_modules\"",
     ]),
 )
@@ -16,25 +16,25 @@ genrule(
     cmd = ' && '.join([
         "current=$(pwd)",
         "cd $(pwd | awk -F'plz-out' '{print $1}')",
-        "pnpm run build",
+        "yarn run build",
         "mv \"dist\" \"$current\""
     ]),
-    deps = [':pnpm'],
+    deps = [':yarn'],
 )
 
 sh_cmd(
     name = 'local_cockpit',
-    cmd = 'pnpm run serve',
-    deps = [':pnpm'],
+    cmd = 'yarn run serve',
+    deps = [':yarn'],
 )
 
 gentest(
     name = 'tslint',
-    test_cmd = 'pnpm run lint',
+    test_cmd = 'yarn run lint',
     srcs = [
         'tsconfig.json',
         'tslint.json',
     ],
     no_test_output = True,
-    deps = [':pnpm'],
+    deps = [':yarn'],
 )

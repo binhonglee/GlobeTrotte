@@ -59,4 +59,46 @@ export default class App extends Vue {
 }
 </script>
 
-<style lang="scss" src="./App.scss"/>
+<style lang="scss">
+@import './shared/lib';
+@font-face {
+    font-family: SourceSansPro;
+    src: url('../assets/SourceSansPro/SourceSansPro-Regular.ttf');
+}
+
+#app {
+    text-align: center;
+}
+
+#content {
+    max-width: 400px;
+    margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#footer {
+    display: inline-block;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 40px;
+    width: 100%;
+    background-color: #333;
+    color: white;
+}
+
+#footerMessage {
+    margin: 0px;
+    margin-top: 10px;
+
+    a {
+        color: #42b983;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+</style>
