@@ -19,18 +19,18 @@ genrule(
         "yarn run build",
         "mv \"dist\" \"$current\""
     ]),
-    deps = [':yarn'],
+    deps = ['//src/cockpit:cockpit_router'],
 )
 
 sh_cmd(
     name = 'local_cockpit',
     cmd = 'yarn run serve',
-    deps = [':yarn'],
+    deps = ['//src/cockpit:cockpit_router'],
 )
 
 gentest(
     name = 'tslint',
-    test_cmd = 'yarn run lint',
+    test_cmd = 'yarn run lint --fix',
     srcs = [
         'tsconfig.json',
         'tslint.json',

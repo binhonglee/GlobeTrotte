@@ -46,7 +46,7 @@ import NewUser from '../structs/NewUser';
     },
 })
 
-export default class VNewUser extends Vue {
+export default class VRegsiter extends Vue {
     private confirm(): void {
         if (this.$data.password.localeCompare(this.$data.confPassword)) {
             alert('Password does not match.');

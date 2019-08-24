@@ -9,10 +9,10 @@
 
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
-import CTripInfo from '../components/CTripInfo.vue';
-import HTTPReq from '../shared/HTTPReq';
-import Place from '../structs/Place';
-import Trip from '../structs/Trip';
+import CTripInfo from '../../components/CTripInfo.vue';
+import HTTPReq from '../../shared/HTTPReq';
+import Place from '../../structs/Place';
+import Trip from '../../structs/Trip';
 
 @Component({
     data() {
@@ -28,7 +28,7 @@ import Trip from '../structs/Trip';
     },
 })
 
-export default class VSearchTrip extends Vue {
+export default class VGetID extends Vue {
     @Watch('$route.path') private onRouteChange(): void {
         this.init();
     }
@@ -83,7 +83,7 @@ export default class VSearchTrip extends Vue {
 </script>
 
 <style lang="scss">
-@import '../shared/lib';
+@import '../../shared/lib';
 
 .tripSearchInput {
     margin-left: 5px;

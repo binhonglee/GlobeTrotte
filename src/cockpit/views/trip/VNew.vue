@@ -7,9 +7,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { WingsStructUtil } from 'wings-ts-util';
-import CEditTrip from '../components/CEditTrip.vue';
-import HTTPReq from '../shared/HTTPReq';
-import Trip from '../structs/Trip';
+import CEditTrip from '../../components/CEditTrip.vue';
+import HTTPReq from '../../shared/HTTPReq';
+import Trip from '../../structs/Trip';
 
 @Component({
     data() {
@@ -22,7 +22,7 @@ import Trip from '../structs/Trip';
     },
 })
 
-export default class VNewTrip extends Vue {
+export default class VNew extends Vue {
     private cancel(): void {
         this.$router.back();
     }
@@ -41,7 +41,7 @@ export default class VNewTrip extends Vue {
 </script>
 
 <style lang="scss">
-@import '../shared/lib';
+@import '../../shared/lib';
 
 .newTrip {
     @include trip_display();

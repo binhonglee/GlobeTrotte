@@ -12,5 +12,5 @@ import { Component, Vue } from 'vue-property-decorator';
 import Trip from '../structs/Trip';
 
 @Component
-export default class VLandingPage extends Vue {}
+export default class VLanding extends Vue {}
 </script>
