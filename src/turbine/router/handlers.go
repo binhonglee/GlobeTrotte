@@ -3,11 +3,11 @@ package router
 import (
     "encoding/json"
     "fmt"
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
     "io"
     "io/ioutil"
     "net/http"
     "strconv"
-    istructs "turbine/structs/istructs"
 
     "github.com/gorilla/mux"
 )
@@ -49,7 +49,7 @@ func unpackJSON(res *http.ResponseWriter, req *http.Request, objType interface{}
     }
 }
 
-func addItem(res *http.ResponseWriter, req *http.Request, addFunc func(istructs.IStructs) int, item istructs.IStructs) {
+func addItem(res *http.ResponseWriter, req *http.Request, addFunc func(structs.IStructs) int, item structs.IStructs) {
     if newID := addFunc(item); newID != -1 {
         item.SetID(newID)
         allowCORS(res)
@@ -60,7 +60,7 @@ func addItem(res *http.ResponseWriter, req *http.Request, addFunc func(istructs.
     }
 }
 
-func getItem(res *http.ResponseWriter, req *http.Request, getFunc func(int) istructs.IStructs) {
+func getItem(res *http.ResponseWriter, req *http.Request, getFunc func(int) structs.IStructs) {
     vars := mux.Vars(req)
     var id int
     var error error
@@ -80,7 +80,7 @@ func getItem(res *http.ResponseWriter, req *http.Request, getFunc func(int) istr
     }
 }
 
-func updateItem(res *http.ResponseWriter, req *http.Request, updateFunc func(istructs.IStructs) bool, getFunc func(int) istructs.IStructs, item istructs.IStructs) {
+func updateItem(res *http.ResponseWriter, req *http.Request, updateFunc func(structs.IStructs) bool, getFunc func(int) structs.IStructs, item structs.IStructs) {
     if id := getFunc(item.GetID()); id.GetID() == -1 {
         response(res, http.StatusNotFound)
         return
@@ -95,7 +95,7 @@ func updateItem(res *http.ResponseWriter, req *http.Request, updateFunc func(ist
     }
 }
 
-func deleteItem(res *http.ResponseWriter, req *http.Request, getFunc func(int) istructs.IStructs, deleteFunc func(istructs.IStructs) bool) {
+func deleteItem(res *http.ResponseWriter, req *http.Request, getFunc func(int) structs.IStructs, deleteFunc func(structs.IStructs) bool) {
     vars := mux.Vars(req)
     var id int
     var error error

@@ -7,7 +7,7 @@
  * Source: src/wings/struct/place.struct
  */
 
-package structs
+package place
 
 type Place struct {
     Label    string    `json:"label"`

@@ -1,22 +1,20 @@
 package database
 
 import (
+    place "github.com/binhonglee/GlobeTrotte/src/turbine/place"
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
     "strconv"
     "testing"
     "time"
-    newuser "turbine/structs/newuser"
-    place "turbine/structs/place"
-    trip "turbine/structs/trip"
-    user "turbine/structs/user"
 )
 
-var newNewUser newuser.NewUser
-var newUser user.User
-var newTrip trip.Trip
+var newNewUser structs.NewUser
+var newUser structs.User
+var newTrip structs.Trip
 
 func TestAddNewUserDB(t *testing.T) {
     failCondition := -1
-    newNewUser = newuser.NewUser{
+    newNewUser = structs.NewUser{
         Name:        "DummyUser",
         Email:       "dummyuser.com",
         Password:    "shouldReplaceThisWithRand",
@@ -29,7 +27,7 @@ func TestAddNewUserDB(t *testing.T) {
 }
 
 func TestGetUserDB(t *testing.T) {
-    retrievedUser, ok := GetUserDB(newNewUser.Id).(*user.User)
+    retrievedUser, ok := GetUserDB(newNewUser.Id).(*structs.User)
     if !ok {
         t.Errorf("GetUserDB(), somehow does not return 'User' object.")
         return
@@ -37,40 +35,32 @@ func TestGetUserDB(t *testing.T) {
 
     if retrievedUser.Id != newNewUser.Id {
         t.Errorf(
-            "GetUserDB(), given ID is ",
+            "GetUserDB(), given ID is %v but expected ID is %v.",
             strconv.Itoa(retrievedUser.Id),
-            " but expected ID is ",
             strconv.Itoa(newNewUser.Id),
-            ".",
         )
     }
     if retrievedUser.Name != newNewUser.Name {
         t.Errorf(
-            "GetUserDB(), given name is ",
+            "GetUserDB(), given name is %v but expected name is %v.",
             retrievedUser.Name,
-            " but expected name is ",
             newNewUser.Name,
-            ".",
         )
     }
     /* TODO: newNewUser does not have the "bio" field
      */
     // if retrievedUser.Bio != newNewUser.Bio {
     //     t.Errorf(
-    //         "GetUserDB(), given bio is ",
+    //         "GetUserDB(), given bio is %v but expected bio is %v.",
     //         retrievedUser.Bio,
-    //         " but expected bio is ",
     //         newNewUser.Bio,
-    //         ".",
     //     )
     // }
     if retrievedUser.Email != newNewUser.Email {
         t.Errorf(
-            "GetUserDB(), given email is ",
+            "GetUserDB(), given email is %v but expected email is %v.",
             retrievedUser.Email,
-            " but expected email is ",
             retrievedUser.Email,
-            ".",
         )
     }
     /* TODO: Implement test to make sure data is consistent
@@ -91,7 +81,7 @@ func TestUpdatedUserDB(t *testing.T) {
         return
     }
 
-    updatedUser, ok := GetUserDB(newUser.Id).(*user.User)
+    updatedUser, ok := GetUserDB(newUser.Id).(*structs.User)
     if !ok {
         t.Errorf("GetUserDB(), somehow does not return 'User' object.")
         // t.Errorf(strconv.Itoa(updatedUser.GetID()))
@@ -100,11 +90,9 @@ func TestUpdatedUserDB(t *testing.T) {
 
     if updatedUser.Name != newUser.Name {
         t.Errorf(
-            "UpdateUserDB(), given Name is ",
+            "UpdateUserDB(), given Name is %v but expected Name is %v.",
             updatedUser.Name,
-            " but expected Name is ",
             newUser.Name,
-            ".",
         )
     }
 
@@ -121,7 +109,7 @@ func TestUpdatedUserDB(t *testing.T) {
 
 func TestAddTripDB(t *testing.T) {
     failCondition := -1
-    newTrip = trip.Trip{
+    newTrip = structs.Trip{
         Name:           "DummyTrip",
         UserId:         newUser.Id,
         Description:    "dummytrip.com",
@@ -137,7 +125,7 @@ func TestAddTripDB(t *testing.T) {
 }
 
 func TestGetTripDB(t *testing.T) {
-    retrievedTrip, ok := GetTripDB(newTrip.Id).(*trip.Trip)
+    retrievedTrip, ok := GetTripDB(newTrip.Id).(*structs.Trip)
     if !ok {
         t.Errorf("GetTripDB(), somehow does not return 'Trip' object.")
         return
@@ -145,43 +133,37 @@ func TestGetTripDB(t *testing.T) {
 
     if retrievedTrip.Id != newTrip.Id {
         t.Errorf(
-            "GetTripDB(), given ID is ",
+            "GetTripDB(), given ID is %v but expected ID is %v.",
             strconv.Itoa(retrievedTrip.Id),
-            " but expected ID is ",
-            strconv.Itoa(newTrip.Id)+".",
+            strconv.Itoa(newTrip.Id),
         )
     }
     if retrievedTrip.UserId != newTrip.UserId {
         t.Errorf(
-            "GetTripDB(), given UserId is ",
+            "GetTripDB(), given UserId is %v but expected UserId is %v.",
             strconv.Itoa(retrievedTrip.UserId),
-            " but expected UserId is ",
-            strconv.Itoa(newTrip.UserId)+".",
+            strconv.Itoa(newTrip.UserId),
         )
     }
     if retrievedTrip.Name != newTrip.Name {
         t.Errorf(
-            "GetTripDB(), given Name is ",
+            "GetTripDB(), given Name is %v but expected Name is %v.",
             retrievedTrip.Name,
-            " but expected Name is ",
-            newTrip.Name+".",
+            newTrip.Name,
         )
     }
     if retrievedTrip.Location != newTrip.Location {
         t.Errorf(
-            "GetTripDB(), given Location is ",
+            "GetTripDB(), given Location is %v but expected Location is %v.",
             retrievedTrip.Location,
-            " but expected Location is ",
             newTrip.Location,
-            ".",
         )
     }
     if retrievedTrip.Description != newTrip.Description {
         t.Errorf(
-            "GetTripDB(), given Description is ",
+            "GetTripDB(), given Description is %v but expected Description is %v.",
             retrievedTrip.Description,
-            " but expected Description is ",
-            newTrip.Description+".",
+            newTrip.Description,
         )
     }
     /* TODO: Implement test to make sure data is consistent
@@ -206,7 +188,7 @@ func TestUpdateTripDB(t *testing.T) {
         return
     }
 
-    updatedTrip, ok := GetTripDB(newTrip.Id).(*trip.Trip)
+    updatedTrip, ok := GetTripDB(newTrip.Id).(*structs.Trip)
     if !ok {
         t.Errorf("GetTripDB(), somehow does not return 'Trip' object.")
         return
@@ -214,19 +196,17 @@ func TestUpdateTripDB(t *testing.T) {
 
     if updatedTrip.Name != newTrip.Name {
         t.Errorf(
-            "UpdateTripDB(), given Name is ",
+            "UpdateTripDB(), given Name is %v but expected Name is %v.",
             updatedTrip.Name,
-            " but expected Name is ",
-            newTrip.Name+".",
+            newTrip.Name,
         )
     }
 
     if updatedTrip.Description != newTrip.Description {
         t.Errorf(
-            "UpdateTripDB(), given Description is ",
+            "UpdateTripDB(), given Description is %v but expected Description is %v.",
             updatedTrip.Description,
-            " but expected Description is ",
-            newTrip.Description+".",
+            newTrip.Description,
         )
     }
 
@@ -235,20 +215,17 @@ func TestUpdateTripDB(t *testing.T) {
 
     if given != expected {
         t.Errorf(
-            "UpdateTripDB(), given Description is ",
+            "UpdateTripDB(), given Description is %v but expected Description is %v.",
             given,
-            " but expected Description is ",
             expected,
-            ".",
         )
     }
 
     // if updatedTrip.LastUpdated != newTrip.LastUpdated {
     //     t.Errorf(
-    //         "UpdateTripDB(), given LastUpdated is ",
+    //         "UpdateTripDB(), given LastUpdated is %v but expected LastUpdated is %v.",
     //         updatedTrip.LastUpdated,
-    //         " but expected LastUpdated is ",
-    //         newTrip.LastUpdated+".",
+    //         newTrip.LastUpdated,
     //     )
     // }
 }

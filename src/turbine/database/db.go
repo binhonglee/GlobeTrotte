@@ -6,6 +6,7 @@ import (
     "fmt"
     "io"
     "os"
+    "path/filepath"
     "strconv"
     "strings"
 
@@ -131,7 +132,10 @@ func createCitiesTable() {
 }
 
 func getConfig() map[string]string {
-    file, err := os.Open(configFile)
+    pwd, _ := os.Getwd()
+    pwd = strings.SplitAfter(pwd, "GlobeTrotte")[0]
+    file, err := os.Open(filepath.Join(pwd, configFile))
+
     defer file.Close()
     if err != nil {
         panic(err)

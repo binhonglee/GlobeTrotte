@@ -10,9 +10,9 @@
 package structs
 
 import (
+    city "github.com/binhonglee/GlobeTrotte/src/turbine/city"
+    place "github.com/binhonglee/GlobeTrotte/src/turbine/place"
     "time"
-    city "turbine/enums/city"
-    place "turbine/structs/place"
 )
 
 type Trip struct {

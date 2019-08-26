@@ -1,8 +1,8 @@
 package database
 
 import (
+    place "github.com/binhonglee/GlobeTrotte/src/turbine/place"
     "strconv"
-    place "turbine/structs/place"
 )
 
 func arraysToPlaces(placesArr []string, linksArr []string) place.Places {

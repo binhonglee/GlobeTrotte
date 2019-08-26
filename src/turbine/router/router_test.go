@@ -3,12 +3,12 @@ package router
 import (
     "bytes"
     "encoding/json"
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
     "io/ioutil"
     "net/http"
     "net/http/httptest"
     "strconv"
     "testing"
-    istructs "turbine/structs/istructs"
 )
 
 func TestPasswd(t *testing.T) {
@@ -22,7 +22,7 @@ func TestPasswd(t *testing.T) {
     }
 }
 
-func addTest(path string, t *testing.T, toAdd istructs.IStructs, objType interface{}) {
+func addTest(path string, t *testing.T, toAdd structs.IStructs, objType interface{}) {
     res := httptest.NewRecorder()
     data, err := json.Marshal(toAdd)
     req, _ := http.NewRequest("POST", "/api"+path, bytes.NewBuffer(data))

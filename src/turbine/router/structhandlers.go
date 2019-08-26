@@ -2,12 +2,11 @@ package router
 
 import (
     "fmt"
+    db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
     "net/http"
     "regexp"
     "strings"
-    db "turbine/database/db"
-    newuser "turbine/structs/newuser"
-    trip "turbine/structs/trip"
 
     "github.com/gorilla/sessions"
     "golang.org/x/crypto/bcrypt"
@@ -21,7 +20,7 @@ var (
 // Trip
 
 func addTrip(res http.ResponseWriter, req *http.Request) {
-    var item *trip.Trip
+    var item *structs.Trip
     unpackJSON(&res, req, &item)
     addItem(&res, req, db.AddTripDB, item)
 }
@@ -31,7 +30,7 @@ func getTrip(res http.ResponseWriter, req *http.Request) {
 }
 
 func updateTrip(res http.ResponseWriter, req *http.Request) {
-    var item *trip.Trip
+    var item *structs.Trip
     unpackJSON(&res, req, &item)
     updateItem(&res, req, db.UpdateTripDB, db.GetTripDB, item)
 }
@@ -43,7 +42,7 @@ func deleteTrip(res http.ResponseWriter, req *http.Request) {
 // User
 
 func newUser(res http.ResponseWriter, req *http.Request) {
-    var item *newuser.NewUser
+    var item *structs.NewUser
     unpackJSON(&res, req, &item)
 
     emailPattern := regexp.MustCompile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
@@ -83,7 +82,7 @@ func checkIfLoggedIn(req *http.Request) bool {
 }
 
 func login(res http.ResponseWriter, req *http.Request) {
-    var item *newuser.NewUser
+    var item *structs.NewUser
     unpackJSON(&res, req, &item)
 
     err := bcrypt.CompareHashAndPassword(

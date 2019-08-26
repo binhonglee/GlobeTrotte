@@ -1,41 +1,37 @@
 package router
 
 import (
+    city "github.com/binhonglee/GlobeTrotte/src/turbine/city"
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
     "net/http"
     "strconv"
     "testing"
-    city "turbine/enums/city"
-    newuser "turbine/structs/newuser"
-    trip "turbine/structs/trip"
-    user "turbine/structs/user"
 )
 
-var addedTrip trip.Trip
-var addedUser user.User
+var addedTrip structs.Trip
+var addedUser structs.User
 
 func TestAddUser(t *testing.T) {
-    var newUser = newuser.NewUser{
+    var newUser = structs.NewUser{
         Email:       "routertest@test.com",
         Password:    "shouldReplaceThisWithRand",
     }
 
-    var returned *user.User
+    var returned *structs.User
     addTest("/user", t, &newUser, &returned)
     addedUser = *returned
 
     if returned.Email != newUser.Email {
         t.Errorf(
-            "Sent Email is ",
+            "Sent Email is %v but returned Email is %v.",
             newUser.Email,
-            " but returned Email is ",
             returned.Email,
-            ".",
         )
     }
 }
 
 func TestGetUser(t *testing.T) {
-    var returned *user.User
+    var returned *structs.User
     getTest(
         "/user/"+strconv.Itoa(addedUser.GetID()),
         t,
@@ -45,125 +41,105 @@ func TestGetUser(t *testing.T) {
 
     if returned.Id != addedUser.Id {
         t.Errorf(
-            "Expected ID is ",
+            "Expected ID is %v but returned ID is %v.",
             strconv.Itoa(addedUser.Id),
-            " but returned ID is ",
             strconv.Itoa(returned.Id),
-            ".",
         )
     }
 
     if returned.Name != addedUser.Name {
         t.Errorf(
-            "Expected Name is ",
+            "Expected Name is %v but returned Name is %v.",
             addedUser.Name,
-            " but returned Name is ",
             returned.Name,
-            ".",
         )
     }
 
     if returned.Email != addedUser.Email {
         t.Errorf(
-            "Expected Email is ",
+            "Expected Email is %v but returned Email is %v.",
             addedUser.Email,
-            " but returned Email is ",
             returned.Email,
-            ".",
         )
     }
 }
 
 func TestAddTrip(t *testing.T) {
-    var newTrip = trip.Trip{
+    var newTrip = structs.Trip{
         UserId:         addedUser.Id,
         Name:           "TestUser",
         Location:       city.SanFranciscoCAUS,
         Description:    "Description",
     }
 
-    var returned *trip.Trip
+    var returned *structs.Trip
     addTest("/trip", t, &newTrip, &returned)
     addedTrip = *returned
 
     if returned.Name != newTrip.Name {
         t.Errorf(
-            "Sent Name is ",
+            "Sent Name is %v but returned Name is %v.",
             newTrip.Name,
-            " but returned Name is ",
             returned.Name,
-            ".",
         )
     }
 
     if returned.Location != newTrip.Location {
         t.Errorf(
-            "Sent Location is ",
+            "Sent Location is %v but returned Location is %v.",
             newTrip.Location,
-            " but returned Location is ",
             returned.Location,
-            ".",
         )
     }
 
     if returned.Description != newTrip.Description {
         t.Errorf(
-            "Sent Description is ",
+            "Sent Description is %v but returned Description is %v.",
             newTrip.Description,
-            " but returned Description is ",
             returned.Description,
-            ".",
         )
     }
 }
 
 func TestGetTrip(t *testing.T) {
-    var returned *trip.Trip
+    var returned *structs.Trip
     getTest("/trip/"+strconv.Itoa(addedTrip.GetID()), t, &returned, http.StatusOK)
 
     if returned.Id != addedTrip.Id {
         t.Errorf(
-            "Expected ID is ",
+            "Expected ID is %v but returned ID is %v.",
             strconv.Itoa(addedTrip.Id),
-            " but returned ID is ",
             strconv.Itoa(returned.Id),
-            ".",
         )
     }
 
     if returned.Name != addedTrip.Name {
         t.Errorf(
-            "Expected Name is ",
+            "Expected Name is %v but returned Name is %v.",
             addedTrip.Name,
-            " but returned Name is ",
             returned.Name,
-            ".",
         )
     }
 
     if returned.Location != addedTrip.Location {
         t.Errorf(
-            "Expected Location is ",
+            "Expected Location is %v but returned Location is %v.",
             addedTrip.Location,
-            " but returned Location is ",
             returned.Location,
-            ".",
         )
     }
 
     if returned.Description != addedTrip.Description {
         t.Errorf(
-            "Expected Description is ",
+            "Expected Description is %v but returned Description is %v.",
             addedTrip.Description,
-            " but returned Description is ",
             returned.Description,
-            ".",
         )
     }
 }
 
 func TestGetNonExistentTrip(t *testing.T) {
-    var returned *trip.Trip
+    var returned *structs.Trip
     getTest("/trip/"+strconv.Itoa(-1), t, &returned, http.StatusNotFound)
 }
 

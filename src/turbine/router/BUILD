@@ -9,11 +9,8 @@ go_library(
         '//third_party:mux',
         '//third_party:bcrypt',
         '//third_party:sessions',
-        '//src/turbine/database:db',
-        '//src/turbine/structs:istructs',
-        '//src/turbine/structs:user',
-        '//src/turbine/structs:trip',
-        '//src/turbine/structs:newuser',
+        '//src/turbine/database:database',
+        '//src/turbine/structs:structs',
     ],
     visibility = ['//src/...'],
 )
@@ -27,8 +24,6 @@ go_test(
     data = ['//config:psql.config'],
     deps = [
         ':router',
-        '//src/turbine/structs:istructs',
-        '//src/turbine/structs:user',
-        '//src/turbine/structs:trip',
+        '//src/turbine/structs:structs',
     ],
 )

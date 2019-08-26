@@ -1,8 +1,3 @@
-sh_binary(
-    name = 'vscode',
-    main = 'vscode.sh',
-)
-
 sh_test(
     name = 'golint',
     src = 'golint.sh',

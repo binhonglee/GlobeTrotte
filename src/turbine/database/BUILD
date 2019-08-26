@@ -1,5 +1,5 @@
 go_library(
-    name = 'db',
+    name = 'database',
     srcs = [
         'structsutil.go',
         'db.go',
@@ -8,12 +8,9 @@ go_library(
     ],
     deps = [
         '//third_party:pq',
-        '//src/turbine/structs:istructs',
-        '//src/turbine/structs:user',
-        '//src/turbine/structs:trip',
-        '//src/turbine/structs:place',
-        '//src/turbine/structs:newuser',
-        '//src/turbine/enums:city',
+        '//src/turbine/structs:structs',
+        '//src/turbine/place:place',
+        '//src/turbine/city:city',
     ],
     visibility = ['//src/turbine/...'],
 )
@@ -26,6 +23,6 @@ go_test(
     ],
     data = ['//config:psql.config'],
     deps = [
-        ':db',
+        ':database',
     ],
 )

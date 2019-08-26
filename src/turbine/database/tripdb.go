@@ -10,16 +10,15 @@ package database
 import (
     "database/sql"
     "fmt"
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
     "strconv"
-    istructs "turbine/structs/istructs"
-    trip "turbine/structs/trip"
 
     "github.com/lib/pq"
 )
 
 // AddTripDB - Adding new trip into the database.
-func AddTripDB(newTrip istructs.IStructs) int {
-    trip, ok := newTrip.(*trip.Trip)
+func AddTripDB(newTrip structs.IStructs) int {
+    trip, ok := newTrip.(*structs.Trip)
     if !ok {
         fmt.Println("Trip add failed since interface passed in is not a trip.")
         return -1
@@ -42,8 +41,8 @@ func AddTripDB(newTrip istructs.IStructs) int {
 }
 
 // GetTripDB - Retrieve trip information from database with ID.
-func GetTripDB(id int) istructs.IStructs {
-    var trip trip.Trip
+func GetTripDB(id int) structs.IStructs {
+    var trip structs.Trip
     var places, links []string
     sqlStatement := `
     SELECT id, userid, name, city, description, places, links, time_created, last_updated
@@ -74,8 +73,8 @@ func GetTripDB(id int) istructs.IStructs {
 }
 
 // UpdateTripDB - Update trip information back into the database.
-func UpdateTripDB(updatedTrip istructs.IStructs) bool {
-    trip, ok := updatedTrip.(*trip.Trip)
+func UpdateTripDB(updatedTrip structs.IStructs) bool {
+    trip, ok := updatedTrip.(*structs.Trip)
     if !ok {
         fmt.Println("Trip update failed since interface passed in is not a trip.")
         return false
@@ -85,8 +84,8 @@ func UpdateTripDB(updatedTrip istructs.IStructs) bool {
 }
 
 // DeleteTripDB - Delete trip from the database.
-func DeleteTripDB(existingTrip istructs.IStructs) bool {
-    trip, ok := existingTrip.(*trip.Trip)
+func DeleteTripDB(existingTrip structs.IStructs) bool {
+    trip, ok := existingTrip.(*structs.Trip)
     if !ok {
         fmt.Println("Trip deletion failed since interface passed in is not a trip.")
         return false
@@ -102,7 +101,7 @@ func DeleteTripDB(existingTrip istructs.IStructs) bool {
     return deleteTripWithID(existingTrip.GetID())
 }
 
-func addTrip(newTrip trip.Trip) int {
+func addTrip(newTrip structs.Trip) int {
     sqlStatement := `
     INSERT INTO trips (userid, name, city, description, time_created, last_updated)
     VALUES ($1, $2, $3, $4, $5, $6)
@@ -126,7 +125,7 @@ func addTrip(newTrip trip.Trip) int {
     return id
 }
 
-func updateTrip(updatedTrip trip.Trip) bool {
+func updateTrip(updatedTrip structs.Trip) bool {
     existingTrip := GetTripDB(updatedTrip.GetID())
     places, links := placesToArrays(updatedTrip.Places)
     if existingTrip.GetID() != updatedTrip.GetID() {

@@ -1,5 +1,4 @@
 .cache/
-.vscode/
 coverage/
 dist/
 nimcache/
@@ -7,3 +6,4 @@ node_modules
 plz-out/
 psql.config
 wings
+main

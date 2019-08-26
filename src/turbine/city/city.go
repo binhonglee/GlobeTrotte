@@ -7,7 +7,7 @@
  * Source: src/wings/enum/city.enum
  */
 
-package enums
+package city
 
 type City int
 

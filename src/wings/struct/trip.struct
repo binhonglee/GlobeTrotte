@@ -2,8 +2,8 @@ go-filepath src/turbine/structs
 ts-filepath src/cockpit/structs
 
 go-import time
-go-import city:turbine/enums/city
-go-import place:turbine/structs/place
+go-import city:github.com/binhonglee/GlobeTrotte/src/turbine/city
+go-import place:github.com/binhonglee/GlobeTrotte/src/turbine/place
 ts-import { IWingsStruct }:wings-ts-util
 ts-import Place:./Place
 ts-import City:../enums/City

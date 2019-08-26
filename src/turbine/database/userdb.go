@@ -9,18 +9,16 @@ package database
 import (
     "database/sql"
     "fmt"
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
     "strconv"
     "time"
-    istructs "turbine/structs/istructs"
-    newuser "turbine/structs/newuser"
-    user "turbine/structs/user"
 
     "github.com/lib/pq"
 )
 
 // NewUserDB - Adding new user to the database.
-func NewUserDB(newUser istructs.IStructs) int {
-    user, ok := newUser.(*newuser.NewUser)
+func NewUserDB(newUser structs.IStructs) int {
+    user, ok := newUser.(*structs.NewUser)
     if !ok {
         fmt.Println("User add failed since interface passed in is not a NewUser.")
         return -1
@@ -30,18 +28,18 @@ func NewUserDB(newUser istructs.IStructs) int {
 }
 
 // GetUserDB - Retrieve user information from database with ID.
-func GetUserDB(id int) istructs.IStructs {
+func GetUserDB(id int) structs.IStructs {
     newUser := getUserWithID(id)
     return &newUser
 }
 
-func GetUserPasswordHashDB(user newuser.NewUser) string {
+func GetUserPasswordHashDB(user structs.NewUser) string {
     return getUserWithEmail(user.Email).Password
 }
 
 // UpdateUserDB - Update user information back into the database.
-func UpdateUserDB(updatedUser istructs.IStructs) bool {
-    user, ok := updatedUser.(*user.User)
+func UpdateUserDB(updatedUser structs.IStructs) bool {
+    user, ok := updatedUser.(*structs.User)
     if !ok {
         fmt.Println("User update failed since interface passed in is not a user.")
         return false
@@ -51,8 +49,8 @@ func UpdateUserDB(updatedUser istructs.IStructs) bool {
 }
 
 // DeleteUserDB - Delete user from the database.
-func DeleteUserDB(existingUser istructs.IStructs) bool {
-    user, ok := existingUser.(*user.User)
+func DeleteUserDB(existingUser structs.IStructs) bool {
+    user, ok := existingUser.(*structs.User)
     if !ok {
         fmt.Println("User deletion failed since interface passed in is not a trip.")
         return false
@@ -69,7 +67,7 @@ func DeleteUserDB(existingUser istructs.IStructs) bool {
     return deleteUserWithID(existingUser.GetID())
 }
 
-func addNewUser(newUser newuser.NewUser) int {
+func addNewUser(newUser structs.NewUser) int {
     sqlStatement := `
     INSERT INTO users (name, email, password, bio, time_created)
     VALUES ($1, $2, $3, $4, $5)
@@ -91,8 +89,8 @@ func addNewUser(newUser newuser.NewUser) int {
     return id
 }
 
-func getUserWithID(id int) user.User {
-    var user user.User
+func getUserWithID(id int) structs.User {
+    var user structs.User
     var sqlInt64 []sql.NullInt64
     sqlStatement := `
     SELECT id, name, email, bio, time_created, trips
@@ -124,8 +122,8 @@ func getUserWithID(id int) user.User {
     return user
 }
 
-func getUserWithEmail(hashedPassword string) newuser.NewUser {
-    var user newuser.NewUser
+func getUserWithEmail(hashedPassword string) structs.NewUser {
+    var user structs.NewUser
     sqlStatement := `
     SELECT id, password
     FROM users WHERE email=$1;`
@@ -145,7 +143,7 @@ func getUserWithEmail(hashedPassword string) newuser.NewUser {
     return user
 }
 
-func updateUser(updatedUser user.User) bool {
+func updateUser(updatedUser structs.User) bool {
     existingUser := GetUserDB(updatedUser.GetID())
     if existingUser.GetID() != updatedUser.GetID() {
         fmt.Println("Existing User is not found. Aborting update.")

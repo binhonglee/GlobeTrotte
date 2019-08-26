@@ -1,33 +1,14 @@
 go_library(
-    name = 'istructs',
-    srcs = ['istructs.go'],
-    visibility = ['//src/turbine/...'],
-)
-
-go_library(
-    name = 'place',
-    srcs = ['place.go'],
-    visibility = ['//src/turbine/...'],
-)
-
-go_library(
-    name = 'newuser',
-    srcs = ['newuser.go'],
-    visibility = ['//src/turbine/...'],
-)
-
-go_library(
-    name = 'user',
-    srcs = ['user.go'],
-    visibility = ['//src/turbine/...'],
-)
-
-go_library(
-    name = 'trip',
-    srcs = ['trip.go'],
+    name = 'structs',
+    srcs = [
+        'istructs.go',
+        'newuser.go',
+        'user.go',
+        'trip.go',
+    ],
     deps = [
-        '//src/turbine/enums:city',
-        ':place',
+        '//src/turbine/city:city',
+        '//src/turbine/place:place',
     ],
     visibility = ['//src/turbine/...'],
 )
