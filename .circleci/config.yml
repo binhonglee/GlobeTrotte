@@ -25,6 +25,7 @@ jobs:
       - run: cp .circleci/test.config config/psql.config
 
       # run tests
+      - run: goformat -d -style config/goformat src/turbine/**/*.go
       - run: ./pleasew --show_all_output gen
       - run: ./pleasew cover --show_all_output
       - run: bash <(curl -s https://codecov.io/bash)

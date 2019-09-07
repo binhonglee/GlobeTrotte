@@ -2,11 +2,12 @@ package router
 
 import (
     "fmt"
-    db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
-    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
     "net/http"
     "regexp"
     "strings"
+
+    db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 
     "github.com/gorilla/sessions"
     "golang.org/x/crypto/bcrypt"
@@ -71,7 +72,7 @@ func newUser(res http.ResponseWriter, req *http.Request) {
     addItem(&res, req, db.NewUserDB, item)
 }
 
-func checkIfLoggedIn(req *http.Request) bool {
+func authenticate(req *http.Request) bool {
     session, _ := store.Get(req, "logged-in")
 
     if auth, ok := session.Values["authenticated"].(bool); !ok || !auth {
@@ -93,10 +94,19 @@ func login(res http.ResponseWriter, req *http.Request) {
     if err != nil {
         fmt.Println("Failed authentication attempt for ", item.Email)
         response(&res, http.StatusNotAcceptable)
+        return
     }
 
     session, _ := store.Get(req, "logged-in")
     session.Values["authenticated"] = true
+    session.Save(req, res)
+    response(&res, http.StatusAccepted)
+}
+
+func logout(res http.ResponseWriter, req *http.Request) {
+    session, _ := store.Get(req, "logged-in")
+
+    session.Values["authenticated"] = false
     session.Save(req, res)
 }
 

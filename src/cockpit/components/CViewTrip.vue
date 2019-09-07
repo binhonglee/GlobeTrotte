@@ -6,7 +6,7 @@
         p(v-if="trip.places.length !== 0")
             CPlaces(:places='trip.places')
         p#city {{ city }}
-        p#creatorInfo Author: {{ trip.userId }}
+        p#creatorInfo Author: {{ trip.userID }}
         p#createdDate Created on: {{ trip.timeCreated.toLocaleDateString() }}
         el-button#enable_edit(v-if='editable === true' v-on:click='enableEditMode') Edit
 </template>

@@ -1,11 +1,12 @@
 package router
 
 import (
-    city "github.com/binhonglee/GlobeTrotte/src/turbine/city"
-    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
     "net/http"
     "strconv"
     "testing"
+
+    city "github.com/binhonglee/GlobeTrotte/src/turbine/city"
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 )
 
 var addedTrip structs.Trip
@@ -39,11 +40,11 @@ func TestGetUser(t *testing.T) {
         http.StatusOK,
     )
 
-    if returned.Id != addedUser.Id {
+    if returned.ID != addedUser.ID {
         t.Errorf(
             "Expected ID is %v but returned ID is %v.",
-            strconv.Itoa(addedUser.Id),
-            strconv.Itoa(returned.Id),
+            strconv.Itoa(addedUser.ID),
+            strconv.Itoa(returned.ID),
         )
     }
 
@@ -66,7 +67,7 @@ func TestGetUser(t *testing.T) {
 
 func TestAddTrip(t *testing.T) {
     var newTrip = structs.Trip{
-        UserId:         addedUser.Id,
+        UserID:         addedUser.ID,
         Name:           "TestUser",
         Location:       city.SanFranciscoCAUS,
         Description:    "Description",
@@ -105,11 +106,11 @@ func TestGetTrip(t *testing.T) {
     var returned *structs.Trip
     getTest("/trip/"+strconv.Itoa(addedTrip.GetID()), t, &returned, http.StatusOK)
 
-    if returned.Id != addedTrip.Id {
+    if returned.ID != addedTrip.ID {
         t.Errorf(
             "Expected ID is %v but returned ID is %v.",
-            strconv.Itoa(addedTrip.Id),
-            strconv.Itoa(returned.Id),
+            strconv.Itoa(addedTrip.ID),
+            strconv.Itoa(returned.ID),
         )
     }
 

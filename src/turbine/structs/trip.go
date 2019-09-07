@@ -15,9 +15,10 @@ import (
     "time"
 )
 
+// Trip - All information of a single trip.
 type Trip struct {
-    Id             int              `json:"id"`
-    UserId         int              `json:"user_id"`
+    ID             int              `json:"id"`
+    UserID         int              `json:"user_id"`
     Name           string           `json:"name"`
     Location       city.City        `json:"location"`
     Places         []place.Place    `json:"places"`
@@ -26,12 +27,14 @@ type Trip struct {
     LastUpdated    time.Time        `json:"last_updated"`
 }
 
+// GetID (istruct) - Returns the trip ID.
 func (trip Trip) GetID() int {
-    return trip.Id
+    return trip.ID
 }
 
+// SetID (istruct) - Sets the trip ID.
 func (trip *Trip) SetID(id int) {
-    trip.Id = id
+    trip.ID = id
 }
 
 type Trips []Trip

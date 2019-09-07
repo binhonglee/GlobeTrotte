@@ -1,14 +1,15 @@
 package database
 
 import (
-    place "github.com/binhonglee/GlobeTrotte/src/turbine/place"
     "strconv"
+
+    place "github.com/binhonglee/GlobeTrotte/src/turbine/place"
 )
 
 func arraysToPlaces(placesArr []string, linksArr []string) place.Places {
     var places place.Places
 
-    for index, _ := range placesArr {
+    for index := range placesArr {
         var tempPlace place.Place
         tempPlace.Label = placesArr[index]
         tempPlace.Url = linksArr[index]

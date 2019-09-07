@@ -73,7 +73,7 @@ export default class CEditTrip extends Vue {
             }
         }
 
-        this.trip.userId = 213;
+        this.trip.userID = 213;
         this.trip.places = this.$data.locations;
 
         this.$emit('save', this.trip);

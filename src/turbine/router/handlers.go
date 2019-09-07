@@ -3,11 +3,12 @@ package router
 import (
     "encoding/json"
     "fmt"
-    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
     "io"
     "io/ioutil"
     "net/http"
     "strconv"
+
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 
     "github.com/gorilla/mux"
 )

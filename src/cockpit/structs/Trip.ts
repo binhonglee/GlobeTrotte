@@ -11,10 +11,11 @@ import { IWingsStruct } from 'wings-ts-util';
 import Place from './Place';
 import City from '../enums/City';
 
+// Trip - All information of a single trip.
 export default class Trip implements IWingsStruct {
     [key: string]: any;
-    public id: number = -1;
-    public userId: number = -1;
+    public ID: number = -1;
+    public userID: number = -1;
     public name: string = '';
     public location: City = City.UNKNOWN;
     public places: Place[] = [];
@@ -24,8 +25,8 @@ export default class Trip implements IWingsStruct {
 
     public init(data: any): boolean {
         try {
-            this.id = data.id;
-            this.userId = data.user_id;
+            this.ID = data.id;
+            this.userID = data.user_id;
             this.name = data.name;
             this.location = data.location;
 
@@ -43,10 +44,10 @@ export default class Trip implements IWingsStruct {
 
     public toJsonKey(key: string): string {
         switch (key) {
-            case 'id': {
+            case 'ID': {
                 return 'id';
             }
-            case 'userId': {
+            case 'userID': {
                 return 'user_id';
             }
             case 'name': {
@@ -74,7 +75,7 @@ export default class Trip implements IWingsStruct {
     }
 
     public parse(data: any): void {
-        this.userId = data.user_id;
+        this.userID = data.user_id;
         this.location = data.location;
     }
 }

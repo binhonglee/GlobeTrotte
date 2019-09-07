@@ -10,8 +10,9 @@ package database
 import (
     "database/sql"
     "fmt"
-    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
     "strconv"
+
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 
     "github.com/lib/pq"
 )
@@ -25,8 +26,8 @@ func AddTripDB(newTrip structs.IStructs) int {
     }
 
     newTripID := addTrip(*trip)
-    user := getUserWithID(trip.UserId)
-    if user.Id == -1 {
+    user := getUserWithID(trip.UserID)
+    if user.ID == -1 {
         fmt.Println("User adding the new trip is not found.")
         return failAddingTripToUser(newTripID)
     }
@@ -49,8 +50,8 @@ func GetTripDB(id int) structs.IStructs {
     FROM trips WHERE id=$1;`
     row := db.QueryRow(sqlStatement, id)
     switch err := row.Scan(
-        &trip.Id,
-        &trip.UserId,
+        &trip.ID,
+        &trip.UserID,
         &trip.Name,
         &trip.Location,
         &trip.Description,
@@ -61,7 +62,7 @@ func GetTripDB(id int) structs.IStructs {
     ); err {
         case sql.ErrNoRows:
             fmt.Println("Trip not found.")
-            trip.Id = -1
+            trip.ID = -1
         case nil:
             fmt.Println("Trip found.")
         default:
@@ -109,7 +110,7 @@ func addTrip(newTrip structs.Trip) int {
     id := 0
     err := db.QueryRow(
         sqlStatement,
-        newTrip.UserId,
+        newTrip.UserID,
         newTrip.Name,
         newTrip.Location,
         newTrip.Description,
@@ -148,7 +149,7 @@ func updateTrip(updatedTrip structs.Trip) bool {
 
     _, err := db.Exec(
         sqlStatement,
-        updatedTrip.Id,
+        updatedTrip.ID,
         updatedTrip.Name,
         updatedTrip.Location,
         pq.Array(places),

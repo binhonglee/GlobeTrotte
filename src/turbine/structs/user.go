@@ -13,8 +13,9 @@ import (
     "time"
 )
 
+// User - An individual registered user.
 type User struct {
-    Id             int          `json:"id"`
+    ID             int          `json:"id"`
     Name           string       `json:"name"`
     Email          string       `json:"email"`
     Bio            string       `json:"bio"`
@@ -22,12 +23,14 @@ type User struct {
     Trips          []int        `json:"trips"`
 }
 
+// GetID (istruct) - Returns the trip ID.
 func (user User) GetID() int {
-    return user.Id
+    return user.ID
 }
 
+// SetID (istruct) - Sets the trip ID.
 func (user *User) SetID(id int) {
-    user.Id = id
+    user.ID = id
 }
 
 type Users []User

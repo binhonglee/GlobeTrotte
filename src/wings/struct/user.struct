@@ -6,6 +6,8 @@ ts-import { IWingsStruct }:wings-ts-util
 
 ts-implement IWingsStruct
 
+# User - An individual registered user.
+
 User {
     id              int
     name            str
@@ -16,11 +18,13 @@ User {
 }
 
 goFunc(
+    // GetID (istruct) - Returns the trip ID.
     func (user User) GetID() int {
-        return user.Id
+        return user.ID
     }
 
+    // SetID (istruct) - Sets the trip ID.
     func (user *User) SetID(id int) {
-        user.Id = id
+        user.ID = id
     }
 )

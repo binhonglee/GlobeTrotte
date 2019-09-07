@@ -9,19 +9,22 @@
 
 package structs
 
+// NewUser - Basic information for user registeration.
 type NewUser struct {
-    Id          int       `json:"id"`
+    ID          int       `json:"id"`
     Name        string    `json:"name"`
     Email       string    `json:"email"`
     Password    string    `json:"password"`
 }
 
+// GetID (istruct) - Returns the trip ID.
 func (newUser NewUser) GetID() int {
-    return newUser.Id
+    return newUser.ID
 }
 
+// SetID (istruct) - Sets the trip ID.
 func (newUser *NewUser) SetID(id int) {
-    newUser.Id = id
+    newUser.ID = id
 }
 
 type NewUsers []NewUser

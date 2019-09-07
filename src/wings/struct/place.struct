@@ -5,6 +5,8 @@ ts-import { IWingsStruct }:wings-ts-util
 
 ts-implement IWingsStruct
 
+# Place - One of many location for a Trip.
+
 Place {
     label   str
     url     str

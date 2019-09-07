@@ -9,6 +9,7 @@
 
 import { IWingsStruct } from 'wings-ts-util';
 
+// Place - One of many location for a Trip.
 export default class Place implements IWingsStruct {
     [key: string]: any;
     public label: string = '';

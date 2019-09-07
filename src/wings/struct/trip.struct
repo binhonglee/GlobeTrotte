@@ -10,6 +10,8 @@ ts-import City:../enums/City
 
 ts-implement IWingsStruct
 
+# Trip - All information of a single trip.
+
 Trip {
     id              int
     user_id         int
@@ -22,18 +24,20 @@ Trip {
 }
 
 goFunc(
+    // GetID (istruct) - Returns the trip ID.
     func (trip Trip) GetID() int {
-        return trip.Id
+        return trip.ID
     }
 
+    // SetID (istruct) - Sets the trip ID.
     func (trip *Trip) SetID(id int) {
-        trip.Id = id
+        trip.ID = id
     }
 )
 
 tsFunc(
     public parse(data: any): void {
-        this.userId = data.user_id;
+        this.userID = data.user_id;
         this.location = data.location;
     }
 )

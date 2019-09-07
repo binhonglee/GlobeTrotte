@@ -9,6 +9,7 @@
 
 package place
 
+// Place - One of many location for a Trip.
 type Place struct {
     Label    string    `json:"label"`
     Url      string    `json:"url"`

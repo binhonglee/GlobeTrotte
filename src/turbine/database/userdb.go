@@ -9,9 +9,10 @@ package database
 import (
     "database/sql"
     "fmt"
-    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
     "strconv"
     "time"
+
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 
     "github.com/lib/pq"
 )
@@ -33,6 +34,7 @@ func GetUserDB(id int) structs.IStructs {
     return &newUser
 }
 
+// GetUserPasswordHashDB - Retreives and return the password hash of the user account.
 func GetUserPasswordHashDB(user structs.NewUser) string {
     return getUserWithEmail(user.Email).Password
 }
@@ -96,7 +98,7 @@ func getUserWithID(id int) structs.User {
     SELECT id, name, email, bio, time_created, trips
     FROM users WHERE id=$1;`
     switch err := db.QueryRow(sqlStatement, id).Scan(
-        &user.Id,
+        &user.ID,
         &user.Name,
         &user.Email,
         &user.Bio,
@@ -105,7 +107,7 @@ func getUserWithID(id int) structs.User {
     ); err {
         case sql.ErrNoRows:
             fmt.Println("User not found.")
-            user.Id = -1
+            user.ID = -1
         case nil:
             fmt.Println("User found.")
         default:
@@ -128,12 +130,12 @@ func getUserWithEmail(hashedPassword string) structs.NewUser {
     SELECT id, password
     FROM users WHERE email=$1;`
     switch err := db.QueryRow(sqlStatement, hashedPassword).Scan(
-        &user.Id,
+        &user.ID,
         &user.Password,
     ); err {
         case sql.ErrNoRows:
             fmt.Println("User not found.")
-            user.Id = -1
+            user.ID = -1
         case nil:
             fmt.Println("User found.")
         default:
@@ -165,7 +167,7 @@ func updateUser(updatedUser structs.User) bool {
 
     _, err := db.Exec(
         sqlStatement,
-        updatedUser.Id,
+        updatedUser.ID,
         updatedUser.Name,
         updatedUser.Email,
         updatedUser.Bio,

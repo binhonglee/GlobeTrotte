@@ -3,12 +3,13 @@ package router
 import (
     "bytes"
     "encoding/json"
-    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
     "io/ioutil"
     "net/http"
     "net/http/httptest"
     "strconv"
     "testing"
+
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 )
 
 func TestPasswd(t *testing.T) {

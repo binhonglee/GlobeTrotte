@@ -9,9 +9,10 @@
 
 import { IWingsStruct } from 'wings-ts-util';
 
+// User - An individual registered user.
 export default class User implements IWingsStruct {
     [key: string]: any;
-    public id: number = -1;
+    public ID: number = -1;
     public name: string = '';
     public email: string = '';
     public bio: string = '';
@@ -20,7 +21,7 @@ export default class User implements IWingsStruct {
 
     public init(data: any): boolean {
         try {
-            this.id = data.id;
+            this.ID = data.id;
             this.name = data.name;
             this.email = data.email;
             this.bio = data.bio;
@@ -37,7 +38,7 @@ export default class User implements IWingsStruct {
 
     public toJsonKey(key: string): string {
         switch (key) {
-            case 'id': {
+            case 'ID': {
                 return 'id';
             }
             case 'name': {

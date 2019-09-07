@@ -9,16 +9,17 @@
 
 import { IWingsStruct } from 'wings-ts-util';
 
+// NewUser - Basic information for user registeration.
 export default class NewUser implements IWingsStruct {
     [key: string]: any;
-    public id: number = -1;
+    public ID: number = -1;
     public name: string = '';
     public email: string = '';
     public password: string = '';
 
     public init(data: any): boolean {
         try {
-            this.id = data.id;
+            this.ID = data.id;
             this.name = data.name;
             this.email = data.email;
             this.password = data.password;
@@ -30,7 +31,7 @@ export default class NewUser implements IWingsStruct {
 
     public toJsonKey(key: string): string {
         switch (key) {
-            case 'id': {
+            case 'ID': {
                 return 'id';
             }
             case 'name': {
