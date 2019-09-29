@@ -1,18 +1,21 @@
 [Please]
-Version = 13.6.2
+Version = 14.0.0
 
 [Build]
 PassEnv = PATH
 PassEnv = USER
 
 [Alias "gen"]
-cmd = run //src/wings:wings -- 
+cmd = run //src/wings:wings --
 
 [Alias "show"]
 cmd = run //:local_cockpit
 
 [Alias "work"]
 cmd = run //src/turbine:main
+
+[Alias "full_clean"]
+cmd = run //scripts:full_clean
 
 [go]
 importpath = github.com/binhonglee/GlobeTrotte

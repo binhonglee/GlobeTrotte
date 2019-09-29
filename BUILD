@@ -4,7 +4,7 @@ genrule(
     outs = ['node_modules'],
     cmd = ' && '.join([
         "HOME=\"/home/$USER\"",
-        "top_level=$(pwd | awk -F'plz-out' '{print $1}')",
+        "top_level=$(pwd | awk -F'plz-out' '{print $1}') || exit 1",
         "yarn",
         "ln -s \"$top_level\"\"node_modules\" \"node_modules\"",
     ]),
@@ -15,9 +15,11 @@ genrule(
     outs = ['dist'],
     cmd = ' && '.join([
         "current=$(pwd)",
-        "cd $(pwd | awk -F'plz-out' '{print $1}')",
+        "cd $(pwd | awk -F'plz-out' '{print $1}') || exit 1",
         "yarn run build",
-        "mv \"dist\" \"$current\""
+        # using `mv` cause some permission issue on WSL
+        "cp -r \"dist\" \"$current\"",
+        "rm -rf \"dist\"",
     ]),
     deps = ['//src/cockpit:cockpit_router'],
 )

@@ -1,5 +1,4 @@
 from os import paramCount, paramStr
-from strutils import split
 import tables
 import wingspkg/core
 

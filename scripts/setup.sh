@@ -12,11 +12,11 @@ Specific options to install only specific requirement.
 
     -c config
     -g Go (and goformat)
-    -m node (and pnpm)
     -n nim
     -p Please
     -q PostgreSQL
     -s shellcheck
+    -y node (and yarn)
 
     -h Display this menu
 
@@ -28,6 +28,7 @@ EOF
 
 config() {
     CURRENT=$(pwd | awk -F'/' '{print $NF}')
+    CONFIG_FILE="config/psql.config"
 
     if [ "$CURRENT" != "GlobeTrotte" ]; then
         echo "Invalid location. Config file not set up."
@@ -35,13 +36,25 @@ config() {
         return
     fi
 
-    if [ -e "config/psql.config" ]; then
-        echo "Seems like \`psql.config\` file already exist. Skipping..."
+    if [ -e "$CONFIG_FILE" ]; then
+        echo "Seems like \`config/psql.config\` file already exist. Skipping..."
         return
     fi
 
-    cp config/sample.config config/psql.config
-    echo "Please fill in the information in psql.config file."
+    sudo -u postgres psql -w -c "CREATE ROLE $USER WITH SUPERUSER CREATEDB LOGIN ENCRYPTED PASSWORD 'test';"
+    sudo -u postgres psql -w -c "CREATE DATABASE $USER"
+    psql --username="$USER" -w -c "CREATE DATABASE globetrotte;"
+
+    touch "$CONFIG_FILE"
+    {
+        echo "host:localhost"
+        echo "port:5432"
+        echo "user:$USER"
+        echo "password:test"
+        echo "dbname:globetrotte"
+    } >> "$CONFIG_FILE"
+
+    echo "Please verify and make sure the information in psql.config file is accurate."
 }
 
 installGo() {
@@ -52,7 +65,7 @@ installGo() {
         return
     fi
 
-    GO_VERSION="1.12.6"
+    GO_VERSION="1.13.1"
 
     case $ARCH in
         "x86_64")
@@ -88,16 +101,21 @@ installGo() {
             ;;
     esac
 
-    tar -C "/usr/local" -xzf "go""$GO_VERSION"."$os""-""$ARCH"".tar.gz"
-    export PATH=$PATH:/usr/local/go/bin
-    go get github.com/mbenkmann/goformat/goformat
+    filename="go""$GO_VERSION"."$os""-""$ARCH"".tar.gz"
+    if [ ! -f "$filename" ]; then
+        wget https://dl.google.com/go/"$filename"
+    fi
+    sudo tar -C "/usr/local" -xzf "$filename"
+    rm $filename
+    export PATH="$PATH:/usr/local/go/bin"
+    go install winterdrache.de/goformat
 
     echo "export PATH=\$PATH:/usr/local/go/bin"
 }
 
-installPNPM() {
+installYarn() {
     TEST_NODE=$(node -v)
-    TEST_PNPM=$(pnpm -v)
+    TEST_YARN=$(yarn -v)
 
     if [ "$TEST_NODE" != "" ]; then
         echo "Seems like \`node\` is already installed. Skipping..."
@@ -107,11 +125,13 @@ installPNPM() {
         nvm install node
     fi
 
-    if [ "$TEST_PNPM" != "" ]; then
-        echo "Seems like \`pnpm\` is already installed. Skipping..."
+    if [ "$TEST_YARN" != "" ]; then
+        echo "Seems like \`yarn\` is already installed. Skipping..."
         return
     else
-        curl -L https://unpkg.com/@pnpm/self-installer | node
+        curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+        echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+        sudo apt-get update && sudo apt-get install yarn
     fi
 }
 
@@ -182,14 +202,14 @@ fi
 
 if [ ${#*} -lt 1 ]; then
     installGo
-    installPNPM
+    installYarn
     installNim
     installPostgreSQL
     installShellcheck
     config
 fi
 
-while getopts cghmnpqs opt; do
+while getopts cghnpqsy opt; do
     case $opt in
         c)
             config
@@ -199,9 +219,6 @@ while getopts cghmnpqs opt; do
             ;;
         h)
             showHelp
-            ;;
-        m)
-            installPNPM
             ;;
         n)
             installNim
@@ -214,6 +231,9 @@ while getopts cghmnpqs opt; do
             ;;
         s)
             installShellcheck
+            ;;
+        y)
+            installYarn
             ;;
         *)
             "Invalid flag $opt. Use -h to show usage."

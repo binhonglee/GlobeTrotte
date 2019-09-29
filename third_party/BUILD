@@ -46,5 +46,5 @@ go_get(
 nimble_install(
     name = 'wings',
     pkg_name = 'wings',
-    revision = '#2f18b8e963e7cd834d60560d16c86a3177408b5a',
+    revision = '#028a1a6650f7a81aafd75f471908b2537c5200ab',
 )
