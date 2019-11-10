@@ -11,8 +11,8 @@ cmd = run //:local_cockpit
 [Alias "work"]
 cmd = run //src/turbine:main
 
-[Alias "full_clean"]
-cmd = run //scripts:full_clean
+[Alias "reset"]
+cmd = run //scripts:reset
 
 [go]
 importpath = github.com/binhonglee/GlobeTrotte

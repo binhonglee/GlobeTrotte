@@ -46,7 +46,7 @@
         "check-coverage": false,
         "per-file": true,
         "clean": true,
-        "temp-dir": "./plz-out/.nyc_output",
+        "temp-dir": "./.nyc_output",
         "include": [
             "src/cockpit/**/*.{ts,vue}"
         ],
@@ -60,7 +60,7 @@
             "text",
             "text-summary"
         ],
-        "report-dir": "./plz-out/coverage",
+        "report-dir": "./coverage",
         "extension": [
             ".ts",
             ".vue"

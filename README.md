@@ -20,13 +20,12 @@
 
 - [go](https://golang.org/)
   - [goformat](https://github.com/mbenkmann/goformat) (Go files lint)
-- [Nim](https://nim-lang.org/)
-  - [choosenim](https://github.com/dom96/choosenim)
 - [node](https://nodejs.org/en/)
   - [yarn](https://yarnpkg.com/)
 - [please](https://please.build) (optional)
 - [postgresql](https://www.postgresql.org/)
 - [shellcheck](https://github.com/koalaman/shellcheck) (Shell script lint)
+- [wings](https://wings.sh/)
 
 \*_Note: Replace `plz` with `./pleasew` if you do not have please installed._
 

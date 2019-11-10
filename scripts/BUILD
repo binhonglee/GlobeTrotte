@@ -9,7 +9,7 @@ gentest(
 )
 
 sh_cmd(
-    name = 'full_clean',
+    name = 'reset',
     cmd = ' && '.join([
         "echo \"Removing '.cache'...\"",
         "rm -rf .cache",
@@ -19,6 +19,13 @@ sh_cmd(
         "rm -rf ~/.cache/please",
         "echo \"Removing 'plz-out'...\"",
         "rm -rf plz-out",
+        "echo \"Removing '.nyc_output'...\"",
+        "rm -rf .nyc_output",
+        "echo \"Removing 'coverage'...\"",
+        "rm -rf coverage",
         "echo \"All removal completed successfully!\"",
+        "yarn",
+        "psql --username=\"$USER\" -w -c \"DROP DATABASE globetrotte;\"",
+        "psql --username=\"$USER\" -w -c \"CREATE DATABASE globetrotte;\"",
     ])
 )

@@ -1,4 +1,5 @@
 .cache/
+.nyc_output/
 coverage/
 dist/
 nimcache/

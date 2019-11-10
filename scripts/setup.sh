@@ -12,10 +12,10 @@ Specific options to install only specific requirement.
 
     -c config
     -g Go (and goformat)
-    -n nim
     -p Please
     -q PostgreSQL
     -s shellcheck
+    -w wings
     -y node (and yarn)
 
     -h Display this menu
@@ -119,7 +119,6 @@ installYarn() {
 
     if [ "$TEST_NODE" != "" ]; then
         echo "Seems like \`node\` is already installed. Skipping..."
-        return
     else
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
         nvm install node
@@ -127,23 +126,17 @@ installYarn() {
 
     if [ "$TEST_YARN" != "" ]; then
         echo "Seems like \`yarn\` is already installed. Skipping..."
-        return
     else
         curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
         echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
         sudo apt-get update && sudo apt-get install yarn
     fi
-}
 
-installNim() {
-    TEST_NIM=$(choosenim -h)
-
-    if [ "$TEST_NIM" != "" ]; then
-        echo "Seems like \`choosenim\` is already installed. Skipping..."
-        return
+    if [ -d "node_modules" ]; then
+        echo "Seems like \`node_modules\` already exists. Skipping..."
+    else
+        yarn
     fi
-
-    curl https://nim-lang.org/choosenim/init.sh -sSf | sh
 }
 
 installPlease() {
@@ -195,6 +188,17 @@ installShellcheck() {
     esac
 }
 
+installWings() {
+    TEST_WINGS=$(wings)
+
+    if [ "$TEST_WINGS" != "" ]; then
+        echo "Seems like \`wings\` is already installed. Skipping..."
+        return
+    fi
+
+    sudo curl -L https://github.com/binhonglee/wings/releases/download/v0.0.2-alpha/wings_64bit_unix -o /usr/bin/wings
+}
+
 if ! echo "$SUPPORTED_OS" | grep -w "$OS" > /dev/null; then
     echo "Unfortunately this is an unsupported OS."
     exit 1
@@ -203,14 +207,14 @@ fi
 if [ ${#*} -lt 1 ]; then
     installGo
     installYarn
-    installNim
     installPlease
     installPostgreSQL
     installShellcheck
+    installWings
     config
 fi
 
-while getopts cghnpqsy opt; do
+while getopts cghpqswy opt; do
     case $opt in
         c)
             config
@@ -221,9 +225,6 @@ while getopts cghnpqsy opt; do
         h)
             showHelp
             ;;
-        n)
-            installNim
-            ;;
         p)
             installPlease
             ;;
@@ -232,6 +233,9 @@ while getopts cghnpqsy opt; do
             ;;
         s)
             installShellcheck
+            ;;
+        w)
+            installWings
             ;;
         y)
             installYarn

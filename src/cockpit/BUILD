@@ -36,8 +36,13 @@ genrule(
 gentest(
     name = "unit_tests",
     cmd = ' && '.join([
+        "top_level=$(pwd | awk -F'plz-out' '{print $1}')",
         "yarn run cover",
+        "cp -R coverage/ $top_level/coverage"
     ]),
+    outs = [
+        "coverage/"
+    ],
     test_cmd = "echo 'Do nothing...'",
     no_test_output = True,
     needs_transitive_deps = True,

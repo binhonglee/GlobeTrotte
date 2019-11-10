@@ -42,7 +42,7 @@ genrule(
     outs = ["node_modules"],
     cmd = " && ".join([
         "HOME=\"/home/$USER\"",
-        "top_level=$(pwd | awk -F'plz-out' '{print $1}') || exit 1",
+        "top_level=$(pwd | awk -F'plz-out' '{print $1}')",
         "ln -s \"$top_level\"\"node_modules\" \"node_modules\"",
         "yarn",
     ]),
