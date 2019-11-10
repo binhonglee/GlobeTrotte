@@ -9,7 +9,6 @@ go_library(
     deps = [
         '//third_party:pq',
         '//src/turbine/structs:structs',
-        '//src/turbine/place:place',
         '//src/turbine/city:city',
     ],
     visibility = ['//src/turbine/...'],

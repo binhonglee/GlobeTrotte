@@ -1,4 +1,5 @@
 import Trip from './Trip';
+import City from '../enums/City';
 
 import { equal } from 'assert';
 import { WingsStructUtil } from 'wings-ts-util';
@@ -9,9 +10,16 @@ const expect = chai.expect;
 describe('WingsStructUtil.stringify(Trip) should include all values in Trip.', () => {
     const trip = new Trip();
     trip.parse({
+        id: 1,
         user_id: -1,
-        location: -1,
+        name: 'Test Trip Name',
+        cities: [City.KualaLumpurMY, City.SanJoseCAUS],
+        days: [],
+        description: 'Test Trip Description',
+        time_created: new Date(),
+        last_updated: new Date(),
     });
+
     const reversedObj = new Trip();
     reversedObj.init(
         JSON.parse(

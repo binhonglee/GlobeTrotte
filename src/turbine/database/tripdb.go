@@ -43,33 +43,7 @@ func AddTripDB(newTrip structs.IStructs) int {
 
 // GetTripDB - Retrieve trip information from database with ID.
 func GetTripDB(id int) structs.IStructs {
-    var trip structs.Trip
-    var places, links []string
-    sqlStatement := `
-    SELECT id, userid, name, city, description, places, links, time_created, last_updated
-    FROM trips WHERE id=$1;`
-    row := db.QueryRow(sqlStatement, id)
-    switch err := row.Scan(
-        &trip.ID,
-        &trip.UserID,
-        &trip.Name,
-        &trip.Location,
-        &trip.Description,
-        pq.Array(&places),
-        pq.Array(&links),
-        &trip.TimeCreated,
-        &trip.LastUpdated,
-    ); err {
-        case sql.ErrNoRows:
-            fmt.Println("Trip not found.")
-            trip.ID = -1
-        case nil:
-            fmt.Println("Trip found.")
-        default:
-            panic(err)
-    }
-
-    trip.Places = arraysToPlaces(places, links)
+    var trip structs.Trip = fetchTrip(id)
     return &trip
 }
 
@@ -104,16 +78,17 @@ func DeleteTripDB(existingTrip structs.IStructs) bool {
 
 func addTrip(newTrip structs.Trip) int {
     sqlStatement := `
-    INSERT INTO trips (userid, name, city, description, time_created, last_updated)
-    VALUES ($1, $2, $3, $4, $5, $6)
+    INSERT INTO trips (userid, name, cities, description, days, time_created, last_updated)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING id`
     id := 0
     err := db.QueryRow(
         sqlStatement,
         newTrip.UserID,
         newTrip.Name,
-        newTrip.Location,
+        pq.Array(cityEnumArrayToIDs(newTrip.Cities)),
         newTrip.Description,
+        pq.Array(daysToIDArray(newTrip.Days)),
         newTrip.TimeCreated,
         newTrip.LastUpdated,
     ).Scan(&id)
@@ -126,9 +101,94 @@ func addTrip(newTrip structs.Trip) int {
     return id
 }
 
+func fetchTrip(id int) structs.Trip {
+    var trip structs.Trip
+    var days []int
+    var cities []int64
+    sqlStatement := `
+    SELECT id, userid, name, cities, description, days, time_created, last_updated
+    FROM trips WHERE id=$1;`
+    row := db.QueryRow(sqlStatement, id)
+    switch err := row.Scan(
+        &trip.ID,
+        &trip.UserID,
+        &trip.Name,
+        pq.Array(&cities),
+        &trip.Description,
+        pq.Array(&days),
+        &trip.TimeCreated,
+        &trip.LastUpdated,
+    ); err {
+        case sql.ErrNoRows:
+            fmt.Println("Trip not found.")
+            trip.ID = -1
+        default:
+            fmt.Println(err)
+    }
+
+    trip.Cities = cityIDsToEnumArray(cities)
+    trip.Days = fetchDays(days)
+    return trip
+}
+
+func fetchDays(ids []int) structs.Days {
+    var days structs.Days = make([]structs.Day, len(ids))
+
+    for index, id := range ids {
+        var day structs.Day
+        var places []int
+        sqlStatement := `
+		SELECT id, trip_id, day_of, places
+		FROM days WHERE id=$1;`
+        row := db.QueryRow(sqlStatement, id)
+        switch err := row.Scan(
+            &day.ID,
+            &day.TripID,
+            &day.DayOf,
+            pq.Array(&places),
+        ); err {
+            case sql.ErrNoRows:
+                fmt.Println("Trip not found.")
+                day.ID = -1
+            default:
+                fmt.Println(err)
+        }
+        day.Places = fetchPlaces(places)
+        days[index] = day
+    }
+
+    return days
+}
+
+func fetchPlaces(ids []int) structs.Places {
+    var places structs.Places = make([]structs.Place, len(ids))
+
+    for index, id := range ids {
+        var place structs.Place
+        sqlStatement := `
+		SELECT id, label, url, description
+		FROM days WHERE id=$1;`
+        row := db.QueryRow(sqlStatement, id)
+        switch err := row.Scan(
+            &place.ID,
+            &place.Label,
+            &place.URL,
+            &place.Description,
+        ); err {
+            case sql.ErrNoRows:
+                fmt.Println("Trip not found.")
+                place.ID = -1
+            default:
+                fmt.Println(err)
+        }
+        places[index] = place
+    }
+
+    return places
+}
+
 func updateTrip(updatedTrip structs.Trip) bool {
     existingTrip := GetTripDB(updatedTrip.GetID())
-    places, links := placesToArrays(updatedTrip.Places)
     if existingTrip.GetID() != updatedTrip.GetID() {
         fmt.Println("Existing Trip is not found. Aborting update.")
         fmt.Println("Given ID is " + strconv.Itoa(updatedTrip.GetID()) +
@@ -139,22 +199,20 @@ func updateTrip(updatedTrip structs.Trip) bool {
 
     sqlStatement := `
     UPDATE trips
-    SET name = $2,
-    city = $3,
-    places = $4,
-    links = $5,
-    description = $6,
-    last_updated = $7
+	SET name = $2,
+    description = $3,
+	cities = $4,
+	days = $5,
+    last_updated = $6
     WHERE id = $1;`
 
     _, err := db.Exec(
         sqlStatement,
         updatedTrip.ID,
         updatedTrip.Name,
-        updatedTrip.Location,
-        pq.Array(places),
-        pq.Array(links),
         updatedTrip.Description,
+        pq.Array(cityEnumArrayToIDs(updatedTrip.Cities)),
+        pq.Array(daysToIDArray(updatedTrip.Days)),
         updatedTrip.LastUpdated,
     )
 

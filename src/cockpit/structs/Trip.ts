@@ -4,12 +4,12 @@
  * If you would like to make any changes, please edit the source file instead.
  * run `plz gen "{SOURCE_FILE}" && plz test --nocache` upon completion.
  *
- * Source: src/wings/struct/trip.struct
+ * Source: src/wings/struct/trip.struct.wings
  */
 
-import { IWingsStruct } from 'wings-ts-util';
-import Place from './Place';
 import City from '../enums/City';
+import Day from './Day';
+import { IWingsStruct } from 'wings-ts-util';
 
 // Trip - All information of a single trip.
 export default class Trip implements IWingsStruct {
@@ -17,8 +17,8 @@ export default class Trip implements IWingsStruct {
     public ID: number = -1;
     public userID: number = -1;
     public name: string = '';
-    public location: City = City.UNKNOWN;
-    public places: Place[] = [];
+    public cities: City[] = [];
+    public days: Day[] = [];
     public description: string = '';
     public timeCreated: Date = new Date();
     public lastUpdated: Date = new Date();
@@ -28,10 +28,13 @@ export default class Trip implements IWingsStruct {
             this.ID = data.id;
             this.userID = data.user_id;
             this.name = data.name;
-            this.location = data.location;
 
-            if (data.places !== null) {
-                this.places = data.places;
+            if (data.cities !== null) {
+                this.cities = data.cities;
+            }
+
+            if (data.days !== null) {
+                this.days = data.days;
             }
             this.description = data.description;
             this.timeCreated = new Date(data.time_created);
@@ -53,11 +56,11 @@ export default class Trip implements IWingsStruct {
             case 'name': {
                 return 'name';
             }
-            case 'location': {
-                return 'location';
+            case 'cities': {
+                return 'cities';
             }
-            case 'places': {
-                return 'places';
+            case 'days': {
+                return 'days';
             }
             case 'description': {
                 return 'description';
@@ -76,6 +79,6 @@ export default class Trip implements IWingsStruct {
 
     public parse(data: any): void {
         this.userID = data.user_id;
-        this.location = data.location;
+        this.cities = data.cities;
     }
 }

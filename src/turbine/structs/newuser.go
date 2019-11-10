@@ -4,7 +4,7 @@
  * If you would like to make any changes, please edit the source file instead.
  * run `plz gen "{SOURCE_FILE}" && plz test --nocache` upon completion.
  *
- * Source: src/wings/struct/new_user.struct
+ * Source: src/wings/struct/new_user.struct.wings
  */
 
 package structs
@@ -27,4 +27,5 @@ func (newUser *NewUser) SetID(id int) {
     newUser.ID = id
 }
 
+// NewUsers - An array of NewUser
 type NewUsers []NewUser

@@ -39,6 +39,11 @@ func GetUserPasswordHashDB(user structs.NewUser) string {
     return getUserWithEmail(user.Email).Password
 }
 
+// GetUserWithEmailDB - Retrieve user information from database with their email.
+func GetUserWithEmailDB(user structs.NewUser) structs.User {
+    return getUserWithID(getUserWithEmail(user.Email).ID)
+}
+
 // UpdateUserDB - Update user information back into the database.
 func UpdateUserDB(updatedUser structs.IStructs) bool {
     user, ok := updatedUser.(*structs.User)
@@ -108,10 +113,8 @@ func getUserWithID(id int) structs.User {
         case sql.ErrNoRows:
             fmt.Println("User not found.")
             user.ID = -1
-        case nil:
-            fmt.Println("User found.")
         default:
-            panic(err)
+            fmt.Println(err)
     }
 
     user.Trips = []int{}
@@ -136,10 +139,8 @@ func getUserWithEmail(hashedPassword string) structs.NewUser {
         case sql.ErrNoRows:
             fmt.Println("User not found.")
             user.ID = -1
-        case nil:
-            fmt.Println("User found.")
         default:
-            panic(err)
+            fmt.Println(err)
     }
 
     return user

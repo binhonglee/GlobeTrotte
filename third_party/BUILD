@@ -1,16 +1,15 @@
-subinclude('//build_defs/nim')
 package(default_visibility = ['PUBLIC'])
 
 go_get(
     name = 'mux',
     get = 'github.com/gorilla/mux',
-    revision = 'ed099d42384823742bba0bf9a72b53b55c9e2e38'
+    revision = '00bdffe0f3c77e27d2cf6f5c70232a2d3e4d9c15'
 )
 
 go_get(
     name = 'sessions',
     get = 'github.com/gorilla/sessions',
-    revision = '56c33e9da484d617e23f395ecec61db32d99dcf3',
+    revision = '4355a998706e83fe1d71c31b07af94e34f68d74a',
     deps = [
         ':securecookie'
     ],
@@ -19,7 +18,7 @@ go_get(
 go_get(
     name = 'securecookie',
     get = 'github.com/gorilla/securecookie',
-    revision = '629b6af17341019b261eab06da74c418942918d9',
+    revision = '61b4ad17eb88d0d1118560d1101176279be2bc88',
 )
 
 go_get(
@@ -29,7 +28,7 @@ go_get(
         'bcrypt',
         'blowfish',
     ],
-    revision = '4def268fd1a49955bfb3dda92fe3db4f924f2285',
+    revision = '8986dd9e96cf0a6f74da406c005ba3df38527c04',
 )
 
 go_get(
@@ -40,11 +39,5 @@ go_get(
         'oid',
         'scram',
     ],
-    revision = 'bc6a3c0594130b1e34005880bc600b6d3f49fa7f',
-)
-
-nimble_install(
-    name = 'wings',
-    pkg_name = 'wings',
-    revision = '#028a1a6650f7a81aafd75f471908b2537c5200ab',
+    revision = '3427c32cb71afc948325f299f040e53c1dd78979',
 )

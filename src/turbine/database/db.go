@@ -92,6 +92,7 @@ func createUsersTable() {
     _, err := db.Exec(createTable)
 
     if err != nil {
+        fmt.Println("Failed to create `users` table.")
         panic(err)
     }
 }
@@ -102,16 +103,48 @@ func createTripsTable() {
         id              SERIAL PRIMARY KEY,
         userid          INT         NOT NULL,
         name            TEXT        NOT NULL,
-        city            INT         NOT NULL,
+        cities          INT[]       NOT NULL,
         description     TEXT,
-        places          TEXT[],
-        links           TEXT[],
+        days          	INT[],
         time_created    TIMESTAMPTZ NOT NULL,
         last_updated    TIMESTAMPTZ NOT NULL
     );`
     _, err := db.Exec(createTable)
 
     if err != nil {
+        fmt.Println("Failed to create `trips` table.")
+        panic(err)
+    }
+}
+
+func createDaysTable() {
+    createTable := `
+    CREATE TABLE days (
+		id      SERIAL PRIMARY KEY,
+		trip_id INT 	NOT NULL,
+		day_of  INT 	NOT NULL,
+		places 	INT[],
+		);`
+    _, err := db.Exec(createTable)
+
+    if err != nil {
+        fmt.Println("Failed to create `days` table.")
+        panic(err)
+    }
+}
+
+func createPlacesTable() {
+    createTable := `
+    CREATE TABLE places (
+		id          SERIAL PRIMARY KEY,
+        label       TEXT,
+		url         TEXT,
+		description	TEXT,
+    );`
+    _, err := db.Exec(createTable)
+
+    if err != nil {
+        fmt.Println("Failed to create `places` table.")
         panic(err)
     }
 }
@@ -127,6 +160,7 @@ func createCitiesTable() {
     _, err := db.Exec(createTable)
 
     if err != nil {
+        fmt.Println("Failed to create `cities` table.")
         panic(err)
     }
 }

@@ -1,7 +1,6 @@
 go-filepath src/turbine/structs
 ts-filepath src/cockpit/structs
 
-go-import time
 ts-import { IWingsStruct }:wings-ts-util
 
 ts-implement IWingsStruct

@@ -1,0 +1,30 @@
+def wings_lib(name:str, config:str="", srcs:list=[], outs:list=["done"], test_only=False, visibility:list=None, deps:list=[]):
+    filegroup(
+        name = name + '_#wings',
+        srcs = srcs,
+        visibility = visibility,
+        binary = False,
+        test_only = test_only,
+    )
+
+    return build_rule(
+        name = name,
+        srcs = srcs,
+        tools = {
+            'wings': [CONFIG.WINGS_TOOL],
+        },
+        cmd = " && ".join([
+            "HOME=\"/home/$USER\"",
+            "FILES=$(find \"$PWD\" -name *.wings -exec realpath --relative-to \"$PWD\" \{\} \;)",
+            "$TOOLS_WINGS " + config + " $FILES",
+        ]),
+        outs = outs,
+        deps = deps + [':' + name + '_#wings'],
+        needs_transitive_deps = True,
+        requires = ['wings'],
+        test_only = test_only,
+        binary = False,
+        visibility = visibility,
+    )
+
+CONFIG.setdefault('WINGS_TOOL', 'wings')

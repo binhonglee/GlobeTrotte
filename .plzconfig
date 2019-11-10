@@ -5,9 +5,6 @@ Version = 14.0.0
 PassEnv = PATH
 PassEnv = USER
 
-[Alias "gen"]
-cmd = run //src/wings:wings --
-
 [Alias "show"]
 cmd = run //:local_cockpit
 

@@ -5,7 +5,7 @@ import (
     "testing"
     "time"
 
-    place "github.com/binhonglee/GlobeTrotte/src/turbine/place"
+    city "github.com/binhonglee/GlobeTrotte/src/turbine/city"
     structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 )
 
@@ -114,12 +114,13 @@ func TestAddTripDB(t *testing.T) {
         Name:           "DummyTrip",
         UserID:         newUser.ID,
         Description:    "dummytrip.com",
+        Cities:         []city.City{city.SanFranciscoCAUS},
         TimeCreated:    time.Now(),
         LastUpdated:    time.Now(),
     }
 
     if actual := AddTripDB(&newTrip); actual == failCondition {
-        t.Errorf("AddTripDB(), unable to add new trip.")
+        t.Errorf("AddTripDB(), unable to add new trip. " + strconv.Itoa(actual))
     } else {
         newTrip.ID = actual
     }
@@ -153,13 +154,6 @@ func TestGetTripDB(t *testing.T) {
             newTrip.Name,
         )
     }
-    if retrievedTrip.Location != newTrip.Location {
-        t.Errorf(
-            "GetTripDB(), given Location is %v but expected Location is %v.",
-            retrievedTrip.Location,
-            newTrip.Location,
-        )
-    }
     if retrievedTrip.Description != newTrip.Description {
         t.Errorf(
             "GetTripDB(), given Description is %v but expected Description is %v.",
@@ -178,11 +172,7 @@ func TestGetTripDB(t *testing.T) {
 func TestUpdateTripDB(t *testing.T) {
     newTrip.Name = "new Name for DummyTrip"
     newTrip.Description = "new description for dummytrip.com"
-    newTrip.Places = append(newTrip.Places, place.Place{
-        Label:    "newLabel",
-        Url:      "https://binhong.me/",
-    })
-    // newTrip.LastUpdated = time.Now()
+    newTrip.LastUpdated = time.Now()
 
     if update := UpdateTripDB(&newTrip); !update {
         t.Errorf("UpdateTripDB(), failed to update trip.")
@@ -208,17 +198,6 @@ func TestUpdateTripDB(t *testing.T) {
             "UpdateTripDB(), given Description is %v but expected Description is %v.",
             updatedTrip.Description,
             newTrip.Description,
-        )
-    }
-
-    given := placesToString(updatedTrip.Places)
-    expected := placesToString(newTrip.Places)
-
-    if given != expected {
-        t.Errorf(
-            "UpdateTripDB(), given Description is %v but expected Description is %v.",
-            given,
-            expected,
         )
     }
 

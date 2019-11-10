@@ -30,6 +30,10 @@ export default new Router({
             name: 'About',
             component: () => import('./views/VAbout.vue'),
         }, {
+            path: '/login',
+            name: 'Login',
+            component: () => import('./views/VLogin.vue'),
+        }, {
             path: '/register',
             name: 'Register',
             component: () => import('./views/VRegister.vue'),

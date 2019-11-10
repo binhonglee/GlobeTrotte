@@ -67,7 +67,8 @@ func getItem(res *http.ResponseWriter, req *http.Request, getFunc func(int) stru
     var error error
 
     if id, error = strconv.Atoi(vars["id"]); error != nil {
-        panic(error)
+        fmt.Println(error)
+        return
     }
     allowCORS(res)
 
@@ -102,7 +103,8 @@ func deleteItem(res *http.ResponseWriter, req *http.Request, getFunc func(int) s
     var error error
 
     if id, error = strconv.Atoi(vars["id"]); error != nil {
-        panic(error)
+        fmt.Println(error)
+        return
     }
 
     inf := getFunc(id)

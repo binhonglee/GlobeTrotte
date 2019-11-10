@@ -1,7 +1,7 @@
 <template lang="pug">
-    .new_user
-        h1.title Create Account
-        .newUser
+    .login
+        h1.title Login
+        .loginbox
             span.editLabel Email:
             el-input.editInput#username(
                 type='text'
@@ -14,14 +14,6 @@
                 type='text'
                 v-on:keyup.enter='save'
                 v-model='password'
-                show-password
-            )
-            br
-            span.editLabel Confirm Password:
-            el-input.editInput#confPassword(
-                type='text'
-                v-on:keyup.enter='save'
-                v-model='confPassword'
                 show-password
             )
             br
@@ -42,18 +34,12 @@ import User from '../structs/User';
         return {
             email: '',
             password: '',
-            confPassword: '',
         };
     },
 })
 
-export default class VRegsiter extends Vue {
+export default class VLogin extends Vue {
     private confirm(): void {
-        if (this.$data.password.localeCompare(this.$data.confPassword)) {
-            alert('Password does not match.');
-            return;
-        }
-
         const newUser = new NewUser();
         const user = new User();
         newUser.register({
@@ -62,7 +48,7 @@ export default class VRegsiter extends Vue {
         });
 
         HTTPReq.post(
-            'user',
+            'login',
             WingsStructUtil.stringify(newUser),
             (returnedUser: string) => {
                 user.init(JSON.parse(returnedUser));
@@ -81,7 +67,7 @@ export default class VRegsiter extends Vue {
 <style lang="scss">
 @import '../shared/lib';
 
-.newUser {
+.loginbox {
     @include trip_display();
 }
 

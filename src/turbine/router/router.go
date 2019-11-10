@@ -60,6 +60,12 @@ var routes = Routes{
         deleteUser,
     },
     Route{
+        "Login",
+        "POST",
+        "/login",
+        login,
+    },
+    Route{
         "AddTrip",
         "POST",
         "/trip",

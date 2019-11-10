@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/binhonglee/GlobeTrotte/branch/master/graph/badge.svg?token=H3UDTCtJoy)](https://codecov.io/gh/binhonglee/GlobeTrotte)
 [![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/binhonglee/GlobeTrotte.svg)](https://app.snyk.io/org/binhonglee/project/c9cff2be-f8f8-4db5-b687-1b69865cade9/)
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c0078733b53a49e08d5b1281d359a94c)](https://app.codacy.com/project/binhonglee/GlobeTrotte/dashboard)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4f01a8a8e4694a8d9c0bef49ed3a8058)](https://app.codacy.com/project/binhonglee/GlobeTrotte/dashboard)
 [![CodeFactor](https://www.codefactor.io/repository/github/binhonglee/globetrotte/badge)](https://www.codefactor.io/repository/github/binhonglee/globetrotte)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f7aaf4db648db9bd6188/maintainability)](https://codeclimate.com/github/binhonglee/GlobeTrotte/maintainability)
 [![Gitter](https://img.shields.io/gitter/room/binhonglee/GlobeTrotte.svg)](https://gitter.im/binhonglee/GlobeTrotte)

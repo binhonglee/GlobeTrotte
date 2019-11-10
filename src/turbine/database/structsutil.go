@@ -3,45 +3,40 @@ package database
 import (
     "strconv"
 
-    place "github.com/binhonglee/GlobeTrotte/src/turbine/place"
+    city "github.com/binhonglee/GlobeTrotte/src/turbine/city"
+    structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 )
 
-func arraysToPlaces(placesArr []string, linksArr []string) place.Places {
-    var places place.Places
-
-    for index := range placesArr {
-        var tempPlace place.Place
-        tempPlace.Label = placesArr[index]
-        tempPlace.Url = linksArr[index]
-        places = append(places, tempPlace)
+func daysToIDArray(days structs.Days) []int {
+    var idArray []int = make([]int, len(days))
+    for index := range days {
+        idArray[index] = days[index].GetID()
     }
-
-    return places
+    return idArray
 }
 
-func placesToArrays(places place.Places) ([]string, []string) {
-    var placesArr []string
-    var linkArr []string
-
-    for _, element := range places {
-        placesArr = append(placesArr, element.Label)
-        linkArr = append(linkArr, element.Url)
+func placesToIDArray(places structs.Places) []int {
+    var idArray []int = make([]int, len(places))
+    for index := range places {
+        idArray[index] = places[index].GetID()
     }
-
-    return placesArr, linkArr
+    return idArray
 }
 
-func placesToString(places place.Places) string {
-    placeString := ""
-
-    for _, element := range places {
-        placeString += element.Label
-        placeString += " "
-        placeString += element.Url
-        placeString += "\n"
+func cityEnumArrayToIDs(cities []city.City) []int {
+    var idArray []int = make([]int, len(cities))
+    for index := range cities {
+        idArray[index] = int(cities[index])
     }
+    return idArray
+}
 
-    return placeString
+func cityIDsToEnumArray(cityIDs []int64) []city.City {
+    var cityArray []city.City = make([]city.City, len(cityIDs))
+    for index := range cityIDs {
+        cityArray[index] = city.City(cityIDs[index])
+    }
+    return cityArray
 }
 
 func tripsToString(tripIDs []int) string {

@@ -4,14 +4,16 @@ import City from './City';
 import CityUtil from './CityUtil';
 
 describe('Every city should have conversion in CityUtil.toString().', () => {
-    for (const city in City) {
-        if (typeof city === 'number' && city !== City.UNKNOWN) {
-            it(city, () => {
-                const cityEnum = parseInt(city, 10);
-                expect(
-                    CityUtil.toString(cityEnum) !== 'unrecognized city',
-                ).equal(true);
-            });
+    for (const cityString in City) {
+        if (City.hasOwnProperty(cityString)) {
+            const city = Number(cityString);
+            if ((!isNaN(city)) && city !== City.UNKNOWN) {
+                it(cityString, () => {
+                    expect(
+                        CityUtil.toString(city) !== 'unrecognized city',
+                    ).equal(true);
+                });
+            }
         }
     }
 });
@@ -20,5 +22,23 @@ describe('Non existent city (including UNKNOWN) should return \'unrecognized cit
     const unsupported: number = 999999;
     it(unsupported.toString(), () => {
         expect(CityUtil.toString(unsupported)).equal('unrecognized city');
+    });
+});
+
+describe('allActiveCities() should include all but UNKNOWN city.', () => {
+    const allCities: any[] = CityUtil.allActiveCities();
+    const cities: Set<number> = new Set<number>();
+
+    for (const cityString in City) {
+        if (City.hasOwnProperty(cityString)) {
+            const city = Number(cityString);
+            if ((!isNaN(city)) && city !== City.UNKNOWN) {
+                cities.add(city);
+            }
+        }
+    }
+
+    it('There should be the same amount of cities.', () => {
+        expect(allCities.length).equal(cities.size);
     });
 });

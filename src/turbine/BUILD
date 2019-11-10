@@ -1,26 +1,12 @@
-genrule(
-    name = 'pre_build',
-    visibility = [':main'],
-    outs = ['go.mod'],
-    cmd = ' && '.join([
-        "current=$(pwd)",
-        "cd $(pwd | awk -F'plz-out' '{print $1}')",
-        "touch plz-out/go.mod",
-        "ln -s \"plz-out/go.mod\" \"$current/go.mod\"",
-    ]),
-)
-
 go_binary(
     name = 'main',
     srcs = ['main.go'],
     deps = [
-        ':pre_build',
         '//third_party:mux',
         '//third_party:pq',
         '//src/turbine/router',
     ],
     visibility = [
-        '//scripts:golint',
         '//src/turbine/...',
     ],
 )
@@ -30,8 +16,16 @@ gentest(
     test_cmd = ' && '.join([
         "current=$(pwd)",
         "cd $(pwd | awk -F'plz-out' '{print $1}') || exit 1",
-        "goformat -style config/goformat -w src/turbine/**/*.go"
+        "goformat -style config/goformat -w src/turbine/**/*.go",
     ]),
     no_test_output = True,
-    deps = [':main'],
+    deps = [
+        '//src/wings/struct:day',
+        '//src/wings/struct:new_user',
+        '//src/wings/struct:place',
+        '//src/wings/struct:trip',
+        '//src/wings/struct:user',
+        '//src/wings/enum:city',
+    ],
+    visibility = ['PUBLIC'],
 )

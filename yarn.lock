@@ -6576,10 +6576,10 @@ window-size@0.1.0:
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
   integrity sha1-VDjNLqk7IC76Ohn+iIeu58lPnJ0=
 
-wings-ts-util@0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/wings-ts-util/-/wings-ts-util-0.0.5.tgz#392fedf630116290d5efd1731fd45db353735b03"
-  integrity sha512-9Z1E3jEi+xmkdjElJ66BZDTZOdrW26x0ieLPisDlDSfjSzkhlw6ubtmDALbCByCaPyqVT9TZpxpbp63i713Flw==
+wings-ts-util@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/wings-ts-util/-/wings-ts-util-0.0.6.tgz#ac109a6411f02db53c1bacf3aafa60eb81cb3865"
+  integrity sha512-ycGNkt+EWFBGqBkuhnUeuJJB/BOqyBSFcF04LvFFd1Nq2JJu1Yg9w5175vzfeu+kNkyT3bc38AQs58F+4gnWUA==
 
 with@^5.0.0:
   version "5.1.1"

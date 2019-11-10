@@ -5,8 +5,9 @@ filegroup(
         'VAbout.vue',
         'VLanding.vue',
         'VRegister.vue',
+        'VLogin.vue',
         'trip/VGetView.vue',
         'trip/VNew.vue',
     ],
-    visibility = ['//src/cockpit:cockpit_router'],
+    visibility = ['//src/cockpit/scripts:gen_router'],
 )

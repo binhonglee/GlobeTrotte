@@ -1,6 +1,7 @@
 package router
 
 import (
+    "encoding/json"
     "fmt"
     "net/http"
     "regexp"
@@ -84,6 +85,7 @@ func authenticate(req *http.Request) bool {
 
 func login(res http.ResponseWriter, req *http.Request) {
     var item *structs.NewUser
+    allowCORS(&res)
     unpackJSON(&res, req, &item)
 
     err := bcrypt.CompareHashAndPassword(
@@ -92,15 +94,18 @@ func login(res http.ResponseWriter, req *http.Request) {
     )
 
     if err != nil {
-        fmt.Println("Failed authentication attempt for ", item.Email)
+        fmt.Println("Failed authentication attempt for", item.Email)
         response(&res, http.StatusNotAcceptable)
         return
     }
+
+    fmt.Println("Authentication successful for", item.Email)
 
     session, _ := store.Get(req, "logged-in")
     session.Values["authenticated"] = true
     session.Save(req, res)
     response(&res, http.StatusAccepted)
+    json.NewEncoder(res).Encode(db.GetUserWithEmailDB(*item))
 }
 
 func logout(res http.ResponseWriter, req *http.Request) {

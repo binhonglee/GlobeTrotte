@@ -14,13 +14,18 @@
             template.main_menu_item(slot='title') Trips
             el-menu-item.main_menu_item(index='/trip/view') View
             el-menu-item.main_menu_item(index='/trip/new') New
+        el-menu-item.main_menu_item#right_menu(index='/login') Log In
+        el-menu-item.main_menu_item#right_menu(index='/register') Register
     #content
         router-view
     #footer
         h4#footerMessage
-            | Made with 
-            span(style='color: #e25555;') &hearts; 
-            | by 
+            | Made with
+            |
+            span(style='color: #e25555;') &hearts;
+            |
+            | by
+            |
             a(href='https://binhong.me/') BinHong Lee
 </template>
 
@@ -75,6 +80,10 @@ export default class App extends Vue {
     margin: auto;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+#right_menu {
+    float: right;
 }
 
 #footer {

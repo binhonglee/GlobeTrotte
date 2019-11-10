@@ -6,6 +6,7 @@ import { expect } from 'chai';
 
 describe('WingsStructUtil.stringify(NewUser) from init() should include all values in NewUser.', () => {
     const newUser = new NewUser();
+    const reversedObj = new NewUser();
     it('proper init()', () => {
         expect(
             newUser.init({
@@ -15,15 +16,9 @@ describe('WingsStructUtil.stringify(NewUser) from init() should include all valu
                 password: 'S0methingSom3th1ngSecr3tW0rd5',
             }),
         ).equal(true);
+        reversedObj.init(JSON.parse(WingsStructUtil.stringify(newUser)));
     });
-    newUser.init({
-        id: 10000,
-        name: 'Test NewUser Name',
-        email: 'newtestemail@email.com',
-        password: 'S0methingSom3th1ngSecr3tW0rd5',
-    });
-    const reversedObj = new NewUser();
-    reversedObj.init(JSON.parse(WingsStructUtil.stringify(newUser)));
+
 
     for (const key in newUser) {
         if (typeof key === 'string') {

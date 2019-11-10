@@ -4,25 +4,29 @@
  * If you would like to make any changes, please edit the source file instead.
  * run `plz gen "{SOURCE_FILE}" && plz test --nocache` upon completion.
  *
- * Source: src/wings/struct/place.struct.wings
+ * Source: src/wings/struct/day.struct.wings
  */
 
+import Place from './Place';
 import { IWingsStruct } from 'wings-ts-util';
 
-// Place - One of many location for a Day (in a Trip).
-export default class Place implements IWingsStruct {
+// Day - A day of a trip.
+export default class Day implements IWingsStruct {
     [key: string]: any;
     public ID: number = -1;
-    public label: string = '';
-    public URL: string = '';
-    public description: string = '';
+    public tripID: number = -1;
+    public dayOf: number = -1;
+    public places: Place[] = [];
 
     public init(data: any): boolean {
         try {
             this.ID = data.id;
-            this.label = data.label;
-            this.URL = data.url;
-            this.description = data.description;
+            this.tripID = data.trip_id;
+            this.dayOf = data.day_of;
+
+            if (data.places !== null) {
+                this.places = data.places;
+            }
         } catch (e) {
             return false;
         }
@@ -34,14 +38,14 @@ export default class Place implements IWingsStruct {
             case 'ID': {
                 return 'id';
             }
-            case 'label': {
-                return 'label';
+            case 'tripID': {
+                return 'trip_id';
             }
-            case 'URL': {
-                return 'url';
+            case 'dayOf': {
+                return 'day_of';
             }
-            case 'description': {
-                return 'description';
+            case 'places': {
+                return 'places';
             }
             default: {
                 return key;

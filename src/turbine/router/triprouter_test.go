@@ -69,7 +69,7 @@ func TestAddTrip(t *testing.T) {
     var newTrip = structs.Trip{
         UserID:         addedUser.ID,
         Name:           "TestUser",
-        Location:       city.SanFranciscoCAUS,
+        Cities:         []city.City{city.SanFranciscoCAUS},
         Description:    "Description",
     }
 
@@ -85,11 +85,11 @@ func TestAddTrip(t *testing.T) {
         )
     }
 
-    if returned.Location != newTrip.Location {
+    if len(returned.Cities) != len(newTrip.Cities) {
         t.Errorf(
-            "Sent Location is %v but returned Location is %v.",
-            newTrip.Location,
-            returned.Location,
+            "Sent numbers of Cities is %v but returned number of Cities is %v.",
+            len(newTrip.Cities),
+            len(returned.Cities),
         )
     }
 
@@ -122,11 +122,11 @@ func TestGetTrip(t *testing.T) {
         )
     }
 
-    if returned.Location != addedTrip.Location {
+    if len(returned.Cities) != len(addedTrip.Cities) {
         t.Errorf(
-            "Expected Location is %v but returned Location is %v.",
-            addedTrip.Location,
-            returned.Location,
+            "Sent numbers of Cities is %v but returned number of Cities is %v.",
+            len(addedTrip.Cities),
+            len(returned.Cities),
         )
     }
 

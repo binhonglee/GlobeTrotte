@@ -204,6 +204,7 @@ if [ ${#*} -lt 1 ]; then
     installGo
     installYarn
     installNim
+    installPlease
     installPostgreSQL
     installShellcheck
     config

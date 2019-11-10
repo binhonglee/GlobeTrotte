@@ -1,12 +1,9 @@
 go-filepath src/turbine/structs
 ts-filepath src/cockpit/structs
 
-go-import time
-go-import city:github.com/binhonglee/GlobeTrotte/src/turbine/city
-go-import place:github.com/binhonglee/GlobeTrotte/src/turbine/place
 ts-import { IWingsStruct }:wings-ts-util
-ts-import Place:./Place
-ts-import City:../enums/City
+import src/wings/enum/city.enum.wings
+import src/wings/struct/day.struct.wings
 
 ts-implement IWingsStruct
 
@@ -16,8 +13,8 @@ Trip {
     id              int
     user_id         int
     name            str
-    location        City    City.UNKNOWN
-    places          []Place
+    cities          []City
+    days            []Day
     description     str
     time_created    date
     last_updated    date
@@ -38,6 +35,6 @@ goFunc(
 tsFunc(
     public parse(data: any): void {
         this.userID = data.user_id;
-        this.location = data.location;
+        this.cities = data.cities;
     }
 )
