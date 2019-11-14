@@ -24,7 +24,7 @@
     },
     "devDependencies": {
         "@types/assert": "1.4.3",
-        "@types/chai": "4.2.0",
+        "@types/chai": "4.2.5",
         "@types/mocha": "5.2.7",
         "@types/node": "12.7.2",
         "@vue/component-compiler-utils": "3.0.0",
