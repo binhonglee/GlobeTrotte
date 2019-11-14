@@ -14,17 +14,12 @@ jobs:
     steps:
       - checkout
 
-      - run: echo 'export CHOOSENIM_NO_ANALYTICS=1' >> $BASH_ENV
       - run: echo 'export PATH=/home/circleci/.nimble/bin:$PATH' >> $BASH_ENV
       - run: echo 'export USER="circleci"' >> $BASH_ENV
-      - run: sudo curl -L https://github.com/binhonglee/wings/releases/download/v0.0.2-alpha/wings_64bit_unix -o /usr/bin/wings
-      - run: sudo chmod +x /usr/bin/wings
-      - run: sudo apt-get update
-      - run: sudo apt-get install libssl-dev
-      - run: sudo apt-get install shellcheck
-      - run: go get winterdrache.de/goformat/goformat
+      - run: ./scripts/setup.sh -g -s -w
+      - run: sudo npm i -g pnpm
+      - run: pnpm install --shamefully-hoist
       - run: cp .circleci/test.config config/psql.config
-      - run: yarn
 
       # run tests
       - run: ./pleasew test --show_all_output

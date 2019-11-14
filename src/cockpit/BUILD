@@ -15,7 +15,7 @@ genrule(
     cmd = " && ".join([
         "mv src/cockpit/scripts/src/cockpit/router.ts src/cockpit/",
         "rm -rf src/cockpit/scripts/src",
-        "yarn run build",
+        "pnpm run build",
     ]),
     output_is_complete = False,
     needs_transitive_deps = True,
@@ -37,7 +37,7 @@ gentest(
     name = "unit_tests",
     cmd = ' && '.join([
         "top_level=$(pwd | awk -F'plz-out' '{print $1}')",
-        "yarn run cover",
+        "pnpm run cover",
         "cp -R coverage/ $top_level/coverage"
     ]),
     outs = [
@@ -47,7 +47,7 @@ gentest(
     no_test_output = True,
     needs_transitive_deps = True,
     deps = [
-        "//:tslint",
+        "//:pnpm",
         "//:mocha_config",
         "//src/cockpit/structs:day_test",
         "//src/cockpit/structs:new_user_test",

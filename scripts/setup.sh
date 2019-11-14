@@ -12,11 +12,11 @@ Specific options to install only specific requirement.
 
     -c config
     -g Go (and goformat)
+    -n node (and pnpm)
     -p Please
     -q PostgreSQL
     -s shellcheck
     -w wings
-    -y node (and yarn)
 
     -h Display this menu
 
@@ -59,83 +59,72 @@ config() {
 
 installGo() {
     TEST_GO=$(go version)
+    TEST_GOFORMAT=$(goformat -v)
 
     if [ "$TEST_GO" != "" ]; then
         echo "Seems like \`go\` is already installed. Skipping..."
-        return
+    else
+        GO_VERSION="1.13.1"
+
+        case $ARCH in
+            "x86_64")
+                ARCH="amd64"
+                ;;
+            "x86")
+                ARCH="386"
+                ;;
+            "ARMv6")
+                ARCH="armv6l"
+                ;;
+            "ARMv8")
+                ARCH="armv64"
+                ;;
+            "ppx64le")
+                ARCH="ppx64le"
+                ;;
+            "s390x")
+                ARCH="s390x"
+                ;;
+            *)
+                echo "Unsupported system architechture. Halting installation..."
+                exit 1
+                ;;
+        esac
+
+        case $OS in
+            "Darwin")
+                os="darwin"
+                ;;
+            "Linux")
+                os="linux"
+                ;;
+        esac
+
+        filename="go""$GO_VERSION"."$os""-""$ARCH"".tar.gz"
+        if [ ! -f "$filename" ]; then
+            wget https://dl.google.com/go/"$filename"
+        fi
+        sudo tar -C "/usr/local" -xzf "$filename"
+        rm $filename
+        export PATH="$PATH:/usr/local/go/bin"
+        echo "export PATH=\$PATH:/usr/local/go/bin"
     fi
 
-    GO_VERSION="1.13.1"
-
-    case $ARCH in
-        "x86_64")
-            ARCH="amd64"
-            ;;
-        "x86")
-            ARCH="386"
-            ;;
-        "ARMv6")
-            ARCH="armv6l"
-            ;;
-        "ARMv8")
-            ARCH="armv64"
-            ;;
-        "ppx64le")
-            ARCH="ppx64le"
-            ;;
-        "s390x")
-            ARCH="s390x"
-            ;;
-        *)
-            echo "Unsupported system architechture. Halting installation..."
-            exit 1
-            ;;
-    esac
-
-    case $OS in
-        "Darwin")
-            os="darwin"
-            ;;
-        "Linux")
-            os="linux"
-            ;;
-    esac
-
-    filename="go""$GO_VERSION"."$os""-""$ARCH"".tar.gz"
-    if [ ! -f "$filename" ]; then
-        wget https://dl.google.com/go/"$filename"
+    if [ "$TEST_GOFORMAT" != "" ]; then
+        echo "Seems like \`goformat\` is already installed. Skipping..."
+    else
+       go get winterdrache.de/goformat/goformat
     fi
-    sudo tar -C "/usr/local" -xzf "$filename"
-    rm $filename
-    export PATH="$PATH:/usr/local/go/bin"
-    go install winterdrache.de/goformat
-
-    echo "export PATH=\$PATH:/usr/local/go/bin"
 }
 
-installYarn() {
+installNode() {
     TEST_NODE=$(node -v)
-    TEST_YARN=$(yarn -v)
 
     if [ "$TEST_NODE" != "" ]; then
         echo "Seems like \`node\` is already installed. Skipping..."
     else
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
         nvm install node
-    fi
-
-    if [ "$TEST_YARN" != "" ]; then
-        echo "Seems like \`yarn\` is already installed. Skipping..."
-    else
-        curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-        echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-        sudo apt-get update && sudo apt-get install yarn
-    fi
-
-    if [ -d "node_modules" ]; then
-        echo "Seems like \`node_modules\` already exists. Skipping..."
-    else
-        yarn
     fi
 }
 
@@ -148,6 +137,23 @@ installPlease() {
     fi
 
     curl https://get.please.build | bash
+}
+
+installPNPM() {
+    installNode
+    TEST_PNPM=$(pnpm -v)
+
+    if [ "$TEST_PNPM" != "" ]; then
+        echo "Seems like \`pnpm\` is already installed. Skipping..."
+    else
+        curl -L https://unpkg.com/@pnpm/self-installer | node
+    fi
+
+    if [ -d "node_modules" ]; then
+        echo "Seems like \`node_modules\` already exists. Skipping..."
+    else
+        pnpm install --shamefully-hoist
+    fi
 }
 
 installPostgreSQL() {
@@ -197,6 +203,7 @@ installWings() {
     fi
 
     sudo curl -L https://github.com/binhonglee/wings/releases/download/v0.0.2-alpha/wings_64bit_unix -o /usr/bin/wings
+    sudo chmod +x /usr/bin/wings
 }
 
 if ! echo "$SUPPORTED_OS" | grep -w "$OS" > /dev/null; then
@@ -206,15 +213,15 @@ fi
 
 if [ ${#*} -lt 1 ]; then
     installGo
-    installYarn
     installPlease
+    installPNPM
     installPostgreSQL
     installShellcheck
     installWings
     config
 fi
 
-while getopts cghpqswy opt; do
+while getopts cghnpqsw opt; do
     case $opt in
         c)
             config
@@ -224,6 +231,9 @@ while getopts cghpqswy opt; do
             ;;
         h)
             showHelp
+            ;;
+        n)
+            installPNPM
             ;;
         p)
             installPlease
@@ -236,9 +246,6 @@ while getopts cghpqswy opt; do
             ;;
         w)
             installWings
-            ;;
-        y)
-            installYarn
             ;;
         *)
             "Invalid flag $opt. Use -h to show usage."

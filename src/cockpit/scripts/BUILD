@@ -10,9 +10,9 @@ genrule(
     #
     #   If a change cannot be avoided, make sure the same change is
     #   also applied to `:local_cockpit`
-    cmd = "yarn run genRouter",
+    cmd = "pnpm run genRouter",
     deps = [
-        "//:yarn",
+        "//:pnpm",
         "//:tsconfig",
         "//src/cockpit/views:views",
     ],

@@ -5,5 +5,5 @@
 --ignore-dir=plz-out
 --ignore-dir=.vscode
 --ignore-file=is:pleasew
---ignore-file=is:yarn.lock
+--ignore-file=is:pnpm-lock.yaml
 -i

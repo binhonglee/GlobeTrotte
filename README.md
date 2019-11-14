@@ -21,7 +21,7 @@
 - [go](https://golang.org/)
   - [goformat](https://github.com/mbenkmann/goformat) (Go files lint)
 - [node](https://nodejs.org/en/)
-  - [yarn](https://yarnpkg.com/)
+  - [pnpm](https://pnpm.js.org/)
 - [please](https://please.build) (optional)
 - [postgresql](https://www.postgresql.org/)
 - [shellcheck](https://github.com/koalaman/shellcheck) (Shell script lint)

@@ -10,22 +10,3 @@ go_binary(
         '//src/turbine/...',
     ],
 )
-
-gentest(
-    name = 'golint',
-    test_cmd = ' && '.join([
-        "current=$(pwd)",
-        "cd $(pwd | awk -F'plz-out' '{print $1}') || exit 1",
-        "goformat -style config/goformat -w src/turbine/**/*.go",
-    ]),
-    no_test_output = True,
-    deps = [
-        '//src/wings/struct:day',
-        '//src/wings/struct:new_user',
-        '//src/wings/struct:place',
-        '//src/wings/struct:trip',
-        '//src/wings/struct:user',
-        '//src/wings/enum:city',
-    ],
-    visibility = ['PUBLIC'],
-)
