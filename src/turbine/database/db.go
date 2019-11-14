@@ -82,11 +82,11 @@ func createUsersTable() {
     createTable := `
     CREATE TABLE users (
         id              SERIAL PRIMARY KEY,
-        name            TEXT        NOT NULL,
+        name            TEXT           NOT NULL,
         password        TEXT,
-        email           TEXT UNIQUE NOT NULL,
+        email           TEXT UNIQUE    NOT NULL,
         bio             TEXT,
-        time_created    TIMESTAMPTZ NOT NULL,
+        time_created    TIMESTAMPTZ    NOT NULL,
         trips           INT[]
     );`
     _, err := db.Exec(createTable)
@@ -101,13 +101,13 @@ func createTripsTable() {
     createTable := `
     CREATE TABLE trips (
         id              SERIAL PRIMARY KEY,
-        userid          INT         NOT NULL,
-        name            TEXT        NOT NULL,
-        cities          INT[]       NOT NULL,
+        userid          INT            NOT NULL,
+        name            TEXT           NOT NULL,
+        cities          INT[]          NOT NULL,
         description     TEXT,
-        days          	INT[],
-        time_created    TIMESTAMPTZ NOT NULL,
-        last_updated    TIMESTAMPTZ NOT NULL
+        days            INT[],
+        time_created    TIMESTAMPTZ    NOT NULL,
+        last_updated    TIMESTAMPTZ    NOT NULL
     );`
     _, err := db.Exec(createTable)
 
@@ -120,11 +120,11 @@ func createTripsTable() {
 func createDaysTable() {
     createTable := `
     CREATE TABLE days (
-		id      SERIAL PRIMARY KEY,
-		trip_id INT 	NOT NULL,
-		day_of  INT 	NOT NULL,
-		places 	INT[],
-		);`
+        id         SERIAL PRIMARY KEY,
+        trip_id    INT     NOT NULL,
+        day_of     INT     NOT NULL,
+        places     INT[],
+        );`
     _, err := db.Exec(createTable)
 
     if err != nil {
@@ -136,10 +136,10 @@ func createDaysTable() {
 func createPlacesTable() {
     createTable := `
     CREATE TABLE places (
-		id          SERIAL PRIMARY KEY,
-        label       TEXT,
-		url         TEXT,
-		description	TEXT,
+        id             SERIAL PRIMARY KEY,
+        label          TEXT,
+        url            TEXT,
+        description    TEXT,
     );`
     _, err := db.Exec(createTable)
 

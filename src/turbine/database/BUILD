@@ -24,4 +24,5 @@ go_test(
     deps = [
         ':database',
     ],
+    visibility = ['//src/turbine/...'],
 )

@@ -24,6 +24,8 @@ go_test(
     data = ['//config:psql.config'],
     deps = [
         ':router',
+        # This is to prevent race condition on intializing tables
+        '//src/turbine/database:db_test',
         '//src/turbine/structs:structs',
     ],
 )

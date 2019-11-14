@@ -9,7 +9,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/f7aaf4db648db9bd6188/maintainability)](https://codeclimate.com/github/binhonglee/GlobeTrotte/maintainability)
 [![Gitter](https://img.shields.io/gitter/room/binhonglee/GlobeTrotte.svg)](https://gitter.im/binhonglee/GlobeTrotte)
 
-![GitHub](https://img.shields.io/github/license/binhonglee/GlobeTrotte.svg?logo)
+![AGPL-3.0](https://img.shields.io/github/license/binhonglee/GlobeTrotte.svg?logo)
 ![GitHub last commit](https://img.shields.io/github/last-commit/binhonglee/GlobeTrotte.svg)
 ![GitHub language count](https://img.shields.io/github/languages/count/binhonglee/GlobeTrotte.svg)
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
@@ -31,9 +31,11 @@
 
 ## Setup
 
-1. Run `./scripts/setup.sh`
-2. (If you have not already,) create a Postgres DB for the project.
-3. Fill in your PostgreSQL credentials in `config/psql.config`.
+```
+./scripts/setup.sh
+```
+
+You might want to pay attention to the console. If something went wrong (or throws an error), feel free to file an issue.
 
 ## Build
 
@@ -59,12 +61,4 @@ plz show
 
 ```txt
 plz test --no-cache
-```
-
-## Editor support
-
-Just so vscode would stop complaining about missing Go libraries. (You will still need to run `plz build` to populate the libraries.)
-
-```txt
-plz vscode
 ```
