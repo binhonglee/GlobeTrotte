@@ -14,7 +14,7 @@
         "cover": "nyc mocha"
     },
     "dependencies": {
-        "element-ui": "2.11.1",
+        "element-ui": "2.13.0",
         "tslib": "1.10.0",
         "vue": "2.6.10",
         "vue-hot-reload-api": "2.3.3",
