@@ -11,8 +11,7 @@
 # "Special case" codes
 BUILD           text eol=lf linguist-language=Python
 *.build_defs    text eol=lf linguist-language=Python
-*.enum          text eol=lf linguist-language=Nim
-*.struct        text eol=lf linguist-language=Nim
+*.wings         text eol=lf linguist-language=Wings
 
 # Config files
 .ackrc          text eol=lf linguist-generated=true
@@ -21,7 +20,6 @@ goformat        text eol=lf linguist-generated=true
 sample.config   text eol=lf linguist-generated=true
 test.config     text eol=lf linguist-generated=true
 tsconfig.json   text eol=lf linguist-language=TypeScript
-tslint.json     text eol=lf linguist-language=TypeScript
 package.json    text eol=lf linguist-generated=true
 
 # Generated files

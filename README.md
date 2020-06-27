@@ -16,7 +16,7 @@
 
 ## Requirements
 
-*You can install all these requirements with `./scripts/setup.sh` if needed.*
+_You can install all these requirements with `./scripts/setup.sh` if needed._
 
 - [go](https://golang.org/)
   - [goformat](https://github.com/mbenkmann/goformat) (Go files lint)

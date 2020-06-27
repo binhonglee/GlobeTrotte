@@ -1,119 +1,149 @@
-filegroup(
-    name = "index_html",
-    srcs = ["index.html"],
-    visibility = ["//src/cockpit/..."],
-)
+subinclude('//build_defs/pnpm')
 
 filegroup(
-    name = "mocha_config",
-    srcs = [".mocharc.json"],
-    visibility = ["//src/cockpit/..."],
+  name = "index_html",
+  srcs = ["public/index.html"],
+  visibility = [":cockpit"],
 )
 
 filegroup(
-    name = "pnpm_config",
-    srcs = [
-        "package.json",
-        "pnpm-lock.yaml",
-    ],
-    visibility = [
-        ":pnpm",
-        "//src/cockpit/...",
-    ],
+  name = "pnpm_config",
+  srcs = [
+    "package.json",
+    "pnpm-lock.yaml",
+    ".npmrc",
+  ],
+  visibility = [
+    ":cockpit",
+    ":pnpm",
+  ],
 )
 
 filegroup(
-    name = "tsconfig",
-    srcs = [
-        "tsconfig.json",
-        "tslint.json",
-    ],
-    visibility = ["//src/cockpit/..."],
+  name = "tsconfig",
+  srcs = [
+    "tsconfig.json",
+  ],
+  visibility = [
+    ":cockpit",
+    "//src/cockpit/scripts/..."
+  ],
 )
 
 filegroup(
-    name = "wings_config",
-    srcs = ["wings.json"],
-    visibility = ["//src/wings/..."],
+  name = "wings_config",
+  srcs = ["wings.json"],
+  visibility = ["//src/wings/..."],
 )
 
-genrule(
-    name = "pnpm",
-    outs = ["node_modules"],
-    cmd = " && ".join([
-        "HOME=\"/home/$USER\"",
-        "top_level=$(pwd | awk -F'plz-out' '{print $1}')",
-        "ln -s \"$top_level\"\"node_modules\" \"node_modules\"",
-        # "pnpm install --shamefully-hoist",
-    ]),
-    output_is_complete = False,
-    visibility = [
-        ":tslint",
-        "//src/cockpit/...",
-    ],
-    deps = [":pnpm_config"],
+filegroup(
+  name = "vue_config",
+  srcs = ["vue.config.js"],
+  visibility = [":cockpit"],
 )
 
-sh_cmd(
-    name = "local_cockpit",
-    cmd = " && ".join([
-        "cd $(pwd | awk -F'plz-out' '{print $1}') || exit 1",
-        # DO NOT CHANGE THIS (unless you REALLY know what you are doing)
-        #   You should stick to only editing the script file itself
-        #   or the command in package.json.
-        #
-        #   If a change cannot be avoided, make sure the same change is
-        #   also applied to `//src/cockpit/scripts:gen_router`
-        "pnpm run genRouter",
-        "pnpm run serve",
-    ]),
-    deps = [":pnpm"],
+filegroup(
+  name = "eslint_config",
+  srcs = [
+    ".eslintignore",
+    ".eslintrc.js",
+  ],
+  visibility = [":cockpit"],
+)
+
+pnpm_install(
+  name = "pnpm",
+  deps = ["//:pnpm_config"],
+)
+
+pnpm_build(
+  name = "cockpit",
+  deps = [
+    "//:eslint_config",
+    "//:index_html",
+    "//:vue_config",
+    "//src/assets:assets",
+    "//src/cockpit:core_files",
+    "//src/cockpit/scripts:gen_router",
+    "//src/cockpit/components:components",
+    "//src/cockpit/structs:new_user",
+    "//src/cockpit/structs:user",
+    "//src/cockpit/structs:trip",
+    "//src/cockpit/shared:shared",
+    "//src/cockpit/shared:trip_editable",
+    "//src/cockpit/shared:city_util",
+  ],
+)
+
+pnpm_run(
+  name = "serve",
+  cmd = "serve",
+  deps = [":pnpm"],
+)
+
+pnpm_test(
+  name = "cockpit_unit",
+  cmd = "test:unit",
+  deps = [
+    ":pnpm",
+    "//src/cockpit/tests/components:components",
+    "//src/cockpit/tests/shared:city_util_test",
+    "//src/cockpit/tests/shared:trip_editable_test",
+    "//src/cockpit/tests/wings:day_test",
+    "//src/cockpit/tests/wings:new_user_test",
+    "//src/cockpit/tests/wings:place_test",
+    "//src/cockpit/tests/wings:trip_test",
+    "//src/cockpit/tests/wings:user_test",
+  ]
+)
+
+pnpm_test(
+  name = "cockpit_e2e",
+  cmd = "test:e2e",
 )
 
 gentest(
-    name = "lint",
-    test_cmd = "echo 'Lint everything~'",
-    no_test_output = True,
-    deps = [
-        ":tslint",
-        ":golint",
-    ]
+  name = "lint",
+  test_cmd = "echo 'Lint everything~'",
+  no_test_output = True,
+  deps = [
+    ":eslint",
+    ":golint",
+  ]
+)
+
+pnpm_build_script(
+  name = "eslint",
+  cmd = "format",
+  deps = [
+    "//src/wings/struct:day",
+    "//src/wings/struct:new_user",
+    "//src/wings/struct:place",
+    "//src/wings/struct:trip",
+    "//src/wings/struct:user",
+    "//src/wings/enum:city",
+  ],
+  visibility = [
+    ":lint",
+    "//src/cockpit/..."
+  ],
 )
 
 gentest(
-    name = "tslint",
-    test_cmd = "pnpm run lint -- --fix",
-    no_test_output = True,
-    output_is_complete = False,
-    deps = [
-        "//src/wings/struct:day",
-        "//src/wings/struct:new_user",
-        "//src/wings/struct:place",
-        "//src/wings/struct:trip",
-        "//src/wings/struct:user",
-        "//src/wings/enum:city",
-    ],
-    visibility = [
-        ":lint",
-        "//src/cockpit/..."
-    ],
-)
-
-gentest(
-    name = 'golint',
-    test_cmd = ' && '.join([
-        "current=$(pwd)",
-        "cd $(pwd | awk -F'plz-out' '{print $1}') || exit 1",
-        "goformat -style config/goformat -w src/turbine/**/*.go",
-    ]),
-    no_test_output = True,
-    deps = [
-        '//src/wings/struct:day',
-        '//src/wings/struct:new_user',
-        '//src/wings/struct:place',
-        '//src/wings/struct:trip',
-        '//src/wings/struct:user',
-        '//src/wings/enum:city',
-    ],
-    visibility = [':lint'],
+  name = "golint",
+  test_cmd = " && ".join([
+    "current=$(pwd)",
+    "cd $(pwd | awk -F'plz-out' '{print $1}') || exit 1",
+    "gofmt -w src/turbine/**/*.go",
+  ]),
+  no_test_output = True,
+  deps = [
+    "//src/wings/struct:day",
+    "//src/wings/struct:new_user",
+    "//src/wings/struct:place",
+    "//src/wings/struct:trip",
+    "//src/wings/struct:user",
+    "//src/wings/enum:city",
+  ],
+  visibility = [":lint"],
 )

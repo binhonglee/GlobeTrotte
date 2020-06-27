@@ -1,9 +1,9 @@
-.cache/
 .nyc_output/
 coverage/
+cypress/
 dist/
-nimcache/
 node_modules
 plz-out/
-psql.config
 main
+pnpm-debug.log
+psql.config

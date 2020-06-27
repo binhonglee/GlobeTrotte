@@ -1,7 +1,7 @@
 <template>
-    <div class="404">
-        <h3>Uhh, there's nothing to see here...</h3>
-    </div>
+  <div class="404">
+    <h3>Uhh, there's nothing to see here...</h3>
+  </div>
 </template>
 
 <script lang="ts">
@@ -13,6 +13,6 @@ export default class V404 extends Vue {}
 
 <style>
 h3 {
-    margin-top: 40%;
+  margin-top: 40%;
 }
 </style>

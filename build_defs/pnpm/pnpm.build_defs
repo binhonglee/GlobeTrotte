@@ -1,0 +1,179 @@
+def pnpm_install(name:str, srcs:list=[], deps:list=[]):
+  filegroup(
+    name = name + "_#pnpm_install",
+    srcs = srcs,
+    visibility = ['PUBLIC'],
+    binary = False,
+    test_only = False,
+  )
+
+  return build_rule(
+    name = name,
+    cmd = " && ".join([
+      "OUT_F=\"node_modules\"",
+      _home_path(),
+      _run_at_top_level(
+        "pnpm install --no-color --reporter append-only --prefer-offline"
+      ),
+    ]),
+    binary = False,
+    deps = deps,
+    needs_transitive_deps = True,
+    output_is_complete = False,
+    outs = ["node_modules"],
+    test_only = False,
+    visibility = ['PUBLIC']
+  )
+
+def pnpm_build(
+  name:str,
+  srcs:list=[],
+  deps:list=[],
+  visibility:list=None,
+):
+  filegroup(
+    name = name + "_#pnpm_build",
+    srcs = srcs,
+    visibility = visibility,
+    binary = False,
+    test_only = False,
+  )
+
+  return build_rule(
+    name = name,
+    cmd = " && ".join([
+      "OUT_F=\"dist\"",
+      _home_path(),
+      "pnpm run --no-color build",
+    ]),
+    outs = ["dist"],
+    deps = deps,
+    needs_transitive_deps = True,
+    test_only = False,
+    binary = False,
+    visibility = visibility
+  )
+
+def pnpm_build_script(
+  name:str,
+  cmd:str,
+  srcs:list=[],
+  deps:list=[],
+  outs:list=[],
+  visibility:list=None,
+  test_only:bool=False,
+):
+  filegroup(
+    name = name + "_#pnpm_build_script",
+    srcs = srcs,
+    visibility = ['PUBLIC'],
+    binary = False,
+    test_only = False,
+  )
+
+  cmd = " && ".join([
+    _go_to_top_level(),
+    "pnpm run --no-color " + cmd,
+  ])
+  return build_rule(
+    name = name,
+    cmd = cmd,
+    outs = outs,
+    srcs = srcs,
+    deps = deps,
+    test_only = test_only,
+    visibility = visibility,
+    binary = False,
+    output_is_complete = False,
+  )
+
+def pnpm_run(
+  name:str,
+  cmd:str,
+  shell:str='/bin/sh',
+  srcs:list=[],
+  deps:list=[],
+  visibility:list=None,
+  test_only:bool=False
+):
+  filegroup(
+    name = name + "_#pnpm_run",
+    srcs = srcs,
+    visibility = ['PUBLIC'],
+    binary = False,
+    test_only = False,
+  )
+
+  cmd = " && ".join([
+    _home_path(),
+    _go_to_top_level(),
+    "pnpm run --no-color " + cmd,
+  ])
+  cmds = f'{{ cat > "$OUT" << EOF\n#!{shell}\n{cmd} \"\\\$@\"\nEOF\n}}'
+  return build_rule(
+    name = name,
+    outs = [name + '.sh'],
+    srcs = srcs,
+    cmd = cmds,
+    deps = deps,
+    visibility = visibility,
+    binary = True,
+    test_only = test_only,
+  )
+
+def pnpm_test(
+  name:str,
+  cmd:str,
+  srcs:list=[],
+  deps:list=[],
+  outs:list=[],
+  visibility:list=None,
+):
+  filegroup(
+    name = name + "_#pnpm_test",
+    srcs = srcs,
+    visibility = ['PUBLIC'],
+    binary = False,
+    test_only = True,
+  )
+
+  cmd = " && ".join([
+    _home_path(),
+    _go_to_top_level(),
+    "pnpm run --no-color " + cmd,
+  ])
+  return build_rule(
+    name = name,
+    test_cmd = cmd,
+    outs = outs,
+    srcs = srcs,
+    deps = deps,
+    visibility = visibility,
+    test=True,
+    test_only = True,
+    no_test_output=True,
+    binary = False,
+    output_is_complete = False,
+  )
+
+def _run_at_top_level(to_run:str):
+  return " && ".join([
+    "current=$(pwd)",
+    _top_level_path(),
+    "cd $TOP_LEVEL || exit 1",
+    to_run,
+    "cd $current",
+    "ln -s \"$TOP_LEVEL\"\"$OUT_F\" \"$OUT_F\"",
+  ])
+
+def _home_path():
+  return "if [[ \"$OSTYPE\" == \"darwin\"* ]]; then HOME=\"/Users/$USER\"; elif [[ \"$OSTYPE\" == \"linux-gnu\"* ]]; then HOME=\"/home/$USER\"; fi",
+
+def _go_to_top_level():
+  return "cd " + _top_level() + " || exit 1"
+
+def _top_level_path():
+  return "TOP_LEVEL=" + _top_level()
+
+def _top_level():
+  return "$(pwd | awk -F'plz-out' '{print $1}')"

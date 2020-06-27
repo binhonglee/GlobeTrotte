@@ -1,55 +1,47 @@
-/*
- * This is a generated file
- *
- * If you would like to make any changes, please edit the source file instead.
- * run `plz gen "{SOURCE_FILE}" && plz test --nocache` upon completion.
- *
- * Source: src/wings/struct/day.struct.wings
- */
+// This is a generated file
+//
+// If you would like to make any changes, please edit the source file instead.
+// run `plz gen "{SOURCE_FILE}" && plz test --nocache` upon completion.
+//
+// Source: src/wings/struct/day.wings
 
-import Place from './Place';
 import { IWingsStruct } from 'wings-ts-util';
+import Place from './Place';
 
-// Day - A day of a trip.
+// A day of a trip.
 export default class Day implements IWingsStruct {
-    [key: string]: any;
-    public ID: number = -1;
-    public tripID: number = -1;
-    public dayOf: number = -1;
-    public places: Place[] = [];
+  [key: string]: any;
+  public ID: number = 0;
+  public tripID: number = 0;
+  public dayOf: number = 0;
+  public places: Place[] = [];
 
-    public init(data: any): boolean {
-        try {
-            this.ID = data.id;
-            this.tripID = data.trip_id;
-            this.dayOf = data.day_of;
-
-            if (data.places !== null) {
-                this.places = data.places;
-            }
-        } catch (e) {
-            return false;
-        }
-        return true;
+  public constructor(obj?: any) {
+    if (obj) {
+      this.ID = obj.id !== undefined && obj.id !== null ? obj.id : 0;
+      this.tripID = obj.trip_id !== undefined && obj.trip_id !== null ? obj.trip_id : 0;
+      this.dayOf = obj.day_of !== undefined && obj.day_of !== null ? obj.day_of : 0;
+      this.places = obj.places !== undefined && obj.places !== null ? obj.places : [];
     }
+  }
 
-    public toJsonKey(key: string): string {
-        switch (key) {
-            case 'ID': {
-                return 'id';
-            }
-            case 'tripID': {
-                return 'trip_id';
-            }
-            case 'dayOf': {
-                return 'day_of';
-            }
-            case 'places': {
-                return 'places';
-            }
-            default: {
-                return key;
-            }
-        }
+  public toJsonKey(key: string): string {
+    switch (key) {
+      case 'ID': {
+        return 'id';
+      }
+      case 'tripID': {
+        return 'trip_id';
+      }
+      case 'dayOf': {
+        return 'day_of';
+      }
+      case 'places': {
+        return 'places';
+      }
+      default: {
+        return key;
+      }
     }
+  }
 }

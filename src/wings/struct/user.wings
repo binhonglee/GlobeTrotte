@@ -1,0 +1,29 @@
+go-filepath src/turbine/structs
+ts-filepath src/cockpit/structs
+
+ts-import { IWingsStruct }:wings-ts-util
+
+ts-implement IWingsStruct
+
+# User - An individual registered user.
+
+struct User {
+  id            int
+  name          str
+  email         str
+  bio           str
+  time_created  date
+  trips         []int
+}
+
+go-func(
+  // GetID (istruct) - Returns the trip ID.
+  func (user User) GetID() int {
+    return user.ID
+  }
+
+  // SetID (istruct) - Sets the trip ID.
+  func (user *User) SetID(id int) {
+    user.ID = id
+  }
+)

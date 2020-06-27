@@ -1,24 +1,18 @@
 {
-    "editor.formatOnSave": false,
-    "editor.autoIndent": true,
-    "editor.detectIndentation": false,
-    "editor.insertSpaces": true,
-    "editor.tabSize": 4,
-    "eslint.packageManager": "yarn",
-    "files.insertFinalNewline": true,
-    "files.watcherExclude": {
-        "**/.git/**": true,
-        "**/enums/**": true,
-        "**/node_modules/*/**": true,
-        "**/plz-out/**": true,
-        "**/structs/**": true,
-    },
-    "go.inferGopath": false,
-    "go.formatTool": "goformat",
-    "go.formatFlags": [
-        "-w",
-        "-style config/goformat",
-    ],
-    "typescript.validate.enable": false,
-    "vetur.format.defaultFormatter.ts": "vscode-typescript",
+  "editor.autoIndent": "full",
+  "editor.detectIndentation": true,
+  "editor.rulers": [60],
+  "editor.tabSize": 2,
+  "eslint.packageManager": "pnpm",
+  "files.insertFinalNewline": true,
+  "files.watcherExclude": {
+    "**/.git/**": true,
+    "**/node_modules/*/**": true,
+    "**/plz-out/**": true
+  },
+  "go.inferGopath": false,
+  "go.formatTool": "gofmt",
+  "go.formatFlags": ["-w"],
+  "typescript.validate.enable": false,
+  "vetur.format.defaultFormatter.ts": "vscode-typescript"
 }

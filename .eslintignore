@@ -1,0 +1,8 @@
+.eslintrc.js
+node_modules/*
+dist/*
+coverage/*
+plz-out/*
+src/cockpit/structs/*
+src/cockpit/enums/*
+src/cockpit/router.ts

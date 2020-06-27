@@ -1,0 +1,34 @@
+go-filepath src/turbine/structs
+ts-filepath src/cockpit/structs
+
+ts-import { IWingsStruct }:wings-ts-util
+
+ts-implement IWingsStruct
+
+# Basic information for user registeration.
+
+struct NewUser {
+  id        int
+  name      str
+  email     str
+  password  str
+}
+
+go-func(
+  // GetID (istruct) - Returns the trip ID.
+  func (newUser NewUser) GetID() int {
+    return newUser.ID
+  }
+
+  // SetID (istruct) - Sets the trip ID.
+  func (newUser *NewUser) SetID(id int) {
+    newUser.ID = id
+  }
+)
+
+ts-func(
+    public register(data: any): void {
+        this.email = data.email;
+        this.password = data.password;
+    }
+)

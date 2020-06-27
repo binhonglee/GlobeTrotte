@@ -1,0 +1,12 @@
+go-filepath src/turbine/city
+ts-filepath src/cockpit/enums
+
+enum City {
+  UNKNOWN
+  SanFranciscoCAUS
+  SanJoseCAUS
+  NewYorkNYUS
+  AnchorageAKUS
+  ParisFR
+  KualaLumpurMY
+}

@@ -1,7 +1,7 @@
 <template lang="pug">
-    .new_trip
-        h1.title New Trip
-        CEditTrip.newTrip(:trip='trip' @save='save' @cancel='cancel')
+  .new_trip
+    h1.title New Trip
+    CEditTrip.newTrip(:trip='trip' @save='save' @cancel='cancel')
 </template>
 
 <script lang="ts">
@@ -12,31 +12,32 @@ import HTTPReq from '../../shared/HTTPReq';
 import Trip from '../../structs/Trip';
 
 @Component({
-    data() {
-        return {
-            trip: new Trip(),
-        };
-    },
-    components: {
-        CEditTrip,
-    },
+  data() {
+    return {
+      trip: new Trip(),
+    };
+  },
+  components: {
+    CEditTrip,
+  },
 })
-
 export default class VNew extends Vue {
-    private cancel(): void {
-        this.$router.back();
-    }
+  private cancel(): void {
+    this.$router.back();
+  }
 
-    private save(trip: Trip): void {
-        this.$data.trip = trip;
-        HTTPReq.post(
-            'trip',
-            WingsStructUtil.stringify(trip),
-            (newTrip: string) => {
-                this.$router.push('/trip/view/' + JSON.parse(newTrip).id);
-            },
+  private save(trip: Trip): void {
+    this.$data.trip = trip;
+    HTTPReq.post(
+      'trip',
+      WingsStructUtil.stringify(trip),
+      (newTrip: string) => {
+        this.$router.push(
+          '/trip/view/' + JSON.parse(newTrip).id,
         );
-    }
+      },
+    );
+  }
 }
 </script>
 
@@ -44,6 +45,6 @@ export default class VNew extends Vue {
 @import '../../shared/lib';
 
 .newTrip {
-    @include trip_display();
+  @include trip_display();
 }
 </style>

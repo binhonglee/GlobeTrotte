@@ -1,7 +1,7 @@
 filegroup(
-    name = 'assets',
-    srcs = glob(['./*']),
-    visibility = [
-        '//src/cockpit:cockpit',
-    ],
+  name = 'assets',
+  srcs = glob(['./*']),
+  visibility = [
+    '//:cockpit',
+  ],
 )

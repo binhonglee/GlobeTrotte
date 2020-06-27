@@ -18,11 +18,11 @@ jobs:
       - run: echo 'export USER="circleci"' >> $BASH_ENV
       - run: ./scripts/setup.sh -g -s -w
       - run: sudo npm i -g pnpm
-      - run: pnpm install --shamefully-hoist
       - run: cp .circleci/test.config config/psql.config
 
       # run tests
       - run: ./pleasew build --show_all_output
+      - run: ./pleasew test --show_all_output
       - run: ./pleasew cover --show_all_output //src/turbine/...
       - run: ./pleasew test --show_all_output
       - run: bash <(curl -s https://codecov.io/bash)
