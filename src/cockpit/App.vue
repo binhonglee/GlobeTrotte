@@ -22,7 +22,7 @@
     h4#footerMessage
       | Made with
       |
-      span(style='color: #e25555;') &hearts;
+      span.hearts(style='color: #e25555;') &hearts;
       |
       | by
       |

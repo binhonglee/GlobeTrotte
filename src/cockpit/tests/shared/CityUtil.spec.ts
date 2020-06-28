@@ -1,4 +1,3 @@
-import { equal } from 'assert';
 import { expect } from 'chai';
 import City from '../../enums/City';
 import { CityObj, CityUtil } from '../../shared/CityUtil';
@@ -30,7 +29,7 @@ describe("<CityUtil> Non existent city (including UNKNOWN) should return 'unreco
 });
 
 describe('<CityUtil> allActiveCities() should include all but UNKNOWN city.', () => {
-  const allCities: any[] = CityUtil.allActiveCities();
+  const allCities: CityObj[] = CityUtil.allActiveCities();
   const cities: Set<number> = new Set<number>();
 
   for (const cityString in City) {

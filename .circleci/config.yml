@@ -3,6 +3,9 @@ jobs:
   build:
     docker:
       - image: circleci/golang:latest-node
+      - image: cypress/base:8
+        environment:
+          TERM: xterm
       - image: circleci/postgres:latest-postgis
         environment:
           POSTGRES_USER: test
@@ -14,7 +17,7 @@ jobs:
     steps:
       - checkout
 
-      - run: echo 'export PATH=/home/circleci/.nimble/bin:$PATH' >> $BASH_ENV
+      - run: echo 'export PATH=/home/circleci/.nimble/bin:$HOME/wings:$PATH' >> $BASH_ENV
       - run: echo 'export USER="circleci"' >> $BASH_ENV
       - run: ./scripts/setup.sh -g -s -w
       - run: sudo npm i -g pnpm

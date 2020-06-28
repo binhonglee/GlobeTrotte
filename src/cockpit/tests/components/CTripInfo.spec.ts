@@ -1,10 +1,8 @@
 import CTripInfo from '../../components/CTripInfo.vue';
-import Trip from '../../structs/Trip';
 import { mockTrip } from '../mockData/data';
 
 import { expect } from 'chai';
 import { shallowMount } from '@vue/test-utils';
-import City from '@/cockpit/enums/City';
 
 const mockedTrip = new mockTrip();
 

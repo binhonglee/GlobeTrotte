@@ -1,13 +1,12 @@
 import City from '../enums/City';
 
 export class CityObj {
-  [key: string]: any;
   public key: City = City.UNKNOWN;
   public label: string = CityUtil.toString(this.key);
 
-  public constructor(key: City, label: string) {
+  public constructor(key: City) {
     this.key = key;
-    this.label = label;
+    this.label = CityUtil.toString(this.key);
   }
 }
 
@@ -23,9 +22,7 @@ export class CityUtil {
       ) {
         const city = Number(cityString);
         if (!isNaN(city) && city !== City.UNKNOWN) {
-          toReturn.push(
-            new CityObj(city, this.toString(city)),
-          );
+          toReturn.push(new CityObj(city));
         }
       }
     }

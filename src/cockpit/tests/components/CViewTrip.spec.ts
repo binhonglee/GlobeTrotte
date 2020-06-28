@@ -1,7 +1,5 @@
 import CViewTrip from '../../components/CViewTrip.vue';
 import { CityUtil } from '../../shared/CityUtil';
-import Trip from '../../structs/Trip';
-import City from '../../enums/City';
 import { mockTrip } from '../mockData/data';
 
 import { expect } from 'chai';

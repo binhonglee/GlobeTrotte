@@ -9,6 +9,13 @@ describe('Menubar', () => {
         .contains('ul', 'View')
         .contains('ul', 'New');
     });
+
+    it('footer:' + url, () => {
+      cy.visit(url);
+      cy.get('#footer')
+        .contains('#footerMessage', 'Made with')
+        .contains('#footerMessage', 'by BinHong Lee');
+    });
   });
 });
 

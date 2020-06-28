@@ -1,5 +1,4 @@
 import CEditPlaces from '../../components/CEditPlaces.vue';
-import Place from '../../structs/Place';
 import { mockPlace } from '../mockData/data';
 
 import { expect } from 'chai';

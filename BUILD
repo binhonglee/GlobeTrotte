@@ -1,4 +1,4 @@
-subinclude('//build_defs/pnpm')
+subinclude("//build_defs/pnpm")
 
 filegroup(
   name = "index_html",
@@ -31,6 +31,18 @@ filegroup(
 )
 
 filegroup(
+  name = "cypress_config",
+  srcs = ["cypress.json"],
+  visibility = [":cockpit_e2e"],
+)
+
+filegroup(
+  name = "eslint_config",
+  srcs = [".eslintignore", ".eslintrc.js"],
+  visibility = [":cockpit"],
+)
+
+filegroup(
   name = "wings_config",
   srcs = ["wings.json"],
   visibility = ["//src/wings/..."],
@@ -42,15 +54,6 @@ filegroup(
   visibility = [":cockpit"],
 )
 
-filegroup(
-  name = "eslint_config",
-  srcs = [
-    ".eslintignore",
-    ".eslintrc.js",
-  ],
-  visibility = [":cockpit"],
-)
-
 pnpm_install(
   name = "pnpm",
   deps = ["//:pnpm_config"],
@@ -59,19 +62,12 @@ pnpm_install(
 pnpm_build(
   name = "cockpit",
   deps = [
+    "//:pnpm",
     "//:eslint_config",
     "//:index_html",
     "//:vue_config",
     "//src/assets:assets",
     "//src/cockpit:core_files",
-    "//src/cockpit/scripts:gen_router",
-    "//src/cockpit/components:components",
-    "//src/cockpit/structs:new_user",
-    "//src/cockpit/structs:user",
-    "//src/cockpit/structs:trip",
-    "//src/cockpit/shared:shared",
-    "//src/cockpit/shared:trip_editable",
-    "//src/cockpit/shared:city_util",
   ],
 )
 
@@ -86,7 +82,12 @@ pnpm_test(
   cmd = "test:unit",
   deps = [
     ":pnpm",
-    "//src/cockpit/tests/components:components",
+    "//src/cockpit/tests/components:c_edit_item_test",
+    "//src/cockpit/tests/components:c_edit_places_test",
+    "//src/cockpit/tests/components:c_edit_trip_test",
+    "//src/cockpit/tests/components:c_places_test",
+    "//src/cockpit/tests/components:c_trip_info_test",
+    "//src/cockpit/tests/components:c_view_trip_test",
     "//src/cockpit/tests/shared:city_util_test",
     "//src/cockpit/tests/shared:trip_editable_test",
     "//src/cockpit/tests/wings:day_test",
@@ -100,6 +101,17 @@ pnpm_test(
 pnpm_test(
   name = "cockpit_e2e",
   cmd = "test:e2e",
+  deps = [
+    ":pnpm",
+    ":cypress_config",
+    "//:eslint_config",
+    "//:index_html",
+    "//:vue_config",
+    "//src/assets:assets",
+    "//src/cockpit:core_files",
+    "//src/cockpit/tests/e2e",
+    "//src/cockpit/tests:e2e_eslint",
+  ]
 )
 
 gentest(
@@ -112,7 +124,7 @@ gentest(
   ]
 )
 
-pnpm_build_script(
+pnpm_test(
   name = "eslint",
   cmd = "format",
   deps = [

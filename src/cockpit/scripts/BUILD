@@ -1,18 +1,23 @@
-subinclude('//build_defs/pnpm')
+subinclude("//build_defs/pnpm")
 
 pnpm_build_script(
   name = "gen_router",
   srcs = ["genRouter.ts"],
   cmd = "genRouter",
+  outs = ["src/cockpit/router.ts"],
   deps = [
-    '//:pnpm',
+    "//:pnpm",
     "//:tsconfig",
-    "//src/cockpit/views:views",
+    "//src/cockpit/views:404",
+    "//src/cockpit/views:about",
+    "//src/cockpit/views:landing",
+    "//src/cockpit/views:login",
+    "//src/cockpit/views:register",
+    "//src/cockpit/views:trip_get_view",
+    "//src/cockpit/views:trip_new",
   ],
-  visibility = [
-    '//:cockpit',
-    '//src/cockpit:core_files',
-  ],
+  nullify_outs = True,
+  visibility = ["//src/cockpit:core_files"],
 )
 
 pnpm_run(

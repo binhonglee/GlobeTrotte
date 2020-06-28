@@ -2,24 +2,14 @@ filegroup(
   name = "day",
   srcs = ["Day.ts"],
   needs_transitive_deps = True,
-  visibility = [
-    "//src/cockpit/...",
-    "//:cockpit",
-    ":day_test",
-  ],
+  visibility = ["//src/cockpit/..."],
   deps = [":place"],
 )
 
 filegroup(
   name = "new_user",
-  srcs = [
-    "NewUser.ts",
-  ],
-  visibility = [
-    "//src/cockpit/...",
-    "//:cockpit",
-    ":new_user_test",
-  ],
+  srcs = ["NewUser.ts"],
+  visibility = ["//src/cockpit/..."],
 )
 
 filegroup(
@@ -27,23 +17,14 @@ filegroup(
   srcs = [
     "Place.ts",
   ],
-  visibility = [
-    "//src/cockpit/...",
-    "//:cockpit",
-  ],
+  visibility = ["//src/cockpit/..."],
 )
 
 filegroup(
   name = "trip",
-  srcs = [
-    "Trip.ts",
-  ],
+  srcs = ["Trip.ts"],
   needs_transitive_deps = True,
-  visibility = [
-    "//src/cockpit/...",
-    "//:cockpit",
-    ":trip_test",
-  ],
+  visibility = ["//src/cockpit/..."],
   deps = [
     ":day",
     "//src/cockpit/enums:city",
@@ -52,12 +33,6 @@ filegroup(
 
 filegroup(
   name = "user",
-  srcs = [
-    "User.ts",
-  ],
-  visibility = [
-    "//src/cockpit/...",
-    "//:cockpit",
-    ":user_test",
-  ],
+  srcs = ["User.ts"],
+  visibility = ["//src/cockpit/..."],
 )

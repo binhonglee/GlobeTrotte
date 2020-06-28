@@ -1,15 +1,15 @@
-subinclude('//build_defs/wings')
+subinclude("//build_defs/wings")
 
 wings_lib(
-  name = 'city',
-  config = 'wings.json',
-  srcs = ['city.wings'],
+  name = "city",
+  config = "wings.json",
+  srcs = ["city.wings"],
   outs = [
-    'src/cockpit/enums/City.ts',
-    'src/turbine/city/city.go',
+    "src/cockpit/enums/City.ts",
+    "src/turbine/city/city.go",
   ],
   deps = [
-    '//:wings_config',
+    "//:wings_config",
   ],
-  visibility = ['PUBLIC'],
+  visibility = ["PUBLIC"],
 )

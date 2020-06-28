@@ -202,8 +202,10 @@ installWings() {
     return
   fi
 
-  sudo curl -L https://github.com/binhonglee/wings/releases/download/v0.0.2-alpha/wings_64bit_unix -o /usr/bin/wings
-  sudo chmod +x /usr/bin/wings
+  mkdir -p "$HOME"/wings/
+  curl -L https://github.com/binhonglee/wings/releases/download/v0.0.4-alpha/wings_64bit_unix -o "$HOME"/wings/wings
+  chmod +x "$HOME"/wings/wings
+  echo "Add \"export \"PATH=\$HOME/wings/bin:\$PATH\" to your .bashrc or .zshrc file."
 }
 
 if ! echo "$SUPPORTED_OS" | grep -w "$OS" > /dev/null; then

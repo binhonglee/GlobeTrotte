@@ -1,6 +1,6 @@
 gentest(
-  name = 'shellcheck',
-  test_cmd = ' && '.join([
+  name = "shellcheck",
+  test_cmd = " && ".join([
     "current=$(pwd)",
     "cd $(pwd | awk -F'plz-out' '{print $1}') || exit 1",
     "shellcheck -e SC2039,SC1117 -s sh scripts/*.sh",
@@ -9,8 +9,8 @@ gentest(
 )
 
 sh_cmd(
-  name = 'reset',
-  cmd = ' && '.join([
+  name = "reset",
+  cmd = " && ".join([
     "echo \"Removing 'cypress'...\"",
     "rm -rf cypress",
     "echo \"Removing 'node_modules'...\"",

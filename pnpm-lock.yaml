@@ -26,14 +26,12 @@ devDependencies:
   eslint-plugin-prettier: 3.1.3_eslint@6.7.2+prettier@1.19.1
   eslint-plugin-vue: 6.2.2_eslint@6.7.2
   forever: 3.0.0
-  istanbul-instrumenter-loader: 3.0.1
   node-sass: 4.14.1
   nyc: 14.1.1
   prettier: 1.19.1
   pug: 3.0.0
   pug-plain-loader: 1.0.0_pug@3.0.0
   sass-loader: 8.0.2_node-sass@4.14.1
-  ts-loader: 7.0.5_typescript@3.9.3
   typescript: 3.9.3
   vue-template-compiler: 2.6.10
   wait-on: 5.0.1
@@ -952,15 +950,6 @@ packages:
       ajv: ^6.9.1
     resolution:
       integrity: sha512-eyoaac3btgU8eJlvh01En8OCKzRqlLe2G5jDsCr3RiE2uLGMEEB1aaGwVVpwR8M95956tGH6R+9edC++OvzaVw==
-  /ajv/5.5.2:
-    dependencies:
-      co: 4.6.0
-      fast-deep-equal: 1.1.0
-      fast-json-stable-stringify: 2.1.0
-      json-schema-traverse: 0.3.1
-    dev: true
-    resolution:
-      integrity: sha1-c7Xuyj+rZT49P5Qis0GtQiBdyWU=
   /ajv/6.12.2:
     dependencies:
       fast-deep-equal: 3.1.3
@@ -1322,68 +1311,17 @@ packages:
     dev: true
     resolution:
       integrity: sha1-Y/1D99weO7fONZR9uP42mj9Yx0s=
-  /babel-generator/6.26.1:
-    dependencies:
-      babel-messages: 6.23.0
-      babel-runtime: 6.26.0
-      babel-types: 6.26.0
-      detect-indent: 4.0.0
-      jsesc: 1.3.0
-      lodash: 4.17.15
-      source-map: 0.5.7
-      trim-right: 1.0.1
-    dev: true
-    resolution:
-      integrity: sha512-HyfwY6ApZj7BYTcJURpM5tznulaBvyio7/0d4zFOeMPUmfxkCjHocCuoLa2SAGzBI8AREcH3eP3758F672DppA==
   /babel-helper-vue-jsx-merge-props/2.0.3:
     dev: false
     resolution:
       integrity: sha512-gsLiKK7Qrb7zYJNgiXKpXblxbV5ffSwR0f5whkPAaBAR4fhi6bwRZxX9wBlIc5M/v8CCkXUbXZL4N/nSE97cqg==
-  /babel-messages/6.23.0:
-    dependencies:
-      babel-runtime: 6.26.0
-    dev: true
-    resolution:
-      integrity: sha1-8830cDhYA1sqKVHG7F7fbGLyYw4=
   /babel-runtime/6.26.0:
     dependencies:
       core-js: 2.6.11
       regenerator-runtime: 0.11.1
+    dev: false
     resolution:
       integrity: sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
-  /babel-template/6.26.0:
-    dependencies:
-      babel-runtime: 6.26.0
-      babel-traverse: 6.26.0
-      babel-types: 6.26.0
-      babylon: 6.18.0
-      lodash: 4.17.15
-    dev: true
-    resolution:
-      integrity: sha1-3gPi0WOWsGn0bdn/+FIfsaDjXgI=
-  /babel-traverse/6.26.0:
-    dependencies:
-      babel-code-frame: 6.26.0
-      babel-messages: 6.23.0
-      babel-runtime: 6.26.0
-      babel-types: 6.26.0
-      babylon: 6.18.0
-      debug: 2.6.9
-      globals: 9.18.0
-      invariant: 2.2.4
-      lodash: 4.17.15
-    dev: true
-    resolution:
-      integrity: sha1-RqnL1+3MYsjlwGTi0tjQ9ANXZu4=
-  /babel-types/6.26.0:
-    dependencies:
-      babel-runtime: 6.26.0
-      esutils: 2.0.3
-      lodash: 4.17.15
-      to-fast-properties: 1.0.3
-    dev: true
-    resolution:
-      integrity: sha1-o7Bz+Uq0nrb6Vc1lInozQ4BjJJc=
   /babel-walk/3.0.0-canary-5:
     dependencies:
       '@babel/types': 7.10.3
@@ -1392,11 +1330,6 @@ packages:
       node: '>= 10.0.0'
     resolution:
       integrity: sha512-GAwkz0AihzY5bkwIY5QDR+LvsRQgB/B+1foMPvi0FZPMl5fjD7ICiznUiBdLYMH1QYe6vqu4gWYytZOccLouFw==
-  /babylon/6.18.0:
-    dev: true
-    hasBin: true
-    resolution:
-      integrity: sha512-q/UEjfGJ2Cm3oKV71DJz9d25TPnq5rhBVL2Q4fA5wcC3jcrdn7+SssEybFIxwAvvP+YCsCYNKughoF33GxgycQ==
   /balanced-match/1.0.0:
     dev: true
     resolution:
@@ -2168,13 +2101,6 @@ packages:
       node: '>=0.8'
     resolution:
       integrity: sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
-  /co/4.6.0:
-    dev: true
-    engines:
-      iojs: '>= 1.0.0'
-      node: '>= 0.12.0'
-    resolution:
-      integrity: sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=
   /coa/2.0.2:
     dependencies:
       '@types/q': 1.5.4
@@ -3024,14 +2950,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=
-  /detect-indent/4.0.0:
-    dependencies:
-      repeating: 2.0.1
-    dev: true
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha1-920GQ1LN9Docts5hnE7jqUdd4gg=
   /detect-node/2.0.4:
     dev: true
     resolution:
@@ -3848,10 +3766,6 @@ packages:
       node: '> 0.1.90'
     resolution:
       integrity: sha1-Ys8SAjTGg3hdkCNIqADvPgzCC8A=
-  /fast-deep-equal/1.1.0:
-    dev: true
-    resolution:
-      integrity: sha1-wFNHeBfIa1HaqFPIHgWbcz0CNhQ=
   /fast-deep-equal/3.1.3:
     dev: true
     resolution:
@@ -4472,12 +4386,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-BWICuzzDvDoH54NHKCseDanAhE3CeDorgDL5MT6LMXXj2WCnd9UC2szdk4AWLfjdgNBCXLUanXYcpBBKOSWGwg==
-  /globals/9.18.0:
-    dev: true
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha512-S0nG3CLEQiY/ILxqtztTWH/3iRRdyBLw6KMDxnKMchrtbj2OFmehVh0WUCfW3DUrIgx/qFrJPICrq4Z4sTR9UQ==
   /globby/10.0.2:
     dependencies:
       '@types/glob': 7.1.2
@@ -5068,12 +4976,6 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==
-  /invariant/2.2.4:
-    dependencies:
-      loose-envify: 1.4.0
-    dev: true
-    resolution:
-      integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
   /invert-kv/1.0.0:
     dev: true
     engines:
@@ -5502,23 +5404,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
-  /istanbul-instrumenter-loader/3.0.1:
-    dependencies:
-      convert-source-map: 1.7.0
-      istanbul-lib-instrument: 1.10.2
-      loader-utils: 1.4.0
-      schema-utils: 0.3.0
-    dev: true
-    engines:
-      node: '>= 4.8 < 5.0.0 || >= 5.10'
-    peerDependencies:
-      webpack: ^2.0.0 || ^3.0.0 || ^4.0.0
-    resolution:
-      integrity: sha512-a5SPObZgS0jB/ixaKSMdn6n/gXSrK2S6q/UfRJBT3e6gQmVjwZROTODQsYW5ZNwOu78hG62Y3fWlebaVOL0C+w==
-  /istanbul-lib-coverage/1.2.1:
-    dev: true
-    resolution:
-      integrity: sha512-PzITeunAgyGbtY1ibVIUiV679EFChHjoMNRibEIobvmrCRaIgwLxNucOSimtNWUhEib/oO7QY2imD75JVgCJWQ==
   /istanbul-lib-coverage/2.0.5:
     dev: true
     engines:
@@ -5533,18 +5418,6 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-vrRztU9VRRFDyC+aklfLoeXyNdTfga2EI3udDGn4cZ6fpSXpHLV9X6CHvfoMCPtggg8zvDDmC4b9xfu0z6/llA==
-  /istanbul-lib-instrument/1.10.2:
-    dependencies:
-      babel-generator: 6.26.1
-      babel-template: 6.26.0
-      babel-traverse: 6.26.0
-      babel-types: 6.26.0
-      babylon: 6.18.0
-      istanbul-lib-coverage: 1.2.1
-      semver: 5.7.1
-    dev: true
-    resolution:
-      integrity: sha512-aWHxfxDqvh/ZlxR8BBaEPVSWDPUkGD63VjGQn3jcw8jCp7sHEMKcrj4xfJn/ABzdMEHiQNyvDQhqm5o8+SQg7A==
   /istanbul-lib-instrument/3.3.0:
     dependencies:
       '@babel/generator': 7.9.6
@@ -5701,11 +5574,6 @@ packages:
         optional: true
     resolution:
       integrity: sha512-fAl1W0/7T2G5vURSyxBzrJ1LSdQn6Tr5UX/xD4PXDx/PDgwygedfW6El/KIj3xJ7FU61TTYnc/l/B7P49Eqt6g==
-  /jsesc/1.3.0:
-    dev: true
-    hasBin: true
-    resolution:
-      integrity: sha1-RsP+yMGJKxKwgz25vHYiF226s0s=
   /jsesc/2.5.2:
     dev: true
     engines:
@@ -5717,10 +5585,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==
-  /json-schema-traverse/0.3.1:
-    dev: true
-    resolution:
-      integrity: sha1-NJptRMU6Ud6JtAgFxdXlm0F9M0A=
   /json-schema-traverse/0.4.1:
     dev: true
     resolution:
@@ -6068,13 +5932,6 @@ packages:
       node: '>= 0.6.0'
     resolution:
       integrity: sha512-bsU7+gc9AJ2SqpzxwU3+1fedl8zAntbtC5XYlt3s2j1hJcn2PsXSmgN8TaLG/J1/2mod4+cE/3vNL70/c1RNCA==
-  /loose-envify/1.4.0:
-    dependencies:
-      js-tokens: 4.0.0
-    dev: true
-    hasBin: true
-    resolution:
-      integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   /loud-rejection/1.6.0:
     dependencies:
       currently-unhandled: 0.4.1
@@ -8372,6 +8229,7 @@ packages:
     resolution:
       integrity: sha1-z5Fqsf1fHxbfsggi3W7H9zDCr94=
   /regenerator-runtime/0.11.1:
+    dev: false
     resolution:
       integrity: sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
   /regenerator-runtime/0.13.5:
@@ -8775,14 +8633,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-Ydydq3zC+WYDJK1+gRxRapLIED9PWeSuuS41wqyoRmzvhhh9nc+QQrVMKJYzJFULazeGhzSV0QleN2wD3boh2g==
-  /schema-utils/0.3.0:
-    dependencies:
-      ajv: 5.5.2
-    dev: true
-    engines:
-      node: '>= 4.3 < 5.0.0 || >= 5.10'
-    resolution:
-      integrity: sha1-9YdyIs4+kx7a4DnxfrNxbnE3+M8=
   /schema-utils/1.0.0:
     dependencies:
       ajv: 6.12.2
@@ -9756,12 +9606,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-fSKbH8xjfkZsoIEYCDanqr/4P0M=
-  /to-fast-properties/1.0.3:
-    dev: true
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha1-uDVx+k2MJbguIxsG46MFXeTKGkc=
   /to-fast-properties/2.0.0:
     dev: true
     engines:
@@ -9862,12 +9706,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-WIeWa7WCpFA6QetST301ARgVphM=
-  /trim-right/1.0.1:
-    dev: true
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
   /true-case-path/1.0.3:
     dependencies:
       glob: 7.1.6
@@ -9893,21 +9731,6 @@ packages:
       typescript: '*'
     resolution:
       integrity: sha512-HDo5kXZCBml3EUPcc7RlZOV/JGlLHwppTLEHb3SHnr5V7NXD4klMEkrhJe5wgRbaWsSXi+Y1SIBN/K9B6zWGWQ==
-  /ts-loader/7.0.5_typescript@3.9.3:
-    dependencies:
-      chalk: 2.4.2
-      enhanced-resolve: 4.2.0
-      loader-utils: 1.4.0
-      micromatch: 4.0.2
-      semver: 6.3.0
-      typescript: 3.9.3
-    dev: true
-    engines:
-      node: '>=10.0.0'
-    peerDependencies:
-      typescript: '*'
-    resolution:
-      integrity: sha512-zXypEIT6k3oTc+OZNx/cqElrsbBtYqDknf48OZos0NQ3RTt045fBIU8RRSu+suObBzYB355aIPGOe/3kj9h7Ig==
   /ts-pnp/1.2.0_typescript@3.9.3:
     dependencies:
       typescript: 3.9.3
@@ -10952,14 +10775,12 @@ specifiers:
   eslint-plugin-prettier: 3.1.3
   eslint-plugin-vue: 6.2.2
   forever: 3.0.0
-  istanbul-instrumenter-loader: ^3.0.1
   node-sass: 4.14.1
   nyc: 14.1.1
   prettier: 1.19.1
   pug: 3.0.0
   pug-plain-loader: 1.0.0
   sass-loader: 8.0.2
-  ts-loader: ^7.0.5
   tslib: 1.10.0
   typescript: 3.9.3
   vue: 2.6.10

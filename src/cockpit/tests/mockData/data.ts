@@ -2,8 +2,6 @@ import City from '../../enums/City';
 import Day from '../../structs/Day';
 import Place from '../../structs/Place';
 import Trip from '../../structs/Trip';
-import Item from '../../shared/TripEditable';
-import User from '../../structs/User';
 
 export class mockPlace {
   public readonly ID: number;

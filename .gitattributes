@@ -1,32 +1,30 @@
 # Codes
-*.go    text eol=lf
-*.js    text eol=lf
-*.pug   text eol=lf
-*.scss  text eol=lf
-*.sh    text eol=lf
-*.ts    text eol=lf
-*.vue   text eol=lf
-*.yml   text eol=lf
-
-# "Special case" codes
-BUILD           text eol=lf linguist-language=Python
-*.build_defs    text eol=lf linguist-language=Python
+BUILD           text eol=lf linguist-language=Starlark
+*.build_defs    text eol=lf linguist-language=Starlark
+*.go            text eol=lf linguist-language=Go
+*.pug           text eol=lf linguist-language=Pug
+*.scss          text eol=lf linguist-language=SCSS
+*.sh            text eol=lf linguist-language=Shell
+*.ts            text eol=lf linguist-language=TypeScript
+*.vue           text eol=lf linguist-language=Vue
 *.wings         text eol=lf linguist-language=Wings
+*.yml           text eol=lf linguist-language=YAML
 
 # Config files
-.ackrc          text eol=lf linguist-generated=true
-.plzconfig      text eol=lf linguist-generated=true
-goformat        text eol=lf linguist-generated=true
-sample.config   text eol=lf linguist-generated=true
-test.config     text eol=lf linguist-generated=true
-tsconfig.json   text eol=lf linguist-language=TypeScript
-package.json    text eol=lf linguist-generated=true
+.ackrc          text eol=lf linguist-detectable=false
+.npmrc          text eol=lf linguist-detectable=false
+.plzconfig      text eol=lf linguist-detectable=false
+vue.config.js   text eol=lf linguist-detectable=false
+sample.config   text eol=lf linguist-detectable=false
+test.config     text eol=lf linguist-detectable=false
+tsconfig.json   text eol=lf linguist-detectable=false
+package.json    text eol=lf linguist-detectable=false
 
 # Generated files
-index.html      linguist-generated=true -diff
-pleasew         linguist-generated=true -diff
-pnpm-lock.yaml  linguist-generated=true -diff
+index.html      linguist-generated=true linguist-vendored=true -diff
+pleasew         linguist-generated=true linguist-vendored=true -diff
+pnpm-lock.yaml  linguist-generated=true linguist-vendored=true -diff
 
 # Documentations
-*.md    text eol=lf linguist-generated=true
-LICENSE text eol=lf linguist-generated=true
+*.md    text eol=lf linguist-documentation=true
+LICENSE text eol=lf linguist-documentation=true

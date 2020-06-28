@@ -4,7 +4,7 @@ filegroup(
     "HTTPReq.ts",
     "lib.scss",
   ],
-  visibility = ["//:cockpit"],
+  visibility = ["//src/cockpit/..."],
 )
 
 filegroup(
@@ -14,7 +14,7 @@ filegroup(
   ],
   visibility = [
     "//:cockpit",
-    "//src/cockpit/tests/shared:trip_editable_test",
+    "//src/cockpit/...",
   ],
 )
 
@@ -23,11 +23,6 @@ filegroup(
   srcs = [
     "CityUtil.ts"
   ],
-  visibility = [
-    "//:cockpit",
-    "//src/cockpit/tests/shared:city_util_test",
-  ],
-  deps = [
-    "//src/cockpit/enums:city"
-  ]
+  visibility = ["//src/cockpit/..."],
+  deps = ["//src/cockpit/enums:city"]
 )

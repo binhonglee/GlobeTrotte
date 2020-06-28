@@ -19,13 +19,12 @@
 _You can install all these requirements with `./scripts/setup.sh` if needed._
 
 - [go](https://golang.org/)
-  - [goformat](https://github.com/mbenkmann/goformat) (Go files lint)
 - [node](https://nodejs.org/en/)
   - [pnpm](https://pnpm.js.org/)
 - [please](https://please.build) (optional)
 - [postgresql](https://www.postgresql.org/)
 - [shellcheck](https://github.com/koalaman/shellcheck) (Shell script lint)
-- [wings](https://wings.sh/)
+- [wings](https://wings.sh/) (Generally, the `devel` branch version is prefered since I develop both projects side by side.)
 
 \*_Note: Replace `plz` with `./pleasew` if you do not have please installed._
 

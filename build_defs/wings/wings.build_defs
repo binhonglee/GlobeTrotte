@@ -1,6 +1,6 @@
 def wings_lib(name:str, config:str="", srcs:list=[], outs:list=["done"], test_only=False, visibility:list=None, deps:list=[]):
   filegroup(
-    name = name + '_#wings',
+    name = name + "_#wings",
     srcs = srcs,
     visibility = visibility,
     binary = False,
@@ -10,24 +10,27 @@ def wings_lib(name:str, config:str="", srcs:list=[], outs:list=["done"], test_on
   return build_rule(
     name = name,
     srcs = srcs,
-    tools = {
-      'wings': [CONFIG.WINGS_TOOL],
-    },
+    tools = [CONFIG.WINGS_TOOL],
     cmd = " && ".join([
       _home_path(),
       "FILES=$(find \"$PWD\" -name *.wings -exec realpath --relative-to \"$PWD\" \{\} \;)",
-      "$TOOLS_WINGS -c:" + config + " $FILES",
+      "$TOOL -c:" + config + " $FILES",
     ]),
     outs = outs,
-    deps = deps + [':' + name + '_#wings'],
+    deps = deps + [":" + name + "_#wings"],
     needs_transitive_deps = True,
-    requires = ['wings'],
     test_only = test_only,
     binary = False,
     visibility = visibility,
   )
 
 def _home_path():
-  return "if [[ \"$OSTYPE\" == \"darwin\"* ]]; then HOME=\"/Users/$USER\"; elif [[ \"$OSTYPE\" == \"linux-gnu\"* ]]; then HOME=\"/home/$USER\"; fi",
+  return " ".join([
+    "if [[ \"$OSTYPE\" == \"darwin\"* ]];",
+    "then HOME=\"/Users/$USER\";",
+    "elif [[ \"$OSTYPE\" == \"linux-gnu\"* ]];",
+    "then HOME=\"/home/$USER\";",
+    "fi",
+  ])
 
-CONFIG.setdefault('WINGS_TOOL', 'wings')
+CONFIG.setdefault("WINGS_TOOL", "wings")

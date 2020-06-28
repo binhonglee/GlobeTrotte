@@ -1,5 +1,5 @@
 filegroup(
-  name = 'pnpm',
-  srcs = ['pnpm.build_defs'],
-  visibility = ['PUBLIC'],
+  name = "pnpm",
+  srcs = ["pnpm.build_defs"],
+  visibility = ["PUBLIC"],
 )

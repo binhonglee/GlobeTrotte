@@ -19,5 +19,8 @@ filegroup(
   visibility = [
     "//:cockpit_unit",
   ],
-  deps = ["//src/cockpit/shared:city_util"],
+  deps = [
+    "//src/cockpit/shared:city_util",
+    "//src/cockpit/enums:city",
+  ],
 )
