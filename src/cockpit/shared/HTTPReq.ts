@@ -1,4 +1,4 @@
-import * as http from 'http';
+import * as http from "http";
 
 export default class HTTPReq {
   public static post(
@@ -6,19 +6,19 @@ export default class HTTPReq {
     data: string,
     callback: (data: string) => void,
   ): void {
-    this.sendRequest(uri, data, 'POST', callback);
+    this.sendRequest(uri, data, "POST", callback);
   }
 
   public static get(
     uri: string,
     callback: (data: string) => void,
   ): void {
-    this.sendRequest(uri, '', 'GET', callback);
+    this.sendRequest(uri, "", "GET", callback);
   }
 
-  private static host = '127.0.0.1';
+  private static host = "127.0.0.1";
   private static port = 4000;
-  private static pathPrefix = '/api/';
+  private static pathPrefix = "/api/";
 
   private static sendRequest(
     uri: string,
@@ -32,22 +32,22 @@ export default class HTTPReq {
       path: HTTPReq.pathPrefix + uri,
       method: type,
       headers: {
-        'Content-Length': Buffer.byteLength(data),
+        "Content-Length": Buffer.byteLength(data),
       },
     };
 
     const request = http
       .request(fullURI, (res: http.IncomingMessage) => {
-        res.setEncoding('utf8');
-        let returnData = '';
-        res.on('data', (chunk: string) => {
+        res.setEncoding("utf8");
+        let returnData = "";
+        res.on("data", (chunk: string) => {
           returnData += chunk;
         });
-        res.on('end', () => {
+        res.on("end", () => {
           callback(returnData);
         });
       })
-      .on('error', () => {
+      .on("error", () => {
         callback(false.toString());
         // alert('Submission failed');
       });

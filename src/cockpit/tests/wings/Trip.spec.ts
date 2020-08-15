@@ -1,20 +1,20 @@
-import Trip from '../../structs/Trip';
-import Day from '../../structs/Day';
-import City from '../../enums/City';
+import Trip from "../../structs/Trip";
+import Day from "../../structs/Day";
+import City from "../../enums/City";
 
-import { WingsStructUtil } from 'wings-ts-util';
-import * as chai from 'chai';
+import { WingsStructUtil } from "wings-ts-util";
+import * as chai from "chai";
 
 const expect = chai.expect;
 
-describe('<Trip> WingsStructUtil.stringify(Trip) should include all values in Trip.', () => {
+describe("<Trip> WingsStructUtil.stringify(Trip) should include all values in Trip.", () => {
   const trip = new Trip({
     id: 1,
     user_id: -1,
-    name: 'Test Trip Name',
+    name: "Test Trip Name",
     cities: [City.KualaLumpurMY, City.SanJoseCAUS],
     days: [],
-    description: 'Test Trip Description',
+    description: "Test Trip Description",
     time_created: new Date(),
     last_updated: new Date(),
   });
@@ -24,7 +24,7 @@ describe('<Trip> WingsStructUtil.stringify(Trip) should include all values in Tr
   );
 
   for (const key in trip) {
-    if (typeof key === 'string') {
+    if (typeof key === "string") {
       it(key, () => {
         if (trip[key] instanceof Date) {
           expect(reversedObj[key].getTime()).equal(

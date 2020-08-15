@@ -12,27 +12,27 @@ import {
   Component,
   Watch,
   Vue,
-} from 'vue-property-decorator';
-import CTripInfo from '../../components/CTripInfo.vue';
-import HTTPReq from '../../shared/HTTPReq';
-import Place from '../../structs/Place';
-import Trip from '../../structs/Trip';
+} from "vue-property-decorator";
+import CTripInfo from "../../components/CTripInfo.vue";
+import HTTPReq from "../../shared/HTTPReq";
+import Place from "../../structs/Place";
+import Trip from "../../structs/Trip";
 
 @Component({
   data() {
     return {
-      inputID: '',
+      inputID: "",
       trip: new Trip(),
       owner: false,
     };
   },
-  props: ['id'],
+  props: ["id"],
   components: {
     CTripInfo,
   },
 })
 export default class VGetID extends Vue {
-  @Watch('$route.path') private onRouteChange(): void {
+  @Watch("$route.path") private onRouteChange(): void {
     this.init();
   }
 
@@ -42,11 +42,11 @@ export default class VGetID extends Vue {
 
   private init(): void {
     if (this.$route.params.id === undefined) {
-      this.$data.trip.name = '';
+      this.$data.trip.name = "";
       return;
     }
 
-    const uri: string = 'trip/' + this.$route.params.id;
+    const uri: string = "trip/" + this.$route.params.id;
     HTTPReq.get(uri, (data: string) => {
       try {
         this.$data.trip = new Trip();
@@ -66,7 +66,7 @@ export default class VGetID extends Vue {
         }
         this.$data.trip.init(parsedData);
       } catch (e) {
-        alert('Error. Trip not found.');
+        alert("Error. Trip not found.");
       }
     });
 
@@ -76,7 +76,7 @@ export default class VGetID extends Vue {
   private gotoTrip(): void {
     const id: number = parseInt(this.$data.inputID, 10);
     if (String(id) !== this.$data.inputID) {
-      alert('Invalid number');
+      alert("Invalid number");
     } else {
       this.$router.push({ path: `/trip/view/${id}` });
     }
@@ -91,7 +91,7 @@ export default class VGetID extends Vue {
 </script>
 
 <style lang="scss">
-@import '../../shared/lib';
+@import "../../shared/lib";
 
 .tripSearchInput {
   margin-left: 5px;

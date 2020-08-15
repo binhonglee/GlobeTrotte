@@ -1,46 +1,46 @@
-describe('Menubar', () => {
-  ['/', '/about'].forEach((url) => {
-    it('menubar:' + url, () => {
+describe("Menubar", () => {
+  ["/", "/about"].forEach((url) => {
+    it("menubar:" + url, () => {
       cy.visit(url);
-      cy.get('.main_menu')
-        .contains('ul', 'Home')
-        .contains('ul', 'About')
-        .contains('ul', 'Trips')
-        .contains('ul', 'View')
-        .contains('ul', 'New');
+      cy.get(".main_menu")
+        .contains("ul", "Home")
+        .contains("ul", "About")
+        .contains("ul", "Trips")
+        .contains("ul", "View")
+        .contains("ul", "New");
     });
 
-    it('footer:' + url, () => {
+    it("footer:" + url, () => {
       cy.visit(url);
-      cy.get('#footer')
-        .contains('#footerMessage', 'Made with')
-        .contains('#footerMessage', 'by BinHong Lee');
+      cy.get("#footer")
+        .contains("#footerMessage", "Made with")
+        .contains("#footerMessage", "by BinHong Lee");
     });
   });
 });
 
-describe('Homepage', () => {
-  it('title', () => {
-    cy.visit('/');
-    cy.contains('h1', 'GlobeTrotte');
+describe("Homepage", () => {
+  it("title", () => {
+    cy.visit("/");
+    cy.contains("h1", "GlobeTrotte");
   });
-  it('description', () => {
-    cy.visit('/');
-    cy.contains('p', 'There is nothing here for now.');
-    cy.contains('p', 'You should check back again soon!');
+  it("description", () => {
+    cy.visit("/");
+    cy.contains("p", "There is nothing here for now.");
+    cy.contains("p", "You should check back again soon!");
   });
 });
 
-describe('About', () => {
-  it('title', () => {
-    cy.visit('/about');
-    cy.contains('h1', 'About');
+describe("About", () => {
+  it("title", () => {
+    cy.visit("/about");
+    cy.contains("h1", "About");
   });
-  it('description', () => {
-    cy.visit('/about');
+  it("description", () => {
+    cy.visit("/about");
     cy.contains(
-      'p',
-      'Our goal is to change the way people share their travel experiences and how they plan for their future travels.',
+      "p",
+      "Our goal is to change the way people share their travel experiences and how they plan for their future travels.",
     );
   });
 });

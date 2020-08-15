@@ -29,18 +29,18 @@ import {
   Component,
   Prop,
   Vue,
-} from 'vue-property-decorator';
-import CEditItem from './CEditItem.vue';
-import CEditPlaces from './CEditPlaces.vue';
-import City from '../enums/City';
-import { CityUtil } from '../shared/CityUtil';
-import Trip from '../structs/Trip';
-import TripEditable from '../shared/TripEditable';
+} from "vue-property-decorator";
+import CEditItem from "./CEditItem.vue";
+import CEditPlaces from "./CEditPlaces.vue";
+import City from "../enums/City";
+import { CityUtil } from "../shared/CityUtil";
+import Trip from "../structs/Trip";
+import TripEditable from "../shared/TripEditable";
 
 @Component({
   data() {
     return {
-      city: '',
+      city: "",
       cities: [],
       editables: [],
       items: [],
@@ -68,7 +68,7 @@ export default class CEditTrip extends Vue {
     }
 
     for (const field in this.$data.editables) {
-      if (typeof field === 'string') {
+      if (typeof field === "string") {
         this.$data.items.push(
           this.tripToItem(this.$data.editables[field]),
         );
@@ -77,12 +77,12 @@ export default class CEditTrip extends Vue {
   }
 
   private cancel(): void {
-    this.$emit('cancel');
+    this.$emit("cancel");
   }
 
   private save(): void {
     this.$data.saving = true;
-    if (typeof this.$data.city === 'number') {
+    if (typeof this.$data.city === "number") {
       this.trip.location = this.$data.city;
     } else {
       this.trip.location = parseInt(
@@ -93,7 +93,7 @@ export default class CEditTrip extends Vue {
 
     for (const item of this.$data.items) {
       if (item instanceof TripEditable) {
-        if (typeof this.trip[item.type] !== 'string') {
+        if (typeof this.trip[item.type] !== "string") {
           this.trip[item.type] = +item.value;
         } else {
           this.trip[item.type] = item.value;
@@ -104,7 +104,7 @@ export default class CEditTrip extends Vue {
     this.trip.userID = 213;
     this.trip.places = this.$data.locations;
 
-    this.$emit('save', this.trip);
+    this.$emit("save", this.trip);
     this.$data.saving = false;
   }
 
@@ -115,7 +115,7 @@ export default class CEditTrip extends Vue {
 </script>
 
 <style lang="scss">
-@import '../shared/lib';
+@import "../shared/lib";
 
 .confirmationButtons {
   margin-top: 20px;

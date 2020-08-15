@@ -195,7 +195,7 @@ installShellcheck() {
 }
 
 installWings() {
-  TEST_WINGS=$(wings)
+  TEST_WINGS=$(wings -v)
 
   if [ "$TEST_WINGS" != "" ]; then
     echo "Seems like \`wings\` is already installed. Skipping..."
@@ -203,9 +203,8 @@ installWings() {
   fi
 
   mkdir -p "$HOME"/wings/
-  curl -L https://github.com/binhonglee/wings/releases/download/v0.0.4-alpha/wings_64bit_unix -o "$HOME"/wings/wings
-  chmod +x "$HOME"/wings/wings
-  echo "Add \"export \"PATH=\$HOME/wings/bin:\$PATH\" to your .bashrc or .zshrc file."
+  sudo curl -L https://github.com/binhonglee/wings/releases/download/v0.0.5-alpha/wings_64bit_linux -o /usr/bin/wings
+  sudo chmod +x /usr/bin/wings
 }
 
 if ! echo "$SUPPORTED_OS" | grep -w "$OS" > /dev/null; then

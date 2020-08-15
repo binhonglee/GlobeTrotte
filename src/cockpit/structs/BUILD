@@ -1,6 +1,6 @@
 filegroup(
   name = "day",
-  srcs = ["Day.ts"],
+  srcs = ["//src/wings/struct:day_#ts"],
   needs_transitive_deps = True,
   visibility = ["//src/cockpit/..."],
   deps = [":place"],
@@ -8,21 +8,19 @@ filegroup(
 
 filegroup(
   name = "new_user",
-  srcs = ["NewUser.ts"],
+  srcs = ["//src/wings/struct:new_user_#ts"],
   visibility = ["//src/cockpit/..."],
 )
 
 filegroup(
   name = "place",
-  srcs = [
-    "Place.ts",
-  ],
+  srcs = ["//src/wings/struct:place_#ts"],
   visibility = ["//src/cockpit/..."],
 )
 
 filegroup(
   name = "trip",
-  srcs = ["Trip.ts"],
+  srcs = ["//src/wings/struct:trip_#ts"],
   needs_transitive_deps = True,
   visibility = ["//src/cockpit/..."],
   deps = [
@@ -33,6 +31,6 @@ filegroup(
 
 filegroup(
   name = "user",
-  srcs = ["User.ts"],
+  srcs = ["//src/wings/struct:user_#ts"],
   visibility = ["//src/cockpit/..."],
 )

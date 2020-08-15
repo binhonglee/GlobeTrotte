@@ -1,7 +1,7 @@
-import City from '../../enums/City';
-import Day from '../../structs/Day';
-import Place from '../../structs/Place';
-import Trip from '../../structs/Trip';
+import City from "../../enums/City";
+import Day from "../../structs/Day";
+import Place from "../../structs/Place";
+import Trip from "../../structs/Trip";
 
 export class mockPlace {
   public readonly ID: number;
@@ -12,9 +12,9 @@ export class mockPlace {
 
   constructor() {
     this.ID = 9999;
-    this.label = 'LabelString';
-    this.url = 'PlaceURL';
-    this.description = 'some words';
+    this.label = "LabelString";
+    this.url = "PlaceURL";
+    this.description = "some words";
     this.place = new Place({
       id: this.ID,
       label: this.label,
@@ -38,10 +38,10 @@ export class mockTrip {
   constructor() {
     this.ID = 99999;
     this.userID = 55555;
-    this.name = 'The magical journey';
+    this.name = "The magical journey";
     this.cities = [City.SanJoseCAUS];
     this.days = [];
-    this.description = '¯\\_(ツ)_/¯';
+    this.description = "¯\\_(ツ)_/¯";
     this.timeCreated = new Date();
     this.lastUpdated = new Date();
     this.trip = new Trip({

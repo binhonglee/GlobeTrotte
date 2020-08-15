@@ -1,20 +1,15 @@
 go_library(
   name = "structs",
   srcs = [
-    "day.go",
     "istructs.go",
-    "newuser.go",
-    "place.go",
-    "trip.go",
-    "user.go",
+    "//src/wings/struct:day_#go",
+    "//src/wings/struct:new_user_#go",
+    "//src/wings/struct:place_#go",
+    "//src/wings/struct:trip_#go",
+    "//src/wings/struct:user_#go",
   ],
   deps = [
     "//src/turbine/city:city",
-    "//src/wings/struct:day",
-    "//src/wings/struct:new_user",
-    "//src/wings/struct:place",
-    "//src/wings/struct:trip",
-    "//src/wings/struct:user",
   ],
   visibility = ["//src/turbine/..."],
 )

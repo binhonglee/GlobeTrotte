@@ -8,13 +8,19 @@
   "scripts": {
     "genRouter": "tsc src/cockpit/scripts/genRouter.ts --outDir ./plz-out && node ./plz-out/genRouter.js",
     "genComponent": "tsc src/cockpit/scripts/genComponent.ts --outDir ./plz-out && node ./plz-out/genComponent.js",
-    "serve": "pnpm run genRouter && vue-cli-service serve",
+    "serve": "cross-env NODE_ENV=development vue-cli-service serve --open --host localhost",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "format": "vue-cli-service lint --fix",
-    "test:unit": "vue-cli-service test:unit --colors src/cockpit/tests/**/*.spec.ts",
-    "test:e2e": "forever start ./node_modules/@vue/cli-service/bin/vue-cli-service.js test:e2e && wait-on http://localhost:8080 && cypress run && forever stop ./node_modules/@vue/cli-service/bin/vue-cli-service.js",
-    "cover": "nyc pnpm run test:unit"
+    "format": "pnpm run lint -- --fix",
+    "format:plz": "pnpm run format",
+    "test:unit": "vue-cli-service test:unit src/cockpit/tests/**/*.spec.ts",
+    "test:unit:plz": "pnpm run test:unit",
+    "test:e2e": "cypress run",
+    "test:e2e:plz": "pnpm run startServer && pnpm run test:e2e && pnpm run endServer",
+    "startServer": "forever start ./node_modules/@vue/cli-service/bin/vue-cli-service.js test:e2e && wait-on http://localhost:8080",
+    "endServer": "forever stop ./node_modules/@vue/cli-service/bin/vue-cli-service.js",
+    "cover": "nyc pnpm run test:unit",
+    "cover:plz": "pnpm run cover"
   },
   "dependencies": {
     "element-ui": "2.13.2",
@@ -41,6 +47,7 @@
     "@vue/eslint-config-typescript": "5.0.2",
     "@vue/test-utils": "1.0.3",
     "chai": "4.2.0",
+    "cross-env": "7.0.2",
     "eslint": "6.7.2",
     "eslint-plugin-prettier": "3.1.3",
     "eslint-plugin-vue": "6.2.2",
@@ -78,31 +85,6 @@
     "extension": [
       ".ts",
       ".vue"
-    ]
-  },
-  "prettier": {
-    "arrowParens": "always",
-    "endOfLine": "lf",
-    "htmlWhitespaceSensitivity": "strict",
-    "printWidth": 60,
-    "semi": true,
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "all",
-    "vueIndentScriptAndStyle": false,
-    "overrides": [
-      {
-        "files": "*.ts",
-        "options": {
-          "parser": "typescript"
-        }
-      },
-      {
-        "files": "*.vue",
-        "options": {
-          "parser": "vue"
-        }
-      }
     ]
   }
 }

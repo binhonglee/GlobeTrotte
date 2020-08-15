@@ -15,12 +15,12 @@ import {
   Component,
   Prop,
   Vue,
-} from 'vue-property-decorator';
-import { WingsStructUtil } from 'wings-ts-util';
-import CEditTrip from './CEditTrip.vue';
-import CViewTrip from './CViewTrip.vue';
-import HTTPReq from '../shared/HTTPReq';
-import Trip from '../structs/Trip';
+} from "vue-property-decorator";
+import { WingsStructUtil } from "wings-ts-util";
+import CEditTrip from "./CEditTrip.vue";
+import CViewTrip from "./CViewTrip.vue";
+import HTTPReq from "../shared/HTTPReq";
+import Trip from "../structs/Trip";
 
 @Component({
   data() {
@@ -52,17 +52,17 @@ export default class CTripInfo extends Vue {
 
   private save(trip: Trip): void {
     HTTPReq.post(
-      'trip/' + trip.id,
+      "trip/" + trip.id,
       WingsStructUtil.stringify(trip),
       (success: string) => {
         if (success) {
           this.disableEditMode();
         } else {
           this.$alert(
-            'Save was unsuccessful. Please try again later.',
-            'Fail',
+            "Save was unsuccessful. Please try again later.",
+            "Fail",
             {
-              confirmButtonText: 'OK',
+              confirmButtonText: "OK",
             },
           );
         }
@@ -77,7 +77,7 @@ export default class CTripInfo extends Vue {
 </script>
 
 <style lang="scss">
-@import '../shared/lib';
+@import "../shared/lib";
 
 .trip_info {
   @include trip_display();

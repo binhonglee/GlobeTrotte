@@ -23,17 +23,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { WingsStructUtil } from 'wings-ts-util';
-import HTTPReq from '../shared/HTTPReq';
-import NewUser from '../structs/NewUser';
-import User from '../structs/User';
+import { Component, Vue } from "vue-property-decorator";
+import { WingsStructUtil } from "wings-ts-util";
+import HTTPReq from "../shared/HTTPReq";
+import NewUser from "../structs/NewUser";
+import User from "../structs/User";
 
 @Component({
   data() {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     };
   },
 })
@@ -47,7 +47,7 @@ export default class VLogin extends Vue {
     });
 
     HTTPReq.post(
-      'login',
+      "login",
       WingsStructUtil.stringify(newUser),
       (returnedUser: string) => {
         user.init(JSON.parse(returnedUser));
@@ -64,7 +64,7 @@ export default class VLogin extends Vue {
 </script>
 
 <style lang="scss">
-@import '../shared/lib';
+@import "../shared/lib";
 
 .loginbox {
   @include trip_display();

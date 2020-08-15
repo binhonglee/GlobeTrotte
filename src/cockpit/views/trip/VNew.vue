@@ -5,11 +5,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { WingsStructUtil } from 'wings-ts-util';
-import CEditTrip from '../../components/CEditTrip.vue';
-import HTTPReq from '../../shared/HTTPReq';
-import Trip from '../../structs/Trip';
+import { Component, Vue } from "vue-property-decorator";
+import { WingsStructUtil } from "wings-ts-util";
+import CEditTrip from "../../components/CEditTrip.vue";
+import HTTPReq from "../../shared/HTTPReq";
+import Trip from "../../structs/Trip";
 
 @Component({
   data() {
@@ -29,11 +29,11 @@ export default class VNew extends Vue {
   private save(trip: Trip): void {
     this.$data.trip = trip;
     HTTPReq.post(
-      'trip',
+      "trip",
       WingsStructUtil.stringify(trip),
       (newTrip: string) => {
         this.$router.push(
-          '/trip/view/' + JSON.parse(newTrip).id,
+          "/trip/view/" + JSON.parse(newTrip).id,
         );
       },
     );
@@ -42,7 +42,7 @@ export default class VNew extends Vue {
 </script>
 
 <style lang="scss">
-@import '../../shared/lib';
+@import "../../shared/lib";
 
 .newTrip {
   @include trip_display();

@@ -8,30 +8,7 @@ gentest(
   no_test_output = True,
 )
 
-sh_cmd(
+sh_library(
   name = "reset",
-  cmd = " && ".join([
-    "echo \"Removing 'cypress'...\"",
-    "rm -rf cypress",
-    "echo \"Removing 'node_modules'...\"",
-    "rm -rf node_modules",
-    "rm -f src/cockpit/router.ts",
-    "echo \"Removing '~/.cache/please'...\"",
-    "rm -rf ~/.cache/please",
-    "echo \"Removing 'plz-out'...\"",
-    "rm -rf plz-out",
-    "echo \"Removing '.nyc_output'...\"",
-    "rm -rf .nyc_output",
-    "echo \"Removing 'coverage'...\"",
-    "rm -rf coverage",
-    "echo \"Dropping database\"",
-    "psql --username=\"$USER\" -w -c \"DROP DATABASE globetrotte;\"",
-    "echo \"All removal completed successfully!\"",
-    "echo",
-    "echo \"Initializing pnpm...\"",
-    "pnpm i",
-    "echo",
-    "echo \"Creating database...\"",
-    "psql --username=\"$USER\" -w -c \"CREATE DATABASE globetrotte;\"",
-  ])
+  src = "reset.sh",
 )

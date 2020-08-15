@@ -1,8 +1,8 @@
-import { readdirSync, lstatSync, writeFileSync } from 'fs';
-import { join } from 'path';
+import { readdirSync, lstatSync, writeFileSync } from "fs";
+import { join } from "path";
 
-const viewFolder = 'src/cockpit/views/';
-const presetRoute = ['landing', '404'];
+const viewFolder = "src/cockpit/views/";
+const presetRoute = ["landing", "404"];
 const before = `/*
  * DO MOT EDIT THIS FILE DIRECTLY!
  * Edits will be overwritten on build.
@@ -40,15 +40,15 @@ class GenRouter {
   public run(): void {
     this.getFiles();
     this.output += after;
-    writeFileSync('src/cockpit/router.ts', this.output);
+    writeFileSync("router.ts", this.output);
   }
 
-  private getFiles(folder = ''): void {
+  private getFiles(folder = ""): void {
     const fullpath = viewFolder + folder;
     readdirSync(fullpath).forEach((file) => {
       if (!lstatSync(join(fullpath, file)).isFile()) {
-        this.getFiles(folder + file + '/');
-      } else if (file.endsWith('.vue')) {
+        this.getFiles(folder + file + "/");
+      } else if (file.endsWith(".vue")) {
         this.output += this.getRoutes(folder, file);
       }
     });
@@ -57,20 +57,20 @@ class GenRouter {
   private getRoutes(path: string, file: string): string {
     const name = this.getPath(file);
     let urlPath = name.toLowerCase();
-    let toReturn = '';
+    let toReturn = "";
 
     if (presetRoute.includes(urlPath)) {
-      return '';
+      return "";
     }
 
-    if (urlPath.substr(0, 3).localeCompare('get') === 0) {
+    if (urlPath.substr(0, 3).localeCompare("get") === 0) {
       urlPath = urlPath.substr(3);
       toReturn = this.getRoute(
         path + urlPath,
-        path + name + 'Index',
+        path + name + "Index",
         path + file,
       );
-      urlPath = urlPath += '/:id';
+      urlPath = urlPath += "/:id";
     }
 
     return (
@@ -104,11 +104,11 @@ class GenRouter {
   }
 
   private getPath(filename: string): string {
-    if (filename.substr(0, 1) === 'V') {
+    if (filename.substr(0, 1) === "V") {
       filename = filename.substr(1);
     }
 
-    return filename.split('.', 1)[0];
+    return filename.split(".", 1)[0];
   }
 }
 

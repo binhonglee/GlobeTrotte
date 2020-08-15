@@ -1,21 +1,21 @@
-import { expect } from 'chai';
-import Trip from '../../structs/Trip';
-import TripEditable from '../../shared/TripEditable';
+import { expect } from "chai";
+import Trip from "../../structs/Trip";
+import TripEditable from "../../shared/TripEditable";
 
-describe('<TripEditable> All editables should have specified labels.', () => {
+describe("<TripEditable> All editables should have specified labels.", () => {
   const allTypes = TripEditable.getAllTypes();
 
   allTypes.forEach((type: string) => {
     it(type, () => {
-      const item = new TripEditable(type, '');
+      const item = new TripEditable(type, "");
       expect(
-        item.label.localeCompare('unknown_type') !== 0,
+        item.label.localeCompare("unknown_type") !== 0,
       ).equal(true);
     });
   });
 });
 
-describe('<TripEditable> All editables should exist in Trip.', () => {
+describe("<TripEditable> All editables should exist in Trip.", () => {
   const allTypes = TripEditable.getAllTypes();
   const trip: Trip = new Trip();
 

@@ -30,8 +30,8 @@ import {
   Component,
   Prop,
   Vue,
-} from 'vue-property-decorator';
-import Place from '../structs/Place';
+} from "vue-property-decorator";
+import Place from "../structs/Place";
 
 @Component
 export default class CEditPlaces extends Vue {
@@ -48,7 +48,7 @@ export default class CEditPlaces extends Vue {
 </script>
 
 <style lang="scss">
-@import '../shared/lib';
+@import "../shared/lib";
 
 $place-label-width: 90px;
 $place-link-width: 150px;

@@ -1,11 +1,12 @@
-version: 2
+version: 2.1
+
+orbs:
+  cypress: cypress-io/cypress@1.16.1
+
 jobs:
   build:
     docker:
       - image: circleci/golang:latest-node
-      - image: cypress/base:8
-        environment:
-          TERM: xterm
       - image: circleci/postgres:latest-postgis
         environment:
           POSTGRES_USER: test
@@ -17,6 +18,10 @@ jobs:
     steps:
       - checkout
 
+      - run: sudo apt-get install -y libxcomposite-dev libxcomposite1 libgtk2.0-0 libgtk-3-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      - run: /usr/bin/Xvfb :99 -screen 0 1920x1080x24+32 &
+
+      - run: echo 'export DISPLAY=:99' >> $BASH_ENV
       - run: echo 'export PATH=/home/circleci/.nimble/bin:$HOME/wings:$PATH' >> $BASH_ENV
       - run: echo 'export USER="circleci"' >> $BASH_ENV
       - run: ./scripts/setup.sh -g -s -w
@@ -27,6 +32,5 @@ jobs:
       - run: ./pleasew build --show_all_output
       - run: ./pleasew test --show_all_output
       - run: ./pleasew cover --show_all_output //src/turbine/...
-      - run: ./pleasew test --show_all_output
       - run: bash <(curl -s https://codecov.io/bash)
       - run: ./scripts/leftover.sh

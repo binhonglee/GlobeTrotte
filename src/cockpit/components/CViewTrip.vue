@@ -20,11 +20,11 @@ import {
   Component,
   Prop,
   Vue,
-} from 'vue-property-decorator';
-import { CityUtil } from '../shared/CityUtil';
-import CPlaces from './CPlaces.vue';
-import Trip from '../structs/Trip';
-import City from '../enums/City';
+} from "vue-property-decorator";
+import { CityUtil } from "../shared/CityUtil";
+import CPlaces from "./CPlaces.vue";
+import Trip from "../structs/Trip";
+import City from "../enums/City";
 
 @Component({
   data() {
@@ -49,13 +49,13 @@ export default class CViewTrip extends Vue {
   }
 
   private enableEditMode(): void {
-    this.$emit('edit-trip', this.trip);
+    this.$emit("edit-trip", this.trip);
   }
 }
 </script>
 
 <style lang="scss">
-@import '../shared/lib';
+@import "../shared/lib";
 
 #id {
   @include right_col($p-height);

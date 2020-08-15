@@ -1,10 +1,10 @@
-import Day from '../../structs/Day';
-import Place from '../../structs/Place';
+import Day from "../../structs/Day";
+import Place from "../../structs/Place";
 
-import { WingsStructUtil } from 'wings-ts-util';
-import { expect } from 'chai';
+import { WingsStructUtil } from "wings-ts-util";
+import { expect } from "chai";
 
-describe('<Day> WingsStructUtil.stringify(Day) from init() should include all values in Day.', () => {
+describe("<Day> WingsStructUtil.stringify(Day) from init() should include all values in Day.", () => {
   const day = new Day({
     id: 1,
     trip_id: 1010101001,
@@ -13,14 +13,14 @@ describe('<Day> WingsStructUtil.stringify(Day) from init() should include all va
   });
   let reversedObj = new Day();
 
-  it('proper init()', () => {
+  it("proper init()", () => {
     reversedObj = new Day(
       JSON.parse(WingsStructUtil.stringify(day)),
     );
   });
 
   for (const key in day) {
-    if (typeof key === 'string') {
+    if (typeof key === "string") {
       it(key, () => {
         if (day[key] instanceof Array) {
           expect(reversedObj[key] instanceof Array).equal(

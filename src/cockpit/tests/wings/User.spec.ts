@@ -1,16 +1,16 @@
-import User from '../../structs/User';
+import User from "../../structs/User";
 
-import { WingsStructUtil } from 'wings-ts-util';
-import * as chai from 'chai';
+import { WingsStructUtil } from "wings-ts-util";
+import * as chai from "chai";
 
 const expect = chai.expect;
 
-describe('<User> WingsStructUtil.stringify(User) should include all values in User.', () => {
+describe("<User> WingsStructUtil.stringify(User) should include all values in User.", () => {
   const user = new User({
     id: 10000,
-    name: 'Test User Name',
-    email: 'testemail@email.com',
-    bio: 'some words',
+    name: "Test User Name",
+    email: "testemail@email.com",
+    bio: "some words",
     time_created: new Date(),
     trips: null,
   });
@@ -19,7 +19,7 @@ describe('<User> WingsStructUtil.stringify(User) should include all values in Us
   );
 
   for (const key in user) {
-    if (typeof key === 'string') {
+    if (typeof key === "string") {
       it(key, () => {
         if (user[key] instanceof Date) {
           expect(reversedObj[key].getTime()).equal(

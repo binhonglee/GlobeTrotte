@@ -3,7 +3,7 @@ subinclude("//build_defs/pnpm")
 filegroup(
   name = "index_html",
   srcs = ["public/index.html"],
-  visibility = [":cockpit"],
+  visibility = [":cockpit", ":serve"],
 )
 
 filegroup(
@@ -31,6 +31,14 @@ filegroup(
 )
 
 filegroup(
+  name = "prettier",
+  srcs = [
+    ".prettierrc"
+  ],
+  visibility = [":cockpit", ":serve"],
+)
+
+filegroup(
   name = "cypress_config",
   srcs = ["cypress.json"],
   visibility = [":cockpit_e2e"],
@@ -39,7 +47,7 @@ filegroup(
 filegroup(
   name = "eslint_config",
   srcs = [".eslintignore", ".eslintrc.js"],
-  visibility = [":cockpit"],
+  visibility = [":cockpit", ":serve"],
 )
 
 filegroup(
@@ -51,7 +59,7 @@ filegroup(
 filegroup(
   name = "vue_config",
   srcs = ["vue.config.js"],
-  visibility = [":cockpit"],
+  visibility = [":cockpit", ":serve"],
 )
 
 pnpm_install(
@@ -62,24 +70,44 @@ pnpm_install(
 pnpm_build(
   name = "cockpit",
   deps = [
-    "//:pnpm",
-    "//:eslint_config",
-    "//:index_html",
-    "//:vue_config",
+    ":pnpm",
+    ":prettier",
+    ":tsconfig",
+    ":index_html",
+    ":vue_config",
+    ":eslint_config",
     "//src/assets:assets",
     "//src/cockpit:core_files",
   ],
+  denullify_files = ["src/cockpit/router.ts"],
+)
+
+pnpm_gen_prep(
+  name = "prep_gen",
+  denullify_files = ["src/cockpit/router.ts"],
+  deps = ["//src/cockpit/scripts:gen_router"],
 )
 
 pnpm_run(
   name = "serve",
   cmd = "serve",
-  deps = [":pnpm"],
+  deps = [
+    ":pnpm",
+    ":prettier",
+    ":prep_gen",
+    ":index_html",
+    ":vue_config",
+    ":eslint_config",
+    "//src/assets:assets",
+    "//src/cockpit:core_files",
+  ],
+  at_top_level = False,
 )
 
 pnpm_test(
   name = "cockpit_unit",
-  cmd = "test:unit",
+  srcs = [":prep_gen"],
+  cmd = "cover",
   deps = [
     ":pnpm",
     "//src/cockpit/tests/components:c_edit_item_test",
@@ -95,14 +123,16 @@ pnpm_test(
     "//src/cockpit/tests/wings:place_test",
     "//src/cockpit/tests/wings:trip_test",
     "//src/cockpit/tests/wings:user_test",
-  ]
+  ],
 )
 
 pnpm_test(
   name = "cockpit_e2e",
+  srcs = [":prep_gen"],
   cmd = "test:e2e",
   deps = [
     ":pnpm",
+    ":prep_gen",
     ":cypress_config",
     "//:eslint_config",
     "//:index_html",
@@ -111,7 +141,7 @@ pnpm_test(
     "//src/cockpit:core_files",
     "//src/cockpit/tests/e2e",
     "//src/cockpit/tests:e2e_eslint",
-  ]
+  ],
 )
 
 gentest(
@@ -127,18 +157,12 @@ gentest(
 pnpm_test(
   name = "eslint",
   cmd = "format",
-  deps = [
-    "//src/wings/struct:day",
-    "//src/wings/struct:new_user",
-    "//src/wings/struct:place",
-    "//src/wings/struct:trip",
-    "//src/wings/struct:user",
-    "//src/wings/enum:city",
-  ],
+  at_top_level = True,
   visibility = [
     ":lint",
     "//src/cockpit/..."
   ],
+  deps = [":pnpm"],
 )
 
 gentest(
@@ -149,13 +173,5 @@ gentest(
     "gofmt -w src/turbine/**/*.go",
   ]),
   no_test_output = True,
-  deps = [
-    "//src/wings/struct:day",
-    "//src/wings/struct:new_user",
-    "//src/wings/struct:place",
-    "//src/wings/struct:trip",
-    "//src/wings/struct:user",
-    "//src/wings/enum:city",
-  ],
   visibility = [":lint"],
 )

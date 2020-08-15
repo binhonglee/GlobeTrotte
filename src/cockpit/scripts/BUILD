@@ -4,7 +4,7 @@ pnpm_build_script(
   name = "gen_router",
   srcs = ["genRouter.ts"],
   cmd = "genRouter",
-  outs = ["src/cockpit/router.ts"],
+  outs = ["router.ts"],
   deps = [
     "//:pnpm",
     "//:tsconfig",
@@ -16,8 +16,13 @@ pnpm_build_script(
     "//src/cockpit/views:trip_get_view",
     "//src/cockpit/views:trip_new",
   ],
+  outpath = "src/cockpit/",
+  visibility = [
+    "//src/cockpit:core_files",
+    "//:serve",
+    "//:prep_gen"
+  ],
   nullify_outs = True,
-  visibility = ["//src/cockpit:core_files"],
 )
 
 pnpm_run(

@@ -31,18 +31,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { WingsStructUtil } from 'wings-ts-util';
-import HTTPReq from '../shared/HTTPReq';
-import NewUser from '../structs/NewUser';
-import User from '../structs/User';
+import { Component, Vue } from "vue-property-decorator";
+import { WingsStructUtil } from "wings-ts-util";
+import HTTPReq from "../shared/HTTPReq";
+import NewUser from "../structs/NewUser";
+import User from "../structs/User";
 
 @Component({
   data() {
     return {
-      email: '',
-      password: '',
-      confPassword: '',
+      email: "",
+      password: "",
+      confPassword: "",
     };
   },
 })
@@ -53,7 +53,7 @@ export default class VRegsiter extends Vue {
         this.$data.confPassword,
       )
     ) {
-      alert('Password does not match.');
+      alert("Password does not match.");
       return;
     }
 
@@ -65,7 +65,7 @@ export default class VRegsiter extends Vue {
     });
 
     HTTPReq.post(
-      'user',
+      "user",
       WingsStructUtil.stringify(newUser),
       (returnedUser: string) => {
         user = new User(JSON.parse(returnedUser));
@@ -82,7 +82,7 @@ export default class VRegsiter extends Vue {
 </script>
 
 <style lang="scss">
-@import '../shared/lib';
+@import "../shared/lib";
 
 .newUser {
   @include trip_display();

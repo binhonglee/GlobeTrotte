@@ -30,12 +30,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({
   data() {
     return {
-      activeIndex: '/',
+      activeIndex: "/",
     };
   },
 })
@@ -47,11 +47,11 @@ export default class App extends Vue {
     }
 
     if (
-      path.substr(path.length - 1).localeCompare('/') === 0
+      path.substr(path.length - 1).localeCompare("/") === 0
     ) {
       path = path.slice(0, -1);
     }
-    const paths = path.split('/');
+    const paths = path.split("/");
     if (!isNaN(Number(paths[paths.length - 1]))) {
       path = path.slice(
         0,
@@ -69,10 +69,10 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-@import './shared/lib';
+@import "./shared/lib";
 @font-face {
   font-family: SourceSansPro;
-  src: url('../assets/SourceSansPro/SourceSansPro-Regular.ttf');
+  src: url("../assets/SourceSansPro/SourceSansPro-Regular.ttf");
 }
 
 #app {

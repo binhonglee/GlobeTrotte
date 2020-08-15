@@ -1,6 +1,6 @@
 export default class TripEditable {
   public static getAllTypes(): string[] {
-    return ['name', 'description'];
+    return ["name", "description"];
   }
 
   public type: string;
@@ -15,14 +15,14 @@ export default class TripEditable {
 
   private getLabel(): string {
     switch (this.type) {
-      case 'name': {
-        return 'Name';
+      case "name": {
+        return "Name";
       }
-      case 'description': {
-        return 'Description';
+      case "description": {
+        return "Description";
       }
       default: {
-        return 'unknown_type';
+        return "unknown_type";
       }
     }
   }

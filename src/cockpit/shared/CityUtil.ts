@@ -1,4 +1,4 @@
-import City from '../enums/City';
+import City from "../enums/City";
 
 export class CityObj {
   public key: City = City.UNKNOWN;
@@ -32,19 +32,19 @@ export class CityUtil {
   public static toString(city: City): string {
     switch (city) {
       case City.SanFranciscoCAUS:
-        return 'San Francisco, CA, US';
+        return "San Francisco, CA, US";
       case City.SanJoseCAUS:
-        return 'San Jose, CA, US';
+        return "San Jose, CA, US";
       case City.NewYorkNYUS:
-        return 'New York, NY, US';
+        return "New York, NY, US";
       case City.AnchorageAKUS:
-        return 'Anchorage, AK, US';
+        return "Anchorage, AK, US";
       case City.ParisFR:
-        return 'Paris, FR';
+        return "Paris, FR";
       case City.KualaLumpurMY:
-        return 'Kuala Lumpur, MY';
+        return "Kuala Lumpur, MY";
       default:
-        return 'unrecognized city';
+        return "unrecognized city";
     }
   }
 }

@@ -1,4 +1,6 @@
-def wings_lib(name:str, config:str="", srcs:list=[], outs:list=["done"], test_only=False, visibility:list=None, deps:list=[]):
+def wings_lib(name:str, outs:dict, config:str="", srcs:list=[], test_only=False, visibility:list=None, deps:list=[]):
+  all_out_files = []
+
   filegroup(
     name = name + "_#wings",
     srcs = srcs,
@@ -7,16 +9,45 @@ def wings_lib(name:str, config:str="", srcs:list=[], outs:list=["done"], test_on
     test_only = test_only,
   )
 
-  return build_rule(
-    name = name,
+  cmd = " && ".join([
+    _home_path(),
+    "FILES=$(find \"$PWD\" -name *.wings -exec realpath --relative-to \"$PWD\" \{\} \;)",
+    "$TOOL -c:" + config + " $FILES",
+  ])
+
+  for i in outs.keys():
+    all_out_files.append(i + "/" + outs[i])
+
+  gen_files = build_rule(
+    name = name + "_#genFiles",
     srcs = srcs,
     tools = [CONFIG.WINGS_TOOL],
-    cmd = " && ".join([
-      _home_path(),
-      "FILES=$(find \"$PWD\" -name *.wings -exec realpath --relative-to \"$PWD\" \{\} \;)",
-      "$TOOL -c:" + config + " $FILES",
-    ]),
-    outs = outs,
+    cmd = cmd,
+    outs = all_out_files,
+    deps = deps + [":" + name + "_#wings"],
+    needs_transitive_deps = True,
+    test_only = test_only,
+    binary = False,
+    visibility = visibility,
+  )
+
+  for i in outs.keys():
+    out_filename = outs[i].split(".")
+
+    build_rule(
+      name = name + "_#" + out_filename[-1],
+      srcs = [gen_files],
+      cmd = "mv $PKG_DIR/" + i + "/" + outs[i] + " ./",
+      outs = [outs[i]],
+      visibility = visibility,
+      binary = False,
+      test_only = test_only,
+      needs_transitive_deps = True,
+    )
+
+  return filegroup(
+    name = name,
+    srcs = [gen_files],
     deps = deps + [":" + name + "_#wings"],
     needs_transitive_deps = True,
     test_only = test_only,

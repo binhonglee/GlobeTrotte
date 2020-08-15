@@ -1,6 +1,6 @@
-import { existsSync, writeFileSync } from 'fs';
+import { existsSync, writeFileSync } from "fs";
 
-const componentFolder = 'src/cockpit/components/';
+const componentFolder = "src/cockpit/components/";
 const componentFileTemplate = `<template lang="pug">
   .COMPONENT_NAME_SNAKE
     // TODO
@@ -20,7 +20,7 @@ export default class COMPONENT_NAME extends Vue {
 </style>
 `;
 
-const componentTestFolder = 'src/cockpit/tests/components/';
+const componentTestFolder = "src/cockpit/tests/components/";
 const testFileTemplate = `import COMPONENT_NAME from '../../components/COMPONENT_NAME.vue';
 
 import { expect } from 'chai';
@@ -36,9 +36,9 @@ describe('COMPONENT_NAME.vue', () => {
 const args = process.argv.slice(2);
 
 args.forEach((componentName) => {
-  const snake_case_arr = componentName.slice(1).split('');
+  const snake_case_arr = componentName.slice(1).split("");
   snake_case_arr.forEach((c: string, index: number) => {
-    if (c === '-') {
+    if (c === "-") {
       process.exit();
     }
 
@@ -51,42 +51,42 @@ args.forEach((componentName) => {
       snake_case_arr[index]
     ) {
       snake_case_arr[index] =
-        '_' + snake_case_arr[index].toLocaleLowerCase();
+        "_" + snake_case_arr[index].toLocaleLowerCase();
     }
   });
 
-  const snake_case = snake_case_arr.join('');
+  const snake_case = snake_case_arr.join("");
   const componentFile =
-    componentFolder + componentName + '.vue';
+    componentFolder + componentName + ".vue";
   const testFile =
-    componentTestFolder + componentName + '.spec.ts';
+    componentTestFolder + componentName + ".spec.ts";
 
   if (existsSync(componentFile)) {
     console.log(
-      'File ' +
+      "File " +
         componentFile +
-        ' already exists. Skipping...',
+        " already exists. Skipping...",
     );
   } else {
     writeFileSync(
       componentFile,
       componentFileTemplate
-        .split('COMPONENT_NAME_SNAKE')
+        .split("COMPONENT_NAME_SNAKE")
         .join(snake_case)
-        .split('COMPONENT_NAME')
+        .split("COMPONENT_NAME")
         .join(componentName),
     );
   }
 
   if (existsSync(testFile)) {
     console.log(
-      'File ' + testFile + ' already exists. Skipping...',
+      "File " + testFile + " already exists. Skipping...",
     );
   } else {
     writeFileSync(
       testFile,
       testFileTemplate
-        .split('COMPONENT_NAME')
+        .split("COMPONENT_NAME")
         .join(componentName),
     );
   }

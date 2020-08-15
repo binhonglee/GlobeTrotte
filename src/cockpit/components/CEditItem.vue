@@ -14,19 +14,19 @@ import {
   Component,
   Prop,
   Vue,
-} from 'vue-property-decorator';
-import Item from '../shared/TripEditable';
+} from "vue-property-decorator";
+import Item from "../shared/TripEditable";
 
 @Component
 export default class CEditItem extends Vue {
   @Prop() private item!: Item;
 
   private save(): void {
-    this.$emit('save', this.item);
+    this.$emit("save", this.item);
   }
 }
 </script>
 
 <style lang="scss">
-@import '../shared/lib';
+@import "../shared/lib";
 </style>
