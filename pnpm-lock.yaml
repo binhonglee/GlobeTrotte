@@ -18,18 +18,18 @@ devDependencies:
   '@vue/cli-plugin-typescript': 4.5.3_bf050251d9115b39f91483b51fb12bc8
   '@vue/cli-plugin-unit-mocha': 4.5.3_@vue+cli-service@4.5.3
   '@vue/cli-service': 4.5.3_330b99b4d4f0543cd609666d6866d0d9
-  '@vue/eslint-config-prettier': 6.0.0_84d9636024a0f055e5cf7b4076677923
+  '@vue/eslint-config-prettier': 6.0.0_91d3a64bae7c432b3688b141f68e2f45
   '@vue/eslint-config-typescript': 5.0.2_6fae4a1c1f52c39f13566c37a150613f
   '@vue/test-utils': 1.0.3_d81dac297579cfd5597855dabf60f13b
   chai: 4.2.0
   cross-env: 7.0.2
   eslint: 7.7.0
-  eslint-plugin-prettier: 3.1.4_eslint@7.7.0+prettier@1.19.1
+  eslint-plugin-prettier: 3.1.4_eslint@7.7.0+prettier@2.0.5
   eslint-plugin-vue: 6.2.2_eslint@7.7.0
   forever: 3.0.0
   node-sass: 4.14.1
   nyc: 15.1.0
-  prettier: 1.19.1
+  prettier: 2.0.5
   pug: 3.0.0
   pug-plain-loader: 1.0.0_pug@3.0.0
   sass-loader: 8.0.2_node-sass@4.14.1
@@ -891,12 +891,12 @@ packages:
       prettier: 1.19.1
     resolution:
       integrity: sha512-QLq9z8m79mCinpaEeSURhnNCN6djxpHw0lpP/bodMlt5kALfONpryMthvnrQOlTcIKoF+VoPi+lPHUYeDFPXug==
-  /@vue/eslint-config-prettier/6.0.0_84d9636024a0f055e5cf7b4076677923:
+  /@vue/eslint-config-prettier/6.0.0_91d3a64bae7c432b3688b141f68e2f45:
     dependencies:
       eslint: 7.7.0
       eslint-config-prettier: 6.11.0_eslint@7.7.0
-      eslint-plugin-prettier: 3.1.4_eslint@7.7.0+prettier@1.19.1
-      prettier: 1.19.1
+      eslint-plugin-prettier: 3.1.4_eslint@7.7.0+prettier@2.0.5
+      prettier: 2.0.5
     dev: true
     peerDependencies:
       eslint: '>= 5.0.0'
@@ -3616,10 +3616,10 @@ packages:
       eslint: '>= 3.2.1'
     resolution:
       integrity: sha512-MxMYoReSO5+IZMGgpBZHHSx64zYPSPTpXDwsgW7ChlJTF/sA+obqRbHplxD6sBStE+g4Mi0LCLkG4t9liu//mQ==
-  /eslint-plugin-prettier/3.1.4_eslint@7.7.0+prettier@1.19.1:
+  /eslint-plugin-prettier/3.1.4_eslint@7.7.0+prettier@2.0.5:
     dependencies:
       eslint: 7.7.0
-      prettier: 1.19.1
+      prettier: 2.0.5
       prettier-linter-helpers: 1.0.0
     dev: true
     engines:
@@ -8181,8 +8181,16 @@ packages:
     engines:
       node: '>=4'
     hasBin: true
+    optional: true
     resolution:
       integrity: sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==
+  /prettier/2.0.5:
+    dev: true
+    engines:
+      node: '>=10.13.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-7PtVymN48hGcO4fGjybyBSIWDsLU4H4XlvOHfq91pz9kkGlonzwTfYkaIEwiRg/dAJF9YlbsduBAgtYLi+8cFg==
   /pretty-error/2.1.1:
     dependencies:
       renderkid: 2.0.3
@@ -11188,7 +11196,7 @@ specifiers:
   forever: 3.0.0
   node-sass: 4.14.1
   nyc: 15.1.0
-  prettier: 1.19.1
+  prettier: 2.0.5
   pug: 3.0.0
   pug-plain-loader: 1.0.0
   sass-loader: 8.0.2
