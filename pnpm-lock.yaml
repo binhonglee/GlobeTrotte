@@ -8,7 +8,7 @@ dependencies:
   wings-ts-util: 0.0.6
 devDependencies:
   '@types/assert': 1.4.3
-  '@types/mocha': 5.2.7
+  '@types/mocha': 8.0.2
   '@types/node': 14.0.4
   '@typescript-eslint/eslint-plugin': 3.0.0_8e36e6acc84ee4b8eb4b81bb685293fa
   '@typescript-eslint/parser': 3.0.0_eslint@6.7.2+typescript@3.9.3
@@ -337,10 +337,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
-  /@types/mocha/5.2.7:
+  /@types/mocha/8.0.2:
     dev: true
     resolution:
-      integrity: sha512-NYrtPht0wGzhwe9+/idPaBB+TqkY9AhTvOLMkThm0IoEfLaiVQZwBwyJ5puCkO3AUCWrmcoePjp2mbFocKy4SQ==
+      integrity: sha512-5cv8rmqT3KX9XtWDvSgGYfS4OwrKM2eei90GWLnTYz+AXRiBv5uYcKBjnkQ4katNvfYk3+o2bHGZUsDhdcoUyg==
   /@types/node/14.0.4:
     dev: true
     resolution:
@@ -10779,7 +10779,7 @@ packages:
       integrity: sha512-jcKpkthap6x63MB4TxwCyuIGkV0oYP/YRyuQU5UO0Yz/E/ZAu+653/uov+phdmO54n6BcvFRyyt0RRrWdN2mpw==
 specifiers:
   '@types/assert': 1.4.3
-  '@types/mocha': 5.2.7
+  '@types/mocha': 8.0.2
   '@types/node': 14.0.4
   '@typescript-eslint/eslint-plugin': 3.0.0
   '@typescript-eslint/parser': 3.0.0
