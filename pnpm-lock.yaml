@@ -3,7 +3,7 @@ dependencies:
   tslib: 1.10.0
   vue: 2.6.11
   vue-class-component: 7.2.5_vue@2.6.11
-  vue-property-decorator: 8.4.2_vue@2.6.11
+  vue-property-decorator: 8.5.1_vue@2.6.11
   vue-router: 3.4.3
   wings-ts-util: 0.0.6
 devDependencies:
@@ -10295,14 +10295,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-YU9/v42AHwu18GYfWy9XhXUOTwk=
-  /vue-class-component/7.2.3_vue@2.6.11:
-    dependencies:
-      vue: 2.6.11
-    dev: false
-    peerDependencies:
-      vue: ^2.0.0
-    resolution:
-      integrity: sha512-oEqYpXKaFN+TaXU+mRLEx8dX0ah85aAJEe61mpdoUrq0Bhe/6sWhyZX1JjMQLhVsHAkncyhedhmCdDVSasUtDw==
   /vue-class-component/7.2.5_vue@2.6.11:
     dependencies:
       vue: 2.6.11
@@ -10367,15 +10359,15 @@ packages:
     optional: true
     resolution:
       integrity: sha512-ciWfzNefqWlmzKznCWY9hl+fPP4KlQ0A9MtHbJ/8DpyY+dAM8gDrjufIdxwTgC4szE4EZC3A6ip/BbrqM84GqA==
-  /vue-property-decorator/8.4.2_vue@2.6.11:
+  /vue-property-decorator/8.5.1_vue@2.6.11:
     dependencies:
       vue: 2.6.11
-      vue-class-component: 7.2.3_vue@2.6.11
+      vue-class-component: 7.2.5_vue@2.6.11
     dev: false
     peerDependencies:
       vue: '*'
     resolution:
-      integrity: sha512-IqbARlvgPE2pzKfbecKxsu2yEH0Wv7hfHR6m4eZA3LTnNw9hveAX77vDfLFyTeMISS5N7Kucp/xRSHjcQ6bAfQ==
+      integrity: sha512-O6OUN2OMsYTGPvgFtXeBU3jPnX5ffQ9V4I1WfxFQ6dqz6cOUbR3Usou7kgFpfiXDvV7dJQSFcJ5yUPgOtPPm1Q==
   /vue-router/3.4.3:
     dev: false
     resolution:
@@ -11007,7 +10999,7 @@ specifiers:
   typescript: 3.9.3
   vue: 2.6.11
   vue-class-component: 7.2.5
-  vue-property-decorator: 8.4.2
+  vue-property-decorator: 8.5.1
   vue-router: 3.4.3
   vue-template-compiler: 2.6.11
   wait-on: 5.0.1
