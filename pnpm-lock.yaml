@@ -1,6 +1,6 @@
 dependencies:
   element-ui: 2.13.2_vue@2.6.11
-  tslib: 1.13.0
+  tslib: 2.0.1
   vue: 2.6.11
   vue-class-component: 7.2.5_vue@2.6.11
   vue-property-decorator: 8.5.1_vue@2.6.11
@@ -10123,8 +10123,13 @@ packages:
     resolution:
       integrity: sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
   /tslib/1.13.0:
+    dev: true
     resolution:
       integrity: sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
+  /tslib/2.0.1:
+    dev: false
+    resolution:
+      integrity: sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
   /tslint/5.20.1_typescript@3.9.7:
     dependencies:
       '@babel/code-frame': 7.10.3
@@ -11202,7 +11207,7 @@ specifiers:
   pug: 3.0.0
   pug-plain-loader: 1.0.0
   sass-loader: 9.0.3
-  tslib: 1.13.0
+  tslib: 2.0.1
   typescript: 3.9.7
   vue: 2.6.11
   vue-class-component: 7.2.5
