@@ -53,7 +53,7 @@
     "eslint-plugin-vue": "6.2.2",
     "forever": "3.0.0",
     "node-sass": "4.14.1",
-    "nyc": "14.1.1",
+    "nyc": "15.1.0",
     "prettier": "1.19.1",
     "pug": "3.0.0",
     "pug-plain-loader": "1.0.0",
