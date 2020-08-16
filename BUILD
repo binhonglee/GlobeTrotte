@@ -64,7 +64,7 @@ filegroup(
 
 pnpm_install(
   name = "pnpm",
-  deps = ["//:pnpm_config"],
+  deps = [":pnpm_config"],
 )
 
 pnpm_build(
@@ -130,13 +130,14 @@ pnpm_test(
   name = "cockpit_e2e",
   srcs = [":prep_gen"],
   cmd = "test:e2e",
+  flaky = 2,
   deps = [
     ":pnpm",
     ":prep_gen",
     ":cypress_config",
-    "//:eslint_config",
-    "//:index_html",
-    "//:vue_config",
+    ":eslint_config",
+    ":index_html",
+    ":vue_config",
     "//src/assets:assets",
     "//src/cockpit:core_files",
     "//src/cockpit/tests/e2e",

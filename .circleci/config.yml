@@ -17,16 +17,17 @@ jobs:
 
     steps:
       - checkout
-
-      - run: sudo apt-get install -y libxcomposite-dev libxcomposite1 libgtk2.0-0 libgtk-3-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      - run: sudo apt-get install -y libxcomposite-dev libxcomposite1 libgtk2.0-0 libgtk-3-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 postgresql-client xauth xvfb
       - run: /usr/bin/Xvfb :99 -screen 0 1920x1080x24+32 &
 
       - run: echo 'export DISPLAY=:99' >> $BASH_ENV
       - run: echo 'export PATH=/home/circleci/.nimble/bin:$HOME/wings:$PATH' >> $BASH_ENV
       - run: echo 'export USER="circleci"' >> $BASH_ENV
       - run: ./scripts/setup.sh -g -s -w
+
       - run: sudo npm i -g pnpm
       - run: cp .circleci/test.config config/psql.config
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       # run tests
       - run: ./pleasew build --show_all_output

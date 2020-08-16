@@ -167,6 +167,7 @@ def pnpm_test(
   srcs:list=[],
   deps:list=[],
   outs:list=[],
+  flaky:bool|int=0,
   visibility:list=None,
   at_top_level:bool=False,
 ):
@@ -197,6 +198,7 @@ def pnpm_test(
     srcs = srcs,
     deps = deps,
     test = True,
+    flaky = flaky,
     test_only = True,
     at_top_level = False,
     overwrite_cmd = True,
@@ -214,6 +216,7 @@ def _exec_npm(
   deps:list=[],
   link:bool=False,
   test:bool=False,
+  flaky:bool|int=0,
   test_only:bool=False,
   visibility:list=None,
   denullify_files:list=[],
@@ -294,6 +297,7 @@ def _exec_npm(
     deps = deps,
     test = test,
     tools = tools,
+    flaky = flaky,
     test_cmd = test_cmd,
     test_only = test_only,
     visibility = visibility,
@@ -305,7 +309,7 @@ def _exec_npm(
 
 def _check_server_running():
   return " ".join([
-    "if [[ $(sudo lsof -i:8080) ]];",
+    "if [[ $(lsof -i:8080) ]];",
     "then CMD=\"\";",
     "else CMD=\":plz\";",
     "fi",

@@ -16,7 +16,7 @@
     "test:unit": "vue-cli-service test:unit src/cockpit/tests/**/*.spec.ts",
     "test:unit:plz": "pnpm run test:unit",
     "test:e2e": "cypress run",
-    "test:e2e:plz": "pnpm run startServer && pnpm run test:e2e && pnpm run endServer",
+    "test:e2e:plz": "pnpm run startServer && xvfb-run -a pnpm run test:e2e && pnpm run endServer",
     "startServer": "forever start ./node_modules/@vue/cli-service/bin/vue-cli-service.js test:e2e && wait-on http://localhost:8080",
     "endServer": "forever stop ./node_modules/@vue/cli-service/bin/vue-cli-service.js",
     "cover": "nyc pnpm run test:unit",
@@ -69,6 +69,10 @@
     "check-coverage": false,
     "per-file": true,
     "clean": true,
+    "skip-full": true,
+    "include": [
+      "src/**/*.{ts,vue}"
+    ],
     "temp-dir": "./.nyc_output",
     "exclude": [
       "**/*.spec.ts",
