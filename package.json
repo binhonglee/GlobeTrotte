@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "element-ui": "2.13.2",
-    "tslib": "1.10.0",
+    "tslib": "1.13.0",
     "vue": "2.6.11",
     "vue-class-component": "7.2.5",
     "vue-property-decorator": "8.4.2",
