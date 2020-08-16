@@ -1,0 +1,23 @@
+pull_request_rules:
+  - name: renovate-bot updates
+    conditions:
+      - "author=renovate[bot]"
+      - "status-success=CodeFactor"
+      - "status-success=ci/circleci: build"
+      - "status-success=codebeat"
+      - "status-success=codecov/patch"
+      - "status-success=codecov/project"
+    actions:
+      merge:
+        method: squash
+  - name: Approved PRs
+    conditions:
+      - "approved-reviews-by=binhonglee"
+      - "status-success=CodeFactor"
+      - "status-success=ci/circleci: build"
+      - "status-success=codebeat"
+      - "status-success=codecov/patch"
+      - "status-success=codecov/project"
+    actions:
+      merge:
+        method: squash
