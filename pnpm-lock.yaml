@@ -20,7 +20,7 @@ devDependencies:
   '@vue/cli-service': 4.5.3_73f4d7ddfac00f268faf434b80b50c33
   '@vue/eslint-config-prettier': 6.0.0_91d3a64bae7c432b3688b141f68e2f45
   '@vue/eslint-config-typescript': 5.0.2_6fae4a1c1f52c39f13566c37a150613f
-  '@vue/test-utils': 1.0.3_d81dac297579cfd5597855dabf60f13b
+  '@vue/test-utils': 1.0.4_d81dac297579cfd5597855dabf60f13b
   chai: 4.2.0
   cross-env: 7.0.2
   eslint: 7.7.0
@@ -931,10 +931,10 @@ packages:
       webpack: '>=4.0.0'
     resolution:
       integrity: sha512-8VCoJeeH8tCkzhkpfOkt+abALQkS11OIHhte5MBzYaKMTqK0A3ZAKEUVAffsOklhEv7t0yrQt696Opnu9oAx+w==
-  /@vue/test-utils/1.0.3_d81dac297579cfd5597855dabf60f13b:
+  /@vue/test-utils/1.0.4_d81dac297579cfd5597855dabf60f13b:
     dependencies:
       dom-event-types: 1.0.0
-      lodash: 4.17.15
+      lodash: 4.17.20
       pretty: 2.0.0
       vue: 2.6.11
       vue-template-compiler: 2.6.11
@@ -943,7 +943,7 @@ packages:
       vue: 2.x
       vue-template-compiler: ^2.x
     resolution:
-      integrity: sha512-mmsKXZSGfvd0bH05l4SNuczZ2MqlJH2DWhiul5wJXFxbf/gRRd2UL4QZgozEMQ30mRi9i4/+p4JJat8S4Js64Q==
+      integrity: sha512-uIdDqFauzNJWlhltLSZU+P3uHEgUQczklSv2b1EKC7JzxBg9OY/5sx8UyuJwBD+zuxidhFZ4SjTuPgr8cdf63w==
   /@vue/web-component-wrapper/1.2.0:
     dev: true
     resolution:
@@ -11194,7 +11194,7 @@ specifiers:
   '@vue/cli-service': 4.5.3
   '@vue/eslint-config-prettier': 6.0.0
   '@vue/eslint-config-typescript': 5.0.2
-  '@vue/test-utils': 1.0.3
+  '@vue/test-utils': 1.0.4
   chai: 4.2.0
   cross-env: 7.0.2
   element-ui: 2.13.2
