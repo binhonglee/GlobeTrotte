@@ -94,22 +94,23 @@ pnpm_run(
   deps = [
     ":pnpm",
     ":prettier",
-    ":prep_gen",
     ":index_html",
     ":vue_config",
     ":eslint_config",
     "//src/assets:assets",
     "//src/cockpit:core_files",
   ],
+  denullify_files = ["src/cockpit/router.ts"],
   at_top_level = False,
 )
 
 pnpm_test(
   name = "cockpit_unit",
-  srcs = [":prep_gen"],
   cmd = "cover",
+  priority = 2,
   deps = [
     ":pnpm",
+    ":prep_gen",
     "//src/cockpit/tests/components:c_edit_item_test",
     "//src/cockpit/tests/components:c_edit_places_test",
     "//src/cockpit/tests/components:c_edit_trip_test",
@@ -128,7 +129,6 @@ pnpm_test(
 
 pnpm_test(
   name = "cockpit_e2e",
-  srcs = [":prep_gen"],
   cmd = "test:e2e",
   flaky = 2,
   deps = [

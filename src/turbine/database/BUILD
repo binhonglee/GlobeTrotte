@@ -20,6 +20,7 @@ go_test(
     "db_test.go",
     "dbinteraction_test.go",
   ],
+  flaky = 2,
   data = ["//config:psql.config"],
   deps = [
     ":database",

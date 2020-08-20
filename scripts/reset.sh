@@ -1,9 +1,17 @@
+#!/bin/sh
+
+OS=$(uname -s)
+
 echo "Removing 'cypress'..."
 rm -rf cypress
 echo "Removing 'node_modules'..."
 rm -rf node_modules
-echo "Removing '~/.cache/please'..."
-rm -rf ~/.cache/please
+echo "Removing please cache folder..."
+if [ "$OS" == "Darwin" ]; then
+  rm -rf ~/Library/Caches/please
+else
+  rm -rf ~/.cache/please
+fi
 echo "Removing 'plz-out'..."
 rm -rf plz-out
 echo "Removing '.nyc_output'..."
@@ -11,7 +19,7 @@ rm -rf .nyc_output
 echo "Removing 'coverage'..."
 rm -rf coverage
 echo "Dropping database"
-psql --username="$USER" -w -c "DROP DATABASE globetrotte;"
+psql --username="$USER" -w -c "DROP DATABASE globetrotte;" || echo "Database does not exist. Skipping..."
 echo "All removal completed successfully!"
 echo
 echo "Initializing pnpm..."

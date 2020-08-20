@@ -11,7 +11,7 @@ Specific options to install only specific requirement.
   [default / no option] install all of below
 
   -c config
-  -g Go (and goformat)
+  -g Go
   -n node (and pnpm)
   -p Please
   -q PostgreSQL
@@ -59,7 +59,6 @@ config() {
 
 installGo() {
   TEST_GO=$(go version)
-  TEST_GOFORMAT=$(goformat -v)
 
   if [ "$TEST_GO" != "" ]; then
     echo "Seems like \`go\` is already installed. Skipping..."
@@ -102,18 +101,12 @@ installGo() {
 
     filename="go""$GO_VERSION"."$os""-""$ARCH"".tar.gz"
     if [ ! -f "$filename" ]; then
-      wget https://dl.google.com/go/"$filename"
+      curl -L https://dl.google.com/go/"$filename" -o $filename
     fi
     sudo tar -C "/usr/local" -xzf "$filename"
     rm $filename
     export PATH="$PATH:/usr/local/go/bin"
     echo "export PATH=\$PATH:/usr/local/go/bin"
-  fi
-
-  if [ "$TEST_GOFORMAT" != "" ]; then
-    echo "Seems like \`goformat\` is already installed. Skipping..."
-  else
-     go get winterdrache.de/goformat/goformat
   fi
 }
 
@@ -123,7 +116,7 @@ installNode() {
   if [ "$TEST_NODE" != "" ]; then
     echo "Seems like \`node\` is already installed. Skipping..."
   else
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
     nvm install node
   fi
 }
@@ -146,13 +139,13 @@ installPNPM() {
   if [ "$TEST_PNPM" != "" ]; then
     echo "Seems like \`pnpm\` is already installed. Skipping..."
   else
-    curl -L https://unpkg.com/@pnpm/self-installer | node
+    curl -L https://raw.githubusercontent.com/pnpm/self-installer/master/install.js | node
   fi
 
   if [ -d "node_modules" ]; then
     echo "Seems like \`node_modules\` already exists. Skipping..."
   else
-    pnpm install --shamefully-hoist
+    pnpm install
   fi
 }
 
@@ -167,6 +160,8 @@ installPostgreSQL() {
   case $OS in
     "Darwin")
       brew install postgresql
+      brew services start postgresql
+      createdb
       ;;
     "Linux")
       sudo apt-get update
@@ -201,10 +196,18 @@ installWings() {
     echo "Seems like \`wings\` is already installed. Skipping..."
     return
   fi
+  
+  case $OS in
+    "Darwin")
+      OS="macosx"
+      ;;
+    "Linux")
+      OS="linux"
+      ;;
+  esac
 
-  mkdir -p "$HOME"/wings/
-  sudo curl -L https://github.com/binhonglee/wings/releases/download/v0.0.5-alpha/wings_64bit_linux -o /usr/bin/wings
-  sudo chmod +x /usr/bin/wings
+  sudo curl -L https://github.com/binhonglee/wings/releases/download/v0.0.5-alpha/wings_64bit_$OS -o /usr/local/bin/wings
+  sudo chmod +x /usr/local/bin/wings
 }
 
 if ! echo "$SUPPORTED_OS" | grep -w "$OS" > /dev/null; then

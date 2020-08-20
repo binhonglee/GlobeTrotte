@@ -1,5 +1,3 @@
-
-
 def pnpm_install(name:str, srcs:list=[], deps:list=[]):
   filegroup(
     name = name + "_#pnpm_install",
@@ -9,7 +7,7 @@ def pnpm_install(name:str, srcs:list=[], deps:list=[]):
     test_only = False,
   )
 
-  return _exec_npm(
+  return _exec_pnpm(
     name = name,
     cmd = " ".join([
       "install",
@@ -74,7 +72,7 @@ def pnpm_build_script(
     test_only = test_only,
   )
 
-  return _exec_npm(
+  return _exec_pnpm(
     name = name,
     outs = outs,
     srcs = srcs,
@@ -97,7 +95,8 @@ def pnpm_run(
   deps:list=[],
   at_top_level:bool=False,
   visibility:list=None,
-  test_only:bool=False
+  test_only:bool=False,
+  denullify_files:list=[],
 ):
   filegroup(
     name = name + "_#pnpm_run",
@@ -111,7 +110,8 @@ def pnpm_run(
 
   if not at_top_level:
     cmd = " && ".join([
-      "cd plz-out/gen/",
+      _prep_gen_dir(),
+      _denullifier(denullify_files) if len(denullify_files) > 0 else "echo \"No files to denullify.\"",
       cmd,
     ])
 
@@ -136,18 +136,11 @@ def pnpm_gen_prep(
 ):
   cmd = " && ".join([
     "echo $(date \"+%Y.%m.%d-%H.%M.%S\") > " + name,
-    "cd "+ _top_level_dir() + "plz-out/gen/",
-    "rm -rf node_modules",
-    "ln -s " + _top_level_dir() + "node_modules ./",
+    _prep_gen_dir(),
   ])
 
-  for file in denullify_files:
-    cmd = " && ".join([
-      cmd,
-      "if [ -f \"" + file + ".null\" ]; " +
-      "then rm " + file + " || echo \"Old version not found\"; " +
-      "cp " + file + ".null " + file + " || echo \"File " + file + " already moved\"; fi",
-    ])
+  if len(denullify_files) > 0:
+    cmd = cmd + " && " + _denullifier(denullify_files)
 
   return build_rule(
     name = name,
@@ -168,6 +161,7 @@ def pnpm_test(
   deps:list=[],
   outs:list=[],
   flaky:bool|int=0,
+  priority:int=0,
   visibility:list=None,
   at_top_level:bool=False,
 ):
@@ -183,17 +177,18 @@ def pnpm_test(
 
   if not at_top_level:
     cmd = " && ".join([
-      "cd plz-out/gen/",
+      _prep_gen_dir(),
       cmd,
     ])
   
   cmd = " && ".join([
+    "sleep " + str(priority),
     _check_server_running(),
     _go_to_top_level(),
     cmd,
   ])
 
-  return _exec_npm(
+  return _exec_pnpm(
     name = name,
     srcs = srcs,
     deps = deps,
@@ -207,7 +202,7 @@ def pnpm_test(
     tools = [CONFIG.PNPM_TOOL],
   )
 
-def _exec_npm(
+def _exec_pnpm(
   name:str,
   cmd:str,
   srcs:list=[],
@@ -223,7 +218,7 @@ def _exec_npm(
   nullify_outs:bool=False,
   at_top_level:bool=False,
   overwrite_cmd:bool=False,
-  tools:list=[CONFIG.NPM_TOOL],
+  tools:list=[CONFIG.PNPM_TOOL],
 ):
   filegroup(
     name = name + "_#exec_npm",
@@ -245,11 +240,8 @@ def _exec_npm(
       tools[0] + " " + cmd,
     ])
 
-    for file in denullify_files:
-      cmd = " && ".join([
-        "mv " + file + ".null " + file,
-        cmd,
-      ])
+    if len(denullify_files) > 0:
+      cmd = _denullifier(denullify_files) + " && " + cmd
 
   new_outs = []
 
@@ -309,7 +301,7 @@ def _exec_npm(
 
 def _check_server_running():
   return " ".join([
-    "if [[ $(lsof -i:8080) ]];",
+    "if [[ $(lsof -i:8080 | grep -v \"CLOSE_WAIT\") ]];",
     "then CMD=\"\";",
     "else CMD=\":plz\";",
     "fi",
@@ -324,12 +316,28 @@ def _home_path():
     "fi",
   ])
 
+def _prep_gen_dir():
+  return " && ".join([
+    "cd "+ _top_level_dir() + "/plz-out/gen/",
+    "rm -rf node_modules || echo \"Existing 'node_modules' not found.\"",
+    "ln -s " + _top_level_dir() + "node_modules ./",
+  ])
+
+def _denullifier(denullify_files:list):
+  cmd = ""
+  for file in denullify_files:
+    cmd = " && ".join([
+      "if [ -f \"" + file + ".null\" ]; " +
+      "then rm " + file + " || echo \"Old version of " + file + " not found. Skip removing it...\"; " +
+      "cp " + file + ".null " + file + "; fi",
+      cmd,
+    ])
+  return cmd[:-4]
+
 def _go_to_top_level():
   return "cd " + _top_level_dir() + " || exit 1"
 
 def _top_level_dir():
   return "$(pwd | awk -F'plz-out' '{print $1}')"
 
-CONFIG.setdefault("NPM_TOOL", "npm")
-CONFIG.setdefault("YARN_TOOL", "yarn")
 CONFIG.setdefault("PNPM_TOOL", "pnpm")

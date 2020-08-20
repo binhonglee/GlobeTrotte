@@ -21,6 +21,7 @@ go_test(
     "router_test.go",
     "triprouter_test.go",
   ],
+  flaky = 2,
   data = ["//config:psql.config"],
   deps = [
     ":router",

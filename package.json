@@ -7,6 +7,7 @@
   "license": "AGPL 3.0",
   "scripts": {
     "genRouter": "tsc src/cockpit/scripts/genRouter.ts --outDir ./plz-out && node ./plz-out/genRouter.js",
+    "cypress": "vue-cli-service test:e2e",
     "genComponent": "tsc src/cockpit/scripts/genComponent.ts --outDir ./plz-out && node ./plz-out/genComponent.js",
     "serve": "cross-env NODE_ENV=development vue-cli-service serve --open --host localhost",
     "build": "vue-cli-service build",
@@ -16,11 +17,12 @@
     "test:unit": "vue-cli-service test:unit src/cockpit/tests/**/*.spec.ts",
     "test:unit:plz": "pnpm run test:unit",
     "test:e2e": "cypress run",
-    "test:e2e:plz": "pnpm run startServer && xvfb-run -a pnpm run test:e2e && pnpm run endServer",
-    "startServer": "forever start ./node_modules/@vue/cli-service/bin/vue-cli-service.js test:e2e && wait-on http://localhost:8080",
+    "test:e2e:plz": "pnpm run startServer && pnpm run xvfb:run && $xvfb pnpm run test:e2e && pnpm run endServer",
+    "startServer": "forever start ./node_modules/@vue/cli-service/bin/vue-cli-service.js serve && wait-on http://localhost:8080",
     "endServer": "forever stop ./node_modules/@vue/cli-service/bin/vue-cli-service.js",
     "cover": "nyc pnpm run test:unit",
-    "cover:plz": "pnpm run cover"
+    "cover:plz": "pnpm run cover",
+    "xvfb:run": "if [[ \"$OSTYPE\" == \"darwin\"* ]]; then xvfb=\"\"; elif [[ \"$OSTYPE\" == \"linux-gnu\"* ]]; then xvfb=\"xvfb-run -a \"; fi"
   },
   "dependencies": {
     "element-ui": "2.13.2",
