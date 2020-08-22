@@ -5,17 +5,20 @@ Version = 15.0.0
 PassEnv = PATH
 PassEnv = USER
 
+[Alias "genComponent"]
+cmd = run //src/cockpit/scripts:gen_component
+
+[Alias "pull"]
+cmd = run //scripts:pull
+
+[Alias "reset"]
+cmd = run //scripts:reset
+
 [Alias "show"]
 cmd = run //:serve
 
 [Alias "work"]
 cmd = run //src/turbine:main
-
-[Alias "reset"]
-cmd = run //scripts:reset
-
-[Alias "genComponent"]
-cmd = run //src/cockpit/scripts:gen_component
 
 [go]
 importpath = github.com/binhonglee/GlobeTrotte

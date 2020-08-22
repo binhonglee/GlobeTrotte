@@ -6,7 +6,7 @@ wings_lib(
   srcs = ["day.wings"],
   outs = {
     "src/cockpit/wings": "Day.ts",
-    "src/turbine/structs": "day.go",
+    "src/turbine/wings": "day.go",
   },
   deps = [
     "//:wings_config",
@@ -21,7 +21,7 @@ wings_lib(
   srcs = ["new_user.wings"],
   outs = {
     "src/cockpit/wings": "NewUser.ts",
-    "src/turbine/structs": "newuser.go",
+    "src/turbine/wings": "newuser.go",
   },
   deps = [
     "//:wings_config",
@@ -35,7 +35,7 @@ wings_lib(
   srcs = ["place.wings"],
   outs = {
     "src/cockpit/wings": "Place.ts",
-    "src/turbine/structs": "place.go",
+    "src/turbine/wings": "place.go",
   },
   deps = [
     "//:wings_config",
@@ -49,7 +49,7 @@ wings_lib(
   srcs = ["trip.wings"],
   outs = {
     "src/cockpit/wings": "Trip.ts",
-    "src/turbine/structs": "trip.go",
+    "src/turbine/wings": "trip.go",
   },
   deps = [
     "//:wings_config",
@@ -65,7 +65,7 @@ wings_lib(
   srcs = ["user.wings"],
   outs = {
     "src/cockpit/wings": "User.ts",
-    "src/turbine/structs": "user.go",
+    "src/turbine/wings": "user.go",
   },
   deps = [
     "//:wings_config",

@@ -5,20 +5,19 @@ import (
 	"strconv"
 	"testing"
 
-	city "github.com/binhonglee/GlobeTrotte/src/turbine/city"
-	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
+	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 )
 
-var addedTrip structs.Trip
-var addedUser structs.User
+var addedTrip wings.Trip
+var addedUser wings.User
 
 func TestAddUser(t *testing.T) {
-	var newUser = structs.NewUser{
+	var newUser = wings.NewUser{
 		Email:    "routertest@test.com",
 		Password: "shouldReplaceThisWithRand",
 	}
 
-	var returned *structs.User
+	var returned *wings.User
 	addTest("/user", t, &newUser, &returned)
 	addedUser = *returned
 
@@ -32,7 +31,7 @@ func TestAddUser(t *testing.T) {
 }
 
 func TestGetUser(t *testing.T) {
-	var returned *structs.User
+	var returned *wings.User
 	getTest(
 		"/user/"+strconv.Itoa(addedUser.GetID()),
 		t,
@@ -66,14 +65,14 @@ func TestGetUser(t *testing.T) {
 }
 
 func TestAddTrip(t *testing.T) {
-	var newTrip = structs.Trip{
+	var newTrip = wings.Trip{
 		UserID:      addedUser.ID,
 		Name:        "TestUser",
-		Cities:      []city.City{city.SanFranciscoCAUS},
+		Cities:      []wings.City{wings.SanFranciscoCAUS},
 		Description: "Description",
 	}
 
-	var returned *structs.Trip
+	var returned *wings.Trip
 	addTest("/trip", t, &newTrip, &returned)
 	addedTrip = *returned
 
@@ -103,7 +102,7 @@ func TestAddTrip(t *testing.T) {
 }
 
 func TestGetTrip(t *testing.T) {
-	var returned *structs.Trip
+	var returned *wings.Trip
 	getTest("/trip/"+strconv.Itoa(addedTrip.GetID()), t, &returned, http.StatusOK)
 
 	if returned.ID != addedTrip.ID {
@@ -140,7 +139,7 @@ func TestGetTrip(t *testing.T) {
 }
 
 func TestGetNonExistentTrip(t *testing.T) {
-	var returned *structs.Trip
+	var returned *wings.Trip
 	getTest("/trip/"+strconv.Itoa(-1), t, &returned, http.StatusNotFound)
 }
 

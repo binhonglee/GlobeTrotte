@@ -12,3 +12,8 @@ sh_library(
   name = "reset",
   src = "reset.sh",
 )
+
+sh_library(
+  name = "pull",
+  src = "pull.sh",
+)

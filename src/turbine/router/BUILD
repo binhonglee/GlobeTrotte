@@ -9,6 +9,7 @@ go_library(
     "//third_party:mux",
     "//third_party:bcrypt",
     "//third_party:sessions",
+    "//src/turbine/wings:wings",
     "//src/turbine/database:database",
     "//src/turbine/structs:structs",
   ],

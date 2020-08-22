@@ -24,7 +24,9 @@ func passwd(res http.ResponseWriter, req *http.Request) {
 
 func response(res *http.ResponseWriter, status int) {
 	fmt.Println(status)
-	(*res).Header().Set("Content-Type", "application/json; charset=UTF-8")
+	(*res).Header().Set(
+		"Content-Type", "application/json; charset=UTF-8",
+	)
 	(*res).WriteHeader(status)
 }
 
@@ -32,8 +34,14 @@ func allowCORS(res *http.ResponseWriter) {
 	(*res).Header().Set("Access-Control-Allow-Origin", "*")
 }
 
-func unpackJSON(res *http.ResponseWriter, req *http.Request, objType interface{}) {
-	body, err := ioutil.ReadAll(io.LimitReader(req.Body, 1048576))
+func unpackJSON(
+	res *http.ResponseWriter,
+	req *http.Request,
+	objType interface{},
+) {
+	body, err := ioutil.ReadAll(
+		io.LimitReader(req.Body, 1048576),
+	)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -50,7 +58,12 @@ func unpackJSON(res *http.ResponseWriter, req *http.Request, objType interface{}
 	}
 }
 
-func addItem(res *http.ResponseWriter, req *http.Request, addFunc func(structs.IStructs) int, item structs.IStructs) {
+func addItem(
+	res *http.ResponseWriter,
+	req *http.Request,
+	addFunc func(structs.IStructs) int,
+	item structs.IStructs,
+) {
 	if newID := addFunc(item); newID != -1 {
 		item.SetID(newID)
 		allowCORS(res)
@@ -61,7 +74,11 @@ func addItem(res *http.ResponseWriter, req *http.Request, addFunc func(structs.I
 	}
 }
 
-func getItem(res *http.ResponseWriter, req *http.Request, getFunc func(int) structs.IStructs) {
+func getItem(
+	res *http.ResponseWriter,
+	req *http.Request,
+	getFunc func(int) structs.IStructs,
+) {
 	vars := mux.Vars(req)
 	var id int
 	var error error
@@ -82,7 +99,13 @@ func getItem(res *http.ResponseWriter, req *http.Request, getFunc func(int) stru
 	}
 }
 
-func updateItem(res *http.ResponseWriter, req *http.Request, updateFunc func(structs.IStructs) bool, getFunc func(int) structs.IStructs, item structs.IStructs) {
+func updateItem(
+	res *http.ResponseWriter,
+	req *http.Request,
+	updateFunc func(structs.IStructs) bool,
+	getFunc func(int) structs.IStructs,
+	item structs.IStructs,
+) {
 	if id := getFunc(item.GetID()); id.GetID() == -1 {
 		response(res, http.StatusNotFound)
 		return
@@ -97,7 +120,12 @@ func updateItem(res *http.ResponseWriter, req *http.Request, updateFunc func(str
 	}
 }
 
-func deleteItem(res *http.ResponseWriter, req *http.Request, getFunc func(int) structs.IStructs, deleteFunc func(structs.IStructs) bool) {
+func deleteItem(
+	res *http.ResponseWriter,
+	req *http.Request,
+	getFunc func(int) structs.IStructs,
+	deleteFunc func(structs.IStructs) bool,
+) {
 	vars := mux.Vars(req)
 	var id int
 	var error error

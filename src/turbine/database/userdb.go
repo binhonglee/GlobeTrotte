@@ -13,13 +13,14 @@ import (
 	"time"
 
 	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
+	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
 	"github.com/lib/pq"
 )
 
 // NewUserDB - Adding new user to the database.
 func NewUserDB(newUser structs.IStructs) int {
-	user, ok := newUser.(*structs.NewUser)
+	user, ok := newUser.(*wings.NewUser)
 	if !ok {
 		fmt.Println("User add failed since interface passed in is not a NewUser.")
 		return -1
@@ -35,18 +36,18 @@ func GetUserDB(id int) structs.IStructs {
 }
 
 // GetUserPasswordHashDB - Retreives and return the password hash of the user account.
-func GetUserPasswordHashDB(user structs.NewUser) string {
+func GetUserPasswordHashDB(user wings.NewUser) string {
 	return getUserWithEmail(user.Email).Password
 }
 
 // GetUserWithEmailDB - Retrieve user information from database with their email.
-func GetUserWithEmailDB(user structs.NewUser) structs.User {
+func GetUserWithEmailDB(user wings.NewUser) wings.User {
 	return getUserWithID(getUserWithEmail(user.Email).ID)
 }
 
 // UpdateUserDB - Update user information back into the database.
 func UpdateUserDB(updatedUser structs.IStructs) bool {
-	user, ok := updatedUser.(*structs.User)
+	user, ok := updatedUser.(*wings.User)
 	if !ok {
 		fmt.Println("User update failed since interface passed in is not a user.")
 		return false
@@ -57,7 +58,7 @@ func UpdateUserDB(updatedUser structs.IStructs) bool {
 
 // DeleteUserDB - Delete user from the database.
 func DeleteUserDB(existingUser structs.IStructs) bool {
-	user, ok := existingUser.(*structs.User)
+	user, ok := existingUser.(*wings.User)
 	if !ok {
 		fmt.Println("User deletion failed since interface passed in is not a trip.")
 		return false
@@ -74,7 +75,7 @@ func DeleteUserDB(existingUser structs.IStructs) bool {
 	return deleteUserWithID(existingUser.GetID())
 }
 
-func addNewUser(newUser structs.NewUser) int {
+func addNewUser(newUser wings.NewUser) int {
 	sqlStatement := `
 		INSERT INTO users (name, email, password, bio, time_created)
 		VALUES ($1, $2, $3, $4, $5)
@@ -96,8 +97,8 @@ func addNewUser(newUser structs.NewUser) int {
 	return id
 }
 
-func getUserWithID(id int) structs.User {
-	var user structs.User
+func getUserWithID(id int) wings.User {
+	var user wings.User
 	var sqlInt64 []sql.NullInt64
 	sqlStatement := `
 		SELECT id, name, email, bio, time_created, trips
@@ -127,8 +128,8 @@ func getUserWithID(id int) structs.User {
 	return user
 }
 
-func getUserWithEmail(hashedPassword string) structs.NewUser {
-	var user structs.NewUser
+func getUserWithEmail(hashedPassword string) wings.NewUser {
+	var user wings.NewUser
 	sqlStatement := `
 		SELECT id, password
 		FROM users WHERE email=$1;`
@@ -146,7 +147,7 @@ func getUserWithEmail(hashedPassword string) structs.NewUser {
 	return user
 }
 
-func updateUser(updatedUser structs.User) bool {
+func updateUser(updatedUser wings.User) bool {
 	existingUser := GetUserDB(updatedUser.GetID())
 	if existingUser.GetID() != updatedUser.GetID() {
 		fmt.Println("Existing User is not found. Aborting update.")

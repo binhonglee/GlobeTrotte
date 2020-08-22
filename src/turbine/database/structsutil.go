@@ -3,11 +3,10 @@ package database
 import (
 	"strconv"
 
-	city "github.com/binhonglee/GlobeTrotte/src/turbine/city"
-	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
+	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 )
 
-func daysToIDArray(days structs.Days) []int {
+func daysToIDArray(days wings.Days) []int {
 	var idArray []int = make([]int, len(days))
 	for index := range days {
 		idArray[index] = days[index].GetID()
@@ -15,7 +14,7 @@ func daysToIDArray(days structs.Days) []int {
 	return idArray
 }
 
-func placesToIDArray(places structs.Places) []int {
+func placesToIDArray(places wings.Places) []int {
 	var idArray []int = make([]int, len(places))
 	for index := range places {
 		idArray[index] = places[index].GetID()
@@ -23,7 +22,7 @@ func placesToIDArray(places structs.Places) []int {
 	return idArray
 }
 
-func cityEnumArrayToIDs(cities []city.City) []int {
+func cityEnumArrayToIDs(cities []wings.City) []int {
 	var idArray []int = make([]int, len(cities))
 	for index := range cities {
 		idArray[index] = int(cities[index])
@@ -31,10 +30,10 @@ func cityEnumArrayToIDs(cities []city.City) []int {
 	return idArray
 }
 
-func cityIDsToEnumArray(cityIDs []int64) []city.City {
-	var cityArray []city.City = make([]city.City, len(cityIDs))
+func cityIDsToEnumArray(cityIDs []int64) []wings.City {
+	var cityArray []wings.City = make([]wings.City, len(cityIDs))
 	for index := range cityIDs {
-		cityArray[index] = city.City(cityIDs[index])
+		cityArray[index] = wings.City(cityIDs[index])
 	}
 	return cityArray
 }

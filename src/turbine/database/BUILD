@@ -8,8 +8,8 @@ go_library(
   ],
   deps = [
     "//third_party:pq",
+    "//src/turbine/wings:wings",
     "//src/turbine/structs:structs",
-    "//src/turbine/city:city",
   ],
   visibility = ["//src/turbine/..."],
 )

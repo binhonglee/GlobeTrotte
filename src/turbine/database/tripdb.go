@@ -13,13 +13,14 @@ import (
 	"strconv"
 
 	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
+	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
 	"github.com/lib/pq"
 )
 
 // AddTripDB - Adding new trip into the database.
 func AddTripDB(newTrip structs.IStructs) int {
-	trip, ok := newTrip.(*structs.Trip)
+	trip, ok := newTrip.(*wings.Trip)
 	if !ok {
 		fmt.Println("Trip add failed since interface passed in is not a trip.")
 		return -1
@@ -43,13 +44,13 @@ func AddTripDB(newTrip structs.IStructs) int {
 
 // GetTripDB - Retrieve trip information from database with ID.
 func GetTripDB(id int) structs.IStructs {
-	var trip structs.Trip = fetchTrip(id)
+	var trip wings.Trip = fetchTrip(id)
 	return &trip
 }
 
 // UpdateTripDB - Update trip information back into the database.
 func UpdateTripDB(updatedTrip structs.IStructs) bool {
-	trip, ok := updatedTrip.(*structs.Trip)
+	trip, ok := updatedTrip.(*wings.Trip)
 	if !ok {
 		fmt.Println("Trip update failed since interface passed in is not a trip.")
 		return false
@@ -60,7 +61,7 @@ func UpdateTripDB(updatedTrip structs.IStructs) bool {
 
 // DeleteTripDB - Delete trip from the database.
 func DeleteTripDB(existingTrip structs.IStructs) bool {
-	trip, ok := existingTrip.(*structs.Trip)
+	trip, ok := existingTrip.(*wings.Trip)
 	if !ok {
 		fmt.Println("Trip deletion failed since interface passed in is not a trip.")
 		return false
@@ -76,7 +77,7 @@ func DeleteTripDB(existingTrip structs.IStructs) bool {
 	return deleteTripWithID(existingTrip.GetID())
 }
 
-func addTrip(newTrip structs.Trip) int {
+func addTrip(newTrip wings.Trip) int {
 	sqlStatement := `
 		INSERT INTO trips (userid, name, cities, description, days, time_created, last_updated)
 		VALUES ($1, $2, $3, $4, $5, $6, $7)
@@ -101,8 +102,8 @@ func addTrip(newTrip structs.Trip) int {
 	return id
 }
 
-func fetchTrip(id int) structs.Trip {
-	var trip structs.Trip
+func fetchTrip(id int) wings.Trip {
+	var trip wings.Trip
 	var days []int
 	var cities []int64
 	sqlStatement := `
@@ -131,11 +132,11 @@ func fetchTrip(id int) structs.Trip {
 	return trip
 }
 
-func fetchDays(ids []int) structs.Days {
-	var days structs.Days = make([]structs.Day, len(ids))
+func fetchDays(ids []int) wings.Days {
+	var days wings.Days = make([]wings.Day, len(ids))
 
 	for index, id := range ids {
-		var day structs.Day
+		var day wings.Day
 		var places []int
 		sqlStatement := `
 			SELECT id, trip_id, day_of, places
@@ -160,11 +161,11 @@ func fetchDays(ids []int) structs.Days {
 	return days
 }
 
-func fetchPlaces(ids []int) structs.Places {
-	var places structs.Places = make([]structs.Place, len(ids))
+func fetchPlaces(ids []int) wings.Places {
+	var places wings.Places = make([]wings.Place, len(ids))
 
 	for index, id := range ids {
-		var place structs.Place
+		var place wings.Place
 		sqlStatement := `
 			SELECT id, label, url, description
 			FROM days WHERE id=$1;`
@@ -187,7 +188,7 @@ func fetchPlaces(ids []int) structs.Places {
 	return places
 }
 
-func updateTrip(updatedTrip structs.Trip) bool {
+func updateTrip(updatedTrip wings.Trip) bool {
 	existingTrip := GetTripDB(updatedTrip.GetID())
 	if existingTrip.GetID() != updatedTrip.GetID() {
 		fmt.Println("Existing Trip is not found. Aborting update.")

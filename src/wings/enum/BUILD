@@ -6,7 +6,7 @@ wings_lib(
   srcs = ["city.wings"],
   outs = {
     "src/cockpit/wings": "City.ts",
-    "src/turbine/city": "city.go",
+    "src/turbine/wings": "city.go",
   },
   deps = [
     "//:wings_config",

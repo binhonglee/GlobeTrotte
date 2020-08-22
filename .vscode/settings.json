@@ -12,7 +12,6 @@
   },
   "go.inferGopath": false,
   "go.formatTool": "gofmt",
-  "go.formatFlags": ["-w"],
   "typescript.validate.enable": false,
   "vetur.format.defaultFormatter.ts": "vscode-typescript"
 }

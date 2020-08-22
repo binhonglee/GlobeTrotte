@@ -7,3 +7,6 @@ plz-out/
 main
 pnpm-debug.log
 psql.config
+
+src/cockpit/wings/*.ts
+src/turbine/wings/*.go

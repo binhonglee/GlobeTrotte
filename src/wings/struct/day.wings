@@ -1,4 +1,4 @@
-go-filepath src/turbine/structs
+go-filepath src/turbine/wings
 ts-filepath src/cockpit/wings
 
 import src/wings/struct/place.wings

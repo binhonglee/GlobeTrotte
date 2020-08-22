@@ -8,6 +8,7 @@
     "plz build //src/wings/..."
   ],
   "logging": 6,
+  "outputRootDirs": ["", "GlobeTrotte"],
   "prefixes": {
     "go": "github.com/binhonglee/GlobeTrotte"
   },

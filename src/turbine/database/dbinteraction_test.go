@@ -5,17 +5,16 @@ import (
 	"testing"
 	"time"
 
-	city "github.com/binhonglee/GlobeTrotte/src/turbine/city"
-	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
+	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 )
 
-var newNewUser structs.NewUser
-var newUser structs.User
-var newTrip structs.Trip
+var newNewUser wings.NewUser
+var newUser wings.User
+var newTrip wings.Trip
 
 func TestAddNewUserDB(t *testing.T) {
 	failCondition := -1
-	newNewUser = structs.NewUser{
+	newNewUser = wings.NewUser{
 		Name:     "DummyUser",
 		Email:    "dummyuser.com",
 		Password: "shouldReplaceThisWithRand",
@@ -28,7 +27,7 @@ func TestAddNewUserDB(t *testing.T) {
 }
 
 func TestGetUserDB(t *testing.T) {
-	retrievedUser, ok := GetUserDB(newNewUser.ID).(*structs.User)
+	retrievedUser, ok := GetUserDB(newNewUser.ID).(*wings.User)
 	if !ok {
 		t.Errorf("GetUserDB(), somehow does not return 'User' object.")
 		return
@@ -82,7 +81,7 @@ func TestUpdatedUserDB(t *testing.T) {
 		return
 	}
 
-	updatedUser, ok := GetUserDB(newUser.ID).(*structs.User)
+	updatedUser, ok := GetUserDB(newUser.ID).(*wings.User)
 	if !ok {
 		t.Errorf("GetUserDB(), somehow does not return 'User' object.")
 		// t.Errorf(strconv.Itoa(updatedUser.GetID()))
@@ -110,11 +109,11 @@ func TestUpdatedUserDB(t *testing.T) {
 
 func TestAddTripDB(t *testing.T) {
 	failCondition := -1
-	newTrip = structs.Trip{
+	newTrip = wings.Trip{
 		Name:        "DummyTrip",
 		UserID:      newUser.ID,
 		Description: "dummytrip.com",
-		Cities:      []city.City{city.SanFranciscoCAUS},
+		Cities:      []wings.City{wings.SanFranciscoCAUS},
 		TimeCreated: time.Now(),
 		LastUpdated: time.Now(),
 	}
@@ -127,7 +126,7 @@ func TestAddTripDB(t *testing.T) {
 }
 
 func TestGetTripDB(t *testing.T) {
-	retrievedTrip, ok := GetTripDB(newTrip.ID).(*structs.Trip)
+	retrievedTrip, ok := GetTripDB(newTrip.ID).(*wings.Trip)
 	if !ok {
 		t.Errorf("GetTripDB(), somehow does not return 'Trip' object.")
 		return
@@ -179,7 +178,7 @@ func TestUpdateTripDB(t *testing.T) {
 		return
 	}
 
-	updatedTrip, ok := GetTripDB(newTrip.ID).(*structs.Trip)
+	updatedTrip, ok := GetTripDB(newTrip.ID).(*wings.Trip)
 	if !ok {
 		t.Errorf("GetTripDB(), somehow does not return 'Trip' object.")
 		return

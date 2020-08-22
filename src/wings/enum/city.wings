@@ -1,4 +1,4 @@
-go-filepath src/turbine/city
+go-filepath src/turbine/wings
 ts-filepath src/cockpit/wings
 
 enum City {
