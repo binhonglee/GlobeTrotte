@@ -1,4 +1,4 @@
-import City from "../enums/City";
+import City from "../wings/City";
 
 export class CityObj {
   public key: City = City.UNKNOWN;

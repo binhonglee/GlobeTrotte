@@ -8,13 +8,7 @@ pnpm_build_script(
   deps = [
     "//:pnpm",
     "//:tsconfig",
-    "//src/cockpit/views:404",
-    "//src/cockpit/views:about",
-    "//src/cockpit/views:landing",
-    "//src/cockpit/views:login",
-    "//src/cockpit/views:register",
-    "//src/cockpit/views:trip_get_view",
-    "//src/cockpit/views:trip_new",
+    "//src/cockpit/views:views",
   ],
   outpath = "src/cockpit/",
   visibility = [

@@ -1,5 +1,5 @@
 go-filepath src/turbine/structs
-ts-filepath src/cockpit/structs
+ts-filepath src/cockpit/wings
 
 ts-import { IWingsStruct }:wings-ts-util
 

@@ -26,8 +26,8 @@
 import { Component, Vue } from "vue-property-decorator";
 import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "../shared/HTTPReq";
-import NewUser from "../structs/NewUser";
-import User from "../structs/User";
+import NewUser from "../wings/NewUser";
+import User from "../wings/User";
 
 @Component({
   data() {
@@ -40,7 +40,6 @@ import User from "../structs/User";
 export default class VLogin extends Vue {
   private confirm(): void {
     const newUser = new NewUser();
-    const user = new User();
     newUser.register({
       email: this.$data.email,
       password: this.$data.password,
@@ -50,7 +49,7 @@ export default class VLogin extends Vue {
       "login",
       WingsStructUtil.stringify(newUser),
       (returnedUser: string) => {
-        user.init(JSON.parse(returnedUser));
+        let user = new User(JSON.parse(returnedUser));
         console.log(user);
         // console.log(JSON.parse(returnedUser));
       },

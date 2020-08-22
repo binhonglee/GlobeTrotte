@@ -34,8 +34,8 @@
 import { Component, Vue } from "vue-property-decorator";
 import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "../shared/HTTPReq";
-import NewUser from "../structs/NewUser";
-import User from "../structs/User";
+import NewUser from "../wings/NewUser";
+import User from "../wings/User";
 
 @Component({
   data() {

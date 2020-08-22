@@ -1,7 +1,7 @@
-import City from "../../enums/City";
-import Day from "../../structs/Day";
-import Place from "../../structs/Place";
-import Trip from "../../structs/Trip";
+import City from "../../wings/City";
+import Day from "../../wings/Day";
+import Place from "../../wings/Place";
+import Trip from "../../wings/Trip";
 
 export class mockPlace {
   public readonly ID: number;

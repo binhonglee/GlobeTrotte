@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import City from "../../enums/City";
+import City from "../../wings/City";
 import { CityObj, CityUtil } from "../../shared/CityUtil";
 
 describe("<CityUtil> Every city should have conversion in CityUtil.toString().", () => {

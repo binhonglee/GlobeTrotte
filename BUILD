@@ -9,9 +9,9 @@ filegroup(
 filegroup(
   name = "pnpm_config",
   srcs = [
+    ".npmrc",
     "package.json",
     "pnpm-lock.yaml",
-    ".npmrc",
   ],
   visibility = [
     ":cockpit",
@@ -111,19 +111,9 @@ pnpm_test(
   deps = [
     ":pnpm",
     ":prep_gen",
-    "//src/cockpit/tests/components:c_edit_item_test",
-    "//src/cockpit/tests/components:c_edit_places_test",
-    "//src/cockpit/tests/components:c_edit_trip_test",
-    "//src/cockpit/tests/components:c_places_test",
-    "//src/cockpit/tests/components:c_trip_info_test",
-    "//src/cockpit/tests/components:c_view_trip_test",
-    "//src/cockpit/tests/shared:city_util_test",
-    "//src/cockpit/tests/shared:trip_editable_test",
-    "//src/cockpit/tests/wings:day_test",
-    "//src/cockpit/tests/wings:new_user_test",
-    "//src/cockpit/tests/wings:place_test",
-    "//src/cockpit/tests/wings:trip_test",
-    "//src/cockpit/tests/wings:user_test",
+    "//src/cockpit/tests/wings:wings",
+    "//src/cockpit/tests/shared:shared",
+    "//src/cockpit/tests/components:components",
   ],
 )
 
@@ -134,13 +124,13 @@ pnpm_test(
   deps = [
     ":pnpm",
     ":prep_gen",
-    ":cypress_config",
-    ":eslint_config",
     ":index_html",
     ":vue_config",
+    ":eslint_config",
+    ":cypress_config",
     "//src/assets:assets",
-    "//src/cockpit:core_files",
     "//src/cockpit/tests/e2e",
+    "//src/cockpit:core_files",
     "//src/cockpit/tests:e2e_eslint",
   ],
 )

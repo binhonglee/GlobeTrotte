@@ -1,6 +1,6 @@
-import Trip from "../../structs/Trip";
-import Day from "../../structs/Day";
-import City from "../../enums/City";
+import Trip from "../../wings/Trip";
+import Day from "../../wings/Day";
+import City from "../../wings/City";
 
 import { WingsStructUtil } from "wings-ts-util";
 import * as chai from "chai";

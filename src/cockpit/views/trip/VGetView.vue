@@ -15,8 +15,8 @@ import {
 } from "vue-property-decorator";
 import CTripInfo from "../../components/CTripInfo.vue";
 import HTTPReq from "../../shared/HTTPReq";
-import Place from "../../structs/Place";
-import Trip from "../../structs/Trip";
+import Place from "../../wings/Place";
+import Trip from "../../wings/Trip";
 
 @Component({
   data() {
@@ -59,12 +59,11 @@ export default class VGetID extends Vue {
             i < parsedData.places.length;
             i++
           ) {
-            const temp = new Place();
-            temp.init(parsedData.places[i]);
+            const temp = new Place(parsedData.places[i]);
             parsedData.places[i] = temp;
           }
         }
-        this.$data.trip.init(parsedData);
+        this.$data.trip = new Trip(parsedData);
       } catch (e) {
         alert("Error. Trip not found.");
       }

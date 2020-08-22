@@ -18,7 +18,7 @@ import {
   Prop,
   Vue,
 } from "vue-property-decorator";
-import Place from "../structs/Place";
+import Place from "../wings/Place";
 
 @Component
 export default class CPlaces extends Vue {

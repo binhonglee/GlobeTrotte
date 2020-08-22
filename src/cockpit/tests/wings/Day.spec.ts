@@ -1,5 +1,5 @@
-import Day from "../../structs/Day";
-import Place from "../../structs/Place";
+import Day from "../../wings/Day";
+import Place from "../../wings/Place";
 
 import { WingsStructUtil } from "wings-ts-util";
 import { expect } from "chai";

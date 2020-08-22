@@ -20,7 +20,7 @@ import { WingsStructUtil } from "wings-ts-util";
 import CEditTrip from "./CEditTrip.vue";
 import CViewTrip from "./CViewTrip.vue";
 import HTTPReq from "../shared/HTTPReq";
-import Trip from "../structs/Trip";
+import Trip from "../wings/Trip";
 
 @Component({
   data() {

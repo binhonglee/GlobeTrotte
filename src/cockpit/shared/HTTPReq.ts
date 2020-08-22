@@ -16,7 +16,7 @@ export default class HTTPReq {
     this.sendRequest(uri, "", "GET", callback);
   }
 
-  private static host = "127.0.0.1";
+  private static host = "localhost";
   private static port = 4000;
   private static pathPrefix = "/api/";
 

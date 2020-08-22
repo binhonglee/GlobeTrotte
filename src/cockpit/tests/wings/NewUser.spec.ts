@@ -1,4 +1,4 @@
-import NewUser from "../../structs/NewUser";
+import NewUser from "../../wings/NewUser";
 
 import { WingsStructUtil } from "wings-ts-util";
 import { expect } from "chai";

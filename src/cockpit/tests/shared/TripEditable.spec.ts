@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import Trip from "../../structs/Trip";
+import Trip from "../../wings/Trip";
 import TripEditable from "../../shared/TripEditable";
 
 describe("<TripEditable> All editables should have specified labels.", () => {

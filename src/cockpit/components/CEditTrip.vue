@@ -32,9 +32,9 @@ import {
 } from "vue-property-decorator";
 import CEditItem from "./CEditItem.vue";
 import CEditPlaces from "./CEditPlaces.vue";
-import City from "../enums/City";
+import City from "../wings/City";
 import { CityUtil } from "../shared/CityUtil";
-import Trip from "../structs/Trip";
+import Trip from "../wings/Trip";
 import TripEditable from "../shared/TripEditable";
 
 @Component({

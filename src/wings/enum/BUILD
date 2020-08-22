@@ -5,7 +5,7 @@ wings_lib(
   config = "wings.json",
   srcs = ["city.wings"],
   outs = {
-    "src/cockpit/enums": "City.ts",
+    "src/cockpit/wings": "City.ts",
     "src/turbine/city": "city.go",
   },
   deps = [

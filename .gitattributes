@@ -13,10 +13,14 @@ BUILD           text eol=lf linguist-language=Starlark
 # Config files
 .ackrc          text eol=lf linguist-detectable=false
 .npmrc          text eol=lf linguist-detectable=false
+.prettierrc     text eol=lf linguist-detectable=false
 .plzconfig      text eol=lf linguist-detectable=false
+.eslintignore   text eol=lf linguist-detectable=false
+.eslintrc.js    text eol=lf linguist-detectable=false
 vue.config.js   text eol=lf linguist-detectable=false
 sample.config   text eol=lf linguist-detectable=false
 test.config     text eol=lf linguist-detectable=false
+cypress.json    text eol=lf linguist-detectable=false
 tsconfig.json   text eol=lf linguist-detectable=false
 package.json    text eol=lf linguist-detectable=false
 

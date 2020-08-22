@@ -1,4 +1,4 @@
-import Place from "../../structs/Place";
+import Place from "../../wings/Place";
 
 import { WingsStructUtil } from "wings-ts-util";
 import { expect } from "chai";

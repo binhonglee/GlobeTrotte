@@ -9,7 +9,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { WingsStructUtil } from "wings-ts-util";
 import CEditTrip from "../../components/CEditTrip.vue";
 import HTTPReq from "../../shared/HTTPReq";
-import Trip from "../../structs/Trip";
+import Trip from "../../wings/Trip";
 
 @Component({
   data() {

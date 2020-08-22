@@ -1,5 +1,5 @@
 go-filepath src/turbine/city
-ts-filepath src/cockpit/enums
+ts-filepath src/cockpit/wings
 
 enum City {
   UNKNOWN

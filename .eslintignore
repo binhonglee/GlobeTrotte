@@ -3,6 +3,5 @@ node_modules/*
 dist/*
 coverage/*
 plz-out/*
-src/cockpit/structs/*
-src/cockpit/enums/*
+src/cockpit/wings/*
 src/cockpit/router.ts

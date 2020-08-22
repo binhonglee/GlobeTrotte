@@ -23,8 +23,8 @@ import {
 } from "vue-property-decorator";
 import { CityUtil } from "../shared/CityUtil";
 import CPlaces from "./CPlaces.vue";
-import Trip from "../structs/Trip";
-import City from "../enums/City";
+import Trip from "../wings/Trip";
+import City from "../wings/City";
 
 @Component({
   data() {
