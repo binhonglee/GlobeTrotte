@@ -26,7 +26,7 @@ devDependencies:
   eslint: 7.7.0
   eslint-plugin-prettier: 3.1.4_eslint@7.7.0+prettier@2.0.5
   eslint-plugin-vue: 6.2.2_eslint@7.7.0
-  forever: 3.0.1
+  forever: 3.0.2
   node-sass: 4.14.1
   nyc: 15.1.0
   prettier: 2.0.5
@@ -4331,7 +4331,7 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-F3E8C9CTPK+uRGdVTMBHGo7mHX+KRtClLzkegR6ux1yy+ByxOziumpTzxajzfhICHfYdnGWY4Bokl8dirYsDeA==
-  /forever/3.0.1:
+  /forever/3.0.2:
     dependencies:
       async: 1.5.2
       cliff: 0.1.10
@@ -4354,7 +4354,7 @@ packages:
       node: '>=6'
     hasBin: true
     resolution:
-      integrity: sha512-6yahU2HT1/D/LNFBf0tRiQFTvL0FG39ajHT8SlxJxo61GdjURwcD6d0529wElS4mzdhKnBq9MoJHKdQYEn9EGw==
+      integrity: sha512-GKZLVs3RQh52kF3kuCrlR1e5npaOqomQzTQryZOFJZ9GKNqLya75LSn1rdjFQ8XixwX3jT76pIJmtGN4XXv1aw==
   /fork-ts-checker-webpack-plugin/3.1.1:
     dependencies:
       babel-code-frame: 6.26.0
@@ -11188,7 +11188,7 @@ specifiers:
   eslint: 7.7.0
   eslint-plugin-prettier: 3.1.4
   eslint-plugin-vue: 6.2.2
-  forever: 3.0.1
+  forever: 3.0.2
   node-sass: 4.14.1
   nyc: 15.1.0
   prettier: 2.0.5
