@@ -17,13 +17,15 @@ type Route struct {
 // Routes - Multiple Route in an array.
 type Routes []Route
 
+const API_PREFIX = "/api"
+
 // NewRouter - Just an average router that create routes.
 func NewRouter() *mux.Router {
 	router := mux.NewRouter()
 	for _, route := range routes {
 		router.
 			Methods(route.Method).
-			Path("/api" + route.Pattern).
+			Path(API_PREFIX + route.Pattern).
 			Name(route.Name).
 			Handler(route.HandlerFunc)
 	}
@@ -52,6 +54,12 @@ var routes = Routes{
 		"GET",
 		"/user/{id}",
 		getUser,
+	},
+	Route{
+		"UpdateUser",
+		"POST",
+		"/user/{id}",
+		updateUser,
 	},
 	Route{
 		"DeleteUser",

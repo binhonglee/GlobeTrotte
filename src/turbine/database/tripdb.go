@@ -56,6 +56,15 @@ func UpdateTripDB(updatedTrip structs.IStructs) bool {
 		return false
 	}
 
+	for index, day := range trip.Days {
+		if updateDay(&day, true) {
+			trip.Days[index] = day
+		} else {
+			fmt.Println("Trip update failed since one of the day update failed.")
+			return false
+		}
+	}
+
 	return updateTrip(*trip)
 }
 
@@ -89,16 +98,48 @@ func addTrip(newTrip wings.Trip) int {
 		newTrip.Name,
 		pq.Array(cityEnumArrayToIDs(newTrip.Cities)),
 		newTrip.Description,
-		pq.Array(daysToIDArray(newTrip.Days)),
+		pq.Array([]int{}),
 		newTrip.TimeCreated,
 		newTrip.LastUpdated,
 	).Scan(&id)
+
+	if len(newTrip.Days) > 0 {
+		for index, day := range newTrip.Days {
+			dayID := addDay(day)
+			newTrip.Days[index].ID = dayID
+		}
+
+		newTrip.ID = id
+		updateTrip(newTrip)
+	}
 
 	if err != nil {
 		fmt.Println(err)
 		return -1
 	}
-	fmt.Println("New record ID is: ", id)
+	fmt.Println("New trip ID is: ", id)
+	return id
+}
+
+func addDay(newDay wings.Day) int {
+	sqlStatement := `
+		INSERT INTO days (id, trip_id, day_of, places)
+		VALUES($1, $2, $3, $4)
+		RETURNING id`
+	id := 0
+	err := db.QueryRow(
+		sqlStatement,
+		newDay.ID,
+		newDay.TripID,
+		newDay.DayOf,
+		pq.Array(placesToIDArray(newDay.Places)),
+	)
+
+	if err != nil {
+		fmt.Println(err)
+		return -1
+	}
+	fmt.Println("New day ID is: ", id)
 	return id
 }
 
@@ -134,31 +175,33 @@ func fetchTrip(id int) wings.Trip {
 
 func fetchDays(ids []int) wings.Days {
 	var days wings.Days = make([]wings.Day, len(ids))
-
 	for index, id := range ids {
-		var day wings.Day
-		var places []int
-		sqlStatement := `
-			SELECT id, trip_id, day_of, places
-			FROM days WHERE id=$1;`
-		row := db.QueryRow(sqlStatement, id)
-		switch err := row.Scan(
-			&day.ID,
-			&day.TripID,
-			&day.DayOf,
-			pq.Array(&places),
-		); err {
-		case sql.ErrNoRows:
-			fmt.Println("Trip not found.")
-			day.ID = -1
-		default:
-			fmt.Println(err)
-		}
-		day.Places = fetchPlaces(places)
-		days[index] = day
+		days[index] = fetchDay(id)
 	}
-
 	return days
+}
+
+func fetchDay(id int) wings.Day {
+	var day wings.Day
+	var places []int
+	sqlStatement := `
+		SELECT id, trip_id, day_of, places
+		FROM days WHERE id=$1;`
+	row := db.QueryRow(sqlStatement, id)
+	switch err := row.Scan(
+		&day.ID,
+		&day.TripID,
+		&day.DayOf,
+		pq.Array(&places),
+	); err {
+	case sql.ErrNoRows:
+		fmt.Println("Day not found.")
+		day.ID = -1
+	default:
+		fmt.Println(err)
+	}
+	day.Places = fetchPlaces(places)
+	return day
 }
 
 func fetchPlaces(ids []int) wings.Places {
@@ -177,7 +220,7 @@ func fetchPlaces(ids []int) wings.Places {
 			&place.Description,
 		); err {
 		case sql.ErrNoRows:
-			fmt.Println("Trip not found.")
+			fmt.Println("Place not found.")
 			place.ID = -1
 		default:
 			fmt.Println(err)
@@ -219,6 +262,44 @@ func updateTrip(updatedTrip wings.Trip) bool {
 
 	if err != nil {
 		fmt.Println("Failed to update trip.")
+		fmt.Println(err)
+		return false
+	}
+
+	return true
+}
+
+func updateDay(updatedDay *wings.Day, createOnNonExist bool) bool {
+	existingDay := fetchDay(updatedDay.ID)
+
+	if existingDay.ID != updatedDay.ID {
+		fmt.Println("Existing Day not found.")
+
+		if createOnNonExist {
+			updatedDay.ID = addDay(*updatedDay)
+			return updatedDay.ID == -1
+		} else {
+			return false
+		}
+	}
+
+	sqlStatement := `
+		UPDATE days
+		SET trip_id = $2,
+		day_of = $3,
+		places = $4
+		WHERE id = $1;`
+
+	_, err := db.Exec(
+		sqlStatement,
+		updatedDay.ID,
+		updatedDay.TripID,
+		updatedDay.DayOf,
+		pq.Array(placesToIDArray(updatedDay.Places)),
+	)
+
+	if err != nil {
+		fmt.Println("Failed to update day.")
 		fmt.Println(err)
 		return false
 	}

@@ -20,7 +20,7 @@ go_test(
   name = "router_test",
   srcs = [
     "router_test.go",
-    "triprouter_test.go",
+    "structrouter_test.go",
   ],
   flaky = 2,
   data = ["//config:psql.config"],

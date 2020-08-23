@@ -13,10 +13,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func welcome(res http.ResponseWriter, req *http.Request) {
-	fmt.Fprint(res, "Hello World?")
-}
-
 func passwd(res http.ResponseWriter, req *http.Request) {
 	fmt.Fprint(res, "hunter2")
 	response(&res, http.StatusOK)

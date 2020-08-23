@@ -8,7 +8,8 @@
   "files.watcherExclude": {
     "**/.git/**": true,
     "**/node_modules/*/**": true,
-    "**/plz-out/**": true
+    "**/plz-out/**": true,
+    "**/src/*/wings/**/*.*": true,
   },
   "go.inferGopath": false,
   "go.formatTool": "gofmt",

@@ -47,21 +47,16 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 	var item *wings.NewUser
 	unpackJSON(&res, req, &item)
 
-	emailPattern := regexp.MustCompile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
+	emailPattern := regexp.MustCompile(
+		"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
+	)
 	if !emailPattern.MatchString(item.Email) {
 		fmt.Println(item.Email, " is not a valid email address.")
 		response(&res, http.StatusNotAcceptable)
 		return
 	}
 
-	spliitedStr := strings.Split(item.Email, "@")
-	if len(spliitedStr) != 2 {
-		fmt.Println(item.Email, " is not a valid email address.")
-		response(&res, http.StatusNotAcceptable)
-		return
-	}
-	item.Name = spliitedStr[0]
-
+	item.Name = strings.Split(item.Email, "@")[0]
 	hash, err := bcrypt.GenerateFromPassword([]byte(item.Password), 14)
 	if err != nil {
 		fmt.Println("Password hashing failed: ", err)
@@ -117,6 +112,12 @@ func logout(res http.ResponseWriter, req *http.Request) {
 
 func getUser(res http.ResponseWriter, req *http.Request) {
 	getItem(&res, req, db.GetUserDB)
+}
+
+func updateUser(res http.ResponseWriter, req *http.Request) {
+	var item *wings.User
+	unpackJSON(&res, req, &item)
+	updateItem(&res, req, db.UpdateUserDB, db.GetUserDB, item)
 }
 
 func deleteUser(res http.ResponseWriter, req *http.Request) {
