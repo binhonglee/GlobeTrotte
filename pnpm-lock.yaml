@@ -19,7 +19,7 @@ devDependencies:
   '@vue/cli-plugin-unit-mocha': 4.5.4_@vue+cli-service@4.5.4
   '@vue/cli-service': 4.5.4_86841b82ce4b859526083b70ccbc8ab3
   '@vue/eslint-config-prettier': 6.0.0_ba1424629fbaab222c00775c713b54e9
-  '@vue/eslint-config-typescript': 5.0.2_bd822e34f86828dfe2c93bfad0433694
+  '@vue/eslint-config-typescript': 5.1.0_bd822e34f86828dfe2c93bfad0433694
   '@vue/test-utils': 1.0.4_ae554d8947d7e926b014dda25865f517
   chai: 4.2.0
   cross-env: 7.0.2
@@ -900,7 +900,7 @@ packages:
       prettier: '>= 1.13.0'
     resolution:
       integrity: sha512-wFQmv45c3ige5EA+ngijq40YpVcIkAy0Lihupnsnd1Dao5CBbPyfCzqtejFLZX1EwH/kCJdpz3t6s+5wd3+KxQ==
-  /@vue/eslint-config-typescript/5.0.2_bd822e34f86828dfe2c93bfad0433694:
+  /@vue/eslint-config-typescript/5.1.0_bd822e34f86828dfe2c93bfad0433694:
     dependencies:
       '@typescript-eslint/eslint-plugin': 3.10.1_4b08f58ef8a3bb8fcbaebc4f1e3f8004
       '@typescript-eslint/parser': 3.10.1_eslint@7.7.0+typescript@4.0.2
@@ -911,10 +911,10 @@ packages:
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^2.7.0
       '@typescript-eslint/parser': ^2.7.0
-      eslint: ^5.0.0 || ^6.0.0
-      eslint-plugin-vue: ^5.2.3 || ^6.0.0
+      eslint: ^5.0.0 || ^6.0.0 || ^7.0.0
+      eslint-plugin-vue: ^5.2.3 || ^6.0.0 || ^7.0.0-0
     resolution:
-      integrity: sha512-GEZOHKOnelgQf5npA+6VNuhJZu9xEJaics3SYUyRjaSay+2SCpEINHhEpt6fXoNy/aIFt8CkDlt9CaEb+QPIcg==
+      integrity: sha512-wFAdPMWegKZOdbQBEWV4/KbOKuX/6Q5db3304kiWNBK+6P7+CoMrsbaKzJFjuAZF7fQR2fJtZT9ciGWVVT//vw==
   /@vue/preload-webpack-plugin/1.1.1_4bdb23e17c1669cd6b8d9492b9e85ea2:
     dependencies:
       html-webpack-plugin: 3.2.0_webpack@4.43.0
@@ -3634,15 +3634,6 @@ packages:
       node: '>=4.0.0'
     resolution:
       integrity: sha512-p7VutNr1O/QrxysMo3E45FjYDTeXBy0iTltPFNSqKAIfjDSXC+4dj+qfyuD8bfAXrW/y6lW3O76VaYNPKfpKrg==
-  /eslint-scope/5.0.0:
-    dependencies:
-      esrecurse: 4.2.1
-      estraverse: 4.3.0
-    dev: true
-    engines:
-      node: '>=8.0.0'
-    resolution:
-      integrity: sha512-oYrhJW7S0bxAFDvWqzvMPRm6pcgcnWc4QnofCAqRTRfQC0JcwenzGglTtsLyIuuWFfkqDG9vz67cnttSd53djw==
   /eslint-scope/5.1.0:
     dependencies:
       esrecurse: 4.2.1
@@ -3660,12 +3651,6 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-w94dQYoauyvlDc43XnGB8lU3Zt713vNChgt4EWwhXAP2XkBvndfxF0AgIqKOOasjPIPzj9JqgwkwbCYD0/V3Zg==
-  /eslint-visitor-keys/1.1.0:
-    dev: true
-    engines:
-      node: '>=4'
-    resolution:
-      integrity: sha512-8y9YjtM1JBJU/A9Kc+SbaOV4y29sSWckBwMHa+FGtVj5gN/sbnKDf6xJUl+8g7FAij9LVaP8C24DUiH/f/2Z9A==
   /eslint-visitor-keys/1.3.0:
     dev: true
     engines:
@@ -3720,7 +3705,7 @@ packages:
     dependencies:
       acorn: 7.4.0
       acorn-jsx: 5.2.0_acorn@7.4.0
-      eslint-visitor-keys: 1.1.0
+      eslint-visitor-keys: 1.3.0
     dev: true
     engines:
       node: '>=6.0.0'
@@ -10505,11 +10490,11 @@ packages:
     dependencies:
       debug: 4.1.1
       eslint: 7.7.0
-      eslint-scope: 5.0.0
-      eslint-visitor-keys: 1.1.0
+      eslint-scope: 5.1.0
+      eslint-visitor-keys: 1.3.0
       espree: 6.2.1
       esquery: 1.3.1
-      lodash: 4.17.15
+      lodash: 4.17.20
     dev: true
     engines:
       node: '>=8.10'
@@ -11180,7 +11165,7 @@ specifiers:
   '@vue/cli-plugin-unit-mocha': 4.5.4
   '@vue/cli-service': 4.5.4
   '@vue/eslint-config-prettier': 6.0.0
-  '@vue/eslint-config-typescript': 5.0.2
+  '@vue/eslint-config-typescript': 5.1.0
   '@vue/test-utils': 1.0.4
   chai: 4.2.0
   cross-env: 7.0.2
