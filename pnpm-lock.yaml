@@ -9,7 +9,7 @@ dependencies:
 devDependencies:
   '@types/assert': 1.5.1
   '@types/mocha': 8.0.3
-  '@types/node': 14.6.1
+  '@types/node': 14.6.2
   '@typescript-eslint/eslint-plugin': 3.10.1_4b08f58ef8a3bb8fcbaebc4f1e3f8004
   '@typescript-eslint/parser': 3.10.1_eslint@7.7.0+typescript@4.0.2
   '@vue/cli-plugin-e2e-cypress': 4.5.4_67489fb966f805e0440b6d729e0ff2fd
@@ -501,10 +501,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-mikldZQitV94akrc4sCcSjtJfsTKt4p+e/s0AGscVA6XArQ9kFclP+ZiYUMnq987rc6QlYxXv/EivqlfSLxpKA==
-  /@types/node/14.6.1:
+  /@types/node/14.6.2:
     dev: true
     resolution:
-      integrity: sha512-HnYlg/BRF8uC1FyKRFZwRaCPTPYKa+6I8QiUZFLredaGOou481cgFS4wKRFyKvQtX8xudqkSdBczJHIYSQYKrQ==
+      integrity: sha512-onlIwbaeqvZyniGPfdw/TEhKIh79pz66L1q06WUQqJLnAb6wbjvOtepLYTGHTqzdXgBYIE3ZdmqHDGsRsbBz7A==
   /@types/normalize-package-data/2.4.0:
     dev: true
     resolution:
@@ -11159,7 +11159,7 @@ packages:
 specifiers:
   '@types/assert': 1.5.1
   '@types/mocha': 8.0.3
-  '@types/node': 14.6.1
+  '@types/node': 14.6.2
   '@typescript-eslint/eslint-plugin': 3.10.1
   '@typescript-eslint/parser': 3.10.1
   '@vue/cli-plugin-e2e-cypress': 4.5.4
