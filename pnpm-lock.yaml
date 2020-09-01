@@ -7,7 +7,7 @@ dependencies:
   vue-router: 3.4.3
   wings-ts-util: 0.0.6
 devDependencies:
-  '@types/assert': 1.5.1
+  '@types/assert': 1.5.2
   '@types/mocha': 8.0.3
   '@types/node': 14.6.2
   '@typescript-eslint/eslint-plugin': 4.0.1_c72f8c8a5aecd03873abbd0f043c8567
@@ -395,10 +395,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-/+CRPXpBDpo2RK9C68N3b2cOvO0Cf5B9aPijHsoDQTHivnGSObdOF2BRQOYjojWTDy6nQvMjmqRXIxH55VjxxA==
-  /@types/assert/1.5.1:
+  /@types/assert/1.5.2:
     dev: true
     resolution:
-      integrity: sha512-W34OXyUAXEg0IvkMBr6WHTsvxh4veqNVJJGni/6pp13BabT/nuiEtUVkf+EYo8FIT4CQSVYfZ05XtUo5nRSWfQ==
+      integrity: sha512-DLsoZH9z5DLDi6qMbXKqeqlQLK1h3rfR9dK+KX8UJSGHJylvIZPOCQEKr/d/FClPoZE/eHOa3+e270eUJCUTog==
   /@types/body-parser/1.19.0:
     dependencies:
       '@types/connect': 3.4.33
@@ -11194,7 +11194,7 @@ packages:
     resolution:
       integrity: sha512-jcKpkthap6x63MB4TxwCyuIGkV0oYP/YRyuQU5UO0Yz/E/ZAu+653/uov+phdmO54n6BcvFRyyt0RRrWdN2mpw==
 specifiers:
-  '@types/assert': 1.5.1
+  '@types/assert': 1.5.2
   '@types/mocha': 8.0.3
   '@types/node': 14.6.2
   '@typescript-eslint/eslint-plugin': 4.0.1
