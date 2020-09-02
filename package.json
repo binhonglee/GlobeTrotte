@@ -50,7 +50,7 @@
     "@vue/test-utils": "1.0.5",
     "chai": "4.2.0",
     "cross-env": "7.0.2",
-    "eslint": "7.8.0",
+    "eslint": "7.8.1",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-vue": "6.2.2",
     "forever": "3.0.2",
