@@ -7,5 +7,6 @@ plz-out/
 main
 pnpm-debug.log
 psql.config
+/*.log
 
 src/**/wings/*.*

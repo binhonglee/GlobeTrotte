@@ -10,6 +10,7 @@ go_library(
     "//third_party:pq",
     "//src/turbine/wings:wings",
     "//src/turbine/structs:structs",
+    "//src/turbine/logger:logger",
   ],
   visibility = ["//src/turbine/..."],
 )

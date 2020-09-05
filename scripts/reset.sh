@@ -14,10 +14,14 @@ else
 fi
 echo "Removing 'plz-out'..."
 rm -rf plz-out
+echo "Removing log files..."
+rm -rf ./*.log
 echo "Removing '.nyc_output'..."
 rm -rf .nyc_output
 echo "Removing 'coverage'..."
 rm -rf coverage
+echo "Removing generated wings files..."
+rm -rf src/cockpit/wings/*.ts src/turbine/wings/*.go
 echo "Dropping database"
 psql --username="$USER" -w -c "DROP DATABASE globetrotte;" || echo "Database does not exist. Skipping..."
 echo "All removal completed successfully!"

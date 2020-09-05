@@ -4,7 +4,8 @@ go_binary(
   deps = [
     "//third_party:mux",
     "//third_party:pq",
-    "//src/turbine/router",
+    "//src/turbine/router:router",
+    "//src/turbine/logger:logger",
   ],
   visibility = [
     "//src/turbine/...",

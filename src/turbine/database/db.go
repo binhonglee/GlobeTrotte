@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	// This is needed for PostgreSQL to work properly
 	_ "github.com/lib/pq"
 )
@@ -28,7 +29,7 @@ func init() {
 	if parsePort, err := strconv.Atoi(strings.TrimSpace(config["port"])); err == nil {
 		port = parsePort
 	} else {
-		panic("Invalid port format: " + strings.TrimSpace(config["port"]))
+		logger.Panic(logger.Database, "Invalid port format: "+strings.TrimSpace(config["port"]))
 	}
 
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
@@ -38,14 +39,13 @@ func init() {
 	if getDB, err := sql.Open("postgres", psqlInfo); err == nil {
 		db = getDB
 	} else {
-		panic("Invalid DB config")
+		logger.Panic(logger.Database, "Invalid DB config")
 	}
 
 	initializeDB()
 
-	if err := db.Ping(); err != nil {
-		panic("Unable to connect to database")
-	}
+	logger.PanicErr(logger.Database, db.Ping(), "Unable to connect to database")
+	logger.Print(logger.Database, "DB initialization is complete!")
 }
 
 func initializeDB() {
@@ -59,8 +59,7 @@ func initializeDB() {
 		_, err := db.Exec(fmt.Sprintf(ifTableExists, element))
 
 		if err != nil {
-			fmt.Println(element, " table not found. Creating it...")
-			fmt.Println(err)
+			logger.Print(logger.Database, element+" table not found. Creating it...")
 
 			switch element {
 			case "users":
@@ -72,10 +71,10 @@ func initializeDB() {
 			case "days":
 				createDaysTable()
 			default:
-				panic("New element was added to 'tableNames' but no creation method is added for it.")
+				logger.Panic(logger.Database, "New element was added to 'tableNames' but no creation method is added for it.")
 			}
 
-			fmt.Println(element, " table created successfully.")
+			logger.Print(logger.Database, element+" table created successfully.")
 		}
 	}
 }
@@ -93,10 +92,7 @@ func createUsersTable() {
 		);`
 	_, err := db.Exec(createTable)
 
-	if err != nil {
-		fmt.Println("Failed to create `users` table.")
-		panic(err)
-	}
+	logger.PanicErr(logger.Database, err, "Failed to create `users` table. ")
 }
 
 func createTripsTable() {
@@ -113,10 +109,7 @@ func createTripsTable() {
 		);`
 	_, err := db.Exec(createTable)
 
-	if err != nil {
-		fmt.Println("Failed to create `trips` table.")
-		panic(err)
-	}
+	logger.PanicErr(logger.Database, err, "Failed to create `trips` table.")
 }
 
 func createDaysTable() {
@@ -129,10 +122,7 @@ func createDaysTable() {
 		);`
 	_, err := db.Exec(createTable)
 
-	if err != nil {
-		fmt.Println("Failed to create `days` table.")
-		panic(err)
-	}
+	logger.PanicErr(logger.Database, err, "Failed to create `days` table.")
 }
 
 func createPlacesTable() {
@@ -145,10 +135,7 @@ func createPlacesTable() {
 		);`
 	_, err := db.Exec(createTable)
 
-	if err != nil {
-		fmt.Println("Failed to create `places` table.")
-		panic(err)
-	}
+	logger.PanicErr(logger.Database, err, "Failed to create `places` table.")
 }
 
 func createCitiesTable() {
@@ -161,10 +148,7 @@ func createCitiesTable() {
 		);`
 	_, err := db.Exec(createTable)
 
-	if err != nil {
-		fmt.Println("Failed to create `cities` table.")
-		panic(err)
-	}
+	logger.PanicErr(logger.Database, err, "Failed to create `cities` table.")
 }
 
 func getConfig() map[string]string {
@@ -173,9 +157,7 @@ func getConfig() map[string]string {
 	file, err := os.Open(filepath.Join(pwd, configFile))
 
 	defer file.Close()
-	if err != nil {
-		panic(err)
-	}
+	logger.PanicErr(logger.Database, err, "Failed to open config file.")
 	config := make(map[string]string)
 
 	reader := bufio.NewReader(file)
