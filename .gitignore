@@ -8,5 +8,5 @@ main
 pnpm-debug.log
 psql.config
 /*.log
-
+.DS_Store
 src/**/wings/*.*

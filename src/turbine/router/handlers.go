@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
-
+	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 
 	"github.com/gorilla/mux"
@@ -19,7 +19,7 @@ func passwd(res http.ResponseWriter, req *http.Request) {
 }
 
 func response(res *http.ResponseWriter, status int) {
-	fmt.Println(status)
+	logger.Print(status)
 	(*res).Header().Set(
 		"Content-Type", "application/json; charset=UTF-8",
 	)
@@ -39,17 +39,17 @@ func unpackJSON(
 		io.LimitReader(req.Body, 1048576),
 	)
 	if err != nil {
-		fmt.Println(err)
+		logger.Print(err)
 	}
 
 	if err := req.Body.Close(); err != nil {
-		fmt.Println(err)
+		logger.Print(err)
 	}
 
 	if err := json.Unmarshal(body, objType); err != nil {
 		response(res, http.StatusUnprocessableEntity)
 		if err := json.NewEncoder(*res).Encode(err); err != nil {
-			fmt.Println(err)
+			logger.Print(err)
 		}
 	}
 }
@@ -80,7 +80,7 @@ func getItem(
 	var error error
 
 	if id, error = strconv.Atoi(vars["id"]); error != nil {
-		fmt.Println(error)
+		logger.Print(error)
 		return
 	}
 	allowCORS(res)
@@ -88,7 +88,7 @@ func getItem(
 	item := getFunc(id)
 	if item.GetID() > 0 {
 		response(res, http.StatusOK)
-		fmt.Println(item)
+		logger.Print(item)
 		json.NewEncoder(*res).Encode(item)
 	} else {
 		response(res, http.StatusNotFound)
@@ -127,7 +127,7 @@ func deleteItem(
 	var error error
 
 	if id, error = strconv.Atoi(vars["id"]); error != nil {
-		fmt.Println(error)
+		logger.Print(error)
 		return
 	}
 

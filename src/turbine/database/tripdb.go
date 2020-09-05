@@ -11,7 +11,7 @@ import (
 	"database/sql"
 	"fmt"
 	"strconv"
-
+	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
@@ -22,20 +22,20 @@ import (
 func AddTripDB(newTrip structs.IStructs) int {
 	trip, ok := newTrip.(*wings.Trip)
 	if !ok {
-		fmt.Println("Trip add failed since interface passed in is not a trip.")
+		logger.Print("Trip add failed since interface passed in is not a trip.")
 		return -1
 	}
 
 	newTripID := addTrip(*trip)
 	user := getUserWithID(trip.UserID)
 	if user.ID == -1 {
-		fmt.Println("User adding the new trip is not found.")
+		logger.Print("User adding the new trip is not found.")
 		return failAddingTripToUser(newTripID)
 	}
 
 	user.Trips = append(user.Trips, newTripID)
 	if ok = updateUser(user); !ok {
-		fmt.Println("Fail to add trip id to new user.")
+		logger.Print("Fail to add trip id to new user.")
 		return failAddingTripToUser(newTripID)
 	}
 
@@ -52,7 +52,7 @@ func GetTripDB(id int) structs.IStructs {
 func UpdateTripDB(updatedTrip structs.IStructs) bool {
 	trip, ok := updatedTrip.(*wings.Trip)
 	if !ok {
-		fmt.Println("Trip update failed since interface passed in is not a trip.")
+		logger.Print("Trip update failed since interface passed in is not a trip.")
 		return false
 	}
 
@@ -60,7 +60,7 @@ func UpdateTripDB(updatedTrip structs.IStructs) bool {
 		if updateDay(&day, true) {
 			trip.Days[index] = day
 		} else {
-			fmt.Println("Trip update failed since one of the day update failed.")
+			logger.Print("Trip update failed since one of the day update failed.")
 			return false
 		}
 	}
@@ -72,7 +72,7 @@ func UpdateTripDB(updatedTrip structs.IStructs) bool {
 func DeleteTripDB(existingTrip structs.IStructs) bool {
 	trip, ok := existingTrip.(*wings.Trip)
 	if !ok {
-		fmt.Println("Trip deletion failed since interface passed in is not a trip.")
+		logger.Print("Trip deletion failed since interface passed in is not a trip.")
 		return false
 	}
 
@@ -114,10 +114,10 @@ func addTrip(newTrip wings.Trip) int {
 	}
 
 	if err != nil {
-		fmt.Println(err)
+		logger.Print(err)
 		return -1
 	}
-	fmt.Println("New trip ID is: ", id)
+	logger.Print("New trip ID is: ", id)
 	return id
 }
 
@@ -136,10 +136,10 @@ func addDay(newDay wings.Day) int {
 	)
 
 	if err != nil {
-		fmt.Println(err)
+		logger.Print(err)
 		return -1
 	}
-	fmt.Println("New day ID is: ", id)
+	logger.Print("New day ID is: ", id)
 	return id
 }
 
@@ -162,10 +162,10 @@ func fetchTrip(id int) wings.Trip {
 		&trip.LastUpdated,
 	); err {
 	case sql.ErrNoRows:
-		fmt.Println("Trip not found.")
+		logger.Print("Trip not found.")
 		trip.ID = -1
 	default:
-		fmt.Println(err)
+		logger.Print(err)
 	}
 
 	trip.Cities = cityIDsToEnumArray(cities)
@@ -195,10 +195,10 @@ func fetchDay(id int) wings.Day {
 		pq.Array(&places),
 	); err {
 	case sql.ErrNoRows:
-		fmt.Println("Day not found.")
+		logger.Print("Day not found.")
 		day.ID = -1
 	default:
-		fmt.Println(err)
+		logger.Print(err)
 	}
 	day.Places = fetchPlaces(places)
 	return day
@@ -220,10 +220,10 @@ func fetchPlaces(ids []int) wings.Places {
 			&place.Description,
 		); err {
 		case sql.ErrNoRows:
-			fmt.Println("Place not found.")
+			logger.Print("Place not found.")
 			place.ID = -1
 		default:
-			fmt.Println(err)
+			logger.Print(err)
 		}
 		places[index] = place
 	}
@@ -234,8 +234,8 @@ func fetchPlaces(ids []int) wings.Places {
 func updateTrip(updatedTrip wings.Trip) bool {
 	existingTrip := GetTripDB(updatedTrip.GetID())
 	if existingTrip.GetID() != updatedTrip.GetID() {
-		fmt.Println("Existing Trip is not found. Aborting update.")
-		fmt.Println("Given ID is " + strconv.Itoa(updatedTrip.GetID()) +
+		logger.Print("Existing Trip is not found. Aborting update.")
+		logger.Print("Given ID is " + strconv.Itoa(updatedTrip.GetID()) +
 			" but found ID is " + strconv.Itoa(existingTrip.GetID()) +
 			" instead.")
 		return false
@@ -261,8 +261,8 @@ func updateTrip(updatedTrip wings.Trip) bool {
 	)
 
 	if err != nil {
-		fmt.Println("Failed to update trip.")
-		fmt.Println(err)
+		logger.Print("Failed to update trip.")
+		logger.Print(err)
 		return false
 	}
 
@@ -273,7 +273,7 @@ func updateDay(updatedDay *wings.Day, createOnNonExist bool) bool {
 	existingDay := fetchDay(updatedDay.ID)
 
 	if existingDay.ID != updatedDay.ID {
-		fmt.Println("Existing Day not found.")
+		logger.Print("Existing Day not found.")
 
 		if createOnNonExist {
 			updatedDay.ID = addDay(*updatedDay)
@@ -299,8 +299,8 @@ func updateDay(updatedDay *wings.Day, createOnNonExist bool) bool {
 	)
 
 	if err != nil {
-		fmt.Println("Failed to update day.")
-		fmt.Println(err)
+		logger.Print("Failed to update day.")
+		logger.Print(err)
 		return false
 	}
 
@@ -312,10 +312,10 @@ func deleteTripWithID(id int) bool {
 		DELETE FROM trips
 		WHERE id = $1;`
 	if _, err := db.Exec(sqlStatement, id); err != nil {
-		fmt.Println(err)
+		logger.Print(err)
 		return false
 	}
-	fmt.Println("Trip ID ", id, " deleted")
+	logger.Print("Trip ID ", id, " deleted")
 	return true
 }
 

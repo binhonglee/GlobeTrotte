@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"strconv"
 	"time"
-
+	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
@@ -22,7 +22,7 @@ import (
 func NewUserDB(newUser structs.IStructs) int {
 	user, ok := newUser.(*wings.NewUser)
 	if !ok {
-		fmt.Println("User add failed since interface passed in is not a NewUser.")
+		logger.Print("User add failed since interface passed in is not a NewUser.")
 		return -1
 	}
 
@@ -49,7 +49,7 @@ func GetUserWithEmailDB(user wings.NewUser) wings.User {
 func UpdateUserDB(updatedUser structs.IStructs) bool {
 	user, ok := updatedUser.(*wings.User)
 	if !ok {
-		fmt.Println("User update failed since interface passed in is not a user.")
+		logger.Print("User update failed since interface passed in is not a user.")
 		return false
 	}
 
@@ -60,7 +60,7 @@ func UpdateUserDB(updatedUser structs.IStructs) bool {
 func DeleteUserDB(existingUser structs.IStructs) bool {
 	user, ok := existingUser.(*wings.User)
 	if !ok {
-		fmt.Println("User deletion failed since interface passed in is not a trip.")
+		logger.Print("User deletion failed since interface passed in is not a trip.")
 		return false
 	}
 
@@ -90,10 +90,10 @@ func addNewUser(newUser wings.NewUser) int {
 		time.Now(),
 	).Scan(&id)
 	if err != nil {
-		fmt.Println(err)
+		logger.Print(err)
 		return -1
 	}
-	fmt.Println("New record ID is: ", id)
+	logger.Print("New record ID is: ", id)
 	return id
 }
 
@@ -112,10 +112,10 @@ func getUserWithID(id int) wings.User {
 		pq.Array(&sqlInt64),
 	); err {
 	case sql.ErrNoRows:
-		fmt.Println("User not found.")
+		logger.Print("User not found.")
 		user.ID = -1
 	default:
-		fmt.Println(err)
+		logger.Print(err)
 	}
 
 	user.Trips = []int{}
@@ -138,10 +138,10 @@ func getUserWithEmail(hashedPassword string) wings.NewUser {
 		&user.Password,
 	); err {
 	case sql.ErrNoRows:
-		fmt.Println("User not found.")
+		logger.Print("User not found.")
 		user.ID = -1
 	default:
-		fmt.Println(err)
+		logger.Print(err)
 	}
 
 	return user
@@ -150,8 +150,8 @@ func getUserWithEmail(hashedPassword string) wings.NewUser {
 func updateUser(updatedUser wings.User) bool {
 	existingUser := GetUserDB(updatedUser.GetID())
 	if existingUser.GetID() != updatedUser.GetID() {
-		fmt.Println("Existing User is not found. Aborting update.")
-		fmt.Println(
+		logger.Print("Existing User is not found. Aborting update.")
+		logger.Print(
 			"Given ID is "+strconv.Itoa(updatedUser.GetID()),
 			" but found ID is "+strconv.Itoa(existingUser.GetID()),
 			" instead.",
@@ -177,8 +177,8 @@ func updateUser(updatedUser wings.User) bool {
 	)
 
 	if err != nil {
-		fmt.Println("Failed to update user.")
-		fmt.Println(err)
+		logger.Print("Failed to update user.")
+		logger.Print(err)
 		return false
 	}
 
@@ -190,9 +190,9 @@ func deleteUserWithID(id int) bool {
 		DELETE FROM users
 		WHERE id = $1;`
 	if _, err := db.Exec(sqlStatement, id); err != nil {
-		fmt.Println(err)
+		logger.Print(err)
 		return false
 	}
-	fmt.Println("User ID ", id, " deleted")
+	logger.Print("User ID ", id, " deleted")
 	return true
 }

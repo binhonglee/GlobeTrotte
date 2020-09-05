@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"regexp"
 	"strings"
-
+	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
@@ -51,7 +51,7 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 		"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
 	)
 	if !emailPattern.MatchString(item.Email) {
-		fmt.Println(item.Email, " is not a valid email address.")
+		logger.Print(item.Email, " is not a valid email address.")
 		response(&res, http.StatusNotAcceptable)
 		return
 	}
@@ -59,7 +59,7 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 	item.Name = strings.Split(item.Email, "@")[0]
 	hash, err := bcrypt.GenerateFromPassword([]byte(item.Password), 14)
 	if err != nil {
-		fmt.Println("Password hashing failed: ", err)
+		logger.Print("Password hashing failed: ", err)
 		response(&res, http.StatusNotAcceptable)
 		return
 	}
@@ -89,12 +89,12 @@ func login(res http.ResponseWriter, req *http.Request) {
 	)
 
 	if err != nil {
-		fmt.Println("Failed authentication attempt for", item.Email)
+		logger.Print("Failed authentication attempt for", item.Email)
 		response(&res, http.StatusNotAcceptable)
 		return
 	}
 
-	fmt.Println("Authentication successful for", item.Email)
+	logger.Print("Authentication successful for", item.Email)
 
 	session, _ := store.Get(req, "logged-in")
 	session.Values["authenticated"] = true

@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 	"time"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 )
 
 var startTime time.Time
@@ -60,7 +61,7 @@ func PanicErr(
 func getMessage(namespace Namespace, message string) string {
 	namespaceStr := string(namespace) +
 		strings.Repeat(" ", namespaceLen-len(string(namespace)))
-	fmt.Println(
+	logger.Print(
 		time.Now().Format(time.Stamp)[7:] + " " +
 			namespaceStr + " : " + message)
 	return time.Now().Format(time.RFC3339) +
