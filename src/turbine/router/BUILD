@@ -11,6 +11,7 @@ go_library(
     "//third_party:sessions",
     "//src/turbine/wings:wings",
     "//src/turbine/database:database",
+    "//src/turbine/logger:logger",
     "//src/turbine/structs:structs",
   ],
   visibility = ["//src/..."],

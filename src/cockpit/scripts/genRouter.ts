@@ -1,6 +1,15 @@
 import { readdirSync, lstatSync, writeFileSync } from "fs";
 import { join } from "path";
 
+interface Meta {
+  [key: string]: string[];
+}
+
+const meta: Meta = {
+  guest: ["Login", "Register"],
+  loggedIn: [],
+};
+
 const viewFolder = "src/cockpit/views/";
 const presetRoute = ["landing", "404"];
 const before = `/*
@@ -10,23 +19,23 @@ const before = `/*
  * Source: src/cockpit/shared/genRouter.ts
  */
 
-import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from "vue";
+import Router from "vue-router";
 
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'landing',
-      component: () => import('./views/VLanding.vue'),
+      path: "/",
+      name: "landing",
+      component: () => import("./views/VLanding.vue"),
     }, {
-      path: '*',
-      name: '404',
-      component: () => import('./views/V404.vue'),
+      path: "*",
+      name: "404",
+      component: () => import("./views/V404.vue"),
     },`;
 
 const after = `
@@ -88,17 +97,39 @@ class GenRouter {
     name: string,
     component: string,
   ): string {
+    let metaTxt = "";
+    for (const key of Object.keys(meta)) {
+      if (meta[key].includes(name)) {
+        metaTxt +=
+          `
+        ` +
+          key +
+          `: true,`;
+      }
+    }
+
+    if (metaTxt.length > 0) {
+      metaTxt =
+        `
+      meta: {` +
+        metaTxt +
+        `
+      },`;
+    }
+
     return (
       ` {
-      path: '/` +
+      path: "/` +
       path +
-      `',
-      name: '` +
+      `",
+      name: "` +
       name +
-      `',
-      component: () => import('./views/` +
+      `",` +
+      metaTxt +
+      `
+      component: () => import("./views/` +
       component +
-      `'),
+      `"),
     },`
     );
   }

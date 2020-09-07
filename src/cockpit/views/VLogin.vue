@@ -25,6 +25,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { WingsStructUtil } from "wings-ts-util";
+import Axios, { AxiosResponse } from "axios";
 import HTTPReq from "../shared/HTTPReq";
 import NewUser from "../wings/NewUser";
 import User from "../wings/User";
@@ -45,15 +46,20 @@ export default class VLogin extends Vue {
       password: this.$data.password,
     });
 
-    HTTPReq.post(
-      "login",
+    Axios.post(
+      HTTPReq.getURI("login"),
       WingsStructUtil.stringify(newUser),
-      (returnedUser: string) => {
-        let user = new User(JSON.parse(returnedUser));
-        console.log(user);
-        // console.log(JSON.parse(returnedUser));
+      {
+        withCredentials: true,
       },
-    );
+    ).then((res: AxiosResponse) => {
+      localStorage.setItem(
+        "user",
+        WingsStructUtil.stringify(new User(res["data"])),
+      );
+
+      this.$router.push({ path: "/" });
+    });
   }
 
   private cancel(): void {

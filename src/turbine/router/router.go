@@ -74,6 +74,12 @@ var routes = Routes{
 		login,
 	},
 	Route{
+		"Logout",
+		"GET",
+		"/logout",
+		logout,
+	},
+	Route{
 		"AddTrip",
 		"POST",
 		"/trip",
@@ -96,5 +102,11 @@ var routes = Routes{
 		"DELETE",
 		"/trip/{id}",
 		deleteTrip,
+	},
+	Route{
+		"Auth",
+		"GET",
+		"/auth",
+		authenticate,
 	},
 }

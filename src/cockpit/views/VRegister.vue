@@ -33,6 +33,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { WingsStructUtil } from "wings-ts-util";
+import Axios, { AxiosResponse } from "axios";
 import HTTPReq from "../shared/HTTPReq";
 import NewUser from "../wings/NewUser";
 import User from "../wings/User";
@@ -58,21 +59,25 @@ export default class VRegsiter extends Vue {
     }
 
     const newUser = new NewUser();
-    let user = new User();
     newUser.register({
       email: this.$data.email,
       password: this.$data.password,
     });
 
-    HTTPReq.post(
-      "user",
+    Axios.post(
+      HTTPReq.getURI("user"),
       WingsStructUtil.stringify(newUser),
-      (returnedUser: string) => {
-        user = new User(JSON.parse(returnedUser));
-        console.log(user);
-        // console.log(JSON.parse(returnedUser));
+      {
+        withCredentials: true,
       },
-    );
+    ).then((res: AxiosResponse) => {
+      localStorage.setItem(
+        "user",
+        WingsStructUtil.stringify(new User(res["data"])),
+      );
+
+      this.$router.push({ path: "/login" });
+    });
   }
 
   private cancel(): void {

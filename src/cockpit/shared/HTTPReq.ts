@@ -1,4 +1,8 @@
-import * as http from "http";
+import Axios, {
+  AxiosRequestConfig,
+  AxiosResponse,
+  Method,
+} from "axios";
 
 export default class HTTPReq {
   public static post(
@@ -20,41 +24,39 @@ export default class HTTPReq {
   private static port = 4000;
   private static pathPrefix = "/api/";
 
+  public static getURI(path: string): string {
+    return (
+      "http://" +
+      HTTPReq.host +
+      ":" +
+      HTTPReq.port +
+      HTTPReq.pathPrefix +
+      path
+    );
+  }
+
   private static sendRequest(
     uri: string,
     data: string,
-    type: string,
+    type: Method,
     callback: (data: string) => void,
   ) {
-    const fullURI = {
-      host: HTTPReq.host,
-      port: HTTPReq.port,
-      path: HTTPReq.pathPrefix + uri,
+    const fullURI: AxiosRequestConfig = {
       method: type,
-      headers: {
-        "Content-Length": Buffer.byteLength(data),
-      },
+      url: this.getURI(uri),
     };
 
-    const request = http
-      .request(fullURI, (res: http.IncomingMessage) => {
-        res.setEncoding("utf8");
-        let returnData = "";
-        res.on("data", (chunk: string) => {
-          returnData += chunk;
-        });
-        res.on("end", () => {
-          callback(returnData);
-        });
+    if (data.length > 0) {
+      fullURI["data"] = data;
+    }
+
+    Axios.request(fullURI)
+      .then((res: AxiosResponse) => {
+        callback(res["data"]);
       })
-      .on("error", () => {
+      .catch(() => {
         callback(false.toString());
         // alert('Submission failed');
       });
-
-    if (data.length > 0) {
-      request.write(data);
-    }
-    request.end();
   }
 }

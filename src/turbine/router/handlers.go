@@ -27,7 +27,10 @@ func response(res *http.ResponseWriter, status int) {
 }
 
 func allowCORS(res *http.ResponseWriter) {
-	(*res).Header().Set("Access-Control-Allow-Origin", "*")
+	(*res).Header().Set(
+		"Access-Control-Allow-Origin", "http://localhost:8080")
+	(*res).Header().Set(
+		"Access-Control-Allow-Credentials", "true")
 }
 
 func unpackJSON(

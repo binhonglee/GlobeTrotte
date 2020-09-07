@@ -68,14 +68,15 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 	addItem(&res, req, db.NewUserDB, item)
 }
 
-func authenticate(req *http.Request) bool {
+func authenticate(res http.ResponseWriter, req *http.Request) {
 	session, _ := store.Get(req, "logged-in")
+	allowCORS(&res)
 
 	if auth, ok := session.Values["authenticated"].(bool); !ok || !auth {
-		return false
+		response(&res, http.StatusForbidden)
+		return
 	}
-
-	return true
+	response(&res, http.StatusOK)
 }
 
 func login(res http.ResponseWriter, req *http.Request) {
@@ -94,18 +95,24 @@ func login(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	user := db.GetUserWithEmailDB(*item)
 	fmt.Println("Authentication successful for", item.Email)
+	newCookie(res, req)
+	json.NewEncoder(res).Encode(user)
+}
 
+func newCookie(res http.ResponseWriter, req *http.Request) {
 	session, _ := store.Get(req, "logged-in")
 	session.Values["authenticated"] = true
 	session.Save(req, res)
 	response(&res, http.StatusAccepted)
-	json.NewEncoder(res).Encode(db.GetUserWithEmailDB(*item))
 }
 
 func logout(res http.ResponseWriter, req *http.Request) {
 	session, _ := store.Get(req, "logged-in")
+	allowCORS(&res)
 
+	fmt.Println("Logout successful")
 	session.Values["authenticated"] = false
 	session.Save(req, res)
 }

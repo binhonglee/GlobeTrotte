@@ -1,48 +1,66 @@
 <template lang="pug">
 #app
   el-menu.main_menu(
-    :default-active='activeIndex'
-    mode='horizontal'
-    @select='handleSelect'
+    :default-active="activeIndex"
+    mode="horizontal"
+    @select="handleSelect"
     background-color="#333"
     text-color="white"
     active-text-color="#42b983"
   )
-    el-menu-item.main_menu_item(index='/') Home
-    el-menu-item.main_menu_item(index='/about') About
-    el-submenu.main_menu_item(index='/trip')
-      template.main_menu_item(slot='title') Trips
-      el-menu-item.main_menu_item(index='/trip/view') View
-      el-menu-item.main_menu_item(index='/trip/new') New
-    el-menu-item.main_menu_item#right_menu(index='/login') Log In
-    el-menu-item.main_menu_item#right_menu(index='/register') Register
+    el-menu-item.main_menu_item(index="/") Home
+    el-menu-item.main_menu_item(index="/about") About
+    el-submenu.main_menu_item(index="/trip")
+      template.main_menu_item(slot="title") Trips
+      el-menu-item.main_menu_item(index="/trip/view") View
+      el-menu-item.main_menu_item(index="/trip/new") New
+    el-menu-item.main_menu_item#right_menu(v-if="!authed" index="/login") Log In
+    el-menu-item.main_menu_item#right_menu(v-if="!authed" index="/register") Register
+    el-menu-item.main_menu_item#right_menu(v-if="authed" v-on:click="logout") Log Out
   #content
     router-view
   #footer
     h4#footerMessage
       | Made with
       |
-      span.hearts(style='color: #e25555;') &hearts;
+      span.hearts(style="color: #e25555;") &hearts;
       |
       | by
       |
-      a(href='https://binhong.me/') BinHong Lee
+      a(href="https://binhong.me/") BinHong Lee
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import {
+  Component,
+  Vue,
+  Watch,
+} from "vue-property-decorator";
+import HTTPReq from "./shared/HTTPReq";
 
 @Component({
   data() {
     return {
       activeIndex: "/",
+      authed: false,
     };
   },
 })
 export default class App extends Vue {
   private beforeMount() {
+    this.setAuthed();
+    this.setActiveIndex();
+  }
+
+  private setAuthed() {
+    this.$data.authed =
+      localStorage.getItem("authed") === "true";
+  }
+
+  private setActiveIndex() {
     let path = window.location.pathname;
     if (path.length < 2) {
+      this.$data.activeIndex = "/";
       return;
     }
 
@@ -63,7 +81,24 @@ export default class App extends Vue {
   }
 
   private handleSelect(key: string) {
-    this.$router.push({ path: `${key}` });
+    let path = key;
+    if (path === null) {
+      path = this.$data.activeIndex;
+    }
+    this.$router.push({ path: `${path}` });
+  }
+
+  private logout() {
+    HTTPReq.get("logout", () => {
+      localStorage.clear();
+    });
+    this.$data.authed = false;
+  }
+
+  @Watch("$route", { immediate: true, deep: true })
+  private onUrlChange() {
+    this.setAuthed();
+    this.setActiveIndex();
   }
 }
 </script>
