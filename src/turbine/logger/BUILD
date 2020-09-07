@@ -3,6 +3,7 @@ go_library(
   srcs = [
     "log.go",
     "namespaces.go",
+    "status.go",
   ],
   visibility = ["//src/..."],
 )

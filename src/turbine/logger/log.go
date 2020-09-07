@@ -2,10 +2,16 @@ package logger
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
+	"runtime"
+	"strconv"
 	"strings"
 	"time"
 )
+
+const logDir = "logs"
+const logExt = ".log"
 
 var startTime time.Time
 var lastFileTime time.Time
@@ -14,13 +20,62 @@ var currentFile *os.File
 func init() {
 	startTime = time.Now()
 	createNewLogFile()
+	archiveOldLogs()
+}
+
+// Deprecated: Print an empty newline in terminal. Purely aesthetic reason.
+func NewLine() {
+	fmt.Println()
+}
+
+// Deprecated: DO NOT CALL THIS FUNCTION aside from `cleanup()` in main
+func Cleanup() {
+	archiveOldLogs()
+	fn := currentFile.Name()
+	currentFile.Close()
+	archiveLog(fn, true)
+}
+
+func archiveOldLogs() {
+	files, _ := ioutil.ReadDir(".")
+
+	for _, file := range files {
+		if !file.IsDir() &&
+			strings.HasSuffix(file.Name(), logExt) &&
+			file.Name() != currentFile.Name() {
+			archiveLog(file.Name(), false)
+		}
+	}
+}
+
+func archiveLog(filename string, exit bool) {
+	if _, err := os.Stat(logDir); os.IsNotExist(err) {
+		os.MkdirAll(logDir, 0755)
+	}
+
+	s := "Archiving " + filename + "..."
+
+	if exit {
+		Exit(logger, s)
+	} else {
+		Print(logger, s)
+	}
+
+	os.Rename(filename, logDir+"/"+filename)
 }
 
 func getFile() *os.File {
+	// This shouldn't happen ever but just in case it does
+	if currentFile == nil {
+		createNewLogFile()
+	}
+
 	// This is pretty arbitrary and might need to be fine
 	// tuned overtime
 	if time.Since(lastFileTime).Hours() > 24.0 {
+		fn := currentFile.Name()
 		currentFile.Close()
+		archiveLog(fn, false)
 		createNewLogFile()
 	}
 	return currentFile
@@ -31,20 +86,36 @@ func createNewLogFile() {
 	filename := strings.ReplaceAll(
 		lastFileTime.Format(time.RFC3339), ":", "_")
 	filename = strings.ReplaceAll(filename, "-", "")
-	currentFile, _ = os.Create(filename + ".log")
-	Print(logger, "New log file created: "+currentFile.Name())
-	defer currentFile.Close()
+	currentFile, _ = os.Create(filename + logExt)
+	Success(logger, "New log file created: "+currentFile.Name())
+}
+
+// This is used for logging in cleanup functions. Calls
+// here are not guaranteed to be stored into the log files
+// but will always be displayed in the terminal.
+func Exit(namespace Namespace, message string) {
+	if currentFile != nil {
+		Print(namespace, message)
+	} else {
+		getMessage(none, namespace, message)
+	}
 }
 
 // Print the message into the log file and the command line
 func Print(namespace Namespace, message string) {
-	getFile().WriteString(getMessage(namespace, message))
+	getFile().WriteString(
+		getMessage(none, namespace, message))
+}
+
+func Success(namespace Namespace, message string) {
+	getFile().WriteString(
+		getMessage(successC, namespace, message))
 }
 
 // Similar to Print() but calls panic right after
 func Panic(namespace Namespace, message string) {
 	getFile().WriteString(
-		"panic: " + getMessage(namespace, message))
+		getMessage(panicC, namespace, message))
 	panic(message)
 }
 
@@ -52,17 +123,90 @@ func Panic(namespace Namespace, message string) {
 func PanicErr(
 	namespace Namespace, err error, message string) {
 	if err != nil {
-		getFile().WriteString(getMessage(namespace, message))
+		getFile().WriteString(
+			getMessage(none, namespace, message))
 		Panic(namespace, err.Error())
 	}
 }
 
-func getMessage(namespace Namespace, message string) string {
+// Prints message in red indicating its an error
+// (`if err != nil`) but does not call `panic()` nor ends
+// the program
+func Err(namespace Namespace, err error, message string) {
+	if err != nil {
+		s := message
+		if len(s) < 1 {
+			s = err.Error()
+		}
+		getFile().WriteString(getMessage(errorC, namespace, s))
+	}
+}
+
+// This will print message to the terminal but not into the log file.
+// Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
+func Debug(message string) {
+	debugMessage(yellowC, message)
+}
+
+// Same as `Debug()` but green
+// Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
+func DebugGreen(message string) {
+	debugMessage(greenC, message)
+}
+
+// Same as `Debug()` but purple
+// Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
+func DebugPurple(message string) {
+	debugMessage(purpleC, message)
+}
+
+// Same as `Debug()` but cyan
+// Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
+func DebugCyan(message string) {
+	debugMessage(cyanC, message)
+}
+
+// Same as `Debug()` but blue
+// Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
+func DebugBlue(message string) {
+	debugMessage(blueC, message)
+}
+
+// Same as `Debug()` but pink
+// Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
+func DebugPink(message string) {
+	debugMessage(pinkC, message)
+}
+
+func debugMessage(color status, message string) {
+	getMessage(color, debug, message)
+}
+
+func getMessage(status status, namespace Namespace, message string) string {
 	namespaceStr := string(namespace) +
 		strings.Repeat(" ", namespaceLen-len(string(namespace)))
+	s := message + " " + getCaller(namespace, 3)
+
 	fmt.Println(
-		time.Now().Format(time.Stamp)[7:] + " " +
-			namespaceStr + " : " + message)
+		wrap(status, time.Now().Format(time.Stamp)[7:]+" "+
+			namespaceStr+" : "+s))
 	return time.Now().Format(time.RFC3339) +
-		" " + namespaceStr + " : " + message
+		" " + namespaceStr + " : " + s + "\n"
+}
+
+func wrap(status status, message string) string {
+	return string(status) + message + string(resetC)
+}
+
+func getCaller(namespace Namespace, level int) string {
+	_, file, no, ok := runtime.Caller(level)
+	if ok {
+		paths := strings.Split(file, "/")
+		if paths[len(paths)-1] != "log.go" || namespace == logger {
+			return "(" + file + ", " + strconv.Itoa(no) + ")"
+		} else {
+			return getCaller(namespace, level+2)
+		}
+	}
+	return ""
 }

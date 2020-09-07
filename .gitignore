@@ -3,6 +3,7 @@ coverage/
 cypress/
 dist/
 node_modules
+logs/
 plz-out/
 main
 pnpm-debug.log

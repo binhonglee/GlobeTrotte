@@ -45,7 +45,7 @@ func init() {
 	initializeDB()
 
 	logger.PanicErr(logger.Database, db.Ping(), "Unable to connect to database")
-	logger.Print(logger.Database, "DB initialization is complete!")
+	logger.Success(logger.Database, "DB initialization is complete!")
 }
 
 func initializeDB() {

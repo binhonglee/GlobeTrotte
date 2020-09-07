@@ -16,6 +16,7 @@ echo "Removing 'plz-out'..."
 rm -rf plz-out
 echo "Removing log files..."
 rm -rf ./*.log
+rm -rf logs
 echo "Removing '.nyc_output'..."
 rm -rf .nyc_output
 echo "Removing 'coverage'..."
