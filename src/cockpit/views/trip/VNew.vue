@@ -1,7 +1,11 @@
 <template lang="pug">
   .new_trip
     h1.title New Trip
-    CEditTrip.newTrip(:trip='trip' @save='save' @cancel='cancel')
+    CEditTrip.newTrip(
+      :trip="trip"
+      @save="save"
+      @cancel="cancel"
+    )
 </template>
 
 <script lang="ts">
@@ -9,6 +13,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { WingsStructUtil } from "wings-ts-util";
 import CEditTrip from "../../components/CEditTrip.vue";
 import HTTPReq from "../../shared/HTTPReq";
+import General from "../../shared/General";
 import Trip from "../../wings/Trip";
 
 @Component({
@@ -26,17 +31,19 @@ export default class VNew extends Vue {
     this.$router.back();
   }
 
-  private save(trip: Trip): void {
-    this.$data.trip = trip;
-    HTTPReq.post(
-      "trip",
-      WingsStructUtil.stringify(trip),
-      (newTrip: string) => {
-        this.$router.push(
-          "/trip/view/" + JSON.parse(newTrip).id,
-        );
-      },
-    );
+  private async save(trip: Trip): Promise<void> {
+    const user = await General.genCurrentUser();
+    if (user.ID !== 0) {
+      this.$data.trip = trip;
+      trip.userID = user.ID;
+      const newTrip = await HTTPReq.genPOST(
+        "trip",
+        WingsStructUtil.stringify(trip),
+      );
+      this.$router.push(
+        "/trip/view/" + new Trip(newTrip).ID,
+      );
+    }
   }
 }
 </script>

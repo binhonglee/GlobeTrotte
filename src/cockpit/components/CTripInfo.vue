@@ -2,12 +2,12 @@
   .trip_info
     div.view_trip_info(v-if="!editMode")
       CViewTrip(
-        :trip='trip'
-        :editable='editable'
-        @edit-trip='enableEditMode'
+        :trip="trip"
+        :editable="editable"
+        @edit-trip="enableEditMode"
       )
     div.edit_trip_info(v-else)
-      CEditTrip(:trip='trip' @save='save' @cancel='cancel')
+      CEditTrip(:trip="trip" @save="save" @cancel="cancel")
 </template>
 
 <script lang="ts">
@@ -38,8 +38,7 @@ export default class CTripInfo extends Vue {
   @Prop() private editable!: boolean;
 
   private beforeMount(): void {
-    this.$data.editMode =
-      this.editable === undefined ? false : this.editable;
+    this.$data.editMode = false;
   }
 
   private enableEditMode(): void {

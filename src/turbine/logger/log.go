@@ -103,19 +103,16 @@ func Exit(namespace Namespace, message string) {
 
 // Print the message into the log file and the command line
 func Print(namespace Namespace, message string) {
-	getFile().WriteString(
-		getMessage(none, namespace, message))
+	messageToFile(none, namespace, message)
 }
 
 func Success(namespace Namespace, message string) {
-	getFile().WriteString(
-		getMessage(successC, namespace, message))
+	messageToFile(successC, namespace, message)
 }
 
 // Similar to Print() but calls panic right after
 func Panic(namespace Namespace, message string) {
-	getFile().WriteString(
-		getMessage(panicC, namespace, message))
+	messageToFile(panicC, namespace, message)
 	panic(message)
 }
 
@@ -123,8 +120,7 @@ func Panic(namespace Namespace, message string) {
 func PanicErr(
 	namespace Namespace, err error, message string) {
 	if err != nil {
-		getFile().WriteString(
-			getMessage(none, namespace, message))
+		messageToFile(none, namespace, message)
 		Panic(namespace, err.Error())
 	}
 }
@@ -138,7 +134,7 @@ func Err(namespace Namespace, err error, message string) {
 		if len(s) < 1 {
 			s = err.Error()
 		}
-		getFile().WriteString(getMessage(errorC, namespace, s))
+		messageToFile(errorC, namespace, s)
 	}
 }
 
@@ -182,14 +178,21 @@ func debugMessage(color status, message string) {
 	getMessage(color, debug, message)
 }
 
+func messageToFile(
+	status status, namespace Namespace, message string) {
+	s := getMessage(status, namespace, message)
+	getFile().WriteString(s)
+}
+
 func getMessage(status status, namespace Namespace, message string) string {
 	namespaceStr := string(namespace) +
 		strings.Repeat(" ", namespaceLen-len(string(namespace)))
-	s := message + " " + getCaller(namespace, 3)
+	s := message + " " + getCaller(namespace, 4)
 
 	fmt.Println(
 		wrap(status, time.Now().Format(time.Stamp)[7:]+" "+
 			namespaceStr+" : "+s))
+
 	return time.Now().Format(time.RFC3339) +
 		" " + namespaceStr + " : " + s + "\n"
 }
@@ -202,7 +205,7 @@ func getCaller(namespace Namespace, level int) string {
 	_, file, no, ok := runtime.Caller(level)
 	if ok {
 		paths := strings.Split(file, "/")
-		if paths[len(paths)-1] != "log.go" || namespace == logger {
+		if paths[len(paths)-1] != "log.go" || namespace == logger || namespace == flags {
 			return "(" + file + ", " + strconv.Itoa(no) + ")"
 		} else {
 			return getCaller(namespace, level+2)

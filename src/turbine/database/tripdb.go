@@ -56,6 +56,12 @@ func UpdateTripDB(updatedTrip structs.IStructs) bool {
 		return false
 	}
 
+	existingTrip, _ := GetTripDB(updatedTrip.GetID()).(*wings.Trip)
+	if existingTrip.UserID != trip.UserID {
+		fmt.Println("Update request comes from a different user than the original trip owner")
+		return false
+	}
+
 	for index, day := range trip.Days {
 		if updateDay(&day, true) {
 			trip.Days[index] = day

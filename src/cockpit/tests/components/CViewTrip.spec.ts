@@ -1,5 +1,5 @@
 import CViewTrip from "../../components/CViewTrip.vue";
-import { CityUtil } from "../../shared/CityUtil";
+// import { CityUtil } from "../../shared/CityUtil";
 import { mockTrip } from "../mockData/data";
 
 import { expect } from "chai";
@@ -28,9 +28,9 @@ describe("CViewTrip.vue", () => {
     expect(wrapper.find("#description").text()).equals(
       mockedTrip.description,
     );
-    expect(wrapper.find("#city").text()).equals(
-      CityUtil.toString(mockedTrip.cities[0]),
-    );
+    // expect(wrapper.find("#city").text()).equals(
+    //   CityUtil.toString(mockedTrip.cities[0]),
+    // );
     expect(wrapper.find("#creatorInfo").text()).equals(
       "Author: " + mockedTrip.userID,
     );

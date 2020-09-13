@@ -16,4 +16,5 @@ const (
 	// in this package anyway
 	logger = "logger"
 	debug  = "debug"
+	flags  = "flags"
 )

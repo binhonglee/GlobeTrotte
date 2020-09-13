@@ -12,6 +12,7 @@ import (
 
 var addedTrip wings.Trip
 var addedUser wings.User
+var cookies *http.Cookie
 
 func TestAddInvalidEmailUser(t *testing.T) {
 	var newUser = wings.NewUser{
@@ -57,6 +58,24 @@ func TestGetUser(t *testing.T) {
 			strings.Join(diff, ", "),
 		)
 	}
+}
+
+func TestWrongPasswordLogin(t *testing.T) {
+	loginTest(
+		t, &wings.NewUser{
+			Email:    "routertest@test.com",
+			Password: "shouldReplaceThisWithAnotherRand",
+		}, http.StatusAccepted,
+	)
+}
+
+func TestCorrectPasswordLogin(t *testing.T) {
+	loginTest(
+		t, &wings.NewUser{
+			Email:    "routertest@test.com",
+			Password: "shouldReplaceThisWithRand",
+		}, http.StatusAccepted,
+	)
 }
 
 func TestAddTrip(t *testing.T) {
@@ -107,7 +126,7 @@ func TestUpdateTrip(t *testing.T) {
 	addedTrip.Description = "Updated description"
 
 	updateTest(
-		"/trip/"+strconv.Itoa(addedTrip.ID), t,
+		"/trip/", t,
 		&addedTrip, http.StatusAccepted,
 	)
 	getTest(
@@ -128,7 +147,7 @@ func TestUpdateUser(t *testing.T) {
 	addedUser.Name = "My NewName"
 
 	updateTest(
-		"/user/"+strconv.Itoa(addedUser.ID), t,
+		"/user/", t,
 		&addedUser, http.StatusAccepted,
 	)
 	getTest(
@@ -149,7 +168,7 @@ func TestDeleteTrip(t *testing.T) {
 }
 
 func TestDeleteNonExistentTrip(t *testing.T) {
-	deleteTest("/trip/"+strconv.Itoa(-1), t, http.StatusNotFound)
+	deleteTest("/trip/"+strconv.Itoa(-1), t, http.StatusForbidden)
 }
 
 func TestDeleteUser(t *testing.T) {
@@ -157,7 +176,13 @@ func TestDeleteUser(t *testing.T) {
 }
 
 func TestDeleteNonExistentUser(t *testing.T) {
-	deleteTest("/user/"+strconv.Itoa(-1), t, http.StatusNotFound)
+	deleteTest("/user/"+strconv.Itoa(-1), t, http.StatusForbidden)
+}
+
+func TestLogout(t *testing.T) {
+	get(
+		"/logout", t, http.StatusOK,
+	)
 }
 
 func removeIDFromArray(status bool, arr []string) (bool, []string) {

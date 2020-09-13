@@ -2,25 +2,25 @@
   .edit_trip
     CEditItem(
       v-for="item in items"
-      @save='save'
-      :item='item'
-      v-bind:key='item.type'
+      @save="save"
+      :item="item"
+      v-bind:key="item.type"
     )
     span.editLabel City:
-    el-select.editInput(v-model='city' placeholder='Select')
+    el-select.editInput(v-model="city" placeholder="")
       el-option(
-        v-for='item in cities'
-        :key='item.key'
-        :label='item.label'
-        :value='item.key'
+        v-for="item in cities"
+        :key="item.key"
+        :label="item.label"
+        :value="item.key"
       )
-    CEditPlaces(:places='locations')
+    CEditPlaces(:places="locations")
     div.confirmationButtons
       el-button#save(
-        type='primary' v-on:click='save' :loading='saving'
+        type="primary" v-on:click="save" :loading="saving"
       ) Save
       el-button#cancel(
-        type='danger' v-on:click='cancel'
+        type="danger" v-on:click="cancel"
       ) Cancel
 </template>
 
@@ -56,13 +56,10 @@ import TripEditable from "../shared/TripEditable";
 export default class CEditTrip extends Vue {
   @Prop() private trip!: Trip;
 
-  private afterMount(): void {
+  private beforeMount(): void {
     this.$data.cities = CityUtil.allActiveCities();
     this.$data.editables = TripEditable.getAllTypes();
 
-    if (this.trip.days.length > 0) {
-      this.$data.locations = this.trip.days[0].places;
-    }
     if (this.trip.cities.length > 0) {
       this.$data.city = this.trip.cities[0];
     }

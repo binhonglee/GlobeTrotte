@@ -2,9 +2,17 @@
   .search
     h1.title Trip
     |     Trip ID:
-    el-input.tripSearchInput#getTripID(type="text" v-on:keyup.enter="gotoTrip" v-model="inputID" autofocus="")
+    el-input.tripSearchInput#getTripID(
+      type="text"
+      v-model="inputID"
+      autofocus=true
+    )
     el-button.tripSearchInput(v-on:click="gotoTrip") Find
-    CTripInfo(v-if="trip.name !== ''" :trip="trip" :editable="owner")
+    CTripInfo(
+      v-if="trip.name !== ''"
+      :trip="trip"
+      :editable="owner"
+    )
 </template>
 
 <script lang="ts">
@@ -15,7 +23,7 @@ import {
 } from "vue-property-decorator";
 import CTripInfo from "../../components/CTripInfo.vue";
 import HTTPReq from "../../shared/HTTPReq";
-import Place from "../../wings/Place";
+import General from "../../shared/General";
 import Trip from "../../wings/Trip";
 
 @Component({
@@ -32,44 +40,31 @@ import Trip from "../../wings/Trip";
   },
 })
 export default class VGetID extends Vue {
-  @Watch("$route.path") private onRouteChange(): void {
-    this.init();
+  @Watch("$route.path") private async onRouteChange() {
+    await this.init();
   }
 
-  private mounted() {
-    this.init();
+  private async beforeMount() {
+    await this.init();
   }
 
-  private init(): void {
+  private async init() {
     if (this.$route.params.id === undefined) {
       this.$data.trip.name = "";
       return;
     }
 
-    const uri: string = "trip/" + this.$route.params.id;
-    HTTPReq.get(uri, (data: string) => {
-      try {
-        this.$data.trip = new Trip();
-        const parsedData = JSON.parse(data);
-        if (parsedData.places === null) {
-          parsedData.places = [];
-        } else {
-          for (
-            let i = 0;
-            i < parsedData.places.length;
-            i++
-          ) {
-            const temp = new Place(parsedData.places[i]);
-            parsedData.places[i] = temp;
-          }
-        }
-        this.$data.trip = new Trip(parsedData);
-      } catch (e) {
-        alert("Error. Trip not found.");
-      }
-    });
-
-    this.$data.owner = this.ifUserIsOwner(0);
+    try {
+      const parsedData = await HTTPReq.genGET(
+        "trip/" + this.$route.params.id,
+      );
+      this.$data.trip = new Trip(parsedData);
+      this.$data.owner = this.ifUserIsOwner(
+        this.$data.trip.userID,
+      );
+    } catch (e) {
+      alert("Error. Trip not found.");
+    }
   }
 
   private gotoTrip(): void {
@@ -82,9 +77,10 @@ export default class VGetID extends Vue {
   }
 
   // eslint-disable-next-line
-    private ifUserIsOwner(userID: number): boolean {
+  private async ifUserIsOwner(userID: number): Promise<boolean> {
+    return (await General.genCurrentUser()).ID === userID;
     // TODO: Check if the current user is owner of the Trip
-    return true;
+    // return true;
   }
 }
 </script>
@@ -97,6 +93,6 @@ export default class VGetID extends Vue {
   display: inline;
 }
 #getTripID {
-  width: 50px;
+  width: 100px;
 }
 </style>

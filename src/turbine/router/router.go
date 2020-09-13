@@ -6,28 +6,26 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// Route - struct for URL routing.
-type Route struct {
+type route struct {
 	Name        string
 	Method      string
 	Pattern     string
 	HandlerFunc http.HandlerFunc
 }
 
-// Routes - Multiple Route in an array.
-type Routes []Route
+type routes []route
 
 const API_PREFIX = "/api"
 
 // NewRouter - Just an average router that create routes.
 func NewRouter() *mux.Router {
 	router := mux.NewRouter()
-	for _, route := range routes {
+	for _, actualRoute := range actualRoutes {
 		router.
-			Methods(route.Method).
-			Path(API_PREFIX + route.Pattern).
-			Name(route.Name).
-			Handler(route.HandlerFunc)
+			Methods(actualRoute.Method).
+			Path(API_PREFIX + actualRoute.Pattern).
+			Name(actualRoute.Name).
+			Handler(actualRoute.HandlerFunc)
 	}
 	router.
 		PathPrefix("/").
@@ -36,74 +34,74 @@ func NewRouter() *mux.Router {
 	return router
 }
 
-var routes = Routes{
-	Route{
+var actualRoutes = routes{
+	route{
 		"Passwd",
 		"GET",
 		"/passwd",
 		passwd,
 	},
-	Route{
+	route{
 		"AddUser",
 		"POST",
 		"/user",
 		newUser,
 	},
-	Route{
+	route{
 		"GetUser",
 		"GET",
 		"/user/{id}",
 		getUser,
 	},
-	Route{
+	route{
 		"UpdateUser",
 		"POST",
 		"/user/{id}",
 		updateUser,
 	},
-	Route{
+	route{
 		"DeleteUser",
 		"DELETE",
 		"/user/{id}",
 		deleteUser,
 	},
-	Route{
+	route{
 		"Login",
 		"POST",
 		"/login",
 		login,
 	},
-	Route{
+	route{
 		"Logout",
 		"GET",
 		"/logout",
 		logout,
 	},
-	Route{
+	route{
 		"AddTrip",
 		"POST",
 		"/trip",
 		addTrip,
 	},
-	Route{
+	route{
 		"UpdateTrip",
 		"POST",
 		"/trip/{id}",
 		updateTrip,
 	},
-	Route{
+	route{
 		"GetTrip",
 		"GET",
 		"/trip/{id}",
 		getTrip,
 	},
-	Route{
+	route{
 		"DeleteTrip",
 		"DELETE",
 		"/trip/{id}",
 		deleteTrip,
 	},
-	Route{
+	route{
 		"Auth",
 		"GET",
 		"/auth",

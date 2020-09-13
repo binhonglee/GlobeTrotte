@@ -32,7 +32,7 @@ describe("CTripInfo.vue", () => {
         editable: true,
       },
     });
-    expect(wrapper.find(".edit_trip_info").exists()).equals(
+    expect(wrapper.find(".view_trip_info").exists()).equals(
       true,
     );
   });

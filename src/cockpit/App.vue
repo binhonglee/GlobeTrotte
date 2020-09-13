@@ -13,21 +13,13 @@
     el-submenu.main_menu_item(index="/trip")
       template.main_menu_item(slot="title") Trips
       el-menu-item.main_menu_item(index="/trip/view") View
-      el-menu-item.main_menu_item(index="/trip/new") New
+      el-menu-item.main_menu_item(v-if="authed" index="/trip/new") New
     el-menu-item.main_menu_item#right_menu(v-if="!authed" index="/login") Log In
     el-menu-item.main_menu_item#right_menu(v-if="!authed" index="/register") Register
     el-menu-item.main_menu_item#right_menu(v-if="authed" v-on:click="logout") Log Out
   #content
     router-view
   #footer
-    h4#footerMessage
-      | Made with
-      |
-      span.hearts(style="color: #e25555;") &hearts;
-      |
-      | by
-      |
-      a(href="https://binhong.me/") BinHong Lee
 </template>
 
 <script lang="ts">
@@ -37,6 +29,7 @@ import {
   Watch,
 } from "vue-property-decorator";
 import HTTPReq from "./shared/HTTPReq";
+import General from "./shared/General";
 
 @Component({
   data() {
@@ -47,14 +40,13 @@ import HTTPReq from "./shared/HTTPReq";
   },
 })
 export default class App extends Vue {
-  private beforeMount() {
-    this.setAuthed();
+  private async beforeMount() {
+    await this.setAuthed();
     this.setActiveIndex();
   }
 
-  private setAuthed() {
-    this.$data.authed =
-      localStorage.getItem("authed") === "true";
+  private async setAuthed() {
+    this.$data.authed = await General.authSession();
   }
 
   private setActiveIndex() {
@@ -88,16 +80,15 @@ export default class App extends Vue {
     this.$router.push({ path: `${path}` });
   }
 
-  private logout() {
-    HTTPReq.get("logout", () => {
-      localStorage.clear();
-    });
+  private async logout() {
+    await HTTPReq.genGET("logout");
+    localStorage.clear();
     this.$data.authed = false;
   }
 
   @Watch("$route", { immediate: true, deep: true })
-  private onUrlChange() {
-    this.setAuthed();
+  private async onUrlChange() {
+    await this.setAuthed();
     this.setActiveIndex();
   }
 }

@@ -7,7 +7,7 @@ interface Meta {
 
 const meta: Meta = {
   guest: ["Login", "Register"],
-  loggedIn: [],
+  loggedIn: ["trip/New"],
 };
 
 const viewFolder = "src/cockpit/views/";

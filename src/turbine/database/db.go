@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
+	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	// This is needed for PostgreSQL to work properly
 	_ "github.com/lib/pq"
 )

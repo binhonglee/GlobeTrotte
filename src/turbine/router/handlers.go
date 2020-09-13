@@ -27,8 +27,10 @@ func response(res *http.ResponseWriter, status int) {
 }
 
 func allowCORS(res *http.ResponseWriter) {
+	var url = "http://localhost:8080"
+
 	(*res).Header().Set(
-		"Access-Control-Allow-Origin", "http://localhost:8080")
+		"Access-Control-Allow-Origin", url)
 	(*res).Header().Set(
 		"Access-Control-Allow-Credentials", "true")
 }
@@ -100,12 +102,12 @@ func getItem(
 
 func updateItem(
 	res *http.ResponseWriter,
-	req *http.Request,
+	id int,
 	updateFunc func(structs.IStructs) bool,
 	getFunc func(int) structs.IStructs,
 	item structs.IStructs,
 ) {
-	if id := getFunc(item.GetID()); id.GetID() == -1 {
+	if rItem := getFunc(item.GetID()); rItem.GetID() != id {
 		response(res, http.StatusNotFound)
 		return
 	}
@@ -121,19 +123,10 @@ func updateItem(
 
 func deleteItem(
 	res *http.ResponseWriter,
-	req *http.Request,
+	id int,
 	getFunc func(int) structs.IStructs,
 	deleteFunc func(structs.IStructs) bool,
 ) {
-	vars := mux.Vars(req)
-	var id int
-	var error error
-
-	if id, error = strconv.Atoi(vars["id"]); error != nil {
-		fmt.Println(error)
-		return
-	}
-
 	inf := getFunc(id)
 
 	success := deleteFunc(inf)

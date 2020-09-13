@@ -6,12 +6,12 @@
       v-if="trip.description !== ''"
     ) {{ trip.description }}
     //- p(v-if="trip.places.length !== 0")
-    //-   CPlaces(:places='trip.places')
+    //-   CPlaces(:places="trip.places")
     p#city {{ city }}
     p#creatorInfo Author: {{ trip.userID }}
     p#createdDate Created on: {{ trip.timeCreated.toLocaleDateString() }}
     el-button#enable_edit(
-      v-if='editable === true' v-on:click='enableEditMode'
+      v-if="editBtn === true" v-on:click="enableEditMode"
       ) Edit
 </template>
 
@@ -30,6 +30,7 @@ import City from "../wings/City";
   data() {
     return {
       city: String,
+      editBtn: Boolean,
     };
   },
   components: {
@@ -38,9 +39,10 @@ import City from "../wings/City";
 })
 export default class CViewTrip extends Vue {
   @Prop() private trip!: Trip;
-  @Prop() private editable!: boolean;
+  @Prop() private editable!: Promise<boolean>;
 
-  private beforeMount(): void {
+  private async beforeMount() {
+    this.$data.editBtn = await this.editable;
     const city =
       this.trip !== undefined && this.trip.cities.length > 0
         ? this.trip.cities[0]
