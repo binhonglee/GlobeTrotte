@@ -1,5 +1,5 @@
 dependencies:
-  axios: 0.20.0
+  axios: 0.21.0
   element-ui: 2.13.2_vue@2.6.12
   tslib: 2.0.3
   vue: 2.6.12
@@ -1548,12 +1548,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
-  /axios/0.20.0:
+  /axios/0.21.0:
     dependencies:
       follow-redirects: 1.13.0
     dev: false
     resolution:
-      integrity: sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
+      integrity: sha512-fmkJBknJKoZwem3/IKSSLpkdNXZeBu5Q7GA/aRsr2btgrptmSCxi2oFjZHqGdK9DoTil9PIHlPIZw2EcRJXRvw==
   /babel-code-frame/6.26.0:
     dependencies:
       chalk: 1.1.3
@@ -11235,7 +11235,7 @@ specifiers:
   '@vue/eslint-config-prettier': 6.0.0
   '@vue/eslint-config-typescript': 7.0.0
   '@vue/test-utils': 1.1.0
-  axios: 0.20.0
+  axios: 0.21.0
   chai: 4.2.0
   cross-env: 7.0.2
   element-ui: 2.13.2
