@@ -21,7 +21,7 @@ devDependencies:
   '@vue/cli-service': 4.5.8_43926e9225371ca2f30670fcbf4609a6
   '@vue/eslint-config-prettier': 6.0.0_84db9ae7157d1d2627aa8742351a2bf4
   '@vue/eslint-config-typescript': 7.0.0_eea8a85022e83fc556e2a077bdc8f7fc
-  '@vue/test-utils': 1.1.0_ae554d8947d7e926b014dda25865f517
+  '@vue/test-utils': 1.1.1_ae554d8947d7e926b014dda25865f517
   chai: 4.2.0
   cross-env: 7.0.2
   eslint: 7.12.1
@@ -939,7 +939,7 @@ packages:
       webpack: '>=4.0.0'
     resolution:
       integrity: sha512-8VCoJeeH8tCkzhkpfOkt+abALQkS11OIHhte5MBzYaKMTqK0A3ZAKEUVAffsOklhEv7t0yrQt696Opnu9oAx+w==
-  /@vue/test-utils/1.1.0_ae554d8947d7e926b014dda25865f517:
+  /@vue/test-utils/1.1.1_ae554d8947d7e926b014dda25865f517:
     dependencies:
       dom-event-types: 1.0.0
       lodash: 4.17.20
@@ -951,7 +951,7 @@ packages:
       vue: 2.x
       vue-template-compiler: ^2.x
     resolution:
-      integrity: sha512-M+3jtVqNYIrvzO5gaxogre5a5+96h0hN/dXw+5Lj0t+dp6fAhYcUjpLrC9j9cEEkl2Rcuh/gKYRUmR5N4vcqPw==
+      integrity: sha512-/32538ilZ9qSiu1gui7zfBn+IFy+zoTaQTZ1qiLfQXzZtaeAD23kJMrnqaoe2w8JzJoXuqHUl2ruuStG8rwFYQ==
   /@vue/web-component-wrapper/1.2.0:
     dev: true
     resolution:
@@ -11234,7 +11234,7 @@ specifiers:
   '@vue/cli-service': 4.5.8
   '@vue/eslint-config-prettier': 6.0.0
   '@vue/eslint-config-typescript': 7.0.0
-  '@vue/test-utils': 1.1.0
+  '@vue/test-utils': 1.1.1
   axios: 0.21.0
   chai: 4.2.0
   cross-env: 7.0.2
