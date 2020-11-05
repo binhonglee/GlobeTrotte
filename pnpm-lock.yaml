@@ -5,7 +5,7 @@ dependencies:
   vue: 2.6.12
   vue-class-component: 7.2.6_vue@2.6.12
   vue-property-decorator: 9.0.1_2dc4252c5371093c9ebcca71536ac4e9
-  vue-router: 3.4.8
+  vue-router: 3.4.9
   wings-ts-util: 0.0.6
 devDependencies:
   '@types/assert': 1.5.2
@@ -10622,10 +10622,10 @@ packages:
       vue-class-component: '*'
     resolution:
       integrity: sha512-SFfWmhWQBPncp9lQx/5w/NdqgSsI9xybpVvZ5Gdq2cE+7CvDuROsycsNIKtqrV5In0LUolFL+DEeikNChpW/ng==
-  /vue-router/3.4.8:
+  /vue-router/3.4.9:
     dev: false
     resolution:
-      integrity: sha512-3BsR84AqarcmweXjItxw3jwQsiYNssYg090yi4rlzTnCJxmHtkyCvhNz9Z7qRSOkmiV485KkUCReTp5AjNY4wg==
+      integrity: sha512-CGAKWN44RqXW06oC+u4mPgHLQQi2t6vLD/JbGRDAXm0YpMv0bgpKuU5bBd7AvMgfTz9kXVRIWKHqRwGEb8xFkA==
   /vue-style-loader/4.1.2:
     dependencies:
       hash-sum: 1.0.2
@@ -11254,7 +11254,7 @@ specifiers:
   vue: 2.6.12
   vue-class-component: 7.2.6
   vue-property-decorator: 9.0.1
-  vue-router: 3.4.8
+  vue-router: 3.4.9
   vue-template-compiler: 2.6.12
   wait-on: 5.2.0
   wings-ts-util: 0.0.6
