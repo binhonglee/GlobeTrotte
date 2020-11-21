@@ -54,7 +54,7 @@
     "eslint": "7.12.1",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-vue": "7.1.0",
-    "forever": "3.0.2",
+    "forever": "3.0.3",
     "node-sass": "4.14.1",
     "nyc": "15.1.0",
     "prettier": "2.1.2",
