@@ -1,6 +1,6 @@
 dependencies:
   axios: 0.21.0
-  element-ui: 2.14.0_vue@2.6.12
+  element-ui: 2.14.1_vue@2.6.12
   tslib: 2.0.3
   vue: 2.6.12
   vue-class-component: 7.2.6_vue@2.6.12
@@ -3424,7 +3424,7 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-2wQ1IcldfjA/2PNFvtwzSc+wcp4=
-  /element-ui/2.14.0_vue@2.6.12:
+  /element-ui/2.14.1_vue@2.6.12:
     dependencies:
       async-validator: 1.8.5
       babel-helper-vue-jsx-merge-props: 2.0.3
@@ -3437,7 +3437,7 @@ packages:
     peerDependencies:
       vue: ^2.5.17
     resolution:
-      integrity: sha512-dda4xw40HT7Xcx/7aV5METvGjwMumdd5D1B7vjhDkmqvJP/9IEqgL5VsYA4YXz+RUVqyxMByRwf1WedrICJTTQ==
+      integrity: sha512-Uje0J12dBaXdyvt/EtuDA8diFbYTdO7uI4QCfl7zmEJmE1WxgCSVKhlRRoL8MDonO8pyNVhB4n0AFAR14g56nw==
   /elliptic/6.5.3:
     dependencies:
       bn.js: 4.11.9
@@ -11272,7 +11272,7 @@ specifiers:
   axios: 0.21.0
   chai: 4.2.0
   cross-env: 7.0.2
-  element-ui: 2.14.0
+  element-ui: 2.14.1
   eslint: 7.14.0
   eslint-plugin-prettier: 3.1.4
   eslint-plugin-vue: 7.1.0
