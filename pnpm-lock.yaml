@@ -27,7 +27,7 @@ devDependencies:
   eslint: 7.12.1
   eslint-plugin-prettier: 3.1.4_eslint@7.12.1+prettier@2.1.2
   eslint-plugin-vue: 7.1.0_eslint@7.12.1
-  forever: 3.0.2
+  forever: 3.0.3
   node-sass: 4.14.1
   nyc: 15.1.0
   prettier: 2.1.2
@@ -3801,12 +3801,18 @@ packages:
       node: '>=4.0.0'
     resolution:
       integrity: sha512-z7IyloorXvKbFx9Bpie2+vMJKKx1fH1EN5yiTfp8CiLOTptSYy1g8H4yDpGlEdshL1PBiFtBHepF2cNsqeEeFQ==
-  /event-stream/0.5.3:
+  /event-stream/3.3.4:
     dependencies:
-      optimist: 0.2.8
+      duplexer: 0.1.1
+      from: 0.1.7
+      map-stream: 0.1.0
+      pause-stream: 0.0.11
+      split: 0.3.3
+      stream-combiner: 0.0.4
+      through: 2.3.8
     dev: true
     resolution:
-      integrity: sha1-t3uTCfcQet3+q2PwwOr9jbC9jBw=
+      integrity: sha1-SrTJoPWlTbkzi0w02Gv86PSzVXE=
   /eventemitter2/0.4.14:
     dev: true
     resolution:
@@ -3815,6 +3821,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-DhqEd6+CGm7zmVsxG/dMI6UkfxU=
+  /eventemitter2/6.4.3:
+    dev: true
+    resolution:
+      integrity: sha512-t0A2msp6BzOf+QAcI6z9XMktLj52OjGQg+8SJH6v5+3uxNpWYRR3wQmfA+6xtMU9kOC59qk9licus5dYcrYkMQ==
   /eventemitter3/4.0.4:
     dev: true
     resolution:
@@ -4330,27 +4340,28 @@ packages:
     dev: true
     resolution:
       integrity: sha1-+8cfDEGt6zf5bFd60e1C2P2sypE=
-  /forever-monitor/3.0.0:
+  /forever-monitor/3.0.2:
     dependencies:
-      broadway: 0.3.6
       chokidar: 2.1.8
+      eventemitter2: 6.4.3
       minimatch: 3.0.4
-      ps-tree: 0.0.3
+      ps-tree: 1.2.0
       utile: 0.3.0
     dev: true
     engines:
       node: '>=6'
     resolution:
-      integrity: sha512-F3E8C9CTPK+uRGdVTMBHGo7mHX+KRtClLzkegR6ux1yy+ByxOziumpTzxajzfhICHfYdnGWY4Bokl8dirYsDeA==
-  /forever/3.0.2:
+      integrity: sha512-uSqdMVxXyjukVzI118Egbaqd5vqtKTeYGvGFUKsS6b85+7boFDSrSv6Ru6VD+mqTVbIAdJJdfuHKRHsQHQsAKw==
+  /forever/3.0.3:
     dependencies:
       async: 1.5.2
       cliff: 0.1.10
       clone: 2.1.2
       colors: 0.6.2
       deep-equal: 1.1.1
+      eventemitter2: 6.4.3
       flatiron: 0.4.3
-      forever-monitor: 3.0.0
+      forever-monitor: 3.0.2
       mkdirp: 0.5.5
       nconf: 0.10.0
       nssocket: 0.6.0
@@ -4365,7 +4376,7 @@ packages:
       node: '>=6'
     hasBin: true
     resolution:
-      integrity: sha512-GKZLVs3RQh52kF3kuCrlR1e5npaOqomQzTQryZOFJZ9GKNqLya75LSn1rdjFQ8XixwX3jT76pIJmtGN4XXv1aw==
+      integrity: sha512-oQUHR/2qAo8+Ne36wD1/O8YgLKrix0wVNerQfleep6b7GXs5nkmxXXcO+0MK+uLoe9U7wtdga9rL8wTZ5wT49g==
   /fork-ts-checker-webpack-plugin/3.1.1:
     dependencies:
       babel-code-frame: 6.26.0
@@ -4432,6 +4443,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=
+  /from/0.1.7:
+    dev: true
+    resolution:
+      integrity: sha1-g8YK/Fi5xWmXAH7Rp2izqzA6RP4=
   /from2/2.3.0:
     dependencies:
       inherits: 2.0.4
@@ -6359,6 +6374,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-2TPOuSBdgr3PSIb2dCvcK03qFG0=
+  /map-stream/0.1.0:
+    dev: true
+    resolution:
+      integrity: sha1-5WqpTEyAVaFkBKBnS3jyFffI4ZQ=
   /map-visit/1.0.0:
     dependencies:
       object-visit: 1.0.1
@@ -7289,12 +7308,6 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-PqHpggC9bLV0VeWcdKhkpxY+3JTzetLSqTCWL/z/tFIbI6G8JCjondXklT1JinczLz2Xib62sSp0T/gKT4KksA==
-  /optimist/0.2.8:
-    dependencies:
-      wordwrap: 0.0.3
-    dev: true
-    resolution:
-      integrity: sha1-6YGrfiaLRXlIWTtVZ0wJmoFcrDE=
   /optimist/0.6.0:
     dependencies:
       minimist: 0.0.10
@@ -7668,6 +7681,12 @@ packages:
     dev: true
     resolution:
       integrity: sha1-uULm1L3mUwBe9rcTYd74cn0GReA=
+  /pause-stream/0.0.11:
+    dependencies:
+      through: 2.3.8
+    dev: true
+    resolution:
+      integrity: sha1-/lo0sMvOErWqaitAPuLnO2AvFEU=
   /pbkdf2/3.1.1:
     dependencies:
       create-hash: 1.2.0
@@ -8294,12 +8313,15 @@ packages:
     dev: true
     resolution:
       integrity: sha1-0/wRS6BplaRexok/SEzrHXj19HY=
-  /ps-tree/0.0.3:
+  /ps-tree/1.2.0:
     dependencies:
-      event-stream: 0.5.3
+      event-stream: 3.3.4
     dev: true
+    engines:
+      node: '>= 0.10'
+    hasBin: true
     resolution:
-      integrity: sha1-2/jXUqf+Ivp9WGNWiUmWEOknbdw=
+      integrity: sha512-0VnamPPYHl4uaU/nSFeZZpR21QAWRz+sRv4iW9+v/GS/J5U5iZB5BNN6J0RMoOvdx2gWM2+ZFMIm58q24e4UYA==
   /pseudomap/1.0.2:
     dev: true
     resolution:
@@ -9471,6 +9493,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-NzNVhJDYpwceVVii8/Hu6DKfD2G+NrQHlS/V/qgv763EYudVwEcMQNxd2lh+0VrUByXN/oJkl5grOhYWvQUYiw==
+  /split/0.3.3:
+    dependencies:
+      through: 2.3.8
+    dev: true
+    resolution:
+      integrity: sha1-zQ7qXmOiEd//frDwkcQTPi0N0o8=
   /sprintf-js/1.0.3:
     dev: true
     resolution:
@@ -9553,6 +9581,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-nX6hmklHs/gr2FuxYDltq8fJA1GDlxKQCz8O/IM4atRqBH8OORmBNgfvW5gG10GT/qQ9u0CzIvr2X5Pkt6ntqg==
+  /stream-combiner/0.0.4:
+    dependencies:
+      duplexer: 0.1.1
+    dev: true
+    resolution:
+      integrity: sha1-TV5DPBhSYd3mI8o/RMWGvPXErRQ=
   /stream-each/1.2.3:
     dependencies:
       end-of-stream: 1.4.4
@@ -11242,7 +11276,7 @@ specifiers:
   eslint: 7.12.1
   eslint-plugin-prettier: 3.1.4
   eslint-plugin-vue: 7.1.0
-  forever: 3.0.2
+  forever: 3.0.3
   node-sass: 4.14.1
   nyc: 15.1.0
   prettier: 2.1.2
