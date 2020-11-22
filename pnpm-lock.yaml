@@ -18,7 +18,7 @@ devDependencies:
   '@vue/cli-plugin-router': 4.5.9_@vue+cli-service@4.5.9
   '@vue/cli-plugin-typescript': 4.5.9_9edba2caadb4655ba1039259b48f0325
   '@vue/cli-plugin-unit-mocha': 4.5.9_@vue+cli-service@4.5.9
-  '@vue/cli-service': 4.5.9_43926e9225371ca2f30670fcbf4609a6
+  '@vue/cli-service': 4.5.9_ec777c712bde911bf9f8387f3311a830
   '@vue/eslint-config-prettier': 6.0.0_e2cd239ef28be6cbee6ca397c6a2019d
   '@vue/eslint-config-typescript': 7.0.0_5ac87fae079db9e17534a638778c81cf
   '@vue/test-utils': 1.1.1_ae554d8947d7e926b014dda25865f517
@@ -33,7 +33,7 @@ devDependencies:
   prettier: 2.2.0
   pug: 3.0.0
   pug-plain-loader: 1.0.0_pug@3.0.0
-  sass-loader: 10.0.4_node-sass@4.14.1
+  sass-loader: 10.1.0_node-sass@4.14.1
   typescript: 4.0.5
   vue-template-compiler: 2.6.12
   wait-on: 5.2.0
@@ -691,7 +691,7 @@ packages:
       integrity: sha512-E2PWv6tCdUz+eEDj2Th2oxiKmzMe02qi0PcxiNaO7oaqggmEOrp1rLgop7DWpiLDBiqUZk2x0vjK/q2Tz8z/eg==
   /@vue/cli-plugin-e2e-cypress/4.5.9_5b38a01413b38a1fad633f7f29e61ca7:
     dependencies:
-      '@vue/cli-service': 4.5.9_43926e9225371ca2f30670fcbf4609a6
+      '@vue/cli-service': 4.5.9_ec777c712bde911bf9f8387f3311a830
       '@vue/cli-shared-utils': 4.5.9
       cypress: 3.8.3
       eslint-plugin-cypress: 2.11.1_eslint@7.14.0
@@ -703,7 +703,7 @@ packages:
       integrity: sha512-UUlA3wt5gqMxQ8BhvtwQ/4poMcx/6/dwhrXVUFizkYQs3Az8HDt5GHjrd02FN1shRc3JtfsNvkFiRa0ToIm7zw==
   /@vue/cli-plugin-eslint/4.5.9_5b38a01413b38a1fad633f7f29e61ca7:
     dependencies:
-      '@vue/cli-service': 4.5.9_43926e9225371ca2f30670fcbf4609a6
+      '@vue/cli-service': 4.5.9_ec777c712bde911bf9f8387f3311a830
       '@vue/cli-shared-utils': 4.5.9
       eslint: 7.14.0
       eslint-loader: 2.2.1_eslint@7.14.0+webpack@4.43.0
@@ -719,7 +719,7 @@ packages:
       integrity: sha512-wTsWRiRWPW5ik4bgtlh4P4h63Zgjsyvqx2FY0kcj+bSAnQGPJ3bKUOMU9KQP5EyNH6pAXMVGh2LEXK9WwJMf1w==
   /@vue/cli-plugin-router/4.5.9_@vue+cli-service@4.5.9:
     dependencies:
-      '@vue/cli-service': 4.5.9_43926e9225371ca2f30670fcbf4609a6
+      '@vue/cli-service': 4.5.9_ec777c712bde911bf9f8387f3311a830
       '@vue/cli-shared-utils': 4.5.9
     dev: true
     peerDependencies:
@@ -729,7 +729,7 @@ packages:
   /@vue/cli-plugin-typescript/4.5.9_9edba2caadb4655ba1039259b48f0325:
     dependencies:
       '@types/webpack-env': 1.15.2
-      '@vue/cli-service': 4.5.9_43926e9225371ca2f30670fcbf4609a6
+      '@vue/cli-service': 4.5.9_ec777c712bde911bf9f8387f3311a830
       '@vue/cli-shared-utils': 4.5.9
       cache-loader: 4.1.0_webpack@4.43.0
       fork-ts-checker-webpack-plugin: 3.1.1
@@ -754,7 +754,7 @@ packages:
       integrity: sha512-DE8+F5q70PS+cnmKS+xhRqbtnAcrWB6zIoA9FTHD8QQ9Rnjc5HKTGFmh63gCAzFulYIOMZsNlySfYJfeJMqFSg==
   /@vue/cli-plugin-unit-mocha/4.5.9_@vue+cli-service@4.5.9:
     dependencies:
-      '@vue/cli-service': 4.5.9_43926e9225371ca2f30670fcbf4609a6
+      '@vue/cli-service': 4.5.9_ec777c712bde911bf9f8387f3311a830
       '@vue/cli-shared-utils': 4.5.9
       jsdom: 15.2.1
       jsdom-global: 3.0.2_jsdom@15.2.1
@@ -767,13 +767,13 @@ packages:
       integrity: sha512-dM8EAqUocLW44J0Grm7nYPnu3yI2hxEoj5bzK9l3soOerBFu48Z5ONIeSx+0Lpxldxmnh0KRmIDtsbQNfLoc1g==
   /@vue/cli-plugin-vuex/4.5.9_@vue+cli-service@4.5.9:
     dependencies:
-      '@vue/cli-service': 4.5.9_43926e9225371ca2f30670fcbf4609a6
+      '@vue/cli-service': 4.5.9_ec777c712bde911bf9f8387f3311a830
     dev: true
     peerDependencies:
       '@vue/cli-service': ^3.0.0 || ^4.0.0-0
     resolution:
       integrity: sha512-mFNIJhYiJjzCgytkDHX00ROy5Yzl7prkZpUbeDE0biwcLteMf2s3qZVbESOQl6GcviqcfEt2f3tHQQtLNa+OLg==
-  /@vue/cli-service/4.5.9_43926e9225371ca2f30670fcbf4609a6:
+  /@vue/cli-service/4.5.9_ec777c712bde911bf9f8387f3311a830:
     dependencies:
       '@intervolga/optimize-cssnano-plugin': 1.0.6_webpack@4.43.0
       '@soda/friendly-errors-webpack-plugin': 1.7.1_webpack@4.43.0
@@ -820,7 +820,7 @@ packages:
       portfinder: 1.0.26
       postcss-loader: 3.0.0
       pug-plain-loader: 1.0.0_pug@3.0.0
-      sass-loader: 10.0.4_node-sass@4.14.1
+      sass-loader: 10.1.0_node-sass@4.14.1
       ssri: 7.1.0
       terser-webpack-plugin: 2.3.7_webpack@4.43.0
       thread-loader: 2.1.3_webpack@4.43.0
@@ -9019,7 +9019,7 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-VFWDAHOe6mRuT4mZRd4eKE+d8Uedrk6Xnh7Sh9b4NGufQLQjOrvf/MQoOdx+0s92L89FeyUUNfU597j/3uNpag==
-  /sass-loader/10.0.4_node-sass@4.14.1:
+  /sass-loader/10.1.0_node-sass@4.14.1:
     dependencies:
       klona: 2.0.4
       loader-utils: 2.0.0
@@ -9032,7 +9032,7 @@ packages:
       node: '>= 10.13.0'
     peerDependencies:
       fibers: '>= 3.1.0'
-      node-sass: ^4.0.0
+      node-sass: ^4.0.0 || ^5.0.0
       sass: ^1.3.0
       webpack: ^4.36.0 || ^5.0.0
     peerDependenciesMeta:
@@ -9043,7 +9043,7 @@ packages:
       sass:
         optional: true
     resolution:
-      integrity: sha512-zhdZ8qvZM4iL5XjLVEjJLvKWvC+MB+hHgzL2x/Nf7UHpUNmPYsJvypW79bW39g4LZ603dH/dRSsRYzJJIljtdA==
+      integrity: sha512-ZCKAlczLBbFd3aGAhowpYEy69Te3Z68cg8bnHHl6WnSCvnKpbM6pQrz957HWMa8LKVuhnD9uMplmMAHwGQtHeg==
   /sax/1.2.4:
     dev: true
     resolution:
@@ -11279,7 +11279,7 @@ specifiers:
   prettier: 2.2.0
   pug: 3.0.0
   pug-plain-loader: 1.0.0
-  sass-loader: 10.0.4
+  sass-loader: 10.1.0
   tslib: 2.0.3
   typescript: 4.0.5
   vue: 2.6.12
