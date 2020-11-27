@@ -27,7 +27,7 @@ devDependencies:
   eslint: 7.14.0
   eslint-plugin-prettier: 3.1.4_eslint@7.14.0+prettier@2.2.0
   eslint-plugin-vue: 7.1.0_eslint@7.14.0
-  forever: 3.0.3
+  forever: 3.0.4
   node-sass: 4.14.1
   nyc: 15.1.0
   prettier: 2.2.0
@@ -1483,10 +1483,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-32MGD789Myhqdqr21Vophtn/hhk=
-  /async/0.9.2:
-    dev: true
-    resolution:
-      integrity: sha1-rqdNXmHB+JlhO/ZL2mbUx48v0X0=
   /async/1.5.2:
     dev: true
     resolution:
@@ -3076,10 +3072,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-skbCuApXCkfBG+HZvRBw7IeLh84=
-  /deep-equal/0.2.2:
-    dev: true
-    resolution:
-      integrity: sha1-hLdFiW80xoTpjyzg5Cq69Du6AX0=
   /deep-equal/1.1.1:
     dependencies:
       is-arguments: 1.0.4
@@ -4340,19 +4332,19 @@ packages:
     dev: true
     resolution:
       integrity: sha1-+8cfDEGt6zf5bFd60e1C2P2sypE=
-  /forever-monitor/3.0.2:
+  /forever-monitor/3.0.3:
     dependencies:
+      async: 1.5.2
       chokidar: 2.1.8
       eventemitter2: 6.4.3
       minimatch: 3.0.4
       ps-tree: 1.2.0
-      utile: 0.3.0
     dev: true
     engines:
       node: '>=6'
     resolution:
-      integrity: sha512-uSqdMVxXyjukVzI118Egbaqd5vqtKTeYGvGFUKsS6b85+7boFDSrSv6Ru6VD+mqTVbIAdJJdfuHKRHsQHQsAKw==
-  /forever/3.0.3:
+      integrity: sha512-7YGDo0UlbMy++6G3lzncWISDaT5CVp+yPVAkZ7FDFF0ec+0HKgBOWOhPGKpMF0hjcm3Ps/HbtrETrQLYREZ7YQ==
+  /forever/3.0.4:
     dependencies:
       async: 1.5.2
       cliff: 0.1.10
@@ -4361,14 +4353,13 @@ packages:
       deep-equal: 1.1.1
       eventemitter2: 6.4.3
       flatiron: 0.4.3
-      forever-monitor: 3.0.2
+      forever-monitor: 3.0.3
       mkdirp: 0.5.5
       nconf: 0.10.0
       nssocket: 0.6.0
       object-assign: 4.1.1
       prettyjson: 1.2.1
       shush: 1.0.0
-      utile: 0.3.0
       winston: 0.8.3
       yargs: 3.32.0
     dev: true
@@ -4376,7 +4367,7 @@ packages:
       node: '>=6'
     hasBin: true
     resolution:
-      integrity: sha512-oQUHR/2qAo8+Ne36wD1/O8YgLKrix0wVNerQfleep6b7GXs5nkmxXXcO+0MK+uLoe9U7wtdga9rL8wTZ5wT49g==
+      integrity: sha512-MZDQu9nxVavSOez+k0MGdoe9/0tGN/QfAj3Xn8OjJbRYlLghq/3isf5c2xt280x04EVKguU9/tmLE74259Xazw==
   /fork-ts-checker-webpack-plugin/3.1.1:
     dependencies:
       babel-code-frame: 6.26.0
@@ -6851,11 +6842,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-q8xsvT7C7Spyn/bnwfqPAXhKhXQ=
-  /ncp/1.0.1:
-    dev: true
-    hasBin: true
-    resolution:
-      integrity: sha1-0VNn5cuHQyuhF9K/gP30Wuz7QkY=
   /negotiator/0.6.2:
     dev: true
     engines:
@@ -10498,19 +10484,6 @@ packages:
       node: '>= 0.6.4'
     resolution:
       integrity: sha1-kwyI6ZCY1iIINMNWy9mncFItkNc=
-  /utile/0.3.0:
-    dependencies:
-      async: 0.9.2
-      deep-equal: 0.2.2
-      i: 0.3.6
-      mkdirp: 0.5.5
-      ncp: 1.0.1
-      rimraf: 2.7.1
-    dev: true
-    engines:
-      node: '>= 0.8.0'
-    resolution:
-      integrity: sha1-E1LDQOuCDk2N26A5pPv6oy7U7zo=
   /utils-merge/1.0.1:
     dev: true
     engines:
@@ -11273,7 +11246,7 @@ specifiers:
   eslint: 7.14.0
   eslint-plugin-prettier: 3.1.4
   eslint-plugin-vue: 7.1.0
-  forever: 3.0.3
+  forever: 3.0.4
   node-sass: 4.14.1
   nyc: 15.1.0
   prettier: 2.2.0
