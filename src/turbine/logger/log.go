@@ -31,9 +31,7 @@ func NewLine() {
 // Deprecated: DO NOT CALL THIS FUNCTION aside from `cleanup()` in main
 func Cleanup() {
 	archiveOldLogs()
-	fn := currentFile.Name()
 	currentFile.Close()
-	archiveLog(fn, true)
 }
 
 func archiveOldLogs() {
@@ -82,10 +80,13 @@ func getFile() *os.File {
 }
 
 func createNewLogFile() {
+	if _, err := os.Stat(logDir); os.IsNotExist(err) {
+		os.MkdirAll(logDir, 0755)
+	}
 	lastFileTime = time.Now()
 	filename := strings.ReplaceAll(
 		lastFileTime.Format(time.RFC3339), ":", "_")
-	filename = strings.ReplaceAll(filename, "-", "")
+	filename = logDir + "/" + strings.ReplaceAll(filename, "-", "")
 	currentFile, _ = os.Create(filename + logExt)
 	Success(logger, "New log file created: "+currentFile.Name())
 }

@@ -19,7 +19,6 @@ func passwd(res http.ResponseWriter, req *http.Request) {
 }
 
 func response(res *http.ResponseWriter, status int) {
-	fmt.Println(status)
 	(*res).Header().Set(
 		"Content-Type", "application/json; charset=UTF-8",
 	)
@@ -31,6 +30,8 @@ func allowCORS(res *http.ResponseWriter) {
 
 	(*res).Header().Set(
 		"Access-Control-Allow-Origin", url)
+	(*res).Header().Set(
+		"Access-Control-Allow-Methods", "POST, GET")
 	(*res).Header().Set(
 		"Access-Control-Allow-Credentials", "true")
 }
@@ -126,14 +127,22 @@ func deleteItem(
 	id int,
 	getFunc func(int) structs.IStructs,
 	deleteFunc func(structs.IStructs) bool,
-) {
+) bool {
 	inf := getFunc(id)
 
-	success := deleteFunc(inf)
+	return deleteFunc(inf)
+}
+
+func setDeletionStatus(
+	res *http.ResponseWriter,
+	success bool,
+) {
 	if success {
 		response(res, http.StatusOK)
 		json.NewEncoder(*res).Encode(true)
 	} else {
 		response(res, http.StatusNotFound)
+		json.NewEncoder(*res).Encode(false)
 	}
+	allowCORS(res)
 }

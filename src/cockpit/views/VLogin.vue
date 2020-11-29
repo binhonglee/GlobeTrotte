@@ -52,14 +52,20 @@ export default class VLogin extends Vue {
       {
         withCredentials: true,
       },
-    ).then((res: AxiosResponse) => {
-      localStorage.setItem(
-        "user",
-        WingsStructUtil.stringify(new User(res["data"])),
-      );
+    )
+      .then((res: AxiosResponse) => {
+        localStorage.setItem(
+          "user",
+          WingsStructUtil.stringify(new User(res["data"])),
+        );
 
-      this.$router.push({ path: "/" });
-    });
+        this.$router.push({ path: "/" });
+      })
+      .catch(() => {
+        this.$message.error(
+          "Wrong email or password. Please try again.",
+        );
+      });
   }
 
   private cancel(): void {

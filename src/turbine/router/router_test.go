@@ -131,7 +131,7 @@ func updateTest(
 
 func deleteTest(path string, t *testing.T, expectedCode int) {
 	res := httptest.NewRecorder()
-	req, _ := http.NewRequest("DELETE", API_PREFIX+path, nil)
+	req, _ := http.NewRequest("POST", API_PREFIX+"/del"+path, nil)
 	if cookies != nil {
 		req.AddCookie(cookies)
 	}

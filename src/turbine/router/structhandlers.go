@@ -2,13 +2,13 @@ package router
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"regexp"
 	"strconv"
 	"strings"
 
 	db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
 	"github.com/gorilla/mux"
@@ -41,8 +41,6 @@ func updateTrip(res http.ResponseWriter, req *http.Request) {
 	var item *wings.Trip
 	unpackJSON(&res, req, &item)
 	if getRequestID(req) != item.ID || !verifyUser(req, item.UserID) {
-		fmt.Println("uhh")
-		fmt.Println(item.ID, " ", getRequestID(req))
 		response(&res, http.StatusForbidden)
 		return
 	}
@@ -56,7 +54,10 @@ func deleteTrip(res http.ResponseWriter, req *http.Request) {
 		response(&res, http.StatusForbidden)
 		return
 	}
-	deleteItem(&res, tripID, db.GetTripDB, db.DeleteTripDB)
+	setDeletionStatus(
+		&res,
+		deleteItem(&res, tripID, db.GetTripDB, db.DeleteTripDB),
+	)
 }
 
 // User
@@ -69,7 +70,10 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 		"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
 	)
 	if !emailPattern.MatchString(item.Email) {
-		fmt.Println(item.Email, " is not a valid email address.")
+		logger.Print(
+			logger.Router,
+			item.Email+" is not a valid email address.",
+		)
 		response(&res, http.StatusNotAcceptable)
 		return
 	}
@@ -78,7 +82,7 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 	hash, err :=
 		bcrypt.GenerateFromPassword([]byte(item.Password), 14)
 	if err != nil {
-		fmt.Println("Password hashing failed: ", err)
+		logger.Err(logger.Router, err, "Password hashing failed")
 		response(&res, http.StatusNotAcceptable)
 		return
 	}
@@ -110,13 +114,19 @@ func login(res http.ResponseWriter, req *http.Request) {
 	)
 
 	if err != nil {
-		fmt.Println("Failed authentication attempt for", item.Email)
+		logger.Print(
+			logger.Router,
+			"Failed authentication attempt for "+item.Email,
+		)
 		response(&res, http.StatusNotAcceptable)
 		return
 	}
 
 	user := db.GetUserWithEmailDB(*item)
-	fmt.Println("Authentication successful for", item.Email)
+	logger.Print(
+		logger.Router,
+		"Authentication successful for "+item.Email,
+	)
 	newCookie(res, req, user.ID)
 	json.NewEncoder(res).Encode(user)
 }
@@ -135,11 +145,14 @@ func newCookie(
 
 func logout(res http.ResponseWriter, req *http.Request) {
 	session, _ := store.Get(req, "logged-in")
-	allowCORS(&res)
-
-	fmt.Println("Logout successful")
+	id, _ := session.Values["userid"].(int)
 	session.Values["authenticated"] = false
 	session.Save(req, res)
+	logger.Print(
+		logger.Router,
+		"Session deletion successful for "+strconv.Itoa(id),
+	)
+	allowCORS(&res)
 }
 
 func getUser(res http.ResponseWriter, req *http.Request) {
@@ -151,8 +164,6 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 	unpackJSON(&res, req, &item)
 	if getRequestID(req) != item.ID || !verifyUser(req, item.ID) {
 		response(&res, http.StatusForbidden)
-		fmt.Println("uhh")
-		fmt.Println(item.ID, " ", getRequestID(req))
 		return
 	}
 	updateItem(&res, getRequestID(req), db.UpdateUserDB, db.GetUserDB, item)
@@ -161,9 +172,14 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 func deleteUser(res http.ResponseWriter, req *http.Request) {
 	if !verifyUser(req, getRequestID(req)) {
 		response(&res, http.StatusForbidden)
+		json.NewEncoder(res).Encode(false)
 		return
 	}
-	deleteItem(&res, getRequestID(req), db.GetUserDB, db.DeleteUserDB)
+	deletion := deleteItem(&res, getRequestID(req), db.GetUserDB, db.DeleteUserDB)
+	if deletion {
+		logout(res, req)
+	}
+	setDeletionStatus(&res, deletion)
 }
 
 func verifyUser(req *http.Request, userID int) bool {
@@ -186,7 +202,7 @@ func getRequestID(req *http.Request) int {
 	var error error
 
 	if id, error = strconv.Atoi(vars["id"]); error != nil {
-		fmt.Println(error)
+		logger.Err(logger.Router, error, "")
 		return -1
 	}
 

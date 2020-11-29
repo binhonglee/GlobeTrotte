@@ -32,6 +32,13 @@ jobs:
       # run tests
       - run: ./pleasew build --show_all_output
       - run: ./pleasew cover --show_all_output //src/turbine/...
+      - run:
+          command: ./pleasew work
+          background: true
       - run: ./pleasew test --show_all_output
       - run: bash <(curl -s https://codecov.io/bash)
       - run: ./scripts/leftover.sh
+      - store_artifacts:
+          path: ~/GlobeTrotte/plz-out/gen/cypress
+      - store_artifacts:
+          path: ~/GlobeTrotte/logs

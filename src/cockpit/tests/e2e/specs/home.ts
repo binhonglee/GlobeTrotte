@@ -21,6 +21,27 @@ describe("Homepage", () => {
     cy.contains("p", "There is nothing here for now.");
     cy.contains("p", "You should check back again soon!");
   });
+  it("navigate to about", () => {
+    cy.visit("/");
+    cy.contains("li", "About").click();
+    cy.url().should("include", "/about");
+  });
+  it("navigate to register", () => {
+    cy.visit("/");
+    cy.contains("li", "Register").click();
+    cy.url().should("include", "/register");
+  });
+  it("navigate to login", () => {
+    cy.visit("/");
+    cy.contains("li", "Login").click();
+    cy.url().should("include", "/login");
+  });
+  it("navigate to view trip", () => {
+    cy.visit("/");
+    cy.get("#trip").trigger("mouseenter");
+    cy.contains("li", "View").click();
+    cy.url().should("include", "/trip/view");
+  });
 });
 
 describe("About", () => {

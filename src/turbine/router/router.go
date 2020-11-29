@@ -61,8 +61,8 @@ var actualRoutes = routes{
 	},
 	route{
 		"DeleteUser",
-		"DELETE",
-		"/user/{id}",
+		"POST",
+		"/del/user/{id}",
 		deleteUser,
 	},
 	route{
@@ -97,8 +97,8 @@ var actualRoutes = routes{
 	},
 	route{
 		"DeleteTrip",
-		"DELETE",
-		"/trip/{id}",
+		"POST",
+		"/del/trip/{id}",
 		deleteTrip,
 	},
 	route{
