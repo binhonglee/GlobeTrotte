@@ -1,7 +1,6 @@
-<template>
-  <div class="404">
-    <h3>Uhh, there's nothing to see here...</h3>
-  </div>
+<template lang="pug">
+  ._404.narrow_content
+    h3 Uhh, there's nothing to see here...
 </template>
 
 <script lang="ts">

@@ -1,33 +1,40 @@
 <template lang="pug">
-  .new_user
+  .new_user.narrow_content
     h1.title Create Account
     .newUser
       span.editLabel Email:
       el-input.editInput#username(
-        type='text'
-        v-on:keyup.enter='save'
-        v-model='email'
+        type="text"
+        v-on:keyup.enter="save"
+        v-model="email"
       )
       br
       span.editLabel Password:
       el-input.editInput#password(
-        type='text'
-        v-on:keyup.enter='save'
-        v-model='password'
+        type="text"
+        v-on:keyup.enter="save"
+        v-model="password"
         show-password
       )
       br
       span.editLabel Confirm Password:
       el-input.editInput#confPassword(
-        type='text'
-        v-on:keyup.enter='save'
-        v-model='confPassword'
+        type="text"
+        v-on:keyup.enter="save"
+        v-model="confPassword"
         show-password
       )
       br
       br
-      el-button#save(type='primary' v-on:click='confirm') Confirm
-      el-button#cancel(type='default' v-on:click='cancel') Cancel
+      el-button#save(
+        type="primary"
+        v-on:click="confirm"
+        v-loading.fullscreen.lock="loading"
+      ) Confirm
+      el-button#cancel(
+        type="default"
+        v-on:click="cancel"
+      ) Cancel
 </template>
 
 <script lang="ts">
@@ -44,11 +51,13 @@ import User from "../wings/User";
       email: "",
       password: "",
       confPassword: "",
+      loading: false,
     };
   },
 })
 export default class VRegsiter extends Vue {
   private confirm(): void {
+    this.$data.loading = true;
     if (
       this.$data.password.localeCompare(
         this.$data.confPassword,
@@ -70,14 +79,22 @@ export default class VRegsiter extends Vue {
       {
         withCredentials: true,
       },
-    ).then((res: AxiosResponse) => {
-      localStorage.setItem(
-        "user",
-        WingsStructUtil.stringify(new User(res["data"])),
-      );
+    )
+      .then((res: AxiosResponse) => {
+        localStorage.setItem(
+          "user",
+          WingsStructUtil.stringify(new User(res["data"])),
+        );
+        this.$data.loading = false;
 
-      this.$router.push({ path: "/login" });
-    });
+        this.$router.push({ path: "/login" });
+      })
+      .catch(() => {
+        this.$data.loading = false;
+        this.$message.error(
+          "Invalid email. Please try again.",
+        );
+      });
   }
 
   private cancel(): void {

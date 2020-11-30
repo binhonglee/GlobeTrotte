@@ -1,5 +1,5 @@
 <template lang="pug">
-  .new_trip
+  .new_trip.narrow_content
     h1.title New Trip
     CEditTrip.newTrip(
       :trip="trip"

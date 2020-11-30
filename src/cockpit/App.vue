@@ -18,8 +18,7 @@
     el-menu-item.main_menu_item#register(v-if="!authed" index="/register") Register
     el-menu-item.main_menu_item#logout(v-if="authed" v-on:click="logout") Logout
     el-menu-item.main_menu_item#myaccount(v-if="authed" index="/myaccount") My Account
-  #content
-    router-view
+  router-view
   #footer
 </template>
 
@@ -111,13 +110,6 @@ export default class App extends Vue {
 
 #app {
   text-align: center;
-}
-
-#content {
-  max-width: 400px;
-  margin: auto;
-  padding-left: 10px;
-  padding-right: 10px;
 }
 
 #footer {

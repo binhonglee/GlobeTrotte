@@ -1,12 +1,10 @@
-<template>
-  <div class="about">
-    <h1 class="title">About</h1>
-    <p>
-      Our goal is to change the way people share their
-      travel experiences and how they plan for their future
-      travels.
-    </p>
-  </div>
+<template lang="pug">
+  .about.narrow_content
+    h1.title About
+    p
+      | Our goal is to change the way people share their
+      | travel experiences and how they plan for their future
+      | travels.
 </template>
 
 <script lang="ts">

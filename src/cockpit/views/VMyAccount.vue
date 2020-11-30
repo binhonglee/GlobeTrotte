@@ -1,5 +1,5 @@
 <template lang="pug">
-  .my_account
+  .my_account.narrow_content
     h1.title My Account
     h2#name {{ user.name }}
     span#id ID: {{ user.ID }}

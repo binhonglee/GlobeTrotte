@@ -7,7 +7,7 @@ const componentFileTemplate = `<template lang="pug">
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class COMPONENT_NAME extends Vue {
@@ -16,18 +16,18 @@ export default class COMPONENT_NAME extends Vue {
 </script>
 
 <style lang="scss">
-@import '../shared/lib';
+@import "../shared/lib";
 </style>
 `;
 
 const componentTestFolder = "src/cockpit/tests/components/";
-const testFileTemplate = `import COMPONENT_NAME from '../../components/COMPONENT_NAME.vue';
+const testFileTemplate = `import COMPONENT_NAME from "../../components/COMPONENT_NAME.vue";
 
-import { expect } from 'chai';
-import { shallowMount } from '@vue/test-utils';
+import { expect } from "chai";
+import { shallowMount } from "@vue/test-utils";
 
-describe('COMPONENT_NAME.vue', () => {
-  it('renders empty component', () => {
+describe("COMPONENT_NAME.vue", () => {
+  it("renders empty component", () => {
     const wrapper = shallowMount(COMPONENT_NAME, {});
   });
 });

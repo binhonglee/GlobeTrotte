@@ -1,5 +1,5 @@
 <template lang="pug">
-  .search
+  .search.narrow_content
     h1.title Trip
     |     Trip ID:
     el-input.tripSearchInput#getTripID(

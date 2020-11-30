@@ -1,5 +1,7 @@
 const email = "whatisthisemail@test.com";
 const password = "hunter2";
+const wrongEmail = "abcd@test.com";
+const wrongPassword = "hunter3";
 
 function login(cy) {
   cy.get("#username").type(email);
@@ -40,6 +42,36 @@ describe("User account", () => {
     cy.contains("li", "Login").click();
     login(cy);
     isLoggedIn(cy);
+  });
+
+  it("wrong email login", () => {
+    cy.visit("/login");
+    isLoggedOut(cy);
+    cy.get("#username").type(wrongEmail);
+    cy.get("#password").type(password);
+    cy.get("#save").click();
+    isLoggedOut(cy);
+    cy.contains("p", "Wrong email or password. Please try again.");
+  });
+
+  it("wrong password login", () => {
+    cy.visit("/login");
+    isLoggedOut(cy);
+    cy.get("#username").type(email);
+    cy.get("#password").type(wrongPassword);
+    cy.get("#save").click();
+    isLoggedOut(cy);
+    cy.contains("p", "Wrong email or password. Please try again.");
+  });
+
+  it("wrong everything login", () => {
+    cy.visit("/login");
+    isLoggedOut(cy);
+    cy.get("#username").type(wrongEmail);
+    cy.get("#password").type(wrongPassword);
+    cy.get("#save").click();
+    isLoggedOut(cy);
+    cy.contains("p", "Wrong email or password. Please try again.");
   });
 
   it("logout", () => {

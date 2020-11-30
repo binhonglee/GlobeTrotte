@@ -1,5 +1,5 @@
 <template lang="pug">
-  .landing
+  .landing.narrow_content
     h1.title GlobeTrotte
     p
       | There is nothing here for now.
