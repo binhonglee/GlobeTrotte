@@ -157,13 +157,15 @@ def pnpm_gen_prep(
 def pnpm_test(
   name:str,
   cmd:str,
+  out:str=None,
+  coverage:str=None,
   srcs:list=[],
   deps:list=[],
-  outs:list=[],
   flaky:bool|int=0,
   priority:int=0,
   visibility:list=None,
   at_top_level:bool=False,
+  requires_server:bool=False,
 ):
   filegroup(
     name = name + "_#pnpm_test",
@@ -183,14 +185,39 @@ def pnpm_test(
   
   cmd = " && ".join([
     "sleep " + str(priority),
-    _check_server_running(),
     _go_to_top_level(),
     cmd,
   ])
 
+  if requires_server:
+    cmd = " && ".join([
+      _check_server_running(),
+      cmd,
+    ])
+
+  outs = []
+  test_outputs = []
+
+  if out is not None:
+    cmd = " && ".join([
+      "rm -rf " + out,
+      cmd,
+      "cat " + out + "/* > $TMP_DIR/test.results",
+    ])
+    outs = ["test.results"]
+
+  if coverage is not None:
+    cmd = " && ".join([
+      "rm -rf " + coverage,
+      cmd,
+      "cat " + coverage + "/* > $TMP_DIR/coverage.results",
+    ])
+    test_outputs = ["coverage.results"]
+
   return _exec_pnpm(
     name = name,
     srcs = srcs,
+    outs = outs,
     deps = deps,
     test = True,
     flaky = flaky,
@@ -199,6 +226,7 @@ def pnpm_test(
     overwrite_cmd = True,
     visibility = visibility,
     cmd = cmd,
+    test_outputs = test_outputs,
     tools = [CONFIG.PNPM_TOOL],
   )
 
@@ -214,6 +242,7 @@ def _exec_pnpm(
   flaky:bool|int=0,
   test_only:bool=False,
   visibility:list=None,
+  test_outputs:list=[],
   denullify_files:list=[],
   nullify_outs:bool=False,
   at_top_level:bool=False,
@@ -292,6 +321,7 @@ def _exec_pnpm(
     flaky = flaky,
     test_cmd = test_cmd,
     test_only = test_only,
+    test_outputs = test_outputs,
     visibility = visibility,
     no_test_output = no_test_output,
     binary = False,
@@ -301,7 +331,7 @@ def _exec_pnpm(
 
 def _check_server_running():
   return " ".join([
-    "if [[ $(lsof -i:8080 | grep -v \"CLOSE_WAIT\") ]];",
+    "if [[ $(lsof -i:1234 | grep -v \"CLOSE_WAIT\") ]];",
     "then CMD=\"\";",
     "else CMD=\":plz\";",
     "fi",

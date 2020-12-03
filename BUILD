@@ -2,7 +2,7 @@ subinclude("//build_defs/pnpm")
 
 filegroup(
   name = "index_html",
-  srcs = ["public/index.html"],
+  srcs = ["index.html"],
   visibility = [":cockpit", ":serve"],
 )
 
@@ -42,6 +42,18 @@ filegroup(
   name = "cypress_config",
   srcs = ["cypress.json"],
   visibility = [":cockpit_e2e"],
+)
+
+filegroup(
+  name = "multi_reporter_mocha_config",
+  srcs = ["mochaReporter.json"],
+  visibility = [":cockpit_unit"],
+)
+
+filegroup(
+  name = "multi_reporter_component_config",
+  srcs = ["componentReporter.json"],
+  visibility = [":cockpit_component"],
 )
 
 filegroup(
@@ -105,22 +117,39 @@ pnpm_run(
 )
 
 pnpm_test(
-  name = "cockpit_unit",
-  cmd = "cover",
+  name = "cockpit_component",
+  cmd = "test:component",
+  out = "mocha/component",
   priority = 2,
   deps = [
     ":pnpm",
     ":prep_gen",
+    ":multi_reporter_component_config",
+    "//src/cockpit/tests/components:components",
+  ],
+)
+
+pnpm_test(
+  name = "cockpit_unit",
+  cmd = "test:mocha",
+  out = "mocha/unit",
+  coverage = "coverage",
+  priority = 4,
+  deps = [
+    ":pnpm",
+    ":prep_gen",
+    ":multi_reporter_mocha_config",
     "//src/cockpit/tests/wings:wings",
     "//src/cockpit/tests/shared:shared",
-    "//src/cockpit/tests/components:components",
   ],
 )
 
 pnpm_test(
   name = "cockpit_e2e",
   cmd = "test:e2e",
+  out = "cypress/junit",
   flaky = 2,
+  requires_server = True,
   deps = [
     ":pnpm",
     ":prep_gen",

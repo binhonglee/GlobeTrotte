@@ -26,7 +26,7 @@ func response(res *http.ResponseWriter, status int) {
 }
 
 func allowCORS(res *http.ResponseWriter) {
-	var url = "http://localhost:8080"
+	var url = "http://localhost:1234"
 
 	(*res).Header().Set(
 		"Access-Control-Allow-Origin", url)

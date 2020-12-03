@@ -3,5 +3,7 @@ node_modules/*
 dist/*
 coverage/*
 plz-out/*
+pleasings/*
 src/cockpit/wings/*
 src/cockpit/router.ts
+src/wings/*

@@ -53,7 +53,12 @@ describe("About", () => {
     cy.visit("/about");
     cy.contains(
       "p",
-      "Our goal is to change the way people share their travel experiences and how they plan for their future travels.",
+      "Our goal is to change the way people share their",
     );
+    cy.contains(
+      "p",
+      "travel experiences and how they plan for their future",
+    );
+    cy.contains("p", "travels.");
   });
 });

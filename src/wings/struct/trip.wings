@@ -4,6 +4,7 @@ ts-filepath src/cockpit/wings
 ts-import { IWingsStruct }:wings-ts-util
 import src/wings/enum/city.wings
 import src/wings/struct/day.wings
+import src/wings/struct/user_access_level.wings
 
 ts-implement IWingsStruct
 
@@ -18,6 +19,8 @@ struct Trip {
   description   str
   time_created  date
   last_updated  date
+  private       bool
+  shared_with   []UserAccessLevel
 }
 
 go-func(

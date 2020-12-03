@@ -1,4 +1,9 @@
 {
-  "pluginsFile": "src/cockpit/tests/e2e/plugins.ts",
-  "baseUrl": "http://localhost:8080"
+  "pluginsFile": "src/cockpit/tests/e2e/plugins.js",
+  "baseUrl": "http://localhost:1234",
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "cypress/junit/[hash].xml",
+    "toConsole": false
+  }
 }

@@ -1,0 +1,9 @@
+go-filepath src/turbine/wings
+ts-filepath src/cockpit/wings
+
+enum AccessLevel {
+  None
+  View
+  Edit
+  Owner
+}

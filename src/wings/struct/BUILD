@@ -54,7 +54,8 @@ wings_lib(
   deps = [
     "//:wings_config",
     ":day",
-    "//src/wings/enum:city"
+    ":user_access_level",
+    "//src/wings/enum:city",
   ],
   visibility = ["PUBLIC"],
 )
@@ -69,6 +70,21 @@ wings_lib(
   },
   deps = [
     "//:wings_config",
+  ],
+  visibility = ["PUBLIC"],
+)
+
+wings_lib(
+  name = "user_access_level",
+  config = "wings.json",
+  srcs = ["user_access_level.wings"],
+  outs = {
+    "src/cockpit/wings": "UserAccessLevel.ts",
+    "src/turbine/wings": "useraccesslevel.go",
+  },
+  deps = [
+    "//:wings_config",
+    "//src/wings/enum:access_level",
   ],
   visibility = ["PUBLIC"],
 )

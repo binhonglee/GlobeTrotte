@@ -13,3 +13,17 @@ wings_lib(
   ],
   visibility = ["PUBLIC"],
 )
+
+wings_lib(
+  name = "access_level",
+  config = "wings.json",
+  srcs = ["access_level.wings"],
+  outs = {
+    "src/cockpit/wings": "AccessLevel.ts",
+    "src/turbine/wings": "accesslevel.go",
+  },
+  deps = [
+    "//:wings_config",
+  ],
+  visibility = ["PUBLIC"],
+)

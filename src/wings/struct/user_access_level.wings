@@ -1,0 +1,15 @@
+go-filepath src/turbine/wings
+ts-filepath src/cockpit/wings
+
+ts-import { IWingsStruct }:wings-ts-util
+import src/wings/enum/access_level.wings
+
+ts-implement IWingsStruct
+
+# UserAccessLevel - User access level of a specific object.
+
+struct UserAccessLevel {
+  obj_id    int
+  user_id   int
+  access    AccessLevel   AccessLevel.None
+}
