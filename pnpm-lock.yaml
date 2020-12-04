@@ -20,13 +20,13 @@ devDependencies:
   '@vue/cli-plugin-unit-mocha': 4.5.9_@vue+cli-service@4.5.9
   '@vue/cli-service': 4.5.9_b1a8c217796b53ddcfb13ade9464b253
   '@vue/eslint-config-prettier': 6.0.0_bd7d92a128710041d6ebf69251e758e3
-  '@vue/eslint-config-typescript': 7.0.0_38edf3ab147621576afe9c3a7351de9b
+  '@vue/eslint-config-typescript': 7.0.0_6586dea3f33de790a212b7a3f63c1869
   '@vue/test-utils': 1.1.1_ae554d8947d7e926b014dda25865f517
   chai: 4.2.0
   cross-env: 7.0.3
   eslint: 7.14.0
   eslint-plugin-prettier: 3.2.0_eslint@7.14.0+prettier@2.2.1
-  eslint-plugin-vue: 7.1.0_eslint@7.14.0
+  eslint-plugin-vue: 7.2.0_eslint@7.14.0
   forever: 3.0.4
   node-sass: 5.0.0
   nyc: 15.1.0
@@ -910,12 +910,12 @@ packages:
       prettier: '>= 1.13.0'
     resolution:
       integrity: sha512-wFQmv45c3ige5EA+ngijq40YpVcIkAy0Lihupnsnd1Dao5CBbPyfCzqtejFLZX1EwH/kCJdpz3t6s+5wd3+KxQ==
-  /@vue/eslint-config-typescript/7.0.0_38edf3ab147621576afe9c3a7351de9b:
+  /@vue/eslint-config-typescript/7.0.0_6586dea3f33de790a212b7a3f63c1869:
     dependencies:
       '@typescript-eslint/eslint-plugin': 4.9.0_512ef60ad8498ffab9c030d01801a819
       '@typescript-eslint/parser': 4.9.0_eslint@7.14.0+typescript@4.1.2
       eslint: 7.14.0
-      eslint-plugin-vue: 7.1.0_eslint@7.14.0
+      eslint-plugin-vue: 7.2.0_eslint@7.14.0
       vue-eslint-parser: 7.1.0_eslint@7.14.0
     dev: true
     engines:
@@ -3621,20 +3621,20 @@ packages:
       prettier: '>=1.13.0'
     resolution:
       integrity: sha512-kOUSJnFjAUFKwVxuzy6sA5yyMx6+o9ino4gCdShzBNx4eyFRudWRYKCFolKjoM40PEiuU6Cn7wBLfq3WsGg7qg==
-  /eslint-plugin-vue/7.1.0_eslint@7.14.0:
+  /eslint-plugin-vue/7.2.0_eslint@7.14.0:
     dependencies:
       eslint: 7.14.0
       eslint-utils: 2.1.0
       natural-compare: 1.4.0
       semver: 7.3.2
-      vue-eslint-parser: 7.1.1_eslint@7.14.0
+      vue-eslint-parser: 7.2.0_eslint@7.14.0
     dev: true
     engines:
       node: '>=8.10'
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0
     resolution:
-      integrity: sha512-9dW7kj8/d2IkDdgNpvIhJdJ3XzU3x4PThXYMzWt49taktYnGyrTY6/bXCYZ/VtQKU9kXPntPrZ41+8Pw0Nxblg==
+      integrity: sha512-4mt0yIv6rBDNtvis/g22a0ozJ12GfcdEzX77u0ICYjKlxOVtGrKGEvo0cbOObHaKDg9a9kJcoaNodqE4TPfS2A==
   /eslint-scope/4.0.3:
     dependencies:
       esrecurse: 4.3.0
@@ -10550,7 +10550,7 @@ packages:
       eslint: '>=5.0.0'
     resolution:
       integrity: sha512-Kr21uPfthDc63nDl27AGQEhtt9VrZ9nkYk/NTftJ2ws9XiJwzJJCnCr3AITQ2jpRMA0XPGDECxYH8E027qMK9Q==
-  /vue-eslint-parser/7.1.1_eslint@7.14.0:
+  /vue-eslint-parser/7.2.0_eslint@7.14.0:
     dependencies:
       debug: 4.1.1
       eslint: 7.14.0
@@ -10565,7 +10565,7 @@ packages:
     peerDependencies:
       eslint: '>=5.0.0'
     resolution:
-      integrity: sha512-8FdXi0gieEwh1IprIBafpiJWcApwrU+l2FEj8c1HtHFdNXMd0+2jUSjBVmcQYohf/E72irwAXEXLga6TQcB3FA==
+      integrity: sha512-uVcQqe8sUNzdHGcRHMd2Z/hl6qEaWrAmglTKP92Fnq9TYU9un8xsyFgEdFJaXh/1rd7h8Aic1GaiQow5nVneow==
   /vue-hot-reload-api/2.3.4:
     dev: true
     resolution:
@@ -11235,7 +11235,7 @@ specifiers:
   element-ui: 2.14.1
   eslint: 7.14.0
   eslint-plugin-prettier: 3.2.0
-  eslint-plugin-vue: 7.1.0
+  eslint-plugin-vue: 7.2.0
   forever: 3.0.4
   node-sass: 5.0.0
   nyc: 15.1.0
