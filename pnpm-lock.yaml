@@ -38,7 +38,7 @@ devDependencies:
   pug: 3.0.0
   pug-plain-loader: 1.0.0_pug@3.0.0
   require-extension-hooks: 0.3.3
-  require-extension-hooks-babel: 1.0.0-beta.1_require-extension-hooks@0.3.3
+  require-extension-hooks-babel: 1.0.0_require-extension-hooks@0.3.3
   require-extension-hooks-vue: 3.0.0_a27a9a5766e8e0417aae090eff1801a8
   sass-loader: 10.1.0_node-sass@5.0.0
   tap-xunit: 2.4.1
@@ -8788,7 +8788,7 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-jGStX9MNqxyXbiNE/+f3kqam30I=
-  /require-extension-hooks-babel/1.0.0-beta.1_require-extension-hooks@0.3.3:
+  /require-extension-hooks-babel/1.0.0_require-extension-hooks@0.3.3:
     dependencies:
       '@babel/core': 7.12.9
       '@babel/preset-env': 7.12.7_@babel+core@7.12.9
@@ -8797,7 +8797,7 @@ packages:
     peerDependencies:
       require-extension-hooks: 0.x
     resolution:
-      integrity: sha512-UGWhOGc8agkbS/VLACPycl72sPo6Es0ajYDOQhzhM/xW704A+JIT7To9zt0aDqBAi77rmaFb9tIYuy3iKLCk7A==
+      integrity: sha512-n8+KxBVMjUgNz3ipFOrGoflWgiabcoGul8PE+5JZk1oA3/Bb5jtCvne/sRZ4TjkFuqDDOiWxPfAVK/UsL0iMOw==
   /require-extension-hooks-vue/3.0.0_a27a9a5766e8e0417aae090eff1801a8:
     dependencies:
       '@vue/component-compiler-utils': 2.6.0
@@ -10977,7 +10977,7 @@ specifiers:
   pug: 3.0.0
   pug-plain-loader: 1.0.0
   require-extension-hooks: 0.3.3
-  require-extension-hooks-babel: 1.0.0-beta.1
+  require-extension-hooks-babel: 1.0.0
   require-extension-hooks-vue: 3.0.0
   sass-loader: 10.1.0
   tap-xunit: 2.4.1
