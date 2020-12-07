@@ -27,7 +27,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Place from "../wings/Place";
+import Place from "wings/Place";
 
 export default Vue.extend({
   name: "CEditPlaces",

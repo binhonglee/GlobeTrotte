@@ -6,7 +6,19 @@
   ],
   "plugins": [
     "@babel/plugin-transform-runtime",
-    "@babel/plugin-transform-typescript"
+    "@babel/plugin-transform-typescript",
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@": "./src/cockpit",
+          "components": "./src/cockpit/components",
+          "shared": "./src/cockpit/shared",
+          "tests": "./src/cockpit/tests",
+          "wings": "./src/cockpit/wings"
+        }
+      }
+    ]
   ],
   "env": {
     "test": {

@@ -15,9 +15,9 @@ import Vue from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import CEditTrip from "./CEditTrip.vue";
 import CViewTrip from "./CViewTrip.vue";
-import HTTPReq from "../shared/HTTPReq";
-import General from "../shared/General";
-import Trip from "../wings/Trip";
+import HTTPReq from "shared/HTTPReq";
+import General from "shared/General";
+import Trip from "wings/Trip";
 
 export default Vue.extend({
   name: "CTripInfo",

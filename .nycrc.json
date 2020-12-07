@@ -13,10 +13,13 @@
     "**/*.{spec,test}.{js,ts}",
     "src/cockpit/router.ts",
     "src/cockpit/tests/**/*",
+    "src/cockpit/components/**/*",
+    "src/cockpit/views/**/*",
     "*.js"
   ],
   "reporter": [
-    "cobertura",
+    "clover",
+    "json",
     "text",
     "text-summary"
   ],

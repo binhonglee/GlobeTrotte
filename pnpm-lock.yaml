@@ -1,7 +1,6 @@
 dependencies:
   axios: 0.21.0
   element-ui: 2.14.1_vue@2.6.12
-  tslib: 2.0.3
   vue: 2.6.12
   vue-class-component: 7.2.6_vue@2.6.12
   vue-property-decorator: 9.1.2_2dc4252c5371093c9ebcca71536ac4e9
@@ -10,12 +9,10 @@ dependencies:
 devDependencies:
   '@ava/babel': 1.0.1
   '@babel/core': 7.12.9
-  '@babel/plugin-proposal-class-properties': 7.12.1_@babel+core@7.12.9
   '@babel/plugin-transform-runtime': 7.12.1_@babel+core@7.12.9
   '@babel/plugin-transform-typescript': 7.12.1_@babel+core@7.12.9
   '@babel/preset-env': 7.12.7_@babel+core@7.12.9
   '@babel/preset-typescript': 7.12.7_@babel+core@7.12.9
-  '@types/assert': 1.5.2
   '@types/node': 14.10.0
   '@typescript-eslint/eslint-plugin': 4.9.0_e74d2a7d9c6f761fcb488002f3c93903
   '@typescript-eslint/parser': 4.9.0_eslint@7.15.0+typescript@4.1.2
@@ -25,8 +22,8 @@ devDependencies:
   ava: 3.13.0
   babel-loader: 8.2.2_@babel+core@7.12.9
   babel-plugin-istanbul: 6.0.0
+  babel-plugin-module-resolver: 4.0.0
   babel-preset-typescript-vue: 1.1.1_@babel+core@7.12.9
-  cross-env: 7.0.3
   cypress: 6.0.1
   eslint: 7.15.0
   eslint-plugin-prettier: 3.2.0_eslint@7.15.0+prettier@2.2.1
@@ -47,7 +44,6 @@ devDependencies:
   tap-xunit: 2.4.1
   ts-node: 9.0.0_typescript@4.1.2
   typescript: 4.1.2
-  vue-hot-reload-api: 2.3.4
   vue-loader: 15.9.5_vue-template-compiler@2.6.12
   vue-template-compiler: 2.6.12
   wait-on: 5.2.0
@@ -1348,10 +1344,6 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-XIB2XbzHTN6ieIjfIMV9hlVcfPU26s2vafYWQcZHWXHOxiaRZYEDKEwdl129Zyg50+foYV2jCgtrqSA6qNuNSA==
-  /@types/assert/1.5.2:
-    dev: true
-    resolution:
-      integrity: sha512-DLsoZH9z5DLDi6qMbXKqeqlQLK1h3rfR9dK+KX8UJSGHJylvIZPOCQEKr/d/FClPoZE/eHOa3+e270eUJCUTog==
   /@types/json-schema/7.0.6:
     dev: true
     resolution:
@@ -2108,6 +2100,18 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-AF55rZXpe7trmEylbaE1Gv54wn6rwU03aptvRoVIGP8YykoSxqdVLV1TfwflBCE/QtHmqtP8SWlTENqbK8GCSQ==
+  /babel-plugin-module-resolver/4.0.0:
+    dependencies:
+      find-babel-config: 1.2.0
+      glob: 7.1.6
+      pkg-up: 3.1.0
+      reselect: 4.0.0
+      resolve: 1.19.0
+    dev: true
+    engines:
+      node: '>= 8.0.0'
+    resolution:
+      integrity: sha512-3pdEq3PXALilSJ6dnC4wMWr0AZixHRM4utpdpBR9g5QG7B7JwWyukQv7a9hVxkbGFl+nQbrHDqqQOIBtTXTP/Q==
   /babel-preset-typescript-vue/1.1.1_@babel+core@7.12.9:
     dependencies:
       '@babel/core': 7.12.9
@@ -3153,17 +3157,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-MJG9liiZ+ogc4TzUwuvbER1JRdgvUFSB5+VR/g5h82fGaIRWMWddtKBHi7/sVhfjQZ6SehlyhvQYrcYkaUIpLg==
-  /cross-env/7.0.3:
-    dependencies:
-      cross-spawn: 7.0.3
-    dev: true
-    engines:
-      node: '>=10.14'
-      npm: '>=6'
-      yarn: '>=1'
-    hasBin: true
-    resolution:
-      integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
   /cross-spawn/6.0.5:
     dependencies:
       nice-try: 1.0.5
@@ -4579,6 +4572,15 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==
+  /find-babel-config/1.2.0:
+    dependencies:
+      json5: 0.5.1
+      path-exists: 3.0.0
+    dev: true
+    engines:
+      node: '>=4.0.0'
+    resolution:
+      integrity: sha512-jB2CHJeqy6a820ssiqwrKMeyC6nNdmrcgkKWJWmpoxpE8RKciYJXCcXRq1h2AzCo5I5BJeN2tkGEO3hLTuePRA==
   /find-cache-dir/3.3.1:
     dependencies:
       commondir: 1.0.1
@@ -7661,6 +7663,14 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==
+  /pkg-up/3.1.0:
+    dependencies:
+      find-up: 3.0.0
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-nDywThFk1i4BQK4twPQ6TA4RT8bDY96yeuCVBWL3ePARCiEKDRSrNGbFIgUJpLp+XeIR65v8ra7WuJOFUBtkMA==
   /pkginfo/0.3.1:
     dev: true
     engines:
@@ -8819,6 +8829,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg==
+  /reselect/4.0.0:
+    dev: true
+    resolution:
+      integrity: sha512-qUgANli03jjAyGlnbYVAV5vvnOmJnODyABz51RdBN7M4WaVu8mecZWgyQNkG8Yqe3KRGRt0l4K4B3XVEULC4CA==
   /resize-observer-polyfill/1.5.1:
     dev: false
     resolution:
@@ -10080,10 +10094,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-  /tslib/2.0.3:
-    dev: false
-    resolution:
-      integrity: sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
   /tsutils/3.17.1_typescript@4.1.2:
     dependencies:
       tslib: 1.14.1
@@ -10936,12 +10946,10 @@ packages:
 specifiers:
   '@ava/babel': 1.0.1
   '@babel/core': 7.12.9
-  '@babel/plugin-proposal-class-properties': 7.12.1
   '@babel/plugin-transform-runtime': 7.12.1
   '@babel/plugin-transform-typescript': 7.12.1
   '@babel/preset-env': 7.12.7
   '@babel/preset-typescript': 7.12.7
-  '@types/assert': 1.5.2
   '@types/node': 14.10.0
   '@typescript-eslint/eslint-plugin': 4.9.0
   '@typescript-eslint/parser': 4.9.0
@@ -10952,8 +10960,8 @@ specifiers:
   axios: 0.21.0
   babel-loader: 8.2.2
   babel-plugin-istanbul: 6.0.0
+  babel-plugin-module-resolver: 4.0.0
   babel-preset-typescript-vue: 1.1.1
-  cross-env: 7.0.3
   cypress: 6.0.1
   element-ui: 2.14.1
   eslint: 7.15.0
@@ -10974,11 +10982,9 @@ specifiers:
   sass-loader: 10.1.0
   tap-xunit: 2.4.1
   ts-node: 9.0.0
-  tslib: 2.0.3
   typescript: 4.1.2
   vue: 2.6.12
   vue-class-component: 7.2.6
-  vue-hot-reload-api: 2.3.4
   vue-loader: 15.9.5
   vue-property-decorator: 9.1.2
   vue-router: 3.4.9

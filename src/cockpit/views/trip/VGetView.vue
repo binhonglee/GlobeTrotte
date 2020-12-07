@@ -21,10 +21,10 @@ import {
   Watch,
   Vue,
 } from "vue-property-decorator";
-import CTripInfo from "../../components/CTripInfo.vue";
-import HTTPReq from "../../shared/HTTPReq";
-import General from "../../shared/General";
-import Trip from "../../wings/Trip";
+import CTripInfo from "components/CTripInfo.vue";
+import HTTPReq from "shared/HTTPReq";
+import General from "shared/General";
+import Trip from "wings/Trip";
 
 @Component({
   data() {

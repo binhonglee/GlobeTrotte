@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Item from "../shared/TripEditable";
+import Item from "shared/TripEditable";
 
 export default Vue.extend({
   name: "CEditItem",

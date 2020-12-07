@@ -11,9 +11,9 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import General from "../shared/General";
-import HTTPReq from "../shared/HTTPReq";
-import User from "../wings/User";
+import General from "shared/General";
+import HTTPReq from "shared/HTTPReq";
+import User from "wings/User";
 
 @Component({
   data() {

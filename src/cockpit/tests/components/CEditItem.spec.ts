@@ -1,5 +1,5 @@
-import CEditItem from "../../components/CEditItem.vue";
-import Item from "../../shared/TripEditable";
+import CEditItem from "components/CEditItem.vue";
+import Item from "shared/TripEditable";
 
 import { shallowMount } from "@vue/test-utils";
 import test from "ava";

@@ -28,10 +28,10 @@
 import Vue from "vue";
 import CEditItem from "./CEditItem.vue";
 import CEditPlaces from "./CEditPlaces.vue";
-import City from "../wings/City";
-import { CityUtil } from "../shared/CityUtil";
-import Trip from "../wings/Trip";
-import TripEditable from "../shared/TripEditable";
+import City from "wings/City";
+import { CityUtil } from "shared/CityUtil";
+import Trip from "wings/Trip";
+import TripEditable from "shared/TripEditable";
 
 export default Vue.extend({
   name: "CEditTrip",

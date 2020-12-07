@@ -1,4 +1,4 @@
-import Place from "../../wings/Place";
+import Place from "wings/Place";
 
 import { WingsStructUtil } from "wings-ts-util";
 import test from "ava";

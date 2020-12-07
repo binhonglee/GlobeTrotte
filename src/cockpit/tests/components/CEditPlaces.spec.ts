@@ -1,5 +1,5 @@
-import CEditPlaces from "../../components/CEditPlaces.vue";
-import { mockPlace } from "../mockData/data";
+import CEditPlaces from "components/CEditPlaces.vue";
+import { mockPlace } from "tests/mockData/data";
 
 import { shallowMount } from "@vue/test-utils";
 import test from "ava";

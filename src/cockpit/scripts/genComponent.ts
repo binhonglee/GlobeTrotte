@@ -21,7 +21,7 @@ export default class COMPONENT_NAME extends Vue {
 `;
 
 const componentTestFolder = "src/cockpit/tests/components/";
-const testFileTemplate = `import COMPONENT_NAME from "../../components/COMPONENT_NAME.vue";
+const testFileTemplate = `import COMPONENT_NAME from "components/COMPONENT_NAME.vue";
 
 import { expect } from "chai";
 import { shallowMount } from "@vue/test-utils";

@@ -1,5 +1,5 @@
-import CPlaces from "../../components/CPlaces.vue";
-import { mockPlace } from "../mockData/data";
+import CPlaces from "components/CPlaces.vue";
+import { mockPlace } from "tests/mockData/data";
 
 import { shallowMount } from "@vue/test-utils";
 import test from "ava";

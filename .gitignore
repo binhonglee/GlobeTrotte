@@ -11,5 +11,4 @@ pnpm-debug.log
 psql.config
 /*.log
 
-src/**/wings/*.*
 src/cockpit/router.ts

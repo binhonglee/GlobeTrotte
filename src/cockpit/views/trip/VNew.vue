@@ -11,10 +11,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { WingsStructUtil } from "wings-ts-util";
-import CEditTrip from "../../components/CEditTrip.vue";
-import HTTPReq from "../../shared/HTTPReq";
-import General from "../../shared/General";
-import Trip from "../../wings/Trip";
+import CEditTrip from "components/CEditTrip.vue";
+import HTTPReq from "shared/HTTPReq";
+import General from "shared/General";
+import Trip from "wings/Trip";
 
 @Component({
   data() {

@@ -160,7 +160,7 @@ gentest(
   test_cmd = " && ".join([
     "current=$(pwd)",
     "cd $(pwd | awk -F'plz-out' '{print $1}') || exit 1",
-    "gofmt -w src/turbine/**/*.go",
+    "gofmt -w $(ls src/turbine/**/*.go | grep -v /wings/)",
   ]),
   no_test_output = True,
 )
