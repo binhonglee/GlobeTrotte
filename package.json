@@ -42,7 +42,7 @@
     "@vue/eslint-config-prettier": "6.0.0",
     "@vue/eslint-config-typescript": "7.0.0",
     "@vue/test-utils": "1.1.1",
-    "ava": "3.13.0",
+    "ava": "3.14.0",
     "babel-loader": "8.2.2",
     "babel-plugin-istanbul": "6.0.0",
     "babel-plugin-module-resolver": "4.0.0",
