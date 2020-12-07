@@ -13,5 +13,6 @@ filegroup(
     "//:serve",
     "//:prep_gen",
     "//:cockpit_e2e",
+    "//:cockpit_ava",
   ],
 )

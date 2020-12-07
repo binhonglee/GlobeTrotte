@@ -13,17 +13,17 @@
 </template>
 
 <script lang="ts">
-import {
-  Component,
-  Prop,
-  Vue,
-} from "vue-property-decorator";
+import Vue from "vue";
 import Place from "../wings/Place";
 
-@Component
-export default class CPlaces extends Vue {
-  @Prop() private places!: Place[];
-}
+export default Vue.extend({
+  name: "CPlaces",
+  props: {
+    places: {
+      type: Array,
+    }
+  }
+})
 </script>
 
 <style lang="scss">

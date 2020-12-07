@@ -1,27 +1,24 @@
 import CPlaces from "../../components/CPlaces.vue";
 import { mockPlace } from "../mockData/data";
 
-import { expect } from "chai";
 import { shallowMount } from "@vue/test-utils";
+import test from "ava";
 
 const mockedPlace = new mockPlace();
 
-describe("CPlaces.vue", () => {
-  it("renders empty component", () => {
-    const wrapper = shallowMount(CPlaces, {});
-    expect(wrapper.find(".places").text()).equals("");
+test("renders empty component", (t) => {
+  const wrapper = shallowMount(CPlaces, {});
+  t.is(wrapper.find(".places").text(), "");
+});
+
+test("renders one component", (t) => {
+  const wrapper = shallowMount(CPlaces, {
+    propsData: { places: [mockedPlace.place] },
   });
 
-  it("renders one component", () => {
-    const wrapper = shallowMount(CPlaces, {
-      propsData: { places: [mockedPlace.place] },
-    });
-
-    expect(wrapper.find("#places").text()).contains(
-      "Places:",
-    );
-    expect(wrapper.find("#place").text()).contains(
-      mockedPlace.label,
-    );
-  });
+  t.regex(wrapper.find("#places").text(), /Places:/);
+  t.regex(
+    wrapper.find("#place").text(),
+    new RegExp(mockedPlace.label),
+  );
 });

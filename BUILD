@@ -3,19 +3,15 @@ subinclude("//build_defs/pnpm")
 filegroup(
   name = "index_html",
   srcs = ["index.html"],
-  visibility = [":cockpit", ":serve"],
 )
 
 filegroup(
   name = "pnpm_config",
   srcs = [
     ".npmrc",
+    ".babelrc",
     "package.json",
     "pnpm-lock.yaml",
-  ],
-  visibility = [
-    ":cockpit",
-    ":pnpm",
   ],
 )
 
@@ -25,41 +21,18 @@ filegroup(
     "tsconfig.json",
   ],
   visibility = [
-    ":cockpit",
     "//src/cockpit/scripts/..."
   ],
 )
 
 filegroup(
   name = "prettier",
-  srcs = [
-    ".prettierrc"
-  ],
-  visibility = [":cockpit", ":serve"],
-)
-
-filegroup(
-  name = "cypress_config",
-  srcs = ["cypress.json"],
-  visibility = [":cockpit_e2e"],
-)
-
-filegroup(
-  name = "multi_reporter_mocha_config",
-  srcs = ["mochaReporter.json"],
-  visibility = [":cockpit_unit"],
-)
-
-filegroup(
-  name = "multi_reporter_component_config",
-  srcs = ["componentReporter.json"],
-  visibility = [":cockpit_component"],
+  srcs = [".prettierrc"],
 )
 
 filegroup(
   name = "eslint_config",
   srcs = [".eslintignore", ".eslintrc.js"],
-  visibility = [":cockpit", ":serve"],
 )
 
 filegroup(
@@ -71,7 +44,11 @@ filegroup(
 filegroup(
   name = "vue_config",
   srcs = ["vue.config.js"],
-  visibility = [":cockpit", ":serve"],
+)
+
+filegroup(
+  name = "nycrc",
+  srcs = [".nycrc.json"],
 )
 
 pnpm_install(
@@ -94,12 +71,6 @@ pnpm_build(
   denullify_files = ["src/cockpit/router.ts"],
 )
 
-pnpm_gen_prep(
-  name = "prep_gen",
-  denullify_files = ["src/cockpit/router.ts"],
-  deps = ["//src/cockpit/scripts:gen_router"],
-)
-
 pnpm_run(
   name = "serve",
   cmd = "serve",
@@ -116,29 +87,42 @@ pnpm_run(
   at_top_level = False,
 )
 
-pnpm_test(
-  name = "cockpit_component",
-  cmd = "test:component",
-  out = "mocha/component",
-  priority = 2,
+pnpm_run(
+  name = "report",
+  cmd = "report",
   deps = [
     ":pnpm",
-    ":prep_gen",
-    ":multi_reporter_component_config",
-    "//src/cockpit/tests/components:components",
+    ":nycrc",
   ],
+  at_top_level = False,
 )
 
 pnpm_test(
-  name = "cockpit_unit",
-  cmd = "test:mocha",
-  out = "mocha/unit",
-  coverage = "coverage",
-  priority = 4,
+  name = "cockpit_ava",
+  srcs = ["ava.config.js"],
+  cmd = "test:ava",
+  out = "ava",
+  priority = 2,
   deps = [
     ":pnpm",
-    ":prep_gen",
-    ":multi_reporter_mocha_config",
+    ":nycrc",
+    ":tsconfig",
+    "//src/cockpit:core_files",
+    "//src/cockpit/tests/components:ava_files",
+  ],
+  denullify_files = ["src/cockpit/router.ts"],
+)
+
+pnpm_test(
+  name = "cockpit_mocha",
+  srcs = ["reporter.json"],
+  cmd = "test:mocha",
+  out = "mocha/unit",
+  # coverage = "coverage",
+  deps = [
+    ":pnpm",
+    ":nycrc",
+    ":tsconfig",
     "//src/cockpit/tests/wings:wings",
     "//src/cockpit/tests/shared:shared",
   ],
@@ -146,22 +130,23 @@ pnpm_test(
 
 pnpm_test(
   name = "cockpit_e2e",
+  srcs = ["cypress.json"],
   cmd = "test:e2e",
   out = "cypress/junit",
   flaky = 2,
+  priority = 4,
   requires_server = True,
   deps = [
     ":pnpm",
-    ":prep_gen",
     ":index_html",
     ":vue_config",
     ":eslint_config",
-    ":cypress_config",
     "//src/assets:assets",
     "//src/cockpit/tests/e2e",
     "//src/cockpit:core_files",
     "//src/cockpit/tests:e2e_eslint",
   ],
+  denullify_files = ["src/cockpit/router.ts"],
 )
 
 gentest(
@@ -179,7 +164,6 @@ pnpm_test(
   cmd = "format",
   at_top_level = True,
   visibility = [
-    ":lint",
     "//src/cockpit/..."
   ],
   deps = [":pnpm"],
@@ -193,5 +177,4 @@ gentest(
     "gofmt -w src/turbine/**/*.go",
   ]),
   no_test_output = True,
-  visibility = [":lint"],
 )

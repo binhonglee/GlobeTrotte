@@ -3,5 +3,5 @@
   "spec": "src/cockpit/tests/shared/*.spec.ts",
   "require": "ts-node/register",
   "reporter": "mocha-multi-reporters",
-  "reporter-options": "configFile=mochaReporter.json"
+  "reporter-options": "configFile=reporter.json"
 }

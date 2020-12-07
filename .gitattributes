@@ -9,14 +9,23 @@ BUILD           text eol=lf linguist-language=Starlark
 *.wings         text eol=lf linguist-language=Wings
 
 # Config files
+_setup.js       text eol=lf linguist-detectable=false
 .ackrc          text eol=lf linguist-detectable=false
-.npmrc          text eol=lf linguist-detectable=false
-.prettierrc     text eol=lf linguist-detectable=false
-.plzconfig      text eol=lf linguist-detectable=false
+.babelrc        text eol=lf linguist-detectable=false
 .eslintignore   text eol=lf linguist-detectable=false
 .eslintrc.js    text eol=lf linguist-detectable=false
+.mergify.yml    text eol=lf linguist-detectable=false
+.mocharc.json   text eol=lf linguist-detectable=false
+.npmrc          text eol=lf linguist-detectable=false
+.nycrc.json     text eol=lf linguist-detectable=false
+.plzconfig      text eol=lf linguist-detectable=false
+.prettierrc     text eol=lf linguist-detectable=false
+ava.config.js   text eol=lf linguist-detectable=false
 cypress.json    text eol=lf linguist-detectable=false
+go.mod          text eol=lf linguist-detectable=false
 package.json    text eol=lf linguist-detectable=false
+renovate.json   text eol=lf linguist-detectable=false
+reporter.json   text eol=lf linguist-detectable=false
 sample.config   text eol=lf linguist-detectable=false
 test.config     text eol=lf linguist-detectable=false
 tsconfig.json   text eol=lf linguist-detectable=false
@@ -25,6 +34,7 @@ wings.json      text eol=lf linguist-detectable=false
 
 # Generated files
 index.html      linguist-generated=true linguist-vendored=true -diff
+go.sum          linguist-generated=true linguist-vendored=true -diff
 pleasew         linguist-generated=true linguist-vendored=true -diff
 pnpm-lock.yaml  linguist-generated=true linguist-vendored=true -diff
 

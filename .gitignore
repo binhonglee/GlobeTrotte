@@ -1,13 +1,15 @@
+.cache
 .nyc_output/
 coverage/
 cypress/
 dist/
-node_modules
+main
+node_modules/
 logs/
 plz-out/
-main
 pnpm-debug.log
 psql.config
 /*.log
 
 src/**/wings/*.*
+src/cockpit/router.ts

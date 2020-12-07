@@ -72,6 +72,12 @@ def pnpm_build_script(
     test_only = test_only,
   )
 
+  for out in outs:
+    cmd = " && ".join([
+      cmd,
+      "cp " + out + " " + _top_level_dir() + outpath,
+    ])
+
   return _exec_pnpm(
     name = name,
     outs = outs,
@@ -128,32 +134,6 @@ def pnpm_run(
     tools = [CONFIG.PNPM_TOOL],
   )
 
-def pnpm_gen_prep(
-  name:str,
-  denullify_files:list=[],
-  deps:list=[],
-  visibility:list=None,
-):
-  cmd = " && ".join([
-    "echo $(date \"+%Y.%m.%d-%H.%M.%S\") > " + name,
-    _prep_gen_dir(),
-  ])
-
-  if len(denullify_files) > 0:
-    cmd = cmd + " && " + _denullifier(denullify_files)
-
-  return build_rule(
-    name = name,
-    cmd = cmd,
-    outs = [name],
-    deps = deps,
-    tools = [CONFIG.PNPM_TOOL],
-    visibility = visibility,
-    binary = False,
-    output_is_complete = False,
-    needs_transitive_deps = True,
-  )
-
 def pnpm_test(
   name:str,
   cmd:str,
@@ -166,6 +146,7 @@ def pnpm_test(
   visibility:list=None,
   at_top_level:bool=False,
   requires_server:bool=False,
+  denullify_files:list=[],
 ):
   filegroup(
     name = name + "_#pnpm_test",
@@ -175,7 +156,17 @@ def pnpm_test(
     test_only = True,
   )
 
-  cmd = "pnpm run --no-color " + cmd + "$CMD"
+  cmd = _denullifier(denullify_files) + " && pnpm run --no-color " + cmd
+
+  if requires_server:
+    cmd = cmd + "$CMD"
+
+  if out is not None:
+    cmd = " && ".join([
+      "rm -rf " + out,
+      "mkdir -p " + out,
+      cmd,
+    ])
 
   if not at_top_level:
     cmd = " && ".join([
@@ -200,7 +191,6 @@ def pnpm_test(
 
   if out is not None:
     cmd = " && ".join([
-      "rm -rf " + out,
       cmd,
       "cat " + out + "/* > $TMP_DIR/test.results",
     ])
@@ -218,7 +208,7 @@ def pnpm_test(
     name = name,
     srcs = srcs,
     outs = outs,
-    deps = deps,
+    deps = deps + [":" + name + "_#pnpm_test"],
     test = True,
     flaky = flaky,
     test_only = True,
@@ -357,12 +347,16 @@ def _denullifier(denullify_files:list):
   cmd = ""
   for file in denullify_files:
     cmd = " && ".join([
-      "if [ -f \"" + file + ".null\" ]; " +
-      "then rm " + file + " || echo \"Old version of " + file + " not found. Skip removing it...\"; " +
+      "if [ -f '" + file + ".null' ]; " +
+      "then rm " + file + " || echo 'Old version of " + file + " not found. Skip removing it...'; " +
       "cp " + file + ".null " + file + "; fi",
       cmd,
     ])
-  return cmd[:-4]
+  
+  if len(cmd) > 4:
+    return cmd[:-4]
+  else:
+    return "echo \"No files to denullify. Skipping...\""
 
 def _go_to_top_level():
   return "cd " + _top_level_dir() + " || exit 1"

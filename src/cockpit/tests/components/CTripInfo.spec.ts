@@ -1,51 +1,42 @@
 import CTripInfo from "../../components/CTripInfo.vue";
 import { mockTrip } from "../mockData/data";
 
-import { expect } from "chai";
 import { shallowMount } from "@vue/test-utils";
+import test from "ava";
 
 const mockedTrip = new mockTrip();
 
-describe("CTripInfo.vue", () => {
-  it("renders empty component", () => {
-    const wrapper = shallowMount(CTripInfo, {});
-    expect(wrapper.find(".view_trip_info").exists()).equals(
-      true,
-    );
-  });
+test("renders empty component", (t) => {
+  const wrapper = shallowMount(CTripInfo, {});
+  t.is(wrapper.find(".view_trip_info").exists(), true);
+  t.is(wrapper.find(".edit_trip_info").exists(), false);
+});
 
-  it("renders one component", () => {
-    const wrapper = shallowMount(CTripInfo, {
-      propsData: {
-        trip: mockedTrip.trip,
-      },
-    });
-    expect(wrapper.find(".view_trip_info").exists()).equals(
-      true,
-    );
+test("renders one component", (t) => {
+  const wrapper = shallowMount(CTripInfo, {
+    propsData: {
+      trip: mockedTrip.trip,
+    },
   });
+  t.is(wrapper.find(".view_trip_info").exists(), true);
+});
 
-  it("renders one edit component", () => {
-    const wrapper = shallowMount(CTripInfo, {
-      propsData: {
-        trip: mockedTrip.trip,
-        editable: true,
-      },
-    });
-    expect(wrapper.find(".view_trip_info").exists()).equals(
-      true,
-    );
+test("renders one edit component", (t) => {
+  const wrapper = shallowMount(CTripInfo, {
+    propsData: {
+      trip: mockedTrip.trip,
+      editable: true,
+    },
   });
+  t.is(wrapper.find(".view_trip_info").exists(), true);
+});
 
-  it("renders one view component", () => {
-    const wrapper = shallowMount(CTripInfo, {
-      propsData: {
-        trip: mockedTrip.trip,
-        editable: false,
-      },
-    });
-    expect(wrapper.find(".view_trip_info").exists()).equals(
-      true,
-    );
+test("renders one view component", (t) => {
+  const wrapper = shallowMount(CTripInfo, {
+    propsData: {
+      trip: mockedTrip.trip,
+      editable: false,
+    },
   });
+  t.is(wrapper.find(".view_trip_info").exists(), true);
 });

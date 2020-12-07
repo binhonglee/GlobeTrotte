@@ -1,5 +1,5 @@
 {
-  "pluginsFile": "src/cockpit/tests/e2e/plugins.js",
+  "pluginsFile": "src/cockpit/tests/e2e/plugins.ts",
   "baseUrl": "http://localhost:1234",
   "reporter": "junit",
   "reporterOptions": {

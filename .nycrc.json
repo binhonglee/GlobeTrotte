@@ -1,0 +1,28 @@
+{
+  "instrument": true,
+  "sourceMaps": false,
+  "all": true,
+  "check-coverage": false,
+  "per-file": true,
+  "clean": false,
+  "temp-dir": "./.nyc_output",
+  "include": [
+    "src/cockpit/**/*.{ts,vue}"
+  ],
+  "exclude": [
+    "**/*.{spec,test}.{js,ts}",
+    "src/cockpit/router.ts",
+    "src/cockpit/tests/**/*",
+    "*.js"
+  ],
+  "reporter": [
+    "cobertura",
+    "text",
+    "text-summary"
+  ],
+  "report-dir": "./coverage",
+  "extension": [
+    ".ts",
+    ".vue"
+  ]
+}

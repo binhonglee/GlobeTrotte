@@ -16,44 +16,43 @@
 </template>
 
 <script lang="ts">
-import {
-  Component,
-  Prop,
-  Vue,
-} from "vue-property-decorator";
+import Vue from "vue";
 import { CityUtil } from "../shared/CityUtil";
 import CPlaces from "./CPlaces.vue";
 import Trip from "../wings/Trip";
 import City from "../wings/City";
 
-@Component({
-  data() {
-    return {
-      city: String,
-      editBtn: Boolean,
-    };
-  },
+export default Vue.extend({
+  name: "CViewTrip",
   components: {
     CPlaces,
   },
-})
-export default class CViewTrip extends Vue {
-  @Prop() private trip!: Trip;
-  @Prop() private editable!: Promise<boolean>;
-
-  private async beforeMount() {
-    this.$data.editBtn = await this.editable;
-    const city =
-      this.trip !== undefined && this.trip.cities.length > 0
-        ? this.trip.cities[0]
-        : City.UNKNOWN;
-    this.$data.city = CityUtil.toString(city);
+  data: () => ({
+    city: String,
+    editBtn: Boolean,
+  }),
+  props: {
+    trip: {
+      type: Trip,
+    },
+    editable: {
+      type: Boolean,
+    }
+  },
+  computed: {
+    beforeMount() {
+      this.$data.editBtn = this.$props.editable;
+      const city =
+        this.$props.trip !== undefined && this.$props.trip.cities.length > 0
+          ? this.$props.trip.cities[0]
+          : City.UNKNOWN;
+      this.$data.city = CityUtil.toString(city);
+    },
+    enableEditMode() {
+      this.$emit("edit-trip", this.$props.trip);
+    }
   }
-
-  private enableEditMode(): void {
-    this.$emit("edit-trip", this.trip);
-  }
-}
+});
 </script>
 
 <style lang="scss">

@@ -2,37 +2,36 @@ import CViewTrip from "../../components/CViewTrip.vue";
 // import { CityUtil } from "../../shared/CityUtil";
 import { mockTrip } from "../mockData/data";
 
-import { expect } from "chai";
 import { shallowMount } from "@vue/test-utils";
+import test from "ava";
 
 const mockedTrip = new mockTrip();
 
-describe("CViewTrip.vue", () => {
-  it("renders empty component", () => {
-    const wrapper = shallowMount(CViewTrip, {});
-    expect(wrapper.text()).equals("");
-  });
+test("Empty component", (t) => {
+  const wrapper = shallowMount(CViewTrip, {});
+  t.is(wrapper.text(), "");
+});
 
-  it("renders one component", () => {
-    const wrapper = shallowMount(CViewTrip, {
-      propsData: {
-        trip: mockedTrip.trip,
-      },
-    });
-    expect(wrapper.find("#name").text()).equals(
-      mockedTrip.name,
-    );
-    expect(wrapper.find("#id").text()).equals(
-      mockedTrip.ID.toString(),
-    );
-    expect(wrapper.find("#description").text()).equals(
-      mockedTrip.description,
-    );
-    // expect(wrapper.find("#city").text()).equals(
-    //   CityUtil.toString(mockedTrip.cities[0]),
-    // );
-    expect(wrapper.find("#creatorInfo").text()).equals(
-      "Author: " + mockedTrip.userID,
-    );
+test("One trip in component", (t) => {
+  const wrapper = shallowMount(CViewTrip, {
+    propsData: {
+      trip: mockedTrip.trip,
+    },
   });
+  t.is(wrapper.find("#name").text(), mockedTrip.name);
+  t.is(
+    wrapper.find("#id").text(),
+    mockedTrip.ID.toString(),
+  );
+  t.is(
+    wrapper.find("#description").text(),
+    mockedTrip.description,
+  );
+  // t.is(wrapper.find("#city").text(),
+  //   CityUtil.toString(mockedTrip.cities[0]),
+  // );
+  t.is(
+    wrapper.find("#creatorInfo").text(),
+    "Author: " + mockedTrip.userID,
+  );
 });

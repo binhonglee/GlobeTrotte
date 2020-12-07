@@ -7,7 +7,7 @@
     "and run the following command:",
     "plz build //src/wings/..."
   ],
-  "logging": 6,
+  "logging": 1,
   "outputRootDirs": ["", "GlobeTrotte"],
   "prefixes": {
     "go": "github.com/binhonglee/GlobeTrotte"
@@ -15,5 +15,5 @@
   "langFilter": [
     "go", "ts"
   ],
-  "skipImport": false
+  "skipImport": true
 }

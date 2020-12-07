@@ -10,21 +10,22 @@
 </template>
 
 <script lang="ts">
-import {
-  Component,
-  Prop,
-  Vue,
-} from "vue-property-decorator";
+import Vue from "vue";
 import Item from "../shared/TripEditable";
 
-@Component
-export default class CEditItem extends Vue {
-  @Prop() private item!: Item;
-
-  private save(): void {
-    this.$emit("save", this.item);
+export default Vue.extend({
+  name: "CEditItem",
+  props: {
+    item: {
+      type: Item,
+    },
+  },
+  computed: {
+    save(): void {
+      this.$emit("save", this.item);
+    }
   }
-}
+});
 </script>
 
 <style lang="scss">

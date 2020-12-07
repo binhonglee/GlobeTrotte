@@ -26,25 +26,26 @@
 </template>
 
 <script lang="ts">
-import {
-  Component,
-  Prop,
-  Vue,
-} from "vue-property-decorator";
+import Vue from "vue";
 import Place from "../wings/Place";
 
-@Component
-export default class CEditPlaces extends Vue {
-  @Prop() private places!: [];
-
-  private pushPlace(): void {
-    this.$props.places.push(new Place());
-  }
-
-  private removePlace(index: number): void {
-    this.$props.places.splice(index, 1);
-  }
-}
+export default Vue.extend({
+  name: "CEditPlaces",
+  props: {
+    places: {
+      type: Array,
+      default: []
+    }
+  },
+  methods: {
+    pushPlace(): void {
+      this.$props.places.push(new Place());
+    },
+    removePlace(index: number): void {
+      this.$props.places.splice(index, 1);
+    }
+  },
+});
 </script>
 
 <style lang="scss">

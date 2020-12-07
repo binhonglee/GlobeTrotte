@@ -11,68 +11,64 @@
 </template>
 
 <script lang="ts">
-import {
-  Component,
-  Prop,
-  Vue,
-} from "vue-property-decorator";
+import Vue from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import CEditTrip from "./CEditTrip.vue";
 import CViewTrip from "./CViewTrip.vue";
 import HTTPReq from "../shared/HTTPReq";
+import General from "../shared/General";
 import Trip from "../wings/Trip";
 
-@Component({
-  data() {
-    return {
-      editMode: Boolean,
-    };
-  },
+export default Vue.extend({
+  name: "CTripInfo",
   components: {
     CViewTrip,
     CEditTrip,
   },
-})
-export default class CTripInfo extends Vue {
-  @Prop() private trip!: Trip;
-  @Prop() private editable!: boolean;
-
-  private beforeMount(): void {
-    this.$data.editMode = false;
+  data: () => ({
+    editMode: false,
+  }),
+  props: {
+    trip: {
+      type: Trip,
+    },
+    editable: {
+      type: Boolean,
+    }
+  },
+  methods: {
+    async save(trip: Trip): Promise<void> {
+      const user = await General.genCurrentUser();
+      trip.userID = user.ID;
+      const success = await HTTPReq.genPOST(
+        "trip/" + trip.id,
+        WingsStructUtil.stringify(trip),
+      );
+      if (success) {
+        this.$data.editMode = false;
+      } else {
+        this.$alert(
+          "Save was unsuccessful. Please try again later.",
+          "Fail",
+          {
+            confirmButtonText: "OK",
+          },
+        );
+      }
+    },
+    cancel(): void {
+      this.$data.editMode = false;
+    },
+  },
+  computed: {
+    beforeMount(): void {
+      this.$data.editMode = false;
+    },
+    enableEditMode(): void {
+      this.$data.editMode = true;
+    },
   }
-
-  private enableEditMode(): void {
-    this.$data.editMode = true;
-  }
-
-  private disableEditMode(): void {
-    this.$data.editMode = false;
-  }
-
-  private save(trip: Trip): void {
-    HTTPReq.post(
-      "trip/" + trip.id,
-      WingsStructUtil.stringify(trip),
-      (success: string) => {
-        if (success) {
-          this.disableEditMode();
-        } else {
-          this.$alert(
-            "Save was unsuccessful. Please try again later.",
-            "Fail",
-            {
-              confirmButtonText: "OK",
-            },
-          );
-        }
-      },
-    );
-  }
-
-  private cancel(): void {
-    this.disableEditMode();
-  }
-}
+});
 </script>
 
 <style lang="scss">

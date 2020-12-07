@@ -1,7 +1,7 @@
 filegroup(
-  name = "components",
-  srcs = glob(["**/*.ts"]),
-  visibility = ["//:cockpit_component"],
+  name = "ava_files",
+  srcs = glob(["**/*.ts"]) + ["_setup.js"],
+  visibility = ["//:cockpit_ava"],
   deps = [
     "//src/cockpit/tests/mockData:mockData",
     "//src/cockpit/shared:shared",
