@@ -19,7 +19,7 @@ devDependencies:
   '@vue/eslint-config-prettier': 6.0.0_e061a72b8af834864cad6fa4602d868d
   '@vue/eslint-config-typescript': 7.0.0_d638f3fe947d7baf6f81a31a6e6486ea
   '@vue/test-utils': 1.1.1_ae554d8947d7e926b014dda25865f517
-  ava: 3.13.0
+  ava: 3.14.0
   babel-loader: 8.2.2_@babel+core@7.12.9
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.0.0
@@ -1738,6 +1738,12 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==
+  /ansi-styles/5.0.0:
+    dev: true
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-6564t0m0fuQMnockqBv7wJxo9T5C2V9JpYXyNScfRDPVLusOQQhkpMGrFC17QbiolraQ1sMXX+Y5nJpjqozL4g==
   /ansi-to-html/0.6.14:
     dependencies:
       entities: 1.1.2
@@ -1967,12 +1973,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
-  /ava/3.13.0:
+  /ava/3.14.0:
     dependencies:
       '@concordance/react': 2.0.0
       acorn: 8.0.4
       acorn-walk: 8.0.0
-      ansi-styles: 4.3.0
+      ansi-styles: 5.0.0
       arrgv: 1.0.2
       arrify: 2.0.1
       callsites: 3.1.0
@@ -2004,7 +2010,7 @@ packages:
       lodash: 4.17.20
       matcher: 3.0.0
       md5-hex: 3.0.1
-      mem: 6.1.1
+      mem: 8.0.0
       ms: 2.1.2
       ora: 5.1.0
       p-event: 4.2.0
@@ -2022,15 +2028,15 @@ packages:
       supertap: 1.0.0
       temp-dir: 2.0.0
       trim-off-newlines: 1.0.1
-      update-notifier: 4.1.3
+      update-notifier: 5.0.1
       write-file-atomic: 3.0.3
       yargs: 16.2.0
     dev: true
     engines:
-      node: '>=10.18.0 <11 || >=12.14.0 <12.17.0 || >=12.17.0 <13 || >=14.0.0'
+      node: '>=10.18.0 <11 || >=12.14.0 <12.17.0 || >=12.17.0 <13 || >=14.0.0 <15 || >=15'
     hasBin: true
     resolution:
-      integrity: sha512-yzky+gark5PdsFFlZ4CnBVxm/OgBUWtn9vAsSSnuooVJNOk5ER17HJXVeUzy63LIt06Zy34oThcn+2ZqgMs7SA==
+      integrity: sha512-AkXNi3DBXZE8A1z1JiNvdK6WmpN8oJQcZLkaWU24C3knCN9WVaxoDy90IVQlwjjPySeyQFqWDrsW9KomSNlRmQ==
   /aws-sign2/0.7.0:
     dev: true
     resolution:
@@ -5663,12 +5669,12 @@ packages:
       node: '>= 0.4'
     resolution:
       integrity: sha1-lVOxIbD6wohp2p7UWeIMdUN4hGE=
-  /is-npm/4.0.0:
+  /is-npm/5.0.0:
     dev: true
     engines:
-      node: '>=8'
+      node: '>=10'
     resolution:
-      integrity: sha512-96ECIfh9xtDDlPylNPXhzjsykHsMJZ18ASpaWzQyBr4YRTcVjUvzaHayDAES2oU/3KpljhHUjtSRNiDwi0F0ig==
+      integrity: sha512-WW/rQLOazUq+ST/bCAVBp/2oMERWLsR7OrKyt052dNDk4DHcDE0/7QSXITlmi+VBcV13DfIbysG3tZJm5RfdBA==
   /is-number/3.0.0:
     dependencies:
       kind-of: 3.2.2
@@ -6561,15 +6567,15 @@ packages:
     dev: true
     resolution:
       integrity: sha512-iV3XNKw06j5Q7mi6h+9vbx23Tv7JkjEVgKHW4pimwyDGWm0OIQntJJ+u1C6mg6mK1EaTv42XQ7w76yuzH7M2cA==
-  /mem/6.1.1:
+  /mem/8.0.0:
     dependencies:
       map-age-cleaner: 0.1.3
       mimic-fn: 3.1.0
     dev: true
     engines:
-      node: '>=8'
+      node: '>=10'
     resolution:
-      integrity: sha512-Ci6bIfq/UgcxPTYa8dQQ5FY3BzKkT894bwXWXxC/zqs0XgMO2cT20CGkOqda7gZNkmK5VP4x89IGZ6K7hfbn3Q==
+      integrity: sha512-qrcJOe6uD+EW8Wrci1Vdiua/15Xw3n/QnaNXE7varnB6InxSk7nu3/i5jfy3S6kWxr8WYJ6R1o0afMUtvorTsA==
   /meow/3.7.0:
     dependencies:
       camelcase-keys: 2.1.0
@@ -10290,26 +10296,27 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==
-  /update-notifier/4.1.3:
+  /update-notifier/5.0.1:
     dependencies:
       boxen: 4.2.0
-      chalk: 3.0.0
+      chalk: 4.1.0
       configstore: 5.0.1
       has-yarn: 2.1.0
       import-lazy: 2.1.0
       is-ci: 2.0.0
       is-installed-globally: 0.3.2
-      is-npm: 4.0.0
+      is-npm: 5.0.0
       is-yarn-global: 0.3.0
       latest-version: 5.1.0
       pupa: 2.1.1
+      semver: 7.3.4
       semver-diff: 3.1.1
       xdg-basedir: 4.0.0
     dev: true
     engines:
-      node: '>=8'
+      node: '>=10'
     resolution:
-      integrity: sha512-Yld6Z0RyCYGB6ckIjffGOSOmHXj1gMeE7aROz4MG+XMkmixBX4jUngrGXNYz7wPKBmtoD4MnBa2Anu7RSKht/A==
+      integrity: sha512-BuVpRdlwxeIOvmc32AGYvO1KVdPlsmqSh8KDDBxS6kDE5VR7R8OMP1d8MdhaVBvxl4H3551k9akXr0Y1iIB2Wg==
   /uri-js/4.2.2:
     dependencies:
       punycode: 2.1.1
@@ -10961,7 +10968,7 @@ specifiers:
   '@vue/eslint-config-prettier': 6.0.0
   '@vue/eslint-config-typescript': 7.0.0
   '@vue/test-utils': 1.1.1
-  ava: 3.13.0
+  ava: 3.14.0
   axios: 0.21.0
   babel-loader: 8.2.2
   babel-plugin-istanbul: 6.0.0
