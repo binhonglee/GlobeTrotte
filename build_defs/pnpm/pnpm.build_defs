@@ -75,7 +75,7 @@ def pnpm_build_script(
   for out in outs:
     cmd = " && ".join([
       cmd,
-      "cp " + out + " " + _top_level_dir() + outpath,
+      "cp -r " + out + " " + _top_level_dir() + outpath,
     ])
 
   return _exec_pnpm(

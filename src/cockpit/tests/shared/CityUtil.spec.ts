@@ -1,34 +1,32 @@
-import { expect } from "chai";
+import test from "ava";
 import City from "../../wings/City";
 import { CityObj, CityUtil } from "../../shared/CityUtil";
 
-describe("<CityUtil> Every city should have conversion in CityUtil.toString().", () => {
-  for (const cityString in City) {
-    if (
-      Object.prototype.hasOwnProperty.call(City, cityString)
-    ) {
-      const city = Number(cityString);
-      if (!isNaN(city) && city !== City.UNKNOWN) {
-        it(cityString, () => {
-          expect(
+for (const cityString in City) {
+  if (
+    Object.prototype.hasOwnProperty.call(City, cityString)
+  ) {
+    const city = Number(cityString);
+    if (!isNaN(city) && city !== City.UNKNOWN) {
+      test(
+        cityString +
+          " - Every city should have conversion in CityUtil.toString().",
+        (t) => {
+          t.true(
             CityUtil.toString(city) !== "unrecognized city",
-          ).equal(true);
-        });
-      }
+          );
+        },
+      );
     }
   }
-});
+}
 
-describe("<CityUtil> Non existent city (including UNKNOWN) should return 'unrecognized city'", () => {
+test("Non existent city (including UNKNOWN) should return 'unrecognized city", (t) => {
   const unsupported = 999999;
-  it(unsupported.toString(), () => {
-    expect(CityUtil.toString(unsupported)).equal(
-      "unrecognized city",
-    );
-  });
+  t.is(CityUtil.toString(unsupported), "unrecognized city");
 });
 
-describe("<CityUtil> allActiveCities() should include all but UNKNOWN city.", () => {
+test("There should be the same amount of cities.", (t) => {
   const allCities: CityObj[] = CityUtil.allActiveCities();
   const cities: Set<number> = new Set<number>();
 
@@ -42,8 +40,5 @@ describe("<CityUtil> allActiveCities() should include all but UNKNOWN city.", ()
       }
     }
   }
-
-  it("There should be the same amount of cities.", () => {
-    expect(allCities.length).equal(cities.size);
-  });
+  t.is(allCities.length, cities.size);
 });

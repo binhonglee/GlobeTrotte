@@ -1,27 +1,28 @@
-import { expect } from "chai";
+import test from "ava";
 import Trip from "../../wings/Trip";
 import TripEditable from "../../shared/TripEditable";
 
-describe("<TripEditable> All editables should have specified labels.", () => {
-  const allTypes = TripEditable.getAllTypes();
+const allTypes = TripEditable.getAllTypes();
 
-  allTypes.forEach((type: string) => {
-    it(type, () => {
+allTypes.forEach((type: string) => {
+  test(
+    type + " - All editables should have specified labels.",
+    (t) => {
       const item = new TripEditable(type, "");
-      expect(
+      t.true(
         item.label.localeCompare("unknown_type") !== 0,
-      ).equal(true);
-    });
-  });
+      );
+    },
+  );
 });
 
-describe("<TripEditable> All editables should exist in Trip.", () => {
-  const allTypes = TripEditable.getAllTypes();
-  const trip: Trip = new Trip();
+const trip: Trip = new Trip();
 
-  allTypes.forEach((type: string) => {
-    it(type, () => {
-      expect(trip[type] !== undefined).equal(true);
-    });
-  });
+allTypes.forEach((type: string) => {
+  test(
+    type + " - All editables should exist in Trip.",
+    (t) => {
+      t.true(trip[type] !== undefined);
+    },
+  );
 });

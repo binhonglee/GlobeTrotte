@@ -84,7 +84,7 @@ pnpm_run(
     "//src/cockpit:core_files",
   ],
   denullify_files = ["src/cockpit/router.ts"],
-  at_top_level = False,
+  at_top_level = True,
 )
 
 pnpm_run(
@@ -102,30 +102,16 @@ pnpm_test(
   srcs = ["ava.config.js"],
   cmd = "test:ava",
   out = "ava",
-  priority = 2,
   deps = [
     ":pnpm",
     ":nycrc",
     ":tsconfig",
     "//src/cockpit:core_files",
-    "//src/cockpit/tests/components:ava_files",
+    "//src/cockpit/tests/components:components",
+    "//src/cockpit/tests/shared:shared",
+    "//src/cockpit/tests/wings:wings",
   ],
   denullify_files = ["src/cockpit/router.ts"],
-)
-
-pnpm_test(
-  name = "cockpit_mocha",
-  srcs = ["reporter.json"],
-  cmd = "test:mocha",
-  out = "mocha/unit",
-  # coverage = "coverage",
-  deps = [
-    ":pnpm",
-    ":nycrc",
-    ":tsconfig",
-    "//src/cockpit/tests/wings:wings",
-    "//src/cockpit/tests/shared:shared",
-  ],
 )
 
 pnpm_test(
@@ -134,7 +120,7 @@ pnpm_test(
   cmd = "test:e2e",
   out = "cypress/junit",
   flaky = 2,
-  priority = 4,
+  priority = 2,
   requires_server = True,
   deps = [
     ":pnpm",

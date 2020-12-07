@@ -1,5 +1,5 @@
 filegroup(
-  name = "ava_files",
+  name = "components",
   srcs = glob(["**/*.ts"]) + ["_setup.js"],
   visibility = ["//:cockpit_ava"],
   deps = [

@@ -1,7 +1,0 @@
-{
-  "extension": ["ts"],
-  "spec": "src/cockpit/tests/shared/*.spec.ts",
-  "require": "ts-node/register",
-  "reporter": "mocha-multi-reporters",
-  "reporter-options": "configFile=reporter.json"
-}

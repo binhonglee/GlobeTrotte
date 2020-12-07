@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo apt-get install -y libxcomposite-dev libxcomposite1 libgtk2.0-0 libgtk-3-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 postgresql-client xauth xvfb
+      - run: sudo apt-get install -y libasound2 libgbm-dev libgconf-2-4 libgtk2.0-0 libgtk-3-0 libnotify-dev libnss3 libxcomposite-dev libxcomposite1 libxss1 libxtst6 postgresql-client xauth xvfb
       - run: /usr/bin/Xvfb :99 -screen 0 1920x1080x24+32 &
 
       - run: echo 'export DISPLAY=:99' >> $BASH_ENV
@@ -36,9 +36,14 @@ jobs:
           command: ./pleasew work
           background: true
       - run: ./pleasew test --show_all_output
+      - run: ./pleasew run //:report
       - run: bash <(curl -s https://codecov.io/bash)
       - run: ./scripts/leftover.sh
       - store_artifacts:
           path: ~/GlobeTrotte/plz-out/gen/cypress
+      - store_artifacts:
+          path: ~/GlobeTrotte/plz-out/gen/coverage
+      - store_artifacts:
+          path: ~/GlobeTrotte/plz-out/gen/ava
       - store_artifacts:
           path: ~/GlobeTrotte/logs
