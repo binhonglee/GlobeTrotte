@@ -13,7 +13,7 @@ devDependencies:
   '@babel/plugin-transform-typescript': 7.12.1_@babel+core@7.12.9
   '@babel/preset-env': 7.12.7_@babel+core@7.12.9
   '@babel/preset-typescript': 7.12.7_@babel+core@7.12.9
-  '@types/node': 14.14.10
+  '@types/node': 14.14.11
   '@typescript-eslint/eslint-plugin': 4.9.1_5897ef4c8a6133b7b28695ca449212ad
   '@typescript-eslint/parser': 4.9.1_eslint@7.15.0+typescript@4.1.2
   '@vue/eslint-config-prettier': 6.0.0_e061a72b8af834864cad6fa4602d868d
@@ -1348,10 +1348,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-3c+yGKvVP5Y9TYBEibGNR+kLtijnj7mYrXRg+WpFb2X9xm04g/DXYkfg4hmzJQosc9snFNUPkbYIhu+KAm6jJw==
-  /@types/node/14.14.10:
+  /@types/node/14.14.11:
     dev: true
     resolution:
-      integrity: sha512-J32dgx2hw8vXrSbu4ZlVhn1Nm3GbeCFNw2FWL8S5QKucHGY0cyNwjdQdO+KMBZ4wpmC7KhLCiNsdk1RFRIYUQQ==
+      integrity: sha512-BJ97wAUuU3NUiUCp44xzUFquQEvnk1wu7q4CMEUYKJWjdkr0YWYDsm4RFtAvxYsNjLsKcrFt6RvK8r+mnzMbEQ==
   /@types/normalize-package-data/2.4.0:
     dev: true
     resolution:
@@ -10962,7 +10962,7 @@ specifiers:
   '@babel/plugin-transform-typescript': 7.12.1
   '@babel/preset-env': 7.12.7
   '@babel/preset-typescript': 7.12.7
-  '@types/node': 14.14.10
+  '@types/node': 14.14.11
   '@typescript-eslint/eslint-plugin': 4.9.1
   '@typescript-eslint/parser': 4.9.1
   '@vue/eslint-config-prettier': 6.0.0
