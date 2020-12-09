@@ -36,7 +36,7 @@ devDependencies:
   parcel-bundler: 1.12.4
   prettier: 2.2.1
   pug: 3.0.0
-  pug-plain-loader: 1.0.0_pug@3.0.0
+  pug-plain-loader: 1.1.0_pug@3.0.0
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0_require-extension-hooks@0.3.3
   require-extension-hooks-vue: 3.0.0_a27a9a5766e8e0417aae090eff1801a8
@@ -8377,15 +8377,15 @@ packages:
     dev: true
     resolution:
       integrity: sha512-ukiYM/9cH6Cml+AOl5kETtM9NR3WulyVP2y4HOU45DyMim1IeP/OOiyEWRr6qk5I5klpsBnbuHpwKmTx6WURnw==
-  /pug-plain-loader/1.0.0_pug@3.0.0:
+  /pug-plain-loader/1.1.0_pug@3.0.0:
     dependencies:
       loader-utils: 1.4.0
       pug: 3.0.0
     dev: true
     peerDependencies:
-      pug: ^2.0.0
+      pug: ^2.0.0 || ^3.0.0
     resolution:
-      integrity: sha512-mDfq/qvJJ0xdug38mZ1ObW0BQTx9kAHnKqotXC+C00XQkKmsWaMe90JUg/kN4lS6MU7tpVsMZ+rmcnBSPfDtHA==
+      integrity: sha512-1nYgIJLaahRuHJHhzSPODV44aZfb00bO7kiJiMkke6Hj4SVZftuvx6shZ4BOokk50dJc2RSFqNUBOlus0dniFQ==
   /pug-runtime/3.0.0:
     dev: true
     resolution:
@@ -10987,7 +10987,7 @@ specifiers:
   parcel-bundler: 1.12.4
   prettier: 2.2.1
   pug: 3.0.0
-  pug-plain-loader: 1.0.0
+  pug-plain-loader: 1.1.0
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0
   require-extension-hooks-vue: 3.0.0
