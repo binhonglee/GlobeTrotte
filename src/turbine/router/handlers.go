@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strconv"
 
+	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 
 	"github.com/gorilla/mux"
@@ -44,19 +45,16 @@ func unpackJSON(
 	body, err := ioutil.ReadAll(
 		io.LimitReader(req.Body, 1048576),
 	)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	if err := req.Body.Close(); err != nil {
-		fmt.Println(err)
-	}
+	logger.Err(logger.Router, err, "")
+	logger.Err(logger.Router, req.Body.Close(), "")
 
 	if err := json.Unmarshal(body, objType); err != nil {
 		response(res, http.StatusUnprocessableEntity)
-		if err := json.NewEncoder(*res).Encode(err); err != nil {
-			fmt.Println(err)
-		}
+		logger.Err(
+			logger.Router,
+			json.NewEncoder(*res).Encode(err),
+			"",
+		)
 	}
 }
 
@@ -83,10 +81,10 @@ func getItem(
 ) {
 	vars := mux.Vars(req)
 	var id int
-	var error error
+	var err error
 
-	if id, error = strconv.Atoi(vars["id"]); error != nil {
-		fmt.Println(error)
+	if id, err = strconv.Atoi(vars["id"]); err != nil {
+		logger.Err(logger.Router, err, "")
 		return
 	}
 	allowCORS(res)
@@ -94,7 +92,6 @@ func getItem(
 	item := getFunc(id)
 	if item.GetID() > 0 {
 		response(res, http.StatusOK)
-		fmt.Println(item)
 		json.NewEncoder(*res).Encode(item)
 	} else {
 		response(res, http.StatusNotFound)

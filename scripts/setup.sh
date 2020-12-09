@@ -105,8 +105,10 @@ installGo() {
     fi
     sudo tar -C "/usr/local" -xzf "$filename"
     rm $filename
-    export PATH="$PATH:/usr/local/go/bin"
-    echo "export PATH=\$PATH:/usr/local/go/bin"
+    export GOPATH="$HOME/go"
+    echo "export GOPATH=\"\$HOME/go\""
+    export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
+    echo "export PATH=\$PATH:/usr/local/go/bin:$GOPATH/bin"
   fi
 }
 

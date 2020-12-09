@@ -3,7 +3,6 @@ package router
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -84,10 +83,6 @@ func loginTest(
 	NewRouter().ServeHTTP(res, req)
 	if len(res.Result().Cookies()) > 0 {
 		cookies = res.Result().Cookies()[0]
-		fmt.Println("login cookies")
-		fmt.Println(res.Result().Cookies()[0])
-		fmt.Println("end new cookie assignment")
-
 	}
 	return res
 }

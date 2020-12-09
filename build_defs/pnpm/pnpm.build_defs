@@ -145,7 +145,7 @@ def pnpm_test(
   priority:int=0,
   visibility:list=None,
   at_top_level:bool=False,
-  requires_server:bool=False,
+  requires_server:int=None,
   denullify_files:list=[],
 ):
   filegroup(
@@ -158,7 +158,7 @@ def pnpm_test(
 
   cmd = _denullifier(denullify_files) + " && pnpm run --no-color " + cmd
 
-  if requires_server:
+  if requires_server is not None:
     cmd = cmd + "$CMD"
 
   if out is not None:
@@ -180,9 +180,9 @@ def pnpm_test(
     cmd,
   ])
 
-  if requires_server:
+  if requires_server is not None:
     cmd = " && ".join([
-      _check_server_running(),
+      _check_server_running(requires_server),
       cmd,
     ])
 
@@ -319,9 +319,9 @@ def _exec_pnpm(
     needs_transitive_deps = True,
   )
 
-def _check_server_running():
+def _check_server_running(requires_server:int):
   return " ".join([
-    "if [[ $(lsof -i:1234 | grep -v \"CLOSE_WAIT\") ]];",
+    "if [[ $(lsof -i:" + str(requires_server) + " | grep -v \"CLOSE_WAIT\") ]];",
     "then CMD=\"\";",
     "else CMD=\":plz\";",
     "fi",

@@ -42,11 +42,6 @@ filegroup(
 )
 
 filegroup(
-  name = "vue_config",
-  srcs = ["vue.config.js"],
-)
-
-filegroup(
   name = "nycrc",
   srcs = [".nycrc.json"],
 )
@@ -63,7 +58,6 @@ pnpm_build(
     ":prettier",
     ":tsconfig",
     ":index_html",
-    ":vue_config",
     ":eslint_config",
     "//src/assets:assets",
     "//src/cockpit:core_files",
@@ -78,10 +72,10 @@ pnpm_run(
     ":pnpm",
     ":prettier",
     ":index_html",
-    ":vue_config",
     ":eslint_config",
     "//src/assets:assets",
     "//src/cockpit:core_files",
+    "//src/cockpit/scripts:check_backend",
   ],
   denullify_files = ["src/cockpit/router.ts"],
   at_top_level = True,
@@ -119,18 +113,17 @@ pnpm_test(
   srcs = ["cypress.json"],
   cmd = "test:e2e",
   out = "cypress/junit",
-  flaky = 2,
   priority = 2,
-  requires_server = True,
+  requires_server = 1234,
   deps = [
     ":pnpm",
     ":index_html",
-    ":vue_config",
     ":eslint_config",
     "//src/assets:assets",
     "//src/cockpit/tests/e2e",
     "//src/cockpit:core_files",
     "//src/cockpit/tests:e2e_eslint",
+    "//src/cockpit/scripts:check_backend",
   ],
   denullify_files = ["src/cockpit/router.ts"],
 )

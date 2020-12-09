@@ -2,7 +2,6 @@ package logger
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"runtime"
 	"strconv"
@@ -35,15 +34,15 @@ func Cleanup() {
 }
 
 func archiveOldLogs() {
-	files, _ := ioutil.ReadDir(".")
+	// files, _ := ioutil.ReadDir(".")
 
-	for _, file := range files {
-		if !file.IsDir() &&
-			strings.HasSuffix(file.Name(), logExt) &&
-			file.Name() != currentFile.Name() {
-			archiveLog(file.Name(), false)
-		}
-	}
+	// for _, file := range files {
+	// 	if !file.IsDir() &&
+	// 		strings.HasSuffix(file.Name(), logExt) &&
+	// 		file.Name() != currentFile.Name() {
+	// 		archiveLog(file.Name(), false)
+	// 	}
+	// }
 }
 
 func archiveLog(filename string, exit bool) {
@@ -109,6 +108,10 @@ func Print(namespace Namespace, message string) {
 
 func Success(namespace Namespace, message string) {
 	messageToFile(successC, namespace, message)
+}
+
+func Failure(namespace Namespace, message string) {
+	messageToFile(errorC, namespace, message)
 }
 
 // Similar to Print() but calls panic right after
@@ -207,7 +210,7 @@ func getCaller(namespace Namespace, level int) string {
 	if ok {
 		paths := strings.Split(file, "/")
 		if paths[len(paths)-1] != "log.go" || namespace == logger || namespace == flags {
-			return "(" + file + ", " + strconv.Itoa(no) + ")"
+			return "(" + file + ":" + strconv.Itoa(no) + ")"
 		} else {
 			return getCaller(namespace, level+2)
 		}

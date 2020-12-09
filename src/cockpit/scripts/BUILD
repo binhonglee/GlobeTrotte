@@ -1,5 +1,14 @@
 subinclude("//build_defs/pnpm")
 
+filegroup(
+  name = "check_backend",
+  srcs = ["checkBackend.ts"],
+  visibility = [
+    "//:cockpit_e2e",
+    "//:serve",
+  ],
+)
+
 pnpm_build_script(
   name = "gen_router",
   srcs = ["genRouter.ts"],
@@ -13,8 +22,6 @@ pnpm_build_script(
   outpath = "src/cockpit/",
   visibility = [
     "//src/cockpit:core_files",
-    "//:serve",
-    "//:prep_gen"
   ],
   nullify_outs = True,
 )

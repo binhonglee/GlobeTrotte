@@ -40,35 +40,19 @@ export default Vue.extend({
     CEditPlaces,
   },
   data: () => ({
-    city: String,
-    cities: Array,
-    editables: Array,
-    items: Array,
-    locations: Array,
-    saving: Boolean,
+    city: "",
+    cities: [],
+    editables: [],
+    items: [],
+    locations: [],
+    saving: false,
   }),
   props: {
     trip: {
       type: Trip,
     }
   },
-  computed: {
-    beforeMount(): void {
-      this.$data.cities = CityUtil.allActiveCities();
-      this.$data.editables = TripEditable.getAllTypes();
-
-      if (this.$props.trip.cities.length > 0) {
-        this.$data.city = this.$props.trip.cities[0];
-      }
-
-      for (const field in this.$data.editables) {
-        if (typeof field === "string") {
-          this.$data.items.push(
-            this.tripToItem(this.$data.editables[field]),
-          );
-        }
-      }
-    },
+  methods: {
     cancel(): void {
       this.$emit("cancel");
     },
@@ -97,11 +81,30 @@ export default Vue.extend({
 
       this.$emit("save", this.$props.trip);
       this.$data.saving = false;
-    }
-  },
-  methods: {
+    },
     tripToItem(itemType: string): TripEditable {
       return new TripEditable(itemType, this.$props.trip[itemType]);
+    },
+    beforeMount(): void {
+      this.$data.cities = CityUtil.allActiveCities();
+      this.$data.editables = TripEditable.getAllTypes();
+
+      if (this.$props.trip.cities.length > 0) {
+        this.$data.city = this.$props.trip.cities[0];
+      }
+
+      for (const field in this.$data.editables) {
+        if (typeof field === "string") {
+          this.$data.items.push(
+            this.tripToItem(this.$data.editables[field]),
+          );
+        }
+      }
+    },
+    mounted(): void {
+      this.$nextTick(function () {
+        console.log(this.$data);
+      });
     }
   },
 });
