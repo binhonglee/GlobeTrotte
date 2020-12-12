@@ -5,7 +5,7 @@ dependencies:
   vue-class-component: 7.2.6_vue@2.6.12
   vue-property-decorator: 9.1.2_2dc4252c5371093c9ebcca71536ac4e9
   vue-router: 3.4.9
-  wings-ts-util: 0.0.6
+  wings-ts-util: 0.0.7
 devDependencies:
   '@ava/babel': 1.0.1
   '@babel/core': 7.12.10
@@ -11406,10 +11406,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-+OGqHuWlPsW/FR/6CXQqatdpeHY=
-  /wings-ts-util/0.0.6:
+  /wings-ts-util/0.0.7:
     dev: false
     resolution:
-      integrity: sha512-ycGNkt+EWFBGqBkuhnUeuJJB/BOqyBSFcF04LvFFd1Nq2JJu1Yg9w5175vzfeu+kNkyT3bc38AQs58F+4gnWUA==
+      integrity: sha512-s+N156s8NLEouFXl0HjPDJzMjvmv2W74+0pgWtvmsWgwDyV9fCj7oNNHESMHDUcp7G+3IgKsh4zybv6S+BJlaA==
   /winston/0.8.0:
     dependencies:
       async: 0.2.10
@@ -11738,4 +11738,4 @@ specifiers:
   vue-router: 3.4.9
   vue-template-compiler: 2.6.12
   wait-on: 5.2.0
-  wings-ts-util: 0.0.6
+  wings-ts-util: 0.0.7
