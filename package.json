@@ -49,7 +49,7 @@
     "babel-preset-typescript-vue": "1.1.1",
     "cypress": "6.1.0",
     "eslint": "7.15.0",
-    "eslint-plugin-prettier": "3.2.0",
+    "eslint-plugin-prettier": "3.3.0",
     "eslint-plugin-vue": "7.2.0",
     "forever": "3.0.4",
     "jsdom": "16.4.0",
