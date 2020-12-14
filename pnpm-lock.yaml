@@ -18,7 +18,7 @@ devDependencies:
   '@typescript-eslint/parser': 4.9.1_eslint@7.15.0+typescript@4.1.3
   '@vue/eslint-config-prettier': 6.0.0_d9e8f21c385aff0e3bfaaa5bb6443ac6
   '@vue/eslint-config-typescript': 7.0.0_256a8071968ceb6278d5b0c23dde0395
-  '@vue/test-utils': 1.1.1_ae554d8947d7e926b014dda25865f517
+  '@vue/test-utils': 1.1.2_ae554d8947d7e926b014dda25865f517
   ava: 3.14.0
   babel-loader: 8.2.2_@babel+core@7.12.10
   babel-plugin-istanbul: 6.0.0
@@ -2268,7 +2268,7 @@ packages:
       eslint-plugin-vue: ^5.2.3 || ^6.0.0 || ^7.0.0
     resolution:
       integrity: sha512-UxUlvpSrFOoF8aQ+zX1leYiEBEm7CZmXYn/ZEM1zwSadUzpamx56RB4+Htdjisv1mX2tOjBegNUqH3kz2OL+Aw==
-  /@vue/test-utils/1.1.1_ae554d8947d7e926b014dda25865f517:
+  /@vue/test-utils/1.1.2_ae554d8947d7e926b014dda25865f517:
     dependencies:
       dom-event-types: 1.0.0
       lodash: 4.17.20
@@ -2280,7 +2280,7 @@ packages:
       vue: 2.x
       vue-template-compiler: ^2.x
     resolution:
-      integrity: sha512-/32538ilZ9qSiu1gui7zfBn+IFy+zoTaQTZ1qiLfQXzZtaeAD23kJMrnqaoe2w8JzJoXuqHUl2ruuStG8rwFYQ==
+      integrity: sha512-utbIL7zn9c+SjhybPwh48lpWCiluFCbP1yyRNAy1fQsw/6hiNFioaWy05FoVAFIZXC5WwBf+5r4ypfM1j/nI4A==
   /abab/2.0.5:
     dev: true
     resolution:
@@ -6145,6 +6145,7 @@ packages:
     resolution:
       integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
   /ini/1.3.5:
+    deprecated: Please update to ini >=1.3.6 to avoid a prototype pollution issue
     dev: true
     resolution:
       integrity: sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
@@ -11708,7 +11709,7 @@ specifiers:
   '@typescript-eslint/parser': 4.9.1
   '@vue/eslint-config-prettier': 6.0.0
   '@vue/eslint-config-typescript': 7.0.0
-  '@vue/test-utils': 1.1.1
+  '@vue/test-utils': 1.1.2
   ava: 3.14.0
   axios: 0.21.0
   babel-loader: 8.2.2
