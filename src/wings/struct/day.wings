@@ -9,7 +9,7 @@ ts-implement IWingsStruct
 # A day of a trip.
 
 struct Day {
-  id       int
+  id       int      -1
   trip_id  int
   day_of   int
   places   []Place

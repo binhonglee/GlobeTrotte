@@ -1,6 +1,6 @@
 import test from "ava";
-import Trip from "wings/Trip";
-import TripEditable from "shared/TripEditable";
+import Trip from "@/wings/Trip";
+import TripEditable from "@/shared/TripEditable";
 
 const allTypes = TripEditable.getAllTypes();
 

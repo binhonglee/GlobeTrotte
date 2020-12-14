@@ -1,6 +1,6 @@
 import test from "ava";
-import City from "wings/City";
-import { CityObj, CityUtil } from "shared/CityUtil";
+import City from "@/wings/City";
+import { CityObj, CityUtil } from "@/shared/CityUtil";
 
 for (const cityString in City) {
   if (

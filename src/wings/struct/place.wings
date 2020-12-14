@@ -8,7 +8,7 @@ ts-implement IWingsStruct
 # One of many location for a Day (in a Trip).
 
 struct Place {
-  id           int
+  id           int  -1
   label        str
   url          str
   description  str

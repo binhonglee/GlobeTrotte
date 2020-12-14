@@ -56,6 +56,19 @@ func UpdateUserDB(updatedUser structs.IStructs) bool {
 	return updateUser(*user)
 }
 
+func deleteTripFromUserDB(tripID int, userID int) bool {
+	user := GetUserDB(userID).(*wings.User)
+	var trips []int
+	for _, trip := range user.Trips {
+		if trip != tripID {
+			trips = append(trips, trip)
+		}
+	}
+	user.Trips = trips
+
+	return UpdateUserDB(user)
+}
+
 // DeleteUserDB - Delete user from the database.
 func DeleteUserDB(existingUser structs.IStructs) bool {
 	user, ok := existingUser.(*wings.User)

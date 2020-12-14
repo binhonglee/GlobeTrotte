@@ -9,14 +9,14 @@ import { IWingsStruct } from 'wings-ts-util';
 // Basic information for user registeration.
 export default class NewUser implements IWingsStruct {
   [key: string]: any;
-  public ID: number = 0;
-  public name: string = '';
-  public email: string = '';
-  public password: string = '';
+  public ID: Number = -1;
+  public name: String = '';
+  public email: String = '';
+  public password: String = '';
 
   public constructor(obj?: any) {
     if (obj) {
-      this.ID = obj.id !== undefined && obj.id !== null ? obj.id : 0;
+      this.ID = obj.id !== undefined && obj.id !== null ? obj.id : -1;
       this.name = obj.name !== undefined && obj.name !== null ? obj.name : '';
       this.email = obj.email !== undefined && obj.email !== null ? obj.email : '';
       this.password = obj.password !== undefined && obj.password !== null ? obj.password : '';

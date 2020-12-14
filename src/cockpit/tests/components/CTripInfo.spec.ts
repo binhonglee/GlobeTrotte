@@ -1,5 +1,5 @@
-import CTripInfo from "components/CTripInfo.vue";
-import { mockTrip } from "tests/mockData/data";
+import CTripInfo from "@/components/CTripInfo.vue";
+import { mockTrip } from "@/tests/mockData/data";
 
 import { shallowMount } from "@vue/test-utils";
 import test from "ava";

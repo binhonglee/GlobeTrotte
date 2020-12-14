@@ -10,8 +10,8 @@ import AccessLevel from './AccessLevel';
 // UserAccessLevel - User access level of a specific object.
 export default class UserAccessLevel implements IWingsStruct {
   [key: string]: any;
-  public objID: number = 0;
-  public userID: number = 0;
+  public objID: Number = 0;
+  public userID: Number = 0;
   public access: AccessLevel = AccessLevel.None;
 
   public constructor(obj?: any) {

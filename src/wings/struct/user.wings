@@ -8,7 +8,7 @@ ts-implement IWingsStruct
 # User - An individual registered user.
 
 struct User {
-  id            int
+  id            int   -1
   name          str
   email         str
   bio           str

@@ -16,9 +16,8 @@
       el-menu-item.main_menu_item#new_trip(v-if="authed" index="/trip/new") New
     el-menu-item.main_menu_item#login(v-if="!authed" index="/login") Login
     el-menu-item.main_menu_item#register(v-if="!authed" index="/register") Register
-    el-menu-item.main_menu_item#logout(v-if="authed" v-on:click="logout") Logout
     el-menu-item.main_menu_item#myaccount(v-if="authed" index="/myaccount") My Account
-  router-view
+  router-view#content
   #footer
 </template>
 
@@ -28,7 +27,6 @@ import {
   Vue,
   Watch,
 } from "vue-property-decorator";
-import HTTPReq from "./shared/HTTPReq";
 import General from "./shared/General";
 
 @Component({
@@ -68,22 +66,15 @@ export default class App extends Vue {
         -1 * paths[paths.length - 1].length - 1,
       );
     }
-
     this.$data.activeIndex = path;
   }
 
   private handleSelect(key: string) {
     let path = key;
-    if (path === null) {
-      path = this.$data.activeIndex;
+    if (path === this.$data.activeIndex || path === null) {
+      return;
     }
     this.$router.push({ path: `${path}` });
-  }
-
-  private async logout() {
-    await HTTPReq.genGET("logout");
-    localStorage.clear();
-    this.$data.authed = false;
   }
 
   @Watch("$route", { immediate: true, deep: true })
@@ -102,25 +93,26 @@ export default class App extends Vue {
 }
 
 #login,
-#logout,
 #myaccount,
 #register {
   float: right;
 }
 
 #app {
+  position: relative;
+  min-height: 100vh;
   text-align: center;
 }
 
 #footer {
   display: inline-block;
-  position: fixed;
+  position: absolute;
   left: 0px;
   bottom: 0px;
   height: 40px;
   width: 100%;
   background-color: #333;
-  color: white;
+  // color: white;
 }
 
 #footerMessage {

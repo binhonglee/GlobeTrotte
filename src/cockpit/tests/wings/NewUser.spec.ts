@@ -1,4 +1,4 @@
-import NewUser from "wings/NewUser";
+import NewUser from "@/wings/NewUser";
 
 import { WingsStructUtil } from "wings-ts-util";
 import test from "ava";

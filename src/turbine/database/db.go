@@ -20,7 +20,7 @@ const (
 )
 
 var db *sql.DB
-var tableNames = [4]string{"users", "trips", "cities", "days"}
+var tableNames = [5]string{"users", "trips", "cities", "days", "places"}
 
 func init() {
 	config := getConfig()
@@ -70,6 +70,8 @@ func initializeDB() {
 				createCitiesTable()
 			case "days":
 				createDaysTable()
+			case "places":
+				createPlacesTable()
 			default:
 				logger.Panic(logger.Database, "New element was added to 'tableNames' but no creation method is added for it.")
 			}
@@ -131,7 +133,7 @@ func createPlacesTable() {
 			id             SERIAL PRIMARY KEY,
 			label          TEXT,
 			url            TEXT,
-			description    TEXT,
+			description    TEXT
 		);`
 	_, err := db.Exec(createTable)
 

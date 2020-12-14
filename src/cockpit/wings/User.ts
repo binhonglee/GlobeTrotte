@@ -4,26 +4,27 @@
 // and run the following command:
 // plz build //src/wings/...
 
+import { parseArray } from 'wings-ts-util';
 import { IWingsStruct } from 'wings-ts-util';
 
 // User - An individual registered user.
 export default class User implements IWingsStruct {
   [key: string]: any;
-  public ID: number = 0;
-  public name: string = '';
-  public email: string = '';
-  public bio: string = '';
+  public ID: Number = -1;
+  public name: String = '';
+  public email: String = '';
+  public bio: String = '';
   public timeCreated: Date = new Date();
-  public trips: number[] = [];
+  public trips: Number[] = [];
 
   public constructor(obj?: any) {
     if (obj) {
-      this.ID = obj.id !== undefined && obj.id !== null ? obj.id : 0;
+      this.ID = obj.id !== undefined && obj.id !== null ? obj.id : -1;
       this.name = obj.name !== undefined && obj.name !== null ? obj.name : '';
       this.email = obj.email !== undefined && obj.email !== null ? obj.email : '';
       this.bio = obj.bio !== undefined && obj.bio !== null ? obj.bio : '';
       this.timeCreated = obj.time_created !== undefined && obj.time_created !== null ? new Date(obj.time_created) : new Date();
-      this.trips = obj.trips !== undefined && obj.trips !== null ? obj.trips : [];
+      this.trips = obj.trips !== undefined && obj.trips !== null ? parseArray<Number>(Number, obj.trips) : [];
     }
   }
 

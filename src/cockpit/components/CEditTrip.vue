@@ -1,111 +1,190 @@
 <template lang="pug">
   .edit_trip
     CEditItem(
-      v-for="item in items"
-      @save="save"
-      :item="item"
-      v-bind:key="item.type"
+      :label="'Name'"
+      :val="trip.name"
+      :ref="'name'"
+      :key="'name'"
     )
-    span.editLabel City:
-    el-select.editInput(v-model="city" placeholder="")
-      el-option(
-        v-for="item in cities"
-        :key="item.key"
-        :label="item.label"
-        :value="item.key"
+    CEditItem(
+      :label="'Description'"
+      :val="trip.description"
+      :ref="'description'"
+      :key="'description'"
+      :large="true"
+    )
+    .editCity
+      span.editLabel Cities:
+      el-select.editInput(
+        v-model="cities" placeholder="" multiple filterable
+        no-match-text="City not found"
       )
-    CEditPlaces(:places="locations")
+        el-option(
+          v-for="item in possibleCities"
+          :key="item.key"
+          :label="item.label"
+          :value="item.key"
+        )
+    CEditDays(:ref="'days'" :givenDays="trip.days")
     div.confirmationButtons
       el-button#save(
         type="primary" v-on:click="save" :loading="saving"
       ) Save
       el-button#cancel(
-        type="danger" v-on:click="cancel"
+        type="default" v-on:click="cancel"
       ) Cancel
+      el-button#deleteTrip(
+        v-if="!isNew"
+        type="danger"
+        v-on:click="del"
+        :loading="deleting"
+      ) Delete
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import CEditDays from "./CEditDays.vue";
 import CEditItem from "./CEditItem.vue";
 import CEditPlaces from "./CEditPlaces.vue";
-import City from "wings/City";
-import { CityUtil } from "shared/CityUtil";
-import Trip from "wings/Trip";
-import TripEditable from "shared/TripEditable";
+import City from "@/wings/City";
+import { CityUtil } from "@/shared/CityUtil";
+import Place from "@/wings/Place";
+import Trip from "@/wings/Trip";
+import TripEditable from "@/shared/TripEditable";
+import HTTPReq from "@/shared/HTTPReq";
+import { off } from "process";
 
 export default Vue.extend({
   name: "CEditTrip",
   components: {
+    CEditDays,
     CEditItem,
     CEditPlaces,
   },
   data: () => ({
-    city: "",
     cities: [],
-    editables: [],
-    items: [],
+    possibleCities: [],
     locations: [],
     saving: false,
+    deleting: false,
   }),
   props: {
     trip: {
       type: Trip,
-    }
+    },
+    isNew: {
+      type: Boolean,
+    },
   },
   methods: {
     cancel(): void {
+      this.$refs.days.days = (
+        this.$props.trip.days ?? []
+      ).slice(0);
       this.$emit("cancel");
     },
     save(): void {
+      let newTrip = new Trip();
+      if (this.$data.cities.length < 1) {
+        this.$alert("Cities cannot be empty", "", {
+          confirmButtonText: "OK",
+        });
+        return;
+      }
       this.$data.saving = true;
-      if (typeof this.$data.city === "number") {
-        this.$props.trip.location = this.$data.city;
-      } else {
-        this.$props.trip.location = parseInt(
-          City[this.$data.city],
-          10,
-        );
+      newTrip.cities = [];
+      for (let city of this.$data.cities) {
+        if (typeof city === "number") {
+          newTrip.cities.push(city);
+        } else {
+          newTrip.cities.push(parseInt(City[city], 10));
+        }
       }
 
-      for (const item of this.$data.items) {
-        if (item instanceof TripEditable) {
-          if (typeof this.$props.trip[item.type] !== "string") {
-            this.$props.trip[item.type] = +item.value;
+      newTrip.name = this.$refs.name.value;
+      newTrip.description = this.$refs.description.value;
+      newTrip.days = [];
+      const days = this.$refs.days;
+      let offBy = 0;
+      for (const day in days.days) {
+        const currentDay = days.days[day];
+        const places = this.filterPlaces(
+          days.$refs["places" + day][0].places,
+        );
+        if (places === null) {
+          this.$message.error(
+            "Invalid URL. URL should always begins with 'https://'",
+          );
+          return;
+        }
+        if (places.length > 0) {
+          currentDay.places = places;
+          currentDay.dayOf = currentDay.dayOf - offBy;
+          newTrip.days.push(currentDay);
+        } else {
+          offBy++;
+        }
+      }
+
+      newTrip.ID = this.$props.trip.ID;
+      this.$emit("save", newTrip);
+      this.$data.saving = false;
+    },
+    filterPlaces(places: Place[]): Place[] | null {
+      let toReturn: Place[] = [];
+      for (let place of places) {
+        if (place.label !== "" && place.URL !== "") {
+          if (place.URL.startsWith("https://")) {
+            toReturn.push(place);
           } else {
-            this.$props.trip[item.type] = item.value;
+            return null;
           }
         }
       }
+      return toReturn;
+    },
+    async del(): Promise<void> {
+      this.$data.deleting = true;
+      let success = Boolean(
+        await HTTPReq.genDELETE(
+          "trip/" + this.$props.trip.ID,
+        ),
+      );
+      if (!success) {
+        success =
+          (await HTTPReq.genGET(
+            "trip/" + this.$props.trip.ID,
+          )) === "";
+      }
 
-      this.$props.trip.places = this.$data.locations;
+      this.$data.deleting = false;
+      await this.$alert(
+        success
+          ? "Trip is successfully deleted!"
+          : "Trip deletion attempt failed.",
+        "Trip Deletion",
+        {
+          confirmButtonText: "OK",
+        },
+      );
 
-      this.$emit("save", this.$props.trip);
-      this.$data.saving = false;
+      if (success) {
+        this.$router.push("/trip/new");
+      }
     },
     tripToItem(itemType: string): TripEditable {
-      return new TripEditable(itemType, this.$props.trip[itemType]);
+      return new TripEditable(
+        itemType,
+        this.$props.trip[itemType],
+      );
     },
-    beforeMount(): void {
-      this.$data.cities = CityUtil.allActiveCities();
-      this.$data.editables = TripEditable.getAllTypes();
-
-      if (this.$props.trip.cities.length > 0) {
-        this.$data.city = this.$props.trip.cities[0];
-      }
-
-      for (const field in this.$data.editables) {
-        if (typeof field === "string") {
-          this.$data.items.push(
-            this.tripToItem(this.$data.editables[field]),
-          );
-        }
-      }
+    update() {
+      this.$data.possibleCities = CityUtil.allActiveCities();
+      this.$data.cities = this.$props.trip.cities;
     },
-    mounted(): void {
-      this.$nextTick(function () {
-        console.log(this.$data);
-      });
-    }
+  },
+  beforeMount(): void {
+    this.update();
   },
 });
 </script>
@@ -119,6 +198,17 @@ export default Vue.extend({
   width: 100%;
 }
 
+.editCity {
+  overflow: hidden;
+  line-height: 40px;
+  margin-bottom: 5px;
+  .editLabel,
+  .editInput {
+    line-height: 40px;
+  }
+}
+
+#deleteTrip,
 #cancel {
   @include right_col($p-height);
 }

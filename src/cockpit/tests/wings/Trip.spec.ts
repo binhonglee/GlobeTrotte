@@ -1,6 +1,6 @@
-import Trip from "wings/Trip";
-import Day from "wings/Day";
-import City from "wings/City";
+import Trip from "@/wings/Trip";
+import Day from "@/wings/Day";
+import City from "@/wings/City";
 
 import { WingsStructUtil } from "wings-ts-util";
 import test from "ava";

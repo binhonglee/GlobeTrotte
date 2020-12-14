@@ -1,6 +1,6 @@
-import CViewTrip from "components/CViewTrip.vue";
-// import { CityUtil } from "../../shared/CityUtil";
-import { mockTrip } from "tests/mockData/data";
+import CViewTrip from "@/components/CViewTrip.vue";
+// import { CityUtil } from "@/shared/CityUtil";
+import { mockTrip } from "@/tests/mockData/data";
 
 import { shallowMount } from "@vue/test-utils";
 import test from "ava";

@@ -1,12 +1,23 @@
+import { WingsStructUtil } from "wings-ts-util";
 import Axios, { AxiosResponse } from "axios";
 import HTTPReq from "./HTTPReq";
-import User from "../wings/User";
+import User from "@/wings/User";
 
 export default class General {
   public static async genCurrentUser(): Promise<User> {
-    return (await this.authSession())
-      ? this.getCurrentUser()
-      : new User();
+    if (!(await this.authSession)) {
+      return new User();
+    }
+
+    const user = await HTTPReq.genGET(
+      "user/" + this.getCurrentUser().ID,
+    );
+    localStorage.setItem(
+      "user",
+      WingsStructUtil.stringify(new User(user)),
+    );
+
+    return this.getCurrentUser();
   }
 
   public static getCurrentUser(): User {

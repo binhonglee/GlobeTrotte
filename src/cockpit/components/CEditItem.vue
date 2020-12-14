@@ -1,33 +1,53 @@
 <template lang="pug">
-  .edit_item
-    span.editLabel {{ item.label }}:
+  .edit_item(v-bind:class="large ? 'edit_item_large' : 'edit_item_small'")
+    span.editLabel {{ label }}:
     el-input.editInput(
-      type='text'
-      v-on:keyup.enter='save'
-      v-model='item.value'
+      v-bind:type="large ? 'textarea' : 'text'"
+      v-bind:rows="large ? 3 : 1"
+      v-on:keyup.enter="save"
+      v-model="value"
     )
     br
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import Item from "shared/TripEditable";
 
 export default Vue.extend({
   name: "CEditItem",
   props: {
-    item: {
-      type: Item,
+    label: {
+      type: String,
+    },
+    val: {
+      type: String,
+    },
+    large: {
+      type: Boolean,
+      default: false,
     },
   },
-  computed: {
-    save(): void {
-      this.$emit("save", this.item);
-    }
-  }
+  data: () => ({
+    value: "",
+  }),
+  beforeMount() {
+    this.$data.value = this.$props.val ?? "";
+  },
 });
 </script>
 
 <style lang="scss">
 @import "../shared/lib";
+
+.editLabel {
+  margin-top: 0px;
+}
+
+.edit_item_large {
+  height: 80px;
+}
+
+.edit_item_small {
+  height: 50px;
+}
 </style>

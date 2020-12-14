@@ -1,5 +1,5 @@
-import CPlaces from "components/CPlaces.vue";
-import { mockPlace } from "tests/mockData/data";
+import CPlaces from "@/components/CPlaces.vue";
+import { mockPlace } from "@/tests/mockData/data";
 
 import { shallowMount } from "@vue/test-utils";
 import test from "ava";
@@ -16,7 +16,6 @@ test("renders one component", (t) => {
     propsData: { places: [mockedPlace.place] },
   });
 
-  t.regex(wrapper.find("#places").text(), /Places:/);
   t.regex(
     wrapper.find("#place").text(),
     new RegExp(mockedPlace.label),

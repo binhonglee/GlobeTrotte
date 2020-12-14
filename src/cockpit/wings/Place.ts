@@ -9,14 +9,14 @@ import { IWingsStruct } from 'wings-ts-util';
 // One of many location for a Day (in a Trip).
 export default class Place implements IWingsStruct {
   [key: string]: any;
-  public ID: number = 0;
-  public label: string = '';
-  public URL: string = '';
-  public description: string = '';
+  public ID: Number = -1;
+  public label: String = '';
+  public URL: String = '';
+  public description: String = '';
 
   public constructor(obj?: any) {
     if (obj) {
-      this.ID = obj.id !== undefined && obj.id !== null ? obj.id : 0;
+      this.ID = obj.id !== undefined && obj.id !== null ? obj.id : -1;
       this.label = obj.label !== undefined && obj.label !== null ? obj.label : '';
       this.URL = obj.url !== undefined && obj.url !== null ? obj.url : '';
       this.description = obj.description !== undefined && obj.description !== null ? obj.description : '';

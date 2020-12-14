@@ -10,7 +10,6 @@ function login(cy) {
 }
 
 function isLoggedOut(cy) {
-  cy.get(".main_menu").should("not.contain", "Logout");
   cy.get(".main_menu").should("not.contain", "My Account");
   cy.contains("li", "Register");
   cy.contains("li", "Login");
@@ -19,7 +18,6 @@ function isLoggedOut(cy) {
 function isLoggedIn(cy) {
   cy.get(".main_menu").should("not.contain", "Register");
   cy.get(".main_menu").should("not.contain", "Login");
-  cy.contains("li", "Logout");
   cy.contains("li", "My Account");
 }
 
@@ -88,7 +86,8 @@ describe("User account", () => {
     isLoggedOut(cy);
     login(cy);
     isLoggedIn(cy);
-    cy.contains("li", "Logout").click();
+    cy.contains("li", "My Account").click();
+    cy.contains("button", "Logout").click();
     isLoggedOut(cy);
     cy.contains("h1", "GlobeTrotte");
   });
@@ -99,6 +98,7 @@ describe("User account", () => {
     login(cy);
     isLoggedIn(cy);
     cy.contains("li", "My Account").click();
+    cy.contains("button", "Edit").click();
     cy.contains("button", "Delete Account").click();
     isLoggedOut(cy);
   });

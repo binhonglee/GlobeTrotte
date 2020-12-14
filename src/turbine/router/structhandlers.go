@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
-	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
+	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
 	"github.com/gorilla/mux"
@@ -54,10 +54,10 @@ func deleteTrip(res http.ResponseWriter, req *http.Request) {
 		response(&res, http.StatusForbidden)
 		return
 	}
-	setDeletionStatus(
-		&res,
-		deleteItem(&res, tripID, db.GetTripDB, db.DeleteTripDB),
+	deletion := deleteItem(
+		&res, tripID, db.GetTripDB, db.DeleteTripDB,
 	)
+	setDeletionStatus(&res, deletion)
 }
 
 // User

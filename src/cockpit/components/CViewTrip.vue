@@ -1,26 +1,36 @@
 <template lang="pug">
-  .view_trip(v-if="trip !== undefined")
+  .view_trip.narrow_content(v-if="trip !== undefined")
     h2#name {{ trip.name }}
     span#id {{ trip.ID }}
     p#description(
       v-if="trip.description !== ''"
     ) {{ trip.description }}
-    //- p(v-if="trip.places.length !== 0")
-    //-   CPlaces(:places="trip.places")
-    p#city {{ city }}
     p#creatorInfo Author: {{ trip.userID }}
     p#createdDate Created on: {{ trip.timeCreated.toLocaleDateString() }}
+    div#cities
+      el-tag.city(v-for="city in cities") {{ city }}
+    el-carousel(
+      v-if="trip.days.length > 0"
+      :autorun="false"
+      :interval="0"
+      trigger="click"
+      arrow="never"
+      indicator-position="outside"
+    )
+      el-carousel-item(v-for="day in trip.days" :key="day.ID")
+        el-card.viewDayCard
+          h3.dayTitle Day {{ day.dayOf }}
+          CPlaces(:places="day.places")
     el-button#enable_edit(
-      v-if="editBtn === true" v-on:click="enableEditMode"
-      ) Edit
+      v-if="editable" v-on:click="enableEditMode"
+    ) Edit
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { CityUtil } from "shared/CityUtil";
+import { CityUtil } from "@/shared/CityUtil";
 import CPlaces from "./CPlaces.vue";
-import Trip from "wings/Trip";
-import City from "wings/City";
+import Trip from "@/wings/Trip";
 
 export default Vue.extend({
   name: "CViewTrip",
@@ -28,41 +38,59 @@ export default Vue.extend({
     CPlaces,
   },
   data: () => ({
-    city: String,
-    editBtn: Boolean,
+    cities: [],
   }),
   props: {
     trip: {
       type: Trip,
+      default: () => {
+        new Trip();
+      },
     },
     editable: {
       type: Boolean,
-    }
-  },
-  computed: {
-    beforeMount() {
-      this.$data.editBtn = this.$props.editable;
-      const city =
-        this.$props.trip !== undefined && this.$props.trip.cities.length > 0
-          ? this.$props.trip.cities[0]
-          : City.UNKNOWN;
-      this.$data.city = CityUtil.toString(city);
     },
+  },
+  methods: {
     enableEditMode() {
       this.$emit("edit-trip", this.$props.trip);
+    },
+  },
+  async beforeMount() {
+    for (let city of this.$props.trip.cities) {
+      this.$data.cities.push(CityUtil.toString(city));
     }
-  }
+  },
 });
 </script>
 
 <style lang="scss">
 @import "../shared/lib";
 
+#cities {
+  margin-top: 10px;
+}
+
+.city {
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.dayTitle {
+  margin: 0;
+}
+
+.viewDayCard {
+  height: 93%;
+  margin: 15px;
+}
+
 #id {
   @include right_col($p-height);
 }
 
 #enable_edit {
+  margin-top: 10px;
   @include right_col($p-height);
 }
 

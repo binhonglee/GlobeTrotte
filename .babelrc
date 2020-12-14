@@ -11,11 +11,7 @@
       "module-resolver",
       {
         "alias": {
-          "@": "./src/cockpit",
-          "components": "./src/cockpit/components",
-          "shared": "./src/cockpit/shared",
-          "tests": "./src/cockpit/tests",
-          "wings": "./src/cockpit/wings"
+          "@": "./src/cockpit"
         }
       }
     ]

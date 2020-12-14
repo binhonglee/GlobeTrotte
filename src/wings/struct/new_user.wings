@@ -8,7 +8,7 @@ ts-implement IWingsStruct
 # Basic information for user registeration.
 
 struct NewUser {
-  id        int
+  id        int   -1
   name      str
   email     str
   password  str

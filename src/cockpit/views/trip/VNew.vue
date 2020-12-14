@@ -3,6 +3,7 @@
     h1.title New Trip
     CEditTrip.newTrip(
       :trip="trip"
+      :isNew="true"
       @save="save"
       @cancel="cancel"
     )
@@ -11,10 +12,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { WingsStructUtil } from "wings-ts-util";
-import CEditTrip from "components/CEditTrip.vue";
-import HTTPReq from "shared/HTTPReq";
-import General from "shared/General";
-import Trip from "wings/Trip";
+import CEditTrip from "@/components/CEditTrip.vue";
+import HTTPReq from "@/shared/HTTPReq";
+import General from "@/shared/General";
+import Trip from "@/wings/Trip";
 
 @Component({
   data() {
@@ -33,17 +34,27 @@ export default class VNew extends Vue {
 
   private async save(trip: Trip): Promise<void> {
     const user = await General.genCurrentUser();
-    if (user.ID !== 0) {
-      this.$data.trip = trip;
-      trip.userID = user.ID;
-      const newTrip = await HTTPReq.genPOST(
-        "trip",
-        WingsStructUtil.stringify(trip),
-      );
-      this.$router.push(
-        "/trip/view/" + new Trip(newTrip).ID,
-      );
-    }
+    try {
+      if (user.ID !== 0) {
+        this.$data.trip = trip;
+        trip.userID = user.ID;
+        const newTrip = await HTTPReq.genPOST(
+          "trip",
+          WingsStructUtil.stringify(trip),
+        );
+        this.$router.push(
+          "/trip/view/" + new Trip(newTrip).ID,
+        );
+        return;
+      }
+    } catch (_) {}
+    this.$alert(
+      "Save was unsuccessful. Please try again later.",
+      "Fail",
+      {
+        confirmButtonText: "OK",
+      },
+    );
   }
 }
 </script>

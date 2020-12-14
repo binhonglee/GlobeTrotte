@@ -31,4 +31,5 @@ pnpm_run(
   srcs = ["genComponent.ts"],
   cmd = "genComponent",
   deps = ["//:pnpm"],
+  at_top_level = True,
 )

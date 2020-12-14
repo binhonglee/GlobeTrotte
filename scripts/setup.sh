@@ -4,6 +4,8 @@ ARCH=$(uname -m)
 OS=$(uname -s)
 SUPPORTED_OS="Darwin Linux"
 
+toPrint=""
+
 showHelp() {
   cat << EOF
 
@@ -26,6 +28,10 @@ Note: You will need to have all the requirements installed for the
 EOF
 }
 
+printEnd() {
+  toPrint="$toPrint\n$1"
+}
+
 config() {
   CURRENT=$(pwd | awk -F'/' '{print $NF}')
   CONFIG_FILE="config/psql.config"
@@ -41,6 +47,7 @@ config() {
     return
   fi
 
+  sudo service postgresql start
   sudo -u postgres psql -w -c "CREATE ROLE $USER WITH SUPERUSER CREATEDB LOGIN ENCRYPTED PASSWORD 'test';"
   sudo -u postgres psql -w -c "CREATE DATABASE $USER"
   psql --username="$USER" -w -c "CREATE DATABASE globetrotte;"
@@ -53,8 +60,6 @@ config() {
     echo "password:test"
     echo "dbname:globetrotte"
   } >> "$CONFIG_FILE"
-
-  echo "Please verify and make sure the information in psql.config file is accurate."
 }
 
 installGo() {
@@ -106,9 +111,10 @@ installGo() {
     sudo tar -C "/usr/local" -xzf "$filename"
     rm $filename
     export GOPATH="$HOME/go"
-    echo "export GOPATH=\"\$HOME/go\""
     export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
-    echo "export PATH=\$PATH:/usr/local/go/bin:$GOPATH/bin"
+    printEnd "Add the following lines to your .bashrc / .zshrc file:"
+    printEnd "  export GOPATH=\"\$HOME/go\""
+    printEnd "  export PATH=\$PATH:/usr/local/go/bin:$GOPATH/bin"
   fi
 }
 
@@ -166,8 +172,10 @@ installPostgreSQL() {
       createdb
       ;;
     "Linux")
+      sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+      wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
       sudo apt-get update
-      sudo apt-get install postgresql-10
+      sudo apt-get -y install postgresql
       ;;
   esac
 }
@@ -208,7 +216,7 @@ installWings() {
       ;;
   esac
 
-  sudo curl -L https://github.com/binhonglee/wings/releases/download/v0.0.5-alpha/wings_64bit_$OS -o /usr/local/bin/wings
+  sudo curl -L https://github.com/binhonglee/wings/releases/download/v0.0.6-alpha/wings_64bit_$OS -o /usr/local/bin/wings
   sudo chmod +x /usr/local/bin/wings
 }
 
@@ -257,3 +265,5 @@ while getopts cghnpqsw opt; do
       "Invalid flag $opt. Use -h to show usage."
   esac
 done
+
+echo "$toPrint"

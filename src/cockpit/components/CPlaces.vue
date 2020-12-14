@@ -2,28 +2,32 @@
   .places
     ul#places(
       v-if="places !== undefined"
-      v-for="place in places"
-    ) Places:
-      div#place(v-bind:key="place.url")
+    )
+      li#place(
+        v-for="place in places"
+        v-bind:key="place.URL"
+      )
         a(
           target="_blank"
           rel="noopener noreferrer"
-          :href="place.url"
+          :href="place.URL"
         ) {{ place.label }}
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import Place from "wings/Place";
 
 export default Vue.extend({
   name: "CPlaces",
   props: {
     places: {
       type: Array,
-    }
-  }
-})
+      default: () => {
+        [];
+      },
+    },
+  },
+});
 </script>
 
 <style lang="scss">

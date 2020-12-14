@@ -144,42 +144,38 @@ func Err(namespace Namespace, err error, message string) {
 
 // This will print message to the terminal but not into the log file.
 // Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
-func Debug(message string) {
-	debugMessage(yellowC, message)
+func Debug(message ...interface{}) {
+	debugPrint(yellowC, message)
 }
 
 // Same as `Debug()` but green
 // Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
-func DebugGreen(message string) {
-	debugMessage(greenC, message)
+func DebugGreen(message ...interface{}) {
+	debugPrint(greenC, message)
 }
 
 // Same as `Debug()` but purple
 // Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
-func DebugPurple(message string) {
-	debugMessage(purpleC, message)
+func DebugPurple(message ...interface{}) {
+	debugPrint(purpleC, message)
 }
 
 // Same as `Debug()` but cyan
 // Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
-func DebugCyan(message string) {
-	debugMessage(cyanC, message)
+func DebugCyan(message ...interface{}) {
+	debugPrint(cyanC, message)
 }
 
 // Same as `Debug()` but blue
 // Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
-func DebugBlue(message string) {
-	debugMessage(blueC, message)
+func DebugBlue(message ...interface{}) {
+	debugPrint(blueC, message)
 }
 
 // Same as `Debug()` but pink
 // Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
-func DebugPink(message string) {
-	debugMessage(pinkC, message)
-}
-
-func debugMessage(color status, message string) {
-	getMessage(color, debug, message)
+func DebugPink(message ...interface{}) {
+	debugPrint(pinkC, message)
 }
 
 func messageToFile(
@@ -203,6 +199,32 @@ func getMessage(status status, namespace Namespace, message string) string {
 
 func wrap(status status, message string) string {
 	return string(status) + message + string(resetC)
+}
+
+func debugPrint(
+	status status,
+	a ...interface{},
+) (n int, err error) {
+	namespaceStr := string(debug) +
+		strings.Repeat(" ", namespaceLen-len(string(debug)))
+	return fmt.Println(
+		time.Now().Format(time.Stamp)[7:],
+		" "+namespaceStr+" : ",
+		string(status), a,
+		getCaller(debug, 4),
+		string(resetC),
+	)
+}
+
+func DebugCaller(level int) {
+	_, file, no, ok := runtime.Caller(level)
+	if ok {
+		paths := strings.Split(file, "/")
+		if paths[len(paths)-1] != "asm_amd64.s" {
+			fmt.Println("(" + file + ":" + strconv.Itoa(no) + ")")
+			DebugCaller(level + 2)
+		}
+	}
 }
 
 func getCaller(namespace Namespace, level int) string {

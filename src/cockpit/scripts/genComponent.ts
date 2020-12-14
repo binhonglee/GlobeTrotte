@@ -3,16 +3,16 @@ import { existsSync, writeFileSync } from "fs";
 const componentFolder = "src/cockpit/components/";
 const componentFileTemplate = `<template lang="pug">
   .COMPONENT_NAME_SNAKE
-    // TODO
+    //- TODO
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import Vue from "vue";
 
-@Component
-export default class COMPONENT_NAME extends Vue {
+export default Vue.extend({
+  name: "COMPONENT_NAME",
   // TODO
-}
+});
 </script>
 
 <style lang="scss">
@@ -23,13 +23,11 @@ export default class COMPONENT_NAME extends Vue {
 const componentTestFolder = "src/cockpit/tests/components/";
 const testFileTemplate = `import COMPONENT_NAME from "components/COMPONENT_NAME.vue";
 
-import { expect } from "chai";
 import { shallowMount } from "@vue/test-utils";
+import test from "ava";
 
-describe("COMPONENT_NAME.vue", () => {
-  it("renders empty component", () => {
-    const wrapper = shallowMount(COMPONENT_NAME, {});
-  });
+test("renders empty component", (t) => {
+  const wrapper = shallowMount(COMPONENT_NAME, {});
 });
 `;
 
@@ -76,6 +74,7 @@ args.forEach((componentName) => {
         .split("COMPONENT_NAME")
         .join(componentName),
     );
+    console.log("File " + componentFile + " created.");
   }
 
   if (existsSync(testFile)) {
@@ -89,5 +88,6 @@ args.forEach((componentName) => {
         .split("COMPONENT_NAME")
         .join(componentName),
     );
+    console.log("File " + testFile + " created.");
   }
 });

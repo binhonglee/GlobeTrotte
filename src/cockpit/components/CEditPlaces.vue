@@ -1,49 +1,63 @@
 <template lang="pug">
   .edit_places
     ul.places
-      span.editLabel Places: 
+      span.editLabel(
+        v-if="this.$data.places.length > 0"
+      ) Places:
       div.editPlace(
-        v-for="(place, index) in this.$props.places"
+        v-for="(place, index) in this.$data.places"
         v-bind:key="index"
       )
-        el-button.removePlace(
-          type='danger'
-          icon='el-icon-close'
-          plain v-on:click='removePlace(index)'
-        )
         el-input.inputPlaceLabel(
-          type='text'
-          v-model='place.label'
+          type="text"
+          placeholder="Name"
+          v-model="place.label"
         )
         el-input.inputPlaceLink(
-          type='text'
-          v-model='place.URL'
+          type="text"
+          placeholder="Link"
+          v-model="place.URL"
+        )
+        el-button.removePlace(
+          type="danger"
+          icon="el-icon-close"
+          plain v-on:click="removePlace(index)"
         )
       el-button.addPlace(
-        plain icon='el-icon-plus'
-        v-on:click='pushPlace' circle
+        plain icon="el-icon-plus"
+        v-on:click="pushPlace" circle
       )
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import Place from "wings/Place";
+import Place from "@/wings/Place";
 
 export default Vue.extend({
   name: "CEditPlaces",
+  data: () => ({
+    places: [],
+  }),
   props: {
-    places: {
+    givenPlaces: {
       type: Array,
-      default: []
-    }
+      default: () => {
+        return [];
+      },
+    },
   },
   methods: {
     pushPlace(): void {
-      this.$props.places.push(new Place());
+      this.$data.places.push(new Place());
     },
     removePlace(index: number): void {
-      this.$props.places.splice(index, 1);
-    }
+      this.$data.places.splice(index, 1);
+    },
+  },
+  beforeMount() {
+    this.$data.places = (
+      this.$props.givenPlaces ?? []
+    ).slice(0);
   },
 });
 </script>
@@ -60,12 +74,7 @@ $place-link-width: 150px;
 }
 
 .addPlace {
-  float: right;
-  margin-left: $edit-width;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  vertical-align: middle;
-  font-size: 10px;
+  @include right_button();
 }
 
 .editPlace {
@@ -88,7 +97,7 @@ $place-link-width: 150px;
 .removePlace {
   vertical-align: middle;
   font-size: 10px;
-  margin-right: 5px;
+  margin-left: 5px;
   padding: 3px;
 }
 

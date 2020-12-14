@@ -41,9 +41,9 @@
 import { Component, Vue } from "vue-property-decorator";
 import { WingsStructUtil } from "wings-ts-util";
 import Axios, { AxiosResponse } from "axios";
-import HTTPReq from "shared/HTTPReq";
-import NewUser from "wings/NewUser";
-import User from "wings/User";
+import HTTPReq from "@/shared/HTTPReq";
+import NewUser from "@/wings/NewUser";
+import User from "@/wings/User";
 
 @Component({
   data() {
@@ -63,7 +63,9 @@ export default class VRegsiter extends Vue {
         this.$data.confPassword,
       )
     ) {
-      alert("Password does not match.");
+      this.$alert("Password does not match.", "Fail", {
+        confirmButtonText: "OK",
+      });
       return;
     }
 
