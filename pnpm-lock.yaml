@@ -22,7 +22,7 @@ devDependencies:
   ava: 3.14.0
   babel-loader: 8.2.2_@babel+core@7.12.10
   babel-plugin-istanbul: 6.0.0
-  babel-plugin-module-resolver: 4.0.0
+  babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue: 1.1.1_@babel+core@7.12.10
   cypress: 6.1.0
   eslint: 7.15.0
@@ -2842,7 +2842,7 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-AF55rZXpe7trmEylbaE1Gv54wn6rwU03aptvRoVIGP8YykoSxqdVLV1TfwflBCE/QtHmqtP8SWlTENqbK8GCSQ==
-  /babel-plugin-module-resolver/4.0.0:
+  /babel-plugin-module-resolver/4.1.0:
     dependencies:
       find-babel-config: 1.2.0
       glob: 7.1.6
@@ -2853,7 +2853,7 @@ packages:
     engines:
       node: '>= 8.0.0'
     resolution:
-      integrity: sha512-3pdEq3PXALilSJ6dnC4wMWr0AZixHRM4utpdpBR9g5QG7B7JwWyukQv7a9hVxkbGFl+nQbrHDqqQOIBtTXTP/Q==
+      integrity: sha512-MlX10UDheRr3lb3P0WcaIdtCSRlxdQsB1sBqL7W0raF070bGl1HQQq5K3T2vf2XAYie+ww+5AKC/WrkjRO2knA==
   /babel-preset-typescript-vue/1.1.1_@babel+core@7.12.10:
     dependencies:
       '@babel/core': 7.12.10
@@ -11714,7 +11714,7 @@ specifiers:
   axios: 0.21.0
   babel-loader: 8.2.2
   babel-plugin-istanbul: 6.0.0
-  babel-plugin-module-resolver: 4.0.0
+  babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue: 1.1.1
   cypress: 6.1.0
   element-ui: 2.14.1
