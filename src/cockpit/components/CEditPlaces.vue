@@ -1,13 +1,10 @@
 <template lang="pug">
   .edit_places
-    ul.places
-      span.editLabel(
-        v-if="this.$data.places.length > 0"
-      ) Places:
-      div.editPlace(
-        v-for="(place, index) in this.$data.places"
-        v-bind:key="index"
-      )
+    ul.places(
+      v-for="(place, index) in this.$data.places"
+      v-bind:key="index"
+    )
+      div.editPlace
         el-input.inputPlaceLabel(
           type="text"
           placeholder="Name"
@@ -18,15 +15,23 @@
           placeholder="Link"
           v-model="place.URL"
         )
+        br
+        el-input.inputPlaceDesc(
+          type="textarea"
+          placeholder="Description"
+          :rows="3"
+          v-model="place.description"
+        )
+      div.removePlaceBlock
         el-button.removePlace(
           type="danger"
           icon="el-icon-close"
           plain v-on:click="removePlace(index)"
         )
-      el-button.addPlace(
-        plain icon="el-icon-plus"
-        v-on:click="pushPlace" circle
-      )
+    el-button.addPlace(
+      plain icon="el-icon-plus"
+      v-on:click="pushPlace" circle
+    )
 </template>
 
 <script lang="ts">
@@ -65,9 +70,6 @@ export default Vue.extend({
 <style lang="scss">
 @import "../shared/lib";
 
-$place-label-width: 90px;
-$place-link-width: 150px;
-
 .places {
   margin: 0;
   padding: 0;
@@ -78,26 +80,31 @@ $place-link-width: 150px;
 }
 
 .editPlace {
+  display: inline-block;
+  height: 120px;
   margin-top: 5px;
   margin-bottom: 5px;
-  float: right;
-}
-
-.inputPlaceLabel {
-  vertical-align: middle;
-  width: $place-label-width;
+  width: 93%;
 }
 
 .inputPlaceLink {
-  vertical-align: middle;
-  width: $place-link-width;
-  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.inputPlaceDesc {
+  margin-top: 5px;
+}
+
+.removePlaceBlock {
+  display: inline-block;
+  width: 7%;
+  height: 120px;
 }
 
 .removePlace {
-  vertical-align: middle;
+  margin-top: 25px;
   font-size: 10px;
-  margin-left: 5px;
+  float: right;
   padding: 3px;
 }
 

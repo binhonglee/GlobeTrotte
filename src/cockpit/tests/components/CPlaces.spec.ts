@@ -17,7 +17,7 @@ test("renders one component", (t) => {
   });
 
   t.regex(
-    wrapper.find("#place").text(),
+    wrapper.find(".place").text(),
     new RegExp(mockedPlace.label),
   );
 });

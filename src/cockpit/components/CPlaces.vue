@@ -1,17 +1,24 @@
 <template lang="pug">
   .places
-    ul#places(
+    ul.placesList(
       v-if="places !== undefined"
     )
-      li#place(
+      el-row.place(
         v-for="place in places"
         v-bind:key="place.URL"
       )
-        a(
+        el-link.placeLink(
           target="_blank"
           rel="noopener noreferrer"
+          :underline="false"
           :href="place.URL"
-        ) {{ place.label }}
+        )
+          el-card.placeDisplayCard
+            b {{ place.label }}
+            p.placeDescription(v-if="place.description !== ''") {{ place.description }}
+
+
+
 </template>
 
 <script lang="ts">
@@ -31,12 +38,38 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-#places {
-  padding: inherit;
+.places {
+  padding: 0;
   margin: 0;
 }
 
-#place {
-  margin-left: 10px;
+.placesList {
+  margin-top: 10px;
+  padding: 0;
+}
+
+.placeLink,
+.placeLink .el-link--inner {
+  width: 100%;
+}
+
+.viewDayCard .placeDisplayCard .el-card__body {
+  b {
+    color: #409eff;
+  }
+  padding: 10px;
+}
+
+.placeDisplayCard:hover {
+  b {
+    text-decoration: underline;
+    text-decoration-color: #409eff;
+  }
+}
+
+.placeDescription {
+  padding: 0;
+  margin-top: 5px;
+  margin-bottom: 0;
 }
 </style>

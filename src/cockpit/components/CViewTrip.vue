@@ -9,7 +9,7 @@
     p#createdDate Created on: {{ trip.timeCreated.toLocaleDateString() }}
     div#cities
       el-tag.city(v-for="city in cities") {{ city }}
-    el-carousel(
+    el-carousel.viewDays(
       v-if="trip.days.length > 0"
       :autorun="false"
       :interval="0"
@@ -80,9 +80,23 @@ export default Vue.extend({
   margin: 0;
 }
 
+.viewDays {
+  height: 427.5px;
+}
+
+.viewDays .el-carousel__container {
+  height: 400px;
+}
+
 .viewDayCard {
-  height: 93%;
-  margin: 15px;
+  overflow: auto;
+  height: 95%;
+  margin: 10px;
+  margin-top: 15px;
+}
+
+.viewDayCard .el-card__body {
+  padding: 15px;
 }
 
 #id {

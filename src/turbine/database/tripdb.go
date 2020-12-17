@@ -313,6 +313,8 @@ func updateTrip(updatedTrip wings.Trip) bool {
 		}
 	}
 
+	// TODO: Cleanup days and trips that are no longer attached to the day
+
 	sqlStatement := `
 		UPDATE trips
 		SET name = $2,
@@ -347,9 +349,8 @@ func updateTrip(updatedTrip wings.Trip) bool {
 func updateDay(
 	updatedDay *wings.Day, createOnNonExist bool,
 ) bool {
-	existingDay := fetchDay(int64(updatedDay.ID))
-
-	if existingDay.ID != updatedDay.ID {
+	if updatedDay.ID == -1 ||
+		fetchDay(int64(updatedDay.ID)).ID != updatedDay.ID {
 		logger.Print(logger.Database, "Existing Day not found.")
 
 		if createOnNonExist {
@@ -395,9 +396,8 @@ func updateDay(
 }
 
 func updatePlace(updatedPlace *wings.Place) bool {
-	existingPlace := fetchPlace(int64(updatedPlace.ID))
-
-	if existingPlace.ID != updatedPlace.ID {
+	if updatedPlace.ID == -1 ||
+		fetchPlace(int64(updatedPlace.ID)).ID != updatedPlace.ID {
 		logger.Print(
 			logger.Database,
 			"Existing Place not found. Creating...",

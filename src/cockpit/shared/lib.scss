@@ -22,12 +22,11 @@ $edit-width: 250px;
   margin: auto;
   padding-left: 10px;
   padding-right: 10px;
-  padding-bottom: 50px;
+  padding-bottom: 60px;
 }
 
 @mixin right_button() {
   float: right;
-  margin-left: $edit-width;
   margin-top: 5px;
   margin-bottom: 10px;
   vertical-align: middle;

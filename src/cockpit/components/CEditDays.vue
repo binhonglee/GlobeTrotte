@@ -90,7 +90,7 @@ export default Vue.extend({
 }
 
 .editDayTitle {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .addDay {
