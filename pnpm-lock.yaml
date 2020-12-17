@@ -44,7 +44,7 @@ devDependencies:
   tap-xunit: 2.4.1
   ts-node: 9.1.1_typescript@4.1.3
   typescript: 4.1.3
-  vue-loader: 15.9.5_vue-template-compiler@2.6.12
+  vue-loader: 16.1.2
   vue-template-compiler: 2.6.12
   wait-on: 5.2.0
 lockfileVersion: 5.2
@@ -2239,21 +2239,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-IHjxt7LsOFYc0DkTncB7OXJL7UzwOLPPQCfEUNyxL2qt+tF12THV+EO33O1G2Uk4feMSWua3iD39Itszx0f0bw==
-  /@vue/component-compiler-utils/3.2.0:
-    dependencies:
-      consolidate: 0.15.1
-      hash-sum: 1.0.2
-      lru-cache: 4.1.5
-      merge-source-map: 1.1.0
-      postcss: 7.0.35
-      postcss-selector-parser: 6.0.4
-      source-map: 0.6.1
-      vue-template-es2015-compiler: 1.9.1
-    dev: true
-    optionalDependencies:
-      prettier: 1.19.1
-    resolution:
-      integrity: sha512-lejBLa7xAMsfiZfNp7Kv51zOzifnb29FwdnMLa96z26kXErPFioSf9BMcePVIQ6/Gc6/mC0UrPpxAWIHyae0vw==
   /@vue/eslint-config-prettier/6.0.0_d9e8f21c385aff0e3bfaaa5bb6443ac6:
     dependencies:
       eslint: 7.15.0
@@ -5892,6 +5877,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-M7QHd3VMZDJXPBIMw4CLvRDUfwQ=
+  /hash-sum/2.0.0:
+    dev: true
+    resolution:
+      integrity: sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==
   /hash.js/1.1.7:
     dependencies:
       inherits: 2.0.4
@@ -8950,14 +8939,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-kn/GU6SMRYPxUakNXhpP0EedT/KmaPzr0H5lIsDogrykbaxOpOfAFfk5XA7DZrJyMAv1wlMV3CPcZruGXVVUZw==
-  /prettier/1.19.1:
-    dev: true
-    engines:
-      node: '>=4'
-    hasBin: true
-    optional: true
-    resolution:
-      integrity: sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==
   /prettier/2.2.1:
     dev: true
     engines:
@@ -11235,31 +11216,14 @@ packages:
       eslint: '>=5.0.0'
     resolution:
       integrity: sha512-n5PJKZbyspD0+8LnaZgpEvNCrjQx1DyDHw8JdWwoxhhC+yRip4TAvSDpXGf9SWX6b0umeB5aR61gwUo6NVvFxw==
-  /vue-hot-reload-api/2.3.4:
-    dev: true
-    resolution:
-      integrity: sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
-  /vue-loader/15.9.5_vue-template-compiler@2.6.12:
+  /vue-loader/16.1.2:
     dependencies:
-      '@vue/component-compiler-utils': 3.2.0
-      hash-sum: 1.0.2
-      loader-utils: 1.4.0
-      vue-hot-reload-api: 2.3.4
-      vue-style-loader: 4.1.2
-      vue-template-compiler: 2.6.12
+      chalk: 4.1.0
+      hash-sum: 2.0.0
+      loader-utils: 2.0.0
     dev: true
-    peerDependencies:
-      cache-loader: '*'
-      css-loader: '*'
-      vue-template-compiler: '*'
-      webpack: ^3.0.0 || ^4.1.0 || ^5.0.0-0
-    peerDependenciesMeta:
-      cache-loader:
-        optional: true
-      vue-template-compiler:
-        optional: true
     resolution:
-      integrity: sha512-oeMOs2b5o5gRqkxfds10bCx6JeXYTwivRgbb8hzOrcThD2z1+GqEKE3EX9A2SGbsYDf4rXwRg6D5n1w0jO5SwA==
+      integrity: sha512-8QTxh+Fd+HB6fiL52iEVLKqE9N1JSlMXLR92Ijm6g8PZrwIxckgpqjPDWRP5TWxdiPaHR+alUWsnu1ShQOwt+Q==
   /vue-property-decorator/9.1.2_2dc4252c5371093c9ebcca71536ac4e9:
     dependencies:
       vue: 2.6.12
@@ -11274,13 +11238,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-CGAKWN44RqXW06oC+u4mPgHLQQi2t6vLD/JbGRDAXm0YpMv0bgpKuU5bBd7AvMgfTz9kXVRIWKHqRwGEb8xFkA==
-  /vue-style-loader/4.1.2:
-    dependencies:
-      hash-sum: 1.0.2
-      loader-utils: 1.4.0
-    dev: true
-    resolution:
-      integrity: sha512-0ip8ge6Gzz/Bk0iHovU9XAUQaFt/G2B61bnWa2tCcqqdgfHs1lF9xXorFbE55Gmy92okFT+8bfmySuUOu13vxQ==
   /vue-template-compiler/2.6.12:
     dependencies:
       de-indent: 1.0.2
@@ -11755,7 +11712,7 @@ specifiers:
   typescript: 4.1.3
   vue: 2.6.12
   vue-class-component: 7.2.6
-  vue-loader: 15.9.5
+  vue-loader: 16.1.2
   vue-property-decorator: 9.1.2
   vue-router: 3.4.9
   vue-template-compiler: 2.6.12
