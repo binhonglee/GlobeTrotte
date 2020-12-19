@@ -17,6 +17,14 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache:
+          key: please-{{ checksum "pleasew" }}
+      - restore_cache:
+          key: pnpm-store-{{ checksum "package.json" }}
+      - restore_cache:
+          key: cypress
+      - restore_cache:
+          key: node-modules-{{ checksum "package.json" }}
       - run: sudo apt-get install -y libasound2 libgbm-dev libgconf-2-4 libgtk2.0-0 libgtk-3-0 libnotify-dev libnss3 libxcomposite-dev libxcomposite1 libxss1 libxtst6 postgresql-client xauth xvfb
       - run: /usr/bin/Xvfb :99 -screen 0 1920x1080x24+32 &
 
@@ -40,6 +48,22 @@ jobs:
       - run: ./pleasew run //:report
       - run: bash <(curl -s https://codecov.io/bash)
       - run: ./scripts/leftover.sh
+      - save_cache:
+          key: please-{{ checksum "pleasew" }}
+          paths:
+            - ~/.please
+      - save_cache:
+          key: pnpm-store-{{ checksum "package.json" }}
+          paths:
+            - ~/.pnpm-store
+      - save_cache:
+          key: cypress
+          paths:
+            - ~/.cache/Cypress
+      - save_cache:
+          key: node-modules-{{ checksum "package.json" }}
+          paths:
+            - node_modules
       - store_artifacts:
           path: ~/GlobeTrotte/plz-out/gen/cypress
       - store_artifacts:

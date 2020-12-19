@@ -56,9 +56,12 @@ export default Vue.extend({
       this.$emit("edit-trip", this.$props.trip);
     },
   },
-  async beforeMount() {
-    for (let city of this.$props.trip.cities) {
-      this.$data.cities.push(CityUtil.toString(city));
+  beforeMount() {
+    this.$data.cities = [];
+    if (this.$props.trip !== undefined) {
+      for (let city of this.$props.trip.cities) {
+        this.$data.cities.push(CityUtil.toString(city));
+      }
     }
   },
 });

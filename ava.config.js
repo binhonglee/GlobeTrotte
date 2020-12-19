@@ -5,4 +5,5 @@ export default {
     "./src/cockpit/tests/components/_setup.js",
   ],
   babel: true,
+  timeout: "2m",
 };

@@ -155,7 +155,6 @@ func createCitiesTable() {
 
 func getConfig() map[string]string {
 	pwd, _ := os.Getwd()
-	pwd = strings.SplitAfter(pwd, "GlobeTrotte")[0]
 	file, err := os.Open(filepath.Join(pwd, configFile))
 
 	defer file.Close()
