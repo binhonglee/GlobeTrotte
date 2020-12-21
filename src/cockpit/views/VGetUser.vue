@@ -1,0 +1,63 @@
+<template lang="pug">
+  .get_user.narrow_content
+    h1.title {{ user.name }}
+    .profile_info
+      CViewUser(:user="user" :showName="false")
+</template>
+
+
+<script lang="ts">
+import Vue from "vue";
+import CViewUser from "@/components/CViewUser.vue";
+import User from "@/wings/User";
+import General from "@/shared/General";
+
+export default Vue.extend({
+  name: "VGetUser",
+  components: {
+    CViewUser,
+  },
+  data: () => ({
+    user: new User(),
+  }),
+  methods: {
+    async init(): Promise<void> {
+      if (this.$route.params.id === undefined) {
+        this.$data.user.name = "";
+        return;
+      }
+
+      this.$data.user = await General.genUser(
+        Number(this.$route.params.id),
+      );
+
+      if (this.$data.user.ID === -1) {
+        await this.$alert("User not found.", "Error", {
+          confirmButtonText: "OK",
+        });
+        return;
+      }
+
+      const isCurrentUser = General.getIsCurrentUser(
+        this.$data.user.ID
+      );
+      console.log(isCurrentUser);
+      if (isCurrentUser) {
+        this.$router.push("/myaccount");
+      }
+      return;
+    },
+  },
+  async beforeMount(): Promise<void> {
+    await this.init();
+  },
+});
+</script>
+
+<style lang="scss">
+@import "../shared/lib";
+
+.profile_info {
+  @include trip_display();
+}
+</style>

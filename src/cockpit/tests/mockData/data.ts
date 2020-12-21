@@ -86,7 +86,7 @@ export class mockTrip {
 
   constructor() {
     this.ID = 99999;
-    this.userID = 55555;
+    this.userID = 73426598;
     this.name = "The magical journey";
     this.cities = [City.SanJoseCAUS];
     this.days = [new mockDay().day];

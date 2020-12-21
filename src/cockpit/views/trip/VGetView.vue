@@ -1,16 +1,18 @@
 <template lang="pug">
-  .search.narrow_content
+  .get_view_trip.narrow_content
     h1.title Trip
     |     Trip ID:
-    el-input.tripSearchInput#getTripID(
+    el-input.tripSearchInput(
       type="text"
       v-model="inputID"
-      autofocus=true
+      v-on:keydown.enter.native="gotoTrip"
+      :autofocus="true"
     )
     el-button.tripSearchInput(v-on:click="gotoTrip") Find
     CTripInfo(
       v-if="trip.ID !== -1"
       :trip="trip"
+      :user="user"
       :editable="owner"
     )
 </template>
@@ -25,13 +27,15 @@ import CTripInfo from "@/components/CTripInfo.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
 import Trip from "@/wings/Trip";
+import User from "@/wings/User";
 
 @Component({
   data() {
     return {
       inputID: "",
       trip: new Trip(),
-      owner: Boolean,
+      user: new User(),
+      owner: false,
     };
   },
   props: ["id"],
@@ -50,7 +54,7 @@ export default class VGetID extends Vue {
 
   private async init() {
     if (this.$route.params.id === undefined) {
-      this.$data.trip.name = "";
+      this.$data.trip = new Trip();
       return;
     }
     this.$data.inputID = this.$route.params.id;
@@ -61,14 +65,19 @@ export default class VGetID extends Vue {
       );
       if (parsedData !== "") {
         this.$data.trip = new Trip(parsedData);
-        this.$data.owner = await this.ifUserIsOwner(
+        this.$data.owner = General.getIsCurrentUser(
+          this.$data.trip.userID,
+        );
+        this.$data.user = await General.genUser(
           this.$data.trip.userID,
         );
         return;
       }
     } catch (_) {}
-    await this.$alert("Trip not found.", "Error", {
-      confirmButtonText: "OK",
+    await this.$notify({
+      message: "Trip not found.",
+      title: "Error",
+      type: "error",
     });
     this.$router.push("/trip/view");
   }
@@ -83,12 +92,6 @@ export default class VGetID extends Vue {
       this.$router.push({ path: `/trip/view/${id}` });
     }
   }
-
-  private async ifUserIsOwner(
-    userID: number,
-  ): Promise<boolean> {
-    return (await General.genCurrentUser()).ID === userID;
-  }
 }
 </script>
 
@@ -99,7 +102,8 @@ export default class VGetID extends Vue {
   margin-left: 5px;
   display: inline;
 }
-#getTripID {
+
+.tripSearchInput .el-input__inner {
   width: 100px;
 }
 </style>

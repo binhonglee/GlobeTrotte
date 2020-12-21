@@ -8,15 +8,14 @@
     text-color="white"
     active-text-color="#42b983"
   )
-    el-menu-item.main_menu_item#home(index="/") Home
-    el-menu-item.main_menu_item#about(index="/about") About
-    el-submenu.main_menu_item#trip(index="/trip")
-      template.main_menu_item#trip_title(slot="title") Trips
-      el-menu-item.main_menu_item#view_trip(index="/trip/view") View
-      el-menu-item.main_menu_item#new_trip(v-if="authed" index="/trip/new") New
-    el-menu-item.main_menu_item#login(v-if="!authed" index="/login") Login
-    el-menu-item.main_menu_item#register(v-if="!authed" index="/register") Register
-    el-menu-item.main_menu_item#myaccount(v-if="authed" index="/myaccount") My Account
+    el-menu-item.main_menu_item(index="/") Home
+    el-submenu.main_menu_item(index="/trip")
+      template.main_menu_item(slot="title") Trips
+      el-menu-item.main_menu_item(index="/trip/view") View
+      el-menu-item.main_menu_item(v-if="authed" index="/trip/new") New
+    el-menu-item.main_menu_item.login_button(v-if="!authed" index="/login") Login
+    el-menu-item.main_menu_item.register_button(v-if="!authed" index="/register") Register
+    el-menu-item.main_menu_item.myaccount_button(v-if="authed" index="/myaccount") My Account
   router-view#content
   #footer
 </template>
@@ -86,22 +85,18 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-@import "./shared/lib";
-@font-face {
-  font-family: SourceSansPro;
-  src: url("../assets/SourceSansPro/SourceSansPro-Regular.ttf");
-}
-
-#login,
-#myaccount,
-#register {
-  float: right;
-}
+@import "./shared/general";
 
 #app {
   position: relative;
   min-height: 100vh;
   text-align: center;
+
+  .login_button,
+  .myaccount_button,
+  .register_button {
+    float: right;
+  }
 }
 
 #footer {

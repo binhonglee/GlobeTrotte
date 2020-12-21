@@ -27,13 +27,13 @@
         )
     CEditDays(:ref="'days'" :givenDays="trip.days")
     div.confirmationButtons
-      el-button#save(
+      el-button.saveEditTrip(
         type="primary" v-on:click="save" :loading="saving"
       ) Save
-      el-button#cancel(
+      el-button.cancelEditTrip(
         type="default" v-on:click="cancel"
       ) Cancel
-      el-button#deleteTrip(
+      el-button.deleteTrip(
         v-if="!isNew"
         type="danger"
         v-on:click="del"
@@ -208,12 +208,12 @@ export default Vue.extend({
   }
 }
 
-#deleteTrip,
-#cancel {
+.deleteTrip,
+.cancelEditTrip {
   @include right_col($p-height);
 }
 
-#save {
+.saveEditTrip {
   @include left_col($p-height);
 }
 </style>

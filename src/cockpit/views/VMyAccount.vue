@@ -20,6 +20,7 @@
           :val="user.name"
           v-bind:key="'name'"
           v-bind:ref="'name'"
+          :autofocus="true"
         )
         CEditItem(
           :label="'Email'"

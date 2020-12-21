@@ -91,6 +91,23 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 	addItem(&res, req, db.NewUserDB, item)
 }
 
+func whoami(
+	res http.ResponseWriter, req *http.Request) {
+	session, _ := store.Get(req, "logged-in")
+	allowCORS(&res)
+
+	val := "{ \"id\": "
+
+	if id, ok := session.Values["userid"].(int); ok {
+		val += strconv.Itoa(id)
+	} else {
+		val += "-1"
+	}
+	val += "}"
+	json.NewEncoder(res).Encode(val)
+	response(&res, http.StatusOK)
+}
+
 func authenticate(
 	res http.ResponseWriter, req *http.Request) {
 	session, _ := store.Get(req, "logged-in")

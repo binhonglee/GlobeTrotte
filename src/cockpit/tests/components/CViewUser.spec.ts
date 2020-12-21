@@ -8,18 +8,21 @@ test("render component", (t) => {
   const wrapper = shallowMount(CViewUser, {
     propsData: { user },
   });
-  t.true(wrapper.find(".user_info").exists());
+  t.true(wrapper.find(".userInfo").exists());
   t.regex(
-    wrapper.find("#name").text(),
+    wrapper.find(".userName").text(),
     new RegExp(user.name),
   );
-  t.regex(wrapper.find("#id").text(), new RegExp(user.ID));
   t.regex(
-    wrapper.find("#email").text(),
+    wrapper.find(".userID").text(),
+    new RegExp(user.ID),
+  );
+  t.regex(
+    wrapper.find(".userEmail").text(),
     new RegExp(user.email),
   );
   t.regex(
-    wrapper.find("#bio").text(),
+    wrapper.find(".userBio").text(),
     new RegExp(user.bio),
   );
 });

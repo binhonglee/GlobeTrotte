@@ -107,4 +107,10 @@ var actualRoutes = routes{
 		"/auth",
 		authenticate,
 	},
+	route{
+		"WhoAmI",
+		"GET",
+		"/whoami",
+		whoami,
+	},
 }

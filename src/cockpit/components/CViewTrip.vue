@@ -1,27 +1,19 @@
 <template lang="pug">
   .view_trip.narrow_content(v-if="trip !== undefined")
-    h2#name {{ trip.name }}
-    span#id {{ trip.ID }}
-    p#description(
+    h2.tripName {{ trip.name }}
+    span.tripID {{ trip.ID }}
+    p.tripDescription(
       v-if="trip.description !== ''"
     ) {{ trip.description }}
-    p#creatorInfo Author: {{ trip.userID }}
-    p#createdDate Created on: {{ trip.timeCreated.toLocaleDateString() }}
-    div#cities
-      el-tag.city(v-for="city in cities") {{ city }}
-    el-carousel.viewDays(
-      v-if="trip.days.length > 0"
-      :autorun="false"
-      :interval="0"
-      trigger="click"
-      arrow="never"
-      indicator-position="outside"
-    )
-      el-carousel-item(v-for="day in trip.days" :key="day.ID")
-        el-card.viewDayCard
-          h3.dayTitle Day {{ day.dayOf }}
-          CPlaces(:places="day.places")
-    el-button#enable_edit(
+    p.tripCreatorInfo Author: 
+      a(v-bind:href="'/user/' + user.ID") {{ user.name }}
+    p.tripCreatedDate Created on: {{ trip.timeCreated.toLocaleDateString() }}
+    div.tripCities
+      el-tag.tripCity(v-for="city in cities") {{ city }}
+    el-card.viewDayCard(v-for="day in trip.days" :key="day.ID")
+      h3.dayTitle Day {{ day.dayOf }}
+      CPlaces(:places="day.places")
+    el-button.enableTripEdit(
       v-if="editable" v-on:click="enableEditMode"
     ) Edit
 </template>
@@ -29,8 +21,10 @@
 <script lang="ts">
 import Vue from "vue";
 import { CityUtil } from "@/shared/CityUtil";
+import General from "@/shared/General";
 import CPlaces from "./CPlaces.vue";
 import Trip from "@/wings/Trip";
+import User from "@/wings/User";
 
 export default Vue.extend({
   name: "CViewTrip",
@@ -47,6 +41,12 @@ export default Vue.extend({
         new Trip();
       },
     },
+    user: {
+      type: User,
+      default: () => {
+        new User();
+      },
+    },
     editable: {
       type: Boolean,
     },
@@ -56,7 +56,7 @@ export default Vue.extend({
       this.$emit("edit-trip", this.$props.trip);
     },
   },
-  beforeMount() {
+  async beforeMount() {
     this.$data.cities = [];
     if (this.$props.trip !== undefined) {
       for (let city of this.$props.trip.cities) {
@@ -70,7 +70,7 @@ export default Vue.extend({
 <style lang="scss">
 @import "../shared/lib";
 
-#cities {
+.tripCities {
   margin-top: 10px;
 }
 
@@ -83,18 +83,7 @@ export default Vue.extend({
   margin: 0;
 }
 
-.viewDays {
-  height: 427.5px;
-}
-
-.viewDays .el-carousel__container {
-  height: 400px;
-}
-
 .viewDayCard {
-  overflow: auto;
-  height: 95%;
-  margin: 10px;
   margin-top: 15px;
 }
 
@@ -102,20 +91,17 @@ export default Vue.extend({
   padding: 15px;
 }
 
-#id {
+.tripID {
   @include right_col($p-height);
 }
 
-#enable_edit {
-  margin-top: 10px;
+.enableTripEdit {
+  margin-top: 20px;
   @include right_col($p-height);
 }
 
-#name {
+.tripName {
   @include left_col($p-height);
 }
 
-#createdDate {
-  @include left_col($p-height);
-}
 </style>

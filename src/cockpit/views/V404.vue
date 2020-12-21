@@ -11,7 +11,7 @@ export default class V404 extends Vue {}
 </script>
 
 <style>
-h3 {
+._404 {
   margin-top: 40%;
 }
 </style>

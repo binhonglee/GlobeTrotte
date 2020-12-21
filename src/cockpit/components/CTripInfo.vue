@@ -3,6 +3,7 @@
     div.view_trip_info(v-if="!editMode")
       CViewTrip(
         :trip="trip"
+        :user="user"
         :editable="editable"
         @edit-trip="enableEditMode"
       )
@@ -23,6 +24,7 @@ import CViewTrip from "./CViewTrip.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
 import Trip from "@/wings/Trip";
+import User from "@/wings/User";
 
 export default Vue.extend({
   name: "CTripInfo",
@@ -36,6 +38,9 @@ export default Vue.extend({
   props: {
     trip: {
       type: Trip,
+    },
+    user: {
+      type: User,
     },
     editable: {
       type: Boolean,

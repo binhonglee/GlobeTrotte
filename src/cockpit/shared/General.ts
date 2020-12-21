@@ -2,25 +2,42 @@ import { WingsStructUtil } from "wings-ts-util";
 import Axios, { AxiosResponse } from "axios";
 import HTTPReq from "./HTTPReq";
 import User from "@/wings/User";
+import Trip from "@/wings/Trip";
 
 export default class General {
+  public static async genUser(id: number): Promise<User> {
+    const user = await HTTPReq.genGET("user/" + id);
+    return new User(user);
+  }
+
+  public static async genTrip(id: number): Promise<Trip> {
+    const trip = await HTTPReq.genGET("trip/" + id);
+    return new Trip(trip);
+  }
+
+  public static getIsCurrentUser(id: number): boolean {
+    return this.getCurrentUser().ID === id;
+  }
+
   public static async genCurrentUser(): Promise<User> {
     if (!(await this.authSession)) {
       return new User();
     }
 
-    const user = await HTTPReq.genGET(
-      "user/" + this.getCurrentUser().ID,
-    );
+    const id = JSON.parse(
+      await HTTPReq.genGET("whoami"),
+    ).id;
+
+    const user = await this.genUser(id);
     localStorage.setItem(
       "user",
-      WingsStructUtil.stringify(new User(user)),
+      WingsStructUtil.stringify(user),
     );
 
-    return this.getCurrentUser();
+    return user;
   }
 
-  public static getCurrentUser(): User {
+  private static getCurrentUser(): User {
     const user = localStorage.getItem("user");
     if (user !== null) {
       return new User(JSON.parse(user));

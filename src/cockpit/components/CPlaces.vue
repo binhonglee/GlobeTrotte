@@ -53,7 +53,7 @@ export default Vue.extend({
   width: 100%;
 }
 
-.viewDayCard .placeDisplayCard .el-card__body {
+.places .placeDisplayCard .el-card__body {
   b {
     color: #409eff;
   }

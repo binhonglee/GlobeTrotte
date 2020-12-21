@@ -32,27 +32,3 @@ $edit-width: 250px;
   vertical-align: middle;
   font-size: 10px;
 }
-
-.title {
-  height: 50px;
-}
-
-.editLabel {
-  margin-left: 5px;
-  line-height: $h2-height;
-}
-
-.editInput {
-  @include right_col($h2-height);
-  width: $edit-width;
-}
-
-.narrow_content {
-  @include content();
-  max-width: 400px;
-}
-
-.wide_content {
-  @include content();
-  max-width: 700px;
-}
