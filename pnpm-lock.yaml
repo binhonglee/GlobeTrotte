@@ -1,5 +1,5 @@
 dependencies:
-  axios: 0.21.0
+  axios: 0.21.1
   element-ui: 2.14.1_vue@2.6.12
   vue: 2.6.12
   vue-class-component: 7.2.6_vue@2.6.12
@@ -2797,12 +2797,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
-  /axios/0.21.0:
+  /axios/0.21.1:
     dependencies:
       follow-redirects: 1.13.0
     dev: false
     resolution:
-      integrity: sha512-fmkJBknJKoZwem3/IKSSLpkdNXZeBu5Q7GA/aRsr2btgrptmSCxi2oFjZHqGdK9DoTil9PIHlPIZw2EcRJXRvw==
+      integrity: sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
   /babel-helper-vue-jsx-merge-props/2.0.3:
     dev: false
     resolution:
@@ -11721,7 +11721,7 @@ specifiers:
   '@vue/eslint-config-typescript': 7.0.0
   '@vue/test-utils': 1.1.2
   ava: 3.14.0
-  axios: 0.21.0
+  axios: 0.21.1
   babel-loader: 8.2.2
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
