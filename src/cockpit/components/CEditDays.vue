@@ -41,7 +41,9 @@ export default Vue.extend({
   },
   methods: {
     pushDay(): void {
-      let day = new Day();
+      let day = new Day({
+        places: [{}],
+      });
       day.dayOf = this.$data.days.length + 1;
       this.$data.days.push(day);
     },

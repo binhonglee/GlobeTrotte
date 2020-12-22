@@ -19,7 +19,7 @@ struct Trip {
   description   str
   time_created  date
   last_updated  date
-  private       bool
+  private       bool    true
   shared_with   []UserAccessLevel
 }
 

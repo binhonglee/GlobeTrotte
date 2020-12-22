@@ -73,7 +73,7 @@ export default class VGetID extends Vue {
         );
         return;
       }
-    } catch (_) {}
+    } catch (_) { }
     await this.$notify({
       message: "Trip not found.",
       title: "Error",

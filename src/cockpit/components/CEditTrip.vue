@@ -13,6 +13,10 @@
       :key="'description'"
       :large="true"
     )
+    //- Apparently hidden is not a thing so temporarily commenting this out
+    //- .editTripPrivacy
+    //-   span.editLabel Private:
+    //-   el-switch.editInput(v-model="private")
     .editCity
       span.editLabel Cities:
       el-select.editInput(
@@ -46,13 +50,12 @@ import Vue from "vue";
 import CEditDays from "./CEditDays.vue";
 import CEditItem from "./CEditItem.vue";
 import CEditPlaces from "./CEditPlaces.vue";
-import City from "@/wings/City";
 import { CityUtil } from "@/shared/CityUtil";
 import Place from "@/wings/Place";
 import Trip from "@/wings/Trip";
+import City from "@/wings/City";
 import TripEditable from "@/shared/TripEditable";
 import HTTPReq from "@/shared/HTTPReq";
-import { off } from "process";
 
 export default Vue.extend({
   name: "CEditTrip",
@@ -65,6 +68,7 @@ export default Vue.extend({
     cities: [],
     possibleCities: [],
     locations: [],
+    private: false,
     saving: false,
     deleting: false,
   }),
@@ -125,6 +129,7 @@ export default Vue.extend({
           offBy++;
         }
       }
+      newTrip.private = this.$data.private;
 
       newTrip.ID = this.$props.trip.ID;
       this.$emit("save", newTrip);
@@ -181,6 +186,7 @@ export default Vue.extend({
     update() {
       this.$data.possibleCities = CityUtil.allActiveCities();
       this.$data.cities = this.$props.trip.cities;
+      this.$data.private = this.$props.trip.private;
     },
   },
   beforeMount(): void {
@@ -202,6 +208,18 @@ export default Vue.extend({
   overflow: hidden;
   line-height: 40px;
   margin-bottom: 5px;
+  .editLabel,
+  .editInput {
+    line-height: 40px;
+  }
+}
+
+.editTripPrivacy .editInput {
+  margin-top: 10px;
+  width: 40px;
+}
+
+.editTripPrivacy {
   .editLabel,
   .editInput {
     line-height: 40px;

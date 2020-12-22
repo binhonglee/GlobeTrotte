@@ -21,7 +21,7 @@ export default class Trip implements IWingsStruct {
   public description: String = '';
   public timeCreated: Date = new Date();
   public lastUpdated: Date = new Date();
-  public private: Boolean = false;
+  public private: Boolean = true;
   public sharedWith: UserAccessLevel[] = [];
 
   public constructor(obj?: any) {
@@ -34,7 +34,7 @@ export default class Trip implements IWingsStruct {
       this.description = obj.description !== undefined && obj.description !== null ? obj.description : '';
       this.timeCreated = obj.time_created !== undefined && obj.time_created !== null ? new Date(obj.time_created) : new Date();
       this.lastUpdated = obj.last_updated !== undefined && obj.last_updated !== null ? new Date(obj.last_updated) : new Date();
-      this.private = obj.private !== undefined && obj.private !== null ? obj.private : false;
+      this.private = obj.private !== undefined && obj.private !== null ? obj.private : true;
       this.sharedWith = obj.shared_with !== undefined && obj.shared_with !== null ? parseArray<UserAccessLevel>(UserAccessLevel, obj.shared_with) : [];
     }
   }

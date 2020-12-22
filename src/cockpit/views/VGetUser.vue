@@ -39,9 +39,8 @@ export default Vue.extend({
       }
 
       const isCurrentUser = General.getIsCurrentUser(
-        this.$data.user.ID
+        this.$data.user.ID,
       );
-      console.log(isCurrentUser);
       if (isCurrentUser) {
         this.$router.push("/myaccount");
       }

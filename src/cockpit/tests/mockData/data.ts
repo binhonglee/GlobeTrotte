@@ -67,7 +67,7 @@ export class mockDay {
     this.day = new Day({
       id: this.ID,
       trip_id: this.tripID,
-      dayy_of: this.dayOf,
+      day_of: this.dayOf,
       places: this.places,
     });
   }

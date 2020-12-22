@@ -1,5 +1,4 @@
 import { WingsStructUtil } from "wings-ts-util";
-import Axios, { AxiosResponse } from "axios";
 import HTTPReq from "./HTTPReq";
 import User from "@/wings/User";
 import Trip from "@/wings/Trip";
@@ -20,21 +19,18 @@ export default class General {
   }
 
   public static async genCurrentUser(): Promise<User> {
-    if (!(await this.authSession)) {
-      return new User();
+    const id = JSON.parse(await HTTPReq.genGET("whoami"))
+      .id;
+    if (id === -1) {
+      localStorage.clear();
+    } else {
+      localStorage.setItem(
+        "user",
+        WingsStructUtil.stringify(await this.genUser(id)),
+      );
     }
 
-    const id = JSON.parse(
-      await HTTPReq.genGET("whoami"),
-    ).id;
-
-    const user = await this.genUser(id);
-    localStorage.setItem(
-      "user",
-      WingsStructUtil.stringify(user),
-    );
-
-    return user;
+    return this.getCurrentUser();
   }
 
   private static getCurrentUser(): User {
@@ -47,18 +43,6 @@ export default class General {
   }
 
   public static async authSession(): Promise<boolean> {
-    let success = false;
-
-    try {
-      await Axios.get(HTTPReq.getURI("auth")).then(
-        (loggedIn: AxiosResponse) => {
-          success = loggedIn.status === 200;
-        },
-      );
-    } catch (e) {
-      success = false;
-    }
-
-    return success;
+    return (await this.genCurrentUser()).ID !== -1;
   }
 }

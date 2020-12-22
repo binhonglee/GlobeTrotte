@@ -26,7 +26,20 @@ func NewUserDB(newUser structs.IStructs) int {
 		return -1
 	}
 
-	return addNewUser(*user)
+	sqlStatement := `SELECT id FROM users WHERE email = $1`
+	id := -1
+	err := db.QueryRow(
+		sqlStatement,
+		user.Email,
+	).Scan(&id)
+	if err != nil {
+		if err != sql.ErrNoRows {
+			logger.Err(logger.Database, err, "")
+			return -1
+		}
+		return addNewUser(*user)
+	}
+	return -1
 }
 
 // GetUserDB - Retrieve user information from database with ID.

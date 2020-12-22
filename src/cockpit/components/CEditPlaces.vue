@@ -7,18 +7,18 @@
       div.editPlace
         el-input.inputPlaceLabel(
           type="text"
-          placeholder="Name"
+          :placeholder="'Place Name' + (index !== 0 ? '' : ' (eg. Golden Gate Bridge)')"
           v-model="place.label"
         )
         el-input.inputPlaceLink(
           type="text"
-          placeholder="Link"
+          :placeholder="'Link' + (index !== 0 ? '' : ' (eg. Google Map link)')"
           v-model="place.URL"
         )
         br
         el-input.inputPlaceDesc(
           type="textarea"
-          placeholder="Description"
+          :placeholder="index !== 0 ? 'Description' : 'Elaborate more about why you include this place in the trip!'"
           :rows="3"
           v-model="place.description"
         )

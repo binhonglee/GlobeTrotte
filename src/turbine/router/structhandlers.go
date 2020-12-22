@@ -3,7 +3,6 @@ package router
 import (
 	"encoding/json"
 	"net/http"
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -30,7 +29,7 @@ func addTrip(res http.ResponseWriter, req *http.Request) {
 		response(&res, http.StatusForbidden)
 		return
 	}
-	addItem(&res, req, db.AddTripDB, item)
+	addItem(&res, req, db.AddTripDB, item, false)
 }
 
 func getTrip(res http.ResponseWriter, req *http.Request) {
@@ -63,21 +62,14 @@ func deleteTrip(res http.ResponseWriter, req *http.Request) {
 // User
 
 func newUser(res http.ResponseWriter, req *http.Request) {
+	var ok bool
 	var item *wings.NewUser
 	unpackJSON(&res, req, &item)
-
-	emailPattern := regexp.MustCompile(
-		"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
-	)
-	if !emailPattern.MatchString(item.Email) {
-		logger.Print(
-			logger.Router,
-			item.Email+" is not a valid email address.",
-		)
+	item.Email, ok = handleEmails(item.Email)
+	if !ok {
 		response(&res, http.StatusNotAcceptable)
 		return
 	}
-
 	item.Name = strings.Split(item.Email, "@")[0]
 	hash, err :=
 		bcrypt.GenerateFromPassword([]byte(item.Password), 14)
@@ -88,7 +80,14 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 	}
 
 	item.Password = string(hash)
-	addItem(&res, req, db.NewUserDB, item)
+	newID := addItem(&res, req, db.NewUserDB, item, true)
+	if newID != -1 {
+		user := db.GetUserWithEmailDB(*item)
+		newCookie(res, req, user.ID)
+		json.NewEncoder(res).Encode(user)
+	} else {
+		response(&res, http.StatusOK)
+	}
 }
 
 func whoami(
@@ -98,32 +97,29 @@ func whoami(
 
 	val := "{ \"id\": "
 
-	if id, ok := session.Values["userid"].(int); ok {
+	if auth, ok := session.Values["authenticated"].(bool); !ok || !auth {
+		val += "-1"
+	} else if id, ok := session.Values["userid"].(int); ok {
 		val += strconv.Itoa(id)
 	} else {
 		val += "-1"
 	}
-	val += "}"
+	val += " }"
 	json.NewEncoder(res).Encode(val)
-	response(&res, http.StatusOK)
-}
-
-func authenticate(
-	res http.ResponseWriter, req *http.Request) {
-	session, _ := store.Get(req, "logged-in")
-	allowCORS(&res)
-
-	if auth, ok := session.Values["authenticated"].(bool); !ok || !auth {
-		response(&res, http.StatusForbidden)
-		return
-	}
 	response(&res, http.StatusOK)
 }
 
 func login(res http.ResponseWriter, req *http.Request) {
 	var item *wings.NewUser
+	var ok bool
 	allowCORS(&res)
 	unpackJSON(&res, req, &item)
+
+	item.Email, ok = handleEmails(item.Email)
+	if !ok {
+		response(&res, http.StatusNotAcceptable)
+		return
+	}
 
 	err := bcrypt.CompareHashAndPassword(
 		[]byte(db.GetUserPasswordHashDB(*item)),
@@ -131,8 +127,9 @@ func login(res http.ResponseWriter, req *http.Request) {
 	)
 
 	if err != nil {
-		logger.Print(
+		logger.Err(
 			logger.Router,
+			err,
 			"Failed authentication attempt for "+item.Email,
 		)
 		response(&res, http.StatusNotAcceptable)

@@ -1,18 +1,18 @@
 <template lang="pug">
   .login.narrow_content
     h1.title Login
-    .loginbox
+    form.loginbox
       span.editLabel Email:
       el-input.editInput#username(
         type="text"
-        v-on:keyup.enter="save"
+        v-on:keyup.enter.native="confirm"
         v-model="email"
       )
       br
       span.editLabel Password:
       el-input.editInput#password(
         type="text"
-        v-on:keyup.enter="save"
+        v-on:keyup.enter.native="confirm"
         v-model="password"
         show-password
       )
@@ -68,6 +68,11 @@ export default class VLogin extends Vue {
           WingsStructUtil.stringify(new User(res["data"])),
         );
         this.$data.loading = false;
+        this.$notify({
+          message: "You are now logged in.",
+          title: "Success",
+          type: "success",
+        });
 
         this.$router.push({ path: "/" });
       })

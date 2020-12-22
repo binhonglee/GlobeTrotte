@@ -102,12 +102,6 @@ var actualRoutes = routes{
 		deleteTrip,
 	},
 	route{
-		"Auth",
-		"GET",
-		"/auth",
-		authenticate,
-	},
-	route{
 		"WhoAmI",
 		"GET",
 		"/whoami",

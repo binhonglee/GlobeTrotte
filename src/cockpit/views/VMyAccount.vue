@@ -87,6 +87,11 @@ export default class VMyAccount extends Vue {
 
     if (deletion) {
       localStorage.clear();
+      this.$notify({
+        message: "Your account is now deleted.",
+        title: "Deleted",
+        type: "info",
+      });
       this.$router.push("/");
     } else {
       this.$message.error(

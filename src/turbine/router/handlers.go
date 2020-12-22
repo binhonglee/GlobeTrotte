@@ -6,7 +6,9 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"regexp"
 	"strconv"
+	"strings"
 
 	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
@@ -23,7 +25,7 @@ func response(res *http.ResponseWriter, status int) {
 	(*res).Header().Set(
 		"Content-Type", "application/json; charset=UTF-8",
 	)
-	(*res).WriteHeader(status)
+	// (*res).WriteHeader(status)
 }
 
 func allowCORS(res *http.ResponseWriter) {
@@ -32,7 +34,7 @@ func allowCORS(res *http.ResponseWriter) {
 	(*res).Header().Set(
 		"Access-Control-Allow-Origin", url)
 	(*res).Header().Set(
-		"Access-Control-Allow-Methods", "POST, GET")
+		"Access-Control-Allow-Methods", "POST, GET, OPTIONS")
 	(*res).Header().Set(
 		"Access-Control-Allow-Credentials", "true")
 }
@@ -63,14 +65,22 @@ func addItem(
 	req *http.Request,
 	addFunc func(structs.IStructs) int,
 	item structs.IStructs,
-) {
+	skipRes bool,
+) int {
 	if newID := addFunc(item); newID != -1 {
 		item.SetID(newID)
 		allowCORS(res)
-		response(res, http.StatusCreated)
-		json.NewEncoder(*res).Encode(item)
+		if !skipRes {
+			response(res, http.StatusCreated)
+			json.NewEncoder(*res).Encode(item)	
+		}
+		return newID
 	} else {
-		response(res, http.StatusNotAcceptable)
+		allowCORS(res)
+		if !skipRes {
+			response(res, http.StatusNotAcceptable)
+		}
+		return -1
 	}
 }
 
@@ -142,4 +152,19 @@ func setDeletionStatus(
 		json.NewEncoder(*res).Encode(false)
 	}
 	allowCORS(res)
+}
+
+func handleEmails(email string) (string, bool) {
+	newEmail := strings.ToLower(strings.TrimSpace(email))
+	emailPattern := regexp.MustCompile(
+		"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
+	)
+	if !emailPattern.MatchString(newEmail) {
+		logger.Print(
+			logger.Router,
+			newEmail+" is not a valid email address.",
+		)
+		return newEmail, false
+	}
+	return newEmail, true
 }

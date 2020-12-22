@@ -15,12 +15,21 @@ import { WingsStructUtil } from "wings-ts-util";
 import CEditTrip from "@/components/CEditTrip.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
+import Day from "@/wings/Day";
 import Trip from "@/wings/Trip";
+import Place from "@/wings/Place";
 
 @Component({
   data() {
     return {
-      trip: new Trip(),
+      trip: new Trip({
+        days: [
+          {
+            day_of: 1,
+            places: [{}],
+          },
+        ],
+      }),
     };
   },
   components: {

@@ -1,7 +1,7 @@
 <template lang="pug">
   .new_user.narrow_content
     h1.title Create Account
-    .newUser
+    form.newUser
       span.editLabel Email:
       el-input.editInput#username(
         type="text"
@@ -12,7 +12,7 @@
       span.editLabel Password:
       el-input.editInput#password(
         type="text"
-        v-on:keyup.enter="save"
+        v-on:keyup.enter.native="confirm"
         v-model="password"
         show-password
       )
@@ -20,7 +20,7 @@
       span.editLabel Confirm Password:
       el-input.editInput#confPassword(
         type="text"
-        v-on:keyup.enter="save"
+        v-on:keyup.enter.native="confirm"
         v-model="confPassword"
         show-password
       )
@@ -66,6 +66,7 @@ export default class VRegsiter extends Vue {
       this.$alert("Password does not match.", "Fail", {
         confirmButtonText: "OK",
       });
+      this.$data.loading = false;
       return;
     }
 
@@ -83,20 +84,32 @@ export default class VRegsiter extends Vue {
       },
     )
       .then((res: AxiosResponse) => {
+        const user = new User(res["data"]);
+        if (user.ID === -1) {
+          this.accountCreationFailed();
+          return;
+        }
         localStorage.setItem(
           "user",
-          WingsStructUtil.stringify(new User(res["data"])),
+          WingsStructUtil.stringify(user),
         );
         this.$data.loading = false;
+        this.$notify({
+          message: "Your account is created successfully!",
+          title: "Success",
+          type: "success",
+        });
 
-        this.$router.push({ path: "/login" });
+        this.$router.push({ path: "/myaccount" });
       })
       .catch(() => {
-        this.$data.loading = false;
-        this.$message.error(
-          "Invalid email. Please try again.",
-        );
+        this.accountCreationFailed();
       });
+  }
+
+  private accountCreationFailed(): void {
+    this.$data.loading = false;
+    this.$message.error("Invalid email. Please try again.");
   }
 
   private cancel(): void {
