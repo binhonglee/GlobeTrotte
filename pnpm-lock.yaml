@@ -24,7 +24,7 @@ devDependencies:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue: 1.1.1_@babel+core@7.12.10
-  cypress: 6.1.0
+  cypress: 6.2.0
   eslint: 7.16.0
   eslint-plugin-prettier: 3.3.0_eslint@7.16.0+prettier@2.2.1
   eslint-plugin-vue: 7.3.0_eslint@7.16.0
@@ -4157,7 +4157,7 @@ packages:
       node: '>=0.4.0'
     resolution:
       integrity: sha1-IegLK+hYD5i0aPN5QwZisEbDStI=
-  /cypress/6.1.0:
+  /cypress/6.2.0:
     dependencies:
       '@cypress/listr-verbose-renderer': 0.4.1
       '@cypress/request': 2.88.5
@@ -4203,7 +4203,7 @@ packages:
     hasBin: true
     requiresBuild: true
     resolution:
-      integrity: sha512-uQnSxRcZ6hkf9R5cr8KpRBTzN88QZwLIImbf5DWa5RIxH6o5Gpff58EcjiYhAR8/8p9SGv7O6SRygq4H+k0Qpw==
+      integrity: sha512-m/rkcogYM9MTy8rbsZgyS5wT2L/J+B5V2bY2ztkDNMyqhk/oZgUF4KTWVLzkW2I+scg0iAddca95tLlt7XnAtw==
   /dashdash/1.14.1:
     dependencies:
       assert-plus: 1.0.0
@@ -11726,7 +11726,7 @@ specifiers:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue: 1.1.1
-  cypress: 6.1.0
+  cypress: 6.2.0
   element-ui: 2.14.1
   eslint: 7.16.0
   eslint-plugin-prettier: 3.3.0
