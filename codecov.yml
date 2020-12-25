@@ -27,6 +27,7 @@ comment:
 
 ignore:
   - "**/scripts/**"
+  - "src/turbine/logger/*"
 
 github_checks:
     annotations: true

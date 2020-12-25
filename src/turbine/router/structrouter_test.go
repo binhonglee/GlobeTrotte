@@ -21,7 +21,13 @@ func TestAddInvalidEmailUser(t *testing.T) {
 	}
 
 	var returned *wings.User
-	addTest("/user", t, &newUser, &returned, http.StatusNotAcceptable)
+	addTest("/user", t, &newUser, &returned, true)
+	if returned.ID != -1 {
+		t.Errorf(
+			"Returned ID is expected to be -1 (indicating failure) but was %v.",
+			returned.ID,
+		)
+	}
 }
 
 func TestAddUser(t *testing.T) {
@@ -31,8 +37,12 @@ func TestAddUser(t *testing.T) {
 	}
 
 	var returned *wings.User
-	addTest("/user", t, &newUser, &returned, http.StatusCreated)
+	addTest("/user", t, &newUser, &returned, true)
 	addedUser = *returned
+
+	if returned.GetID() == -1 {
+		t.Errorf("User failed to add.")
+	}
 
 	if returned.Email != newUser.Email {
 		t.Errorf(
@@ -93,7 +103,7 @@ func TestAddTrip(t *testing.T) {
 	}
 
 	var returned *wings.Trip
-	addTest("/trip", t, &newTrip, &returned, http.StatusCreated)
+	addTest("/trip", t, &newTrip, &returned, true)
 	addedTrip = *returned
 
 	if _, diff := removeIDFromArray(structs.CompareTrips(newTrip, *returned)); len(diff) > 1 {

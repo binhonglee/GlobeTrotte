@@ -25,7 +25,7 @@ func response(res *http.ResponseWriter, status int) {
 	(*res).Header().Set(
 		"Content-Type", "application/json; charset=UTF-8",
 	)
-	// (*res).WriteHeader(status)
+	(*res).WriteHeader(status)
 }
 
 func allowCORS(res *http.ResponseWriter) {
@@ -72,7 +72,7 @@ func addItem(
 		allowCORS(res)
 		if !skipRes {
 			response(res, http.StatusCreated)
-			json.NewEncoder(*res).Encode(item)	
+			json.NewEncoder(*res).Encode(item)
 		}
 		return newID
 	} else {

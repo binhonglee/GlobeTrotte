@@ -63,9 +63,14 @@ export default class VLogin extends Vue {
       },
     )
       .then((res: AxiosResponse) => {
+        const user = new User(res["data"]);
+        if (user.ID === -1) {
+          this.failLogin();
+          return;
+        }
         localStorage.setItem(
           "user",
-          WingsStructUtil.stringify(new User(res["data"])),
+          WingsStructUtil.stringify(user),
         );
         this.$data.loading = false;
         this.$notify({
@@ -77,11 +82,15 @@ export default class VLogin extends Vue {
         this.$router.push({ path: "/" });
       })
       .catch(() => {
-        this.$data.loading = false;
-        this.$message.error(
-          "Wrong email or password. Please try again.",
-        );
+        this.failLogin();
       });
+  }
+
+  private failLogin(): void {
+    this.$data.loading = false;
+    this.$message.error(
+      "Wrong email or password. Please try again.",
+    );
   }
 
   private cancel(): void {

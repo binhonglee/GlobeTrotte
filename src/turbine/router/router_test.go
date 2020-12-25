@@ -28,7 +28,7 @@ func addTest(
 	t *testing.T,
 	toAdd structs.IStructs,
 	objType interface{},
-	expectedCode int,
+	unmarshalBody bool,
 ) {
 	res := httptest.NewRecorder()
 	data, err := json.Marshal(toAdd)
@@ -38,19 +38,13 @@ func addTest(
 		req.AddCookie(cookies)
 	}
 	NewRouter().ServeHTTP(res, req)
-	if res.Code != expectedCode {
-		t.Errorf("addTest(), expected code " +
-			strconv.Itoa(expectedCode) +
-			" but received " + strconv.Itoa(res.Code) +
-			" instead.")
-	}
 
-	if expectedCode == http.StatusCreated {
+	if unmarshalBody {
 		data, err = ioutil.ReadAll(res.Body)
 		if err != nil {
 			t.Errorf("Adding failed.")
 		}
-		json.Unmarshal(data, objType)
+		objType = json.Unmarshal(data, objType)
 	}
 }
 
@@ -62,6 +56,7 @@ func get(path string, t *testing.T, expectedCode int) *httptest.ResponseRecorder
 		t.Errorf("getTest(), expected code " +
 			strconv.Itoa(expectedCode) + " but received " +
 			strconv.Itoa(res.Code) + " instead.")
+
 		return res
 	}
 

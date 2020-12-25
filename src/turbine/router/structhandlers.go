@@ -64,9 +64,13 @@ func deleteTrip(res http.ResponseWriter, req *http.Request) {
 func newUser(res http.ResponseWriter, req *http.Request) {
 	var ok bool
 	var item *wings.NewUser
+	var dummyUser = new(wings.User)
 	unpackJSON(&res, req, &item)
+	dummyUser.ID = -1
+	dummyUser.Email = item.Email
 	item.Email, ok = handleEmails(item.Email)
 	if !ok {
+		json.NewEncoder(res).Encode(dummyUser)
 		response(&res, http.StatusNotAcceptable)
 		return
 	}
@@ -76,6 +80,7 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		logger.Err(logger.Router, err, "Password hashing failed")
 		response(&res, http.StatusNotAcceptable)
+		json.NewEncoder(res).Encode(dummyUser)
 		return
 	}
 
@@ -87,6 +92,7 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(res).Encode(user)
 	} else {
 		response(&res, http.StatusOK)
+		json.NewEncoder(res).Encode(dummyUser)
 	}
 }
 

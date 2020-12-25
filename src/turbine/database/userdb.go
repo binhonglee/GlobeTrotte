@@ -39,6 +39,10 @@ func NewUserDB(newUser structs.IStructs) int {
 		}
 		return addNewUser(*user)
 	}
+	logger.Print(
+		logger.Database,
+		"New user creation failed. Email already exists "+user.Email,
+	)
 	return -1
 }
 
