@@ -21,67 +21,71 @@
 </template>
 
 <script lang="ts">
-import {
-  Component,
-  Vue,
-  Watch,
-} from "vue-property-decorator";
 import General from "./shared/General";
 
-@Component({
-  data() {
+interface Data {
+  activeIndex: string;
+  authed: boolean;
+}
+
+export default {
+  data(): Data {
     return {
       activeIndex: "/",
       authed: false,
     };
   },
-})
-export default class App extends Vue {
-  private async beforeMount() {
-    await this.setAuthed();
-    this.setActiveIndex();
-  }
+  methods: {
+    async beforeMount(): Promise<void> {
+      await this.setAuthed();
+      this.setActiveIndex();
+    },
+    async setAuthed(): Promise<void> {
+      this.$data.authed = await General.authSession();
+    },
+    setActiveIndex(): void {
+      let path = window.location.pathname;
+      if (path.length < 2) {
+        this.$data.activeIndex = "/";
+        return;
+      }
 
-  private async setAuthed() {
-    this.$data.authed = await General.authSession();
-  }
-
-  private setActiveIndex() {
-    let path = window.location.pathname;
-    if (path.length < 2) {
-      this.$data.activeIndex = "/";
-      return;
+      if (
+        path.substr(path.length - 1).localeCompare("/") === 0
+      ) {
+        path = path.slice(0, -1);
+      }
+      const paths = path.split("/");
+      if (!isNaN(Number(paths[paths.length - 1]))) {
+        path = path.slice(
+          0,
+          -1 * paths[paths.length - 1].length - 1,
+        );
+      }
+      this.$data.activeIndex = path;
+    },
+    handleSelect(key: string): void {
+      let path = key;
+      if (
+        path === this.$data.activeIndex ||
+        path === null
+      ) {
+        return;
+      }
+      this.$router.push({ path: `${path}` });
+    },
+  },
+  watch: {
+    $route: {
+      handler: async function (): Promise<void> {
+        await this.setAuthed();
+        this.setActiveIndex();
+      },
+      immediate: true,
+      deep: true,
     }
-
-    if (
-      path.substr(path.length - 1).localeCompare("/") === 0
-    ) {
-      path = path.slice(0, -1);
-    }
-    const paths = path.split("/");
-    if (!isNaN(Number(paths[paths.length - 1]))) {
-      path = path.slice(
-        0,
-        -1 * paths[paths.length - 1].length - 1,
-      );
-    }
-    this.$data.activeIndex = path;
   }
-
-  private handleSelect(key: string) {
-    let path = key;
-    if (path === this.$data.activeIndex || path === null) {
-      return;
-    }
-    this.$router.push({ path: `${path}` });
-  }
-
-  @Watch("$route", { immediate: true, deep: true })
-  private async onUrlChange() {
-    await this.setAuthed();
-    this.setActiveIndex();
-  }
-}
+};
 </script>
 
 <style lang="scss">

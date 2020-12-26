@@ -22,7 +22,7 @@ jobs:
       - restore_cache:
           key: pnpm-store-{{ checksum "package.json" }}
       - restore_cache:
-          key: cypress
+          key: cypress-6.2.0
       - restore_cache:
           key: node-modules-{{ checksum "package.json" }}
       - run: sudo apt-get install -y libasound2 libgbm-dev libgconf-2-4 libgtk2.0-0 libgtk-3-0 libnotify-dev libnss3 libxcomposite-dev libxcomposite1 libxss1 libxtst6 postgresql-client xauth xvfb
@@ -34,6 +34,7 @@ jobs:
       - run: ./scripts/setup.sh -g -s -w
 
       - run: sudo npm i -g pnpm
+      - run: pnpx cypress install
       - run: cp .circleci/test.config config/psql.config
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
 
@@ -57,7 +58,7 @@ jobs:
           paths:
             - ~/.pnpm-store
       - save_cache:
-          key: cypress
+          key: cypress-6.2.0
           paths:
             - ~/.cache/Cypress
       - save_cache:

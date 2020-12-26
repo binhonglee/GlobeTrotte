@@ -19,7 +19,6 @@ var currentFile *os.File
 func init() {
 	startTime = time.Now()
 	createNewLogFile()
-	archiveOldLogs()
 }
 
 // Deprecated: Print an empty newline in terminal. Purely aesthetic reason.
@@ -29,20 +28,7 @@ func NewLine() {
 
 // Deprecated: DO NOT CALL THIS FUNCTION aside from `cleanup()` in main
 func Cleanup() {
-	archiveOldLogs()
 	currentFile.Close()
-}
-
-func archiveOldLogs() {
-	// files, _ := ioutil.ReadDir(".")
-
-	// for _, file := range files {
-	// 	if !file.IsDir() &&
-	// 		strings.HasSuffix(file.Name(), logExt) &&
-	// 		file.Name() != currentFile.Name() {
-	// 		archiveLog(file.Name(), false)
-	// 	}
-	// }
 }
 
 func archiveLog(filename string, exit bool) {
@@ -211,7 +197,7 @@ func debugPrint(
 		time.Now().Format(time.Stamp)[7:],
 		" "+namespaceStr+" : ",
 		string(status), a,
-		getCaller(debug, 4),
+		getCaller(debug, 3),
 		string(resetC),
 	)
 }

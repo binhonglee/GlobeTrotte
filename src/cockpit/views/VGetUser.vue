@@ -5,19 +5,20 @@
       CViewUser(:user="user" :showName="false")
 </template>
 
-
 <script lang="ts">
-import Vue from "vue";
 import CViewUser from "@/components/CViewUser.vue";
 import User from "@/wings/User";
 import General from "@/shared/General";
 
-export default Vue.extend({
-  name: "VGetUser",
+interface Data {
+  user: User;
+}
+
+export default {
   components: {
     CViewUser,
   },
-  data: () => ({
+  data: (): Data => ({
     user: new User(),
   }),
   methods: {
@@ -50,7 +51,7 @@ export default Vue.extend({
   async beforeMount(): Promise<void> {
     await this.init();
   },
-});
+};
 </script>
 
 <style lang="scss">

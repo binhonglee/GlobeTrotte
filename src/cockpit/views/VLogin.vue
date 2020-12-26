@@ -30,73 +30,70 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
 import { WingsStructUtil } from "wings-ts-util";
-import Axios, { AxiosResponse } from "axios";
+import Axios from "axios";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import User from "@/wings/User";
 
-@Component({
-  data() {
+interface Data {
+  email: string;
+  password: string;
+  loading: boolean;
+}
+
+export default {
+  data(): Data {
     return {
       email: "",
       password: "",
       loading: false,
     };
   },
-})
-export default class VLogin extends Vue {
-  private confirm(): void {
-    this.$data.loading = true;
-    const newUser = new NewUser();
-    newUser.register({
-      email: this.$data.email,
-      password: this.$data.password,
-    });
-
-    Axios.post(
-      HTTPReq.getURI("login"),
-      WingsStructUtil.stringify(newUser),
-      {
-        withCredentials: true,
-      },
-    )
-      .then((res: AxiosResponse) => {
-        const user = new User(res["data"]);
-        if (user.ID === -1) {
-          this.failLogin();
-          return;
-        }
-        localStorage.setItem(
-          "user",
-          WingsStructUtil.stringify(user),
-        );
-        this.$data.loading = false;
-        this.$notify({
-          message: "You are now logged in.",
-          title: "Success",
-          type: "success",
-        });
-
-        this.$router.push({ path: "/" });
-      })
-      .catch(() => {
-        this.failLogin();
+  methods: {
+    async confirm(): Promise<void> {
+      this.$data.loading = true;
+      const newUser = new NewUser();
+      newUser.register({
+        email: this.$data.email,
+        password: this.$data.password,
       });
-  }
 
-  private failLogin(): void {
-    this.$data.loading = false;
-    this.$message.error(
-      "Wrong email or password. Please try again.",
-    );
-  }
+      const res = await Axios.post(
+        HTTPReq.getURI("login"),
+        WingsStructUtil.stringify(newUser),
+        {
+          withCredentials: true,
+        },
+      );
 
-  private cancel(): void {
-    this.$router.back();
-  }
-}
+      const user = new User(res["data"]);
+      if (user.ID === -1) {
+        this.$data.loading = false;
+        this.$message.error(
+          "Wrong email or password. Please try again.",
+        );
+        return;
+      }
+      localStorage.setItem(
+        "user",
+        WingsStructUtil.stringify(user),
+      );
+      this.$data.loading = false;
+      this.$notify({
+        message: "You are now logged in.",
+        title: "Success",
+        type: "success",
+        duration: 2000,
+      });
+
+      this.$router.push({ path: "/" });
+    },
+    cancel(): void {
+      this.$router.back();
+    },
+  },
+};
 </script>
 
 <style lang="scss">

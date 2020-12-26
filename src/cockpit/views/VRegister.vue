@@ -38,15 +38,21 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
 import { WingsStructUtil } from "wings-ts-util";
-import Axios, { AxiosResponse } from "axios";
+import Axios from "axios";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import User from "@/wings/User";
 
-@Component({
-  data() {
+interface Data {
+  email: string;
+  password: string;
+  confPassword: string;
+  loading: boolean;
+}
+
+export default {
+  data(): Data {
     return {
       email: "",
       password: "",
@@ -54,68 +60,64 @@ import User from "@/wings/User";
       loading: false,
     };
   },
-})
-export default class VRegsiter extends Vue {
-  private confirm(): void {
-    this.$data.loading = true;
-    if (
-      this.$data.password.localeCompare(
-        this.$data.confPassword,
-      )
-    ) {
-      this.$alert("Password does not match.", "Fail", {
-        confirmButtonText: "OK",
-      });
-      this.$data.loading = false;
-      return;
-    }
-
-    const newUser = new NewUser();
-    newUser.register({
-      email: this.$data.email,
-      password: this.$data.password,
-    });
-
-    Axios.post(
-      HTTPReq.getURI("user"),
-      WingsStructUtil.stringify(newUser),
-      {
-        withCredentials: true,
-      },
-    )
-      .then((res: AxiosResponse) => {
-        const user = new User(res["data"]);
-        if (user.ID === -1) {
-          this.accountCreationFailed();
-          return;
-        }
-        localStorage.setItem(
-          "user",
-          WingsStructUtil.stringify(user),
-        );
-        this.$data.loading = false;
-        this.$notify({
-          message: "Your account is created successfully!",
-          title: "Success",
-          type: "success",
+  methods: {
+    async confirm(): Promise<void> {
+      this.$data.loading = true;
+      if (
+        this.$data.password.localeCompare(
+          this.$data.confPassword,
+        )
+      ) {
+        this.$alert("Password does not match.", "Fail", {
+          confirmButtonText: "OK",
         });
+        this.$data.loading = false;
+        return;
+      }
 
-        this.$router.push({ path: "/myaccount" });
-      })
-      .catch(() => {
-        this.accountCreationFailed();
+      const newUser = new NewUser();
+      newUser.register({
+        email: this.$data.email,
+        password: this.$data.password,
       });
-  }
 
-  private accountCreationFailed(): void {
-    this.$data.loading = false;
-    this.$message.error("Invalid email. Please try again.");
-  }
+      const res = await Axios.post(
+        HTTPReq.getURI("user"),
+        WingsStructUtil.stringify(newUser),
+        {
+          withCredentials: true,
+        },
+      );
 
-  private cancel(): void {
-    this.$router.back();
-  }
-}
+      const user = new User(res["data"]);
+      if (user.ID === -1) {
+        this.$data.loading = false;
+        this.$message.error(
+          "Invalid email. Please try again.",
+        );
+        return;
+      }
+
+      localStorage.setItem(
+        "user",
+        WingsStructUtil.stringify(user),
+      );
+
+      this.$data.loading = false;
+      this.$notify({
+        message: "Your account is created successfully!",
+        title: "Success",
+        type: "success",
+        duration: 2000,
+      });
+
+      this.$router.push({ path: "/myaccount" });
+    },
+    cancel(): void {
+      this.$router.back();
+    },
+  },
+};
 </script>
 
 <style lang="scss">

@@ -18,19 +18,24 @@
 </template>
 
 <script lang="ts">
-import {
-  Component,
-  Watch,
-  Vue,
-} from "vue-property-decorator";
 import CTripInfo from "@/components/CTripInfo.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
 import Trip from "@/wings/Trip";
 import User from "@/wings/User";
 
-@Component({
-  data() {
+interface Data {
+  inputID: string;
+  trip: Trip;
+  user: User;
+  owner: boolean;
+}
+
+export default {
+  components: {
+    CTripInfo,
+  },
+  data(): Data {
     return {
       inputID: "",
       trip: new Trip(),
@@ -39,27 +44,14 @@ import User from "@/wings/User";
     };
   },
   props: ["id"],
-  components: {
-    CTripInfo,
-  },
-})
-export default class VGetID extends Vue {
-  @Watch("$route.path") private async onRouteChange() {
-    await this.init();
-  }
+  methods: {
+    async init(): Promise<void> {
+      if (this.$route.params.id === undefined) {
+        this.$data.trip = new Trip();
+        return;
+      }
+      this.$data.inputID = this.$route.params.id;
 
-  private async beforeMount() {
-    await this.init();
-  }
-
-  private async init() {
-    if (this.$route.params.id === undefined) {
-      this.$data.trip = new Trip();
-      return;
-    }
-    this.$data.inputID = this.$route.params.id;
-
-    try {
       const parsedData = await HTTPReq.genGET(
         "trip/" + this.$route.params.id,
       );
@@ -73,26 +65,35 @@ export default class VGetID extends Vue {
         );
         return;
       }
-    } catch (_) { }
-    await this.$notify({
-      message: "Trip not found.",
-      title: "Error",
-      type: "error",
-    });
-    this.$router.push("/trip/view");
-  }
 
-  private gotoTrip(): void {
-    const id: number = parseInt(this.$data.inputID, 10);
-    if (String(id) !== this.$data.inputID) {
-      alert("Invalid number");
-    } else if (
-      this.$route.params.id !== this.$data.inputID
-    ) {
-      this.$router.push({ path: `/trip/view/${id}` });
-    }
-  }
-}
+      await this.$notify({
+        message: "Trip not found.",
+        title: "Error",
+        type: "error",
+        duration: 2000,
+      });
+      this.$router.push("/trip/view");
+    },
+    gotoTrip(): void {
+      const id: number = parseInt(this.$data.inputID, 10);
+      if (String(id) !== this.$data.inputID) {
+        alert("Invalid number");
+      } else if (
+        this.$route.params.id !== this.$data.inputID
+      ) {
+        this.$router.push({ path: `/trip/view/${id}` });
+      }
+    },
+  },
+  async beforeMount(): Promise<void> {
+    await this.init();
+  },
+  watch: {
+    "$route.path": async function (): Promise<void> {
+      await this.init();
+    },
+  },
+};
 </script>
 
 <style lang="scss">

@@ -31,7 +31,7 @@ describe("User account", () => {
     cy.get("#password").type(password);
     cy.get("#confPassword").type(password);
     cy.get("#save").click();
-    cy.url().should("include", "/login");
+    isLoggedIn(cy);
   });
 
   it("login", () => {

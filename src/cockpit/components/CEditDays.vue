@@ -22,19 +22,21 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import CEditPlaces from "@/components/CEditPlaces.vue";
 import Day from "@/wings/Day";
 
-export default Vue.extend({
-  name: "CEditDay",
-  data: () => ({
+interface Data {
+  days: Day[];
+}
+
+export default {
+  data: (): Data => ({
     days: [],
   }),
   props: {
     givenDays: {
       type: Array,
-      default: () => {
+      default: (): [] => {
         return [];
       },
     },
@@ -71,7 +73,7 @@ export default Vue.extend({
       }
     },
   },
-  beforeMount() {
+  beforeMount(): void {
     this.$data.days = (this.$props.givenDays ?? []).slice(
       0,
     );
@@ -79,7 +81,7 @@ export default Vue.extend({
   components: {
     CEditPlaces,
   },
-});
+};
 </script>
 
 <style lang="scss">

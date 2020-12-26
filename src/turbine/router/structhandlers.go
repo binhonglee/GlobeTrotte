@@ -20,6 +20,12 @@ var (
 	store = sessions.NewCookieStore(key)
 )
 
+func dummyUser() *wings.User {
+	user := new(wings.User)
+	user.ID = -1
+	return user
+}
+
 // Trip
 
 func addTrip(res http.ResponseWriter, req *http.Request) {
@@ -64,7 +70,7 @@ func deleteTrip(res http.ResponseWriter, req *http.Request) {
 func newUser(res http.ResponseWriter, req *http.Request) {
 	var ok bool
 	var item *wings.NewUser
-	var dummyUser = new(wings.User)
+	dummyUser := dummyUser()
 	unpackJSON(&res, req, &item)
 	dummyUser.ID = -1
 	dummyUser.Email = item.Email
@@ -111,8 +117,8 @@ func whoami(
 		val += "-1"
 	}
 	val += " }"
-	json.NewEncoder(res).Encode(val)
 	response(&res, http.StatusOK)
+	json.NewEncoder(res).Encode(val)
 }
 
 func login(res http.ResponseWriter, req *http.Request) {
@@ -120,10 +126,12 @@ func login(res http.ResponseWriter, req *http.Request) {
 	var ok bool
 	allowCORS(&res)
 	unpackJSON(&res, req, &item)
+	dummyUser := dummyUser()
 
 	item.Email, ok = handleEmails(item.Email)
 	if !ok {
-		response(&res, http.StatusNotAcceptable)
+		response(&res, http.StatusOK)
+		json.NewEncoder(res).Encode(dummyUser)
 		return
 	}
 
@@ -138,7 +146,8 @@ func login(res http.ResponseWriter, req *http.Request) {
 			err,
 			"Failed authentication attempt for "+item.Email,
 		)
-		response(&res, http.StatusNotAcceptable)
+		response(&res, http.StatusOK)
+		json.NewEncoder(res).Encode(dummyUser)
 		return
 	}
 

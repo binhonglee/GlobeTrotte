@@ -19,31 +19,34 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import { CityUtil } from "@/shared/CityUtil";
-import General from "@/shared/General";
 import CPlaces from "./CPlaces.vue";
+import City from "@/wings/City";
 import Trip from "@/wings/Trip";
 import User from "@/wings/User";
 
-export default Vue.extend({
+interface Data {
+  cities: City[];
+}
+
+export default {
   name: "CViewTrip",
   components: {
     CPlaces,
   },
-  data: () => ({
+  data: (): Data => ({
     cities: [],
   }),
   props: {
     trip: {
       type: Trip,
-      default: () => {
+      default: (): void => {
         new Trip();
       },
     },
     user: {
       type: User,
-      default: () => {
+      default: (): void => {
         new User();
       },
     },
@@ -52,11 +55,11 @@ export default Vue.extend({
     },
   },
   methods: {
-    enableEditMode() {
+    enableEditMode(): void {
       this.$emit("edit-trip", this.$props.trip);
     },
   },
-  async beforeMount() {
+  async beforeMount(): Promise<void> {
     this.$data.cities = [];
     if (this.$props.trip !== undefined) {
       for (let city of this.$props.trip.cities) {
@@ -64,7 +67,7 @@ export default Vue.extend({
       }
     }
   },
-});
+};
 </script>
 
 <style lang="scss">
@@ -88,7 +91,7 @@ export default Vue.extend({
 }
 
 .viewDayCard .el-card__body {
-  padding: 15px;
+  padding: 10px 15px 0 15px;
 }
 
 .tripID {

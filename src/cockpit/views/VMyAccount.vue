@@ -55,7 +55,6 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
 import CEditItem from "@/components/CEditItem.vue";
 import CViewUser from "@/components/CViewUser.vue";
 import General from "@/shared/General";
@@ -63,84 +62,85 @@ import HTTPReq from "@/shared/HTTPReq";
 import User from "@/wings/User";
 import { WingsStructUtil } from "wings-ts-util";
 
-@Component({
-  data() {
+interface Data {
+  user: User;
+  edit: boolean;
+}
+
+export default {
+  components: {
+    CEditItem,
+    CViewUser,
+  },
+  data(): Data {
     return {
       user: new User(),
       edit: false,
     };
   },
-  components: {
-    CEditItem,
-    CViewUser,
-  },
-})
-export default class VMyAccount extends Vue {
-  private async beforeMount(): Promise<void> {
-    this.$data.user = await General.genCurrentUser();
-  }
+  methods: {
+    async deleteAccount(): Promise<void> {
+      const deletion = await HTTPReq.genDELETE(
+        "user/" + this.$data.user.ID,
+      );
 
-  private async deleteAccount(): Promise<void> {
-    const deletion = await HTTPReq.genDELETE(
-      "user/" + this.$data.user.ID,
-    );
+      if (deletion) {
+        localStorage.clear();
+        this.$notify({
+          message: "Your account is now deleted.",
+          title: "Deleted",
+          type: "info",
+          duration: 2000,
+        });
+        this.$router.push("/");
+      } else {
+        this.$message.error(
+          "Account deletion attempt failed.",
+        );
+      }
+    },
+    async save(): Promise<void> {
+      this.$data.user.name = this.$refs.name.value;
+      this.$data.user.email = this.$refs.email.value;
+      this.$data.user.bio = this.$refs.bio.value;
+      const success = await HTTPReq.genPOST(
+        "user/" + this.$data.user.ID,
+        WingsStructUtil.stringify(this.$data.user),
+      );
 
-    if (deletion) {
+      if (success) {
+        this.toggleEdit();
+        this.$message.success(
+          "Profile updated successfully!",
+        );
+      } else {
+        this.$alert(
+          "Save was unsuccessful. Please try again later.",
+          "Fail",
+          {
+            confirmButtonText: "OK",
+          },
+        );
+      }
+    },
+    async logout(): Promise<void> {
+      await HTTPReq.genGET("logout");
       localStorage.clear();
-      this.$notify({
-        message: "Your account is now deleted.",
-        title: "Deleted",
-        type: "info",
-      });
       this.$router.push("/");
-    } else {
-      this.$message.error(
-        "Account deletion attempt failed.",
-      );
-    }
-  }
-
-  private async save() {
-    this.$data.user.name = this.$refs.name.value;
-    this.$data.user.email = this.$refs.email.value;
-    this.$data.user.bio = this.$refs.bio.value;
-    const success = await HTTPReq.genPOST(
-      "user/" + this.$data.user.ID,
-      WingsStructUtil.stringify(this.$data.user),
-    );
-
-    if (success) {
-      this.toggleEdit();
+    },
+    toggleEdit(): void {
+      this.$data.edit = !this.$data.edit;
+    },
+    magic(): void {
       this.$message.success(
-        "Profile updated successfully!",
+        "Shh... This is not yet implemented",
       );
-    } else {
-      this.$alert(
-        "Save was unsuccessful. Please try again later.",
-        "Fail",
-        {
-          confirmButtonText: "OK",
-        },
-      );
-    }
-  }
-
-  private async logout() {
-    await HTTPReq.genGET("logout");
-    localStorage.clear();
-    this.$router.push("/");
-  }
-
-  private toggleEdit() {
-    this.$data.edit = !this.$data.edit;
-  }
-
-  private magic() {
-    this.$message.success(
-      "Shh... This is not yet implemented",
-    );
-  }
-}
+    },
+  },
+  async beforeMount(): Promise<void> {
+    this.$data.user = await General.genCurrentUser();
+  },
+};
 </script>
 
 <style lang="scss">

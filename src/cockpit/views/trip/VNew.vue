@@ -10,17 +10,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
 import { WingsStructUtil } from "wings-ts-util";
 import CEditTrip from "@/components/CEditTrip.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
-import Day from "@/wings/Day";
 import Trip from "@/wings/Trip";
-import Place from "@/wings/Place";
 
-@Component({
-  data() {
+interface Data {
+  trip: Trip;
+}
+
+export default {
+  data(): Data {
     return {
       trip: new Trip({
         days: [
@@ -35,37 +36,37 @@ import Place from "@/wings/Place";
   components: {
     CEditTrip,
   },
-})
-export default class VNew extends Vue {
-  private cancel(): void {
-    this.$router.back();
-  }
-
-  private async save(trip: Trip): Promise<void> {
-    const user = await General.genCurrentUser();
-    try {
-      if (user.ID !== 0) {
-        this.$data.trip = trip;
-        trip.userID = user.ID;
-        const newTrip = await HTTPReq.genPOST(
-          "trip",
-          WingsStructUtil.stringify(trip),
-        );
-        this.$router.push(
-          "/trip/view/" + new Trip(newTrip).ID,
-        );
-        return;
-      }
-    } catch (_) {}
-    this.$alert(
-      "Save was unsuccessful. Please try again later.",
-      "Fail",
-      {
-        confirmButtonText: "OK",
-      },
-    );
-  }
-}
+  methods: {
+    cancel(): void {
+      this.$router.back();
+    },
+    async save(trip: Trip): Promise<void> {
+      const user = await General.genCurrentUser();
+      try {
+        if (user.ID !== 0) {
+          this.$data.trip = trip;
+          trip.userID = user.ID;
+          const newTrip = await HTTPReq.genPOST(
+            "trip",
+            WingsStructUtil.stringify(trip),
+          );
+          this.$router.push(
+            "/trip/view/" + new Trip(newTrip).ID,
+          );
+          return;
+        }
+        // eslint-disable-next-line no-empty
+      } catch (_) {}
+      this.$alert(
+        "Save was unsuccessful. Please try again later.",
+        "Fail",
+        {
+          confirmButtonText: "OK",
+        },
+      );
+    },
+  },
+};
 </script>
 
 <style lang="scss">

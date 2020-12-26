@@ -4,14 +4,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-
-@Component
-export default class V404 extends Vue {}
+export default {};
 </script>
 
 <style>
 ._404 {
-  margin-top: 40%;
+  margin-top: 100px;
 }
 </style>
