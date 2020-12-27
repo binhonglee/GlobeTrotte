@@ -87,7 +87,8 @@ func addItem(
 func getItem(
 	res *http.ResponseWriter,
 	req *http.Request,
-	getFunc func(int) structs.IStructs,
+	getFunc func(int, int) structs.IStructs,
+	v interface{},
 ) {
 	vars := mux.Vars(req)
 	var id int
@@ -99,23 +100,25 @@ func getItem(
 	}
 	allowCORS(res)
 
-	item := getFunc(id)
+	item := getFunc(id, getUserID(req))
 	if item.GetID() > 0 {
 		response(res, http.StatusOK)
 		json.NewEncoder(*res).Encode(item)
 	} else {
-		response(res, http.StatusNotFound)
+		response(res, http.StatusOK)
+		json.NewEncoder(*res).Encode(v)
 	}
 }
 
 func updateItem(
 	res *http.ResponseWriter,
+	req *http.Request,
 	id int,
 	updateFunc func(structs.IStructs) bool,
-	getFunc func(int) structs.IStructs,
+	getFunc func(int, int) structs.IStructs,
 	item structs.IStructs,
 ) {
-	if rItem := getFunc(item.GetID()); rItem.GetID() != id {
+	if rItem := getFunc(item.GetID(), getUserID(req)); rItem.GetID() != id {
 		response(res, http.StatusNotFound)
 		return
 	}
@@ -131,11 +134,12 @@ func updateItem(
 
 func deleteItem(
 	res *http.ResponseWriter,
+	req *http.Request,
 	id int,
-	getFunc func(int) structs.IStructs,
+	getFunc func(int, int) structs.IStructs,
 	deleteFunc func(structs.IStructs) bool,
 ) bool {
-	inf := getFunc(id)
+	inf := getFunc(id, getUserID(req))
 
 	return deleteFunc(inf)
 }

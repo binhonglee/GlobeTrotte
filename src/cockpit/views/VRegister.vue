@@ -2,15 +2,22 @@
   .new_user.narrow_content
     h1.title Create Account
     form.newUser
+      span.editLabel Name:
+      el-input.editInput.registrationName(
+        type="text"
+        v-on:keyup.enter="save"
+        v-model="name"
+      )
+      br
       span.editLabel Email:
-      el-input.editInput#username(
+      el-input.editInput.registrationEmail(
         type="text"
         v-on:keyup.enter="save"
         v-model="email"
       )
       br
       span.editLabel Password:
-      el-input.editInput#password(
+      el-input.editInput.registrationPassword(
         type="text"
         v-on:keyup.enter.native="confirm"
         v-model="password"
@@ -18,7 +25,7 @@
       )
       br
       span.editLabel Confirm Password:
-      el-input.editInput#confPassword(
+      el-input.editInput.registrationConfPassword(
         type="text"
         v-on:keyup.enter.native="confirm"
         v-model="confPassword"
@@ -26,12 +33,12 @@
       )
       br
       br
-      el-button#save(
+      el-button.registrationSave(
         type="primary"
         v-on:click="confirm"
         v-loading.fullscreen.lock="loading"
       ) Confirm
-      el-button#cancel(
+      el-button.registrationCancel(
         type="default"
         v-on:click="cancel"
       ) Cancel
@@ -43,8 +50,10 @@ import Axios from "axios";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import User from "@/wings/User";
+import General from '@/shared/General';
 
 interface Data {
+  name: string;
   email: string;
   password: string;
   confPassword: string;
@@ -54,6 +63,7 @@ interface Data {
 export default {
   data(): Data {
     return {
+      name: "",
       email: "",
       password: "",
       confPassword: "",
@@ -77,6 +87,7 @@ export default {
 
       const newUser = new NewUser();
       newUser.register({
+        name: this.$data.name,
         email: this.$data.email,
         password: this.$data.password,
       });
@@ -104,12 +115,13 @@ export default {
       );
 
       this.$data.loading = false;
-      this.$notify({
-        message: "Your account is created successfully!",
-        title: "Success",
-        type: "success",
-        duration: 2000,
-      });
+      this.$notify(
+        General.notifConfig(
+          "Success",
+          "Your account is created successfully!",
+          "success",
+        ),
+      );
 
       this.$router.push({ path: "/myaccount" });
     },
@@ -127,11 +139,11 @@ export default {
   @include trip_display();
 }
 
-#cancel {
+.registrationCancel {
   @include right_col($p-height);
 }
 
-#save {
+.registrationSave {
   @include left_col($p-height);
 }
 </style>

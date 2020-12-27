@@ -31,6 +31,7 @@ export default {
       this.$data.user = await General.genUser(
         Number(this.$route.params.id),
       );
+      console.log(this.$data.user);
 
       if (this.$data.user.ID === -1) {
         await this.$alert("User not found.", "Error", {

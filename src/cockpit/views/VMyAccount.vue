@@ -1,14 +1,14 @@
 <template lang="pug">
   .my_account.narrow_content
     h1.title My Account
-    .profile_info
+    .profileInfo
       div(v-if="!edit")
         CViewUser(:user="user")
-        div.buttonGroups
-          el-button#logout(
+        div.myAccountButtonGroups
+          el-button.myAccountLogout(
             type="danger" v-on:click="logout"
           ) Logout
-          el-button#edit(
+          el-button.myAccountEdit(
             tabindex="0"
             type="default"
             ref="edit"
@@ -35,17 +35,17 @@
           v-bind:key="'bio'"
           ref="bio"
         )
-        div.buttonGroups
-          el-button#save(
+        div.myAccountButtonGroups
+          el-button.myAccountSave(
             type="primary" v-on:click="save"
           ) Save
-          el-button#cancel(
+          el-button.myAccountCancel(
             type="default"
             ref="cancel"
             v-on:click="toggleEdit"
           ) Cancel
-        div.deletion
-          el-button#deleteUser(
+        div.myAccountDeletion
+          el-button.myAccountDelete(
             type="danger" v-on:click="deleteAccount"
           ) Delete Account
           el-button(
@@ -86,12 +86,13 @@ export default {
 
       if (deletion) {
         localStorage.clear();
-        this.$notify({
-          message: "Your account is now deleted.",
-          title: "Deleted",
-          type: "info",
-          duration: 2000,
-        });
+        this.$notify(
+          General.notifConfig(
+            "Deleted",
+            "Your account is now deleted.",
+            "info",
+          ),
+        );
         this.$router.push("/");
       } else {
         this.$message.error(
@@ -146,34 +147,34 @@ export default {
 <style lang="scss">
 @import "../shared/lib";
 
-.deletion {
+.myAccountDeletion {
   display: inline-block;
   width: 100%;
 }
 
-.buttonGroups {
+.myAccountButtonGroups {
   margin-top: 20px;
   display: inline-block;
   width: 100%;
   text-align: left;
 }
 
-.profile_info {
+.profileInfo {
   @include trip_display();
 }
 
-#logout,
-#save {
+.myAccountLogout,
+.myAccountSave {
   @include left_col($p-height);
 }
 
-#cancel,
-#deleteUser,
-#edit {
+.myAccountCancel,
+.myAccountDeleteUser,
+.myAccountEdit {
   @include right_col($p-height);
 }
 
-#deleteUser {
+.myAccountDelete {
   width: 100%;
   margin-top: 10px;
 }

@@ -20,7 +20,6 @@
   },
   "include": [
     "src/cockpit/**/*.ts",
-    "src/cockpit/**/*.tsx",
     "src/cockpit/**/*.vue"
   ],
   "exclude": ["node_modules", "src/cockpit/tests/e2e/**/*"]

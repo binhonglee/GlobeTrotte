@@ -18,6 +18,13 @@ import (
 	"github.com/lib/pq"
 )
 
+// DummyUser -- Self explanatory, user that's empty / placeholder
+func DummyUser() wings.User {
+	user := new(wings.User)
+	user.ID = -1
+	return *user
+}
+
 // NewUserDB - Adding new user to the database.
 func NewUserDB(newUser structs.IStructs) int {
 	user, ok := newUser.(*wings.NewUser)
@@ -47,8 +54,19 @@ func NewUserDB(newUser structs.IStructs) int {
 }
 
 // GetUserDB - Retrieve user information from database with ID.
-func GetUserDB(id int) structs.IStructs {
+func GetUserDB(id int, viewer int) structs.IStructs {
 	newUser := getUserWithID(id)
+
+	// Remove private trips from profile if the viewer isn't the user themselves
+	if viewer != id {
+		tripsCopy := newUser.Trips
+		for i := len(tripsCopy) - 1; i >= 0; i-- {
+			if tripsCopy[i] == -1 || fetchTrip(tripsCopy[i]).Private {
+				tripsCopy = append(tripsCopy[:i], tripsCopy[i+1:]...)
+			}
+		}
+		newUser.Trips = tripsCopy
+	}
 	return &newUser
 }
 
@@ -74,7 +92,7 @@ func UpdateUserDB(updatedUser structs.IStructs) bool {
 }
 
 func deleteTripFromUserDB(tripID int, userID int) bool {
-	user := GetUserDB(userID).(*wings.User)
+	user := getUserWithID(userID)
 	var trips []int
 	for _, trip := range user.Trips {
 		if trip != tripID {
@@ -83,7 +101,7 @@ func deleteTripFromUserDB(tripID int, userID int) bool {
 	}
 	user.Trips = trips
 
-	return UpdateUserDB(user)
+	return UpdateUserDB(&user)
 }
 
 // DeleteUserDB - Delete user from the database.
@@ -94,7 +112,7 @@ func DeleteUserDB(existingUser structs.IStructs) bool {
 		return false
 	}
 
-	existingUser = GetUserDB(user.GetID())
+	existingUser = GetUserDB(user.GetID(), user.GetID())
 
 	if existingUser.GetID() == -1 {
 		return false
@@ -178,7 +196,7 @@ func getUserWithEmail(hashedPassword string) wings.NewUser {
 }
 
 func updateUser(updatedUser wings.User) bool {
-	existingUser := GetUserDB(updatedUser.GetID())
+	existingUser := getUserWithID(updatedUser.GetID())
 	if existingUser.GetID() != updatedUser.GetID() {
 		logger.Print(logger.Database, "Existing User is not found. Aborting update.")
 		logger.Print(logger.Database,

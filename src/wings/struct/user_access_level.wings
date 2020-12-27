@@ -9,6 +9,7 @@ ts-implement IWingsStruct
 # UserAccessLevel - User access level of a specific object.
 
 struct UserAccessLevel {
+  id        int
   obj_id    int
   user_id   int
   access    AccessLevel   AccessLevel.None

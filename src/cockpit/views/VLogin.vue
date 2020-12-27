@@ -33,6 +33,7 @@
 import { WingsStructUtil } from "wings-ts-util";
 import Axios from "axios";
 import HTTPReq from "@/shared/HTTPReq";
+import General from "@/shared/General";
 import NewUser from "@/wings/NewUser";
 import User from "@/wings/User";
 
@@ -55,6 +56,7 @@ export default {
       this.$data.loading = true;
       const newUser = new NewUser();
       newUser.register({
+        name: "",
         email: this.$data.email,
         password: this.$data.password,
       });
@@ -80,12 +82,13 @@ export default {
         WingsStructUtil.stringify(user),
       );
       this.$data.loading = false;
-      this.$notify({
-        message: "You are now logged in.",
-        title: "Success",
-        type: "success",
-        duration: 2000,
-      });
+      this.$notify(
+        General.notifConfig(
+          "Success",
+          "You are now logged in.",
+          "success",
+        ),
+      );
 
       this.$router.push({ path: "/" });
     },

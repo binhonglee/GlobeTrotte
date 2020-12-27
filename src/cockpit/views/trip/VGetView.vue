@@ -55,8 +55,8 @@ export default {
       const parsedData = await HTTPReq.genGET(
         "trip/" + this.$route.params.id,
       );
-      if (parsedData !== "") {
-        this.$data.trip = new Trip(parsedData);
+      this.$data.trip = new Trip(parsedData);
+      if (this.$data.trip.ID !== -1) {
         this.$data.owner = General.getIsCurrentUser(
           this.$data.trip.userID,
         );
@@ -66,12 +66,13 @@ export default {
         return;
       }
 
-      await this.$notify({
-        message: "Trip not found.",
-        title: "Error",
-        type: "error",
-        duration: 2000,
-      });
+      await this.$notify(
+        General.notifConfig(
+          "Error",
+          "Trip not found.",
+          "error",
+        ),
+      );
       this.$router.push("/trip/view");
     },
     gotoTrip(): void {

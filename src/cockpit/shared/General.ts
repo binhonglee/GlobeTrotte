@@ -1,9 +1,28 @@
+import {
+  ElNotificationOptions,
+  MessageType,
+} from "element-ui";
 import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "./HTTPReq";
 import User from "@/wings/User";
 import Trip from "@/wings/Trip";
+import { MessageType } from "element-ui/types/message";
 
 export default class General {
+  public static notifConfig(
+    title: string,
+    message: string,
+    type: MessageType,
+  ): ElNotificationOptions {
+    return {
+      message: message,
+      title: title,
+      type: type,
+      duration: 2000,
+      offset: 50,
+    };
+  }
+
   public static async genUser(id: number): Promise<User> {
     const user = await HTTPReq.genGET("user/" + id);
     return new User(user);

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"net/http"
 	"strconv"
-	"strings"
 
 	db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
 	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
@@ -20,12 +19,6 @@ var (
 	store = sessions.NewCookieStore(key)
 )
 
-func dummyUser() *wings.User {
-	user := new(wings.User)
-	user.ID = -1
-	return user
-}
-
 // Trip
 
 func addTrip(res http.ResponseWriter, req *http.Request) {
@@ -39,7 +32,7 @@ func addTrip(res http.ResponseWriter, req *http.Request) {
 }
 
 func getTrip(res http.ResponseWriter, req *http.Request) {
-	getItem(&res, req, db.GetTripDB)
+	getItem(&res, req, db.GetTripDB, db.DummyTrip())
 }
 
 func updateTrip(res http.ResponseWriter, req *http.Request) {
@@ -49,18 +42,21 @@ func updateTrip(res http.ResponseWriter, req *http.Request) {
 		response(&res, http.StatusForbidden)
 		return
 	}
-	updateItem(&res, getRequestID(req), db.UpdateTripDB, db.GetTripDB, item)
+	updateItem(
+		&res, req, getRequestID(req),
+		db.UpdateTripDB, db.GetTripDB, item,
+	)
 }
 
 func deleteTrip(res http.ResponseWriter, req *http.Request) {
 	tripID := getRequestID(req)
-	trip, _ := db.GetTripDB(tripID).(*wings.Trip)
+	trip, _ := db.GetTripDB(tripID, getUserID(req)).(*wings.Trip)
 	if !verifyUser(req, trip.UserID) {
 		response(&res, http.StatusForbidden)
 		return
 	}
 	deletion := deleteItem(
-		&res, tripID, db.GetTripDB, db.DeleteTripDB,
+		&res, req, tripID, db.GetTripDB, db.DeleteTripDB,
 	)
 	setDeletionStatus(&res, deletion)
 }
@@ -70,7 +66,7 @@ func deleteTrip(res http.ResponseWriter, req *http.Request) {
 func newUser(res http.ResponseWriter, req *http.Request) {
 	var ok bool
 	var item *wings.NewUser
-	dummyUser := dummyUser()
+	dummyUser := db.DummyUser()
 	unpackJSON(&res, req, &item)
 	dummyUser.ID = -1
 	dummyUser.Email = item.Email
@@ -80,7 +76,6 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 		response(&res, http.StatusNotAcceptable)
 		return
 	}
-	item.Name = strings.Split(item.Email, "@")[0]
 	hash, err :=
 		bcrypt.GenerateFromPassword([]byte(item.Password), 14)
 	if err != nil {
@@ -126,7 +121,7 @@ func login(res http.ResponseWriter, req *http.Request) {
 	var ok bool
 	allowCORS(&res)
 	unpackJSON(&res, req, &item)
-	dummyUser := dummyUser()
+	dummyUser := db.DummyUser()
 
 	item.Email, ok = handleEmails(item.Email)
 	if !ok {
@@ -185,7 +180,7 @@ func logout(res http.ResponseWriter, req *http.Request) {
 }
 
 func getUser(res http.ResponseWriter, req *http.Request) {
-	getItem(&res, req, db.GetUserDB)
+	getItem(&res, req, db.GetUserDB, db.DummyUser())
 }
 
 func updateUser(res http.ResponseWriter, req *http.Request) {
@@ -195,7 +190,10 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 		response(&res, http.StatusForbidden)
 		return
 	}
-	updateItem(&res, getRequestID(req), db.UpdateUserDB, db.GetUserDB, item)
+	updateItem(
+		&res, req, getRequestID(req),
+		db.UpdateUserDB, db.GetUserDB, item,
+	)
 }
 
 func deleteUser(res http.ResponseWriter, req *http.Request) {
@@ -204,7 +202,10 @@ func deleteUser(res http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(res).Encode(false)
 		return
 	}
-	deletion := deleteItem(&res, getRequestID(req), db.GetUserDB, db.DeleteUserDB)
+	deletion := deleteItem(
+		&res, req, getRequestID(req),
+		db.GetUserDB, db.DeleteUserDB,
+	)
 	if deletion {
 		logout(res, req)
 	}
@@ -223,6 +224,20 @@ func verifyUser(req *http.Request, userID int) bool {
 	}
 
 	return false
+}
+
+func getUserID(req *http.Request) int {
+	session, _ := store.Get(req, "logged-in")
+
+	if auth, ok := session.Values["authenticated"].(bool); !ok || !auth {
+		return -1
+	}
+
+	if id, ok := session.Values["userid"].(int); ok {
+		return id
+	}
+
+	return -1
 }
 
 func getRequestID(req *http.Request) int {

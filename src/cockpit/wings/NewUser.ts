@@ -44,6 +44,7 @@ export default class NewUser implements IWingsStruct {
   }
 
   public register(data: any): void {
+    this.name = data.name;
     this.email = data.email;
     this.password = data.password;
   }

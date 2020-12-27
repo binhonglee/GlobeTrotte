@@ -17,7 +17,6 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import CEditTrip from "./CEditTrip.vue";
 import CViewTrip from "./CViewTrip.vue";
@@ -26,13 +25,17 @@ import General from "@/shared/General";
 import Trip from "@/wings/Trip";
 import User from "@/wings/User";
 
-export default Vue.extend({
+interface Data {
+  editMode: boolean;
+}
+
+export default {
   name: "CTripInfo",
   components: {
     CViewTrip,
     CEditTrip,
   },
-  data: () => ({
+  data: (): Data => ({
     editMode: false,
   }),
   props: {
@@ -74,10 +77,10 @@ export default Vue.extend({
       this.$data.editMode = true;
     },
   },
-  beforeMount() {
+  beforeMount(): void {
     this.$data.editMode = false;
   },
-});
+};
 </script>
 
 <style lang="scss">

@@ -13,10 +13,9 @@
       :key="'description'"
       :large="true"
     )
-    //- Apparently hidden is not a thing so temporarily commenting this out
-    //- .editTripPrivacy
-    //-   span.editLabel Private:
-    //-   el-switch.editInput(v-model="private")
+    .editTripPrivacy
+      span.editLabel Private:
+      el-switch.editInput(v-model="private")
     .editCity
       span.editLabel Cities:
       el-select.editInput(

@@ -10,12 +10,14 @@ import AccessLevel from './AccessLevel';
 // UserAccessLevel - User access level of a specific object.
 export default class UserAccessLevel implements IWingsStruct {
   [key: string]: any;
+  public ID: Number = 0;
   public objID: Number = 0;
   public userID: Number = 0;
   public access: AccessLevel = AccessLevel.None;
 
   public constructor(obj?: any) {
     if (obj) {
+      this.ID = obj.id !== undefined && obj.id !== null ? obj.id : 0;
       this.objID = obj.obj_id !== undefined && obj.obj_id !== null ? obj.obj_id : 0;
       this.userID = obj.user_id !== undefined && obj.user_id !== null ? obj.user_id : 0;
       this.access = obj.access !== undefined && obj.access !== null ? obj.access : AccessLevel.None;
@@ -24,6 +26,9 @@ export default class UserAccessLevel implements IWingsStruct {
 
   public toJsonKey(key: string): string {
     switch (key) {
+      case 'ID': {
+        return 'id';
+      }
       case 'objID': {
         return 'obj_id';
       }

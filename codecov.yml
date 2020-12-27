@@ -3,6 +3,15 @@ codecov:
   branch: dev
 
 coverage:
+  status:
+    project:
+      default:
+        target: 50%
+        threshold: 10%
+    patch:
+      default:
+        target: 50%
+        threshold: 10%
   precision: 2
   round: up
   range: "50...100"
@@ -10,7 +19,6 @@ coverage:
     gitter:
       default:
         url: "https://webhooks.gitter.im/e/ec4a1221b10043f1b7e9"
-        threshold: 1%
 
 parsers:
   gcov:

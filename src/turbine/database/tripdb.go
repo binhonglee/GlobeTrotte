@@ -18,6 +18,13 @@ import (
 	"github.com/lib/pq"
 )
 
+// DummyTrip -- Self explanatory, trip that's empty / placeholder
+func DummyTrip() wings.Trip {
+	trip := new(wings.Trip)
+	trip.ID = -1
+	return *trip
+}
+
 // AddTripDB - Adding new trip into the database.
 func AddTripDB(newTrip structs.IStructs) int {
 	trip, ok := newTrip.(*wings.Trip)
@@ -52,8 +59,11 @@ func AddTripDB(newTrip structs.IStructs) int {
 }
 
 // GetTripDB - Retrieve trip information from database with ID.
-func GetTripDB(id int) structs.IStructs {
-	var trip wings.Trip = fetchTrip(id)
+func GetTripDB(id int, userid int) structs.IStructs {
+	trip := fetchTrip(id)
+	if trip.Private && trip.UserID != userid {
+		trip = DummyTrip()
+	}
 	return &trip
 }
 
@@ -68,7 +78,7 @@ func UpdateTripDB(updatedTrip structs.IStructs) bool {
 		return false
 	}
 
-	existingTrip, _ := GetTripDB(updatedTrip.GetID()).(*wings.Trip)
+	existingTrip := fetchTrip(updatedTrip.GetID())
 	if existingTrip.UserID != trip.UserID {
 		logger.Print(
 			logger.Database,
@@ -91,13 +101,11 @@ func DeleteTripDB(existingTrip structs.IStructs) bool {
 		return false
 	}
 
-	existingTrip = GetTripDB(trip.GetID())
-
+	existingTrip = GetTripDB(trip.GetID(), trip.UserID)
 	if existingTrip.GetID() == -1 {
 		return false
 	}
 
-	//TODO: More testing to make sure this is the same trip
 	return deleteTripWithID(
 		trip.GetID(),
 	) && deleteTripFromUserDB(
@@ -112,14 +120,15 @@ func addTrip(newTrip wings.Trip) int {
 		newTrip.Days[index].ID = dayID
 	}
 	sqlStatement := `
-		INSERT INTO trips (userid, name, cities, description, days, time_created, last_updated)
-		VALUES ($1, $2, $3, $4, $5, $6, $7)
+		INSERT INTO trips (userid, name, private, cities, description, days, time_created, last_updated)
+		VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 		RETURNING id`
 	id := 0
 	err := db.QueryRow(
 		sqlStatement,
 		newTrip.UserID,
 		newTrip.Name,
+		newTrip.Private,
 		pq.Array(cityEnumArrayToIDs(newTrip.Cities)),
 		newTrip.Description,
 		pq.Array(daysToIDArray(newTrip.Days)),
@@ -195,13 +204,14 @@ func fetchTrip(id int) wings.Trip {
 	var days []int64
 	var cities []int64
 	sqlStatement := `
-		SELECT id, userid, name, cities, description, days, time_created, last_updated
+		SELECT id, userid, name, private, cities, description, days, time_created, last_updated
 		FROM trips WHERE id=$1;`
 	row := db.QueryRow(sqlStatement, id)
 	switch err := row.Scan(
 		&trip.ID,
 		&trip.UserID,
 		&trip.Name,
+		&trip.Private,
 		pq.Array(&cities),
 		&trip.Description,
 		pq.Array(&days),
@@ -287,7 +297,7 @@ func fetchPlace(id int64) wings.Place {
 }
 
 func updateTrip(updatedTrip wings.Trip) bool {
-	existingTrip := GetTripDB(updatedTrip.GetID())
+	existingTrip := fetchTrip(updatedTrip.GetID())
 	if existingTrip.GetID() != updatedTrip.GetID() {
 		logger.Print(
 			logger.Database,
@@ -313,21 +323,30 @@ func updateTrip(updatedTrip wings.Trip) bool {
 		}
 	}
 
-	// TODO: Cleanup days and trips that are no longer attached to the day
+	for _, dayID := range NotExists(
+		daysToIDArray(existingTrip.Days),
+		daysToIDArray(updatedTrip.Days),
+	) {
+		deleteDayWithID(dayID)
+	}
+
+	// TODO: Cleanup days and places that are no longer attached to the day
 
 	sqlStatement := `
 		UPDATE trips
 		SET name = $2,
-		description = $3,
-		cities = $4,
-		days = $5,
-		last_updated = $6
+		private = $3,
+		description = $4,
+		cities = $5,
+		days = $6,
+		last_updated = $7
 		WHERE id = $1;`
 
 	_, err := db.Exec(
 		sqlStatement,
 		updatedTrip.ID,
 		updatedTrip.Name,
+		updatedTrip.Private,
 		updatedTrip.Description,
 		pq.Array(cityEnumArrayToIDs(updatedTrip.Cities)),
 		pq.Array(daysToIDArray(updatedTrip.Days)),
@@ -349,8 +368,8 @@ func updateTrip(updatedTrip wings.Trip) bool {
 func updateDay(
 	updatedDay *wings.Day, createOnNonExist bool,
 ) bool {
-	if updatedDay.ID == -1 ||
-		fetchDay(int64(updatedDay.ID)).ID != updatedDay.ID {
+	existingDay := fetchDay(int64(updatedDay.ID))
+	if updatedDay.ID == -1 || existingDay.ID != updatedDay.ID {
 		logger.Print(logger.Database, "Existing Day not found.")
 
 		if createOnNonExist {
@@ -359,6 +378,13 @@ func updateDay(
 		} else {
 			return false
 		}
+	}
+
+	for _, placeID := range NotExists(
+		placesToIDArray(existingDay.Places),
+		placesToIDArray(updatedDay.Places),
+	) {
+		deletePlaceWithID(placeID)
 	}
 
 	for index, place := range updatedDay.Places {
@@ -433,16 +459,50 @@ func updatePlace(updatedPlace *wings.Place) bool {
 }
 
 func deleteTripWithID(id int) bool {
+	existingTrip := fetchTrip(id)
+	for _, day := range existingTrip.Days {
+		if !deleteDayWithID(day.ID) {
+			logger.Failure(
+				logger.Database,
+				"Failed deleting trip ID: "+strconv.Itoa(existingTrip.ID),
+			)
+			updateTrip(existingTrip)
+			return false
+		}
+	}
+
+	return deleteFromTableWithID(id, "trips")
+}
+
+func deleteDayWithID(id int) bool {
+	existingDay := fetchDay(int64(id))
+	for _, place := range existingDay.Places {
+		if !deletePlaceWithID(place.ID) {
+			return false
+		}
+	}
+	return deleteFromTableWithID(id, "days")
+}
+
+func deletePlaceWithID(id int) bool {
+	return deleteFromTableWithID(id, "places")
+}
+
+func deleteFromTableWithID(id int, table string) bool {
 	sqlStatement := `
-		DELETE FROM trips
+		DELETE FROM ` + table + `
 		WHERE id = $1;`
 	if _, err := db.Exec(sqlStatement, id); err != nil {
-		logger.Err(logger.Database, err, "")
+		logger.Err(
+			logger.Database, err,
+			"Failed deleting ID: "+strconv.Itoa(id)+" from "+table,
+		)
+		logger.Debug(err)
 		return false
 	}
 	logger.Print(
 		logger.Database,
-		"Trip ID "+strconv.Itoa(id)+" deleted",
+		"ID: "+strconv.Itoa(id)+" deleted from "+table,
 	)
 	return true
 }

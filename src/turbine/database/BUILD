@@ -1,8 +1,9 @@
 go_library(
   name = "database",
   srcs = [
-    "structsutil.go",
     "db.go",
+    "helper.go",
+    "structsutil.go",
     "tripdb.go",
     "userdb.go",
   ],

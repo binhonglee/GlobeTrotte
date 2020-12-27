@@ -1,5 +1,12 @@
 <template lang="pug">
   .view_trip.narrow_content(v-if="trip !== undefined")
+    el-alert.tripPrivateAlertBar(
+      v-if="trip.private"
+      title="Trip is private"
+      description="Only you can see this trip."
+      type="info"
+      show-icon
+    )
     h2.tripName {{ trip.name }}
     span.tripID {{ trip.ID }}
     p.tripDescription(
@@ -73,13 +80,16 @@ export default {
 <style lang="scss">
 @import "../shared/lib";
 
+.tripPrivateAlertBar {
+  margin: 0 0 20px 0;
+}
+
 .tripCities {
-  margin-top: 10px;
+  margin: 10px 0 0 0;
 }
 
 .city {
-  margin-right: 5px;
-  margin-top: 5px;
+  margin: 5px 5px 0 0;
 }
 
 .dayTitle {
