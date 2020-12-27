@@ -11,10 +11,8 @@
   ],
   "exclude": [
     "**/*.{spec,test}.{js,ts}",
-    "src/cockpit/router.ts",
+    "src/cockpit/scripts/**/*",
     "src/cockpit/tests/**/*",
-    "src/cockpit/components/**/*",
-    "src/cockpit/views/**/*",
     "*.js"
   ],
   "reporter": [

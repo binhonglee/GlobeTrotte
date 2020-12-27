@@ -12,7 +12,7 @@ filegroup(
     "//:cockpit",
     "//:serve",
     "//:prep_gen",
-    "//:cockpit_e2e",
+    "//:cockpit_cypress",
     "//:cockpit_ava",
   ],
 )

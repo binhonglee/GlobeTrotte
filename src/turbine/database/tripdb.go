@@ -497,7 +497,6 @@ func deleteFromTableWithID(id int, table string) bool {
 			logger.Database, err,
 			"Failed deleting ID: "+strconv.Itoa(id)+" from "+table,
 		)
-		logger.Debug(err)
 		return false
 	}
 	logger.Print(

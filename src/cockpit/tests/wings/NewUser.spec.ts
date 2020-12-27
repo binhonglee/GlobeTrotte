@@ -28,6 +28,7 @@ for (const key in newUser) {
 
 const newRegistration = new NewUser();
 newRegistration.register({
+  name: "New name",
   email: "newtestemail@email.com",
   password: "S0methingSom3th1ngSecr3tW0rd5",
 });

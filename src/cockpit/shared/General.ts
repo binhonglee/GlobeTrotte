@@ -6,7 +6,6 @@ import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "./HTTPReq";
 import User from "@/wings/User";
 import Trip from "@/wings/Trip";
-import { MessageType } from "element-ui/types/message";
 
 export default class General {
   public static notifConfig(

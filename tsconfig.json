@@ -12,7 +12,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "typeRoots": ["./node_modules/@types"],
-    "types": ["node", "webpack-env", "cypress"],
+    "types": ["node", "cypress"],
     "paths": {
       "@/*": ["src/cockpit/*"]
     },
@@ -22,5 +22,8 @@
     "src/cockpit/**/*.ts",
     "src/cockpit/**/*.vue"
   ],
-  "exclude": ["node_modules", "src/cockpit/tests/e2e/**/*"]
+  "exclude": [
+    "node_modules",
+    "src/cockpit/tests/cypress/**/*",
+  ]
 }

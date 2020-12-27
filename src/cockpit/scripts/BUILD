@@ -4,7 +4,8 @@ filegroup(
   name = "check_backend",
   srcs = ["checkBackend.ts"],
   visibility = [
-    "//:cockpit_e2e",
+    "//:cockpit_cypress",
+    "//:cockpit_ava",
     "//:serve",
   ],
 )

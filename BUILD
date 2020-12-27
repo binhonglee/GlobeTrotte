@@ -101,6 +101,9 @@ pnpm_test(
     ":nycrc",
     ":tsconfig",
     "//src/cockpit:core_files",
+    "//src/cockpit/scripts:check_backend",
+    "//src/cockpit/tests:ava_setup",
+    "//src/cockpit/tests/puppeteer:puppeteer",
     "//src/cockpit/tests/components:components",
     "//src/cockpit/tests/shared:shared",
     "//src/cockpit/tests/wings:wings",
@@ -109,9 +112,9 @@ pnpm_test(
 )
 
 pnpm_test(
-  name = "cockpit_e2e",
+  name = "cockpit_cypress",
   srcs = ["cypress.json"],
-  cmd = "test:e2e",
+  cmd = "test:cypress",
   out = "cypress/junit",
   priority = 2,
   requires_server = 1234,
@@ -120,9 +123,9 @@ pnpm_test(
     ":index_html",
     ":eslint_config",
     "//src/assets:assets",
-    "//src/cockpit/tests/e2e",
+    "//src/cockpit/tests/cypress",
     "//src/cockpit:core_files",
-    "//src/cockpit/tests:e2e_eslint",
+    "//src/cockpit/tests:cypress_eslint",
     "//src/cockpit/scripts:check_backend",
   ],
   denullify_files = ["src/cockpit/router.ts"],

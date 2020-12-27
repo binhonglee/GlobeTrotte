@@ -1,5 +1,10 @@
-{
-  "pluginsFile": "src/cockpit/tests/e2e/plugins.ts",
+  {
+  "pluginsFile": "src/cockpit/tests/cypress/plugins.ts",
+  "fixturesFolder": "src/cockpit/tests/cypress/fixtures",
+  "integrationFolder": "src/cockpit/tests/cypress/specs",
+  "screenshotsFolder": "cypress/screenshots",
+  "videosFolder": "cypress/videos",
+  "supportFile": "src/cockpit/tests/cypress/support.ts",
   "baseUrl": "http://localhost:1234",
   "reporter": "junit",
   "reporterOptions": {
