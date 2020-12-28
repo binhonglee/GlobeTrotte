@@ -44,7 +44,7 @@ jobs:
       - run:
           command: ./pleasew work
           background: true
-      - run: sleep 1
+      - run: pnpm run test:ava
       - run: ./pleasew test --show_all_output
       - run: ./pleasew run //:report
       - run: bash <(curl -s https://codecov.io/bash)

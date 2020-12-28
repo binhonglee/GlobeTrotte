@@ -91,26 +91,29 @@ pnpm_run(
   at_top_level = False,
 )
 
-pnpm_test(
-  name = "cockpit_ava",
-  srcs = ["ava.config.js"],
-  cmd = "test:ava",
-  out = "ava",
-  deps = [
-    ":pnpm",
-    ":nycrc",
-    ":tsconfig",
-    "//src/cockpit:core_files",
-    "//src/cockpit/scripts:check_backend",
-    "//src/cockpit/tests:ava_setup",
-    "//src/cockpit/tests/puppeteer:puppeteer",
-    "//src/cockpit/tests/components:components",
-    "//src/cockpit/tests/shared:shared",
-    "//src/cockpit/tests/views:views",
-    "//src/cockpit/tests/wings:wings",
-  ],
-  denullify_files = ["src/cockpit/router.ts"],
-)
+# Ava already runs tests concurrently on its own. Running it
+# with plz don't really help and might cause OOM on CI systems.
+#
+# pnpm_test(
+#   name = "cockpit_ava",
+#   srcs = ["ava.config.js"],
+#   cmd = "test:ava",
+#   out = "ava",
+#   deps = [
+#     ":pnpm",
+#     ":nycrc",
+#     ":tsconfig",
+#     "//src/cockpit:core_files",
+#     "//src/cockpit/scripts:check_backend",
+#     "//src/cockpit/tests:ava_setup",
+#     "//src/cockpit/tests/puppeteer:puppeteer",
+#     "//src/cockpit/tests/components:components",
+#     "//src/cockpit/tests/shared:shared",
+#     "//src/cockpit/tests/views:views",
+#     "//src/cockpit/tests/wings:wings",
+#   ],
+#   denullify_files = ["src/cockpit/router.ts"],
+# )
 
 pnpm_test(
   name = "cockpit_cypress",

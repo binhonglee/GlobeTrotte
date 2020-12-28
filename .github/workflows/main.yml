@@ -60,7 +60,8 @@ jobs:
 
     - run: ./pleasew cover --show_all_output //src/turbine/...
     - run: ./pleasew work &
-    - run: sleep 1
+    - run: pnpm i
+    - run: pnpm run test:ava
     - run: ./pleasew test --show_all_output
 
     - run: ./pleasew run //:report

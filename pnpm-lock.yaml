@@ -45,7 +45,6 @@ devDependencies:
   require-extension-hooks-vue: 3.0.0_a27a9a5766e8e0417aae090eff1801a8
   sass-loader: 10.1.0_node-sass@5.0.0
   sinon: 9.2.2
-  tap-xunit: 2.4.1
   ts-node: 9.1.1_typescript@4.1.3
   typescript: 4.1.3
   vue-loader: 15.9.6_vue-template-compiler@2.6.12
@@ -5552,10 +5551,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-rOb/gIwc5mtX0ev5eXessCM0z8E=
-  /duplexer/0.1.2:
-    dev: true
-    resolution:
-      integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==
   /duplexer2/0.1.4:
     dependencies:
       readable-stream: 2.3.7
@@ -6055,10 +6050,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-t0A2msp6BzOf+QAcI6z9XMktLj52OjGQg+8SJH6v5+3uxNpWYRR3wQmfA+6xtMU9kOC59qk9licus5dYcrYkMQ==
-  /events-to-array/1.1.2:
-    dev: true
-    resolution:
-      integrity: sha1-LUH1Y+H+QA7Uli/hpNXGp1Od9/Y=
   /events/2.1.0:
     dev: true
     engines:
@@ -11839,29 +11830,6 @@ packages:
       node: '>=10.0.0'
     resolution:
       integrity: sha512-sBT4xRLdALd+NFBvwOz8bw4b15htyythha+q+DVZqy2RS08PPC8O2sZFgJYEY7bJvbCFKccs+WIZ/cd+xxTWCw==
-  /tap-parser/1.2.2:
-    dependencies:
-      events-to-array: 1.1.2
-      inherits: 2.0.4
-      js-yaml: 3.14.0
-    dev: true
-    hasBin: true
-    optionalDependencies:
-      readable-stream: 2.3.7
-    resolution:
-      integrity: sha1-Xi9pcGEfB5x8+FfeHceqG0gN56U=
-  /tap-xunit/2.4.1:
-    dependencies:
-      duplexer: 0.1.2
-      minimist: 1.2.5
-      tap-parser: 1.2.2
-      through2: 2.0.5
-      xmlbuilder: 4.2.1
-      xtend: 4.0.2
-    dev: true
-    hasBin: true
-    resolution:
-      integrity: sha512-qcZStDtjjYjMKAo7QNiCtOW256g3tuSyCSe5kNJniG1Q2oeOExJq4vm8CwboHZURpkXAHvtqMl4TVL7mcbMVVA==
   /tape/2.3.3:
     dependencies:
       deep-equal: 0.1.2
@@ -12911,14 +12879,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==
-  /xmlbuilder/4.2.1:
-    dependencies:
-      lodash: 4.17.20
-    dev: true
-    engines:
-      node: '>=0.8.0'
-    resolution:
-      integrity: sha1-qlijBBoGb5DqoWwvU4n/GfP0YaU=
   /xmlchars/2.2.0:
     dev: true
     resolution:
@@ -13106,7 +13066,6 @@ specifiers:
   require-extension-hooks-vue: 3.0.0
   sass-loader: 10.1.0
   sinon: 9.2.2
-  tap-xunit: 2.4.1
   ts-node: 9.1.1
   typescript: 4.1.3
   vue: 2.6.12
