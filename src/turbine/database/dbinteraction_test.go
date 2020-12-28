@@ -27,7 +27,7 @@ func TestAddNewUserDB(t *testing.T) {
 }
 
 func TestGetUserDB(t *testing.T) {
-	retrievedUser, ok := GetUserDB(newNewUser.ID).(*wings.User)
+	retrievedUser, ok := GetUserDB(newNewUser.ID, newNewUser.ID).(*wings.User)
 	if !ok {
 		t.Errorf("GetUserDB(), somehow does not return 'User' object.")
 		return
@@ -81,7 +81,7 @@ func TestUpdatedUserDB(t *testing.T) {
 		return
 	}
 
-	updatedUser, ok := GetUserDB(newUser.ID).(*wings.User)
+	updatedUser, ok := GetUserDB(newUser.ID, newUser.ID).(*wings.User)
 	if !ok {
 		t.Errorf("GetUserDB(), somehow does not return 'User' object.")
 		// t.Errorf(strconv.Itoa(updatedUser.GetID()))
@@ -114,6 +114,18 @@ func TestAddTripDB(t *testing.T) {
 		UserID:      newUser.ID,
 		Description: "dummytrip.com",
 		Cities:      []wings.City{wings.SanFranciscoCAUS},
+		Days: []wings.Day{
+			wings.Day{
+				DayOf: 1,
+				Places: []wings.Place{
+					wings.Place{
+						Label:       "Location 1",
+						URL:         "https://globetrotte.com",
+						Description: "example place",
+					},
+				},
+			},
+		},
 		TimeCreated: time.Now(),
 		LastUpdated: time.Now(),
 	}
@@ -126,7 +138,7 @@ func TestAddTripDB(t *testing.T) {
 }
 
 func TestGetTripDB(t *testing.T) {
-	retrievedTrip, ok := GetTripDB(newTrip.ID).(*wings.Trip)
+	retrievedTrip, ok := GetTripDB(newTrip.ID, newUser.ID).(*wings.Trip)
 	if !ok {
 		t.Errorf("GetTripDB(), somehow does not return 'Trip' object.")
 		return
@@ -178,7 +190,7 @@ func TestUpdateTripDB(t *testing.T) {
 		return
 	}
 
-	updatedTrip, ok := GetTripDB(newTrip.ID).(*wings.Trip)
+	updatedTrip, ok := GetTripDB(newTrip.ID, newUser.ID).(*wings.Trip)
 	if !ok {
 		t.Errorf("GetTripDB(), somehow does not return 'Trip' object.")
 		return
@@ -213,7 +225,7 @@ func TestDeleteTripDB(t *testing.T) {
 	if !DeleteTripDB(&newTrip) {
 		t.Errorf("DeleteTripDB(), unable to delete trip.")
 	}
-	id := GetTripDB(newTrip.ID).GetID()
+	id := GetTripDB(newTrip.ID, newUser.ID).GetID()
 	if id > 0 {
 		t.Errorf("DeleteTripDB(), deleted Trip still exist in database.")
 	}
@@ -223,7 +235,7 @@ func TestDeleteUserDB(t *testing.T) {
 	if !DeleteUserDB(&newUser) {
 		t.Errorf("DeleteUserDB(), unable to delete user.")
 	}
-	id := GetUserDB(newUser.ID).GetID()
+	id := GetUserDB(newUser.ID, newUser.ID).GetID()
 	if id > 0 {
 		t.Errorf("DeleteUserDB(), deleted User still exist in database.")
 	}

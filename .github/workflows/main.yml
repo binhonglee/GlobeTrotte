@@ -18,7 +18,6 @@ jobs:
           - 5432:5432
     steps:
     - uses: actions/checkout@v2
-    - run: pwd && ls -la
     - run: /usr/bin/Xvfb :99 -screen 0 1920x1080x24+32 &
     - name: Cache please
       id: cache-please

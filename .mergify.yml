@@ -18,6 +18,7 @@ pull_request_rules:
       - "status-success=test"
       - "status-success=ci/circleci: build"
       - "status-success=codebeat"
+      - "status-success=license/cla"
     actions:
       merge:
         method: squash

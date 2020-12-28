@@ -106,6 +106,7 @@ pnpm_test(
     "//src/cockpit/tests/puppeteer:puppeteer",
     "//src/cockpit/tests/components:components",
     "//src/cockpit/tests/shared:shared",
+    "//src/cockpit/tests/views:views",
     "//src/cockpit/tests/wings:wings",
   ],
   denullify_files = ["src/cockpit/router.ts"],

@@ -49,13 +49,14 @@ export default Vue.extend({
     showName: {
       type: Boolean,
       default: true,
-    }
+    },
   },
   data: () => ({
     trips: [],
     lastPopulated: [],
   }),
   methods: {
+    /* istanbul ignore next: will move this to some generic file / lib and test there instead */
     compareArray(a: [], b: []) {
       if (a.length !== b.length) {
         return false;
@@ -70,14 +71,15 @@ export default Vue.extend({
     async genPopulateTrips(): Promise<void> {
       if (
         this.compareArray(
-          this.$data.lastPopulated, this.$props.user.trips,
+          this.$data.lastPopulated,
+          this.$props.user.trips,
         )
       ) {
         return;
       }
       this.$data.trips = await Promise.all(
         this.$props.user.trips.map(async (trip: number) => {
-          return (await General.genTrip(trip));
+          return await General.genTrip(trip);
         }),
       );
 

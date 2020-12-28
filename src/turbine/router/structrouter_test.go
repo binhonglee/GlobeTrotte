@@ -128,7 +128,7 @@ func TestGetTrip(t *testing.T) {
 
 func TestGetNonExistentTrip(t *testing.T) {
 	var returned *wings.Trip
-	getTest("/trip/"+strconv.Itoa(-1), t, &returned, http.StatusNotFound)
+	getTest("/trip/"+strconv.Itoa(-1), t, &returned, http.StatusOK)
 }
 
 func TestUpdateTrip(t *testing.T) {

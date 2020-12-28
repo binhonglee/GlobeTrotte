@@ -50,7 +50,7 @@
           ) Delete Account
           el-button(
             style="hidden: true"
-            v-if="false" v-on:click="magic"
+            v-if="false"
           )
 </template>
 
@@ -95,9 +95,10 @@ export default {
         );
         this.$router.push("/");
       } else {
-        this.$message.error(
-          "Account deletion attempt failed.",
-        );
+        this.$message({
+          type: "error",
+          message: "Account deletion attempt failed.",
+        });
       }
     },
     async save(): Promise<void> {
@@ -111,9 +112,10 @@ export default {
 
       if (success) {
         this.toggleEdit();
-        this.$message.success(
-          "Profile updated successfully!",
-        );
+        this.$message({
+          message: "Profile updated successfully!",
+          type: "success",
+        });
       } else {
         this.$alert(
           "Save was unsuccessful. Please try again later.",
@@ -131,11 +133,6 @@ export default {
     },
     toggleEdit(): void {
       this.$data.edit = !this.$data.edit;
-    },
-    magic(): void {
-      this.$message.success(
-        "Shh... This is not yet implemented",
-      );
     },
   },
   async beforeMount(): Promise<void> {

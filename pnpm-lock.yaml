@@ -1,5 +1,4 @@
 dependencies:
-  '@types/puppeteer': 5.4.2
   axios: 0.21.1
   element-ui: 2.14.1_vue@2.6.12
   vue: 2.6.12
@@ -14,6 +13,8 @@ devDependencies:
   '@babel/preset-typescript': 7.12.7_@babel+core@7.12.10
   '@cypress/code-coverage': 3.8.8_cypress@6.2.0
   '@types/node': 14.14.16
+  '@types/puppeteer': 5.4.2
+  '@types/sinon': 9.0.10
   '@typescript-eslint/eslint-plugin': 4.11.0_1b9a0c47bb6bc72fe9ec08ec801e03a4
   '@typescript-eslint/parser': 4.11.0_eslint@7.16.0+typescript@4.1.3
   '@vue/eslint-config-prettier': 6.0.0_5b3f35139cd1625c775fba319fb81002
@@ -43,6 +44,7 @@ devDependencies:
   require-extension-hooks-babel: 1.0.0_require-extension-hooks@0.3.3
   require-extension-hooks-vue: 3.0.0_a27a9a5766e8e0417aae090eff1801a8
   sass-loader: 10.1.0_node-sass@5.0.0
+  sinon: 9.2.2
   tap-xunit: 2.4.1
   ts-node: 9.1.1_typescript@4.1.3
   typescript: 4.1.3
@@ -2792,6 +2794,37 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==
+  /@sinonjs/commons/1.8.1:
+    dependencies:
+      type-detect: 4.0.8
+    dev: true
+    resolution:
+      integrity: sha512-892K+kWUUi3cl+LlqEWIDrhvLgdL79tECi8JZUyq6IviKy/DNhuzCRlbHUjxK89f4ypPMMaFnFuR9Ie6DoIMsw==
+  /@sinonjs/fake-timers/6.0.1:
+    dependencies:
+      '@sinonjs/commons': 1.8.1
+    dev: true
+    resolution:
+      integrity: sha512-MZPUxrmFubI36XS1DI3qmI0YdN1gks62JtFZvxR67ljjSNCeK6U08Zx4msEWOXuofgqUt6zPHSi1H9fbjR/NRA==
+  /@sinonjs/formatio/5.0.1:
+    dependencies:
+      '@sinonjs/commons': 1.8.1
+      '@sinonjs/samsam': 5.3.0
+    dev: true
+    resolution:
+      integrity: sha512-KaiQ5pBf1MpS09MuA0kp6KBQt2JUOQycqVG1NZXvzeaXe5LGFqAKueIS0bw4w0P9r7KuBSVdUk5QjXsUdu2CxQ==
+  /@sinonjs/samsam/5.3.0:
+    dependencies:
+      '@sinonjs/commons': 1.8.1
+      lodash.get: 4.4.2
+      type-detect: 4.0.8
+    dev: true
+    resolution:
+      integrity: sha512-hXpcfx3aq+ETVBwPlRFICld5EnrkexXuXDwqUNhDdr5L8VjvMeSRwyOa0qL7XFmR+jVWR4rUZtnxlG7RX72sBg==
+  /@sinonjs/text-encoding/0.7.1:
+    dev: true
+    resolution:
+      integrity: sha512-+iTbntw2IZPb/anVDbypzfQa+ay64MW0Zo8aJ8gZPWMMK6/OubMVb6lUPMagqjOPnmtauXnFCACVl3O7ogjeqQ==
   /@szmarczak/http-timer/1.1.2:
     dependencies:
       defer-to-connect: 1.1.3
@@ -2805,6 +2838,7 @@ packages:
     resolution:
       integrity: sha512-3c+yGKvVP5Y9TYBEibGNR+kLtijnj7mYrXRg+WpFb2X9xm04g/DXYkfg4hmzJQosc9snFNUPkbYIhu+KAm6jJw==
   /@types/node/14.14.16:
+    dev: true
     resolution:
       integrity: sha512-naXYePhweTi+BMv11TgioE2/FXU4fSl29HAH1ffxVciNsH3rYXjNP2yM8wqmSm7jS20gM8TIklKiTen+1iVncw==
   /@types/normalize-package-data/2.4.0:
@@ -2814,13 +2848,19 @@ packages:
   /@types/puppeteer/5.4.2:
     dependencies:
       '@types/node': 14.14.16
-    dev: false
+    dev: true
     resolution:
       integrity: sha512-yjbHoKjZFOGqA6bIEI2dfBE5UPqU0YGWzP+ipDVP1iGzmlhksVKTBVZfT3Aj3wnvmcJ2PQ9zcncwOwyavmafBw==
   /@types/q/1.5.4:
     dev: true
     resolution:
       integrity: sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
+  /@types/sinon/9.0.10:
+    dependencies:
+      '@types/sinonjs__fake-timers': 6.0.2
+    dev: true
+    resolution:
+      integrity: sha512-/faDC0erR06wMdybwI/uR8wEKV/E83T0k4sepIpB7gXuy2gzx2xiOjmztq6a2Y6rIGJ04D+6UU0VBmWy+4HEMA==
   /@types/sinonjs__fake-timers/6.0.2:
     dev: true
     resolution:
@@ -7589,6 +7629,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-VjSeb/lHmkoyd8ryPVIKvOCn4D1koMqY+vqyjjUfc3xyKtP4dYOxM44sZrnqQSzSds3xyOrUTLTC9LVCVgLngw==
+  /isarray/0.0.1:
+    dev: true
+    resolution:
+      integrity: sha1-ihis/Kmo9Bd+Cav8YDiTmwXR7t8=
   /isarray/1.0.0:
     dev: true
     resolution:
@@ -7934,6 +7978,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-7Yvwkh4vPx7U1cGkT2hwntJHIsM=
+  /just-extend/4.1.1:
+    dev: true
+    resolution:
+      integrity: sha512-aWgeGFW67BP3e5181Ep1Fv2v8z//iBJfrvyTnq8wG86vEESwmonn1zPBJ0VfmT9CJq2FIT0VsETtrNFm2a+SHA==
   /keyv/3.1.0:
     dependencies:
       json-buffer: 3.0.0
@@ -8164,6 +8212,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-+wMJF/hqMTTlvJvsDWngAT3f7bI=
+  /lodash.get/4.4.2:
+    dev: true
+    resolution:
+      integrity: sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
   /lodash.islength/4.0.1:
     dev: true
     resolution:
@@ -8679,6 +8731,16 @@ packages:
     dev: true
     resolution:
       integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
+  /nise/4.0.4:
+    dependencies:
+      '@sinonjs/commons': 1.8.1
+      '@sinonjs/fake-timers': 6.0.1
+      '@sinonjs/text-encoding': 0.7.1
+      just-extend: 4.1.1
+      path-to-regexp: 1.8.0
+    dev: true
+    resolution:
+      integrity: sha512-bTTRUNlemx6deJa+ZyoCUTRvH3liK5+N6VQZ4NIw90AgDXY6iPnsqplNFf6STcj+ePk0H/xqxnP75Lr0J0Fq3A==
   /node-addon-api/1.7.2:
     dev: true
     resolution:
@@ -9437,6 +9499,12 @@ packages:
       node: '>= 0.8.0'
     resolution:
       integrity: sha1-6GQhf3TDaFDwhSt43Hv31KVyG/I=
+  /path-to-regexp/1.8.0:
+    dependencies:
+      isarray: 0.0.1
+    dev: true
+    resolution:
+      integrity: sha512-n43JRhlUKUAlibEJhPeir1ncUID16QnEjNpwzNdO3Lm4ywrBpBZ5oLD0I6br9evr1Y9JTqwRtAh7JLoOzAQdVA==
   /path-type/1.1.0:
     dependencies:
       graceful-fs: 4.2.4
@@ -11187,6 +11255,18 @@ packages:
     dev: true
     resolution:
       integrity: sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
+  /sinon/9.2.2:
+    dependencies:
+      '@sinonjs/commons': 1.8.1
+      '@sinonjs/fake-timers': 6.0.1
+      '@sinonjs/formatio': 5.0.1
+      '@sinonjs/samsam': 5.3.0
+      diff: 4.0.2
+      nise: 4.0.4
+      supports-color: 7.2.0
+    dev: true
+    resolution:
+      integrity: sha512-9Owi+RisvCZpB0bdOVFfL314I6I4YoRlz6Isi4+fr8q8YQsDPoCe5UnmNtKHRThX3negz2bXHWIuiPa42vM8EQ==
   /slash/3.0.0:
     dev: true
     engines:
@@ -12120,6 +12200,12 @@ packages:
       node: '>= 0.8.0'
     resolution:
       integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==
+  /type-detect/4.0.8:
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
   /type-fest/0.3.1:
     dev: true
     engines:
@@ -12984,9 +13070,10 @@ specifiers:
   '@babel/plugin-transform-typescript': 7.12.1
   '@babel/preset-env': 7.12.11
   '@babel/preset-typescript': 7.12.7
-  '@cypress/code-coverage': ^3.8.8
+  '@cypress/code-coverage': 3.8.8
   '@types/node': 14.14.16
-  '@types/puppeteer': ^5.4.2
+  '@types/puppeteer': 5.4.2
+  '@types/sinon': 9.0.10
   '@typescript-eslint/eslint-plugin': 4.11.0
   '@typescript-eslint/parser': 4.11.0
   '@vue/eslint-config-prettier': 6.0.0
@@ -13012,12 +13099,13 @@ specifiers:
   prettier: 2.2.1
   pug: 3.0.0
   pug-plain-loader: 1.1.0
-  puppeteer: ^5.5.0
-  puppeteer-to-istanbul: ^1.4.0
+  puppeteer: 5.5.0
+  puppeteer-to-istanbul: 1.4.0
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0
   require-extension-hooks-vue: 3.0.0
   sass-loader: 10.1.0
+  sinon: 9.2.2
   tap-xunit: 2.4.1
   ts-node: 9.1.1
   typescript: 4.1.3

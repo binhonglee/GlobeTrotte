@@ -2,21 +2,21 @@
   .new_user.narrow_content
     h1.title Create Account
     form.newUser
-      span.editLabel Name:
+      span.editLabel.registrationNameLabel Name:
       el-input.editInput.registrationName(
         type="text"
         v-on:keyup.enter="save"
         v-model="name"
       )
       br
-      span.editLabel Email:
+      span.editLabel.registrationEmailLabel Email:
       el-input.editInput.registrationEmail(
         type="text"
         v-on:keyup.enter="save"
         v-model="email"
       )
       br
-      span.editLabel Password:
+      span.editLabel.registrationPasswordLabel Password:
       el-input.editInput.registrationPassword(
         type="text"
         v-on:keyup.enter.native="confirm"
@@ -24,7 +24,7 @@
         show-password
       )
       br
-      span.editLabel Confirm Password:
+      span.editLabel.registrationConfPasswordLabel Confirm Password:
       el-input.editInput.registrationConfPassword(
         type="text"
         v-on:keyup.enter.native="confirm"
@@ -46,11 +46,10 @@
 
 <script lang="ts">
 import { WingsStructUtil } from "wings-ts-util";
-import Axios from "axios";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import User from "@/wings/User";
-import General from '@/shared/General';
+import General from "@/shared/General";
 
 interface Data {
   name: string;
@@ -92,20 +91,18 @@ export default {
         password: this.$data.password,
       });
 
-      const res = await Axios.post(
-        HTTPReq.getURI("user"),
+      const res = await HTTPReq.genPOST(
+        "user",
         WingsStructUtil.stringify(newUser),
-        {
-          withCredentials: true,
-        },
       );
 
-      const user = new User(res["data"]);
+      const user = new User(res);
       if (user.ID === -1) {
         this.$data.loading = false;
-        this.$message.error(
-          "Invalid email. Please try again.",
-        );
+        this.$message({
+          message: "Invalid email. Please try again.",
+          type: "error",
+        });
         return;
       }
 

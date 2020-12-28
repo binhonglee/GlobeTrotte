@@ -2,15 +2,15 @@
   .login.narrow_content
     h1.title Login
     form.loginbox
-      span.editLabel Email:
-      el-input.editInput#username(
+      span.editLabel.loginEmailLabel Email:
+      el-input.editInput.loginUsername(
         type="text"
         v-on:keyup.enter.native="confirm"
         v-model="email"
       )
       br
-      span.editLabel Password:
-      el-input.editInput#password(
+      span.editLabel.loginPasswordLabel Password:
+      el-input.editInput.loginPassword(
         type="text"
         v-on:keyup.enter.native="confirm"
         v-model="password"
@@ -18,12 +18,12 @@
       )
       br
       br
-      el-button#save(
+      el-button.loginConfirm(
         type="primary"
         v-on:click="confirm"
         v-loading.fullscreen.lock="loading"
       ) Confirm
-      el-button#cancel(
+      el-button.loginCancel(
         type="default"
         v-on:click="cancel"
       ) Cancel
@@ -31,7 +31,6 @@
 
 <script lang="ts">
 import { WingsStructUtil } from "wings-ts-util";
-import Axios from "axios";
 import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
 import NewUser from "@/wings/NewUser";
@@ -61,20 +60,19 @@ export default {
         password: this.$data.password,
       });
 
-      const res = await Axios.post(
-        HTTPReq.getURI("login"),
+      const res = await HTTPReq.genPOST(
+        "login",
         WingsStructUtil.stringify(newUser),
-        {
-          withCredentials: true,
-        },
       );
 
-      const user = new User(res["data"]);
+      const user = new User(res);
       if (user.ID === -1) {
         this.$data.loading = false;
-        this.$message.error(
-          "Wrong email or password. Please try again.",
-        );
+        this.$message({
+          type: "error",
+          message:
+            "Wrong email or password. Please try again.",
+        });
         return;
       }
       localStorage.setItem(
@@ -90,7 +88,7 @@ export default {
         ),
       );
 
-      this.$router.push({ path: "/" });
+      this.$router.push("/");
     },
     cancel(): void {
       this.$router.back();
@@ -106,11 +104,11 @@ export default {
   @include trip_display();
 }
 
-#cancel {
+.loginCancel {
   @include right_col($p-height);
 }
 
-#save {
+.loginConfirm {
   @include left_col($p-height);
 }
 </style>

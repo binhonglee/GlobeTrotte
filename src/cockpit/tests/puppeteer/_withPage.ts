@@ -13,7 +13,7 @@ export default async function (
   const page = await browser.newPage();
   await Promise.all([
     page.coverage.startJSCoverage(),
-    page.coverage.startCSSCoverage()
+    page.coverage.startCSSCoverage(),
   ]);
   try {
     await run(t, page);
@@ -29,4 +29,4 @@ export default async function (
     await page.close();
     await browser.close();
   }
-};
+}

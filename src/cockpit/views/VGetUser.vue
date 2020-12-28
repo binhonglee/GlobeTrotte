@@ -23,18 +23,17 @@ export default {
   }),
   methods: {
     async init(): Promise<void> {
-      if (this.$route.params.id === undefined) {
+      if (General.paramID(this) === undefined) {
         this.$data.user.name = "";
         return;
       }
 
       this.$data.user = await General.genUser(
-        Number(this.$route.params.id),
+        Number(General.paramID(this)),
       );
-      console.log(this.$data.user);
 
       if (this.$data.user.ID === -1) {
-        await this.$alert("User not found.", "Error", {
+        this.$alert("User not found.", "Error", {
           confirmButtonText: "OK",
         });
         return;

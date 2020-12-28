@@ -6,8 +6,16 @@ import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "./HTTPReq";
 import User from "@/wings/User";
 import Trip from "@/wings/Trip";
+import { CombinedVueInstance } from "vue/types/vue";
 
 export default class General {
+  public static paramID(
+    obj: CombinedVueInstance,
+  ): string | undefined {
+    /* istanbul ignore next: $route is a pain to mock, using this as a workaround for testing */
+    return obj.$route.params.id;
+  }
+
   public static notifConfig(
     title: string,
     message: string,

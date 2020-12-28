@@ -1,7 +1,7 @@
 .cache
 .nyc_output/
 coverage/
-cypress/
+/cypress/
 dist/
 main
 node_modules/

@@ -106,6 +106,7 @@ func createTripsTable() {
 			cities          INT[]          NOT NULL,
 			description     TEXT,
 			days            INT[],
+			private         BOOLEAN        NOT NULL,
 			time_created    TIMESTAMPTZ    NOT NULL,
 			last_updated    TIMESTAMPTZ    NOT NULL
 		);`
