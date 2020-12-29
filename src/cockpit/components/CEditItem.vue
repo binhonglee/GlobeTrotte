@@ -6,6 +6,7 @@
       v-bind:rows="large ? 3 : 1"
       v-on:keyup.enter="save"
       v-model="value"
+      :class="className"
     )
     br
 </template>
@@ -25,6 +26,10 @@ export default Vue.extend({
     large: {
       type: Boolean,
       default: false,
+    },
+    className: {
+      type: String,
+      default: "",
     },
   },
   data: () => ({

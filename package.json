@@ -16,7 +16,7 @@
     "genRouter": "tsc src/cockpit/scripts/genRouter.ts --outDir ./plz-out && node ./plz-out/genRouter.js",
     "preflight": "pnpm run genRouter && mv router.ts src/cockpit/",
     "startServer": "forever start ./node_modules/parcel-bundler/bin/cli.js index.html && wait-on http://localhost:1234",
-    "test:ava": "pnpm run preflight && nyc ava \"src/cockpit/tests/**/*.spec.ts\"",
+    "test:ava": "pnpm run preflight && nyc ava",
     "test:cypress": "cypress run",
     "test:cypress:plz": "pnpm run checkBackend && NODE_ENV=test pnpm run startServer && pnpm run xvfb:run && $xvfb pnpm run test:cypress && pnpm run endServer",
     "report": "nyc report",

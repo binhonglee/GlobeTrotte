@@ -11,8 +11,6 @@
   ],
   "exclude": [
     "**/*.{spec,test}.{js,ts}",
-    "src/cockpit/components/**/*",
-    "src/cockpit/router.ts",
     "src/cockpit/scripts/**/*",
     "src/cockpit/tests/**/*",
     "*.js"

@@ -4,7 +4,7 @@
       v-for="(place, index) in this.$data.places"
       v-bind:key="index"
     )
-      div.editPlace
+      div.editPlace(:class="'place' + index")
         el-input.inputPlaceLabel(
           type="text"
           :placeholder="'Place Name' + (index !== 0 ? '' : ' (eg. Golden Gate Bridge)')"
@@ -22,16 +22,16 @@
           :rows="3"
           v-model="place.description"
         )
-      div.removePlaceBlock
         el-button.removePlace(
           type="danger"
           icon="el-icon-close"
           plain v-on:click="removePlace(index)"
-        )
+        ) Delete this place
+        el-divider.editPlaceDivider
     el-button.addPlace(
       plain icon="el-icon-plus"
-      v-on:click="pushPlace" circle
-    )
+      v-on:click="pushPlace"
+    ) Add another place
 </template>
 
 <script lang="ts">
@@ -70,42 +70,35 @@ export default Vue.extend({
 <style lang="scss">
 @import "../shared/lib";
 
-.places {
-  margin: 0;
-  padding: 0;
-}
-
 .addPlace {
   @include right_button();
+  margin: 0 0 0 0;
+  font-size: 12px;
+  padding: 5px;
+  width: 100%;
 }
 
 .editPlace {
   display: inline-block;
-  height: 120px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 93%;
+  margin: 0;
+  width: 100%;
 }
 
-.inputPlaceLink {
-  margin-top: 5px;
-}
-
-.inputPlaceDesc {
-  margin-top: 5px;
-}
-
-.removePlaceBlock {
-  display: inline-block;
-  width: 7%;
-  height: 120px;
+.inputPlaceLink,
+.inputPlaceDesc,
+.removePlace {
+  margin: 5px 0 0 0;
 }
 
 .removePlace {
-  margin-top: 25px;
-  font-size: 10px;
-  float: right;
-  padding: 3px;
+  font-size: 12px;
+  padding: 5px;
+  width: 100%;
+}
+
+.editPlaceDivider {
+  margin: 10px -2% 10px;
+  width: 104%;
 }
 
 el-input {

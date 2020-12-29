@@ -13,7 +13,7 @@
           :underline="false"
           :href="place.URL"
         )
-          el-card.placeDisplayCard
+          el-card.placeDisplayCard(shadow="hover")
             b {{ place.label }}
             p.placeDescription(v-if="place.description !== ''") {{ place.description }}
 

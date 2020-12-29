@@ -6,7 +6,7 @@ import test from "ava";
 
 test("renders empty component", (t) => {
   const wrapper = shallowMount(CEditDay, {});
-  t.is(wrapper.text(), "");
+  t.is(wrapper.text(), "Add another day");
   t.false(wrapper.find(".editDayTitle").exists());
   t.false(wrapper.find(".removeDay").exists());
   t.true(wrapper.find(".addDay").exists());

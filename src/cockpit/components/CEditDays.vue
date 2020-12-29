@@ -2,7 +2,9 @@
   .edit_days
     el-card.editDay(
       v-for="(day, index) in days"
+      shadow="hover"
       :key="day.dayOf"
+      :class="'day' + day.dayOf"
     )
       div.editDayTitle
         b Day {{ day.dayOf }}
@@ -10,15 +12,15 @@
           type='danger'
           icon='el-icon-close'
           plain v-on:click='removeDay(index)'
-        )
-      CEditPlaces(
+        ) Delete this day
+      CEditPlaces.editPlaces(
         :givenPlaces="day.places"
         :ref="'places' + index"
       )
     el-button.addDay(
-      plain icon='el-icon-plus'
-      v-on:click='pushDay' circle
-    )
+      icon='el-icon-plus'
+      v-on:click='pushDay'
+    ) Add another day
 </template>
 
 <script lang="ts">
@@ -87,9 +89,13 @@ export default {
 <style lang="scss">
 @import "../shared/lib";
 
+.editPlaces {
+  margin: 15px 0 0 0;
+}
+
 .editDay {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 0 10px 0;
+  padding: 0 0 13px 0;
   width: 100%;
 }
 
@@ -99,11 +105,15 @@ export default {
 
 .addDay {
   @include right_button();
+  font-size: 12px;
+  padding: 5px;
+  width: 100%;
 }
 
 .removeDay {
   @include right_button();
-  padding: 3px;
+  font-size: 12px;
+  padding: 5px;
   margin: 0;
 }
 </style>

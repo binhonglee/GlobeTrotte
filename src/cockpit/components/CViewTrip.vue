@@ -5,6 +5,7 @@
       title="Trip is private"
       description="Only you can see this trip."
       type="info"
+      :closable="false"
       show-icon
     )
     h2.tripName {{ trip.name }}
@@ -17,7 +18,10 @@
     p.tripCreatedDate Created on: {{ trip.timeCreated.toLocaleDateString() }}
     div.tripCities
       el-tag.tripCity(v-for="city in cities") {{ city }}
-    el-card.viewDayCard(v-for="day in trip.days" :key="day.ID")
+    el-card.viewDayCard(
+      v-for="day in trip.days"
+      :key="day.ID"
+    )
       h3.dayTitle Day {{ day.dayOf }}
       CPlaces(:places="day.places")
     el-button.enableTripEdit(
@@ -88,7 +92,7 @@ export default {
   margin: 10px 0 0 0;
 }
 
-.city {
+.tripCity {
   margin: 5px 5px 0 0;
 }
 

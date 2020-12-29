@@ -1,5 +1,5 @@
 describe("Menubar", () => {
-  ["/", "/about"].forEach((url) => {
+  ["/"].forEach((url) => {
     it("menubar:" + url, () => {
       cy.visit(url);
       cy.get(".main_menu")
@@ -15,6 +15,7 @@ describe("Homepage", () => {
     cy.visit("/");
     cy.contains("h1", "GlobeTrotte");
   });
+
   it("description", () => {
     cy.visit("/");
     cy.contains(

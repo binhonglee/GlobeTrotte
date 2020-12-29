@@ -11,7 +11,7 @@
         strong Bio:
         br
         | {{ user.bio }}
-    div.trips(v-if="trips.length > 0")
+    div.viewUserTrips(v-if="trips.length > 0")
       h2 Trips
       el-popover(
         popper-class="tripInfoPopup"
@@ -24,7 +24,7 @@
           :user="user"
           :trip="trip"
         )
-        a(
+        a.viewUserTrip(
           slot="reference"
           v-bind:href="'/trip/view/' + trip.ID"
         ) {{ trip.name }}
@@ -35,7 +35,6 @@ import Vue from "vue";
 import General from "@/shared/General";
 import CTripInCarousel from "./CTripInCarousel.vue";
 import User from "@/wings/User";
-import Trip from "@/wings/Trip";
 
 export default Vue.extend({
   name: "CViewUser",
@@ -102,7 +101,11 @@ export default Vue.extend({
   padding: 0;
 }
 
-.trips,
+.viewUserTrip {
+  margin: 0 10px 0 0;
+}
+
+.viewUserTrips,
 .userInfo {
   text-align: left;
 }

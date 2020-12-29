@@ -5,12 +5,14 @@
       :val="trip.name"
       :ref="'name'"
       :key="'name'"
+      :className="'editTripName'"
     )
     CEditItem(
       :label="'Description'"
       :val="trip.description"
       :ref="'description'"
       :key="'description'"
+      :className="'editTripDescription'"
       :large="true"
     )
     .editTripPrivacy
@@ -22,7 +24,7 @@
         v-model="cities" placeholder="" multiple filterable
         no-match-text="City not found"
       )
-        el-option(
+        el-option.editTripSingleCity(
           v-for="item in possibleCities"
           :key="item.key"
           :label="item.label"
@@ -55,6 +57,7 @@ import Trip from "@/wings/Trip";
 import City from "@/wings/City";
 import TripEditable from "@/shared/TripEditable";
 import HTTPReq from "@/shared/HTTPReq";
+import General from "@/shared/General";
 
 export default Vue.extend({
   name: "CEditTrip",
@@ -156,9 +159,8 @@ export default Vue.extend({
       );
       if (!success) {
         success =
-          (await HTTPReq.genGET(
-            "trip/" + this.$props.trip.ID,
-          )) === "";
+          (await General.genTrip(this.$props.trip.ID))
+            .ID === -1;
       }
 
       this.$data.deleting = false;
