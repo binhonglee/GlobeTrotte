@@ -2,21 +2,19 @@
   .login.narrow_content
     h1.title Login
     form.loginbox
-      span.editLabel.loginEmailLabel Email:
-      el-input.editInput.loginUsername(
-        type="text"
-        v-on:keyup.enter.native="confirm"
-        v-model="email"
+      CEditItem.loginUsernameItem(
+        label="Email"
+        ref="email"
+        className="loginUsername"
+        @enter="confirm"
       )
-      br
-      span.editLabel.loginPasswordLabel Password:
-      el-input.editInput.loginPassword(
-        type="text"
-        v-on:keyup.enter.native="confirm"
-        v-model="password"
-        show-password
+      CEditItem(
+        label="Password"
+        ref="password"
+        className="loginPassword"
+        type="password"
+        @enter="confirm"
       )
-      br
       br
       el-button.loginConfirm(
         type="primary"
@@ -31,24 +29,24 @@
 
 <script lang="ts">
 import { WingsStructUtil } from "wings-ts-util";
-import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
+import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import User from "@/wings/User";
+import CEditItem from "@/components/CEditItem.vue";
 
 interface Data {
-  email: string;
-  password: string;
   loading: boolean;
 }
 
 export default {
   data(): Data {
     return {
-      email: "",
-      password: "",
       loading: false,
     };
+  },
+  components: {
+    CEditItem,
   },
   methods: {
     async confirm(): Promise<void> {
@@ -56,8 +54,8 @@ export default {
       const newUser = new NewUser();
       newUser.register({
         name: "",
-        email: this.$data.email,
-        password: this.$data.password,
+        email: this.$refs.email.value,
+        password: this.$refs.password.value,
       });
 
       const res = await HTTPReq.genPOST(
@@ -93,6 +91,11 @@ export default {
     cancel(): void {
       this.$router.back();
     },
+  },
+  beforeMount(): void {
+    this.$nextTick(function () {
+      this.$refs.email.$refs.input.focus();
+    });
   },
 };
 </script>

@@ -3,10 +3,10 @@
     h1.title Trip
     |     Trip ID:
     el-input.tripSearchInput(
+      ref="tripIDSearch"
       type="text"
       v-model="inputID"
       v-on:keydown.enter.native="gotoTrip"
-      :autofocus="true"
     )
     el-button.tripSearchInput(v-on:click="gotoTrip") Find
     CTripInfo(
@@ -63,6 +63,10 @@ export default {
         this.$data.user = await General.genUser(
           this.$data.trip.userID,
         );
+        this.$nextTick(function () {
+          this.$refs.tripIDSearch.focus();
+        });
+
         return;
       }
 

@@ -4,6 +4,7 @@
 --ignore-dir=logs
 --ignore-dir=node_modules
 --ignore-dir=plz-out
+--ignore-dir=.nyc_output
 --ignore-dir=.vscode
 --ignore-file=is:LICENSE
 --ignore-file=is:pleasew

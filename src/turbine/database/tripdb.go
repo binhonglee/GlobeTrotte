@@ -114,6 +114,29 @@ func DeleteTripDB(existingTrip structs.IStructs) bool {
 	)
 }
 
+func GetRecentTrips() []wings.Trip {
+	toReturn := make([]wings.Trip, 0)
+	sqlStatement := `
+		SELECT id
+		FROM trips
+		WHERE private = FALSE
+		ORDER BY time_created DESC
+		LIMIT 10
+	`
+	rows, err := db.Query(sqlStatement)
+	logger.Err(logger.Database, err, "")
+
+	defer rows.Close()
+	for rows.Next() {
+		var id int
+		err = rows.Scan(&id)
+		logger.Err(logger.Database, err, "")
+		toReturn = append(toReturn, fetchTrip(int(id)))
+	}
+
+	return toReturn
+}
+
 func addTrip(newTrip wings.Trip) int {
 	for index, day := range newTrip.Days {
 		dayID := addDay(day)

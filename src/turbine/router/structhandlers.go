@@ -61,6 +61,13 @@ func deleteTrip(res http.ResponseWriter, req *http.Request) {
 	setDeletionStatus(&res, deletion)
 }
 
+func getRecentTrips(res http.ResponseWriter, req *http.Request) {
+	trips := db.GetRecentTrips()
+	allowCORS(&res)
+	response(&res, http.StatusOK)
+	json.NewEncoder(res).Encode(trips)
+}
+
 // User
 
 func newUser(res http.ResponseWriter, req *http.Request) {
@@ -72,8 +79,8 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 	dummyUser.Email = item.Email
 	item.Email, ok = handleEmails(item.Email)
 	if !ok {
-		json.NewEncoder(res).Encode(dummyUser)
 		response(&res, http.StatusNotAcceptable)
+		json.NewEncoder(res).Encode(dummyUser)
 		return
 	}
 	hash, err :=

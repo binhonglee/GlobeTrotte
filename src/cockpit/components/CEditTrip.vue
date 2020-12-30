@@ -1,49 +1,47 @@
 <template lang="pug">
   .edit_trip
-    CEditItem(
-      :label="'Name'"
-      :val="trip.name"
-      :ref="'name'"
-      :key="'name'"
-      :className="'editTripName'"
-    )
-    CEditItem(
-      :label="'Description'"
-      :val="trip.description"
-      :ref="'description'"
-      :key="'description'"
-      :className="'editTripDescription'"
-      :large="true"
-    )
-    .editTripPrivacy
-      span.editLabel Private:
-      el-switch.editInput(v-model="private")
-    .editCity
-      span.editLabel Cities:
-      el-select.editInput(
-        v-model="cities" placeholder="" multiple filterable
-        no-match-text="City not found"
+    form
+      CEditItem(
+        :label="'Name'"
+        :val="trip.name"
+        :ref="'name'"
+        :className="'editTripName'"
       )
-        el-option.editTripSingleCity(
-          v-for="item in possibleCities"
-          :key="item.key"
-          :label="item.label"
-          :value="item.key"
+      CEditItem(
+        :label="'Description'"
+        :val="trip.description"
+        :ref="'description'"
+        :className="'editTripDescription'"
+        :type="'textarea'"
+      )
+      .editTripPrivacy
+        span.editLabel Private:
+        el-switch.editInput(v-model="private")
+      .editCity
+        span.editLabel Cities:
+        el-select.editInput(
+          v-model="cities" placeholder="" multiple filterable
+          no-match-text="City not found"
         )
-    CEditDays(:ref="'days'" :givenDays="trip.days")
-    div.confirmationButtons
-      el-button.saveEditTrip(
-        type="primary" v-on:click="save" :loading="saving"
-      ) Save
-      el-button.cancelEditTrip(
-        type="default" v-on:click="cancel"
-      ) Cancel
-      el-button.deleteTrip(
-        v-if="!isNew"
-        type="danger"
-        v-on:click="del"
-        :loading="deleting"
-      ) Delete
+          el-option.editTripSingleCity(
+            v-for="item in possibleCities"
+            :label="item.label"
+            :value="item.key"
+          )
+      CEditDays(:ref="'days'" :givenDays="trip.days")
+      div.confirmationButtons
+        el-button.saveEditTrip(
+          type="primary" v-on:click="save" :loading="saving"
+        ) Save
+        el-button.cancelEditTrip(
+          type="default" v-on:click="cancel"
+        ) Cancel
+        el-button.deleteTrip(
+          v-if="!isNew"
+          type="danger"
+          v-on:click="del"
+          :loading="deleting"
+        ) Delete
 </template>
 
 <script lang="ts">
@@ -121,6 +119,7 @@ export default Vue.extend({
           this.$message.error(
             "Invalid URL. URL should always begins with 'https://'",
           );
+          this.$data.saving = false;
           return;
         }
         if (places.length > 0) {
@@ -188,6 +187,9 @@ export default Vue.extend({
       this.$data.possibleCities = CityUtil.allActiveCities();
       this.$data.cities = this.$props.trip.cities;
       this.$data.private = this.$props.trip.private;
+      this.$nextTick(function () {
+        this.$refs.name.$refs.input.focus();
+      });
     },
   },
   beforeMount(): void {

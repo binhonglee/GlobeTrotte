@@ -36,12 +36,25 @@ export default Vue.extend({
   components: {
     CPlaces,
   },
+  data: () => ({
+    user: new User(),
+  }),
   props: {
-    user: {
+    forceUser: {
       type: User,
+      default: () => new User(),
     },
     trip: {
       type: Trip,
+    },
+  },
+  async beforeMount(): Promise<void> {
+    if (this.$props.forceUser.ID !== -1) {
+      this.$data.user = this.$props.forceUser;
+    } else {
+      this.$data.user = await General.genUser(
+        this.$props.trip.userID,
+      );
     }
   },
 });
@@ -57,6 +70,7 @@ export default Vue.extend({
 }
 
 .viewUserTripInfoCarousel {
+  text-align: left;
   .el-carousel__container {
     height: 200px;
   }

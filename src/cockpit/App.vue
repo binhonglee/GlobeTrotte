@@ -51,7 +51,8 @@ export default {
       }
 
       if (
-        path.substr(path.length - 1).localeCompare("/") === 0
+        path.substr(path.length - 1).localeCompare("/") ===
+        0
       ) {
         path = path.slice(0, -1);
       }
@@ -83,8 +84,8 @@ export default {
       },
       immediate: true,
       deep: true,
-    }
-  }
+    },
+  },
 };
 </script>
 

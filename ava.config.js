@@ -10,4 +10,5 @@ export default {
     "src/cockpit/tests/**/*.spec.ts",
     "!src/cockpit/tests/cypress/**/*",
   ],
+  tap: true,
 };

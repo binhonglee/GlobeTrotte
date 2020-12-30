@@ -16,24 +16,20 @@
           ) Edit
       div(v-else)
         CEditItem(
-          :label="'Name'"
+          label="Name"
+          ref="name"
           :val="user.name"
-          v-bind:key="'name'"
-          v-bind:ref="'name'"
-          :autofocus="true"
         )
         CEditItem(
-          :label="'Email'"
-          :val="user.email"
-          v-bind:key="'email'"
+          label="Email"
           ref="email"
+          :val="user.email"
         )
         CEditItem(
-          :label="'Bio'"
-          :val="user.bio"
-          :large="true"
-          v-bind:key="'bio'"
+          label="Bio"
+          type="textarea"
           ref="bio"
+          :val="user.bio"
         )
         div.myAccountButtonGroups
           el-button.myAccountSave(
@@ -133,6 +129,11 @@ export default {
     },
     toggleEdit(): void {
       this.$data.edit = !this.$data.edit;
+      if (this.$data.edit) {
+        this.$nextTick(function () {
+          this.$refs.name.$refs.input.focus();
+        });
+      }
     },
   },
   async beforeMount(): Promise<void> {

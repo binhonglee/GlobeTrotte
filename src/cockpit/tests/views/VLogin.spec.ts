@@ -21,7 +21,10 @@ function verifyUI(
   t: ExecutionContext<unknown>,
   wrapper: Wrapper<Vue>,
 ): void {
-  t.is(wrapper.find(".loginEmailLabel").text(), "Email:");
+  t.is(
+    wrapper.find(".loginUsernameLabel").text(),
+    "Email:",
+  );
   t.is(
     wrapper.find(".loginPasswordLabel").text(),
     "Password:",

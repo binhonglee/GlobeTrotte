@@ -21,7 +21,7 @@
         v-for="trip in trips"
       )
         CTripInCarousel(
-          :user="user"
+          :forceUser="user"
           :trip="trip"
         )
         a.viewUserTrip(

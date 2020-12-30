@@ -120,5 +120,4 @@ export default {
 .tripName {
   @include left_col($p-height);
 }
-
 </style>

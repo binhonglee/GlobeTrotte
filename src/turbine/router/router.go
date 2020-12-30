@@ -107,4 +107,10 @@ var actualRoutes = routes{
 		"/whoami",
 		whoami,
 	},
+	route{
+		"GetRecentTrips",
+		"GET",
+		"/sample_trips",
+		getRecentTrips,
+	},
 }

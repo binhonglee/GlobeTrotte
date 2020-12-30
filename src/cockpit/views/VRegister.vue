@@ -2,36 +2,32 @@
   .new_user.narrow_content
     h1.title Create Account
     form.newUser
-      span.editLabel.registrationNameLabel Name:
-      el-input.editInput.registrationName(
-        type="text"
-        v-on:keyup.enter="save"
-        v-model="name"
+      CEditItem(
+        className="registrationName"
+        label="Name"
+        ref="name"
+        @enter="confirm"
       )
-      br
-      span.editLabel.registrationEmailLabel Email:
-      el-input.editInput.registrationEmail(
-        type="text"
-        v-on:keyup.enter="save"
-        v-model="email"
+      CEditItem(
+        className="registrationEmail"
+        label="Email"
+        ref="email"
+        @enter="confirm"
       )
-      br
-      span.editLabel.registrationPasswordLabel Password:
-      el-input.editInput.registrationPassword(
-        type="text"
-        v-on:keyup.enter.native="confirm"
-        v-model="password"
-        show-password
+      CEditItem(
+        className="registrationPassword"
+        label="Password"
+        ref="password"
+        type="password"
+        @enter="confirm"
       )
-      br
-      span.editLabel.registrationConfPasswordLabel Confirm Password:
-      el-input.editInput.registrationConfPassword(
-        type="text"
-        v-on:keyup.enter.native="confirm"
-        v-model="confPassword"
-        show-password
+      CEditItem(
+        className="registrationConfPassword"
+        label="Confirm Password"
+        ref="confPassword"
+        type="password"
+        @enter="confirm"
       )
-      br
       br
       el-button.registrationSave(
         type="primary"
@@ -46,35 +42,31 @@
 
 <script lang="ts">
 import { WingsStructUtil } from "wings-ts-util";
+import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import User from "@/wings/User";
-import General from "@/shared/General";
+import CEditItem from "@/components/CEditItem.vue";
 
 interface Data {
-  name: string;
-  email: string;
-  password: string;
-  confPassword: string;
   loading: boolean;
 }
 
 export default {
   data(): Data {
     return {
-      name: "",
-      email: "",
-      password: "",
-      confPassword: "",
       loading: false,
     };
+  },
+  components: {
+    CEditItem,
   },
   methods: {
     async confirm(): Promise<void> {
       this.$data.loading = true;
       if (
-        this.$data.password.localeCompare(
-          this.$data.confPassword,
+        this.$refs.password.value.localeCompare(
+          this.$refs.confPassword.value,
         )
       ) {
         this.$alert("Password does not match.", "Fail", {
@@ -86,9 +78,9 @@ export default {
 
       const newUser = new NewUser();
       newUser.register({
-        name: this.$data.name,
-        email: this.$data.email,
-        password: this.$data.password,
+        name: this.$refs.name.value,
+        email: this.$refs.email.value,
+        password: this.$refs.password.value,
       });
 
       const res = await HTTPReq.genPOST(
@@ -125,6 +117,11 @@ export default {
     cancel(): void {
       this.$router.back();
     },
+  },
+  beforeMount(): void {
+    this.$nextTick(function () {
+      this.$refs.name.$refs.input.focus();
+    });
   },
 };
 </script>

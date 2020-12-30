@@ -1,20 +1,23 @@
 <template lang="pug">
-  .edit_item(v-bind:class="large ? 'edit_item_large' : 'edit_item_small'")
-    span.editLabel {{ label }}:
+  .edit_item(v-bind:class="type === 'textarea' ? 'edit_item_large' : 'edit_item_small'")
+    span.editLabel(:class="className + 'Label'") {{ label }}:
     el-input.editInput(
-      v-bind:type="large ? 'textarea' : 'text'"
-      v-bind:rows="large ? 3 : 1"
-      v-on:keyup.enter="save"
-      v-model="value"
       :class="className"
+      :ref="'input'"
+      :rows="type === 'textarea' ? 3 : 1"
+      :type="type"
+      :show-password="type === 'password'"
+      v-model="value"
+      v-on:keyup.enter.native="enter"
     )
     br
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-
-export default Vue.extend({
+interface Data {
+  value: string;
+}
+export default {
   name: "CEditItem",
   props: {
     label: {
@@ -22,23 +25,29 @@ export default Vue.extend({
     },
     val: {
       type: String,
+      default: "",
     },
-    large: {
-      type: Boolean,
-      default: false,
+    type: {
+      type: String,
+      default: "text",
     },
     className: {
       type: String,
       default: "",
     },
   },
-  data: () => ({
+  data: (): Data => ({
     value: "",
   }),
-  beforeMount() {
+  methods: {
+    enter(): void {
+      this.$emit("enter");
+    },
+  },
+  beforeMount(): void {
     this.$data.value = this.$props.val ?? "";
   },
-});
+};
 </script>
 
 <style lang="scss">
@@ -49,7 +58,7 @@ export default Vue.extend({
 }
 
 .edit_item_large {
-  height: 80px;
+  height: 75px;
 }
 
 .edit_item_small {
