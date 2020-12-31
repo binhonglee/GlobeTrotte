@@ -34,10 +34,11 @@ vue.config.js   text eol=lf linguist-detectable=false
 wings.json      text eol=lf linguist-detectable=false
 
 # Generated files
-index.html        linguist-generated=true linguist-vendored=true -diff
-pleasew           linguist-generated=true linguist-vendored=true -diff
-pnpm-lock.yaml    linguist-generated=true linguist-vendored=true -diff
-src/*/wings/*.*   linguist-generated=true linguist-vendored=true -diff
+index.html            linguist-generated=true linguist-vendored=true -diff
+pleasew               linguist-generated=true linguist-vendored=true -diff
+pnpm-lock.yaml        linguist-generated=true linguist-vendored=true -diff
+src/*/wings/*.*       linguist-generated=true linguist-vendored=true -diff
+src/cockpit/router.ts linguist-generated=true linguist-vendored=true -diff
 
 # Documentations
 *.md    text eol=lf linguist-documentation=true

@@ -25,7 +25,7 @@ export default class General {
       message: message,
       title: title,
       type: type,
-      duration: 2000,
+      duration: 10000000000000000,
       offset: 50,
     };
   }

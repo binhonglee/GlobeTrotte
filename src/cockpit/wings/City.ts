@@ -12,6 +12,14 @@ enum City {
   AnchorageAKUS,
   ParisFR,
   KualaLumpurMY,
+  GeorgeTownPGMY,
+  SeattleWAUS,
+  WashingtonDCUS,
+  BostonMAUS,
+  PhoneixAZUS,
+  PageAZUS,
+  LosAngelesCAUS,
+  LasVegasNVUS,
 }
 
 export default City;

@@ -6,22 +6,23 @@
       :interval="0"
       :autoplay="false"
     )
-      el-carousel-item.tripDayPreview
-        h3 {{ trip.name }}
-        p(
-          v-if="trip.description !== ''"
-        ) {{ trip.description }}
-        p Author: 
-          a(
-            v-bind:href="'/user/' + user.ID"
-          ) {{ user.name }}
-        p Created on: {{ trip.timeCreated.toLocaleDateString() }}
+      a(:href="'/trip/view/' + trip.ID")
+        el-carousel-item.tripDayPreview
+          h3 {{ trip.name }}
+          p(
+            v-if="trip.description !== ''"
+          ) {{ trip.description }}
+          p Author: 
+            a(
+              v-bind:href="'/user/' + user.ID"
+            ) {{ user.name }}
+          p Created on: {{ trip.timeCreated.toLocaleDateString() }}
 
-      el-carousel-item.tripDayPreview(
-        v-for="day in trip.days"
-      )
-        h3 Day {{ day.dayOf }}
-        CPlaces(:places="day.places")
+        el-carousel-item.tripDayPreview(
+          v-for="day in trip.days"
+        )
+          h3 Day {{ day.dayOf }}
+          CPlaces(:places="day.places")
 </template>
 
 <script lang="ts">

@@ -1,8 +1,4 @@
-import Axios, {
-  AxiosRequestConfig,
-  AxiosResponse,
-  Method,
-} from "axios";
+import Axios, { AxiosRequestConfig, Method } from "axios";
 
 enum AxMethod {
   POST = "POST",
@@ -16,21 +12,6 @@ export default class HTTPReq {
   private static port = 4000;
   private static pathPrefix = "/api/";
   private static delPrefix = "del/";
-
-  public static post(
-    uri: string,
-    data: string,
-    callback: (data: string) => void,
-  ): void {
-    this.sendRequest(uri, data, AxMethod.POST, callback);
-  }
-
-  public static get(
-    uri: string,
-    callback: (data: string) => void,
-  ): void {
-    this.sendRequest(uri, "", AxMethod.GET, callback);
-  }
 
   public static async genGET(uri: string): Promise<string> {
     return await this.genSendRequest(uri, AxMethod.GET);
@@ -67,30 +48,6 @@ export default class HTTPReq {
     );
   }
 
-  private static sendRequest(
-    uri: string,
-    data: string,
-    type: Method,
-    callback: (data: string) => void,
-  ) {
-    const fullURI: AxiosRequestConfig = {
-      method: type,
-      url: this.getURI(uri),
-    };
-
-    if (data.length > 0) {
-      fullURI["data"] = data;
-    }
-
-    Axios.request(fullURI)
-      .then((res: AxiosResponse) => {
-        callback(res["data"]);
-      })
-      .catch(() => {
-        callback(false.toString());
-      });
-  }
-
   private static async genSendRequest(
     uri: string,
     type: Method,
@@ -102,7 +59,7 @@ export default class HTTPReq {
     };
 
     if (data.length > 0) {
-      fullURI["data"] = data;
+      fullURI["data"] = data.split("\n").join("\\n");
     }
     try {
       return (await Axios.request(fullURI))["data"];

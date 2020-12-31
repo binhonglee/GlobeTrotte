@@ -15,10 +15,9 @@
         )
           el-card.placeDisplayCard(shadow="hover")
             b {{ place.label }}
-            p.placeDescription(v-if="place.description !== ''") {{ place.description }}
-
-
-
+            p.placeDescription(
+              v-if="place.description !== ''"
+            ) {{ place.description }}
 </template>
 
 <script lang="ts">

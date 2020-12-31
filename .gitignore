@@ -10,5 +10,3 @@ plz-out/
 pnpm-debug.log
 psql.config
 /*.log
-
-src/cockpit/router.ts

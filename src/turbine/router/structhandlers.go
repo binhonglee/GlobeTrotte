@@ -38,7 +38,8 @@ func getTrip(res http.ResponseWriter, req *http.Request) {
 func updateTrip(res http.ResponseWriter, req *http.Request) {
 	var item *wings.Trip
 	unpackJSON(&res, req, &item)
-	if getRequestID(req) != item.ID || !verifyUser(req, item.UserID) {
+
+	if item == nil || getRequestID(req) != item.ID || !verifyUser(req, item.UserID) {
 		response(&res, http.StatusForbidden)
 		return
 	}

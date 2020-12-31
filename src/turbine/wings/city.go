@@ -16,4 +16,12 @@ const (
 	AnchorageAKUS = iota
 	ParisFR = iota
 	KualaLumpurMY = iota
+	GeorgeTownPGMY = iota
+	SeattleWAUS = iota
+	WashingtonDCUS = iota
+	BostonMAUS = iota
+	PhoneixAZUS = iota
+	PageAZUS = iota
+	LosAngelesCAUS = iota
+	LasVegasNVUS = iota
 )

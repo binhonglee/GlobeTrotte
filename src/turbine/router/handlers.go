@@ -51,10 +51,9 @@ func unpackJSON(
 	logger.Err(logger.Router, req.Body.Close(), "")
 
 	if err := json.Unmarshal(body, objType); err != nil {
-		response(res, http.StatusUnprocessableEntity)
 		logger.Err(
 			logger.Router,
-			json.NewEncoder(*res).Encode(err),
+			err,
 			"",
 		)
 	}

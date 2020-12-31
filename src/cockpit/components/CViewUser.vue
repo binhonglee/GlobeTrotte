@@ -1,6 +1,6 @@
 <template lang="pug">
   .view_user
-    div.userInfo
+    div.userInfo.narrow_content
       h2(v-if="showName").userName {{ user.name }}
       span.userID ID: {{ user.ID }}
       p.userEmail
@@ -13,21 +13,14 @@
         | {{ user.bio }}
     div.viewUserTrips(v-if="trips.length > 0")
       h2 Trips
-      el-popover(
-        popper-class="tripInfoPopup"
-        placement="right"
-        width="300"
-        trigger="hover"
-        v-for="trip in trips"
+      el-card.homePageTripCard(
+        v-for="trip in trips" 
+        shadow="hover"
       )
         CTripInCarousel(
           :forceUser="user"
           :trip="trip"
         )
-        a.viewUserTrip(
-          slot="reference"
-          v-bind:href="'/trip/view/' + trip.ID"
-        ) {{ trip.name }}
 </template>
 
 <script lang="ts">
@@ -101,13 +94,15 @@ export default Vue.extend({
   padding: 0;
 }
 
-.viewUserTrip {
-  margin: 0 10px 0 0;
+.userInfo {
+  padding: 0;
 }
 
-.viewUserTrips,
-.userInfo {
-  text-align: left;
+.viewUserTrips {
+  text-align: center;
+  h2 {
+    margin: 20px 0 0 0;
+  }
 }
 
 .userID {

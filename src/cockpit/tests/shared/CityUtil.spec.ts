@@ -27,7 +27,7 @@ test("Non existent city (including UNKNOWN) should return 'unrecognized city", (
 });
 
 test("There should be the same amount of cities.", (t) => {
-  const allCities: CityObj[] = CityUtil.allActiveCities();
+  const allCities: CityObj[] = CityUtil.sortedCityList();
   const cities: Set<number> = new Set<number>();
 
   for (const cityString in City) {

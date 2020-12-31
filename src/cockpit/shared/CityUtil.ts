@@ -11,40 +11,43 @@ export class CityObj {
 }
 
 export class CityUtil {
-  public static allActiveCities(): CityObj[] {
-    const toReturn = [] as CityObj[];
-    for (const cityString in City) {
-      if (
-        Object.prototype.hasOwnProperty.call(
-          City,
-          cityString,
-        )
-      ) {
-        const city = Number(cityString);
-        if (!isNaN(city) && city !== City.UNKNOWN) {
-          toReturn.push(new CityObj(city));
-        }
-      }
-    }
-    return toReturn;
+  public static sortedCityList(): CityObj[] {
+    return [
+      new CityObj(City.AnchorageAKUS),
+      new CityObj(City.BostonMAUS),
+      new CityObj(City.GeorgeTownPGMY),
+      new CityObj(City.KualaLumpurMY),
+      new CityObj(City.LasVegasNVUS),
+      new CityObj(City.LosAngelesCAUS),
+      new CityObj(City.NewYorkNYUS),
+      new CityObj(City.PageAZUS),
+      new CityObj(City.ParisFR),
+      new CityObj(City.PhoneixAZUS),
+      new CityObj(City.SanFranciscoCAUS),
+      new CityObj(City.SanJoseCAUS),
+      new CityObj(City.SeattleWAUS),
+      new CityObj(City.WashingtonDCUS),
+    ];
   }
 
   public static toString(city: City): string {
-    switch (city) {
-      case City.SanFranciscoCAUS:
-        return "San Francisco, CA, US";
-      case City.SanJoseCAUS:
-        return "San Jose, CA, US";
-      case City.NewYorkNYUS:
-        return "New York, NY, US";
-      case City.AnchorageAKUS:
-        return "Anchorage, AK, US";
-      case City.ParisFR:
-        return "Paris, FR";
-      case City.KualaLumpurMY:
-        return "Kuala Lumpur, MY";
-      default:
-        return "unrecognized city";
-    }
+    const cityName = {
+      [City.AnchorageAKUS]: "Anchorage, Alaska, US",
+      [City.BostonMAUS]: "Boston, Massachusetts, US",
+      [City.GeorgeTownPGMY]: "George Town, Penang, MY",
+      [City.KualaLumpurMY]: "Kuala Lumpur, MY",
+      [City.LasVegasNVUS]: "Las Vegas, Nevada, US",
+      [City.LosAngelesCAUS]: "Los Angeles, California, US",
+      [City.NewYorkNYUS]: "New York, New York, US",
+      [City.PageAZUS]: "Page, Arizona, US",
+      [City.ParisFR]: "Paris, FR",
+      [City.PhoneixAZUS]: "Phoenix, Arizona, US",
+      [City.SanFranciscoCAUS]:
+        "San Francisco, California, US",
+      [City.SanJoseCAUS]: "San Jose, California, US",
+      [City.SeattleWAUS]: "Seattle, Washington, US",
+      [City.WashingtonDCUS]: "Washington, D.C., US",
+    };
+    return cityName[city] ?? "unrecognized city";
   }
 }

@@ -1,20 +1,21 @@
 <template lang="pug">
-  .my_account.narrow_content
+  .my_account
     h1.title My Account
     .profileInfo
       div(v-if="!edit")
         CViewUser(:user="user")
-        div.myAccountButtonGroups
-          el-button.myAccountLogout(
-            type="danger" v-on:click="logout"
-          ) Logout
-          el-button.myAccountEdit(
-            tabindex="0"
-            type="default"
-            ref="edit"
-            v-on:click="toggleEdit"
-          ) Edit
-      div(v-else)
+        .narrow_content
+          .myAccountButtonGroups
+            el-button.myAccountLogout(
+              type="danger" v-on:click="logout"
+            ) Logout
+            el-button.myAccountEdit(
+              tabindex="0"
+              type="default"
+              ref="edit"
+              v-on:click="toggleEdit"
+            ) Edit
+      .narrow_content(v-else)
         CEditItem(
           label="Name"
           ref="name"

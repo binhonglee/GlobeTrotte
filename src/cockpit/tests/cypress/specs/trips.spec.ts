@@ -101,12 +101,15 @@ describe("Trips", () => {
     });
     cy.get(".enableTripEdit").click();
     cy.get(".deleteTrip").click();
-    cy.get(".el-message-box__message").contains(
+    cy.get(".el-notification__content").contains(
       "p",
       "Trip is successfully deleted!",
     );
-    cy.get(".el-message-box__btns").find("button").click();
-    cy.url().should("include", "/trip/new");
+    cy.get(".el-notification__title").contains(
+      "h2",
+      "Trip Deletion",
+    );
+    cy.url().should("include", "/");
     cy.deleteAccount();
   });
 });

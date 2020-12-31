@@ -11,11 +11,13 @@
     br
     br
     .homePageTripCarousel
-      a(v-for="trip in trips" :href="'/trip/view/' + trip.ID")
-        el-card.homePageTripCard(shadow="hover")
-          CTripInCarousel(
-            :trip="trip"
-          )
+      el-card.homePageTripCard(
+        v-for="trip in trips"
+        shadow="hover"
+      )
+        CTripInCarousel(
+          :trip="trip"
+        )
 </template>
 
 <script lang="ts">

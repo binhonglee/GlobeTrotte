@@ -2,17 +2,17 @@
   .edit_trip
     form
       CEditItem(
-        :label="'Name'"
-        :val="trip.name"
-        :ref="'name'"
         :className="'editTripName'"
+        :label="'Name'"
+        :ref="'name'"
+        :val="trip.name"
       )
       CEditItem(
-        :label="'Description'"
-        :val="trip.description"
-        :ref="'description'"
         :className="'editTripDescription'"
+        :label="'Description'"
+        :ref="'description'"
         :type="'textarea'"
+        :val="trip.description"
       )
       .editTripPrivacy
         span.editLabel Private:
@@ -20,15 +20,18 @@
       .editCity
         span.editLabel Cities:
         el-select.editInput(
-          v-model="cities" placeholder="" multiple filterable
+          v-model="cities"
+          filterable
+          multiple
           no-match-text="City not found"
+          placeholder=""
         )
           el-option.editTripSingleCity(
             v-for="item in possibleCities"
             :label="item.label"
             :value="item.key"
           )
-      CEditDays(:ref="'days'" :givenDays="trip.days")
+      CEditDays(ref="days" :givenDays="trip.days")
       div.confirmationButtons
         el-button.saveEditTrip(
           type="primary" v-on:click="save" :loading="saving"
@@ -38,8 +41,8 @@
         ) Cancel
         el-button.deleteTrip(
           v-if="!isNew"
-          type="danger"
           v-on:click="del"
+          type="danger"
           :loading="deleting"
         ) Delete
 </template>
@@ -106,7 +109,9 @@ export default Vue.extend({
       }
 
       newTrip.name = this.$refs.name.value;
-      newTrip.description = this.$refs.description.value;
+      newTrip.description = this.$refs.description.value
+        .split("\n")
+        .join(" ");
       newTrip.days = [];
       const days = this.$refs.days;
       let offBy = 0;
@@ -116,8 +121,14 @@ export default Vue.extend({
           days.$refs["places" + day][0].places,
         );
         if (places === null) {
-          this.$message.error(
-            "Invalid URL. URL should always begins with 'https://'",
+          this.$alert(
+            "We currently only support links to limited " +
+              "websites including OpenStreetMap, Google " +
+              "Map, Bing Maps and Yelp.",
+            "Invalid Link",
+            {
+              confirmButtonText: "OK",
+            },
           );
           this.$data.saving = false;
           return;
@@ -140,7 +151,10 @@ export default Vue.extend({
       let toReturn: Place[] = [];
       for (let place of places) {
         if (place.label !== "" && place.URL !== "") {
-          if (place.URL.startsWith("https://")) {
+          if (this.filterPlace(place)) {
+            place.description = place.description
+              .split("\n")
+              .join(" ");
             toReturn.push(place);
           } else {
             return null;
@@ -148,6 +162,22 @@ export default Vue.extend({
         }
       }
       return toReturn;
+    },
+    filterPlace(place: Place): boolean {
+      const whitelistURLs = [
+        "https://goo.gl/maps/",
+        "https://google.com/maps/",
+        "https://www.google.com/maps/",
+        "https://www.openstreetmap.org/way/",
+        "https://www.yelp.com/biz/",
+      ];
+
+      for (const whitelistURL of whitelistURLs) {
+        if (place.URL.startsWith(whitelistURL)) {
+          return true;
+        }
+      }
+      return false;
     },
     async del(): Promise<void> {
       this.$data.deleting = true;
@@ -163,18 +193,18 @@ export default Vue.extend({
       }
 
       this.$data.deleting = false;
-      await this.$alert(
-        success
-          ? "Trip is successfully deleted!"
-          : "Trip deletion attempt failed.",
-        "Trip Deletion",
-        {
-          confirmButtonText: "OK",
-        },
+      this.$notify(
+        General.notifConfig(
+          "Trip Deletion",
+          success
+            ? "Trip is successfully deleted!"
+            : "Trip deletion attempt failed.",
+          success ? "success" : "error",
+        ),
       );
 
       if (success) {
-        this.$router.push("/trip/new");
+        this.$router.push("/");
       }
     },
     tripToItem(itemType: string): TripEditable {
@@ -184,7 +214,8 @@ export default Vue.extend({
       );
     },
     update() {
-      this.$data.possibleCities = CityUtil.allActiveCities();
+      this.$data.possibleCities = CityUtil.sortedCityList();
+      console.log(this.$data.possibleCities);
       this.$data.cities = this.$props.trip.cities;
       this.$data.private = this.$props.trip.private;
       this.$nextTick(function () {
