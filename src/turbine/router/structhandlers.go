@@ -9,9 +9,9 @@ import (
 	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
-	"github.com/gorilla/mux"
-	"github.com/gorilla/sessions"
-	"golang.org/x/crypto/bcrypt"
+	mux "github.com/gorilla/mux"
+	sessions "github.com/gorilla/sessions"
+	bcrypt "golang.org/x/crypto/bcrypt"
 )
 
 var (
@@ -24,7 +24,7 @@ var (
 func addTrip(res http.ResponseWriter, req *http.Request) {
 	var item *wings.Trip
 	unpackJSON(&res, req, &item)
-	if !verifyUser(req, item.UserID) {
+	if item == nil || !verifyUser(req, item.UserID) {
 		response(&res, http.StatusForbidden)
 		return
 	}
@@ -76,7 +76,11 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 	var item *wings.NewUser
 	dummyUser := db.DummyUser()
 	unpackJSON(&res, req, &item)
-	dummyUser.ID = -1
+	if item == nil {
+		response(&res, http.StatusOK)
+		json.NewEncoder(res).Encode(dummyUser)
+		return
+	}
 	dummyUser.Email = item.Email
 	item.Email, ok = handleEmails(item.Email)
 	if !ok {
@@ -130,6 +134,11 @@ func login(res http.ResponseWriter, req *http.Request) {
 	allowCORS(&res)
 	unpackJSON(&res, req, &item)
 	dummyUser := db.DummyUser()
+	if item == nil {
+		response(&res, http.StatusOK)
+		json.NewEncoder(res).Encode(dummyUser)
+		return
+	}
 
 	item.Email, ok = handleEmails(item.Email)
 	if !ok {
@@ -194,8 +203,16 @@ func getUser(res http.ResponseWriter, req *http.Request) {
 func updateUser(res http.ResponseWriter, req *http.Request) {
 	var item *wings.User
 	unpackJSON(&res, req, &item)
-	if getRequestID(req) != item.ID || !verifyUser(req, item.ID) {
-		response(&res, http.StatusForbidden)
+	if item == nil || getRequestID(req) != item.ID || !verifyUser(req, item.ID) {
+		response(&res, http.StatusOK)
+		json.NewEncoder(res).Encode(false)
+		return
+	}
+	var ok bool
+	item.Email, ok = handleEmails(item.Email)
+	if !ok {
+		response(&res, http.StatusOK)
+		json.NewEncoder(res).Encode(false)
 		return
 	}
 	updateItem(

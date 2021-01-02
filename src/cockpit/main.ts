@@ -14,19 +14,19 @@ Vue.config.productionTip = false;
 
 router.beforeEach(async (to: Route, from: Route, next) => {
   if (to.matched.some((record) => record.meta.loggedIn)) {
-    if (await General.authSession()) {
+    if (General.authSession()) {
       next();
     } else {
-      next({
-        path: "login",
-        params: { nextUrl: to.fullPath },
-      });
+      let path = General.addNext(to.path, "/trip/view/10");
+      path = General.addNext("/myaccount", path);
+      path = General.addNext("/register", path);
+      next(General.addNext("/login", path));
     }
   } else if (
     to.matched.some((record) => record.meta.guest)
   ) {
-    if (await General.authSession()) {
-      next("/");
+    if (General.authSession()) {
+      next(General.getNext(to.path));
     } else {
       next();
     }

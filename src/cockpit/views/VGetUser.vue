@@ -33,10 +33,10 @@ export default {
       );
 
       if (this.$data.user.ID === -1) {
-        this.$alert("User not found.", "Error", {
+        await this.$alert("User not found.", "Error", {
           confirmButtonText: "OK",
         });
-        return;
+        await this.$router.push("/");
       }
 
       const isCurrentUser = General.getIsCurrentUser(

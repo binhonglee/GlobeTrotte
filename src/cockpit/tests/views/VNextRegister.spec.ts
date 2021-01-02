@@ -1,4 +1,4 @@
-import VRegister from "@/views/VRegister.vue";
+import VNextRegister from "@/views/VNextRegister.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import User from "@/wings/User";
@@ -74,7 +74,7 @@ function fillFormAndReg(
 }
 
 test("Registration - Password mismatch", async (t) => {
-  const wrapper = mount(VRegister);
+  const wrapper = mount(VNextRegister);
   const alert = new alertSpy(wrapper);
   verifyUI(t, wrapper);
   fillFormAndReg(t, wrapper, {
@@ -103,7 +103,7 @@ test.serial(
     const genPOST = sinon
       .stub(HTTPReq, "genPOST")
       .resolves(JSON.parse(returnedUser));
-    const wrapper = mount(VRegister);
+    const wrapper = mount(VNextRegister);
     const message = new messageSpy(wrapper);
     verifyUI(t, wrapper);
     fillFormAndReg(t, wrapper, {
@@ -151,7 +151,7 @@ test.serial(
       .stub(HTTPReq, "genPOST")
       .resolves(JSON.parse(returnedUser));
     const wrapper = mount(
-      VRegister,
+      VNextRegister,
       newLocalVueAndRouter(),
     );
     const notify = new notifySpy(wrapper);
@@ -193,7 +193,10 @@ test.serial(
 );
 
 test("Registration - Cancel", async (t) => {
-  const wrapper = mount(VRegister, newLocalVueAndRouter());
+  const wrapper = mount(
+    VNextRegister,
+    newLocalVueAndRouter(),
+  );
   const routerBack = new routerSpy(wrapper, "back");
   verifyUI(t, wrapper);
   wrapper.find(".registrationCancel").trigger("click");

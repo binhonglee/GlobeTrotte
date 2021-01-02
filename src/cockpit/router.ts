@@ -18,48 +18,73 @@ export default new Router({
       path: "/",
       name: "landing",
       component: () => import("./views/VLanding.vue"),
-    }, {
+    },
+    {
       path: "*",
       name: "404",
       component: () => import("./views/V404.vue"),
-    }, {
-      path: "/user",
+    },
+    {
+      path: "/user/:id",
       name: "GetUserIndex",
       component: () => import("./views/VGetUser.vue"),
-    }, {
-      path: "/user/:id",
+    },
+    {
+      path: "/user",
       name: "GetUser",
       component: () => import("./views/VGetUser.vue"),
-    }, {
-      path: "/login",
-      name: "Login",
-      meta: {
-        guest: true,
-      },
-      component: () => import("./views/VLogin.vue"),
-    }, {
+    },
+    {
       path: "/myaccount",
       name: "MyAccount",
       meta: {
         loggedIn: true,
       },
       component: () => import("./views/VMyAccount.vue"),
-    }, {
-      path: "/register",
-      name: "Register",
+    },
+    {
+      path: "/login/:path",
+      name: "NextLoginRedirect",
       meta: {
         guest: true,
       },
-      component: () => import("./views/VRegister.vue"),
-    }, {
-      path: "/trip/view",
+      component: () => import("./views/VNextLogin.vue"),
+    },
+    {
+      path: "/login",
+      name: "NextLogin",
+      meta: {
+        guest: true,
+      },
+      component: () => import("./views/VNextLogin.vue"),
+    },
+    {
+      path: "/register/:path",
+      name: "NextRegisterRedirect",
+      meta: {
+        guest: true,
+      },
+      component: () => import("./views/VNextRegister.vue"),
+    },
+    {
+      path: "/register",
+      name: "NextRegister",
+      meta: {
+        guest: true,
+      },
+      component: () => import("./views/VNextRegister.vue"),
+    },
+    {
+      path: "/trip/view/:id",
       name: "trip/GetViewIndex",
       component: () => import("./views/trip/VGetView.vue"),
-    }, {
-      path: "/trip/view/:id",
+    },
+    {
+      path: "/trip/view",
       name: "trip/GetView",
       component: () => import("./views/trip/VGetView.vue"),
-    }, {
+    },
+    {
       path: "/trip/new",
       name: "trip/New",
       meta: {

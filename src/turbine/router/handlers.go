@@ -117,7 +117,10 @@ func updateItem(
 	getFunc func(int, int) structs.IStructs,
 	item structs.IStructs,
 ) {
-	if rItem := getFunc(item.GetID(), getUserID(req)); rItem.GetID() != id {
+	if rItem := getFunc(
+		item.GetID(),
+		getUserID(req),
+	); rItem.GetID() != id {
 		response(res, http.StatusNotFound)
 		return
 	}
@@ -127,7 +130,8 @@ func updateItem(
 		response(res, http.StatusAccepted)
 		json.NewEncoder(*res).Encode(true)
 	} else {
-		response(res, http.StatusNotAcceptable)
+		response(res, http.StatusOK)
+		json.NewEncoder(*res).Encode(false)
 	}
 }
 

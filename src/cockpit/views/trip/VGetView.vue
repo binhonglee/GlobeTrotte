@@ -52,10 +52,9 @@ export default {
       }
       this.$data.inputID = this.$route.params.id;
 
-      const parsedData = await HTTPReq.genGET(
-        "trip/" + this.$route.params.id,
+      this.$data.trip = await General.genTrip(
+        Number(this.$route.params.id),
       );
-      this.$data.trip = new Trip(parsedData);
       if (this.$data.trip.ID !== -1) {
         this.$data.owner = General.getIsCurrentUser(
           this.$data.trip.userID,

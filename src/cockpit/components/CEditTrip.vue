@@ -215,7 +215,6 @@ export default Vue.extend({
     },
     update() {
       this.$data.possibleCities = CityUtil.sortedCityList();
-      console.log(this.$data.possibleCities);
       this.$data.cities = this.$props.trip.cities;
       this.$data.private = this.$props.trip.private;
       this.$nextTick(function () {

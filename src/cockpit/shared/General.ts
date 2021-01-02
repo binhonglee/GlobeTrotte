@@ -16,6 +16,56 @@ export default class General {
     return obj.$route.params.id;
   }
 
+  public static paramNext(
+    obj: CombinedVueInstance,
+  ): string {
+    /* istanbul ignore next: $route is a pain to mock, using this as a workaround for testing */
+    try {
+      return obj.$route.params.path ?? "";
+    } catch (_) {
+      return "";
+    }
+  }
+
+  public static addNext(
+    path: string,
+    next: string,
+  ): string {
+    if (next.startsWith("/")) {
+      next = next.substr(1, next.length);
+    }
+    const nexts = next.split("/:");
+    const first = nexts.shift()?.split("/").join(".");
+    if (nexts.length > 0) {
+      next = first + "&" + nexts.join("");
+    } else {
+      next = first;
+    }
+
+    return path + "/:" + next;
+  }
+
+  public static getNext(path: string): string {
+    if (path !== "") {
+      if (!path.startsWith(":")) {
+        path = path.split("/:")[1] ?? "";
+      } else {
+        path = path.substr(1, path.length);
+      }
+      const paths = path.split("&");
+      let next = "";
+      while (next === "" || next === undefined) {
+        next = paths.shift()?.split(".").join("/");
+      }
+      path = next + "/:" + paths.join("&");
+    }
+    return "/" + path;
+  }
+
+  public static toNext(obj: CombinedVueInstance): void {
+    obj.$router.push(this.getNext(this.paramNext(obj)));
+  }
+
   public static notifConfig(
     title: string,
     message: string,
@@ -25,7 +75,7 @@ export default class General {
       message: message,
       title: title,
       type: type,
-      duration: 10000000000000000,
+      duration: 2000,
       offset: 50,
     };
   }
@@ -68,7 +118,7 @@ export default class General {
     return new User();
   }
 
-  public static async authSession(): Promise<boolean> {
-    return (await this.genCurrentUser()).ID !== -1;
+  public static authSession(): boolean {
+    return this.getCurrentUser().ID !== -1;
   }
 }

@@ -1,4 +1,5 @@
-import VLogin from "@/views/VLogin.vue";
+import VNextLogin from "@/views/VNextLogin.vue";
+import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import User from "@/wings/User";
@@ -53,15 +54,22 @@ function fillFormAndLogin(
 }
 
 test("Login - Cancel", async (t) => {
-  const wrapper = mount(VLogin, newLocalVueAndRouter());
+  const paramNext = sinon
+    .stub(General, "paramNext")
+    .returns("");
+  const wrapper = mount(VNextLogin, newLocalVueAndRouter());
   const routerBack = new routerSpy(wrapper, "back");
   verifyUI(t, wrapper);
   wrapper.find(".loginCancel").trigger("click");
   t.true(routerBack.item.calledOnce);
+  await paramNext.restore();
   await routerBack.restore();
 });
 
 test.serial("Login - Wrong password", async (t) => {
+  const paramNext = sinon
+    .stub(General, "paramNext")
+    .returns("");
   const returnedUser = WingsStructUtil.stringify(
     new User({
       id: -1,
@@ -70,7 +78,7 @@ test.serial("Login - Wrong password", async (t) => {
   const genPOST = sinon
     .stub(HTTPReq, "genPOST")
     .resolves(JSON.parse(returnedUser));
-  const wrapper = mount(VLogin);
+  const wrapper = mount(VNextLogin);
   const message = new messageSpy(wrapper);
   verifyUI(t, wrapper);
   fillFormAndLogin(t, wrapper, {
@@ -97,10 +105,14 @@ test.serial("Login - Wrong password", async (t) => {
     "Wrong email or password. Please try again.",
   );
   t.is(message.getType(), "error");
+  await paramNext.restore();
   await message.restore();
 });
 
 test.serial("Login - Success", async (t) => {
+  const paramNext = sinon
+    .stub(General, "paramNext")
+    .returns("");
   const returnedUser = WingsStructUtil.stringify(
     new User({
       id: 10,
@@ -109,7 +121,7 @@ test.serial("Login - Success", async (t) => {
   const genPOST = sinon
     .stub(HTTPReq, "genPOST")
     .resolves(JSON.parse(returnedUser));
-  const wrapper = mount(VLogin, newLocalVueAndRouter());
+  const wrapper = mount(VNextLogin, newLocalVueAndRouter());
   await wrapper.vm.$router.push("/login");
   const routerPush = new routerSpy(wrapper, "push");
   const notify = new notifySpy(wrapper);
@@ -119,6 +131,7 @@ test.serial("Login - Success", async (t) => {
     email: email,
     password: password,
   });
+  await paramNext.restore();
   t.true(genPOST.calledOnce, "Called genPOST once");
   t.is(genPOST.args[0][0], "login");
   t.is(

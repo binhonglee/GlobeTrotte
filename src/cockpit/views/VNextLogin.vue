@@ -1,6 +1,13 @@
 <template lang="pug">
   .login.narrow_content
     h1.title Login
+    el-alert.tripPrivateAlertBar(
+      v-if="showError"
+      title="Please login to continue."
+      type="error"
+      :closable="false"
+      show-icon
+    )
     form.loginbox
       CEditItem.loginUsernameItem(
         label="Email"
@@ -37,12 +44,14 @@ import CEditItem from "@/components/CEditItem.vue";
 
 interface Data {
   loading: boolean;
+  showError: boolean;
 }
 
 export default {
   data(): Data {
     return {
       loading: false,
+      showError: false,
     };
   },
   components: {
@@ -86,13 +95,16 @@ export default {
         ),
       );
 
-      this.$router.push("/");
+      General.toNext(this);
     },
     cancel(): void {
       this.$router.back();
     },
   },
   beforeMount(): void {
+    if (General.paramNext(this) !== "") {
+      this.$data.showError = true;
+    }
     this.$nextTick(function () {
       this.$refs.email.$refs.input.focus();
     });

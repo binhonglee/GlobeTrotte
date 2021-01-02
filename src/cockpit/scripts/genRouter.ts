@@ -6,7 +6,12 @@ interface Meta {
 }
 
 const meta: Meta = {
-  guest: ["Login", "Register"],
+  guest: [
+    "NextLogin",
+    "NextLoginRedirect",
+    "NextRegister",
+    "NextRegisterRedirect",
+  ],
   loggedIn: ["trip/New", "MyAccount"],
 };
 
@@ -32,7 +37,8 @@ export default new Router({
       path: "/",
       name: "landing",
       component: () => import("./views/VLanding.vue"),
-    }, {
+    },
+    {
       path: "*",
       name: "404",
       component: () => import("./views/V404.vue"),
@@ -42,6 +48,22 @@ const after = `
   ],
 });
 `;
+
+class Params {
+  public key: string;
+  public name: string;
+  public param: string;
+
+  public constructor(
+    key: string,
+    name: string,
+    param: string,
+  ) {
+    this.key = key;
+    this.name = name;
+    this.param = param;
+  }
+}
 
 class GenRouter {
   private output = before;
@@ -72,14 +94,33 @@ class GenRouter {
       return "";
     }
 
-    if (urlPath.substr(0, 3).localeCompare("get") === 0) {
-      urlPath = urlPath.substr(3);
-      toReturn = this.getRoute(
-        path + urlPath,
-        path + name + "Index",
-        path + file,
-      );
-      urlPath = urlPath += "/:id";
+    const allParams: Params[] = [
+      new Params("get", "Index", "id"),
+      new Params("next", "Redirect", "path"),
+    ];
+    let returnAfter = false;
+    allParams.forEach((param) => {
+      if (
+        urlPath.length > param.key.length &&
+        urlPath
+          .substr(0, param.key.length)
+          .localeCompare(param.key) === 0
+      ) {
+        urlPath = urlPath.substr(param.key.length);
+        returnAfter =
+          urlPath.substr(0, 4).localeCompare("only") === 0;
+        if (returnAfter) {
+          urlPath = urlPath.substr(4);
+        }
+        toReturn = this.getRoute(
+          path + urlPath + "/:" + param.param,
+          path + name + param.name,
+          path + file,
+        );
+      }
+    });
+    if (returnAfter) {
+      return toReturn;
     }
 
     return (
@@ -118,7 +159,8 @@ class GenRouter {
     }
 
     return (
-      ` {
+      `
+    {
       path: "/` +
       path +
       `",

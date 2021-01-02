@@ -36,12 +36,12 @@ export default {
     };
   },
   methods: {
-    async beforeMount(): Promise<void> {
-      await this.setAuthed();
+    beforeMount(): void {
+      this.setAuthed();
       this.setActiveIndex();
     },
-    async setAuthed(): Promise<void> {
-      this.$data.authed = await General.authSession();
+    setAuthed(): void {
+      this.$data.authed = General.authSession();
     },
     setActiveIndex(): void {
       let path = window.location.pathname;
@@ -78,8 +78,8 @@ export default {
   },
   watch: {
     $route: {
-      handler: async function (): Promise<void> {
-        await this.setAuthed();
+      handler: function (): void {
+        this.setAuthed();
         this.setActiveIndex();
       },
       immediate: true,
