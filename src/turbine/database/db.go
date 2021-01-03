@@ -20,7 +20,7 @@ const (
 )
 
 var db *sql.DB
-var tableNames = [5]string{"users", "trips", "cities", "days", "places"}
+var tableNames = [6]string{"users", "trips", "cities", "days", "places", "emails"}
 
 func init() {
 	config := getConfig()
@@ -72,6 +72,8 @@ func initializeDB() {
 				createDaysTable()
 			case "places":
 				createPlacesTable()
+			case "emails":
+				createEmailsTable()
 			default:
 				logger.Panic(logger.Database, "New element was added to 'tableNames' but no creation method is added for it.")
 			}
@@ -86,11 +88,12 @@ func createUsersTable() {
 		CREATE TABLE users (
 			id              SERIAL PRIMARY KEY,
 			name            TEXT           NOT NULL,
-			password        TEXT,
+			password        TEXT           NOT NULL,
 			email           TEXT UNIQUE    NOT NULL,
 			bio             TEXT,
 			time_created    TIMESTAMPTZ    NOT NULL,
 			trips           INT[]
+			confirmed       BOOLEAN        NOT NULL,
 		);`
 	_, err := db.Exec(createTable)
 
@@ -152,6 +155,20 @@ func createCitiesTable() {
 	_, err := db.Exec(createTable)
 
 	logger.PanicErr(logger.Database, err, "Failed to create `cities` table.")
+}
+
+func createEmailsTable() {
+	createTable := `
+		CREATE TABLE emails (
+			id              SERIAL PRIMARY KEY,
+			userid          INT            NOT NULL,
+			code            TEXT UNIQUE    NOT NULL,
+			emailAddress    TEXT           NOT NULL,
+			confirmed       BOOLEAN        NOT NULL
+		);`
+	_, err := db.Exec(createTable)
+
+	logger.PanicErr(logger.Database, err, "Failed to create `emails` table.")
 }
 
 func getConfig() map[string]string {

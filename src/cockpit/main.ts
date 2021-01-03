@@ -17,10 +17,33 @@ router.beforeEach(async (to: Route, from: Route, next) => {
     if (General.authSession()) {
       next();
     } else {
-      let path = General.addNext(to.path, "/trip/view/10");
-      path = General.addNext("/myaccount", path);
-      path = General.addNext("/register", path);
-      next(General.addNext("/login", path));
+      next(General.addNext("/login", to.path));
+    }
+  } else if (
+    to.matched.some((record) => record.meta.confirmed)
+  ) {
+    if (General.authSession()) {
+      if (General.confirmed()) {
+        next();
+      } else {
+        next(
+          General.addNext("/unconfirmed/email", to.path),
+        );
+      }
+    } else {
+      next(General.addNext("/login", to.path));
+    }
+  } else if (
+    to.matched.some((record) => record.meta.unconfirmed)
+  ) {
+    if (General.authSession()) {
+      if (General.confirmed()) {
+        next(General.getNext(to.path));
+      } else {
+        next();
+      }
+    } else {
+      next(General.addNext("/login", to.path));
     }
   } else if (
     to.matched.some((record) => record.meta.guest)

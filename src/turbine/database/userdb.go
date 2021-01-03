@@ -119,14 +119,14 @@ func DeleteUserDB(existingUser structs.IStructs) bool {
 	}
 
 	//TODO: More testing to make sure this is the same user
-
+	DeleteEmailDB(user.ID, user.Email)
 	return deleteUserWithID(existingUser.GetID())
 }
 
 func addNewUser(newUser wings.NewUser) int {
 	sqlStatement := `
-		INSERT INTO users (name, email, password, bio, time_created)
-		VALUES ($1, $2, $3, $4, $5)
+		INSERT INTO users (name, email, password, bio, time_created, confirmed)
+		VALUES ($1, $2, $3, $4, $5, $6)
 		RETURNING id`
 	id := 0
 	err := db.QueryRow(
@@ -136,6 +136,7 @@ func addNewUser(newUser wings.NewUser) int {
 		newUser.Password,
 		"",
 		time.Now(),
+		false,
 	).Scan(&id)
 	if err != nil {
 		logger.Err(logger.Database, err, "")
@@ -149,7 +150,7 @@ func getUserWithID(id int) wings.User {
 	var user wings.User
 	var sqlInt64 []sql.NullInt64
 	sqlStatement := `
-		SELECT id, name, email, bio, time_created, trips
+		SELECT id, name, email, bio, time_created, trips, confirmed
 		FROM users WHERE id=$1;`
 	switch err := db.QueryRow(sqlStatement, id).Scan(
 		&user.ID,
@@ -158,6 +159,7 @@ func getUserWithID(id int) wings.User {
 		&user.Bio,
 		&user.TimeCreated,
 		pq.Array(&sqlInt64),
+		&user.Confirmed,
 	); err {
 	case sql.ErrNoRows:
 		logger.Print(logger.Database, "User not found.")
@@ -212,7 +214,8 @@ func updateUser(updatedUser wings.User) bool {
 		SET name = $2,
 		email = $3,
 		bio = $4,
-		trips = $5
+		trips = $5,
+		confirmed = $6
 		WHERE id = $1;`
 
 	_, err := db.Exec(
@@ -222,6 +225,7 @@ func updateUser(updatedUser wings.User) bool {
 		updatedUser.Email,
 		updatedUser.Bio,
 		pq.Array(updatedUser.Trips),
+		existingUser.Email == updatedUser.Email,
 	)
 
 	if err != nil {
@@ -230,6 +234,22 @@ func updateUser(updatedUser wings.User) bool {
 	}
 
 	return true
+}
+
+func confirmUser(id int) bool {
+	sqlStatement := `
+		UPDATE users
+		SET confirmed = $2
+		WHERE id = $1;`
+
+	_, err := db.Exec(sqlStatement, id, true)
+
+	logger.Err(
+		logger.Database, err,
+		"Failed to confirm user "+strconv.Itoa(id),
+	)
+
+	return err == nil
 }
 
 func deleteUserWithID(id int) bool {

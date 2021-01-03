@@ -55,12 +55,12 @@ packages:
   /@ava/babel/1.0.1:
     dependencies:
       '@ava/require-precompiled': 1.0.0
-      '@babel/core': 7.12.9
-      '@babel/generator': 7.12.5
-      '@babel/plugin-proposal-dynamic-import': 7.12.1_@babel+core@7.12.9
-      '@babel/plugin-proposal-nullish-coalescing-operator': 7.12.1_@babel+core@7.12.9
-      '@babel/plugin-proposal-optional-chaining': 7.12.7_@babel+core@7.12.9
-      '@babel/plugin-transform-modules-commonjs': 7.12.1_@babel+core@7.12.9
+      '@babel/core': 7.12.10
+      '@babel/generator': 7.12.11
+      '@babel/plugin-proposal-dynamic-import': 7.12.1_@babel+core@7.12.10
+      '@babel/plugin-proposal-nullish-coalescing-operator': 7.12.1_@babel+core@7.12.10
+      '@babel/plugin-proposal-optional-chaining': 7.12.7_@babel+core@7.12.10
+      '@babel/plugin-transform-modules-commonjs': 7.12.1_@babel+core@7.12.10
       babel-plugin-espower: 3.0.1
       concordance: 4.0.0
       convert-source-map: 1.7.0
@@ -104,14 +104,14 @@ packages:
       integrity: sha512-YaxPMGs/XIWtYqrdEOZOCPsVWfEoriXopnsz3/i7apYPXQ3698UFhS6dVT1KN5qOsWmVgw/FOrmQgpRaZayGsw==
   /@babel/core/7.12.10:
     dependencies:
-      '@babel/code-frame': 7.10.4
-      '@babel/generator': 7.12.10
+      '@babel/code-frame': 7.12.11
+      '@babel/generator': 7.12.11
       '@babel/helper-module-transforms': 7.12.1
       '@babel/helpers': 7.12.5
-      '@babel/parser': 7.12.10
+      '@babel/parser': 7.12.11
       '@babel/template': 7.12.7
-      '@babel/traverse': 7.12.10
-      '@babel/types': 7.12.10
+      '@babel/traverse': 7.12.12
+      '@babel/types': 7.12.12
       convert-source-map: 1.7.0
       debug: 4.3.1
       gensync: 1.0.0-beta.2
@@ -168,14 +168,6 @@ packages:
       node: '>=6.9.0'
     resolution:
       integrity: sha512-OvjIh6aqXtlsA8ujtGKfC7LYWksYSX8yQcM8Ay3LuvVeQ63lcOKgoZWVqcpFwkd29aYU9rVx7jxhfhiEDV9MZA==
-  /@babel/generator/7.12.10:
-    dependencies:
-      '@babel/types': 7.12.10
-      jsesc: 2.5.2
-      source-map: 0.5.7
-    dev: true
-    resolution:
-      integrity: sha512-6mCdfhWgmqLdtTkhXjnIz0LcdVCd26wS2JXRtj2XY0u5klDsXBREA/pG5NVOuVnF2LUrBGNFtQkIqqTbblg0ww==
   /@babel/generator/7.12.11:
     dependencies:
       '@babel/types': 7.12.12
@@ -231,7 +223,7 @@ packages:
       '@babel/compat-data': 7.12.7
       '@babel/core': 7.12.10
       '@babel/helper-validator-option': 7.12.11
-      browserslist: 4.15.0
+      browserslist: 4.16.0
       semver: 5.7.1
     dev: true
     peerDependencies:
@@ -243,7 +235,7 @@ packages:
       '@babel/compat-data': 7.12.7
       '@babel/core': 7.12.9
       '@babel/helper-validator-option': 7.12.11
-      browserslist: 4.15.0
+      browserslist: 4.16.0
       semver: 5.7.1
     dev: true
     peerDependencies:
@@ -496,13 +488,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-oJtNJCMFdIMwXGmx+KxuaD7i3b8uS7TTFYW/FNG2BT8m+fmGHoiPYoH0Pe3gya07WuFmM5FCDIr1x0irkD/hyA==
-  /@babel/parser/7.12.10:
-    dev: true
-    engines:
-      node: '>=6.0.0'
-    hasBin: true
-    resolution:
-      integrity: sha512-PJdRPwyoOqFAWfLytxrWwGrAxghCgh/yTNCYciOz8QgjflA7aZhECPZAa2VUedKg2+QMWkI0L9lynh2SNmNEgA==
   /@babel/parser/7.12.11:
     dev: true
     engines:
@@ -517,6 +502,17 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-oWR02Ubp4xTLCAqPRiNIuMVgNO5Aif/xpXtabhzW2HWUD47XJsAB4Zd/Rg30+XeQA3juXigV7hlquOTmwqLiwg==
+  /@babel/plugin-proposal-async-generator-functions/7.12.12_@babel+core@7.12.10:
+    dependencies:
+      '@babel/core': 7.12.10
+      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-remap-async-to-generator': 7.12.1
+      '@babel/plugin-syntax-async-generators': 7.8.4_@babel+core@7.12.10
+    dev: true
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    resolution:
+      integrity: sha512-nrz9y0a4xmUrRq51bYkWJIO5SBZyG2ys2qinHsN0zHDHVsUaModrkpyWWWXfGqYQmOL3x9sQIcTNN/pBGpo09A==
   /@babel/plugin-proposal-async-generator-functions/7.12.12_@babel+core@7.4.5:
     dependencies:
       '@babel/core': 7.4.5
@@ -528,17 +524,6 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-nrz9y0a4xmUrRq51bYkWJIO5SBZyG2ys2qinHsN0zHDHVsUaModrkpyWWWXfGqYQmOL3x9sQIcTNN/pBGpo09A==
-  /@babel/plugin-proposal-async-generator-functions/7.12.1_@babel+core@7.12.10:
-    dependencies:
-      '@babel/core': 7.12.10
-      '@babel/helper-plugin-utils': 7.10.4
-      '@babel/helper-remap-async-to-generator': 7.12.1
-      '@babel/plugin-syntax-async-generators': 7.8.4_@babel+core@7.12.10
-    dev: true
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    resolution:
-      integrity: sha512-d+/o30tJxFxrA1lhzJqiUcEJdI6jKlNregCv5bASeGf2Q4MXmnwH7viDo7nhx1/ohf09oaH8j1GVYG/e3Yqk6A==
   /@babel/plugin-proposal-async-generator-functions/7.12.1_@babel+core@7.12.9:
     dependencies:
       '@babel/core': 7.12.9
@@ -1236,7 +1221,7 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-5OpxfuYnSgPalRpo8EWGPzIYf0lHBWORCkj5M0oLBwHdlux9Ri36QqGW3/LR13RSVOAoUUMzoPI/jpE4ABcHoA==
-  /@babel/plugin-transform-block-scoping/7.12.11_@babel+core@7.12.10:
+  /@babel/plugin-transform-block-scoping/7.12.12_@babel+core@7.12.10:
     dependencies:
       '@babel/core': 7.12.10
       '@babel/helper-plugin-utils': 7.10.4
@@ -1244,7 +1229,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     resolution:
-      integrity: sha512-atR1Rxc3hM+VPg/NvNvfYw0npQEAcHuJ+MGZnFn6h3bo+1U3BWXMdFMlvVRApBTWKQMX7SOwRJZA5FBF/JQbvA==
+      integrity: sha512-VOEPQ/ExOVqbukuP7BYJtI5ZxxsmegTwzZ04j1aF0dkSypGo9XpDHuOrABsJu+ie+penpSJheDJ11x1BEZNiyQ==
   /@babel/plugin-transform-block-scoping/7.12.12_@babel+core@7.4.5:
     dependencies:
       '@babel/core': 7.4.5
@@ -2183,7 +2168,7 @@ packages:
       '@babel/helper-module-imports': 7.12.5
       '@babel/helper-plugin-utils': 7.10.4
       '@babel/helper-validator-option': 7.12.11
-      '@babel/plugin-proposal-async-generator-functions': 7.12.1_@babel+core@7.12.10
+      '@babel/plugin-proposal-async-generator-functions': 7.12.12_@babel+core@7.12.10
       '@babel/plugin-proposal-class-properties': 7.12.1_@babel+core@7.12.10
       '@babel/plugin-proposal-dynamic-import': 7.12.1_@babel+core@7.12.10
       '@babel/plugin-proposal-export-namespace-from': 7.12.1_@babel+core@7.12.10
@@ -2211,7 +2196,7 @@ packages:
       '@babel/plugin-transform-arrow-functions': 7.12.1_@babel+core@7.12.10
       '@babel/plugin-transform-async-to-generator': 7.12.1_@babel+core@7.12.10
       '@babel/plugin-transform-block-scoped-functions': 7.12.1_@babel+core@7.12.10
-      '@babel/plugin-transform-block-scoping': 7.12.11_@babel+core@7.12.10
+      '@babel/plugin-transform-block-scoping': 7.12.12_@babel+core@7.12.10
       '@babel/plugin-transform-classes': 7.12.1_@babel+core@7.12.10
       '@babel/plugin-transform-computed-properties': 7.12.1_@babel+core@7.12.10
       '@babel/plugin-transform-destructuring': 7.12.1_@babel+core@7.12.10
@@ -2241,7 +2226,7 @@ packages:
       '@babel/plugin-transform-unicode-escapes': 7.12.1_@babel+core@7.12.10
       '@babel/plugin-transform-unicode-regex': 7.12.1_@babel+core@7.12.10
       '@babel/preset-modules': 0.1.4_@babel+core@7.12.10
-      '@babel/types': 7.12.11
+      '@babel/types': 7.12.12
       core-js-compat: 3.8.1
       semver: 5.7.1
     dev: true
@@ -2385,7 +2370,7 @@ packages:
       '@babel/helper-plugin-utils': 7.10.4
       '@babel/plugin-proposal-unicode-property-regex': 7.12.1_@babel+core@7.12.10
       '@babel/plugin-transform-dotall-regex': 7.12.1_@babel+core@7.12.10
-      '@babel/types': 7.12.11
+      '@babel/types': 7.12.12
       esutils: 2.0.3
     dev: true
     peerDependencies:
@@ -2398,7 +2383,7 @@ packages:
       '@babel/helper-plugin-utils': 7.10.4
       '@babel/plugin-proposal-unicode-property-regex': 7.12.1_@babel+core@7.12.9
       '@babel/plugin-transform-dotall-regex': 7.12.1_@babel+core@7.12.9
-      '@babel/types': 7.12.11
+      '@babel/types': 7.12.12
       esutils: 2.0.3
     dev: true
     peerDependencies:
@@ -2422,7 +2407,7 @@ packages:
     dependencies:
       '@babel/core': 7.12.10
       '@babel/helper-plugin-utils': 7.10.4
-      '@babel/helper-validator-option': 7.12.1
+      '@babel/helper-validator-option': 7.12.11
       '@babel/plugin-transform-typescript': 7.12.1_@babel+core@7.12.10
     dev: true
     peerDependencies:
@@ -2449,20 +2434,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-GkDzmHS6GV7ZeXfJZ0tLRBhZcMcY0/Lnb+eEbXDBfCAcZCjrZKe6p3J4we/D24O9Y8enxWAg1cWwof59yLh2ow==
-  /@babel/traverse/7.12.10:
-    dependencies:
-      '@babel/code-frame': 7.10.4
-      '@babel/generator': 7.12.10
-      '@babel/helper-function-name': 7.10.4
-      '@babel/helper-split-export-declaration': 7.11.0
-      '@babel/parser': 7.12.10
-      '@babel/types': 7.12.10
-      debug: 4.3.1
-      globals: 11.12.0
-      lodash: 4.17.20
-    dev: true
-    resolution:
-      integrity: sha512-6aEtf0IeRgbYWzta29lePeYSk+YAFIC3kyqESeft8o5CkFlYIMX+EQDDWEiAQ9LHOA3d0oHdgrSsID/CKqXJlg==
   /@babel/traverse/7.12.12:
     dependencies:
       '@babel/code-frame': 7.12.11
@@ -2499,14 +2470,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-nZxaJhBXBQ8HVoIcGsf9qWep3Oh3jCENK54V4mRF7qaJabVsAYdbTtmSD8WmAp1R6ytPiu5apMwSXyxB1WlaBA==
-  /@babel/types/7.12.10:
-    dependencies:
-      '@babel/helper-validator-identifier': 7.10.4
-      lodash: 4.17.20
-      to-fast-properties: 2.0.0
-    dev: true
-    resolution:
-      integrity: sha512-sf6wboJV5mGyip2hIpDSKsr80RszPinEFjsHTalMxZAZkoQ2/2yQzxlcFN52SJqsyPfLtPmenL4g2KB3KJXPDw==
   /@babel/types/7.12.11:
     dependencies:
       '@babel/helper-validator-identifier': 7.12.11
@@ -2660,7 +2623,7 @@ packages:
       camelcase: 5.3.1
       find-up: 4.1.0
       get-package-type: 0.1.0
-      js-yaml: 3.14.0
+      js-yaml: 3.14.1
       resolve-from: 5.0.0
     dev: true
     engines:
@@ -3501,7 +3464,7 @@ packages:
       currently-unhandled: 0.4.1
       debug: 4.3.1
       del: 6.0.0
-      emittery: 0.8.0
+      emittery: 0.8.1
       equal-length: 1.0.1
       figures: 3.2.0
       globby: 11.0.1
@@ -3587,8 +3550,8 @@ packages:
       integrity: sha512-jZVI+s9Zg3IqA/kdi0i6UDCybUI3aSBLnglhYbSSjKlV7yF1F/5LWv8MakQmvYpnbJDS6fcBL2KzHSxNCMtWSQ==
   /babel-plugin-espower/3.0.1:
     dependencies:
-      '@babel/generator': 7.12.5
-      '@babel/parser': 7.12.7
+      '@babel/generator': 7.12.11
+      '@babel/parser': 7.12.11
       call-matcher: 1.1.0
       core-js: 2.6.12
       espower-location-detector: 1.0.0
@@ -4783,7 +4746,7 @@ packages:
     resolution:
       integrity: sha512-a16TLmy9NVD1rkjUGbwuyWkiDoN0FDpAwrfLONvHFQx0D9k7J9y0srwMT8QP/Z6HE3MIFaVynEeYwZwPX1o5RQ==
   /core-js/2.6.12:
-    deprecated: core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.
+    deprecated: 'core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.'
     requiresBuild: true
     resolution:
       integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
@@ -5198,14 +5161,14 @@ packages:
   /debug/3.2.6:
     dependencies:
       ms: 2.1.3
-    deprecated: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+    deprecated: 'Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)'
     dev: true
     resolution:
       integrity: sha512-mel+jf7nrtEl5Pn1Qx46zARXKDpBbvzezse7p7LqINmdoIk8PYP5SySaxEmYv6TZ0JyEKA1hsCId6DIhgITtWQ==
   /debug/4.1.1:
     dependencies:
       ms: 2.1.3
-    deprecated: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+    deprecated: 'Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)'
     dev: true
     resolution:
       integrity: sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
@@ -5352,7 +5315,7 @@ packages:
       integrity: sha1-yY2bzvdWdBiOEQlpFRGZ45sfppM=
   /del/6.0.0:
     dependencies:
-      globby: 11.0.1
+      globby: 11.0.2
       graceful-fs: 4.2.4
       is-glob: 4.0.1
       is-path-cwd: 2.2.0
@@ -5607,12 +5570,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-IMqzv5wNQf+E6aHeIqATs0tOLeOTwj1QKbRcS3jBbYkl5oLAserA8yJTT7/VyHUYG91PRmPyeQDObKLPpeS4dw==
-  /emittery/0.8.0:
+  /emittery/0.8.1:
     dev: true
     engines:
       node: '>=10'
     resolution:
-      integrity: sha512-XMGToId3CejfmZg/0qOzdTT3WFuAN8fQYtcKXccabRfCzGiWMSTydMshHGLyx9C/ejMl4nw9tvqrn12QVFPIUg==
+      integrity: sha512-uDfvUjVrfGJJhymx/kz6prltenw1u7WrCg1oa94zYY8xxVpLLUu045LAT0dhDZdXG58/EpPL/5kA180fQ/qudg==
   /emoji-regex/7.0.3:
     dev: true
     resolution:
@@ -6518,7 +6481,7 @@ packages:
     resolution:
       integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==
   /fsevents/2.1.3:
-    deprecated: Please update to v 2.2.x
+    deprecated: '"Please update to latest v2.3 or v2.2"'
     dev: true
     engines:
       node: ^8.16.0 || ^10.6.0 || >=11.0.0
@@ -7664,7 +7627,7 @@ packages:
       integrity: sha512-Pt/uge1Q9s+5VAZ+pCo16TYMWPBIl+oaNIjgLQxcX0itS6ueeaA+pEfThZpH8WxhFgCiEb8sAJY6MdUKgiIWaQ==
   /istanbul-lib-instrument/4.0.3:
     dependencies:
-      '@babel/core': 7.12.9
+      '@babel/core': 7.12.10
       '@istanbuljs/schema': 0.1.2
       istanbul-lib-coverage: 3.0.0
       semver: 6.3.0
@@ -10711,7 +10674,7 @@ packages:
       request-promise-core: 1.1.4_request@2.88.2
       stealthy-require: 1.1.1
       tough-cookie: 2.5.0
-    deprecated: request-promise-native has been deprecated because it extends the now deprecated request package, see https://github.com/request/request/issues/3142
+    deprecated: 'request-promise-native has been deprecated because it extends the now deprecated request package, see https://github.com/request/request/issues/3142'
     dev: true
     engines:
       node: '>=0.12.0'
@@ -10741,7 +10704,7 @@ packages:
       tough-cookie: 2.5.0
       tunnel-agent: 0.6.0
       uuid: 3.4.0
-    deprecated: request has been deprecated, see https://github.com/request/request/issues/3142
+    deprecated: 'request has been deprecated, see https://github.com/request/request/issues/3142'
     dev: true
     engines:
       node: '>= 6'
@@ -10829,7 +10792,7 @@ packages:
     resolution:
       integrity: sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==
   /resolve-url/0.2.1:
-    deprecated: https://github.com/lydell/resolve-url#deprecated
+    deprecated: 'https://github.com/lydell/resolve-url#deprecated'
     dev: true
     resolution:
       integrity: sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
@@ -12376,7 +12339,7 @@ packages:
     resolution:
       integrity: sha512-B0yRTzYdUCCn9n+F4+Gh4yIDtMQcaJsmYBDsTSG8g/OejKBodLQ2IHfN3bM7jUsRXndopT7OIXWdYqc1fjmV6g==
   /urix/0.1.0:
-    deprecated: Please see https://github.com/lydell/urix#deprecated
+    deprecated: 'Please see https://github.com/lydell/urix#deprecated'
     dev: true
     resolution:
       integrity: sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=

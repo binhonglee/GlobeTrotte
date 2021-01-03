@@ -1,6 +1,17 @@
 <template lang="pug">
   .my_account
     h1.title My Account
+    el-link.unconfirmedEmailLink(
+      href="/unconfirmed/email" :underline="false"
+    )
+      el-alert.narrow_content.accountUnconfirmedAlertBar(
+        v-if="!confirmed"
+        title="Unconfirmed"
+        description="Please confirm you email address to access the full site."
+        type="error"
+        :closable="false"
+        show-icon
+      )
     .profileInfo
       div(v-if="!edit")
         CViewUser(:user="user")
@@ -62,6 +73,7 @@ import { WingsStructUtil } from "wings-ts-util";
 interface Data {
   user: User;
   edit: boolean;
+  confirmed: boolean;
 }
 
 export default {
@@ -73,6 +85,7 @@ export default {
     return {
       user: new User(),
       edit: false,
+      confirmed: true,
     };
   },
   methods: {
@@ -139,12 +152,23 @@ export default {
   },
   async beforeMount(): Promise<void> {
     this.$data.user = await General.genCurrentUser();
+    this.$data.confirmed = this.$data.user.confirmed;
   },
 };
 </script>
 
 <style lang="scss">
 @import "../shared/lib";
+
+.accountUnconfirmedAlertBar {
+  text-align: left;
+  padding: 10px;
+}
+
+.unconfirmedEmailLink,
+.unconfirmedEmailLink .el-link--inner {
+  width: 100%;
+}
 
 .myAccountDeletion {
   display: inline-block;

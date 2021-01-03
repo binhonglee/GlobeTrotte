@@ -116,22 +116,24 @@ func updateItem(
 	updateFunc func(structs.IStructs) bool,
 	getFunc func(int, int) structs.IStructs,
 	item structs.IStructs,
-) {
+) bool {
 	if rItem := getFunc(
 		item.GetID(),
 		getUserID(req),
 	); rItem.GetID() != id {
 		response(res, http.StatusNotFound)
-		return
+		return false
 	}
 
 	if updated := updateFunc(item); updated {
 		allowCORS(res)
 		response(res, http.StatusAccepted)
 		json.NewEncoder(*res).Encode(true)
+		return true
 	} else {
 		response(res, http.StatusOK)
 		json.NewEncoder(*res).Encode(false)
+		return false
 	}
 }
 

@@ -6,8 +6,9 @@ import (
 	"strconv"
 
 	db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
-	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
-	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/email"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
 	mux "github.com/gorilla/mux"
 	sessions "github.com/gorilla/sessions"
@@ -100,6 +101,7 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 	item.Password = string(hash)
 	newID := addItem(&res, req, db.NewUserDB, item, true)
 	if newID != -1 {
+		email.NewEmail(newID, item.Email)
 		user := db.GetUserWithEmailDB(*item)
 		newCookie(res, req, user.ID)
 		json.NewEncoder(res).Encode(user)
@@ -215,10 +217,12 @@ func updateUser(res http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(res).Encode(false)
 		return
 	}
-	updateItem(
+	if updateItem(
 		&res, req, getRequestID(req),
 		db.UpdateUserDB, db.GetUserDB, item,
-	)
+	) {
+		email.UpdateEmail(item.ID, item.Email)
+	}
 }
 
 func deleteUser(res http.ResponseWriter, req *http.Request) {
@@ -235,6 +239,21 @@ func deleteUser(res http.ResponseWriter, req *http.Request) {
 		logout(res, req)
 	}
 	setDeletionStatus(&res, deletion)
+}
+
+func confirmEmail(res http.ResponseWriter, req *http.Request) {
+	var item *wings.ConfirmEmail
+	unpackJSON(&res, req, &item)
+	logger.Debug(item)
+	allowCORS(&res)
+	if item == nil || !verifyUser(req, item.Userid) {
+		response(&res, http.StatusOK)
+		json.NewEncoder(res).Encode(false)
+		return
+	}
+	logger.Debug(item.Uuid)
+
+	json.NewEncoder(res).Encode(email.ConfirmEmail(*item))
 }
 
 func verifyUser(req *http.Request, userID int) bool {

@@ -88,3 +88,17 @@ wings_lib(
   ],
   visibility = ["PUBLIC"],
 )
+
+wings_lib(
+  name = "confirm_email",
+  config = "wings.json",
+  srcs = ["confirm_email.wings"],
+  outs = {
+    "src/cockpit/wings": "ConfirmEmail.ts",
+    "src/turbine/wings": "confirmemail.go",
+  },
+  deps = [
+    "//:wings_config",
+  ],
+  visibility = ["PUBLIC"],
+)

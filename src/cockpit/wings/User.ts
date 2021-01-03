@@ -16,6 +16,7 @@ export default class User implements IWingsStruct {
   public bio: String = '';
   public timeCreated: Date = new Date();
   public trips: Number[] = [];
+  public confirmed: Boolean = false;
 
   public constructor(obj?: any) {
     if (obj) {
@@ -25,6 +26,7 @@ export default class User implements IWingsStruct {
       this.bio = obj.bio !== undefined && obj.bio !== null ? obj.bio : '';
       this.timeCreated = obj.time_created !== undefined && obj.time_created !== null ? new Date(obj.time_created) : new Date();
       this.trips = obj.trips !== undefined && obj.trips !== null ? parseArray<Number>(Number, obj.trips) : [];
+      this.confirmed = obj.confirmed !== undefined && obj.confirmed !== null ? obj.confirmed : false;
     }
   }
 
@@ -47,6 +49,9 @@ export default class User implements IWingsStruct {
       }
       case 'trips': {
         return 'trips';
+      }
+      case 'confirmed': {
+        return 'confirmed';
       }
       default: {
         return key;

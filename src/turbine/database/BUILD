@@ -4,11 +4,13 @@ go_library(
     "db.go",
     "helper.go",
     "structsutil.go",
+    "emaildb.go",
     "tripdb.go",
     "userdb.go",
   ],
   deps = [
     "//third_party:pq",
+    "//third_party:uuid",
     "//src/turbine/wings:wings",
     "//src/turbine/structs:structs",
     "//src/turbine/logger:logger",

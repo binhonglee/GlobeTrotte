@@ -9,10 +9,11 @@ go_library(
     "//third_party:mux",
     "//third_party:bcrypt",
     "//third_party:sessions",
-    "//src/turbine/wings:wings",
     "//src/turbine/database:database",
+    "//src/turbine/email:email",
     "//src/turbine/logger:logger",
     "//src/turbine/structs:structs",
+    "//src/turbine/wings:wings",
   ],
   visibility = ["//src/..."],
 )

@@ -18,6 +18,7 @@ type User struct {
 	Bio            string       `json:"bio"`
 	TimeCreated    time.Time    `json:"time_created"`
 	Trips          []int        `json:"trips"`
+	Confirmed      bool         `json:"confirmed"`
 }
 
 // GetID (istruct) - Returns the trip ID.

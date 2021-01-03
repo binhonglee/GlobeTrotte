@@ -9,6 +9,7 @@ go_library(
     "//src/wings/struct:place_#go",
     "//src/wings/struct:new_user_#go",
     "//src/wings/struct:user_access_level_#go",
+    "//src/wings/struct:confirm_email_#go",
   ],
   visibility = ["//src/turbine/..."],
 )

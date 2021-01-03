@@ -195,7 +195,7 @@ func debugPrint(
 		strings.Repeat(" ", namespaceLen-len(string(debug)))
 	return fmt.Println(
 		time.Now().Format(time.Stamp)[7:],
-		" "+namespaceStr+" : ",
+		namespaceStr+" :",
 		string(status), a,
 		getCaller(debug, 3),
 		string(resetC),

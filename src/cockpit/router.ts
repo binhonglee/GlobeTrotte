@@ -75,6 +75,14 @@ export default new Router({
       component: () => import("./views/VNextRegister.vue"),
     },
     {
+      path: "/confirm/email/:uuid",
+      name: "confirm/UuidOnlyEmailUUID",
+      meta: {
+        unconfirmed: true,
+      },
+      component: () => import("./views/confirm/VUuidOnlyEmail.vue"),
+    },
+    {
       path: "/trip/view/:id",
       name: "trip/GetViewIndex",
       component: () => import("./views/trip/VGetView.vue"),
@@ -88,9 +96,22 @@ export default new Router({
       path: "/trip/new",
       name: "trip/New",
       meta: {
-        loggedIn: true,
+        confirmed: true,
       },
       component: () => import("./views/trip/VNew.vue"),
+    },
+    {
+      path: "/unconfirmed/email/:path",
+      name: "unconfirmed/NextEmailRedirect",
+      meta: {
+        unconfirmed: true,
+      },
+      component: () => import("./views/unconfirmed/VNextEmail.vue"),
+    },
+    {
+      path: "/unconfirmed/email",
+      name: "unconfirmed/NextEmail",
+      component: () => import("./views/unconfirmed/VNextEmail.vue"),
     },
   ],
 });

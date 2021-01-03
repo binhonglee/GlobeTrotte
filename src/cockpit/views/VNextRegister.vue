@@ -112,7 +112,13 @@ export default {
         ),
       );
 
-      this.$router.push({ path: "/myaccount" });
+      let next = General.getNext(General.paramNext(this));
+      if (next === "/") {
+        next = "/myaccount";
+      }
+      this.$router.push({
+        path: General.addNext("/unconfirmed/email", next),
+      });
     },
     cancel(): void {
       this.$router.back();

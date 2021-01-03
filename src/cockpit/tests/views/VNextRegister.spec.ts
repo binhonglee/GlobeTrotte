@@ -185,7 +185,10 @@ test.serial(
     );
     t.is(notify.getType(), "success");
     t.true(routerPush.item.calledOnce);
-    t.is(routerPush.getArg()["path"], "/myaccount");
+    t.is(
+      routerPush.getArg()["path"],
+      "/unconfirmed/email/:myaccount",
+    );
     await genPOST.restore();
     await notify.restore();
     await routerPush.restore();

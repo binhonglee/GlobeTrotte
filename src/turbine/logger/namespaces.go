@@ -11,6 +11,7 @@ const (
 	Main     = "main"
 	Router   = "router"
 	Database = "database"
+	Email    = "email"
 
 	// These are kept private since they should only be used
 	// in this package anyway

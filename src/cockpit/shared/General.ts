@@ -27,6 +27,17 @@ export default class General {
     }
   }
 
+  public static paramUUID(
+    obj: CombinedVueInstance,
+  ): string {
+    /* istanbul ignore next: $route is a pain to mock, using this as a workaround for testing */
+    try {
+      return obj.$route.params.uuid ?? "";
+    } catch (_) {
+      return "";
+    }
+  }
+
   public static addNext(
     path: string,
     next: string,
@@ -47,17 +58,21 @@ export default class General {
 
   public static getNext(path: string): string {
     if (path !== "") {
-      if (!path.startsWith(":")) {
-        path = path.split("/:")[1] ?? "";
-      } else {
+      if (path.startsWith("/")) {
         path = path.substr(1, path.length);
       }
-      const paths = path.split("&");
-      let next = "";
-      while (next === "" || next === undefined) {
-        next = paths.shift()?.split(".").join("/");
+
+      if (!path.startsWith(":")) {
+        path = "";
+      } else {
+        path = path.substr(1, path.length);
+        const paths = path.split("&");
+        let next = "";
+        while (next === "" || next === undefined) {
+          next = paths.shift()?.split(".").join("/");
+        }
+        path = next + "/:" + paths.join("&");
       }
-      path = next + "/:" + paths.join("&");
     }
     return "/" + path;
   }
@@ -70,13 +85,15 @@ export default class General {
     title: string,
     message: string,
     type: MessageType,
+    duration = 2000,
+    offset = 50,
   ): ElNotificationOptions {
     return {
       message: message,
       title: title,
       type: type,
-      duration: 2000,
-      offset: 50,
+      duration: duration,
+      offset: offset,
     };
   }
 
@@ -120,5 +137,9 @@ export default class General {
 
   public static authSession(): boolean {
     return this.getCurrentUser().ID !== -1;
+  }
+
+  public static confirmed(): boolean {
+    return this.getCurrentUser().confirmed;
   }
 }

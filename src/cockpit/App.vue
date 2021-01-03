@@ -12,10 +12,18 @@
     el-submenu.main_menu_item(index="/trip")
       template.main_menu_item(slot="title") Trips
       el-menu-item.main_menu_item(index="/trip/view") View
-      el-menu-item.main_menu_item(v-if="authed" index="/trip/new") New
-    el-menu-item.main_menu_item.login_button(v-if="!authed" index="/login") Login
-    el-menu-item.main_menu_item.register_button(v-if="!authed" index="/register") Register
-    el-menu-item.main_menu_item.myaccount_button(v-if="authed" index="/myaccount") My Account
+      el-menu-item.main_menu_item(
+        v-if="confirmed" index="/trip/new"
+      ) New
+    el-menu-item.main_menu_item.login_button(
+      v-if="!authed" index="/login"
+    ) Login
+    el-menu-item.main_menu_item.register_button(
+      v-if="!authed" index="/register"
+    ) Register
+    el-menu-item.main_menu_item.myaccount_button(
+      v-if="authed" index="/myaccount"
+    ) My Account
   router-view#content
   #footer
 </template>
@@ -26,6 +34,7 @@ import General from "./shared/General";
 interface Data {
   activeIndex: string;
   authed: boolean;
+  confirmed: boolean;
 }
 
 export default {
@@ -33,6 +42,7 @@ export default {
     return {
       activeIndex: "/",
       authed: false,
+      confirmed: false,
     };
   },
   methods: {
@@ -42,6 +52,7 @@ export default {
     },
     setAuthed(): void {
       this.$data.authed = General.authSession();
+      this.$data.confirmed = General.confirmed();
     },
     setActiveIndex(): void {
       let path = window.location.pathname;

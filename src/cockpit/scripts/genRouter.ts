@@ -12,7 +12,12 @@ const meta: Meta = {
     "NextRegister",
     "NextRegisterRedirect",
   ],
-  loggedIn: ["trip/New", "MyAccount"],
+  loggedIn: ["MyAccount"],
+  confirmed: ["trip/New"],
+  unconfirmed: [
+    "confirm/UuidOnlyEmailUUID",
+    "unconfirmed/NextEmailRedirect",
+  ],
 };
 
 const viewFolder = "src/cockpit/views/";
@@ -65,6 +70,12 @@ class Params {
   }
 }
 
+const allParams: Params[] = [
+  new Params("get", "Index", "id"),
+  new Params("uuid", "UUID", "uuid"),
+  new Params("next", "Redirect", "path"),
+];
+
 class GenRouter {
   private output = before;
 
@@ -94,10 +105,6 @@ class GenRouter {
       return "";
     }
 
-    const allParams: Params[] = [
-      new Params("get", "Index", "id"),
-      new Params("next", "Redirect", "path"),
-    ];
     let returnAfter = false;
     allParams.forEach((param) => {
       if (

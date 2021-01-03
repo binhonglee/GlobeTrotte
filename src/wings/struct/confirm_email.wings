@@ -1,0 +1,14 @@
+go-filepath src/turbine/wings
+ts-filepath src/cockpit/wings
+
+ts-import { IWingsStruct }:wings-ts-util
+
+ts-implement IWingsStruct
+
+# Email confirmation object.
+
+struct ConfirmEmail {
+  uuid    str
+  email   str
+  userid  int
+}

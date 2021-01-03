@@ -19,7 +19,6 @@
 
 <script lang="ts">
 import CTripInfo from "@/components/CTripInfo.vue";
-import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
 import Trip from "@/wings/Trip";
 import User from "@/wings/User";

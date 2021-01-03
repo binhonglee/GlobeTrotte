@@ -2,6 +2,7 @@
 .nyc_output/
 coverage/
 /cypress/
+email.config
 dist/
 main
 node_modules/

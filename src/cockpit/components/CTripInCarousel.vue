@@ -13,8 +13,9 @@
             v-if="trip.description !== ''"
           ) {{ trip.description }}
           p Author: 
-            a(
+            a.tripPreviewUserProfileLink(
               v-bind:href="'/user/' + user.ID"
+              type="primary"
             ) {{ user.name }}
           p Created on: {{ trip.timeCreated.toLocaleDateString() }}
 
@@ -61,19 +62,28 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../shared/lib";
 
 .tripDayPreview {
   overflow: auto;
   width: 280px;
   margin: 10px;
+
+  .tripPreviewUserProfileLink {
+    color: #409eff;
+  }
 }
 
 .viewUserTripInfoCarousel {
   text-align: left;
+
   .el-carousel__container {
     height: 200px;
+  }
+
+  a {
+    color: inherit;
   }
 }
 </style>

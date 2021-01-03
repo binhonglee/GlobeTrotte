@@ -113,4 +113,10 @@ var actualRoutes = routes{
 		"/sample_trips",
 		getRecentTrips,
 	},
+	route{
+		"ConfirmEmail",
+		"POST",
+		"/confirm/email",
+		confirmEmail,
+	},
 }
