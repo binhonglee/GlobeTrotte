@@ -11,7 +11,7 @@ devDependencies:
   '@babel/plugin-transform-typescript': 7.12.1_@babel+core@7.12.10
   '@babel/preset-env': 7.12.11_@babel+core@7.12.10
   '@babel/preset-typescript': 7.12.7_@babel+core@7.12.10
-  '@cypress/code-coverage': 3.8.8_cypress@6.2.0
+  '@cypress/code-coverage': 3.8.8_cypress@6.2.1
   '@types/node': 14.14.20
   '@types/puppeteer': 5.4.2
   '@types/sinon': 9.0.10
@@ -25,7 +25,7 @@ devDependencies:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue: 1.1.1_@babel+core@7.12.10
-  cypress: 6.2.0
+  cypress: 6.2.1
   eslint: 7.17.0
   eslint-plugin-prettier: 3.3.1_eslint@7.17.0+prettier@2.2.1
   eslint-plugin-vue: 7.4.0_eslint@7.17.0
@@ -2564,10 +2564,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-sErmFSEr5287bLMRl0POGnyFtJCs/lSk5yxrUIJUIHZ8eDvtTEr0V93xRgLjJVG54gJU4MbpHy1mRPA9VZbtQA==
-  /@cypress/code-coverage/3.8.8_cypress@6.2.0:
+  /@cypress/code-coverage/3.8.8_cypress@6.2.1:
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.1
-      cypress: 6.2.0
+      cypress: 6.2.1
       debug: 4.3.1
       execa: 4.1.0
       globby: 11.0.1
@@ -5101,7 +5101,7 @@ packages:
       node: '>=0.4.0'
     resolution:
       integrity: sha1-IegLK+hYD5i0aPN5QwZisEbDStI=
-  /cypress/6.2.0:
+  /cypress/6.2.1:
     dependencies:
       '@cypress/listr-verbose-renderer': 0.4.1
       '@cypress/request': 2.88.5
@@ -5147,7 +5147,7 @@ packages:
     hasBin: true
     requiresBuild: true
     resolution:
-      integrity: sha512-m/rkcogYM9MTy8rbsZgyS5wT2L/J+B5V2bY2ztkDNMyqhk/oZgUF4KTWVLzkW2I+scg0iAddca95tLlt7XnAtw==
+      integrity: sha512-OYkSgzA4J4Q7eMjZvNf5qWpBLR4RXrkqjL3UZ1UzGGLAskO0nFTi/RomNTG6TKvL3Zp4tw4zFY1gp5MtmkCZrA==
   /dash-ast/1.0.0:
     dev: true
     resolution:
@@ -5220,7 +5220,7 @@ packages:
       integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
   /debug/3.2.6:
     dependencies:
-      ms: 2.1.2
+      ms: 2.1.3
     deprecated: 'Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)'
     dev: true
     resolution:
@@ -13057,7 +13057,7 @@ specifiers:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue: 1.1.1
-  cypress: 6.2.0
+  cypress: 6.2.1
   element-ui: 2.14.1
   eslint: 7.17.0
   eslint-plugin-prettier: 3.3.1
