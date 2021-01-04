@@ -17,7 +17,7 @@ devDependencies:
   '@types/sinon': 9.0.10
   '@typescript-eslint/eslint-plugin': 4.11.1_b2dd67832f09d3c75a9232f43d687d74
   '@typescript-eslint/parser': 4.11.1_eslint@7.17.0+typescript@4.1.3
-  '@vue/eslint-config-prettier': 6.0.0_a4c0995b756571ce420fc5f8bacf1c32
+  '@vue/eslint-config-prettier': 6.0.0_c55c3cb2162b139092f29ec78f38d3a4
   '@vue/eslint-config-typescript': 7.0.0_441a8585674cc31701d9d9adcdc4770f
   '@vue/test-utils': 1.1.2_ae554d8947d7e926b014dda25865f517
   ava: 3.15.0
@@ -27,7 +27,7 @@ devDependencies:
   babel-preset-typescript-vue: 1.1.1_@babel+core@7.12.10
   cypress: 6.2.0
   eslint: 7.17.0
-  eslint-plugin-prettier: 3.3.0_eslint@7.17.0+prettier@2.2.1
+  eslint-plugin-prettier: 3.3.1_eslint@7.17.0+prettier@2.2.1
   eslint-plugin-vue: 7.4.0_eslint@7.17.0
   forever: 3.0.4
   jsdom: 16.4.0
@@ -3013,11 +3013,11 @@ packages:
       prettier: 1.19.1
     resolution:
       integrity: sha512-lejBLa7xAMsfiZfNp7Kv51zOzifnb29FwdnMLa96z26kXErPFioSf9BMcePVIQ6/Gc6/mC0UrPpxAWIHyae0vw==
-  /@vue/eslint-config-prettier/6.0.0_a4c0995b756571ce420fc5f8bacf1c32:
+  /@vue/eslint-config-prettier/6.0.0_c55c3cb2162b139092f29ec78f38d3a4:
     dependencies:
       eslint: 7.17.0
       eslint-config-prettier: 6.15.0_eslint@7.17.0
-      eslint-plugin-prettier: 3.3.0_eslint@7.17.0+prettier@2.2.1
+      eslint-plugin-prettier: 3.3.1_eslint@7.17.0+prettier@2.2.1
       prettier: 2.2.1
     dev: true
     peerDependencies:
@@ -5839,10 +5839,9 @@ packages:
       eslint: '>=3.14.1'
     resolution:
       integrity: sha512-a1+kOYLR8wMGustcgAjdydMsQ2A/2ipRPwRKUmfYaSxc9ZPcrku080Ctl6zrZzZNs/U82MjSv+qKREkoq3bJaw==
-  /eslint-plugin-prettier/3.3.0_eslint@7.17.0+prettier@2.2.1:
+  /eslint-plugin-prettier/3.3.1_eslint@7.17.0+prettier@2.2.1:
     dependencies:
       eslint: 7.17.0
-      eslint-plugin-prettier: 3.3.0_eslint@7.17.0+prettier@2.2.1
       prettier: 2.2.1
       prettier-linter-helpers: 1.0.0
     dev: true
@@ -5850,13 +5849,13 @@ packages:
       node: '>=6.0.0'
     peerDependencies:
       eslint: '>=5.0.0'
-      eslint-plugin-prettier: '*'
+      eslint-config-prettier: '*'
       prettier: '>=1.13.0'
     peerDependenciesMeta:
-      eslint-plugin-prettier:
+      eslint-config-prettier:
         optional: true
     resolution:
-      integrity: sha512-tMTwO8iUWlSRZIwS9k7/E4vrTsfvsrcM5p1eftyuqWH25nKsz/o6/54I7jwQ/3zobISyC7wMy9ZsFwgTxOcOpQ==
+      integrity: sha512-Rq3jkcFY8RYeQLgk2cCwuc0P7SEFwDravPhsJZOQ5N4YI4DSg50NyqJ/9gdZHzQlHf8MvafSesbNJCcP/FF6pQ==
   /eslint-plugin-vue/7.4.0_eslint@7.17.0:
     dependencies:
       eslint: 7.17.0
@@ -13061,7 +13060,7 @@ specifiers:
   cypress: 6.2.0
   element-ui: 2.14.1
   eslint: 7.17.0
-  eslint-plugin-prettier: 3.3.0
+  eslint-plugin-prettier: 3.3.1
   eslint-plugin-vue: 7.4.0
   forever: 3.0.4
   jsdom: 16.4.0
