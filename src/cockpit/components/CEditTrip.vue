@@ -1,6 +1,6 @@
 <template lang="pug">
   .edit_trip
-    form
+    form.edit_form
       CEditItem(
         :className="'editTripName'"
         :label="'Name'"
@@ -230,6 +230,10 @@ export default Vue.extend({
 
 <style lang="scss">
 @import "../shared/lib";
+.edit_form {
+  display: flex;
+  flex-direction: column;
+}
 
 .confirmationButtons {
   margin-top: 20px;
@@ -249,7 +253,6 @@ export default Vue.extend({
 
 .editTripPrivacy .editInput {
   margin-top: 10px;
-  width: 40px;
 }
 
 .editTripPrivacy {
