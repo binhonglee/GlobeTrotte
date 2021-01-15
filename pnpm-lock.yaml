@@ -1,6 +1,6 @@
 dependencies:
   axios: 0.21.1
-  element-ui: 2.14.1_vue@2.6.12
+  element-ui: 2.15.0_vue@2.6.12
   vue: 2.6.12
   vue-router: 3.4.9
   wings-ts-util: 0.0.8
@@ -5581,7 +5581,7 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-2wQ1IcldfjA/2PNFvtwzSc+wcp4=
-  /element-ui/2.14.1_vue@2.6.12:
+  /element-ui/2.15.0_vue@2.6.12:
     dependencies:
       async-validator: 1.8.5
       babel-helper-vue-jsx-merge-props: 2.0.3
@@ -5594,7 +5594,7 @@ packages:
     peerDependencies:
       vue: ^2.5.17
     resolution:
-      integrity: sha512-Uje0J12dBaXdyvt/EtuDA8diFbYTdO7uI4QCfl7zmEJmE1WxgCSVKhlRRoL8MDonO8pyNVhB4n0AFAR14g56nw==
+      integrity: sha512-9z/1+b7V8fvp08OnKUEW4/BZ72kT+IhuKR9cTMz3XoCTKmEsqLLb32XjbO/DznSFaaiFbOYU93G7WtkvrCAL9A==
   /elliptic/6.5.3:
     dependencies:
       bn.js: 4.11.9
@@ -13041,7 +13041,7 @@ specifiers:
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue: 1.1.1
   cypress: 6.2.1
-  element-ui: 2.14.1
+  element-ui: 2.15.0
   eslint: 7.17.0
   eslint-plugin-prettier: 3.3.1
   eslint-plugin-vue: 7.4.1
