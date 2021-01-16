@@ -1,3 +1,106 @@
+def ava_test(
+  name:str,
+  test_srcs:list,
+  srcs:list=[],
+  deps:list=[],
+  visibility:list=[],
+):
+  rules = []
+  pre_build = " && ".join([
+    _set_node_modules(),
+  ])
+
+  for src in test_srcs:
+    rule_name = src[:-8]
+    post_build = "mv .nyc_output " + rule_name + "/.nyc_output"
+
+    on_test = build_rule(
+      name = rule_name,
+      srcs = [src],
+      cmd = " ".join([
+        pre_build,
+        "&&",
+        "($TOOL run test:ava:plz",
+        "--",
+        "--serial",
+        "--concurrency=1",
+        "$SRCS",
+        ">",
+        rule_name + "_raw.results",
+        "||",
+        "echo \"" + rule_name + " failed.\")",
+        "&&",
+        post_build,
+      ]),
+      test_cmd = " | ".join([
+        "cat " + rule_name + "_raw.results",
+        "tee >(pnpx tap-xunit > test.results)",
+      ]),
+      outs = [rule_name + "_raw.results", rule_name + "/.nyc_output"],
+      deps = srcs + deps,
+      test = True,
+      test_only = True,
+      visibility = visibility,
+      tools=[CONFIG.PNPM_TOOL],
+    )
+
+    rules += [on_test]
+
+  cmd = " ".join([
+    "for SRC in $(" + 
+      " | ".join([
+        "echo $SRCS",
+        "tr ' ' '\\n'",
+        "grep '.nyc_output'",
+      ]) +
+    ");",
+    "do",
+    "mv $SRC `mkdir -p " + name + "/" + "$(" +
+      " | ".join([
+        "echo $SRC",
+        "awk -F'" + name + "/' '{print $2}'",
+        "awk -F'/.nyc_output' '{print $1}'",
+      ]) +
+    ") && echo $_`;",
+    "done;"
+  ])
+
+  return build_rule(
+    name = name,
+    srcs = rules + srcs,
+    cmd = cmd,
+    outs = [name],
+    deps = deps,
+    test_only = True,
+    visibility = visibility,
+  )
+
+def pnpm_run_build(
+  name:str,
+  cmd:str,
+  srcs:list,
+  outs:list,
+  make_copy:bool=False,
+  copy_path:str="",
+  deps:list=[],
+  test_only:bool=False,
+  visibility:list=[],
+):
+  cmd = _set_node_modules() + " && $TOOL run " + cmd
+
+  if make_copy:
+    cmd += " && cp $OUTS " + _top_level_dir() + copy_path
+  return build_rule(
+    name = name,
+    srcs = srcs,
+    outs = outs,
+    cmd = cmd,
+    deps = deps,
+    test_only = test_only,
+    visibility = visibility,
+    tools=[CONFIG.PNPM_TOOL],
+  )
+
 def pnpm_install(name:str, srcs:list=[], deps:list=[]):
   filegroup(
     name = name + "_#pnpm_install",
@@ -7,90 +110,30 @@ def pnpm_install(name:str, srcs:list=[], deps:list=[]):
     test_only = False,
   )
 
-  return _exec_pnpm(
+  out = "node_modules"
+
+  cmd = " ".join([
+    "$TOOL",
+    "install",
+    "--no-color",
+    "--reporter append-only",
+    "--prefer-offline",
+  ])
+
+  cmd = " && ".join([
+    _go_to_top_level(),
+    cmd,
+    "ln -s " + out + " $TMP_DIR/node_modules",
+  ])
+
+  return build_rule(
     name = name,
-    cmd = " ".join([
-      "install",
-      "--no-color",
-      "--reporter append-only",
-      "--prefer-offline",
-    ]),
+    cmd = cmd,
     srcs = srcs,
     deps = deps,
-    link = True,
-    at_top_level = True,
-    outs = ["node_modules"],
+    outs = [out],
     visibility = ["PUBLIC"],
     tools=[CONFIG.PNPM_TOOL],
-  )
-
-def pnpm_build(
-  name:str,
-  srcs:list=[],
-  deps:list=[],
-  visibility:list=None,
-  denullify_files:list=[],
-):
-  filegroup(
-    name = name + "_#pnpm_build",
-    srcs = srcs,
-    visibility = visibility,
-    binary = False,
-    test_only = False,
-  )
-
-  return pnpm_build_script(
-    name = name,
-    srcs = srcs,
-    deps = deps,
-    visibility = visibility,
-    cmd = "build",
-    outs = ["dist"],
-    test_only = False,
-    at_top_level = False,
-    denullify_files = denullify_files,
-  )
-
-def pnpm_build_script(
-  name:str,
-  cmd:str,
-  srcs:list=[],
-  deps:list=[],
-  outs:list=[],
-  outpath:str="",
-  test_only:bool=False,
-  visibility:list=None,
-  nullify_outs:bool=False,
-  denullify_files:list=[],
-  at_top_level:bool=False,
-):
-  filegroup(
-    name = name + "_#pnpm_build_script",
-    srcs = srcs,
-    visibility = visibility,
-    binary = False,
-    test_only = test_only,
-  )
-
-  for out in outs:
-    cmd = " && ".join([
-      cmd,
-      "cp -r " + out + " " + _top_level_dir() + outpath,
-    ])
-
-  return _exec_pnpm(
-    name = name,
-    outs = outs,
-    srcs = srcs,
-    deps = deps,
-    outpath = outpath,
-    test_only = test_only,
-    visibility = visibility,
-    at_top_level = at_top_level,
-    nullify_outs = nullify_outs,
-    denullify_files = denullify_files,
-    cmd = "run --no-color " + cmd,
-    tools = [CONFIG.PNPM_TOOL],
   )
 
 def pnpm_run(
@@ -99,10 +142,8 @@ def pnpm_run(
   shell:str="/bin/sh",
   srcs:list=[],
   deps:list=[],
-  at_top_level:bool=False,
   visibility:list=None,
   test_only:bool=False,
-  denullify_files:list=[],
 ):
   filegroup(
     name = name + "_#pnpm_run",
@@ -113,13 +154,6 @@ def pnpm_run(
   )
 
   cmd = "$TOOL run " + cmd
-
-  if not at_top_level:
-    cmd = " && ".join([
-      _prep_gen_dir(),
-      _denullifier(denullify_files) if len(denullify_files) > 0 else "echo \"No files to denullify.\"",
-      cmd,
-    ])
 
   cmds = f'{{ tee -a > "$OUT" << EOF\n#!{shell}\n{cmd}\nEOF\n}}'
   return build_rule(
@@ -137,16 +171,15 @@ def pnpm_run(
 def pnpm_test(
   name:str,
   cmd:str,
-  out:str=None,
-  coverage:str=None,
   srcs:list=[],
+  outs:list=[],
   deps:list=[],
-  flaky:bool|int=0,
-  priority:int=0,
+  link:bool=False,
+  set_home:bool=False,
+  result_dir:str=None,
+  result_file:str=None,
   visibility:list=None,
-  at_top_level:bool=False,
   requires_server:int=None,
-  denullify_files:list=[],
 ):
   filegroup(
     name = name + "_#pnpm_test",
@@ -156,29 +189,23 @@ def pnpm_test(
     test_only = True,
   )
 
-  cmd = _denullifier(denullify_files) + " && pnpm run --no-color " + cmd
-
+  cmd = "(pnpm run " + cmd
   if requires_server is not None:
     cmd = cmd + "$CMD"
+  cmd = cmd + " || echo \"Test failed.\")"
 
-  if out is not None:
+  for out in outs:
     cmd = " && ".join([
       "rm -rf " + out,
       "mkdir -p " + out,
       cmd,
     ])
 
-  if not at_top_level:
+  if set_home:
     cmd = " && ".join([
-      _prep_gen_dir(),
+      _home_path(),
       cmd,
     ])
-  
-  cmd = " && ".join([
-    "sleep " + str(priority),
-    _go_to_top_level(),
-    cmd,
-  ])
 
   if requires_server is not None:
     cmd = " && ".join([
@@ -186,137 +213,44 @@ def pnpm_test(
       cmd,
     ])
 
-  outs = []
-  test_outputs = []
+  if result_dir is not None:
+    cmd = " && ".join([
+      "rm -rf " + result_dir,
+      "mkdir -p " + result_dir,
+      cmd,
+      "cat " + result_dir + "/* > $TMP_DIR/test.results",
+    ])
+    
+  if result_file is not None:
+    cmd = " && ".join([
+      "rm " + result_file,
+      cmd,
+      "cat " + result_file + " > $TMP_DIR/test.results",
+    ])
 
-  if out is not None:
+  cmd = " && ".join([
+    _go_to_top_level(),
+    cmd,
+  ])
+
+  move = "ln -s" if link else "cp -R"
+  for out in outs:
     cmd = " && ".join([
       cmd,
-      "cat " + out + "/* > $TMP_DIR/test.results",
+      " ".join([move, out, "$TMP_DIR/" + out]),
     ])
-    outs = ["test.results"]
-
-  if coverage is not None:
-    cmd = " && ".join([
-      "rm -rf " + coverage,
-      cmd,
-      "cat " + coverage + "/* > $TMP_DIR/coverage.results",
-    ])
-    test_outputs = ["coverage.results"]
-
-  return _exec_pnpm(
-    name = name,
-    srcs = srcs,
-    outs = outs,
-    deps = deps + [":" + name + "_#pnpm_test"],
-    test = True,
-    flaky = flaky,
-    test_only = True,
-    at_top_level = False,
-    overwrite_cmd = True,
-    visibility = visibility,
-    cmd = cmd,
-    test_outputs = test_outputs,
-    tools = [CONFIG.PNPM_TOOL],
-  )
-
-def _exec_pnpm(
-  name:str,
-  cmd:str,
-  srcs:list=[],
-  outs:list=[],
-  outpath:str="",
-  deps:list=[],
-  link:bool=False,
-  test:bool=False,
-  flaky:bool|int=0,
-  test_only:bool=False,
-  visibility:list=None,
-  test_outputs:list=[],
-  denullify_files:list=[],
-  nullify_outs:bool=False,
-  at_top_level:bool=False,
-  overwrite_cmd:bool=False,
-  tools:list=[CONFIG.PNPM_TOOL],
-):
-  filegroup(
-    name = name + "_#exec_npm",
-    srcs = srcs,
-    visibility = ["PUBLIC"],
-    binary = False,
-    test_only = test_only,
-  )
-
-  no_test_output = False if test and len(outs) > 0 else True
-
-  if overwrite_cmd:
-    cmd = " && ".join([_home_path(), cmd])
-  else:
-    cmd = " && ".join([
-      _home_path(),
-      # $TOOLS only works on build time but not test time so
-      # this is the best workarond I can think of for now.
-      tools[0] + " " + cmd,
-    ])
-
-    if len(denullify_files) > 0:
-      cmd = _denullifier(denullify_files) + " && " + cmd
-
-  new_outs = []
-
-  if not overwrite_cmd:
-    if at_top_level:
-      cmd = " && ".join([_go_to_top_level(), cmd])
-    else:
-      cmd = " && ".join([
-        "rm -rf node_modules",
-        "ln -s " + _top_level_dir() + "node_modules ./",
-        cmd
-      ])
-
-    move = "ln -s" if link else "cp -R"
-
-    for out in outs:
-      new_outs.append(out + ".null" if nullify_outs else out)
-
-      moving = ""
-      if at_top_level:
-        moving = " ".join([move, out, "$TMP_DIR/" + out])
-        if nullify_outs:
-          moving += ".null"
-      else:
-        # moving = " ".join(
-        #   [move, out, _top_level_dir() + outpath + out]
-        # )
-        if nullify_outs:
-          moving = " ".join(["mv", out, out + ".null"])
-
-      if len(moving) > 0:
-        cmd = " && ".join([cmd, moving])
-
-  if test:
-    test_cmd = cmd
-    cmd = ""
-  else:
-    test_cmd = ""
 
   return build_rule(
     name = name,
-    cmd = cmd,
-    outs = new_outs,
     srcs = srcs,
+    outs = outs,
     deps = deps,
-    test = test,
-    tools = tools,
-    flaky = flaky,
-    test_cmd = test_cmd,
-    test_only = test_only,
-    test_outputs = test_outputs,
+    test = True,
+    test_cmd = cmd,
+    test_only = True,
     visibility = visibility,
-    no_test_output = no_test_output,
-    binary = False,
-    output_is_complete = False,
-    needs_transitive_deps = True,
+    tools=[CONFIG.PNPM_TOOL],
+    no_test_output = (result_dir == None and result_file == None),
   )
 
 def _check_server_running(requires_server:int):
@@ -336,27 +270,11 @@ def _home_path():
     "fi",
   ])
 
-def _prep_gen_dir():
-  return " && ".join([
-    "cd "+ _top_level_dir() + "/plz-out/gen/",
+def _set_node_modules():
+  return " &&  ".join([
     "rm -rf node_modules || echo \"Existing 'node_modules' not found.\"",
     "ln -s " + _top_level_dir() + "node_modules ./",
   ])
-
-def _denullifier(denullify_files:list):
-  cmd = ""
-  for file in denullify_files:
-    cmd = " && ".join([
-      "if [ -f '" + file + ".null' ]; " +
-      "then rm " + file + " || echo 'Old version of " + file + " not found. Skip removing it...'; " +
-      "cp " + file + ".null " + file + "; fi",
-      cmd,
-    ])
-  
-  if len(cmd) > 4:
-    return cmd[:-4]
-  else:
-    return "echo \"No files to denullify. Skipping...\""
 
 def _go_to_top_level():
   return "cd " + _top_level_dir() + " || exit 1"

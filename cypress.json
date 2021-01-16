@@ -1,4 +1,5 @@
-  {
+{
+  "defaultCommandTimeout": 7000,
   "pluginsFile": "src/cockpit/tests/cypress/plugins.ts",
   "fixturesFolder": "src/cockpit/tests/cypress/fixtures",
   "integrationFolder": "src/cockpit/tests/cypress/specs",

@@ -3,16 +3,13 @@ filegroup(
   srcs = [
     "//src/cockpit/scripts:gen_router",
     "main.ts",
-    "App.vue"
-  ],
-  deps = [
-    "//src/cockpit/views:views",
+    "App.vue",
   ],
   visibility = [
     "//:cockpit",
     "//:serve",
     "//:prep_gen",
     "//:cockpit_cypress",
-    "//:cockpit_ava",
+    "//:ava_test_deps",
   ],
 )

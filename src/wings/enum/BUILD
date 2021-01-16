@@ -3,7 +3,7 @@ subinclude("//build_defs/wings")
 wings_lib(
   name = "city",
   config = "wings.json",
-  srcs = ["city.wings"],
+  src = "city.wings",
   outs = {
     "src/cockpit/wings": "City.ts",
     "src/turbine/wings": "city.go",
@@ -17,7 +17,7 @@ wings_lib(
 wings_lib(
   name = "access_level",
   config = "wings.json",
-  srcs = ["access_level.wings"],
+  src = "access_level.wings",
   outs = {
     "src/cockpit/wings": "AccessLevel.ts",
     "src/turbine/wings": "accesslevel.go",

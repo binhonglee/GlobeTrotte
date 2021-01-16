@@ -1,5 +1,5 @@
 name: CI
-on: [push]
+on: [push, pull_request]
 env:
   DISPLAY: :99
 
@@ -36,13 +36,13 @@ jobs:
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: ${{ runner.os }}-pnpm
+        key: ${{ hashFiles('**/package.json') }}-pnpm
     - name: Cache cypress
       id: cache-cypress
       uses: actions/cache@v1
       with:
         path: ~/.cache/Cypress
-        key: ${{ runner.os }}-cypress
+        key: ${{ hashFiles('**/package.json') }}-cypress
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
@@ -61,11 +61,24 @@ jobs:
 
     - run: ./pleasew cover --show_all_output //src/turbine/...
     - run: ./pleasew work &
-    - run: pnpm i
-    - run: pnpm run test:ava
+    - run: sleep 1
     - run: ./pleasew test --show_all_output
 
     - run: ./pleasew run //:report
     - run: bash <(curl -s https://codecov.io/bash)
     - run: ./scripts/leftover.sh
-
+    - uses: actions/upload-artifact@v2
+      with:
+        name: cypress
+        path: cypress
+      if: ${{ always() }}
+    - uses: actions/upload-artifact@v2
+      with:
+        name: logs
+        path: logs
+      if: ${{ always() }}
+    - uses: actions/upload-artifact@v2
+      with:
+        name: coverage
+        path: coverage
+      if: ${{ always() }}

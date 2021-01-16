@@ -5,6 +5,9 @@ Version = 15.0.0
 PassEnv = PATH
 PassEnv = USER
 
+[Alias "genReport"]
+cmd = build //src/cockpit/scripts:gen_report
+
 [Alias "genComponent"]
 cmd = run //src/cockpit/scripts:gen_component
 

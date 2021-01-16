@@ -1,4 +1,5 @@
 // This is a generated file
+// This file will be regenerated on each build thus changes here will be overwritten
 //
 // If you would like to make any changes, please edit the source file (src/wings/struct/trip.wings)
 // and run the following command:

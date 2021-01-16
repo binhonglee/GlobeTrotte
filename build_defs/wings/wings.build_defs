@@ -1,9 +1,9 @@
-def wings_lib(name:str, outs:dict, config:str="", srcs:list=[], test_only=False, visibility:list=None, deps:list=[]):
+def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visibility:list=None, deps:list=[]):
   all_out_files = []
 
   filegroup(
     name = name + "_#wings",
-    srcs = srcs,
+    srcs = [src],
     visibility = visibility,
     binary = False,
     test_only = test_only,
@@ -20,7 +20,7 @@ def wings_lib(name:str, outs:dict, config:str="", srcs:list=[], test_only=False,
 
   gen_files = build_rule(
     name = name + "_#genFiles",
-    srcs = srcs,
+    srcs = [src],
     tools = [CONFIG.WINGS_TOOL],
     cmd = cmd,
     outs = all_out_files,

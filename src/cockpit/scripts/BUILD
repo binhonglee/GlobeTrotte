@@ -5,26 +5,46 @@ filegroup(
   srcs = ["checkBackend.ts"],
   visibility = [
     "//:cockpit_cypress",
-    "//:cockpit_ava",
+    "//:ava_test_deps",
     "//:serve",
   ],
 )
 
-pnpm_build_script(
+pnpm_run_build(
   name = "gen_router",
-  srcs = ["genRouter.ts"],
-  cmd = "genRouter",
-  outs = ["router.ts"],
-  deps = [
-    "//:pnpm",
+  srcs = [
+    "genRouter.ts",
+    "//:pnpm_config",
     "//:tsconfig",
     "//src/cockpit/views:views",
   ],
-  outpath = "src/cockpit/",
+  cmd = "genRouter",
+  outs = ["router.ts"],
+  make_copy = True,
+  copy_path = "src/cockpit/",
+  deps =["//:pnpm"],
   visibility = [
     "//src/cockpit:core_files",
   ],
-  nullify_outs = True,
+)
+
+pnpm_run_build(
+  name = "gen_report",
+  srcs = [
+    "genReport.ts",
+    "//:nycrc",
+    "//:pnpm_config",
+    "//:tsconfig",
+    "//src/cockpit/tests/components",
+    "//src/cockpit/tests/shared",
+    "//src/cockpit/tests/views",
+    "//src/cockpit/tests/wings",
+  ],
+  outs = [".nyc_output"],
+  cmd = "genReport:plz",
+  test_only = True,
+  deps = ["//:pnpm"],
+  visibility = ["//:report"]
 )
 
 pnpm_run(
@@ -32,5 +52,4 @@ pnpm_run(
   srcs = ["genComponent.ts"],
   cmd = "genComponent",
   deps = ["//:pnpm"],
-  at_top_level = True,
 )

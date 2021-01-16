@@ -1,10 +1,11 @@
-filegroup(
+subinclude("//build_defs/pnpm")
+
+ava_test(
   name = "components",
-  srcs = glob(["**/*.ts"]),
-  visibility = ["//:cockpit_ava"],
-  deps = [
-    "//src/cockpit/tests/mockData:mockData",
-    "//src/cockpit/shared:shared",
-    "//src/cockpit/components:components",
-  ]
+  test_srcs = glob(["**/*.spec.ts"]),
+  srcs = [
+    "//:ava_test_deps",
+    "//src/cockpit/tests/mockData",
+  ],
+  visibility = ["//src/cockpit/scripts:gen_report"],
 )

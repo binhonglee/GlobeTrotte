@@ -1,6 +1,11 @@
 subinclude("//build_defs/pnpm")
 
 filegroup(
+  name = "ava_config",
+  srcs = ["ava.config.js"],
+)
+
+filegroup(
   name = "index_html",
   srcs = ["index.html"],
 )
@@ -12,6 +17,9 @@ filegroup(
     ".babelrc",
     "package.json",
     "pnpm-lock.yaml",
+  ],
+  visibility = [
+    "//src/cockpit/scripts/..."
   ],
 )
 
@@ -44,25 +52,35 @@ filegroup(
 filegroup(
   name = "nycrc",
   srcs = [".nycrc.json"],
+  visibility = [
+    "//src/cockpit/scripts/..."
+  ],
 )
 
 pnpm_install(
   name = "pnpm",
-  deps = [":pnpm_config"],
+  srcs = [":pnpm_config"],
 )
 
-pnpm_build(
+pnpm_run_build(
   name = "cockpit",
-  deps = [
+  cmd = "build",
+  srcs = [
     ":pnpm",
+    ":pnpm_config",
     ":prettier",
     ":tsconfig",
     ":index_html",
-    ":eslint_config",
+  ],
+  outs = ["dist"],
+  deps = [
     "//src/assets:assets",
     "//src/cockpit:core_files",
+    "//src/cockpit/components",
+    "//src/cockpit/shared",
+    "//src/cockpit/views",
+    "//src/cockpit/wings",
   ],
-  denullify_files = ["src/cockpit/router.ts"],
 )
 
 pnpm_run(
@@ -77,8 +95,6 @@ pnpm_run(
     "//src/cockpit:core_files",
     "//src/cockpit/scripts:check_backend",
   ],
-  denullify_files = ["src/cockpit/router.ts"],
-  at_top_level = True,
 )
 
 pnpm_run(
@@ -87,52 +103,47 @@ pnpm_run(
   deps = [
     ":pnpm",
     ":nycrc",
+    "//src/cockpit/scripts:gen_report",
   ],
-  at_top_level = False,
+  test_only = True,
 )
 
-# Ava already runs tests concurrently on its own. Running it
-# with plz don't really help and might cause OOM on CI systems.
-#
-# pnpm_test(
-#   name = "cockpit_ava",
-#   srcs = ["ava.config.js"],
-#   cmd = "test:ava",
-#   out = "ava",
-#   deps = [
-#     ":pnpm",
-#     ":nycrc",
-#     ":tsconfig",
-#     "//src/cockpit:core_files",
-#     "//src/cockpit/scripts:check_backend",
-#     "//src/cockpit/tests:ava_setup",
-#     "//src/cockpit/tests/puppeteer:puppeteer",
-#     "//src/cockpit/tests/components:components",
-#     "//src/cockpit/tests/shared:shared",
-#     "//src/cockpit/tests/views:views",
-#     "//src/cockpit/tests/wings:wings",
-#   ],
-#   denullify_files = ["src/cockpit/router.ts"],
-# )
+filegroup(
+  name = "ava_test_deps",
+  exported_deps = [
+    ":ava_config",
+    ":pnpm_config",
+    ":nycrc",
+    ":tsconfig",
+    "//src/cockpit:core_files",
+    "//src/cockpit/tests:ava_setup",
+    "//src/cockpit/components:components",
+    "//src/cockpit/shared:shared",
+    "//src/cockpit/views:views",
+    "//src/cockpit/wings:wings",
+  ],
+  visibility = [
+    "//src/cockpit/tests/..."
+  ],
+)
 
 pnpm_test(
   name = "cockpit_cypress",
   srcs = ["cypress.json"],
   cmd = "test:cypress",
-  out = "cypress/junit",
-  priority = 2,
+  result_dir = "cypress/junit",
   requires_server = 1234,
+  set_home = True,
   deps = [
     ":pnpm",
     ":index_html",
     ":eslint_config",
     "//src/assets:assets",
-    "//src/cockpit/tests/cypress",
     "//src/cockpit:core_files",
+    "//src/cockpit/tests/cypress",
     "//src/cockpit/tests:cypress_eslint",
     "//src/cockpit/scripts:check_backend",
   ],
-  denullify_files = ["src/cockpit/router.ts"],
 )
 
 gentest(
@@ -148,7 +159,6 @@ gentest(
 pnpm_test(
   name = "eslint",
   cmd = "format",
-  at_top_level = True,
   visibility = [
     "//src/cockpit/..."
   ],

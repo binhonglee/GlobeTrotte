@@ -7,5 +7,5 @@ filegroup(
 filegroup(
   name = "ava_setup",
   srcs = ["_setup.js", "helper.ts"],
-  visibility = ["//:cockpit_ava"],
+  visibility = ["//:ava_test_deps"],
 )

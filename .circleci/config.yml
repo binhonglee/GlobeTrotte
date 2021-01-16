@@ -40,12 +40,14 @@ jobs:
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       # run tests
+      - run: ./pleasew build --show_all_output //src/cockpit/tests/components/...
+      - run: ./pleasew build --show_all_output //src/cockpit/tests/views/...
       - run: ./pleasew build --show_all_output
       - run: ./pleasew cover --show_all_output //src/turbine/...
       - run:
           command: ./pleasew work
           background: true
-      - run: pnpm run test:ava
+      - run: sleep 1
       - run: ./pleasew test --show_all_output
       - run: ./pleasew run //:report
       - run: bash <(curl -s https://codecov.io/bash)
@@ -67,10 +69,8 @@ jobs:
           paths:
             - node_modules
       - store_artifacts:
-          path: ~/GlobeTrotte/plz-out/gen/cypress
+          path: ~/GlobeTrotte/cypress
       - store_artifacts:
-          path: ~/GlobeTrotte/plz-out/gen/coverage
-      - store_artifacts:
-          path: ~/GlobeTrotte/plz-out/gen/ava
+          path: ~/GlobeTrotte/coverage
       - store_artifacts:
           path: ~/GlobeTrotte/logs
