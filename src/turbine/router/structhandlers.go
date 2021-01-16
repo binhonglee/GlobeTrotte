@@ -244,16 +244,40 @@ func deleteUser(res http.ResponseWriter, req *http.Request) {
 func confirmEmail(res http.ResponseWriter, req *http.Request) {
 	var item *wings.ConfirmEmail
 	unpackJSON(&res, req, &item)
-	logger.Debug(item)
 	allowCORS(&res)
 	if item == nil || !verifyUser(req, item.Userid) {
 		response(&res, http.StatusOK)
 		json.NewEncoder(res).Encode(false)
 		return
 	}
-	logger.Debug(item.Uuid)
 
 	json.NewEncoder(res).Encode(email.ConfirmEmail(*item))
+}
+
+// PROD: Used for testing only. To remove on prod.
+func forceConfirmEmail(res http.ResponseWriter, req *http.Request) {
+	vars := mux.Vars(req)
+	var id int
+	var err error
+
+	if id, err = strconv.Atoi(vars["id"]); err != nil {
+		logger.Err(logger.Router, err, "")
+		response(&res, http.StatusOK)
+		json.NewEncoder(res).Encode(false)
+		return
+	}
+	allowCORS(&res)
+
+	if verifyUser(req, id) {
+		if db.ForceConfirm(id) {
+			response(&res, http.StatusOK)
+			json.NewEncoder(res).Encode(true)
+			return
+		}
+	}
+
+	response(&res, http.StatusOK)
+	json.NewEncoder(res).Encode(false)
 }
 
 func verifyUser(req *http.Request, userID int) bool {

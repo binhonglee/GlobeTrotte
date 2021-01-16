@@ -91,7 +91,7 @@ describe("Trips", () => {
       tripDescription,
     );
     cy.get(".enableTripEdit").should("not.exist");
-    cy.deleteAccount();
+    cy.logout();
   });
 
   it("deletes trip", () => {
@@ -110,6 +110,13 @@ describe("Trips", () => {
       "Trip Deletion",
     );
     cy.url().should("include", "/");
+    cy.logout();
+  });
+
+  it("cleanup", () => {
+    cy.login(email1, password1);
+    cy.deleteAccount();
+    cy.login(email2, password2);
     cy.deleteAccount();
   });
 });

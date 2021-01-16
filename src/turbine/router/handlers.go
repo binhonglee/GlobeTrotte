@@ -28,6 +28,7 @@ func response(res *http.ResponseWriter, status int) {
 	(*res).WriteHeader(status)
 }
 
+// PROD: Only used for dev. No CORS should be allowed on prod.
 func allowCORS(res *http.ResponseWriter) {
 	var url = "http://localhost:1234"
 

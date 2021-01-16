@@ -92,8 +92,8 @@ func createUsersTable() {
 			email           TEXT UNIQUE    NOT NULL,
 			bio             TEXT,
 			time_created    TIMESTAMPTZ    NOT NULL,
-			trips           INT[]
-			confirmed       BOOLEAN        NOT NULL,
+			trips           INT[],
+			confirmed       BOOLEAN        NOT NULL
 		);`
 	_, err := db.Exec(createTable)
 

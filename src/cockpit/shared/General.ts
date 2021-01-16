@@ -111,6 +111,10 @@ export default class General {
     return this.getCurrentUser().ID === id;
   }
 
+  public static async genUpdateCurrentUser(): Promise<void> {
+    await this.genCurrentUser();
+  }
+
   public static async genCurrentUser(): Promise<User> {
     const id = JSON.parse(await HTTPReq.genGET("whoami"))
       .id;

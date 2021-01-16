@@ -30,7 +30,21 @@ export default {
       await this.$router.push("/");
     }
     const uuid = General.paramUUID(this);
-    console.log(uuid);
+
+    // PROD: Force confirm email only used for testing
+    if (uuid.localeCompare("force-confirm") === 0) {
+      if (
+        await HTTPReq.genGET(
+          "force_confirm_email/" + user.ID,
+        )
+      ) {
+        await General.genUpdateCurrentUser();
+        this.$data.loading = false;
+        this.$router.push("/");
+        return;
+      }
+    }
+
     const res = await HTTPReq.genPOST(
       "confirm/email",
       WingsStructUtil.stringify(
@@ -42,8 +56,8 @@ export default {
       ),
     );
 
+    await General.genUpdateCurrentUser();
     this.$data.loading = false;
-    console.log(res);
 
     if (res) {
       this.$notify(

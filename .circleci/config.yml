@@ -35,7 +35,8 @@ jobs:
 
       - run: sudo npm i -g pnpm
       - run: pnpx cypress install
-      - run: cp .circleci/test.config config/psql.config
+      - run: cp config/test.psql.config config/psql.config
+      - run: cp config/test.email.config config/email.config
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       # run tests

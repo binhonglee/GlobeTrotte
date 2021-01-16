@@ -8,6 +8,8 @@ Cypress.Commands.add(
     cy.get(".registrationPassword").type(password);
     cy.get(".registrationConfPassword").type(confPassword);
     cy.get(".registrationSave").click();
+    cy.url().should("include", "/unconfirmed/email");
+    cy.visit("/confirm/email/force-confirm");
   },
 );
 

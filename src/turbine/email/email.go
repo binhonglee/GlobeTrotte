@@ -105,7 +105,7 @@ func NewEmail(userid int, emailAddress string) bool {
 		return false
 	}
 
-	if !hasConfig {
+	if !hasConfig || strings.HasSuffix(emailAddress, "@globetrotte.com") {
 		logger.Print(
 			logger.Email, "Email config not set. Skip sending email...",
 		)
@@ -144,7 +144,6 @@ func ConfirmEmail(confirmation wings.ConfirmEmail) bool {
 	var email emailObj
 	email.id, email.userID, email.emailAddress,
 		email.confirmed = db.GetEmailDB(confirmation.Uuid)
-	logger.DebugBlue(email.id)
 	if email.id == -1 || email.confirmed ||
 		email.userID != confirmation.Userid ||
 		email.emailAddress != confirmation.Email {
@@ -152,7 +151,6 @@ func ConfirmEmail(confirmation wings.ConfirmEmail) bool {
 	}
 
 	user, ok := db.GetUserDB(email.userID, -1).(*wings.User)
-	logger.DebugGreen(user)
 	if !ok || user.ID == -1 || user.Email != confirmation.Email {
 		return false
 	}

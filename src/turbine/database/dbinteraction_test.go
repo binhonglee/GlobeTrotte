@@ -101,8 +101,9 @@ func TestUpdatedUserDB(t *testing.T) {
 
 	if given != expected {
 		t.Errorf(
-			// Breaking this into multiple lines somehow breaks its formatting
-			"UpdateUserDB(), given Trips are " + given + " but expected Trips are " + expected + ".",
+			"UpdateUserDB(), given Trips are " +
+				given + " but expected Trips are " +
+				expected + ".",
 		)
 	}
 }

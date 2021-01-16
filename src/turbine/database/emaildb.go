@@ -119,6 +119,24 @@ func ConfirmEmailDB(
 	return confirmUser(userid)
 }
 
+// PROD: Remove on prod. Only used for automated testing.
+func ForceConfirm(uid int) bool {
+	sqlStatement := `
+		UPDATE emails
+		SET confirmed = $1
+		WHERE userid = $2;`
+	_, err := db.Exec(sqlStatement, true, uid)
+
+	if err != nil {
+		logger.Err(
+			logger.Database, err,
+			"Failed to confirm email for user "+strconv.Itoa(uid),
+		)
+		return false
+	}
+	return confirmUser(uid)
+}
+
 func DeleteEmailDB(userid int, emailAddress string) bool {
 	sqlStatement := `
 		DELETE FROM emails

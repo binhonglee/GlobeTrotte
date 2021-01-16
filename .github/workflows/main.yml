@@ -54,7 +54,8 @@ jobs:
 
     - run: ./scripts/setup.sh -g -s -w
     - run: sudo npm i -g pnpm
-    - run: cp .circleci/test.config config/psql.config
+    - run: cp config/test.psql.config config/psql.config
+    - run: cp config/test.email.config config/email.config
 
     - run: ./pleasew build --show_all_output
 
