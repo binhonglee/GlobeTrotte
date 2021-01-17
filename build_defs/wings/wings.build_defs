@@ -11,7 +11,7 @@ def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visi
 
   cmd = " && ".join([
     _home_path(),
-    "FILES=$(find \"$PWD\" -name *.wings -exec realpath --relative-to \"$PWD\" \{\} \;)",
+    "FILES=$(find * -name '*.wings')",
     "$TOOL -c:" + config + " $FILES",
   ])
 

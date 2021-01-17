@@ -9,7 +9,7 @@ rm -rf node_modules
 echo "Removing parcel cache..."
 rm -rf .cache
 echo "Removing please cache folder..."
-if [ "$OS" == "Darwin" ]; then
+if [ "$OS" = "Darwin" ]; then
   rm -rf ~/Library/Caches/please
 else
   rm -rf ~/.cache/please

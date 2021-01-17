@@ -2,6 +2,7 @@
 
 [![GitHub Action Status](https://github.com/binhonglee/GlobeTrotte/workflows/CI/badge.svg)](https://github.com/binhonglee/GlobeTrotte/actions?query=workflow%3ACI+branch%3Amain)
 [![CircleCI](https://circleci.com/gh/binhonglee/GlobeTrotte/tree/main.svg?style=shield)](https://circleci.com/gh/binhonglee/GlobeTrotte/tree/main)
+[![Build Status](https://binhonglee.visualstudio.com/GlobeTrotte/_apis/build/status/binhonglee.GlobeTrotte?branchName=main)](https://binhonglee.visualstudio.com/GlobeTrotte/_build/latest?definitionId=1&branchName=main)
 [![codecov](https://codecov.io/gh/binhonglee/GlobeTrotte/branch/main/graph/badge.svg?token=H3UDTCtJoy)](https://codecov.io/gh/binhonglee/GlobeTrotte)
 [![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/binhonglee/GlobeTrotte.svg)](https://app.snyk.io/org/binhonglee/project/c9cff2be-f8f8-4db5-b687-1b69865cade9/)
 

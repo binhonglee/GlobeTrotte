@@ -6,10 +6,9 @@
 </template>
 
 <script lang="ts">
+import { WingsStructUtil } from "wings-ts-util";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
-import ConfimEmail from "@/wings/ConfirmEmail";
-import { WingsStructUtil } from "wings-ts-util";
 import ConfirmEmail from "@/wings/ConfirmEmail";
 
 interface Data {

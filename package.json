@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "pnpm run checkBackend && parcel index.html",
     "build": "parcel build index.html --no-cache --public-url 'https://globetrotte.com'",
-    "lint": "eslint .",
+    "lint": "eslint \"src/**/*.{vue,ts}\"",
     "checkBackend": "tsc src/cockpit/scripts/checkBackend.ts --outDir ./plz-out && node ./plz-out/checkBackend.js",
     "cover": "nyc pnpm run test:unit",
     "cypress": "NODE_ENV=test vue-cli-service test:cypress",
