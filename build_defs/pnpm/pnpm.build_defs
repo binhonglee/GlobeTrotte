@@ -121,6 +121,7 @@ def pnpm_install(name:str, srcs:list=[], deps:list=[]):
   ])
 
   cmd = " && ".join([
+    _home_path(),
     _go_to_top_level(),
     cmd,
     "ln -s " + out + " $TMP_DIR/node_modules",

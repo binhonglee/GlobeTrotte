@@ -3,7 +3,8 @@ pull_request_rules:
     conditions:
       - "author=renovate[bot]"
       - "status-success=CodeFactor"
-      - "status-success=test"
+      - "status-success=test (pull_request)"
+      - "status-success=binhonglee.GlobeTrotte"
       - "status-success=ci/circleci: build"
       - "status-success=codebeat"
       - "status-success=codecov/patch"
@@ -15,7 +16,8 @@ pull_request_rules:
     conditions:
       - "approved-reviews-by=binhonglee"
       - "status-success=CodeFactor"
-      - "status-success=test"
+      - "status-success=test (pull_request)"
+      - "status-success=binhonglee.GlobeTrotte"
       - "status-success=ci/circleci: build"
       - "status-success=codebeat"
       - "status-success=license/cla"

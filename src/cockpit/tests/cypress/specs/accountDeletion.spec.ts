@@ -10,6 +10,7 @@ describe("User account", () => {
     cy.contains("li", "Register").click();
     cy.registration(email, password, password);
     cy.isLoggedIn();
+    cy.logout();
   });
 
   it("login", () => {
@@ -18,6 +19,7 @@ describe("User account", () => {
     cy.contains("li", "Login").click();
     cy.login(email, password);
     cy.isLoggedIn();
+    cy.logout();
   });
 
   it("wrong email login", () => {

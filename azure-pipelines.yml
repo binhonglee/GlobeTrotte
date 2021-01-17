@@ -1,0 +1,125 @@
+variables:
+  HOMEBREW_NO_INSTALL_CLEANUP: 1
+  HOMEBREW_NO_AUTO_UPDATE: 1
+
+trigger:
+  branches:
+    exclude:
+    - prod
+
+strategy:
+  matrix:
+    ubuntu-node-12-go-1-13-1:
+      imageName: "ubuntu-latest"
+      nodeVersion: "12.x"
+      goVersion: "1.13.1"
+    ubuntu-node-14-go-1-13-1:
+      imageName: "ubuntu-latest"
+      nodeVersion: "14.x"
+      goVersion: "1.13.1"
+    ubuntu-node-12-go-1-15-6:
+      imageName: "ubuntu-latest"
+      nodeVersion: "12.x"
+      goVersion: "1.15.6"
+    ubuntu-node-14-go-1-15-6:
+      imageName: "ubuntu-latest"
+      nodeVersion: "14.x"
+      goVersion: "1.15.6"
+    mac-node-12-go-1-13-1:
+      imageName: "macos-latest"
+      nodeVersion: "12.x"
+      goVersion: "1.13.1"
+    mac-node-14-go-1-13-1:
+      imageName: "macos-latest"
+      nodeVersion: "14.x"
+      goVersion: "1.13.1"
+    mac-node-12-go-1-15-6:
+      imageName: "macos-latest"
+      nodeVersion: "12.x"
+      goVersion: "1.15.6"
+    mac-node-14-go-1-15-6:
+      imageName: "macos-latest"
+      nodeVersion: "14.x"
+      goVersion: "1.15.6"
+
+pool:
+  vmImage: $(imageName)
+
+steps:
+- task: GoTool@0
+  inputs:
+    version: $(goVersion)
+- task: NodeTool@0 
+  inputs:
+    versionSpec: $(nodeVersion)
+
+- task: Cache@2
+  inputs:
+    key: "pnpm_store | $(Agent.OS) | package.json"
+    path: "/home/vsts/.pnpm-store"
+  condition: eq(variables['Agent.OS'], 'Linux')
+  displayName: Cache pnpm-store (Ubuntu)
+
+- task: Cache@2
+  inputs:
+    key: "pnpm_store | $(Agent.OS) | package.json"
+    path: "/Users/runner/.pnpm-store"
+  condition: eq(variables['Agent.OS'], 'Darwin')
+  displayName: Cache pnpm-store (MacOS)
+
+- task: Cache@2
+  inputs:
+    key: "cypress | $(Agent.OS) | package.json"
+    path: "/home/vsts/.cache/Cypress"
+  condition: eq(variables['Agent.OS'], 'Linux')
+  displayName: Cache Cypress (Ubuntu)
+
+- task: Cache@2
+  inputs:
+    key: "cypress | $(Agent.OS) | package.json"
+    path: "/Users/runner/Library/Caches/Cypress"
+  condition: eq(variables['Agent.OS'], 'Darwin')
+  displayName: Cache Cypress (MacOS)
+
+- script: ./scripts/setup.sh
+  displayName: Run install script
+
+- script: |
+    DIR=$(basename $CURRENT_DIR)
+    sed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" wings.json
+    cat wings.json
+  env:
+    CURRENT_DIR: $(Pipeline.Workspace)
+  condition: eq(variables['Agent.OS'], 'Linux')
+  displayName: Fix wings.json (Ubuntu)
+
+- script: |
+    brew install gnu-sed
+    DIR=$(basename $CURRENT_DIR)
+    gsed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" wings.json
+    cat wings.json
+  env:
+    CURRENT_DIR: $(Pipeline.Workspace)
+  condition: eq(variables['Agent.OS'], 'Darwin')
+  displayName: Fix wings.json (MacOS)
+
+- script: ./pleasew build --show_all_output //...
+  displayName: Build all
+
+- script: ./pleasew cover --show_all_output //src/turbine/...
+  displayName: Test turbine (with coverage)
+- script: ./pleasew work &
+  displayName: Run turbine on background
+- script: sleep 1
+- script: ./pleasew test --show_all_output
+  displayName: Test all
+
+- script: ./pleasew run //:report
+  displayName: Generate Cockpit Report
+- script: bash <(curl -s https://codecov.io/bash)
+  displayName: Upload report to codecov
+
+- script: |
+    git checkout wings.json
+    ./scripts/leftover.sh
+  displayName: Check for leftover

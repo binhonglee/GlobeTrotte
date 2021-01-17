@@ -33,33 +33,49 @@ printEnd() {
 }
 
 config() {
-  CURRENT=$(pwd | awk -F'/' '{print $NF}')
-  CONFIG_FILE="config/psql.config"
+  PSQL_CONFIG_FILE="config/psql.config"
+  EMAIL_CONFIG_FILE="config/email.config"
 
-  if [ "$CURRENT" != "GlobeTrotte" ]; then
-    echo "Invalid location. Config file not set up."
-    echo "Please run this script again (with -c option) from the top level folder of the project."
+  if [ ! -d "config" ]; then
+    echo "'config' directory not found."
+    echo "Make sure you are running this script (with -c option) from the top level folder of the project."
     return
   fi
 
-  if [ -e "$CONFIG_FILE" ]; then
-    echo "Seems like \`config/psql.config\` file already exist. Skipping..."
-    return
+  if [ -e "$PSQL_CONFIG_FILE" ]; then
+    echo "Seems like \`$PSQL_CONFIG_FILE\` file already exist. Skipping..."
+  else
+    echo "Setting up databases..."
+    case $OS in
+      "Darwin")
+        psql postgres -w -c "CREATE DATABASE globetrotte;"
+        psql postgres -w -c "CREATE ROLE $USER WITH SUPERUSER CREATEDB LOGIN ENCRYPTED PASSWORD 'test';"
+        psql postgres -w -c "GRANT ALL PRIVILEGES ON DATABASE globetrotte TO $USER;"
+        ;;
+      "Linux")
+        sudo -u postgres psql -w -c "CREATE DATABASE globetrotte;"
+        sudo -u postgres psql -w -c "CREATE ROLE $USER WITH SUPERUSER CREATEDB LOGIN ENCRYPTED PASSWORD 'test';"
+        sudo -u postgres psql -w -c "GRANT ALL PRIVILEGES ON DATABASE globetrotte TO $USER;"
+        ;;
+    esac
+
+    echo "Creating psql config file..."
+    touch "$PSQL_CONFIG_FILE"
+    {
+      echo "host:localhost"
+      echo "port:5432"
+      echo "user:$USER"
+      echo "password:test"
+      echo "dbname:globetrotte"
+    } >> "$PSQL_CONFIG_FILE"
   fi
 
-  sudo service postgresql start
-  sudo -u postgres psql -w -c "CREATE ROLE $USER WITH SUPERUSER CREATEDB LOGIN ENCRYPTED PASSWORD 'test';"
-  sudo -u postgres psql -w -c "CREATE DATABASE $USER"
-  psql --username="$USER" -w -c "CREATE DATABASE globetrotte;"
-
-  touch "$CONFIG_FILE"
-  {
-    echo "host:localhost"
-    echo "port:5432"
-    echo "user:$USER"
-    echo "password:test"
-    echo "dbname:globetrotte"
-  } >> "$CONFIG_FILE"
+  if [ -e "$EMAIL_CONFIG_FILE" ]; then
+    echo "Seems like \`$EMAIL_CONFIG_FILE\` file already exist. Skipping..."
+  else
+    echo "Creating email config file..."
+    touch "$EMAIL_CONFIG_FILE"
+  fi
 }
 
 installGo() {
@@ -95,21 +111,14 @@ installGo() {
         ;;
     esac
 
-    case $OS in
-      "Darwin")
-        os="darwin"
-        ;;
-      "Linux")
-        os="linux"
-        ;;
-    esac
+    GO_OS=$(echo "$OS" | awk '{print tolower($0)}')
 
-    filename="go""$GO_VERSION"."$os""-""$ARCH"".tar.gz"
+    filename="go""$GO_VERSION"."$GO_OS""-""$ARCH"".tar.gz"
     if [ ! -f "$filename" ]; then
-      curl -L https://dl.google.com/go/"$filename" -o $filename
+      curl -L https://dl.google.com/go/"$filename" -o "$filename"
     fi
     sudo tar -C "/usr/local" -xzf "$filename"
-    rm $filename
+    rm "$filename"
     export GOPATH="$HOME/go"
     export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
     printEnd "Add the following lines to your .bashrc / .zshrc file:"
@@ -138,6 +147,7 @@ installPlease() {
   fi
 
   curl https://get.please.build | bash
+  ./pleasew update
 }
 
 installPNPM() {
@@ -160,22 +170,29 @@ installPNPM() {
 installPostgreSQL() {
   TEST_PSQL=$(psql -V)
 
-  if [ "$TEST_PSQL" != "" ]; then
-    echo "Seems like \`psql\` is already installed. Skipping..."
-    return
+  if [ "$TEST_PSQL" = "" ]; then
+    case $OS in
+      "Darwin")
+        brew install postgresql
+        ;;
+      "Linux")
+        sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+        wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+        sudo apt-get update
+        sudo apt-get -y install postgresql
+        ;;
+    esac
+  else 
+    echo "Seems like \`psql\` is already installed. Skip installing..."
   fi
 
+  echo "Starting postgres service..."
   case $OS in
     "Darwin")
-      brew install postgresql
       brew services start postgresql
-      createdb
       ;;
     "Linux")
-      sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-      wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-      sudo apt-get update
-      sudo apt-get -y install postgresql
+      sudo service postgresql start
       ;;
   esac
 }
@@ -209,14 +226,14 @@ installWings() {
   
   case $OS in
     "Darwin")
-      OS="macosx"
+      Download_OS="macosx"
       ;;
     "Linux")
-      OS="linux"
+      Download_OS="linux"
       ;;
   esac
 
-  sudo curl -L https://github.com/binhonglee/wings/releases/download/v0.0.6-alpha/wings_64bit_$OS -o /usr/local/bin/wings
+  sudo curl -L https://github.com/binhonglee/wings/releases/download/v0.0.6-alpha/wings_64bit_$Download_OS -o /usr/local/bin/wings
   sudo chmod +x /usr/local/bin/wings
 }
 
