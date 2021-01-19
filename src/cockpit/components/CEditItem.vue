@@ -58,7 +58,7 @@ export default {
 }
 
 .edit_item_large {
-  height: 75px;
+  min-height: 75px;
 }
 
 .edit_item_small {
