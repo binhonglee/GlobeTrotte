@@ -29,7 +29,7 @@
     "axios": "0.21.1",
     "element-ui": "2.15.0",
     "vue": "2.6.12",
-    "vue-router": "3.5.0",
+    "vue-router": "3.5.1",
     "wings-ts-util": "0.0.8"
   },
   "devDependencies": {
