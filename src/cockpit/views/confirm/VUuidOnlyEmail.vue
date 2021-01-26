@@ -26,25 +26,25 @@ export default {
     const user = await General.genCurrentUser();
     if (user.confirmed) {
       this.$data.loading = false;
-      await this.$router.push("/");
+      await General.genRedirectTo(this.$router, "/");
+      return;
     }
     const uuid = General.paramUUID(this);
 
     // PROD: Force confirm email only used for testing
     if (uuid.localeCompare("force-confirm") === 0) {
       if (
-        await HTTPReq.genGET(
-          "force_confirm_email/" + user.ID,
-        )
+        await HTTPReq.genGET(this.$router, "force_confirm_email/" + user.ID)
       ) {
         await General.genUpdateCurrentUser();
         this.$data.loading = false;
-        this.$router.push("/");
+        await General.genRedirectTo(this.$router, "/");
         return;
       }
     }
 
     const res = await HTTPReq.genPOST(
+      this.$router,
       "confirm/email",
       WingsStructUtil.stringify(
         new ConfirmEmail({
@@ -66,7 +66,7 @@ export default {
           "success",
         ),
       );
-      await this.$router.push("/");
+      await General.genRedirectTo(this.$router, "/");
     } else {
       this.$notify(
         General.notifConfig(
@@ -75,7 +75,7 @@ export default {
           "error",
         ),
       );
-      await this.$router.push("/unconfirmed/email");
+      await General.genRedirectTo(this.$router, "/unconfirmed/email");
     }
   },
 };

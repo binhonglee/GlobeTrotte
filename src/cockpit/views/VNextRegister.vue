@@ -65,9 +65,7 @@ export default {
     async confirm(): Promise<void> {
       this.$data.loading = true;
       if (
-        this.$refs.password.value.localeCompare(
-          this.$refs.confPassword.value,
-        )
+        this.$refs.password.value.localeCompare(this.$refs.confPassword.value)
       ) {
         this.$alert("Password does not match.", "Fail", {
           confirmButtonText: "OK",
@@ -84,6 +82,7 @@ export default {
       });
 
       const res = await HTTPReq.genPOST(
+        this.$router,
         "user",
         WingsStructUtil.stringify(newUser),
       );
@@ -98,10 +97,7 @@ export default {
         return;
       }
 
-      localStorage.setItem(
-        "user",
-        WingsStructUtil.stringify(user),
-      );
+      localStorage.setItem("user", WingsStructUtil.stringify(user));
 
       this.$data.loading = false;
       this.$notify(
@@ -116,9 +112,10 @@ export default {
       if (next === "/") {
         next = "/myaccount";
       }
-      this.$router.push({
-        path: General.addNext("/unconfirmed/email", next),
-      });
+      General.genRedirectTo(
+        this.$router,
+        "/trip/view/" + General.addNext("/unconfirmed/email", next),
+      );
     },
     cancel(): void {
       this.$router.back();

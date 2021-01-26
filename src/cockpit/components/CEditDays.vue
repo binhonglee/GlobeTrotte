@@ -63,8 +63,7 @@ export default {
       for (let i = 0; i < size; i++) {
         let currentDay: Day = dayMap[i + offBy];
         while (
-          (currentDay === undefined ||
-            currentDay === null) &&
+          (currentDay === undefined || currentDay === null) &&
           i + offBy < size + 5
         ) {
           offBy++;
@@ -76,9 +75,7 @@ export default {
     },
   },
   beforeMount(): void {
-    this.$data.days = (this.$props.givenDays ?? []).slice(
-      0,
-    );
+    this.$data.days = (this.$props.givenDays ?? []).slice(0);
   },
   components: {
     CEditPlaces,

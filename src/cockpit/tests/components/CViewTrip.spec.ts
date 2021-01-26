@@ -21,19 +21,10 @@ test("One trip in component", (t) => {
     },
   });
   t.is(wrapper.find(".tripName").text(), mockedTrip.name);
-  t.is(
-    wrapper.find(".tripID").text(),
-    mockedTrip.ID.toString(),
-  );
-  t.is(
-    wrapper.find(".tripDescription").text(),
-    mockedTrip.description,
-  );
+  t.is(wrapper.find(".tripID").text(), mockedTrip.ID.toString());
+  t.is(wrapper.find(".tripDescription").text(), mockedTrip.description);
   // t.is(wrapper.find("#city").text(),
   //   CityUtil.toString(mockedTrip.cities[0]),
   // );
-  t.is(
-    wrapper.find(".tripCreatorInfo").text(),
-    "Author: " + mockedUser.name,
-  );
+  t.is(wrapper.find(".tripCreatorInfo").text(), "Author: " + mockedUser.name);
 });

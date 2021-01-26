@@ -21,11 +21,12 @@ func init() {
 	createNewLogFile()
 }
 
-// Deprecated: Print an empty newline in terminal. Purely aesthetic reason.
+// NewLine - Print an empty newline in terminal. Purely aesthetic reason.
 func NewLine() {
 	fmt.Println()
 }
 
+// Cleanup - Close log file
 // Deprecated: DO NOT CALL THIS FUNCTION aside from `cleanup()` in main
 func Cleanup() {
 	currentFile.Close()
@@ -76,9 +77,9 @@ func createNewLogFile() {
 	Success(logger, "New log file created: "+currentFile.Name())
 }
 
-// This is used for logging in cleanup functions. Calls
-// here are not guaranteed to be stored into the log files
-// but will always be displayed in the terminal.
+// Exit - This is used for logging in cleanup functions. Calls
+//   here are not guaranteed to be stored into the log files
+//   but will always be displayed in the terminal.
 func Exit(namespace Namespace, message string) {
 	if currentFile != nil {
 		Print(namespace, message)
@@ -87,26 +88,29 @@ func Exit(namespace Namespace, message string) {
 	}
 }
 
-// Print the message into the log file and the command line
+// Print - Print the message into the log file and the command line
 func Print(namespace Namespace, message string) {
 	messageToFile(none, namespace, message)
 }
 
+// Success - Similar to Print but text in Green to indicate success
 func Success(namespace Namespace, message string) {
 	messageToFile(successC, namespace, message)
 }
 
+// Failure - Similar to Print but text in Red to indicate failure
 func Failure(namespace Namespace, message string) {
 	messageToFile(errorC, namespace, message)
 }
 
-// Similar to Print() but calls panic right after
+// Panic - Similar to Print() but calls panic right after
 func Panic(namespace Namespace, message string) {
 	messageToFile(panicC, namespace, message)
 	panic(message)
 }
 
-// Triggers Panic() on the condition that `if err != nil`
+// PanicErr - Triggers Panic() on the condition that
+//   `if err != nil`
 func PanicErr(
 	namespace Namespace, err error, message string) {
 	if err != nil {
@@ -115,8 +119,8 @@ func PanicErr(
 	}
 }
 
-// Prints message in red indicating its an error
-// (`if err != nil`) but does not call `panic()` nor ends
+// Err - Prints message in red indicating its an error
+//   (`if err != nil`) but does not call `panic()` nor ends
 // the program
 func Err(namespace Namespace, err error, message string) {
 	if err != nil {
@@ -128,37 +132,38 @@ func Err(namespace Namespace, err error, message string) {
 	}
 }
 
-// This will print message to the terminal but not into the log file.
+// Debug - This will print message to the terminal but not
+//   into the log file.
 // Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
 func Debug(message ...interface{}) {
 	debugPrint(yellowC, message)
 }
 
-// Same as `Debug()` but green
+// DebugGreen - Same as `Debug()` but green
 // Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
 func DebugGreen(message ...interface{}) {
 	debugPrint(greenC, message)
 }
 
-// Same as `Debug()` but purple
+// DebugPurple - Same as `Debug()` but purple
 // Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
 func DebugPurple(message ...interface{}) {
 	debugPrint(purpleC, message)
 }
 
-// Same as `Debug()` but cyan
+// DebugCyan - Same as `Debug()` but cyan
 // Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
 func DebugCyan(message ...interface{}) {
 	debugPrint(cyanC, message)
 }
 
-// Same as `Debug()` but blue
+// DebugBlue - Same as `Debug()` but blue
 // Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
 func DebugBlue(message ...interface{}) {
 	debugPrint(blueC, message)
 }
 
-// Same as `Debug()` but pink
+// DebugPink - Same as `Debug()` but pink
 // Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
 func DebugPink(message ...interface{}) {
 	debugPrint(pinkC, message)
@@ -202,6 +207,8 @@ func debugPrint(
 	)
 }
 
+// DebugCaller - Shows the entire call stack on how the code is reached
+// Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
 func DebugCaller(level int) {
 	_, file, no, ok := runtime.Caller(level)
 	if ok {
@@ -217,7 +224,9 @@ func getCaller(namespace Namespace, level int) string {
 	_, file, no, ok := runtime.Caller(level)
 	if ok {
 		paths := strings.Split(file, "/")
-		if paths[len(paths)-1] != "log.go" || namespace == logger || namespace == flags {
+		if paths[len(paths)-1] != "log.go" ||
+			namespace == logger ||
+			namespace == flags {
 			return "(" + file + ":" + strconv.Itoa(no) + ")"
 		} else {
 			return getCaller(namespace, level+2)

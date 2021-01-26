@@ -85,9 +85,7 @@ export default Vue.extend({
   },
   methods: {
     cancel(): void {
-      this.$refs.days.days = (
-        this.$props.trip.days ?? []
-      ).slice(0);
+      this.$refs.days.days = (this.$props.trip.days ?? []).slice(0);
       this.$emit("cancel");
     },
     save(): void {
@@ -109,17 +107,13 @@ export default Vue.extend({
       }
 
       newTrip.name = this.$refs.name.value;
-      newTrip.description = this.$refs.description.value
-        .split("\n")
-        .join(" ");
+      newTrip.description = this.$refs.description.value.split("\n").join(" ");
       newTrip.days = [];
       const days = this.$refs.days;
       let offBy = 0;
       for (const day in days.days) {
         const currentDay = days.days[day];
-        const places = this.filterPlaces(
-          days.$refs["places" + day][0].places,
-        );
+        const places = this.filterPlaces(days.$refs["places" + day][0].places);
         if (places === null) {
           this.$alert(
             "We currently only support links to limited " +
@@ -152,9 +146,7 @@ export default Vue.extend({
       for (let place of places) {
         if (place.label !== "" && place.URL !== "") {
           if (this.filterPlace(place)) {
-            place.description = place.description
-              .split("\n")
-              .join(" ");
+            place.description = place.description.split("\n").join(" ");
             toReturn.push(place);
           } else {
             return null;
@@ -164,6 +156,7 @@ export default Vue.extend({
       return toReturn;
     },
     filterPlace(place: Place): boolean {
+      // TODO: Move (or clone) this check on server side
       const whitelistURLs = [
         "https://goo.gl/maps/",
         "https://google.com/maps/",
@@ -182,14 +175,11 @@ export default Vue.extend({
     async del(): Promise<void> {
       this.$data.deleting = true;
       let success = Boolean(
-        await HTTPReq.genDELETE(
-          "trip/" + this.$props.trip.ID,
-        ),
+        await HTTPReq.genDELETE(this.$router, "trip/" + this.$props.trip.ID),
       );
       if (!success) {
         success =
-          (await General.genTrip(this.$props.trip.ID))
-            .ID === -1;
+          (await General.genTrip(this.$router, this.$props.trip.ID)).ID === -1;
       }
 
       this.$data.deleting = false;
@@ -204,14 +194,11 @@ export default Vue.extend({
       );
 
       if (success) {
-        this.$router.push("/");
+        General.genRedirectTo(this.$router, "/");
       }
     },
     tripToItem(itemType: string): TripEditable {
-      return new TripEditable(
-        itemType,
-        this.$props.trip[itemType],
-      );
+      return new TripEditable(itemType, this.$props.trip[itemType]);
     },
     update() {
       this.$data.possibleCities = CityUtil.sortedCityList();

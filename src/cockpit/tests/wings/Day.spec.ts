@@ -14,9 +14,7 @@ let reversedObj = new Day();
 
 test("proper init()", (t) => {
   t.notThrows(() => {
-    reversedObj = new Day(
-      JSON.parse(WingsStructUtil.stringify(day)),
-    );
+    reversedObj = new Day(JSON.parse(WingsStructUtil.stringify(day)));
   });
 });
 
@@ -26,10 +24,8 @@ for (const key in day) {
       if (day[key] instanceof Array) {
         t.true(reversedObj[key] instanceof Array);
         t.is(
-          day[key].filter(
-            (item: Place) =>
-              reversedObj[key].indexOf(item) < 0,
-          ).length,
+          day[key].filter((item: Place) => reversedObj[key].indexOf(item) < 0)
+            .length,
           0,
         );
       } else {

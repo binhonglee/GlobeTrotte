@@ -15,9 +15,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-const (
-	configFile = "config/psql.config"
-)
+const configFile = "config/psql.config"
 
 var db *sql.DB
 var tableNames = [6]string{"users", "trips", "cities", "days", "places", "emails"}

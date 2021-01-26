@@ -60,9 +60,7 @@ export default Vue.extend({
     },
   },
   beforeMount() {
-    this.$data.places = (
-      this.$props.givenPlaces ?? []
-    ).slice(0);
+    this.$data.places = (this.$props.givenPlaces ?? []).slice(0);
   },
 });
 </script>

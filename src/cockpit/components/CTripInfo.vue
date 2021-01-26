@@ -54,6 +54,7 @@ export default {
       const user = await General.genCurrentUser();
       trip.userID = user.ID;
       const success = await HTTPReq.genPOST(
+        this.$router,
         "trip/" + trip.ID,
         WingsStructUtil.stringify(trip),
       );
@@ -61,13 +62,9 @@ export default {
         this.$data.editMode = false;
         this.$props.trip = trip;
       } else {
-        this.$alert(
-          "Save was unsuccessful. Please try again later.",
-          "Fail",
-          {
-            confirmButtonText: "OK",
-          },
-        );
+        this.$alert("Save was unsuccessful. Please try again later.", "Fail", {
+          confirmButtonText: "OK",
+        });
       }
     },
     cancel(): void {

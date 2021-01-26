@@ -1,16 +1,10 @@
 import sinon from "sinon";
-import {
-  createLocalVue,
-  MountOptions,
-  Wrapper,
-} from "@vue/test-utils";
+import { createLocalVue, MountOptions, Wrapper } from "@vue/test-utils";
 import VueRouter from "vue-router";
 import router from "@/router";
 
 export async function wait(ms: int): Promise<void> {
-  await new Promise((resolve) =>
-    setTimeout(() => resolve(), ms),
-  );
+  await new Promise((resolve) => setTimeout(() => resolve(), ms));
 }
 
 export class notifySpy {
@@ -45,10 +39,7 @@ export class alertSpy {
   public getMessage(call = 0): string | undefined {
     return this.item.args[call][0];
   }
-  public getOptions(
-    key: string,
-    call = 0,
-  ): string | undefined {
+  public getOptions(key: string, call = 0): string | undefined {
     return this.item.args[call][2][key];
   }
   public async restore(): Promise<void> {

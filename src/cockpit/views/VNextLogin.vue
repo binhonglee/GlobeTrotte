@@ -68,6 +68,7 @@ export default {
       });
 
       const res = await HTTPReq.genPOST(
+        this.$router,
         "login",
         WingsStructUtil.stringify(newUser),
       );
@@ -77,22 +78,14 @@ export default {
         this.$data.loading = false;
         this.$message({
           type: "error",
-          message:
-            "Wrong email or password. Please try again.",
+          message: "Wrong email or password. Please try again.",
         });
         return;
       }
-      localStorage.setItem(
-        "user",
-        WingsStructUtil.stringify(user),
-      );
+      localStorage.setItem("user", WingsStructUtil.stringify(user));
       this.$data.loading = false;
       this.$notify(
-        General.notifConfig(
-          "Success",
-          "You are now logged in.",
-          "success",
-        ),
+        General.notifConfig("Success", "You are now logged in.", "success"),
       );
 
       General.toNext(this);

@@ -18,18 +18,9 @@ import test from "ava";
 const email = "ab@test.com";
 const password = "1234";
 
-function verifyUI(
-  t: ExecutionContext<unknown>,
-  wrapper: Wrapper<Vue>,
-): void {
-  t.is(
-    wrapper.find(".loginUsernameLabel").text(),
-    "Email:",
-  );
-  t.is(
-    wrapper.find(".loginPasswordLabel").text(),
-    "Password:",
-  );
+function verifyUI(t: ExecutionContext<unknown>, wrapper: Wrapper<Vue>): void {
+  t.is(wrapper.find(".loginUsernameLabel").text(), "Email:");
+  t.is(wrapper.find(".loginPasswordLabel").text(), "Password:");
 }
 
 interface FormLogin {
@@ -42,10 +33,7 @@ function fillFormAndLogin(
   wrapper: Wrapper<Vue>,
   form: FormLogin,
 ): void {
-  wrapper
-    .find(".loginUsername")
-    .find(".el-input__inner")
-    .setValue(form.email);
+  wrapper.find(".loginUsername").find(".el-input__inner").setValue(form.email);
   wrapper
     .find(".loginPassword")
     .find(".el-input__inner")
@@ -54,9 +42,7 @@ function fillFormAndLogin(
 }
 
 test("Login - Cancel", async (t) => {
-  const paramNext = sinon
-    .stub(General, "paramNext")
-    .returns("");
+  const paramNext = sinon.stub(General, "paramNext").returns("");
   const wrapper = mount(VNextLogin, newLocalVueAndRouter());
   const routerBack = new routerSpy(wrapper, "back");
   verifyUI(t, wrapper);
@@ -67,9 +53,7 @@ test("Login - Cancel", async (t) => {
 });
 
 test.serial("Login - Wrong password", async (t) => {
-  const paramNext = sinon
-    .stub(General, "paramNext")
-    .returns("");
+  const paramNext = sinon.stub(General, "paramNext").returns("");
   const returnedUser = WingsStructUtil.stringify(
     new User({
       id: -1,
@@ -100,19 +84,14 @@ test.serial("Login - Wrong password", async (t) => {
   );
   await genPOST.restore();
   t.true(message.item.calledOnce);
-  t.is(
-    message.getMessage(),
-    "Wrong email or password. Please try again.",
-  );
+  t.is(message.getMessage(), "Wrong email or password. Please try again.");
   t.is(message.getType(), "error");
   await paramNext.restore();
   await message.restore();
 });
 
 test.serial("Login - Success", async (t) => {
-  const paramNext = sinon
-    .stub(General, "paramNext")
-    .returns("");
+  const paramNext = sinon.stub(General, "paramNext").returns("");
   const returnedUser = WingsStructUtil.stringify(
     new User({
       id: 10,

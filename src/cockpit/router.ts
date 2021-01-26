@@ -59,6 +59,16 @@ export default new Router({
       component: () => import("./views/VNextLogin.vue"),
     },
     {
+      path: "/ratelimited/:path",
+      name: "NextRateLimitedRedirect",
+      component: () => import("./views/VNextRateLimited.vue"),
+    },
+    {
+      path: "/ratelimited",
+      name: "NextRateLimited",
+      component: () => import("./views/VNextRateLimited.vue"),
+    },
+    {
       path: "/register/:path",
       name: "NextRegisterRedirect",
       meta: {

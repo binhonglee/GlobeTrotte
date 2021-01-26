@@ -29,6 +29,7 @@ export default {
       }
 
       this.$data.user = await General.genUser(
+        this.$router,
         Number(General.paramID(this)),
       );
 
@@ -36,14 +37,12 @@ export default {
         await this.$alert("User not found.", "Error", {
           confirmButtonText: "OK",
         });
-        await this.$router.push("/");
+        await General.genRedirectTo(this.$router, "/");
       }
 
-      const isCurrentUser = General.getIsCurrentUser(
-        this.$data.user.ID,
-      );
+      const isCurrentUser = General.getIsCurrentUser(this.$data.user.ID);
       if (isCurrentUser) {
-        this.$router.push("/myaccount");
+        await General.genRedirectTo(this.$router, "/myaccount");
       }
       return;
     },

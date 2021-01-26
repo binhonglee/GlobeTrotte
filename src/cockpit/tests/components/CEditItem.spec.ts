@@ -34,8 +34,5 @@ test("renders unknown item", (t) => {
       val: item.value,
     },
   });
-  t.regex(
-    wrapper.find(".editLabel").text(),
-    /unknown_type/,
-  );
+  t.regex(wrapper.find(".editLabel").text(), /unknown_type/);
 });

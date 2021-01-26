@@ -2,12 +2,14 @@ go_library(
   name = "router",
   srcs = [
     "handlers.go",
+    "ratelimit.go",
     "router.go",
     "structhandlers.go",
   ],
   deps = [
     "//third_party:mux",
     "//third_party:bcrypt",
+    "//third_party:rate",
     "//third_party:sessions",
     "//src/turbine/database:database",
     "//src/turbine/email:email",

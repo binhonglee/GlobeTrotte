@@ -41,30 +41,20 @@ args.forEach((componentName) => {
     }
 
     if (index === 0) {
-      snake_case_arr[index] = snake_case_arr[
-        index
-      ].toLocaleLowerCase();
+      snake_case_arr[index] = snake_case_arr[index].toLocaleLowerCase();
     } else if (
-      snake_case_arr[index].toLocaleLowerCase() !==
-      snake_case_arr[index]
+      snake_case_arr[index].toLocaleLowerCase() !== snake_case_arr[index]
     ) {
-      snake_case_arr[index] =
-        "_" + snake_case_arr[index].toLocaleLowerCase();
+      snake_case_arr[index] = "_" + snake_case_arr[index].toLocaleLowerCase();
     }
   });
 
   const snake_case = snake_case_arr.join("");
-  const componentFile =
-    componentFolder + componentName + ".vue";
-  const testFile =
-    componentTestFolder + componentName + ".spec.ts";
+  const componentFile = componentFolder + componentName + ".vue";
+  const testFile = componentTestFolder + componentName + ".spec.ts";
 
   if (existsSync(componentFile)) {
-    console.log(
-      "File " +
-        componentFile +
-        " already exists. Skipping...",
-    );
+    console.log("File " + componentFile + " already exists. Skipping...");
   } else {
     writeFileSync(
       componentFile,
@@ -78,15 +68,11 @@ args.forEach((componentName) => {
   }
 
   if (existsSync(testFile)) {
-    console.log(
-      "File " + testFile + " already exists. Skipping...",
-    );
+    console.log("File " + testFile + " already exists. Skipping...");
   } else {
     writeFileSync(
       testFile,
-      testFileTemplate
-        .split("COMPONENT_NAME")
-        .join(componentName),
+      testFileTemplate.split("COMPONENT_NAME").join(componentName),
     );
     console.log("File " + testFile + " created.");
   }

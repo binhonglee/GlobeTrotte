@@ -1,47 +1,35 @@
-import {
-  ElNotificationOptions,
-  MessageType,
-} from "element-ui";
+import { ElNotificationOptions, MessageType } from "element-ui";
 import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "./HTTPReq";
 import User from "@/wings/User";
 import Trip from "@/wings/Trip";
-import { CombinedVueInstance } from "vue/types/vue";
+import VueRouter from "vue-router";
 
 export default class General {
-  public static paramID(
-    obj: CombinedVueInstance,
-  ): string | undefined {
+  public static paramID(v: Vue): string | undefined {
     /* istanbul ignore next: $route is a pain to mock, using this as a workaround for testing */
-    return obj.$route.params.id;
+    return v.$route.params.id;
   }
 
-  public static paramNext(
-    obj: CombinedVueInstance,
-  ): string {
+  public static paramNext(v: Vue): string {
     /* istanbul ignore next: $route is a pain to mock, using this as a workaround for testing */
     try {
-      return obj.$route.params.path ?? "";
+      return v.$route.params["path"] ?? "";
     } catch (_) {
       return "";
     }
   }
 
-  public static paramUUID(
-    obj: CombinedVueInstance,
-  ): string {
+  public static paramUUID(v: Vue): string {
     /* istanbul ignore next: $route is a pain to mock, using this as a workaround for testing */
     try {
-      return obj.$route.params.uuid ?? "";
+      return v.$route.params.uuid ?? "";
     } catch (_) {
       return "";
     }
   }
 
-  public static addNext(
-    path: string,
-    next: string,
-  ): string {
+  public static addNext(path: string, next: string): string {
     if (next.startsWith("/")) {
       next = next.substr(1, next.length);
     }
@@ -62,7 +50,7 @@ export default class General {
         path = path.substr(1, path.length);
       }
 
-      if (!path.startsWith(":")) {
+      if (!path.startsWith(":") || path.length < 2) {
         path = "";
       } else {
         path = path.substr(1, path.length);
@@ -71,14 +59,17 @@ export default class General {
         while (next === "" || next === undefined) {
           next = paths.shift()?.split(".").join("/");
         }
-        path = next + "/:" + paths.join("&");
+        path = next;
+        if (paths.length > 0) {
+          path += "/:" + paths.join("&");
+        }
       }
     }
     return "/" + path;
   }
 
-  public static toNext(obj: CombinedVueInstance): void {
-    obj.$router.push(this.getNext(this.paramNext(obj)));
+  public static toNext(v: Vue): void {
+    v.$router.push(this.getNext(this.paramNext(v)));
   }
 
   public static notifConfig(
@@ -97,13 +88,13 @@ export default class General {
     };
   }
 
-  public static async genUser(id: number): Promise<User> {
-    const user = await HTTPReq.genGET("user/" + id);
+  public static async genUser(router: VueRouer, id: number): Promise<User> {
+    const user = await HTTPReq.genGET(router, "user/" + id);
     return new User(user);
   }
 
-  public static async genTrip(id: number): Promise<Trip> {
-    const trip = await HTTPReq.genGET("trip/" + id);
+  public static async genTrip(router: VueRouter, id: number): Promise<Trip> {
+    const trip = await HTTPReq.genGET(router, "trip/" + id);
     return new Trip(trip);
   }
 
@@ -116,8 +107,7 @@ export default class General {
   }
 
   public static async genCurrentUser(): Promise<User> {
-    const id = JSON.parse(await HTTPReq.genGET("whoami"))
-      .id;
+    const id = JSON.parse(await HTTPReq.genGET("whoami")).id;
     if (id === -1) {
       localStorage.clear();
     } else {
@@ -145,5 +135,20 @@ export default class General {
 
   public static confirmed(): boolean {
     return this.getCurrentUser().confirmed;
+  }
+
+  public static async genRedirectTo(
+    router: VueRouter,
+    path: string,
+    overrideRateLimit: bool = false,
+  ): Promise<void> {
+    if (
+      router.currentRoute.path.startsWith("/ratelimited") &&
+      !overrideRateLimit
+    ) {
+      return;
+    }
+
+    await router.push(path);
   }
 }

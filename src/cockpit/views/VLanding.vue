@@ -22,7 +22,6 @@
 
 <script lang="ts">
 import CTripInCarousel from "@/components/CTripInCarousel.vue";
-import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import Trip from "@/wings/Trip";
 
@@ -39,14 +38,10 @@ export default {
   }),
   async beforeMount(): Promise<void> {
     this.$data.trips = [];
-    const trips = await HTTPReq.genGET("sample_trips");
+    const trips = await HTTPReq.genGET(this.$router, "sample_trips");
     for (const trip of trips) {
       const newTrip = new Trip(trip);
-      if (
-        newTrip.days.length > 0 &&
-        (await General.genUser(newTrip.userID.valueOf()))
-          .ID !== -1
-      ) {
+      if (newTrip.days.length > 0) {
         this.$data.trips.push(new Trip(trip));
       }
     }

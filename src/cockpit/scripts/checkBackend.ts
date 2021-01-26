@@ -4,10 +4,7 @@ const port = 4000;
 const tester = net
   .createServer()
   .once("error", function () {
-    console.info(
-      "Backend server seems to be up and running on :" +
-        port,
-    );
+    console.info("Backend server seems to be up and running on :" + port);
     process.exit(0);
   })
   .once("listening", function () {

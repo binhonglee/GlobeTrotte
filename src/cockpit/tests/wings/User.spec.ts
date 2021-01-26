@@ -11,26 +11,19 @@ const user = new User({
   time_created: new Date(),
   trips: null,
 });
-const reversedObj = new User(
-  JSON.parse(WingsStructUtil.stringify(user)),
-);
+const reversedObj = new User(JSON.parse(WingsStructUtil.stringify(user)));
 
 for (const key in user) {
   if (typeof key === "string") {
     test(key, (t) => {
       if (user[key] instanceof Date) {
-        t.is(
-          reversedObj[key].getTime(),
-          user[key].getTime(),
-        );
+        t.is(reversedObj[key].getTime(), user[key].getTime());
       } else if (user[key] instanceof Array) {
         // t.true(JSON.parse(WingsStructUtil.stringify(user)).trips);
         t.true(reversedObj[key] instanceof Array);
         t.is(
-          user[key].filter(
-            (item: number) =>
-              reversedObj[key].indexOf(item) < 0,
-          ).length,
+          user[key].filter((item: number) => reversedObj[key].indexOf(item) < 0)
+            .length,
           0,
         );
       } else {

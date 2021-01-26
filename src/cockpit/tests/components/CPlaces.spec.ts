@@ -16,8 +16,5 @@ test("renders one component", (t) => {
     propsData: { places: [mockedPlace.place] },
   });
 
-  t.regex(
-    wrapper.find(".place").text(),
-    new RegExp(mockedPlace.label),
-  );
+  t.regex(wrapper.find(".place").text(), new RegExp(mockedPlace.label));
 });

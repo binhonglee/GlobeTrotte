@@ -17,10 +17,7 @@ test("renders one component", (t) => {
   const wrapper = shallowMount(CEditDay, {
     propsData: { givenDays: [day] },
   });
-  t.regex(
-    wrapper.find(".editDayTitle").text(),
-    new RegExp("Day " + day.dayOf),
-  );
+  t.regex(wrapper.find(".editDayTitle").text(), new RegExp("Day " + day.dayOf));
   t.true(wrapper.find(".removeDay").exists());
   t.true(wrapper.find(".addDay").exists());
 });

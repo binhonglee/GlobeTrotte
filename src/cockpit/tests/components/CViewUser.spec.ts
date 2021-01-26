@@ -9,20 +9,8 @@ test("render component", (t) => {
     propsData: { user },
   });
   t.true(wrapper.find(".userInfo").exists());
-  t.regex(
-    wrapper.find(".userName").text(),
-    new RegExp(user.name),
-  );
-  t.regex(
-    wrapper.find(".userID").text(),
-    new RegExp(user.ID),
-  );
-  t.regex(
-    wrapper.find(".userEmail").text(),
-    new RegExp(user.email),
-  );
-  t.regex(
-    wrapper.find(".userBio").text(),
-    new RegExp(user.bio),
-  );
+  t.regex(wrapper.find(".userName").text(), new RegExp(user.name));
+  t.regex(wrapper.find(".userID").text(), new RegExp(user.ID));
+  t.regex(wrapper.find(".userEmail").text(), new RegExp(user.email));
+  t.regex(wrapper.find(".userBio").text(), new RegExp(user.bio));
 });

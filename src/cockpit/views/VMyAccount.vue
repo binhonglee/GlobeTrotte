@@ -1,9 +1,7 @@
 <template lang="pug">
   .my_account
     h1.title My Account
-    el-link.unconfirmedEmailLink(
-      href="/unconfirmed/email" :underline="false"
-    )
+    el-link.unconfirmedEmailLink(href="/unconfirmed/email" :underline="false")
       el-alert.narrow_content.accountUnconfirmedAlertBar(
         v-if="!confirmed"
         title="Unconfirmed"
@@ -21,32 +19,14 @@
               type="danger" v-on:click="logout"
             ) Logout
             el-button.myAccountEdit(
-              tabindex="0"
-              type="default"
-              ref="edit"
-              v-on:click="toggleEdit"
+              tabindex="0" type="default" ref="edit" v-on:click="toggleEdit"
             ) Edit
       .narrow_content(v-else)
-        CEditItem(
-          label="Name"
-          ref="name"
-          :val="user.name"
-        )
-        CEditItem(
-          label="Email"
-          ref="email"
-          :val="user.email"
-        )
-        CEditItem(
-          label="Bio"
-          type="textarea"
-          ref="bio"
-          :val="user.bio"
-        )
+        CEditItem(label="Name" ref="name" :val="user.name")
+        CEditItem(label="Email" ref="email" :val="user.email")
+        CEditItem(label="Bio" type="textarea" ref="bio" :val="user.bio")
         div.myAccountButtonGroups
-          el-button.myAccountSave(
-            type="primary" v-on:click="save"
-          ) Save
+          el-button.myAccountSave(type="primary" v-on:click="save") Save
           el-button.myAccountCancel(
             type="default"
             ref="cancel"
@@ -56,10 +36,7 @@
           el-button.myAccountDelete(
             type="danger" v-on:click="deleteAccount"
           ) Delete Account
-          el-button(
-            style="hidden: true"
-            v-if="false"
-          )
+          el-button(style="hidden: true" v-if="false")
 </template>
 
 <script lang="ts">
@@ -91,6 +68,7 @@ export default {
   methods: {
     async deleteAccount(): Promise<void> {
       const deletion = await HTTPReq.genDELETE(
+        this.$router,
         "user/" + this.$data.user.ID,
       );
 
@@ -103,7 +81,7 @@ export default {
             "info",
           ),
         );
-        this.$router.push("/");
+        await General.genRedirectTo(this.$router, "/");
       } else {
         this.$message({
           type: "error",
@@ -116,6 +94,7 @@ export default {
       this.$data.user.email = this.$refs.email.value;
       this.$data.user.bio = this.$refs.bio.value;
       const success = await HTTPReq.genPOST(
+        this.$router,
         "user/" + this.$data.user.ID,
         WingsStructUtil.stringify(this.$data.user),
       );
@@ -127,19 +106,15 @@ export default {
           type: "success",
         });
       } else {
-        this.$alert(
-          "Save was unsuccessful. Please try again later.",
-          "Fail",
-          {
-            confirmButtonText: "OK",
-          },
-        );
+        this.$alert("Save was unsuccessful. Please try again later.", "Fail", {
+          confirmButtonText: "OK",
+        });
       }
     },
     async logout(): Promise<void> {
-      await HTTPReq.genGET("logout");
+      await HTTPReq.genGET(this.$router, "logout");
       localStorage.clear();
-      this.$router.push("/");
+      await General.genRedirectTo(this.$router, "/");
     },
     toggleEdit(): void {
       this.$data.edit = !this.$data.edit;

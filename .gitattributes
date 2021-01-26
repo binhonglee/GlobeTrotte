@@ -24,6 +24,7 @@ ava.config.js   text eol=lf linguist-detectable=false
 config.yml      text eol=lf linguist-detectable=false
 cypress.json    text eol=lf linguist-detectable=false
 main.yml        text eol=lf linguist-detectable=false
+go.mod          text eol=lf linguist-detectable=false
 package.json    text eol=lf linguist-detectable=false
 renovate.json   text eol=lf linguist-detectable=false
 reporter.json   text eol=lf linguist-detectable=false
@@ -35,6 +36,7 @@ wings.json      text eol=lf linguist-detectable=false
 
 # Generated files
 index.html            linguist-generated=true linguist-vendored=true -diff
+go.sum                linguist-generated=true linguist-vendored=true -diff
 pleasew               linguist-generated=true linguist-vendored=true -diff
 pnpm-lock.yaml        linguist-generated=true linguist-vendored=true -diff
 src/*/wings/*.*       linguist-generated=true linguist-vendored=true -diff

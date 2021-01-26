@@ -42,8 +42,7 @@ export class CityUtil {
       [City.PageAZUS]: "Page, Arizona, US",
       [City.ParisFR]: "Paris, FR",
       [City.PhoneixAZUS]: "Phoenix, Arizona, US",
-      [City.SanFranciscoCAUS]:
-        "San Francisco, California, US",
+      [City.SanFranciscoCAUS]: "San Francisco, California, US",
       [City.SanJoseCAUS]: "San Jose, California, US",
       [City.SeattleWAUS]: "Seattle, Washington, US",
       [City.WashingtonDCUS]: "Washington, D.C., US",

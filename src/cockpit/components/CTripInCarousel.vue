@@ -55,6 +55,7 @@ export default Vue.extend({
       this.$data.user = this.$props.forceUser;
     } else {
       this.$data.user = await General.genUser(
+        this.$router,
         this.$props.trip.userID,
       );
     }

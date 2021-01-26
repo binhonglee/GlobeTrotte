@@ -8,6 +8,7 @@ main
 node_modules/
 logs/
 plz-out/
+.plz_clean*
 pnpm-debug.log
 psql.config
 /*.log

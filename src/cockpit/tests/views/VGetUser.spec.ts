@@ -2,12 +2,7 @@ import VGetUser from "@/views/VGetUser.vue";
 import General from "@/shared/General";
 import Trip from "@/wings/Trip";
 import User from "@/wings/User";
-import {
-  alertSpy,
-  newLocalVueAndRouter,
-  routerSpy,
-  wait,
-} from "../helper";
+import { alertSpy, newLocalVueAndRouter, routerSpy, wait } from "../helper";
 import { mount } from "@vue/test-utils";
 import sinon from "sinon";
 import test from "ava";
@@ -23,18 +18,10 @@ const someTrip = new Trip({
 });
 
 test.serial("Get User - Has user (self)", async (t) => {
-  const genUser = sinon
-    .stub(General, "genUser")
-    .resolves(currentUser);
-  const genTrip = sinon
-    .stub(General, "genTrip")
-    .resolves(someTrip);
-  const isSelf = sinon
-    .stub(General, "getIsCurrentUser")
-    .returns(true);
-  const paramID = sinon
-    .stub(General, "paramID")
-    .returns(10);
+  const genUser = sinon.stub(General, "genUser").resolves(currentUser);
+  const genTrip = sinon.stub(General, "genTrip").resolves(someTrip);
+  const isSelf = sinon.stub(General, "getIsCurrentUser").returns(true);
+  const paramID = sinon.stub(General, "paramID").returns(10);
   const wrapper = mount(VGetUser, newLocalVueAndRouter());
   const routerPush = new routerSpy(wrapper, "push");
   await wait(500);
@@ -53,18 +40,10 @@ test.serial("Get User - Has user (self)", async (t) => {
 });
 
 test.serial("Get User - Has user (not self)", async (t) => {
-  const genUser = sinon
-    .stub(General, "genUser")
-    .resolves(currentUser);
-  const genTrip = sinon
-    .stub(General, "genTrip")
-    .resolves(someTrip);
-  const isSelf = sinon
-    .stub(General, "getIsCurrentUser")
-    .returns(false);
-  const paramID = sinon
-    .stub(General, "paramID")
-    .returns(10);
+  const genUser = sinon.stub(General, "genUser").resolves(currentUser);
+  const genTrip = sinon.stub(General, "genTrip").resolves(someTrip);
+  const isSelf = sinon.stub(General, "getIsCurrentUser").returns(false);
+  const paramID = sinon.stub(General, "paramID").returns(10);
   mount(VGetUser, newLocalVueAndRouter());
   await wait(500);
   t.true(paramID.called);
@@ -79,19 +58,15 @@ test.serial("Get User - Has user (not self)", async (t) => {
 });
 
 test.serial("Get User - Not found", async (t) => {
-  const genUser = sinon
-    .stub(General, "genUser")
-    .callsFake(async () => {
-      // This is so there is enough time for alertSpy to be
-      // created before it reaches the alert code
-      await wait(500);
-      return new User({
-        id: -1,
-      });
+  const genUser = sinon.stub(General, "genUser").callsFake(async () => {
+    // This is so there is enough time for alertSpy to be
+    // created before it reaches the alert code
+    await wait(500);
+    return new User({
+      id: -1,
     });
-  const paramID = sinon
-    .stub(General, "paramID")
-    .returns(10);
+  });
+  const paramID = sinon.stub(General, "paramID").returns(10);
   const wrapper = mount(VGetUser, newLocalVueAndRouter());
   const alert = new alertSpy(wrapper);
   await wait(500);
@@ -107,9 +82,7 @@ test.serial("Get User - Not found", async (t) => {
 });
 
 test.serial("Get User - No Param", async (t) => {
-  const paramID = sinon
-    .stub(General, "paramID")
-    .returns(undefined);
+  const paramID = sinon.stub(General, "paramID").returns(undefined);
   const wrapper = mount(VGetUser, newLocalVueAndRouter());
   await wait(500);
   t.true(paramID.calledOnce);

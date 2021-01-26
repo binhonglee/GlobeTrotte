@@ -18,18 +18,9 @@ describe("Homepage", () => {
 
   it("description", () => {
     cy.visit("/");
-    cy.contains(
-      "p",
-      "Feel free to click around but nothing is set in",
-    );
-    cy.contains(
-      "p",
-      "stone. Do not save any important infomation here.",
-    );
-    cy.contains(
-      "p",
-      "Everything can and will be wiped from time to time.",
-    );
+    cy.contains("p", "Feel free to click around but nothing is set in");
+    cy.contains("p", "stone. Do not save any important infomation here.");
+    cy.contains("p", "Everything can and will be wiped from time to time.");
     cy.contains("p", "You should check back again soon!");
   });
   it("navigate to register", () => {

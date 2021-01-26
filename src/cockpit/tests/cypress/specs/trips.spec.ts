@@ -27,10 +27,7 @@ describe("Trips", () => {
     cy.get(".day1").should("exist");
     cy.get(".addDay").click();
     cy.get(".day2").should("exist");
-    cy.get(".day1")
-      .find(".place0")
-      .find(".inputPlaceLabel")
-      .type("SFO");
+    cy.get(".day1").find(".place0").find(".inputPlaceLabel").type("SFO");
     cy.get(".day1")
       .find(".place0")
       .find(".inputPlaceLink")
@@ -46,10 +43,7 @@ describe("Trips", () => {
       .should("contain.text", "Trip is private");
     cy.get(".tripPrivateAlertBar")
       .find(".el-alert__description")
-      .should(
-        "contain.text",
-        "Only you can see this trip.",
-      );
+      .should("contain.text", "Only you can see this trip.");
     cy.url().then((url) => {
       newTripURL = url;
     });
@@ -86,10 +80,7 @@ describe("Trips", () => {
       return cy.visit(newTripURL);
     });
     cy.get(".view_trip").contains("h2", tripName);
-    cy.get(".view_trip").contains(
-      ".tripDescription",
-      tripDescription,
-    );
+    cy.get(".view_trip").contains(".tripDescription", tripDescription);
     cy.get(".enableTripEdit").should("not.exist");
     cy.logout();
   });
@@ -105,10 +96,7 @@ describe("Trips", () => {
       "p",
       "Trip is successfully deleted!",
     );
-    cy.get(".el-notification__title").contains(
-      "h2",
-      "Trip Deletion",
-    );
+    cy.get(".el-notification__title").contains("h2", "Trip Deletion");
     cy.url().should("include", "/");
     cy.logout();
   });

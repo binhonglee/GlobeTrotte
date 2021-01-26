@@ -3,18 +3,14 @@ import City from "@/wings/City";
 import { CityObj, CityUtil } from "@/shared/CityUtil";
 
 for (const cityString in City) {
-  if (
-    Object.prototype.hasOwnProperty.call(City, cityString)
-  ) {
+  if (Object.prototype.hasOwnProperty.call(City, cityString)) {
     const city = Number(cityString);
     if (!isNaN(city) && city !== City.UNKNOWN) {
       test(
         cityString +
           " - Every city should have conversion in CityUtil.toString().",
         (t) => {
-          t.true(
-            CityUtil.toString(city) !== "unrecognized city",
-          );
+          t.true(CityUtil.toString(city) !== "unrecognized city");
         },
       );
     }
@@ -31,9 +27,7 @@ test("There should be the same amount of cities.", (t) => {
   const cities: Set<number> = new Set<number>();
 
   for (const cityString in City) {
-    if (
-      Object.prototype.hasOwnProperty.call(City, cityString)
-    ) {
+    if (Object.prototype.hasOwnProperty.call(City, cityString)) {
       const city = Number(cityString);
       if (!isNaN(city) && city !== City.UNKNOWN) {
         cities.add(city);

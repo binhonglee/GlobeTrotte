@@ -19,23 +19,17 @@ router.beforeEach(async (to: Route, from: Route, next) => {
     } else {
       next(General.addNext("/login", to.path));
     }
-  } else if (
-    to.matched.some((record) => record.meta.confirmed)
-  ) {
+  } else if (to.matched.some((record) => record.meta.confirmed)) {
     if (General.authSession()) {
       if (General.confirmed()) {
         next();
       } else {
-        next(
-          General.addNext("/unconfirmed/email", to.path),
-        );
+        next(General.addNext("/unconfirmed/email", to.path));
       }
     } else {
       next(General.addNext("/login", to.path));
     }
-  } else if (
-    to.matched.some((record) => record.meta.unconfirmed)
-  ) {
+  } else if (to.matched.some((record) => record.meta.unconfirmed)) {
     if (General.authSession()) {
       if (General.confirmed()) {
         next(General.getNext(to.path));
@@ -45,9 +39,7 @@ router.beforeEach(async (to: Route, from: Route, next) => {
     } else {
       next(General.addNext("/login", to.path));
     }
-  } else if (
-    to.matched.some((record) => record.meta.guest)
-  ) {
+  } else if (to.matched.some((record) => record.meta.guest)) {
     if (General.authSession()) {
       next(General.getNext(to.path));
     } else {

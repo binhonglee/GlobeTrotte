@@ -34,19 +34,12 @@ function getDirs(dir: string): string[] {
 mkdirSync(nycOutputDir);
 const reports = [];
 for (const dir of getDirs(__dirname)) {
-  const reportName = join(
-    nycOutputDir,
-    basename(dirname(dir)) + ".json",
-  );
-  const { status, stderr } = spawnSync(
-    "nyc",
-    ["merge", dir, reportName],
-    {
-      encoding: "utf8",
-      shell: true,
-      input: dir,
-    },
-  );
+  const reportName = join(nycOutputDir, basename(dirname(dir)) + ".json");
+  const { status, stderr } = spawnSync("nyc", ["merge", dir, reportName], {
+    encoding: "utf8",
+    shell: true,
+    input: dir,
+  });
 
   if (status !== 0) {
     console.error(stderr);
@@ -60,9 +53,6 @@ for (const report of reports) {
     report,
     readFileSync(report)
       .toString()
-      .replace(
-        /plz-out\/tmp\/.*src\/cockpit/g,
-        "src/cockpit",
-      ),
+      .replace(/plz-out\/tmp\/.*src\/cockpit/g, "src/cockpit"),
   );
 }

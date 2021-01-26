@@ -6,8 +6,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
-	"github.com/binhonglee/GlobeTrotte/src/turbine/router"
+	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
+	router "github.com/binhonglee/GlobeTrotte/src/turbine/router"
 )
 
 const port = "4000"
@@ -23,9 +23,13 @@ func main() {
 		cleanup()
 	}()
 
-	router := router.NewRouter()
+	r := router.NewRouter()
 	logger.Print(logger.Main, "Listening on port "+port+"...")
-	logger.PanicErr(logger.Main, http.ListenAndServe(":"+port, router), "")
+	logger.PanicErr(
+		logger.Main,
+		http.ListenAndServe(":"+port, r),
+		"",
+	)
 }
 
 func cleanup() {

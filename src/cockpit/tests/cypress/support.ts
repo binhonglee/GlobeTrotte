@@ -1,17 +1,14 @@
 import "@cypress/code-coverage/support";
 
-Cypress.Commands.add(
-  "registration",
-  (email, password, confPassword) => {
-    cy.url().should("include", "/register");
-    cy.get(".registrationEmail").type(email);
-    cy.get(".registrationPassword").type(password);
-    cy.get(".registrationConfPassword").type(confPassword);
-    cy.get(".registrationSave").click();
-    cy.url().should("include", "/unconfirmed/email");
-    cy.visit("/confirm/email/force-confirm");
-  },
-);
+Cypress.Commands.add("registration", (email, password, confPassword) => {
+  cy.url().should("include", "/register");
+  cy.get(".registrationEmail").type(email);
+  cy.get(".registrationPassword").type(password);
+  cy.get(".registrationConfPassword").type(confPassword);
+  cy.get(".registrationSave").click();
+  cy.url().should("include", "/unconfirmed/email");
+  cy.visit("/confirm/email/force-confirm");
+});
 
 Cypress.Commands.add("loginAction", (email, password) => {
   cy.url().should("include", "/login");

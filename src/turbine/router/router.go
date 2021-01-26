@@ -18,7 +18,7 @@ type routes []route
 const API_PREFIX = "/api"
 
 // NewRouter - Just an average router that create routes.
-func NewRouter() *mux.Router {
+func NewRouter() http.Handler {
 	router := mux.NewRouter()
 	for _, actualRoute := range actualRoutes {
 		router.
@@ -31,7 +31,7 @@ func NewRouter() *mux.Router {
 		PathPrefix("/").
 		Handler(http.FileServer(http.Dir("plz-out/gen/dist")))
 
-	return router
+	return limit(router)
 }
 
 var actualRoutes = routes{
@@ -40,6 +40,12 @@ var actualRoutes = routes{
 		"GET",
 		"/passwd",
 		passwd,
+	},
+	route{
+		"RateLimitStatus",
+		"GET",
+		"/ratelimit",
+		getAPIRateLimitStatus,
 	},
 	route{
 		"AddUser",

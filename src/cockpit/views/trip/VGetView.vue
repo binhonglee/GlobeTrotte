@@ -52,13 +52,13 @@ export default {
       this.$data.inputID = this.$route.params.id;
 
       this.$data.trip = await General.genTrip(
+        this.$router,
         Number(this.$route.params.id),
       );
       if (this.$data.trip.ID !== -1) {
-        this.$data.owner = General.getIsCurrentUser(
-          this.$data.trip.userID,
-        );
+        this.$data.owner = General.getIsCurrentUser(this.$data.trip.userID);
         this.$data.user = await General.genUser(
+          this.$router,
           this.$data.trip.userID,
         );
         this.$nextTick(function () {
@@ -68,23 +68,15 @@ export default {
         return;
       }
 
-      await this.$notify(
-        General.notifConfig(
-          "Error",
-          "Trip not found.",
-          "error",
-        ),
-      );
-      this.$router.push("/trip/view");
+      this.$notify(General.notifConfig("Error", "Trip not found.", "error"));
+      General.genRedirectTo(this.$router, "/trip/view");
     },
     gotoTrip(): void {
       const id: number = parseInt(this.$data.inputID, 10);
       if (String(id) !== this.$data.inputID) {
         alert("Invalid number");
-      } else if (
-        this.$route.params.id !== this.$data.inputID
-      ) {
-        this.$router.push({ path: `/trip/view/${id}` });
+      } else if (this.$route.params.id !== this.$data.inputID) {
+        General.genRedirectTo(this.$router, `/trip/view/${id}`);
       }
     },
   },

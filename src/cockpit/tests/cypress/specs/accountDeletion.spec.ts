@@ -27,10 +27,7 @@ describe("User account", () => {
     cy.isLoggedOut();
     cy.loginAction(wrongEmail, password);
     cy.isLoggedOut();
-    cy.contains(
-      "p",
-      "Wrong email or password. Please try again.",
-    );
+    cy.contains("p", "Wrong email or password. Please try again.");
   });
 
   it("wrong password login", () => {
@@ -38,10 +35,7 @@ describe("User account", () => {
     cy.isLoggedOut();
     cy.loginAction(email, wrongPassword);
     cy.isLoggedOut();
-    cy.contains(
-      "p",
-      "Wrong email or password. Please try again.",
-    );
+    cy.contains("p", "Wrong email or password. Please try again.");
   });
 
   it("wrong everything login", () => {
@@ -49,10 +43,7 @@ describe("User account", () => {
     cy.isLoggedOut();
     cy.loginAction(wrongEmail, wrongPassword);
     cy.isLoggedOut();
-    cy.contains(
-      "p",
-      "Wrong email or password. Please try again.",
-    );
+    cy.contains("p", "Wrong email or password. Please try again.");
   });
 
   it("logout", () => {

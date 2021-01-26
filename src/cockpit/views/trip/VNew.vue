@@ -47,23 +47,21 @@ export default {
           this.$data.trip = trip;
           trip.userID = user.ID;
           const newTrip = await HTTPReq.genPOST(
+            this.$router,
             "trip",
             WingsStructUtil.stringify(trip),
           );
-          this.$router.push(
+          General.genRedirectTo(
+            this.$router,
             "/trip/view/" + new Trip(newTrip).ID,
           );
           return;
         }
         // eslint-disable-next-line no-empty
       } catch (_) {}
-      this.$alert(
-        "Save was unsuccessful. Please try again later.",
-        "Fail",
-        {
-          confirmButtonText: "OK",
-        },
-      );
+      this.$alert("Save was unsuccessful. Please try again later.", "Fail", {
+        confirmButtonText: "OK",
+      });
     },
   },
 };

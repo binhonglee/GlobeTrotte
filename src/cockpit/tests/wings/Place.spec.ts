@@ -13,9 +13,7 @@ let reversedObj = new Place();
 
 test("proper init()", (t) => {
   t.notThrows(() => {
-    reversedObj = new Place(
-      JSON.parse(WingsStructUtil.stringify(place)),
-    );
+    reversedObj = new Place(JSON.parse(WingsStructUtil.stringify(place)));
   });
 });
 

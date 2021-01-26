@@ -16,30 +16,22 @@ const trip = new Trip({
   last_updated: new Date(),
 });
 
-const reversedObj = new Trip(
-  JSON.parse(WingsStructUtil.stringify(trip)),
-);
+const reversedObj = new Trip(JSON.parse(WingsStructUtil.stringify(trip)));
 
 for (const key in trip) {
   if (typeof key === "string") {
     test(key, (t) => {
       if (trip[key] instanceof Date) {
-        t.is(
-          reversedObj[key].getTime(),
-          trip[key].getTime(),
-        );
+        t.is(reversedObj[key].getTime(), trip[key].getTime());
       } else if (trip[key] instanceof Array) {
         t.true(reversedObj[key] instanceof Array);
         t.is(
           trip[key].filter(
-            (item: City | Day) =>
-              reversedObj[key].indexOf(item) < 0,
+            (item: City | Day) => reversedObj[key].indexOf(item) < 0,
           ).length,
           0,
         );
-      } else if (
-        WingsStructUtil.isIWingsStruct(reversedObj[key])
-      ) {
+      } else if (WingsStructUtil.isIWingsStruct(reversedObj[key])) {
         /* TODO: Fix this test. This isn't working and I don't
          *   understand why.
          *

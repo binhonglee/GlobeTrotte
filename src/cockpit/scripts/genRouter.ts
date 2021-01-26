@@ -14,10 +14,7 @@ const meta: Meta = {
   ],
   loggedIn: ["MyAccount"],
   confirmed: ["trip/New"],
-  unconfirmed: [
-    "confirm/UuidOnlyEmailUUID",
-    "unconfirmed/NextEmailRedirect",
-  ],
+  unconfirmed: ["confirm/UuidOnlyEmailUUID", "unconfirmed/NextEmailRedirect"],
 };
 
 const viewFolder = "src/cockpit/views/";
@@ -59,11 +56,7 @@ class Params {
   public name: string;
   public param: string;
 
-  public constructor(
-    key: string,
-    name: string,
-    param: string,
-  ) {
+  public constructor(key: string, name: string, param: string) {
     this.key = key;
     this.name = name;
     this.param = param;
@@ -109,13 +102,10 @@ class GenRouter {
     allParams.forEach((param) => {
       if (
         urlPath.length > param.key.length &&
-        urlPath
-          .substr(0, param.key.length)
-          .localeCompare(param.key) === 0
+        urlPath.substr(0, param.key.length).localeCompare(param.key) === 0
       ) {
         urlPath = urlPath.substr(param.key.length);
-        returnAfter =
-          urlPath.substr(0, 4).localeCompare("only") === 0;
+        returnAfter = urlPath.substr(0, 4).localeCompare("only") === 0;
         if (returnAfter) {
           urlPath = urlPath.substr(4);
         }
@@ -130,21 +120,10 @@ class GenRouter {
       return toReturn;
     }
 
-    return (
-      toReturn +
-      this.getRoute(
-        path + urlPath,
-        path + name,
-        path + file,
-      )
-    );
+    return toReturn + this.getRoute(path + urlPath, path + name, path + file);
   }
 
-  private getRoute(
-    path: string,
-    name: string,
-    component: string,
-  ): string {
+  private getRoute(path: string, name: string, component: string): string {
     let metaTxt = "";
     for (const key of Object.keys(meta)) {
       if (meta[key].includes(name)) {

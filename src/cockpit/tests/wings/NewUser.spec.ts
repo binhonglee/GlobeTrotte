@@ -12,9 +12,7 @@ const newUser = new NewUser({
 let reversedObj = new NewUser();
 test("proper init()", (t) => {
   t.notThrows(() => {
-    reversedObj = new NewUser(
-      JSON.parse(WingsStructUtil.stringify(newUser)),
-    );
+    reversedObj = new NewUser(JSON.parse(WingsStructUtil.stringify(newUser)));
   });
 });
 

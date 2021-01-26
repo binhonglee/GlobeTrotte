@@ -123,8 +123,10 @@ installGo() {
     export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
     printEnd "Add the following lines to your .bashrc / .zshrc file:"
     printEnd "  export GOPATH=\"\$HOME/go\""
-    printEnd "  export PATH=\$PATH:/usr/local/go/bin:$GOPATH/bin"
+    printEnd "  export PATH=\$PATH:/usr/local/go/bin:\$GOPATH/bin"
   fi
+
+  go mod download
 }
 
 installNode() {

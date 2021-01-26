@@ -46,3 +46,8 @@ go_get(
   name = "uuid",
   get = "github.com/google/uuid",
 )
+
+go_get(
+  name = "rate",
+  get = "golang.org/x/time/rate",
+)

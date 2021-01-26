@@ -61,30 +61,21 @@ export default {
         return;
       }
 
-      if (
-        path.substr(path.length - 1).localeCompare("/") ===
-        0
-      ) {
+      if (path.substr(path.length - 1).localeCompare("/") === 0) {
         path = path.slice(0, -1);
       }
       const paths = path.split("/");
       if (!isNaN(Number(paths[paths.length - 1]))) {
-        path = path.slice(
-          0,
-          -1 * paths[paths.length - 1].length - 1,
-        );
+        path = path.slice(0, -1 * paths[paths.length - 1].length - 1);
       }
       this.$data.activeIndex = path;
     },
     handleSelect(key: string): void {
       let path = key;
-      if (
-        path === this.$data.activeIndex ||
-        path === null
-      ) {
+      if (path === this.$data.activeIndex || path === null) {
         return;
       }
-      this.$router.push({ path: `${path}` });
+      General.genRedirectTo(this.$router, `${path}`);
     },
   },
   watch: {

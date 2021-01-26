@@ -61,17 +61,12 @@ export default Vue.extend({
       return true;
     },
     async genPopulateTrips(): Promise<void> {
-      if (
-        this.compareArray(
-          this.$data.lastPopulated,
-          this.$props.user.trips,
-        )
-      ) {
+      if (this.compareArray(this.$data.lastPopulated, this.$props.user.trips)) {
         return;
       }
       this.$data.trips = await Promise.all(
         this.$props.user.trips.map(async (trip: number) => {
-          return await General.genTrip(trip);
+          return await General.genTrip(this.$router, trip);
         }),
       );
 
