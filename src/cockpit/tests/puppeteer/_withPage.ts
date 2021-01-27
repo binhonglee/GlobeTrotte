@@ -4,7 +4,7 @@ import { ExecutionContext } from "ava";
 
 export default async function (
   t: ExecutionContext,
-  run: (t: ExecutionContext, page: pupppeteer.Page) => Promise<void>,
+  run: (t: ExecutionContext, page: puppeteer.Page) => Promise<void>,
 ): Promise<void> {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();

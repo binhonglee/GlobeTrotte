@@ -99,9 +99,9 @@ test.serial("Registration - New user (Failure)", async (t) => {
     confPassword: password,
   });
   t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][0], "user");
+  t.is(genPOST.args[0][1], "user");
   t.is(
-    genPOST.args[0][1],
+    genPOST.args[0][2],
     WingsStructUtil.stringify(
       new NewUser({
         id: -1,
@@ -141,9 +141,9 @@ test.serial("Registration - New user (Success)", async (t) => {
     confPassword: password,
   });
   t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][0], "user");
+  t.is(genPOST.args[0][1], "user");
   t.is(
-    genPOST.args[0][1],
+    genPOST.args[0][2],
     WingsStructUtil.stringify(
       new NewUser({
         id: -1,
@@ -159,7 +159,7 @@ test.serial("Registration - New user (Success)", async (t) => {
   t.is(notify.getMessage(), "Your account is created successfully!");
   t.is(notify.getType(), "success");
   t.true(routerPush.item.calledOnce);
-  t.is(routerPush.getArg()["path"], "/unconfirmed/email/:myaccount");
+  t.is(routerPush.getArg(), "/unconfirmed/email/:myaccount");
   await genPOST.restore();
   await notify.restore();
   await routerPush.restore();

@@ -27,7 +27,7 @@ rm -rf dist
 echo "Removing generated wings files..."
 rm -rf src/cockpit/wings/*.ts src/turbine/wings/*.go
 
-if [ $1 = "--all" ]; then
+if [ "$1" = "--all" ]; then
   echo "Dropping database"
   psql --username="$USER" -w -c "DROP DATABASE globetrotte;" || echo "Database does not exist. Skipping..."
 fi
@@ -37,7 +37,7 @@ echo
 echo "Initializing pnpm..."
 pnpm i
 
-if [ $1 = "--all" ]; then
+if [ "$1" = "--all" ]; then
   echo
   echo "Creating database..."
   psql --username="$USER" -w -c "CREATE DATABASE globetrotte;"

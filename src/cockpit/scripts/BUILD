@@ -19,7 +19,7 @@ pnpm_run_build(
     "//src/cockpit/views:views",
   ],
   cmd = "genRouter",
-  outs = ["router.ts"],
+  outs = ["router.ts", "routes.ts"],
   make_copy = True,
   copy_path = "src/cockpit/",
   deps =["//:pnpm"],

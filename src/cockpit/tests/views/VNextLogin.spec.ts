@@ -70,9 +70,9 @@ test.serial("Login - Wrong password", async (t) => {
     password: password,
   });
   t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][0], "login");
+  t.is(genPOST.args[0][1], "login");
   t.is(
-    genPOST.args[0][1],
+    genPOST.args[0][2],
     WingsStructUtil.stringify(
       new NewUser({
         id: -1,
@@ -106,15 +106,14 @@ test.serial("Login - Success", async (t) => {
   const notify = new notifySpy(wrapper);
   verifyUI(t, wrapper);
   fillFormAndLogin(t, wrapper, {
-    name: name,
     email: email,
     password: password,
   });
   await paramNext.restore();
   t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][0], "login");
+  t.is(genPOST.args[0][1], "login");
   t.is(
-    genPOST.args[0][1],
+    genPOST.args[0][2],
     WingsStructUtil.stringify(
       new NewUser({
         id: -1,

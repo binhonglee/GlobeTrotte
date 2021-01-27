@@ -21,7 +21,7 @@ test.serial("Get User - Has user (self)", async (t) => {
   const genUser = sinon.stub(General, "genUser").resolves(currentUser);
   const genTrip = sinon.stub(General, "genTrip").resolves(someTrip);
   const isSelf = sinon.stub(General, "getIsCurrentUser").returns(true);
-  const paramID = sinon.stub(General, "paramID").returns(10);
+  const paramID = sinon.stub(General, "paramID").returns("10");
   const wrapper = mount(VGetUser, newLocalVueAndRouter());
   const routerPush = new routerSpy(wrapper, "push");
   await wait(500);
@@ -43,7 +43,7 @@ test.serial("Get User - Has user (not self)", async (t) => {
   const genUser = sinon.stub(General, "genUser").resolves(currentUser);
   const genTrip = sinon.stub(General, "genTrip").resolves(someTrip);
   const isSelf = sinon.stub(General, "getIsCurrentUser").returns(false);
-  const paramID = sinon.stub(General, "paramID").returns(10);
+  const paramID = sinon.stub(General, "paramID").returns("10");
   mount(VGetUser, newLocalVueAndRouter());
   await wait(500);
   t.true(paramID.called);
@@ -66,7 +66,7 @@ test.serial("Get User - Not found", async (t) => {
       id: -1,
     });
   });
-  const paramID = sinon.stub(General, "paramID").returns(10);
+  const paramID = sinon.stub(General, "paramID").returns("10");
   const wrapper = mount(VGetUser, newLocalVueAndRouter());
   const alert = new alertSpy(wrapper);
   await wait(500);

@@ -31,7 +31,10 @@ func NewRouter() http.Handler {
 		PathPrefix("/").
 		Handler(http.FileServer(http.Dir("plz-out/gen/dist")))
 
-	return limit(router)
+	// PROD: Disable rate limiting for dev and test
+	// router = limit(router)
+
+	return router
 }
 
 var actualRoutes = routes{

@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     async save(trip: Trip): Promise<void> {
-      const user = await General.genCurrentUser();
+      const user = await General.genCurrentUser(this.$router);
       trip.userID = user.ID;
       const success = await HTTPReq.genPOST(
         this.$router,

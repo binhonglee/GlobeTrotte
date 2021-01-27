@@ -1,7 +1,7 @@
 <template lang="pug">
   .my_account
     h1.title My Account
-    el-link.unconfirmedEmailLink(href="/unconfirmed/email" :underline="false")
+    el-link.unconfirmedEmailLink(:href="unconfirmedLink" :underline="false")
       el-alert.narrow_content.accountUnconfirmedAlertBar(
         v-if="!confirmed"
         title="Unconfirmed"
@@ -45,12 +45,14 @@ import CViewUser from "@/components/CViewUser.vue";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import User from "@/wings/User";
+import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
 
 interface Data {
   user: User;
   edit: boolean;
   confirmed: boolean;
+  unconfirmedLink: string;
 }
 
 export default {
@@ -63,6 +65,7 @@ export default {
       user: new User(),
       edit: false,
       confirmed: true,
+      unconfirmedLink: Routes.unconfirmed_NextEmail,
     };
   },
   methods: {
@@ -81,7 +84,7 @@ export default {
             "info",
           ),
         );
-        await General.genRedirectTo(this.$router, "/");
+        await General.genRedirectTo(this.$router, Routes.Landing);
       } else {
         this.$message({
           type: "error",
@@ -114,7 +117,7 @@ export default {
     async logout(): Promise<void> {
       await HTTPReq.genGET(this.$router, "logout");
       localStorage.clear();
-      await General.genRedirectTo(this.$router, "/");
+      await General.genRedirectTo(this.$router, Routes.Landing);
     },
     toggleEdit(): void {
       this.$data.edit = !this.$data.edit;
@@ -126,7 +129,7 @@ export default {
     },
   },
   async beforeMount(): Promise<void> {
-    this.$data.user = await General.genCurrentUser();
+    this.$data.user = await General.genCurrentUser(this.$router);
     this.$data.confirmed = this.$data.user.confirmed;
   },
 };

@@ -15,6 +15,7 @@ import CEditTrip from "@/components/CEditTrip.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
 import Trip from "@/wings/Trip";
+import Routes from "@/routes";
 
 interface Data {
   trip: Trip;
@@ -41,7 +42,7 @@ export default {
       this.$router.back();
     },
     async save(trip: Trip): Promise<void> {
-      const user = await General.genCurrentUser();
+      const user = await General.genCurrentUser(this.$router);
       try {
         if (user.ID !== 0) {
           this.$data.trip = trip;
@@ -53,7 +54,7 @@ export default {
           );
           General.genRedirectTo(
             this.$router,
-            "/trip/view/" + new Trip(newTrip).ID,
+            Routes.trip_GetView + "/" + new Trip(newTrip).ID,
           );
           return;
         }

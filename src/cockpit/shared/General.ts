@@ -4,11 +4,12 @@ import HTTPReq from "./HTTPReq";
 import User from "@/wings/User";
 import Trip from "@/wings/Trip";
 import VueRouter from "vue-router";
+import Routes from "@/routes";
 
 export default class General {
   public static paramID(v: Vue): string | undefined {
     /* istanbul ignore next: $route is a pain to mock, using this as a workaround for testing */
-    return v.$route.params.id;
+    return v.$route.params["id"];
   }
 
   public static paramNext(v: Vue): string {
@@ -34,7 +35,7 @@ export default class General {
       next = next.substr(1, next.length);
     }
     const nexts = next.split("/:");
-    const first = nexts.shift()?.split("/").join(".");
+    const first = nexts.shift()?.split("/").join(".") ?? "";
     if (nexts.length > 0) {
       next = first + "&" + nexts.join("");
     } else {
@@ -57,7 +58,7 @@ export default class General {
         const paths = path.split("&");
         let next = "";
         while (next === "" || next === undefined) {
-          next = paths.shift()?.split(".").join("/");
+          next = paths.shift()?.split(".").join("/") ?? "";
         }
         path = next;
         if (paths.length > 0) {
@@ -88,7 +89,7 @@ export default class General {
     };
   }
 
-  public static async genUser(router: VueRouer, id: number): Promise<User> {
+  public static async genUser(router: VueRouter, id: number): Promise<User> {
     const user = await HTTPReq.genGET(router, "user/" + id);
     return new User(user);
   }
@@ -102,18 +103,18 @@ export default class General {
     return this.getCurrentUser().ID === id;
   }
 
-  public static async genUpdateCurrentUser(): Promise<void> {
-    await this.genCurrentUser();
+  public static async genUpdateCurrentUser(router: VueRouter): Promise<void> {
+    await this.genCurrentUser(router);
   }
 
-  public static async genCurrentUser(): Promise<User> {
-    const id = JSON.parse(await HTTPReq.genGET("whoami")).id;
+  public static async genCurrentUser(router: VueRouter): Promise<User> {
+    const id: number = JSON.parse(await HTTPReq.genGET(router, "whoami")).id;
     if (id === -1) {
       localStorage.clear();
     } else {
       localStorage.setItem(
         "user",
-        WingsStructUtil.stringify(await this.genUser(id)),
+        WingsStructUtil.stringify(await this.genUser(router, id)),
       );
     }
 
@@ -134,16 +135,16 @@ export default class General {
   }
 
   public static confirmed(): boolean {
-    return this.getCurrentUser().confirmed;
+    return this.getCurrentUser().confirmed.valueOf();
   }
 
   public static async genRedirectTo(
     router: VueRouter,
     path: string,
-    overrideRateLimit: bool = false,
+    overrideRateLimit = false,
   ): Promise<void> {
     if (
-      router.currentRoute.path.startsWith("/ratelimited") &&
+      router.currentRoute.path.startsWith(Routes.NextRateLimited) &&
       !overrideRateLimit
     ) {
       return;

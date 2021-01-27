@@ -53,12 +53,13 @@ import CEditDays from "./CEditDays.vue";
 import CEditItem from "./CEditItem.vue";
 import CEditPlaces from "./CEditPlaces.vue";
 import { CityUtil } from "@/shared/CityUtil";
-import Place from "@/wings/Place";
-import Trip from "@/wings/Trip";
-import City from "@/wings/City";
 import TripEditable from "@/shared/TripEditable";
 import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
+import Place from "@/wings/Place";
+import Trip from "@/wings/Trip";
+import City from "@/wings/City";
+import Routes from "@/routes";
 
 export default Vue.extend({
   name: "CEditTrip",
@@ -194,7 +195,7 @@ export default Vue.extend({
       );
 
       if (success) {
-        General.genRedirectTo(this.$router, "/");
+        General.genRedirectTo(this.$router, Routes.Landing);
       }
     },
     tripToItem(itemType: string): TripEditable {

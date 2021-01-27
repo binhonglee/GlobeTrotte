@@ -16,7 +16,7 @@ func NotExists(haystack []int, needles []int) []int {
 	}
 	toReturn := make([]int, len(notExists))
 	i := 0
-	for key, _ := range notExists {
+	for key := range notExists {
 		toReturn[i] = key
 		i++
 	}

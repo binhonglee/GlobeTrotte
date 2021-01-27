@@ -22,6 +22,7 @@ import CTripInfo from "@/components/CTripInfo.vue";
 import General from "@/shared/General";
 import Trip from "@/wings/Trip";
 import User from "@/wings/User";
+import Routes from "@/routes";
 
 interface Data {
   inputID: string;
@@ -69,14 +70,14 @@ export default {
       }
 
       this.$notify(General.notifConfig("Error", "Trip not found.", "error"));
-      General.genRedirectTo(this.$router, "/trip/view");
+      General.genRedirectTo(this.$router, Routes.trip_GetView);
     },
     gotoTrip(): void {
       const id: number = parseInt(this.$data.inputID, 10);
       if (String(id) !== this.$data.inputID) {
         alert("Invalid number");
       } else if (this.$route.params.id !== this.$data.inputID) {
-        General.genRedirectTo(this.$router, `/trip/view/${id}`);
+        General.genRedirectTo(this.$router, Routes.trip_GetView + "/" + id);
       }
     },
   },

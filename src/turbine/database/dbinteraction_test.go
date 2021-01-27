@@ -116,10 +116,10 @@ func TestAddTripDB(t *testing.T) {
 		Description: "dummytrip.com",
 		Cities:      []wings.City{wings.SanFranciscoCAUS},
 		Days: []wings.Day{
-			wings.Day{
+			{
 				DayOf: 1,
 				Places: []wings.Place{
-					wings.Place{
+					{
 						Label:       "Location 1",
 						URL:         "https://globetrotte.com",
 						Description: "example place",

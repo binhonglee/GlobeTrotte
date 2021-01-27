@@ -60,7 +60,7 @@ export class mockDay {
   public readonly day: Day;
 
   constructor() {
-    this.id = 23489723;
+    this.ID = 23489723;
     this.tripID = 845357023;
     this.dayOf = 1;
     this.places = [new mockPlace().place];

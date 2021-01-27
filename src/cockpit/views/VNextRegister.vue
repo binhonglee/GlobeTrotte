@@ -47,6 +47,7 @@ import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import User from "@/wings/User";
 import CEditItem from "@/components/CEditItem.vue";
+import Routes from "@/routes";
 
 interface Data {
   loading: boolean;
@@ -109,12 +110,12 @@ export default {
       );
 
       let next = General.getNext(General.paramNext(this));
-      if (next === "/") {
-        next = "/myaccount";
+      if (next === Routes.Landing) {
+        next = Routes.MyAccount;
       }
       General.genRedirectTo(
         this.$router,
-        "/trip/view/" + General.addNext("/unconfirmed/email", next),
+        General.addNext(Routes.unconfirmed_NextEmail, next),
       );
     },
     cancel(): void {

@@ -7,8 +7,9 @@
 
 <script lang="ts">
 import CViewUser from "@/components/CViewUser.vue";
-import User from "@/wings/User";
 import General from "@/shared/General";
+import User from "@/wings/User";
+import Routes from "@/routes";
 
 interface Data {
   user: User;
@@ -37,12 +38,12 @@ export default {
         await this.$alert("User not found.", "Error", {
           confirmButtonText: "OK",
         });
-        await General.genRedirectTo(this.$router, "/");
+        await General.genRedirectTo(this.$router, Routes.Landing);
       }
 
       const isCurrentUser = General.getIsCurrentUser(this.$data.user.ID);
       if (isCurrentUser) {
-        await General.genRedirectTo(this.$router, "/myaccount");
+        await General.genRedirectTo(this.$router, Routes.MyAccount);
       }
       return;
     },

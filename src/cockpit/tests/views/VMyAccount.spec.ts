@@ -108,8 +108,8 @@ test.serial("My Account - Save Edit (success)", async (t) => {
   wrapper.find(".myAccountSave").trigger("click");
   await wait(500);
   t.true(genPOST.calledOnce);
-  t.is(genPOST.args[0][0], "user/10");
-  t.is(genPOST.args[0][1], WingsStructUtil.stringify(currentUser));
+  t.is(genPOST.args[0][1], "user/10");
+  t.is(genPOST.args[0][2], WingsStructUtil.stringify(currentUser));
   t.true(message.item.calledOnce);
   t.is(message.getMessage(), "Profile updated successfully!");
   t.is(message.getType(), "success");
@@ -129,8 +129,8 @@ test.serial("My Account - Save Edit (failure)", async (t) => {
   wrapper.find(".myAccountSave").trigger("click");
   await wait(500);
   t.true(genPOST.calledOnce);
-  t.is(genPOST.args[0][0], "user/10");
-  t.is(genPOST.args[0][1], WingsStructUtil.stringify(currentUser));
+  t.is(genPOST.args[0][1], "user/10");
+  t.is(genPOST.args[0][2], WingsStructUtil.stringify(currentUser));
   t.true(alert.item.calledOnce);
   t.is(alert.getTitle(), "Fail");
   t.is(alert.getMessage(), "Save was unsuccessful. Please try again later.");

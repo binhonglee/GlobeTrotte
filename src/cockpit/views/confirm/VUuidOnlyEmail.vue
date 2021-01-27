@@ -10,6 +10,7 @@ import { WingsStructUtil } from "wings-ts-util";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import ConfirmEmail from "@/wings/ConfirmEmail";
+import Routes from "@/routes";
 
 interface Data {
   loading: boolean;
@@ -23,10 +24,10 @@ export default {
   },
   async mounted(): Promise<void> {
     this.$data.loading = true;
-    const user = await General.genCurrentUser();
+    const user = await General.genCurrentUser(this.$router);
     if (user.confirmed) {
       this.$data.loading = false;
-      await General.genRedirectTo(this.$router, "/");
+      await General.genRedirectTo(this.$router, Routes.Landing);
       return;
     }
     const uuid = General.paramUUID(this);
@@ -36,9 +37,9 @@ export default {
       if (
         await HTTPReq.genGET(this.$router, "force_confirm_email/" + user.ID)
       ) {
-        await General.genUpdateCurrentUser();
+        await General.genUpdateCurrentUser(this.$router);
         this.$data.loading = false;
-        await General.genRedirectTo(this.$router, "/");
+        await General.genRedirectTo(this.$router, Routes.Landing);
         return;
       }
     }
@@ -55,7 +56,7 @@ export default {
       ),
     );
 
-    await General.genUpdateCurrentUser();
+    await General.genUpdateCurrentUser(this.$router);
     this.$data.loading = false;
 
     if (res) {
@@ -66,7 +67,7 @@ export default {
           "success",
         ),
       );
-      await General.genRedirectTo(this.$router, "/");
+      await General.genRedirectTo(this.$router, Routes.Landing);
     } else {
       this.$notify(
         General.notifConfig(
@@ -75,7 +76,7 @@ export default {
           "error",
         ),
       );
-      await General.genRedirectTo(this.$router, "/unconfirmed/email");
+      await General.genRedirectTo(this.$router, Routes.unconfirmed_NextEmail);
     }
   },
 };
