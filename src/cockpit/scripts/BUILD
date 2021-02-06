@@ -3,11 +3,7 @@ subinclude("//build_defs/pnpm")
 filegroup(
   name = "check_backend",
   srcs = ["checkBackend.ts"],
-  visibility = [
-    "//:cockpit_cypress",
-    "//:ava_test_deps",
-    "//:serve",
-  ],
+  visibility = ["//..."],
 )
 
 pnpm_run_build(
@@ -28,20 +24,15 @@ pnpm_run_build(
   ],
 )
 
-pnpm_run_build(
+pnpm_run(
   name = "gen_report",
   srcs = [
     "genReport.ts",
     "//:nycrc",
     "//:pnpm_config",
     "//:tsconfig",
-    "//src/cockpit/tests/components",
-    "//src/cockpit/tests/shared",
-    "//src/cockpit/tests/views",
-    "//src/cockpit/tests/wings",
   ],
-  outs = [".nyc_output"],
-  cmd = "genReport:plz",
+  cmd = "genReport",
   test_only = True,
   deps = ["//:pnpm"],
   visibility = ["//:report"]

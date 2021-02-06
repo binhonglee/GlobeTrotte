@@ -25,6 +25,11 @@ export default new Router({
       component: () => import("./views/V404.vue"),
     },
     {
+      path: "/404",
+      name: "404",
+      component: () => import("./views/V404.vue"),
+    },
+    {
       path: "/user/:id",
       name: "GetUserIndex",
       component: () => import("./views/VGetUser.vue"),

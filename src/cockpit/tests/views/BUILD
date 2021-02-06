@@ -1,10 +1,10 @@
 subinclude("//build_defs/pnpm")
 
-ava_test(
+ava_tests(
   name = "views",
-  test_srcs = glob(["**/*.spec.ts"]),
-  srcs = [
-    "//:ava_test_deps",
+  srcs = glob(["**/*.spec.ts"]),
+  ava_dirs = ["//:ava_test_deps"],
+  deps = [
     "//src/cockpit/views:views",
     "//src/cockpit/components:components",
   ],

@@ -40,17 +40,16 @@ jobs:
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       # run tests
-      - run: ./pleasew build --show_all_output //src/cockpit/tests/components/...
-      - run: ./pleasew build --show_all_output //src/cockpit/tests/views/...
       - run: ./pleasew build --show_all_output
       - run: ./pleasew cover --show_all_output //src/turbine/...
+      - run: ./pleasew test --show_all_output //src/cockpit/tests/components/...
+      - run: ./pleasew test --show_all_output //src/cockpit/tests/views/...
       - run:
           command: ./pleasew work
           background: true
       - run: sleep 1
       - run: ./pleasew test --show_all_output
-      - run: ./pleasew run //:report
-      - run: bash <(curl -s https://codecov.io/bash)
+      - run: ./pleasew report
       - run: ./scripts/leftover.sh
       - save_cache:
           key: please-{{ checksum "pleasew" }}

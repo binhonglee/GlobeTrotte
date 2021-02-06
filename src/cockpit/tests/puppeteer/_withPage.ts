@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer";
-import pti from "puppeteer-to-istanbul";
+// import pti from "puppeteer-to-istanbul";
 import { ExecutionContext } from "ava";
 
 export default async function (
@@ -8,21 +8,21 @@ export default async function (
 ): Promise<void> {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await Promise.all([
-    page.coverage.startJSCoverage(),
-    page.coverage.startCSSCoverage(),
-  ]);
+  // await Promise.all([
+  //   page.coverage.startJSCoverage(),
+  //   page.coverage.startCSSCoverage(),
+  // ]);
   try {
     await run(t, page);
   } finally {
-    const [jsCoverage, cssCoverage] = await Promise.all([
-      page.coverage.stopJSCoverage(),
-      page.coverage.stopCSSCoverage(),
-    ]);
-    pti.write([...jsCoverage, ...cssCoverage], {
-      includeHostname: true,
-      storagePath: "./.nyc_output",
-    });
+    // const [jsCoverage, cssCoverage] = await Promise.all([
+    //   page.coverage.stopJSCoverage(),
+    //   page.coverage.stopCSSCoverage(),
+    // ]);
+    // pti.write([...jsCoverage, ...cssCoverage], {
+    //   includeHostname: true,
+    //   storagePath: "./.nyc_output",
+    // });
     await page.close();
     await browser.close();
   }

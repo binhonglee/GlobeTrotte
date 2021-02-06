@@ -114,10 +114,8 @@ steps:
 - script: ./pleasew test --show_all_output
   displayName: Test all
 
-- script: ./pleasew run //:report
+- script: ./pleasew report
   displayName: Generate Cockpit Report
-- script: bash <(curl -s https://codecov.io/bash)
-  displayName: Upload report to codecov
 
 - script: |
     git checkout wings.json

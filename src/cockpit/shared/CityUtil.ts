@@ -31,7 +31,9 @@ export class CityUtil {
   }
 
   public static toString(city: City): string {
+    const unrecognized = "unrecognized city";
     const cityName = {
+      [City.UNKNOWN]: unrecognized,
       [City.AnchorageAKUS]: "Anchorage, Alaska, US",
       [City.BostonMAUS]: "Boston, Massachusetts, US",
       [City.GeorgeTownPGMY]: "George Town, Penang, MY",
@@ -47,6 +49,6 @@ export class CityUtil {
       [City.SeattleWAUS]: "Seattle, Washington, US",
       [City.WashingtonDCUS]: "Washington, D.C., US",
     };
-    return cityName[city] ?? "unrecognized city";
+    return cityName[city] ?? unrecognized;
   }
 }

@@ -1,4 +1,5 @@
-import { ElNotificationOptions, MessageType } from "element-ui";
+import { ElNotificationOptions } from "element-ui/types/notification";
+import { MessageType } from "element-ui/types/message";
 import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "./HTTPReq";
 import User from "@/wings/User";
@@ -108,7 +109,9 @@ export default class General {
   }
 
   public static async genCurrentUser(router: VueRouter): Promise<User> {
-    const id: number = JSON.parse(await HTTPReq.genGET(router, "whoami")).id;
+    const id: number = JSON.parse(
+      (await HTTPReq.genGET(router, "whoami")) as string,
+    ).id;
     if (id === -1) {
       localStorage.clear();
     } else {

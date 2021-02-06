@@ -1,27 +1,30 @@
 [Please]
-Version = >=15.0.0
+Version = >=15.5.0
 
 [Build]
 PassEnv = PATH
 PassEnv = USER
 
-[Alias "genReport"]
-cmd = build //src/cockpit/scripts:gen_report
+[Alias "report"]
+cmd = run "//src/cockpit/scripts:gen_report"
 
 [Alias "genComponent"]
-cmd = run //src/cockpit/scripts:gen_component
+cmd = run "//src/cockpit/scripts:gen_component"
 
 [Alias "pull"]
-cmd = run //scripts:pull
+cmd = run "//scripts:pull"
 
 [Alias "reset"]
-cmd = run //scripts:reset
+cmd = run "//scripts:reset"
 
 [Alias "show"]
-cmd = run //:serve
+cmd = run "//:serve"
 
 [Alias "work"]
-cmd = run //src/turbine:main
+cmd = run "//src/turbine:main"
+
+[Alias "lint"]
+cmd = test "//:_all#lint"
 
 [go]
 importpath = github.com/binhonglee/GlobeTrotte

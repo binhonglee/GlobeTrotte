@@ -4,7 +4,7 @@ import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import User from "@/wings/User";
 
-import { mount } from "@vue/test-utils";
+import { mount, Wrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
 import {
   messageSpy,
@@ -14,6 +14,7 @@ import {
 } from "../helper";
 import sinon from "sinon";
 import test from "ava";
+import { ExecutionContext } from "ava";
 
 const email = "ab@test.com";
 const password = "1234";

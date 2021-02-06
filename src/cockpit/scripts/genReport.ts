@@ -1,4 +1,5 @@
 import {
+  existsSync,
   lstatSync,
   mkdirSync,
   readdirSync,
@@ -21,7 +22,7 @@ function getDirs(dir: string): string[] {
       } else {
         folder = join(dir, folder);
 
-        if (!lstatSync(folder).isFile()) {
+        if (lstatSync(folder).isDirectory()) {
           results = results.concat(getDirs(folder));
         }
       }
@@ -31,7 +32,10 @@ function getDirs(dir: string): string[] {
   return results;
 }
 
-mkdirSync(nycOutputDir);
+if (!existsSync(nycOutputDir)) {
+  mkdirSync(nycOutputDir);
+}
+
 const reports = [];
 for (const dir of getDirs(__dirname)) {
   const reportName = join(nycOutputDir, basename(dirname(dir)) + ".json");
@@ -43,7 +47,7 @@ for (const dir of getDirs(__dirname)) {
 
   if (status !== 0) {
     console.error(stderr);
-    process.exit(status);
+    process.exit(status === null ? undefined : status);
   }
   reports.push(reportName);
 }

@@ -1,7 +1,7 @@
 filegroup(
   name = "cypress_eslint",
   srcs = [".eslintrc.js"],
-  visibility = ["//:cockpit_cypress"],
+  visibility = ["//..."],
 )
 
 filegroup(

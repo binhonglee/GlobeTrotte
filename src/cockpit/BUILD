@@ -1,15 +1,16 @@
 filegroup(
   name = "core_files",
   srcs = [
-    "//src/cockpit/scripts:gen_router",
-    "main.ts",
     "App.vue",
+    "main.ts",
+    "shims-vue.d.ts",
+    "//src/cockpit/scripts:gen_router",
   ],
-  visibility = [
-    "//:cockpit",
-    "//:serve",
-    "//:prep_gen",
-    "//:cockpit_cypress",
-    "//:ava_test_deps",
+  exported_deps = [
+    "//src/cockpit/components",
+    "//src/cockpit/shared",
+    "//src/cockpit/views",
+    "//src/cockpit/wings",
   ],
+  visibility = ["//..."],
 )

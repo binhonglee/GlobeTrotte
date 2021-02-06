@@ -16,14 +16,14 @@ export default class HTTPReq {
   private static pathPrefix = "/api/";
   private static delPrefix = "del/";
 
-  public static async genGET(router: VueRouter, uri: string): Promise<string> {
+  public static async genGET(router: VueRouter, uri: string): Promise<unknown> {
     return await this.genSendRequest(router, uri, AxMethod.GET);
   }
 
   public static async genDELETE(
     router: VueRouter,
     uri: string,
-  ): Promise<string> {
+  ): Promise<unknown> {
     return await this.genSendRequest(
       router,
       HTTPReq.delPrefix + uri,
@@ -35,7 +35,7 @@ export default class HTTPReq {
     router: VueRouter,
     uri: string,
     data: string,
-  ): Promise<string> {
+  ): Promise<unknown> {
     return await this.genSendRequest(router, uri, AxMethod.POST, data);
   }
 
@@ -50,7 +50,7 @@ export default class HTTPReq {
     uri: string,
     type: Method,
     data = "",
-  ): Promise<string> {
+  ): Promise<unknown> {
     const fullURI: AxiosRequestConfig = {
       method: type,
       url: this.getURI(uri),

@@ -23,7 +23,7 @@ type routerFunctions =
   | "resolve";
 
 export async function wait(ms: number): Promise<void> {
-  await new Promise((resolve) => setTimeout(() => resolve(), ms));
+  await new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export class notifySpy {

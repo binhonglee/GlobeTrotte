@@ -1,7 +1,23 @@
-def ava_test(
+def ava_dir(
   name:str,
-  test_srcs:list,
   srcs:list=[],
+  deps:list=[],
+  visibility:list=[],
+):
+  return build_rule(
+    name = name,
+    srcs = srcs,
+    cmd = "zip -r " + name + ".ava_dir ./",
+    outs = [name + ".ava_dir"],
+    deps = deps,
+    test_only = True,
+    visibility = visibility
+  )
+
+def ava_tests(
+  name:str,
+  srcs:list,
+  ava_dirs:list=[],
   deps:list=[],
   visibility:list=[],
 ):
@@ -9,70 +25,82 @@ def ava_test(
   pre_build = " && ".join([
     _set_node_modules(),
   ])
+  for ava_dir in ava_dirs:
+    ava_dir_name = ava_dir.split(":")
+    if len(name) < 2:
+      temp = ava_dir.split("/")
+      ava_dir_name = temp[len(temp) - 1]
+    else:
+      ava_dir_name = ava_dir_name[1]
+    pre_build += " && unzip -o " + ava_dir_name + ".ava_dir"
 
-  for src in test_srcs:
-    rule_name = src[:-8]
-    post_build = "mv .nyc_output " + rule_name + "/.nyc_output"
-
-    on_test = build_rule(
+  for src in srcs:
+    filename = src[:-8]
+    rule_name = f'_{name}#{filename}'
+    on_test = ava_test(
       name = rule_name,
-      srcs = [src],
-      cmd = " ".join([
-        pre_build,
-        "&&",
-        "($TOOL run test:ava:plz",
-        "--",
-        "--serial",
-        "--concurrency=1",
-        "$SRCS",
-        ">",
-        rule_name + "_raw.results",
-        "||",
-        "echo \"" + rule_name + " failed.\")",
-        "&&",
-        post_build,
-      ]),
-      test_cmd = " | ".join([
-        "cat " + rule_name + "_raw.results",
-        "tee >(pnpx tap-xunit > test.results)",
-      ]),
-      outs = [rule_name + "_raw.results", rule_name + "/.nyc_output"],
-      deps = srcs + deps,
-      test = True,
-      test_only = True,
+      src = src,
+      pre_build = pre_build,
+      deps = deps + ava_dirs,
       visibility = visibility,
-      tools=[CONFIG.PNPM_TOOL],
     )
-
     rules += [on_test]
 
-  cmd = " ".join([
-    "for SRC in $(" + 
-      " | ".join([
-        "echo $SRCS",
-        "tr ' ' '\\n'",
-        "grep '.nyc_output'",
-      ]) +
-    ");",
-    "do",
-    "mv $SRC `mkdir -p " + name + "/" + "$(" +
-      " | ".join([
-        "echo $SRC",
-        "awk -F'" + name + "/' '{print $2}'",
-        "awk -F'/.nyc_output' '{print $1}'",
-      ]) +
-    ") && echo $_`;",
-    "done;"
-  ])
+  return build_rule(
+    name = f"_{name}#test",
+    srcs = srcs,
+    deps = rules,
+    test_only = True,
+    visibility = visibility,
+  )
+
+def ava_test(
+  name:str,
+  src:str,
+  ava_dirs:list=[],
+  pre_build:str=None,
+  deps:list=[],
+  visibility:list=[],
+):
+  if pre_build is None:
+    pre_build = " && ".join([
+      _set_node_modules(),
+    ])
+    for ava_dir in ava_dirs:
+      ava_dir_name = ava_dir.split(":")
+      if len(name) < 2:
+        temp = ava_dir.split("/")
+        ava_dir_name = temp[len(temp) - 1]
+      else:
+        ava_dir_name = ava_dir_name[1]
+      pre_build += " && unzip -o " + ava_dir_name + ".ava_dir"
 
   return build_rule(
     name = name,
-    srcs = rules + srcs,
-    cmd = cmd,
-    outs = [name],
-    deps = deps,
+    data = [src] + ava_dirs + deps,
+    test_cmd = " ".join([
+      pre_build,
+      "&&",
+      "$TOOL run test:ava:plz",
+      "--",
+      "--serial",
+      "--concurrency=1",
+      "$PKG_DIR/" + src,
+      "|",
+      "tee",
+      ">(pnpx tap-xunit > test.results)",
+      "&&",
+      "mkdir -p",
+      name,
+      "&&",
+      "mv .nyc_output",
+      name + "/.nyc_output",
+    ]),
+    test_outputs = [name + "/.nyc_output"],
+    test = True,
     test_only = True,
     visibility = visibility,
+    test_tools = [CONFIG.PNPM_TOOL],
   )
 
 def pnpm_run_build(
@@ -102,14 +130,6 @@ def pnpm_run_build(
   )
 
 def pnpm_install(name:str, srcs:list=[], deps:list=[]):
-  filegroup(
-    name = name + "_#pnpm_install",
-    srcs = srcs,
-    visibility = ["PUBLIC"],
-    binary = False,
-    test_only = False,
-  )
-
   out = "node_modules"
 
   cmd = " ".join([
@@ -146,16 +166,7 @@ def pnpm_run(
   visibility:list=None,
   test_only:bool=False,
 ):
-  filegroup(
-    name = name + "_#pnpm_run",
-    srcs = srcs,
-    visibility = ["PUBLIC"],
-    binary = False,
-    test_only = False,
-  )
-
   cmd = "$TOOL run " + cmd
-
   cmds = f'{{ tee -a > "$OUT" << EOF\n#!{shell}\n{cmd}\nEOF\n}}'
   return build_rule(
     name = name,
@@ -181,20 +192,14 @@ def pnpm_test(
   result_file:str=None,
   visibility:list=None,
   requires_server:int=None,
+  needs_transitive_deps:bool=False,
 ):
-  filegroup(
-    name = name + "_#pnpm_test",
-    srcs = srcs,
-    visibility = ["PUBLIC"],
-    binary = False,
-    test_only = True,
-  )
-
   cmd = "(pnpm run " + cmd
   if requires_server is not None:
-    cmd = cmd + "$CMD"
-  cmd = cmd + " || echo \"Test failed.\")"
-
+    cmd += "$CMD"
+  if result_dir is not None or result_file is not None:
+    cmd += " || echo \"Test failed.\""
+  cmd += ")"
   for out in outs:
     cmd = " && ".join([
       "rm -rf " + out,
@@ -242,7 +247,7 @@ def pnpm_test(
     ])
 
   return build_rule(
-    name = name,
+    name = f"_{name}#test",
     srcs = srcs,
     outs = outs,
     deps = deps,
@@ -252,6 +257,7 @@ def pnpm_test(
     visibility = visibility,
     tools=[CONFIG.PNPM_TOOL],
     no_test_output = (result_dir == None and result_file == None),
+    needs_transitive_deps = needs_transitive_deps,
   )
 
 def _check_server_running(requires_server:int):

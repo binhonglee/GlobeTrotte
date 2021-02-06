@@ -76,10 +76,6 @@ pnpm_run_build(
   deps = [
     "//src/assets:assets",
     "//src/cockpit:core_files",
-    "//src/cockpit/components",
-    "//src/cockpit/shared",
-    "//src/cockpit/views",
-    "//src/cockpit/wings",
   ],
 )
 
@@ -97,20 +93,9 @@ pnpm_run(
   ],
 )
 
-pnpm_run(
-  name = "report",
-  cmd = "report",
-  deps = [
-    ":pnpm",
-    ":nycrc",
-    "//src/cockpit/scripts:gen_report",
-  ],
-  test_only = True,
-)
-
-filegroup(
+ava_dir(
   name = "ava_test_deps",
-  exported_deps = [
+  srcs = [
     ":ava_config",
     ":pnpm_config",
     ":nycrc",
@@ -147,12 +132,12 @@ pnpm_test(
 )
 
 gentest(
-  name = "lint",
+  name = "_all#lint",
   test_cmd = "echo 'Lint everything~'",
   no_test_output = True,
   deps = [
-    ":eslint",
-    ":gofmt",
+    ":_eslint#test",
+    ":_gofmt#lint",
   ]
 )
 
@@ -162,15 +147,43 @@ pnpm_test(
   visibility = [
     "//src/cockpit/..."
   ],
-  deps = [":pnpm"],
+  srcs = [
+    ":pnpm",
+    ":pnpm_config",
+    ":prettier",
+    ":tsconfig",
+    ":index_html",
+    "//src/assets:assets",
+    "//src/cockpit:core_files",
+  ],
+  needs_transitive_deps = True,
+)
+
+pnpm_test(
+  name = "tsc",
+  cmd = "check:tsc",
+  srcs = [
+    ":pnpm",
+    ":pnpm_config",
+    ":prettier",
+    ":tsconfig",
+    ":index_html",
+    "//src/assets:assets",
+    "//src/cockpit:core_files",
+  ],
+  needs_transitive_deps = True,
 )
 
 gentest(
-  name = "gofmt",
+  name = "_gofmt#lint",
   test_cmd = " && ".join([
     "current=$(pwd)",
     "cd $(pwd | awk -F'plz-out' '{print $1}') || exit 1",
     "gofmt -s -w $(ls src/turbine/**/*.go | grep -v /wings/)",
   ]),
+  deps =  [
+    "//src/turbine:main",
+  ],
+  needs_transitive_deps = True,
   no_test_output = True,
 )

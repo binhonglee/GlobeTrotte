@@ -2,7 +2,7 @@ def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visi
   all_out_files = []
 
   filegroup(
-    name = name + "_#wings",
+    name = f"_{name}#wings",
     srcs = [src],
     visibility = visibility,
     binary = False,
@@ -19,12 +19,12 @@ def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visi
     all_out_files.append(i + "/" + outs[i])
 
   gen_files = build_rule(
-    name = name + "_#genFiles",
+    name = f"_{name}#genFiles",
     srcs = [src],
     tools = [CONFIG.WINGS_TOOL],
     cmd = cmd,
     outs = all_out_files,
-    deps = deps + [":" + name + "_#wings"],
+    deps = deps + [":" + f"_{name}#wings"],
     needs_transitive_deps = True,
     test_only = test_only,
     binary = False,
@@ -32,10 +32,10 @@ def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visi
   )
 
   for i in outs.keys():
-    out_filename = outs[i].split(".")
+    filetype = (outs[i].split("."))[-1]
 
     build_rule(
-      name = name + "_#" + out_filename[-1],
+      name = f"_{name}#{filetype}",
       srcs = [gen_files],
       cmd = "mv $PKG_DIR/" + i + "/" + outs[i] + " ./",
       outs = [outs[i]],
@@ -48,7 +48,7 @@ def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visi
   return filegroup(
     name = name,
     srcs = [gen_files],
-    deps = deps + [":" + name + "_#wings"],
+    deps = deps + [":" + f"_{name}#wings"],
     needs_transitive_deps = True,
     test_only = test_only,
     binary = False,

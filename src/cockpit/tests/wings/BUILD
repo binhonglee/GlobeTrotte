@@ -1,8 +1,8 @@
 subinclude("//build_defs/pnpm")
 
-ava_test(
+ava_tests(
   name = "wings",
-  test_srcs = glob(["**/*.spec.ts"]),
-  srcs = ["//:ava_test_deps"],
+  srcs = glob(["**/*.spec.ts"]),
+  ava_dirs = ["//:ava_test_deps"],
   visibility = ["//src/cockpit/scripts:gen_report"],
 )

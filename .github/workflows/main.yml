@@ -64,7 +64,7 @@ jobs:
     - run: sleep 1
     - run: ./pleasew test --show_all_output
 
-    - run: ./pleasew run //:report
+    - run: ./pleasew report
     - run: bash <(curl -s https://codecov.io/bash)
     - run: ./scripts/leftover.sh
     - uses: actions/upload-artifact@v2

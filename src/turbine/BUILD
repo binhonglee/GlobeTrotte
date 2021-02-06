@@ -8,6 +8,6 @@ go_binary(
     "//src/turbine/logger:logger",
   ],
   visibility = [
-    "//src/turbine/...",
+    "//...",
   ],
 )
