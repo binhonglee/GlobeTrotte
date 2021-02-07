@@ -13,6 +13,7 @@ go_library(
     "//third_party:sessions",
     "//src/turbine/database:database",
     "//src/turbine/email:email",
+    "//src/turbine/flags:flags",
     "//src/turbine/logger:logger",
     "//src/turbine/structs:structs",
     "//src/turbine/wings:wings",

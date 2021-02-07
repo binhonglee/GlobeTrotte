@@ -6,9 +6,10 @@ import (
 	"strconv"
 
 	db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
-	"github.com/binhonglee/GlobeTrotte/src/turbine/email"
-	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
-	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
+	email "github.com/binhonglee/GlobeTrotte/src/turbine/email"
+	flags "github.com/binhonglee/GlobeTrotte/src/turbine/flags"
+	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
+	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
 	mux "github.com/gorilla/mux"
 	sessions "github.com/gorilla/sessions"
@@ -254,30 +255,30 @@ func confirmEmail(res http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(res).Encode(email.ConfirmEmail(*item))
 }
 
-// PROD: Used for testing only. To remove on prod.
 func forceConfirmEmail(res http.ResponseWriter, req *http.Request) {
+	if flags.ProdServer() {
+		logger.Failure(logger.Router, "Force confirm email attempted on prod.")
+		respond(res, false)
+		return
+	}
 	vars := mux.Vars(req)
 	var id int
 	var err error
 
 	if id, err = strconv.Atoi(vars["id"]); err != nil {
 		logger.Err(logger.Router, err, "")
-		response(&res, http.StatusOK)
-		json.NewEncoder(res).Encode(false)
+		respond(res, false)
 		return
 	}
-	allowCORS(&res)
 
 	if verifyUser(req, id) {
 		if db.ForceConfirm(id) {
-			response(&res, http.StatusOK)
-			json.NewEncoder(res).Encode(true)
+			respond(res, true)
 			return
 		}
 	}
 
-	response(&res, http.StatusOK)
-	json.NewEncoder(res).Encode(false)
+	respond(res, false)
 }
 
 func verifyUser(req *http.Request, userID int) bool {

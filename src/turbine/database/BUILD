@@ -11,9 +11,10 @@ go_library(
   deps = [
     "//third_party:pq",
     "//third_party:uuid",
-    "//src/turbine/wings:wings",
-    "//src/turbine/structs:structs",
+    "//src/turbine/flags:flags",
     "//src/turbine/logger:logger",
+    "//src/turbine/structs:structs",
+    "//src/turbine/wings:wings",
   ],
   visibility = ["//src/turbine/..."],
 )

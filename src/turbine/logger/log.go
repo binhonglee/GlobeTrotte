@@ -7,6 +7,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	flags "github.com/binhonglee/GlobeTrotte/src/turbine/flags"
 )
 
 const logDir = "logs"
@@ -18,7 +20,14 @@ var currentFile *os.File
 
 func init() {
 	startTime = time.Now()
-	createNewLogFile()
+}
+
+func FromMain() {
+	flags.Run()
+	if flags.ToFile() {
+		createNewLogFile()
+	}
+	Print(Flags, flags.FlagStatuses())
 }
 
 // NewLine - Print an empty newline in terminal. Purely aesthetic reason.
@@ -84,7 +93,7 @@ func Exit(namespace Namespace, message string) {
 	if currentFile != nil {
 		Print(namespace, message)
 	} else {
-		getMessage(none, namespace, message)
+		getMessage(none, namespace, message, false)
 	}
 }
 
@@ -171,21 +180,41 @@ func DebugPink(message ...interface{}) {
 
 func messageToFile(
 	status status, namespace Namespace, message string) {
-	s := getMessage(status, namespace, message)
-	getFile().WriteString(s)
+	s := getMessage(status, namespace, message, false)
+	if flags.ToFile() {
+		getFile().WriteString(s)
+	}
 }
 
-func getMessage(status status, namespace Namespace, message string) string {
+func getMessage(
+	status status,
+	namespace Namespace,
+	message string,
+	forcePrint bool,
+) string {
+	toPrint, toLog := messageToPrint(
+		status, namespace, message,
+	)
+
+	fmt.Println(toPrint)
+	return toLog
+}
+
+func messageToPrint(
+	status status,
+	namespace Namespace,
+	message string,
+) (string, string) {
 	namespaceStr := string(namespace) +
 		strings.Repeat(" ", namespaceLen-len(string(namespace)))
 	s := message + " " + getCaller(namespace, 4)
 
-	fmt.Println(
-		wrap(status, time.Now().Format(time.Stamp)[7:]+" "+
-			namespaceStr+" : "+s))
-
-	return time.Now().Format(time.RFC3339) +
+	toPrint := wrap(status, time.Now().Format(time.Stamp)[7:]+" "+
+		namespaceStr+" : "+s)
+	toLog := time.Now().Format(time.RFC3339) +
 		" " + namespaceStr + " : " + s + "\n"
+
+	return toPrint, toLog
 }
 
 func wrap(status status, message string) string {
@@ -226,7 +255,7 @@ func getCaller(namespace Namespace, level int) string {
 		paths := strings.Split(file, "/")
 		if paths[len(paths)-1] != "log.go" ||
 			namespace == logger ||
-			namespace == flags {
+			namespace == Flags {
 			return "(" + file + ":" + strconv.Itoa(no) + ")"
 		} else {
 			return getCaller(namespace, level+2)

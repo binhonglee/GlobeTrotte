@@ -12,10 +12,10 @@ const (
 	Router   = "router"
 	Database = "database"
 	Email    = "email"
+	Flags    = "flags"
 
 	// These are kept private since they should only be used
 	// in this package anyway
 	logger = "logger"
 	debug  = "debug"
-	flags  = "flags"
 )

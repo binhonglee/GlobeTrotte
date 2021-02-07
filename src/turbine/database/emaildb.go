@@ -9,7 +9,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
+	flags "github.com/binhonglee/GlobeTrotte/src/turbine/flags"
+	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 )
 
 // AddEmailDB - Do not call this directly. Use `NewEmail` from `email` instead.
@@ -119,8 +120,11 @@ func ConfirmEmailDB(
 	return confirmUser(userid)
 }
 
-// PROD: Remove on prod. Only used for automated testing.
 func ForceConfirm(uid int) bool {
+	if flags.ProdServer() {
+		return false
+	}
+
 	sqlStatement := `
 		UPDATE emails
 		SET confirmed = $1

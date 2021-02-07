@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"strings"
 
+	flags "github.com/binhonglee/GlobeTrotte/src/turbine/flags"
 	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 
@@ -21,15 +22,23 @@ func passwd(res http.ResponseWriter, req *http.Request) {
 	response(&res, http.StatusOK)
 }
 
+// DEPRECATED: Do not add new use of this function.
 func response(res *http.ResponseWriter, status int) {
-	(*res).Header().Set(
-		"Content-Type", "application/json; charset=UTF-8",
-	)
+	(*res).Header().Set("Content-Type", "application/json; charset=UTF-8")
 	(*res).WriteHeader(status)
 }
 
-// PROD: Only used for dev. No CORS should be allowed on prod.
+func respond(res http.ResponseWriter, info interface{}) {
+	allowCORS(&res)
+	(res).Header().Set("Content-Type", "application/json; charset=UTF-8")
+	(res).WriteHeader(http.StatusOK)
+	json.NewEncoder(res).Encode(info)
+}
+
 func allowCORS(res *http.ResponseWriter) {
+	if flags.ProdServer() {
+		return
+	}
 	var url = "http://localhost:1234"
 
 	(*res).Header().Set(
@@ -102,11 +111,9 @@ func getItem(
 
 	item := getFunc(id, getUserID(req))
 	if item.GetID() > 0 {
-		response(res, http.StatusOK)
-		json.NewEncoder(*res).Encode(item)
+		respond(*res, item)
 	} else {
-		response(res, http.StatusOK)
-		json.NewEncoder(*res).Encode(v)
+		respond(*res, v)
 	}
 }
 
@@ -132,8 +139,7 @@ func updateItem(
 		json.NewEncoder(*res).Encode(true)
 		return true
 	} else {
-		response(res, http.StatusOK)
-		json.NewEncoder(*res).Encode(false)
+		respond(*res, false)
 		return false
 	}
 }
@@ -155,8 +161,7 @@ func setDeletionStatus(
 	success bool,
 ) {
 	if success {
-		response(res, http.StatusOK)
-		json.NewEncoder(*res).Encode(true)
+		respond(*res, true)
 	} else {
 		response(res, http.StatusNotFound)
 		json.NewEncoder(*res).Encode(false)

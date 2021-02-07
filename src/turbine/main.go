@@ -15,11 +15,10 @@ const port = "4000"
 func main() {
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+	logger.FromMain()
 
 	go func() {
 		<-sigs
-		logger.NewLine()
-		logger.Exit(logger.Main, "Exit signal received!")
 		cleanup()
 	}()
 
@@ -33,6 +32,8 @@ func main() {
 }
 
 func cleanup() {
+	logger.NewLine()
+	logger.Exit(logger.Main, "Exit signal received!")
 	logger.Cleanup()
 	os.Exit(0)
 }

@@ -3,6 +3,7 @@ package router
 import (
 	"net/http"
 
+	"github.com/binhonglee/GlobeTrotte/src/turbine/flags"
 	"github.com/gorilla/mux"
 )
 
@@ -31,8 +32,9 @@ func NewRouter() http.Handler {
 		PathPrefix("/").
 		Handler(http.FileServer(http.Dir("plz-out/gen/dist")))
 
-	// PROD: Disable rate limiting for dev and test
-	// router = limit(router)
+	if flags.ProdServer() {
+		router.Use(limit)
+	}
 
 	return router
 }
