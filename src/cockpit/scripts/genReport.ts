@@ -37,9 +37,9 @@ if (!existsSync(nycOutputDir)) {
 }
 
 const reports = [];
-for (const dir of getDirs(__dirname)) {
+for (const dir of getDirs(process.cwd())) {
   const reportName = join(nycOutputDir, basename(dirname(dir)) + ".json");
-  const { status, stderr } = spawnSync("nyc", ["merge", dir, reportName], {
+  const { status, stderr } = spawnSync("pnpx nyc", ["merge", dir, reportName], {
     encoding: "utf8",
     shell: true,
     input: dir,

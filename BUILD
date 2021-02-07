@@ -1,4 +1,4 @@
-subinclude("//build_defs/pnpm")
+subinclude("//build_defs/npm")
 
 filegroup(
   name = "ava_config",
@@ -57,12 +57,12 @@ filegroup(
   ],
 )
 
-pnpm_install(
+npm_install(
   name = "pnpm",
   srcs = [":pnpm_config"],
 )
 
-pnpm_run_build(
+npm_run_build(
   name = "cockpit",
   cmd = "build",
   srcs = [
@@ -79,7 +79,7 @@ pnpm_run_build(
   ],
 )
 
-pnpm_run(
+npm_run(
   name = "serve",
   cmd = "serve",
   deps = [
@@ -112,7 +112,7 @@ ava_dir(
   ],
 )
 
-pnpm_test(
+npm_test(
   name = "cockpit_cypress",
   srcs = ["cypress.json"],
   cmd = "test:cypress",
@@ -141,7 +141,7 @@ gentest(
   ]
 )
 
-pnpm_test(
+npm_test(
   name = "eslint",
   cmd = "format",
   visibility = [
@@ -159,7 +159,7 @@ pnpm_test(
   needs_transitive_deps = True,
 )
 
-pnpm_test(
+npm_test(
   name = "tsc",
   cmd = "check:tsc",
   srcs = [

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"net/http"
 	"strconv"
-	"strings"
 	"sync"
 	"time"
 
@@ -48,7 +47,11 @@ func init() {
 func getAPIRateLimitStatus(res http.ResponseWriter, req *http.Request) {
 	userid := "uid" + strconv.Itoa(getUserID(req))
 	allowCORS(&res)
-	json.NewEncoder(res).Encode(getRateLimitStatus(getIP(req.RemoteAddr)) || getRateLimitStatus(userid))
+	json.NewEncoder(res).Encode(
+		getRateLimitStatus(
+			req.Header.Get("X-Real-IP"),
+		) || getRateLimitStatus(userid),
+	)
 }
 
 func getRateLimitStatus(key string) bool {
@@ -89,9 +92,10 @@ func limit(next http.Handler) http.Handler {
 			next.ServeHTTP(res, req)
 			return
 		}
-		ip := getIP(req.RemoteAddr)
+
+		ip := req.Header.Get("X-Real-IP")
 		if ip == "" {
-			logger.Failure(logger.Router, "Invalid IP: "+req.RemoteAddr)
+			logger.Failure(logger.Router, "Invalid IP.")
 			allowCORS(&res)
 			json.NewEncoder(res).Encode("ratelimited")
 			return
@@ -107,13 +111,4 @@ func limit(next http.Handler) http.Handler {
 
 		next.ServeHTTP(res, req)
 	})
-}
-
-func getIP(addr string) string {
-	addrs := strings.Split(addr, ":")
-	if len(addrs) > 0 {
-		return strings.Join(addrs[:len(addrs)-1], "")
-	} else {
-		return ""
-	}
 }

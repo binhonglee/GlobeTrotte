@@ -26,5 +26,9 @@ cmd = run "//src/turbine:main"
 [Alias "lint"]
 cmd = test "//:_all#lint"
 
-[go]
-importpath = github.com/binhonglee/GlobeTrotte
+[Go]
+ImportPath = github.com/binhonglee/GlobeTrotte
+
+[Buildconfig]
+npm-tool = "pnpm"
+npx-tool = "pnpx"

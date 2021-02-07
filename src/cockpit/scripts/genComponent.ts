@@ -7,15 +7,16 @@ const componentFileTemplate = `<template lang="pug">
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 
-export default Vue.extend({
-  name: "COMPONENT_NAME",
+interface Data {}
+
+export default {
+  data: (): Data => ({}),
   // TODO
-});
+};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../shared/lib";
 </style>
 `;

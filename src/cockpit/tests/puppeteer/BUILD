@@ -1,4 +1,4 @@
-subinclude("//build_defs/pnpm")
+subinclude("//build_defs/npm")
 
 filegroup(
   name = "puppeteer_deps",

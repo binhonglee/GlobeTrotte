@@ -31,7 +31,7 @@ func addTest(
 	unmarshalBody bool,
 ) {
 	res := httptest.NewRecorder()
-	data, err := json.Marshal(toAdd)
+	data, _ := json.Marshal(toAdd)
 	req, _ := http.NewRequest(
 		"POST", API_PREFIX+path, bytes.NewBuffer(data))
 	if cookies != nil {
@@ -40,11 +40,11 @@ func addTest(
 	NewRouter().ServeHTTP(res, req)
 
 	if unmarshalBody {
-		data, err = ioutil.ReadAll(res.Body)
+		bodyData, err := ioutil.ReadAll(res.Body)
 		if err != nil {
 			t.Errorf("Adding failed.")
 		}
-		objType = json.Unmarshal(data, objType)
+		objType = json.Unmarshal(bodyData, objType)
 	}
 }
 

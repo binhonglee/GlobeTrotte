@@ -1,9 +1,8 @@
-subinclude("//build_defs/pnpm")
+subinclude("//build_defs/npm")
 
 ava_tests(
   name = "shared",
   srcs = glob(["**/*.spec.ts"]),
   ava_dirs = ["//:ava_test_deps"],
   deps = ["//src/cockpit/shared:shared"],
-  visibility = ["//src/cockpit/scripts:gen_report"],
 )

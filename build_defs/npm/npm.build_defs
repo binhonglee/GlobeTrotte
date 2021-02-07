@@ -17,6 +17,7 @@ def ava_dir(
 def ava_tests(
   name:str,
   srcs:list,
+  nyc:bool=True,
   ava_dirs:list=[],
   deps:list=[],
   visibility:list=[],
@@ -41,6 +42,7 @@ def ava_tests(
       name = rule_name,
       src = src,
       pre_build = pre_build,
+      nyc = nyc,
       deps = deps + ava_dirs,
       visibility = visibility,
     )
@@ -59,9 +61,11 @@ def ava_test(
   src:str,
   ava_dirs:list=[],
   pre_build:str=None,
+  nyc:bool=True,
   deps:list=[],
   visibility:list=[],
 ):
+  use_nyc = "nyc --silent " if nyc else ""
   if pre_build is None:
     pre_build = " && ".join([
       _set_node_modules(),
@@ -81,14 +85,14 @@ def ava_test(
     test_cmd = " ".join([
       pre_build,
       "&&",
-      "$TOOL run test:ava:plz",
+      "$TOOL " + use_nyc + "ava",
       "--",
       "--serial",
       "--concurrency=1",
       "$PKG_DIR/" + src,
       "|",
       "tee",
-      ">(pnpx tap-xunit > test.results)",
+      ">($TOOL tap-xunit > test.results)",
       "&&",
       "mkdir -p",
       name,
@@ -100,10 +104,10 @@ def ava_test(
     test = True,
     test_only = True,
     visibility = visibility,
-    test_tools = [CONFIG.PNPM_TOOL],
+    test_tools = [CONFIG.NPX_TOOL],
   )
 
-def pnpm_run_build(
+def npm_run_build(
   name:str,
   cmd:str,
   srcs:list,
@@ -126,10 +130,35 @@ def pnpm_run_build(
     deps = deps,
     test_only = test_only,
     visibility = visibility,
-    tools=[CONFIG.PNPM_TOOL],
+    tools=[CONFIG.NPM_TOOL],
   )
 
-def pnpm_install(name:str, srcs:list=[], deps:list=[]):
+def ts_run_build(
+  name:str,
+  script:str,
+  srcs:list=[],
+  outs:list=[],
+  make_copy:bool=False,
+  copy_path:str="",
+  deps:list=[],
+  test_only:bool=False,
+  visibility:list=[],
+):
+  cmd = _set_node_modules() + " && " + _gen_run_typescript(script)
+  if make_copy:
+      cmd += " && cp $OUTS " + _top_level_dir() + copy_path
+  
+  return build_rule(
+    name = name,
+    srcs = srcs +  [script],
+    cmd = cmd,
+    outs = outs,
+    deps = deps,
+    test_only = test_only,
+    visibility = visibility,
+  )
+
+def npm_install(name:str, srcs:list=[], deps:list=[]):
   out = "node_modules"
 
   cmd = " ".join([
@@ -154,10 +183,10 @@ def pnpm_install(name:str, srcs:list=[], deps:list=[]):
     deps = deps,
     outs = [out],
     visibility = ["PUBLIC"],
-    tools=[CONFIG.PNPM_TOOL],
+    tools=[CONFIG.NPM_TOOL],
   )
 
-def pnpm_run(
+def npm_run(
   name:str,
   cmd:str,
   shell:str="/bin/sh",
@@ -177,10 +206,33 @@ def pnpm_run(
     visibility = visibility,
     binary = True,
     test_only = test_only,
-    tools = [CONFIG.PNPM_TOOL],
+    tools = [CONFIG.NPM_TOOL],
   )
 
-def pnpm_test(
+def ts_run(
+  name:str,
+  script:str,
+  shell:str="/bin/sh",
+  srcs:list=[],
+  deps:list=[],
+  post_run:list=[],
+  visibility:list=None,
+  test_only:bool=False,
+):
+  cmd = " && ".join([_gen_run_typescript(script)] + post_run)
+  cmd = f'{{ tee -a > "$OUT" << EOF\n#!{shell}\n{cmd}\nEOF\n}}'
+  return build_rule(
+    name = name,
+    outs = [name + ".sh"],
+    srcs = srcs,
+    cmd = "touch $OUT && " + cmd,
+    deps = deps,
+    visibility = visibility,
+    binary = True,
+    test_only = test_only,
+  )
+
+def npm_test(
   name:str,
   cmd:str,
   srcs:list=[],
@@ -194,7 +246,7 @@ def pnpm_test(
   requires_server:int=None,
   needs_transitive_deps:bool=False,
 ):
-  cmd = "(pnpm run " + cmd
+  cmd = "(" + CONFIG.NPM_TOOL + " run " + cmd
   if requires_server is not None:
     cmd += "$CMD"
   if result_dir is not None or result_file is not None:
@@ -255,10 +307,23 @@ def pnpm_test(
     test_cmd = cmd,
     test_only = True,
     visibility = visibility,
-    tools=[CONFIG.PNPM_TOOL],
     no_test_output = (result_dir == None and result_file == None),
     needs_transitive_deps = needs_transitive_deps,
   )
+
+def _gen_run_typescript(script_name:str):
+  out_name = script_name[:-3] + ".js"
+  return " ".join([
+    CONFIG.NPX_TOOL,
+    CONFIG.TYPESCRIPT_TOOL,
+    "./$PKG_DIR/" + script_name,
+    "--outDir",
+    CONFIG.TYPESCRIPT_OUT_DIR,
+    "&&",
+    CONFIG.NODE_TOOL,
+    CONFIG.TYPESCRIPT_OUT_DIR + "/" + out_name,
+    "\\\$*",
+  ])
 
 def _check_server_running(requires_server:int):
   return " ".join([
@@ -289,4 +354,8 @@ def _go_to_top_level():
 def _top_level_dir():
   return "$(pwd | awk -F'plz-out' '{print $1}')"
 
-CONFIG.setdefault("PNPM_TOOL", "pnpm")
+CONFIG.setdefault("NPM_TOOL", "npm")
+CONFIG.setdefault("NPX_TOOL", "npx")
+CONFIG.setdefault("NODE_TOOL", "node")
+CONFIG.setdefault("TYPESCRIPT_TOOL", "tsc")
+CONFIG.setdefault("TYPESCRIPT_OUT_DIR", "./plz-out/tsc")

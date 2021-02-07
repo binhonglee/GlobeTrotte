@@ -1,4 +1,4 @@
-subinclude("//build_defs/pnpm")
+subinclude("//build_defs/npm")
 
 filegroup(
   name = "check_backend",
@@ -6,15 +6,14 @@ filegroup(
   visibility = ["//..."],
 )
 
-pnpm_run_build(
+ts_run_build(
   name = "gen_router",
+  script = "genRouter.ts",
   srcs = [
-    "genRouter.ts",
     "//:pnpm_config",
     "//:tsconfig",
     "//src/cockpit/views:views",
   ],
-  cmd = "genRouter",
   outs = ["router.ts", "routes.ts"],
   make_copy = True,
   copy_path = "src/cockpit/",
@@ -24,23 +23,23 @@ pnpm_run_build(
   ],
 )
 
-pnpm_run(
+ts_run(
   name = "gen_report",
+  script = "genReport.ts",
   srcs = [
-    "genReport.ts",
     "//:nycrc",
     "//:pnpm_config",
     "//:tsconfig",
   ],
-  cmd = "genReport",
+  post_run = [
+    "pnpx nyc report",
+  ],
   test_only = True,
   deps = ["//:pnpm"],
-  visibility = ["//:report"]
 )
 
-pnpm_run(
+ts_run(
   name = "gen_component",
-  srcs = ["genComponent.ts"],
-  cmd = "genComponent",
+  script = "genComponent.ts",
   deps = ["//:pnpm"],
 )

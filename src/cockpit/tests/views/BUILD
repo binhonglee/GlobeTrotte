@@ -1,4 +1,4 @@
-subinclude("//build_defs/pnpm")
+subinclude("//build_defs/npm")
 
 ava_tests(
   name = "views",
@@ -8,5 +8,4 @@ ava_tests(
     "//src/cockpit/views:views",
     "//src/cockpit/components:components",
   ],
-  visibility = ["//src/cockpit/scripts:gen_report"],
 )
