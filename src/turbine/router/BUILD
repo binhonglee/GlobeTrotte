@@ -18,7 +18,7 @@ go_library(
     "//src/turbine/structs:structs",
     "//src/turbine/wings:wings",
   ],
-  visibility = ["//src/..."],
+  visibility = ["//src/turbine:main"],
 )
 
 go_test(

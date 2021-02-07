@@ -2,6 +2,7 @@ go_library(
   name = "email",
   srcs = [
     "email.go",
+    "//src/wings/struct:_email_obj#go",
   ],
   deps = [
     "//third_party:email",

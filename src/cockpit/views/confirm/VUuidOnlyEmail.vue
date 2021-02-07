@@ -9,7 +9,7 @@
 import { WingsStructUtil } from "wings-ts-util";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
-import ConfirmEmail from "@/wings/ConfirmEmail";
+import EmailObj from "@/wings/EmailObj";
 import Routes from "@/routes";
 
 interface Data {
@@ -48,7 +48,7 @@ export default {
       this.$router,
       "confirm/email",
       WingsStructUtil.stringify(
-        new ConfirmEmail({
+        new EmailObj({
           uuid: uuid,
           email: user.email,
           userid: user.ID,
@@ -82,7 +82,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../../shared/lib";
 
 .emailConfirmationLoadingBox {

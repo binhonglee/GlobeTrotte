@@ -90,12 +90,12 @@ wings_lib(
 )
 
 wings_lib(
-  name = "confirm_email",
+  name = "email_obj",
   config = "wings.json",
-  src = "confirm_email.wings",
+  src = "email_obj.wings",
   outs = {
-    "src/cockpit/wings": "ConfirmEmail.ts",
-    "src/turbine/wings": "confirmemail.go",
+    "src/cockpit/wings": "EmailObj.ts",
+    "src/turbine/email": "emailobj.go",
   },
   deps = [
     "//:wings_config",

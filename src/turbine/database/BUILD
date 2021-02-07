@@ -27,8 +27,6 @@ go_test(
   ],
   flaky = 2,
   data = ["//config:psql.config"],
-  deps = [
-    ":database",
-  ],
+  deps = [":database"],
   visibility = ["//src/turbine/..."],
 )

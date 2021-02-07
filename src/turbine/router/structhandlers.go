@@ -243,7 +243,7 @@ func deleteUser(res http.ResponseWriter, req *http.Request) {
 }
 
 func confirmEmail(res http.ResponseWriter, req *http.Request) {
-	var item *wings.ConfirmEmail
+	var item *email.EmailObj
 	unpackJSON(&res, req, &item)
 	allowCORS(&res)
 	if item == nil || !verifyUser(req, item.Userid) {

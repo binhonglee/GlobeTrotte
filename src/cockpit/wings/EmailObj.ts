@@ -1,14 +1,14 @@
 // This is a generated file
 // This file will be regenerated on each build thus changes here will be overwritten
 //
-// If you would like to make any changes, please edit the source file (src/wings/struct/confirm_email.wings)
+// If you would like to make any changes, please edit the source file (src/wings/struct/email_obj.wings)
 // and run the following command:
 // plz build //src/wings/...
 
 import { IWingsStruct } from 'wings-ts-util';
 
 // Email confirmation object.
-export default class ConfirmEmail implements IWingsStruct {
+export default class EmailObj implements IWingsStruct {
   [key: string]: any;
   public uuid: String = '';
   public email: String = '';

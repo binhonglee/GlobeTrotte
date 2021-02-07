@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/jordan-wright/email"
+	sendEmail "github.com/jordan-wright/email"
 
 	db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
@@ -26,7 +26,7 @@ var password string
 var host string
 var port string
 
-type emailObj struct {
+type emailItem struct {
 	id           int
 	userID       int
 	code         string
@@ -114,7 +114,7 @@ func NewEmail(userid int, emailAddress string) bool {
 	html := `<p>Click <a href="` +
 		"https://globetrotte.com/confirm/email/" + uuid +
 		`">here</a> to confirm your GlobeTrotte account email</p>`
-	e := &email.Email{
+	e := &sendEmail.Email{
 		To:      []string{emailAddress},
 		From:    "GlobeTrotte <" + address + ">",
 		Subject: "Confirm your GlobeTrotte email",
@@ -140,8 +140,8 @@ func NewEmail(userid int, emailAddress string) bool {
 	return true
 }
 
-func ConfirmEmail(confirmation wings.ConfirmEmail) bool {
-	var email emailObj
+func ConfirmEmail(confirmation EmailObj) bool {
+	var email emailItem
 	email.id, email.userID, email.emailAddress,
 		email.confirmed = db.GetEmailDB(confirmation.Uuid)
 	if email.id == -1 || email.confirmed ||

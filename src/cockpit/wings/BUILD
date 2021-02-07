@@ -9,7 +9,7 @@ filegroup(
     "//src/wings/struct:_trip#ts",
     "//src/wings/struct:_user#ts",
     "//src/wings/struct:_user_access_level#ts",
-    "//src/wings/struct:_confirm_email#ts",
+    "//src/wings/struct:_email_obj#ts",
   ],
   visibility = [
     "//:cockpit",
