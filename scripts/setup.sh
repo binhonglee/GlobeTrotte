@@ -159,7 +159,7 @@ installPNPM() {
   if [ "$TEST_PNPM" != "" ]; then
     echo "Seems like \`pnpm\` is already installed. Skipping..."
   else
-    curl -L https://raw.githubusercontent.com/pnpm/self-installer/master/install.js | node
+    curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm
   fi
 
   if [ -d "node_modules" ]; then
