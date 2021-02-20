@@ -6,8 +6,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
-	router "github.com/binhonglee/GlobeTrotte/src/turbine/router"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/router"
 )
 
 const port = "4000"

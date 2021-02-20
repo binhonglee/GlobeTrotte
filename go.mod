@@ -1,6 +1,6 @@
 module github.com/binhonglee/GlobeTrotte
 
-go 1.12
+go 1.15.8
 
 require (
 	github.com/google/uuid v1.2.0

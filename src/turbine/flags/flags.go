@@ -77,7 +77,7 @@ func IsProd() bool {
 
 func FlagStatuses() string {
 	return "prodServer: " +
-		strconv.FormatBool(instanceFlags.prodServer) +
-		", toFile: " + strconv.FormatBool(instanceFlags.toFile) +
-		", terminal: " + strconv.FormatBool(instanceFlags.terminal)
+		strconv.FormatBool(ProdServer()) +
+		", toFile: " + strconv.FormatBool(ToFile()) +
+		", terminal: " + strconv.FormatBool(Terminal())
 }

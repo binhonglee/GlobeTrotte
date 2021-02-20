@@ -61,6 +61,40 @@ wings_lib(
 )
 
 wings_lib(
+  name = "trip_basic",
+  config = "wings.json",
+  src = "trip_basic.wings",
+  outs = {
+    "src/cockpit/wings": "TripBasic.ts",
+    "src/turbine/wings": "tripbasic.go",
+  },
+  deps = [
+    "//:wings_config",
+    ":day",
+    ":user_access_level",
+    "//src/wings/enum:city",
+  ],
+  visibility = ["PUBLIC"],
+)
+
+wings_lib(
+  name = "trip_obj",
+  config = "wings.json",
+  src = "trip_obj.wings",
+  outs = {
+    "src/cockpit/wings": "TripObj.ts",
+    "src/turbine/trip": "tripobj.go",
+  },
+  deps = [
+    "//:wings_config",
+    ":user_basic",
+    ":trip_basic",
+    ":user_access_level",
+  ],
+  visibility = ["PUBLIC"],
+)
+
+wings_lib(
   name = "user",
   config = "wings.json",
   src = "user.wings",
@@ -71,6 +105,18 @@ wings_lib(
   deps = [
     "//:wings_config",
   ],
+  visibility = ["PUBLIC"],
+)
+
+wings_lib(
+  name = "user_basic",
+  config = "wings.json",
+  src = "user_basic.wings",
+  outs = {
+    "src/cockpit/wings": "UserBasic.ts",
+    "src/turbine/wings": "userbasic.go",
+  },
+  deps = ["//:wings_config"],
   visibility = ["PUBLIC"],
 )
 

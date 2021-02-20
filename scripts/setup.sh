@@ -84,7 +84,7 @@ installGo() {
   if [ "$TEST_GO" != "" ]; then
     echo "Seems like \`go\` is already installed. Skipping..."
   else
-    GO_VERSION="1.13.1"
+    GO_VERSION="1.15.8"
 
     case $ARCH in
       "x86_64")

@@ -5,6 +5,7 @@ go_library(
     "ratelimit.go",
     "router.go",
     "structhandlers.go",
+    "triphandlers.go",
   ],
   deps = [
     "//third_party:mux",
@@ -16,6 +17,7 @@ go_library(
     "//src/turbine/flags:flags",
     "//src/turbine/logger:logger",
     "//src/turbine/structs:structs",
+    "//src/turbine/trip:trip",
     "//src/turbine/wings:wings",
   ],
   visibility = ["//src/turbine:main"],

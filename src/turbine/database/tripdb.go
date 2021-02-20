@@ -67,6 +67,11 @@ func GetTripDB(id int, userid int) structs.IStructs {
 	return &trip
 }
 
+// GetTripDBWithID - Retrieve trip information from database with ID.
+func GetTripDBWithID(id int) wings.Trip {
+	return fetchTrip(id)
+}
+
 // UpdateTripDB - Update trip information back into the database.
 func UpdateTripDB(updatedTrip structs.IStructs) bool {
 	trip, ok := updatedTrip.(*wings.Trip)

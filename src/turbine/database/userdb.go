@@ -70,6 +70,28 @@ func GetUserDB(id int, viewer int) structs.IStructs {
 	return &newUser
 }
 
+// GetUserBasicDBWithID - Retrieve basic user information from database with ID.
+func GetUserBasicDBWithID(id int) wings.UserBasic {
+	var user wings.UserBasic
+	sqlStatement := `
+		SELECT id, name, email, bio, confirmed
+		FROM users WHERE id=$1;`
+	switch err := db.QueryRow(sqlStatement, id).Scan(
+		&user.ID,
+		&user.Name,
+		&user.Email,
+		&user.Bio,
+		&user.Confirmed,
+	); err {
+	case sql.ErrNoRows:
+		logger.Print(logger.Database, "User not found.")
+		user.ID = -1
+	default:
+		logger.Err(logger.Database, err, "")
+	}
+	return user
+}
+
 // GetUserPasswordHashDB - Retreives and return the password hash of the user account.
 func GetUserPasswordHashDB(user wings.NewUser) string {
 	return getUserWithEmail(user.Email).Password
@@ -89,6 +111,10 @@ func UpdateUserDB(updatedUser structs.IStructs) bool {
 	}
 
 	return updateUser(*user)
+}
+
+func DeleteTripFromUserDB(trip wings.TripBasic, user wings.UserBasic) bool {
+	return deleteTripFromUserDB(trip.ID, user.ID)
 }
 
 func deleteTripFromUserDB(tripID int, userID int) bool {
@@ -178,12 +204,12 @@ func getUserWithID(id int) wings.User {
 	return user
 }
 
-func getUserWithEmail(hashedPassword string) wings.NewUser {
+func getUserWithEmail(email string) wings.NewUser {
 	var user wings.NewUser
 	sqlStatement := `
 		SELECT id, password
 		FROM users WHERE email=$1;`
-	switch err := db.QueryRow(sqlStatement, hashedPassword).Scan(
+	switch err := db.QueryRow(sqlStatement, email).Scan(
 		&user.ID,
 		&user.Password,
 	); err {

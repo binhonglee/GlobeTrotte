@@ -48,7 +48,6 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import CEditDays from "./CEditDays.vue";
 import CEditItem from "./CEditItem.vue";
 import CEditPlaces from "./CEditPlaces.vue";
@@ -61,17 +60,24 @@ import Trip from "@/wings/Trip";
 import City from "@/wings/City";
 import Routes from "@/routes";
 
-export default Vue.extend({
+interface Data {
+  cities: Array<City>;
+  possibleCities: Array<City>;
+  private: boolean;
+  saving: boolean;
+  deleting: boolean;
+}
+
+export default {
   name: "CEditTrip",
   components: {
     CEditDays,
     CEditItem,
     CEditPlaces,
   },
-  data: () => ({
+  data: (): Data => ({
     cities: [],
     possibleCities: [],
-    locations: [],
     private: false,
     saving: false,
     deleting: false,
@@ -213,7 +219,7 @@ export default Vue.extend({
   beforeMount(): void {
     this.update();
   },
-});
+};
 </script>
 
 <style lang="scss">

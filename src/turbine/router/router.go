@@ -95,10 +95,22 @@ var actualRoutes = routes{
 		addTrip,
 	},
 	route{
+		"AddTripObj",
+		"POST",
+		"/v2/trip",
+		addTripObj,
+	},
+	route{
 		"UpdateTrip",
 		"POST",
 		"/trip/{id}",
 		updateTrip,
+	},
+	route{
+		"UpdateTripObj",
+		"POST",
+		"/v2/trip/{id}",
+		updateTripObj,
 	},
 	route{
 		"GetTrip",
@@ -107,10 +119,22 @@ var actualRoutes = routes{
 		getTrip,
 	},
 	route{
+		"GetTripObj",
+		"GET",
+		"/v2/trip/{id}",
+		getTripObj,
+	},
+	route{
 		"DeleteTrip",
 		"POST",
 		"/del/trip/{id}",
 		deleteTrip,
+	},
+	route{
+		"DeleteTripObj",
+		"POST",
+		"/del/v2/trip/{id}",
+		deleteTripObj,
 	},
 	route{
 		"WhoAmI",

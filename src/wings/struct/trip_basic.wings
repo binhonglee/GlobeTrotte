@@ -1,0 +1,33 @@
+go-filepath src/turbine/wings
+ts-filepath src/cockpit/wings
+
+ts-import { IWingsStruct }:wings-ts-util
+import src/wings/enum/city.wings
+import src/wings/struct/day.wings
+import src/wings/struct/user_access_level.wings
+
+ts-implement IWingsStruct
+
+# Only core information of a trip.
+
+struct TripBasic {
+  id            int     -1
+  name          str
+  cities        []City
+  days          []Day
+  description   str
+  private       bool    true
+  shared_with   []UserAccessLevel
+}
+
+go-func(
+  // GetID (istruct) - Returns the trip ID.
+  func (trip TripBasic) GetID() int {
+    return trip.ID
+  }
+
+  // SetID (istruct) - Sets the trip ID.
+  func (trip *TripBasic) SetID(id int) {
+    trip.ID = id
+  }
+)

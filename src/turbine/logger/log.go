@@ -22,6 +22,8 @@ func init() {
 	startTime = time.Now()
 }
 
+// FromMain - Initializing from main
+// Deprecated: DO NOT CALL THIS FUNCTION aside from `cleanup()` in main
 func FromMain() {
 	flags.Run()
 	if flags.ToFile() {

@@ -31,11 +31,13 @@ def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visi
     visibility = visibility,
   )
 
+  provides = {}
+
   for i in outs.keys():
     filetype = (outs[i].split("."))[-1]
-
+    lang_name = f"_{name}#{filetype}"
     build_rule(
-      name = f"_{name}#{filetype}",
+      name = lang_name,
       srcs = [gen_files],
       cmd = "mv $PKG_DIR/" + i + "/" + outs[i] + " ./",
       outs = [outs[i]],
@@ -45,12 +47,15 @@ def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visi
       needs_transitive_deps = True,
     )
 
+    provides[filetype] = ":" + lang_name
+
   return filegroup(
     name = name,
     srcs = [gen_files],
-    deps = deps + [":" + f"_{name}#wings"],
+    deps = deps + provides.values() + [":" + f"_{name}#wings"],
     needs_transitive_deps = True,
     test_only = test_only,
+    provides = provides,
     binary = False,
     visibility = visibility,
   )

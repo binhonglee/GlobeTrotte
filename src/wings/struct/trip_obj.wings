@@ -1,0 +1,31 @@
+go-filepath src/turbine/trip
+ts-filepath src/cockpit/wings
+
+ts-import { IWingsStruct }:wings-ts-util
+import src/wings/struct/trip_basic.wings
+import src/wings/struct/user_basic.wings
+import src/wings/struct/user_access_level.wings
+
+ts-implement IWingsStruct
+
+# All information of a single trip.
+
+struct TripObj {
+  id            int     -1
+  details       TripBasic
+  user          UserBasic
+  time_created  date
+  last_updated  date
+}
+
+go-func(
+  // GetID (istruct) - Returns the trip ID.
+  func (trip TripObj) GetID() int {
+    return trip.ID
+  }
+
+  // SetID (istruct) - Sets the trip ID.
+  func (trip *TripObj) SetID(id int) {
+    trip.ID = id
+  }
+)
