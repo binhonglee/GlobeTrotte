@@ -154,7 +154,7 @@ func addNewUser(newUser wings.NewUser) int {
 		INSERT INTO users (name, email, password, bio, time_created, confirmed)
 		VALUES ($1, $2, $3, $4, $5, $6)
 		RETURNING id`
-	id := 0
+	id := -1
 	err := db.QueryRow(
 		sqlStatement,
 		newUser.Name,
@@ -188,7 +188,7 @@ func getUserWithID(id int) wings.User {
 		&user.Confirmed,
 	); err {
 	case sql.ErrNoRows:
-		logger.Print(logger.Database, "User not found.")
+		logger.Print(logger.Database, "User "+strconv.Itoa(id)+" not found.")
 		user.ID = -1
 	default:
 		logger.Err(logger.Database, err, "")

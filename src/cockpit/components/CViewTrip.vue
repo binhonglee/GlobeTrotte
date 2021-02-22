@@ -42,12 +42,10 @@ interface Data {
 
 export default {
   name: "CViewTrip",
-  components: {
-    CPlaces,
+  components: { CPlaces },
+  data(): Data {
+    return { cities: [] };
   },
-  data: (): Data => ({
-    cities: [],
-  }),
   props: {
     trip: {
       type: Trip,
@@ -61,9 +59,7 @@ export default {
         new User();
       },
     },
-    editable: {
-      type: Boolean,
-    },
+    editable: { type: Boolean },
   },
   methods: {
     enableEditMode(): void {

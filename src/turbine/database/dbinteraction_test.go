@@ -16,7 +16,7 @@ func TestAddNewUserDB(t *testing.T) {
 	failCondition := -1
 	newNewUser = wings.NewUser{
 		Name:     "DummyUser",
-		Email:    "dummyuser.com",
+		Email:    "dbinteraction_test@dummyuser.com",
 		Password: "shouldReplaceThisWithRand",
 	}
 	if actual := NewUserDB(&newNewUser); actual == failCondition {

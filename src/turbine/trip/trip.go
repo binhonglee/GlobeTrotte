@@ -1,6 +1,8 @@
 package trip
 
 import (
+	"time"
+
 	"github.com/binhonglee/GlobeTrotte/src/turbine/database"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 )
@@ -15,13 +17,14 @@ func NewTrip(newTrip wings.TripBasic, self wings.UserBasic) TripObj {
 	tripObj := TripObj{}
 	tripObj.Details = newTrip
 	tripObj.User = self
+	tripObj.LastUpdated = time.Now()
+	tripObj.TimeCreated = time.Now()
 	trip := parseTripObjToTrip(tripObj)
 	tripObj.ID = database.AddTripDB(&trip)
 	if tripObj.ID == -1 {
 		return DummyTripObj()
 	}
-	tripObj.Details.ID = tripObj.ID
-	return tripObj
+	return GetTripObj(tripObj.ID, self)
 }
 
 func GetTripObj(id int, self wings.UserBasic) TripObj {
@@ -31,7 +34,7 @@ func GetTripObj(id int, self wings.UserBasic) TripObj {
 	if tripObj.ID == -1 || tripObj.User.ID == -1 {
 		return DummyTripObj()
 	}
-	if tripObj.Details.Private {
+	if tripObj.Details.Private && tripObj.User.ID != self.ID {
 		for _, access := range tripObj.Details.SharedWith {
 			if access.UserID == self.ID && access.Access != wings.None {
 				return tripObj
@@ -45,7 +48,7 @@ func GetTripObj(id int, self wings.UserBasic) TripObj {
 }
 
 func UpdateTripObj(toUpdate TripObj, self wings.UserBasic) TripObj {
-	if !checkTripPrivacy(
+	if toUpdate.User.ID != self.ID && !checkTripPrivacy(
 		toUpdate.Details,
 		map[wings.AccessLevel]bool{wings.Owner: true, wings.Edit: true},
 		self.ID,
@@ -53,6 +56,7 @@ func UpdateTripObj(toUpdate TripObj, self wings.UserBasic) TripObj {
 		return DummyTripObj()
 	}
 
+	toUpdate.LastUpdated = time.Now()
 	trip := parseTripObjToTrip(toUpdate)
 	if database.UpdateTripDB(&trip) {
 		return GetTripObj(toUpdate.ID, self)
@@ -93,6 +97,7 @@ func parseTripObjToTrip(tripObj TripObj) wings.Trip {
 	trip.Description = tripObj.Details.Description
 	trip.Private = tripObj.Details.Private
 	trip.SharedWith = tripObj.Details.SharedWith
+	trip.UserID = tripObj.User.ID
 	trip.LastUpdated = tripObj.LastUpdated
 	trip.TimeCreated = tripObj.TimeCreated
 	return trip

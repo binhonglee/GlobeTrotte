@@ -23,16 +23,7 @@ interface Data {
 
 export default {
   data(): Data {
-    return {
-      trip: new Trip({
-        days: [
-          {
-            day_of: 1,
-            places: [{}],
-          },
-        ],
-      }),
-    };
+    return { trip: new Trip({ days: [{ day_of: 1, places: [{}] }] }) };
   },
   components: {
     CEditTrip,
