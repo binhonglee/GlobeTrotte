@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "axios": "0.21.1",
-    "element-ui": "2.15.0",
+    "element-ui": "2.15.1",
     "vue": "2.6.12",
     "vue-router": "3.5.1",
     "wings-ts-util": "0.0.8"
