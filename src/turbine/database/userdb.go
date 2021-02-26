@@ -84,7 +84,7 @@ func GetUserBasicDBWithID(id int) wings.UserBasic {
 		&user.Confirmed,
 	); err {
 	case sql.ErrNoRows:
-		logger.Print(logger.Database, "User not found.")
+		logger.Print(logger.Database, "User "+strconv.Itoa(id)+" not found.")
 		user.ID = -1
 	default:
 		logger.Err(logger.Database, err, "")

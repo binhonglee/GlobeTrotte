@@ -8,59 +8,39 @@
     )
       a(:href="'/trip/view/' + trip.ID")
         el-carousel-item.tripDayPreview
-          h3 {{ trip.name }}
+          h3 {{ trip.details.name }}
           p(
-            v-if="trip.description !== ''"
-          ) {{ trip.description }}
+            v-if="trip.details.description !== ''"
+          ) {{ trip.details.description }}
           p Author: 
             a.tripPreviewUserProfileLink(
-              v-bind:href="'/user/' + user.ID"
+              v-bind:href="'/user/' + trip.user.ID"
               type="primary"
-            ) {{ user.name }}
+            ) {{ trip.user.name }}
           p Created on: {{ trip.timeCreated.toLocaleDateString() }}
 
         el-carousel-item.tripDayPreview(
-          v-for="day in trip.days"
+          v-for="day in trip.details.days"
         )
           h3 Day {{ day.dayOf }}
           CPlaces(:places="day.places")
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import General from "@/shared/General";
 import CPlaces from "./CPlaces.vue";
-import User from "@/wings/User";
-import Trip from "@/wings/Trip";
+import TripObj from "@/wings/TripObj";
 
-export default Vue.extend({
+export default {
   name: "CTripInCarousel",
   components: {
     CPlaces,
   },
-  data: () => ({
-    user: new User(),
-  }),
   props: {
-    forceUser: {
-      type: User,
-      default: () => new User(),
-    },
     trip: {
-      type: Trip,
+      type: TripObj,
     },
   },
-  async beforeMount(): Promise<void> {
-    if (this.$props.forceUser.ID !== -1) {
-      this.$data.user = this.$props.forceUser;
-    } else {
-      this.$data.user = await General.genUser(
-        this.$router,
-        this.$props.trip.userID,
-      );
-    }
-  },
-});
+};
 </script>
 
 <style lang="scss" scoped>

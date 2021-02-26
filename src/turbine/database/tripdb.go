@@ -124,7 +124,9 @@ func GetRecentTrips() []wings.Trip {
 	sqlStatement := `
 		SELECT id
 		FROM trips
-		WHERE private = FALSE
+		WHERE
+			private = FALSE
+			AND CARDINALITY(days) > 0
 		ORDER BY time_created DESC
 		LIMIT 10
 	`

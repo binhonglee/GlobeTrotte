@@ -1,25 +1,25 @@
 <template lang="pug">
   .view_trip.narrow_content(v-if="trip !== undefined")
     el-alert.tripPrivateAlertBar(
-      v-if="trip.private"
+      v-if="trip.details.private"
       title="Trip is private"
       description="Only you can see this trip."
       type="info"
       :closable="false"
       show-icon
     )
-    h2.tripName {{ trip.name }}
+    h2.tripName {{ trip.details.name }}
     span.tripID {{ trip.ID }}
     p.tripDescription(
-      v-if="trip.description !== ''"
-    ) {{ trip.description }}
+      v-if="trip.details.description !== ''"
+    ) {{ trip.details.description }}
     p.tripCreatorInfo Author: 
-      a(v-bind:href="'/user/' + user.ID") {{ user.name }}
+      a(v-bind:href="'/user/' + trip.user.ID") {{ trip.user.name }}
     p.tripCreatedDate Created on: {{ trip.timeCreated.toLocaleDateString() }}
     div.tripCities
       el-tag.tripCity(v-for="city in cities") {{ city }}
     el-card.viewDayCard(
-      v-for="day in trip.days"
+      v-for="day in trip.details.days"
       :key="day.ID"
     )
       h3.dayTitle Day {{ day.dayOf }}
@@ -33,8 +33,7 @@
 import { CityUtil } from "@/shared/CityUtil";
 import CPlaces from "./CPlaces.vue";
 import City from "@/wings/City";
-import Trip from "@/wings/Trip";
-import User from "@/wings/User";
+import TripObj from "@/wings/TripObj";
 
 interface Data {
   cities: City[];
@@ -48,15 +47,9 @@ export default {
   },
   props: {
     trip: {
-      type: Trip,
+      type: TripObj,
       default: (): void => {
-        new Trip();
-      },
-    },
-    user: {
-      type: User,
-      default: (): void => {
-        new User();
+        new TripObj();
       },
     },
     editable: { type: Boolean },
@@ -69,7 +62,7 @@ export default {
   async beforeMount(): Promise<void> {
     this.$data.cities = [];
     if (this.$props.trip !== undefined) {
-      for (let city of this.$props.trip.cities) {
+      for (let city of this.$props.trip.details.cities) {
         this.$data.cities.push(CityUtil.toString(city));
       }
     }

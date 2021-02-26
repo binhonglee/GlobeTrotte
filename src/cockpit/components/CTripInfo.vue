@@ -3,7 +3,6 @@
     div.view_trip_info(v-if="!editMode")
       CViewTrip(
         :trip="trip"
-        :user="user"
         :editable="editable"
         @edit-trip="enableEditMode"
       )
@@ -18,12 +17,13 @@
 
 <script lang="ts">
 import { WingsStructUtil } from "wings-ts-util";
+import Routes from "@/routes";
 import CEditTrip from "./CEditTrip.vue";
 import CViewTrip from "./CViewTrip.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
-import Trip from "@/wings/Trip";
-import User from "@/wings/User";
+import TripObj from "@/wings/TripObj";
+import TripBasic from "@/wings/TripBasic";
 
 interface Data {
   editMode: boolean;
@@ -40,27 +40,23 @@ export default {
   }),
   props: {
     trip: {
-      type: Trip,
-    },
-    user: {
-      type: User,
+      type: TripObj,
     },
     editable: {
       type: Boolean,
     },
   },
   methods: {
-    async save(trip: Trip): Promise<void> {
-      const user = await General.genCurrentUser(this.$router);
-      trip.userID = user.ID;
+    async save(trip: TripBasic): Promise<void> {
+      const tripObj = this.$props.trip;
+      tripObj.details = trip;
       const success = await HTTPReq.genPOST(
         this.$router,
-        "trip/" + trip.ID,
-        WingsStructUtil.stringify(trip),
+        "v2/trip/" + trip.ID,
+        WingsStructUtil.stringify(tripObj),
       );
       if (success) {
         this.$data.editMode = false;
-        this.$props.trip = trip;
       } else {
         this.$alert("Save was unsuccessful. Please try again later.", "Fail", {
           confirmButtonText: "OK",

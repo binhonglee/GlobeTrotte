@@ -75,6 +75,10 @@ func deleteTripObj(res http.ResponseWriter, req *http.Request) {
 	respond(res, trip.DeleteTripObj(item, getCaller(req)))
 }
 
+func getRecentTripObjs(res http.ResponseWriter, req *http.Request) {
+	respond(res, trip.GetRecentTrips())
+}
+
 func getCaller(req *http.Request) wings.UserBasic {
 	return database.GetUserBasicDBWithID(getUserID(req))
 }

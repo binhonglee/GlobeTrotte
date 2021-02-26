@@ -6,6 +6,7 @@ import User from "@/wings/User";
 import Trip from "@/wings/Trip";
 import VueRouter from "vue-router";
 import Routes from "@/routes";
+import TripObj from "@/wings/TripObj";
 
 export default class General {
   public static paramID(v: Vue): string | undefined {
@@ -95,9 +96,18 @@ export default class General {
     return new User(user);
   }
 
-  public static async genTrip(router: VueRouter, id: number): Promise<Trip> {
+  /* DEPRECATED: Use v2 API instead. */
+  private static async genTrip(router: VueRouter, id: number): Promise<Trip> {
     const trip = await HTTPReq.genGET(router, "trip/" + id);
     return new Trip(trip);
+  }
+
+  public static async genTripV2(
+    router: VueRouter,
+    id: number,
+  ): Promise<TripObj> {
+    const trip = await HTTPReq.genGET(router, "v2/trip/" + id);
+    return new TripObj(trip);
   }
 
   public static getIsCurrentUser(id: number): boolean {

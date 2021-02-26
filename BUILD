@@ -156,6 +156,10 @@ npm_test(
     "//src/assets:assets",
     "//src/cockpit:core_files",
   ],
+  deps =  [
+    "//src/wings/enum",
+    "//src/wings/struct",
+  ],
   needs_transitive_deps = True,
 )
 
@@ -179,10 +183,12 @@ gentest(
   test_cmd = " && ".join([
     "current=$(pwd)",
     "cd $(pwd | awk -F'plz-out' '{print $1}') || exit 1",
-    "gofmt -s -w $(ls src/turbine/**/*.go | grep -v /wings/)",
+    "gofmt -s -w src/turbine/**/*.go",
   ]),
   deps =  [
     "//src/turbine:main",
+    "//src/wings/enum",
+    "//src/wings/struct",
   ],
   needs_transitive_deps = True,
   no_test_output = True,

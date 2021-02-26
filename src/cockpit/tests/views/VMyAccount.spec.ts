@@ -1,7 +1,7 @@
 import VMyAccount from "@/views/VMyAccount.vue";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
-import Trip from "@/wings/Trip";
+import TripObj from "@/wings/TripObj";
 import User from "@/wings/User";
 import {
   alertSpy,
@@ -23,7 +23,7 @@ const currentUser = new User({
   email: "testmyaccount@globetrotte.com",
   trips: [5],
 });
-const someTrip = new Trip({
+const someTrip = new TripObj({
   id: 5,
 });
 let genCurrentUser: sinon.SinonStub;
@@ -31,7 +31,7 @@ let genTrip: sinon.SinonStub;
 
 test.serial.before(() => {
   genCurrentUser = sinon.stub(General, "genCurrentUser").resolves(currentUser);
-  genTrip = sinon.stub(General, "genTrip").resolves(someTrip);
+  genTrip = sinon.stub(General, "genTripV2").resolves(someTrip);
 });
 
 test.serial.after((t) => {

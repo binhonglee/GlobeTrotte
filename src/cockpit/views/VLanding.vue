@@ -23,10 +23,10 @@
 <script lang="ts">
 import CTripInCarousel from "@/components/CTripInCarousel.vue";
 import HTTPReq from "@/shared/HTTPReq";
-import Trip from "@/wings/Trip";
+import TripObj from "@/wings/TripObj";
 
 interface Data {
-  trips: Trip[];
+  trips: TripObj[];
 }
 
 export default {
@@ -38,11 +38,11 @@ export default {
   }),
   async beforeMount(): Promise<void> {
     this.$data.trips = [];
-    const trips = await HTTPReq.genGET(this.$router, "sample_trips");
+    const trips = await HTTPReq.genGET(this.$router, "v2/sample_trips");
     for (const trip of trips) {
-      const newTrip = new Trip(trip);
-      if (newTrip.days.length > 0) {
-        this.$data.trips.push(new Trip(trip));
+      const newTrip = new TripObj(trip);
+      if (newTrip.details.days.length > 0) {
+        this.$data.trips.push(new TripObj(trip));
       }
     }
   },

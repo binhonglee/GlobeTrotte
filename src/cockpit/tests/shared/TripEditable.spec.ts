@@ -1,5 +1,5 @@
 import test from "ava";
-import Trip from "@/wings/Trip";
+import TripBasic from "@/wings/TripBasic";
 import TripEditable from "@/shared/TripEditable";
 
 const allTypes = TripEditable.getAllTypes();
@@ -11,7 +11,7 @@ allTypes.forEach((type: string) => {
   });
 });
 
-const trip: Trip = new Trip();
+const trip: TripBasic = new TripBasic();
 
 allTypes.forEach((type: string) => {
   test(type + " - All editables should exist in Trip.", (t) => {

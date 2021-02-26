@@ -2,12 +2,12 @@
 // Will rename back to spec after its fixed.
 
 import CEditTrip from "@/components/CEditTrip.vue";
-import { mockTrip } from "@/tests/mockData/data";
+import { mockTripObj } from "@/tests/mockData/data";
 
 import { shallowMount } from "@vue/test-utils";
 import test from "ava";
 
-const mockedTrip = new mockTrip();
+const mockedTrip = new mockTripObj();
 
 test("renders empty component", (t) => {
   const trip = mockedTrip.trip;

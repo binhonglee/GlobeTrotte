@@ -1,5 +1,22 @@
 subinclude("//build_defs/wings")
 
+filegroup(
+  name = "struct",
+  deps = [
+    ":day",
+    ":email_obj",
+    ":new_user",
+    ":place",
+    ":trip",
+    ":trip_basic",
+    ":trip_obj",
+    ":user",
+    ":user_access_level",
+    ":user_basic",
+  ],
+  visibility = ["PUBLIC"],
+)
+
 wings_lib(
   name = "day",
   config = "wings.json",

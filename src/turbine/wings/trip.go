@@ -13,16 +13,16 @@ import (
 
 // Trip - Trip - All information of a single trip.
 type Trip struct {
-	ID             int                  `json:"id"`
-	UserID         int                  `json:"user_id"`
-	Name           string               `json:"name"`
-	Cities         []City               `json:"cities"`
-	Days           []Day                `json:"days"`
-	Description    string               `json:"description"`
-	TimeCreated    time.Time            `json:"time_created"`
-	LastUpdated    time.Time            `json:"last_updated"`
-	Private        bool                 `json:"private"`
-	SharedWith     []UserAccessLevel    `json:"shared_with"`
+	ID          int               `json:"id"`
+	UserID      int               `json:"user_id"`
+	Name        string            `json:"name"`
+	Cities      []City            `json:"cities"`
+	Days        []Day             `json:"days"`
+	Description string            `json:"description"`
+	TimeCreated time.Time         `json:"time_created"`
+	LastUpdated time.Time         `json:"last_updated"`
+	Private     bool              `json:"private"`
+	SharedWith  []UserAccessLevel `json:"shared_with"`
 }
 
 // GetID (istruct) - Returns the trip ID.

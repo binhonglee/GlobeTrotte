@@ -7,7 +7,6 @@
 
 export default class Routes {
   public static Landing = "/";
-  public static 404 = "/404";
   public static GetUser = "/user";
   public static MyAccount = "/myaccount";
   public static NextLogin = "/login";

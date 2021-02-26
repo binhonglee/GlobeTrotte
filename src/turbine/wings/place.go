@@ -9,10 +9,10 @@ package wings
 
 // Place - One of many location for a Day (in a Trip).
 type Place struct {
-	ID             int       `json:"id"`
-	Label          string    `json:"label"`
-	URL            string    `json:"url"`
-	Description    string    `json:"description"`
+	ID          int    `json:"id"`
+	Label       string `json:"label"`
+	URL         string `json:"url"`
+	Description string `json:"description"`
 }
 
 // GetID (istruct) - Returns the place ID.

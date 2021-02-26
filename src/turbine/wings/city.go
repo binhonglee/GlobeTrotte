@@ -10,19 +10,19 @@ package wings
 type City int
 
 const (
-	UNKNOWN = iota
+	UNKNOWN          = iota
 	SanFranciscoCAUS = iota
-	SanJoseCAUS = iota
-	NewYorkNYUS = iota
-	AnchorageAKUS = iota
-	ParisFR = iota
-	KualaLumpurMY = iota
-	GeorgeTownPGMY = iota
-	SeattleWAUS = iota
-	WashingtonDCUS = iota
-	BostonMAUS = iota
-	PhoneixAZUS = iota
-	PageAZUS = iota
-	LosAngelesCAUS = iota
-	LasVegasNVUS = iota
+	SanJoseCAUS      = iota
+	NewYorkNYUS      = iota
+	AnchorageAKUS    = iota
+	ParisFR          = iota
+	KualaLumpurMY    = iota
+	GeorgeTownPGMY   = iota
+	SeattleWAUS      = iota
+	WashingtonDCUS   = iota
+	BostonMAUS       = iota
+	PhoneixAZUS      = iota
+	PageAZUS         = iota
+	LosAngelesCAUS   = iota
+	LasVegasNVUS     = iota
 )

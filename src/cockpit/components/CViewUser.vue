@@ -13,14 +13,8 @@
         | {{ user.bio }}
     div.viewUserTrips(v-if="trips.length > 0")
       h2 Trips
-      el-card.homePageTripCard(
-        v-for="trip in trips" 
-        shadow="hover"
-      )
-        CTripInCarousel(
-          :forceUser="user"
-          :trip="trip"
-        )
+      el-card.homePageTripCard(v-for="trip in trips" shadow="hover")
+        CTripInCarousel(:trip="trip")
 </template>
 
 <script lang="ts">
@@ -66,7 +60,7 @@ export default Vue.extend({
       }
       this.$data.trips = await Promise.all(
         this.$props.user.trips.map(async (trip: number) => {
-          return await General.genTrip(this.$router, trip);
+          return await General.genTripV2(this.$router, trip);
         }),
       );
 

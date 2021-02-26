@@ -23,11 +23,13 @@ export default class HTTPReq {
   public static async genDELETE(
     router: VueRouter,
     uri: string,
+    data = "",
   ): Promise<unknown> {
     return await this.genSendRequest(
       router,
       HTTPReq.delPrefix + uri,
       AxMethod.POST,
+      data,
     );
   }
 

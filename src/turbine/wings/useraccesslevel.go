@@ -9,10 +9,10 @@ package wings
 
 // UserAccessLevel - UserAccessLevel - User access level of a specific object.
 type UserAccessLevel struct {
-	ID        int            `json:"id"`
-	ObjID     int            `json:"obj_id"`
-	UserID    int            `json:"user_id"`
-	Access    AccessLevel    `json:"access"`
+	ID     int         `json:"id"`
+	ObjID  int         `json:"obj_id"`
+	UserID int         `json:"user_id"`
+	Access AccessLevel `json:"access"`
 }
 
 // UserAccessLevels - An array of UserAccessLevel

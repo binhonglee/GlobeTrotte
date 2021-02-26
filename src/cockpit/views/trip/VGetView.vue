@@ -12,7 +12,6 @@
     CTripInfo(
       v-if="trip.ID !== -1"
       :trip="trip"
-      :user="user"
       :editable="owner"
     )
 </template>
@@ -20,14 +19,12 @@
 <script lang="ts">
 import CTripInfo from "@/components/CTripInfo.vue";
 import General from "@/shared/General";
-import Trip from "@/wings/Trip";
-import User from "@/wings/User";
+import TripObj from "@/wings/TripObj";
 import Routes from "@/routes";
 
 interface Data {
   inputID: string;
-  trip: Trip;
-  user: User;
+  trip: TripObj;
   owner: boolean;
 }
 
@@ -38,8 +35,7 @@ export default {
   data(): Data {
     return {
       inputID: "",
-      trip: new Trip(),
-      user: new User(),
+      trip: new TripObj(),
       owner: false,
     };
   },
@@ -47,21 +43,17 @@ export default {
   methods: {
     async init(): Promise<void> {
       if (this.$route.params.id === undefined) {
-        this.$data.trip = new Trip();
+        this.$data.trip = new TripObj();
         return;
       }
       this.$data.inputID = this.$route.params.id;
 
-      this.$data.trip = await General.genTrip(
+      this.$data.trip = await General.genTripV2(
         this.$router,
         Number(this.$route.params.id),
       );
       if (this.$data.trip.ID !== -1) {
-        this.$data.owner = General.getIsCurrentUser(this.$data.trip.userID);
-        this.$data.user = await General.genUser(
-          this.$router,
-          this.$data.trip.userID,
-        );
+        this.$data.owner = General.getIsCurrentUser(this.$data.trip.user.ID);
         this.$nextTick(function () {
           this.$refs.tripIDSearch.focus();
         });
@@ -70,7 +62,7 @@ export default {
       }
 
       this.$notify(General.notifConfig("Error", "Trip not found.", "error"));
-      General.genRedirectTo(this.$router, Routes.trip_GetView);
+      await General.genRedirectTo(this.$router, Routes.trip_GetView);
     },
     gotoTrip(): void {
       const id: number = parseInt(this.$data.inputID, 10);

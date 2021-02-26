@@ -10,6 +10,6 @@ test("Landing Page", async (t) => {
   const wrapper = shallowMount(VLanding, {});
   t.is(wrapper.find(".title").text(), "GlobeTrotte");
   t.true(genGET.calledOnce);
-  t.is(genGET.args[0][1], "sample_trips");
+  t.is(genGET.args[0][1], "v2/sample_trips");
   await genGET.restore();
 });

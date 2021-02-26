@@ -1,11 +1,11 @@
 import VGetUser from "@/views/VGetUser.vue";
 import General from "@/shared/General";
-import Trip from "@/wings/Trip";
-import User from "@/wings/User";
 import { alertSpy, newLocalVueAndRouter, routerSpy, wait } from "../helper";
 import { mount } from "@vue/test-utils";
 import sinon from "sinon";
 import test from "ava";
+import TripObj from "@/wings/TripObj";
+import User from "@/wings/User";
 
 const currentUser = new User({
   id: 10,
@@ -13,13 +13,13 @@ const currentUser = new User({
   email: "testmyaccount@globetrotte.com",
   trips: [5],
 });
-const someTrip = new Trip({
+const someTrip = new TripObj({
   id: 5,
 });
 
 test.serial("Get User - Has user (self)", async (t) => {
   const genUser = sinon.stub(General, "genUser").resolves(currentUser);
-  const genTrip = sinon.stub(General, "genTrip").resolves(someTrip);
+  const genTrip = sinon.stub(General, "genTripV2").resolves(someTrip);
   const isSelf = sinon.stub(General, "getIsCurrentUser").returns(true);
   const paramID = sinon.stub(General, "paramID").returns("10");
   const wrapper = mount(VGetUser, newLocalVueAndRouter());
@@ -41,7 +41,7 @@ test.serial("Get User - Has user (self)", async (t) => {
 
 test.serial("Get User - Has user (not self)", async (t) => {
   const genUser = sinon.stub(General, "genUser").resolves(currentUser);
-  const genTrip = sinon.stub(General, "genTrip").resolves(someTrip);
+  const genTrip = sinon.stub(General, "genTripV2").resolves(someTrip);
   const isSelf = sinon.stub(General, "getIsCurrentUser").returns(false);
   const paramID = sinon.stub(General, "paramID").returns("10");
   mount(VGetUser, newLocalVueAndRouter());

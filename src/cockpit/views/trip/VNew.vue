@@ -14,16 +14,21 @@ import { WingsStructUtil } from "wings-ts-util";
 import CEditTrip from "@/components/CEditTrip.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
-import Trip from "@/wings/Trip";
+import TripObj from "@/wings/TripObj";
+import TripBasic from "@/wings/TripBasic";
 import Routes from "@/routes";
 
 interface Data {
-  trip: Trip;
+  trip: TripObj;
 }
 
 export default {
   data(): Data {
-    return { trip: new Trip({ days: [{ day_of: 1, places: [{}] }] }) };
+    return {
+      trip: new TripObj({
+        details: { days: [{ day_of: 1, places: [{}] }] },
+      }),
+    };
   },
   components: {
     CEditTrip,
@@ -32,20 +37,18 @@ export default {
     cancel(): void {
       this.$router.back();
     },
-    async save(trip: Trip): Promise<void> {
+    async save(trip: TripBasic): Promise<void> {
       const user = await General.genCurrentUser(this.$router);
       try {
         if (user.ID !== 0) {
-          this.$data.trip = trip;
-          trip.userID = user.ID;
           const newTrip = await HTTPReq.genPOST(
             this.$router,
-            "trip",
+            "v2/trip",
             WingsStructUtil.stringify(trip),
           );
-          General.genRedirectTo(
+          await General.genRedirectTo(
             this.$router,
-            Routes.trip_GetView + "/" + new Trip(newTrip).ID,
+            Routes.trip_GetView + "/" + new TripObj(newTrip).ID,
           );
           return;
         }

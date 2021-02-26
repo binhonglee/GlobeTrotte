@@ -10,8 +10,8 @@ package wings
 type AccessLevel int
 
 const (
-	None = iota
-	View = iota
-	Edit = iota
+	None  = iota
+	View  = iota
+	Edit  = iota
 	Owner = iota
 )

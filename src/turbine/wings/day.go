@@ -9,10 +9,10 @@ package wings
 
 // Day - A day of a trip.
 type Day struct {
-	ID        int        `json:"id"`
-	TripID    int        `json:"trip_id"`
-	DayOf     int        `json:"day_of"`
-	Places    []Place    `json:"places"`
+	ID     int     `json:"id"`
+	TripID int     `json:"trip_id"`
+	DayOf  int     `json:"day_of"`
+	Places []Place `json:"places"`
 }
 
 // GetID (istruct) - Returns the day ID.

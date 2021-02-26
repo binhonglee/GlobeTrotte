@@ -75,6 +75,17 @@ func DeleteTripObj(toDelete TripObj, self wings.UserBasic) bool {
 		database.DeleteTripFromUserDB(toDelete.Details, self)
 }
 
+func GetRecentTrips() []TripObj {
+	recentTrips := database.GetRecentTrips()
+	trips := make([]TripObj, len(recentTrips))
+
+	for index, trip := range recentTrips {
+		trips[index] = parseTripToTripObj(trip)
+	}
+
+	return trips
+}
+
 func checkTripPrivacy(
 	trip wings.TripBasic,
 	permissionLevels map[wings.AccessLevel]bool,
@@ -107,6 +118,7 @@ func parseTripToTripObj(trip wings.Trip) TripObj {
 	tripObj := TripObj{}
 	tripObj.ID = trip.ID
 	tripObj.Details = parseTripToTripBasic(trip)
+	tripObj.User = database.GetUserBasicDBWithID(trip.UserID)
 	tripObj.LastUpdated = trip.LastUpdated
 	tripObj.TimeCreated = trip.TimeCreated
 	return tripObj

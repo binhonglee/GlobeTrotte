@@ -5,14 +5,14 @@
         :className="'editTripName'"
         :label="'Name'"
         :ref="'name'"
-        :val="trip.name"
+        :val="trip.details.name"
       )
       CEditItem(
         :className="'editTripDescription'"
         :label="'Description'"
         :ref="'description'"
         :type="'textarea'"
-        :val="trip.description"
+        :val="trip.details.description"
       )
       .editTripPrivacy
         span.editLabel Private:
@@ -31,7 +31,7 @@
             :label="item.label"
             :value="item.key"
           )
-      CEditDays(ref="days" :givenDays="trip.days")
+      CEditDays(ref="days" :givenDays="trip.details.days")
       div.confirmationButtons
         el-button.saveEditTrip(
           type="primary" v-on:click="save" :loading="saving"
@@ -55,10 +55,12 @@ import { CityUtil } from "@/shared/CityUtil";
 import TripEditable from "@/shared/TripEditable";
 import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
+import TripBasic from "@/wings/TripBasic";
+import TripObj from "@/wings/TripObj";
 import Place from "@/wings/Place";
-import Trip from "@/wings/Trip";
 import City from "@/wings/City";
 import Routes from "@/routes";
+import { WingsStructUtil } from "wings-ts-util";
 
 interface Data {
   cities: Array<City>;
@@ -69,7 +71,6 @@ interface Data {
 }
 
 export default {
-  name: "CEditTrip",
   components: {
     CEditDays,
     CEditItem,
@@ -84,7 +85,7 @@ export default {
   }),
   props: {
     trip: {
-      type: Trip,
+      type: TripObj,
     },
     isNew: {
       type: Boolean,
@@ -92,11 +93,11 @@ export default {
   },
   methods: {
     cancel(): void {
-      this.$refs.days.days = (this.$props.trip.days ?? []).slice(0);
+      this.$refs.days.days = (this.$props.trip.details.days ?? []).slice(0);
       this.$emit("cancel");
     },
     save(): void {
-      let newTrip = new Trip();
+      let newTrip = new TripBasic();
       if (this.$data.cities.length < 1) {
         this.$alert("Cities cannot be empty", "", {
           confirmButtonText: "OK",
@@ -143,7 +144,6 @@ export default {
         }
       }
       newTrip.private = this.$data.private;
-
       newTrip.ID = this.$props.trip.ID;
       this.$emit("save", newTrip);
       this.$data.saving = false;
@@ -182,11 +182,16 @@ export default {
     async del(): Promise<void> {
       this.$data.deleting = true;
       let success = Boolean(
-        await HTTPReq.genDELETE(this.$router, "trip/" + this.$props.trip.ID),
+        await HTTPReq.genDELETE(
+          this.$router,
+          "v2/trip/" + this.$props.trip.ID,
+          WingsStructUtil.stringify(this.$props.trip),
+        ),
       );
       if (!success) {
         success =
-          (await General.genTrip(this.$router, this.$props.trip.ID)).ID === -1;
+          (await General.genTripV2(this.$router, this.$props.trip.ID)).ID ===
+          -1;
       }
 
       this.$data.deleting = false;
@@ -207,10 +212,10 @@ export default {
     tripToItem(itemType: string): TripEditable {
       return new TripEditable(itemType, this.$props.trip[itemType]);
     },
-    update() {
+    update(): void {
       this.$data.possibleCities = CityUtil.sortedCityList();
-      this.$data.cities = this.$props.trip.cities;
-      this.$data.private = this.$props.trip.private;
+      this.$data.cities = this.$props.trip.details.cities;
+      this.$data.private = this.$props.trip.details.private;
       this.$nextTick(function () {
         this.$refs.name.$refs.input.focus();
       });

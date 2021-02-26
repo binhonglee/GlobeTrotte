@@ -1,5 +1,14 @@
 subinclude("//build_defs/wings")
 
+filegroup(
+  name = "enum",
+  deps = [
+    ":city",
+    ":access_level",
+  ],
+  visibility = ["PUBLIC"],
+)
+
 wings_lib(
   name = "city",
   config = "wings.json",
