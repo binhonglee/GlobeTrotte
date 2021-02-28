@@ -48,7 +48,7 @@
     "babel-plugin-module-resolver": "4.1.0",
     "babel-preset-typescript-vue": "1.1.1",
     "cypress": "6.5.0",
-    "eslint": "7.20.0",
+    "eslint": "7.21.0",
     "eslint-plugin-prettier": "3.3.1",
     "eslint-plugin-vue": "7.6.0",
     "forever": "3.0.4",
