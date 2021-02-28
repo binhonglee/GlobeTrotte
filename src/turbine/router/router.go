@@ -59,10 +59,22 @@ var actualRoutes = routes{
 		newUser,
 	},
 	route{
+		"AddUserObj",
+		"POST",
+		"/v2/user",
+		addUserObj,
+	},
+	route{
 		"GetUser",
 		"GET",
 		"/user/{id}",
 		getUser,
+	},
+	route{
+		"GetUserObj",
+		"GET",
+		"/v2/user/{id}",
+		getUserObj,
 	},
 	route{
 		"UpdateUser",
@@ -71,10 +83,22 @@ var actualRoutes = routes{
 		updateUser,
 	},
 	route{
+		"UpdateUserObj",
+		"POST",
+		"/v2/user/{id}",
+		updateUserObj,
+	},
+	route{
 		"DeleteUser",
 		"POST",
 		"/del/user/{id}",
 		deleteUser,
+	},
+	route{
+		"DeleteUserObj",
+		"POST",
+		"/del/v2/user/{id}",
+		deleteUserObj,
 	},
 	route{
 		"Login",

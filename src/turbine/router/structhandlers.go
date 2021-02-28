@@ -309,13 +309,17 @@ func getUserID(req *http.Request) int {
 	return -1
 }
 
+func getCaller(req *http.Request) wings.UserBasic {
+	return db.GetUserBasicDBWithID(getUserID(req))
+}
+
 func getRequestID(req *http.Request) int {
 	vars := mux.Vars(req)
 	var id int
-	var error error
+	var err error
 
-	if id, error = strconv.Atoi(vars["id"]); error != nil {
-		logger.Err(logger.Router, error, "")
+	if id, err = strconv.Atoi(vars["id"]); err != nil {
+		logger.Err(logger.Router, err, "")
 		return -1
 	}
 

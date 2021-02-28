@@ -11,6 +11,7 @@ struct NewUser {
   id        int   -1
   name      str
   email     str
+  bio       str
   password  str
 }
 

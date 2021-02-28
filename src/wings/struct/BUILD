@@ -1,4 +1,5 @@
 subinclude("//build_defs/wings")
+package(default_visibility = ["PUBLIC"])
 
 filegroup(
   name = "struct",
@@ -13,8 +14,8 @@ filegroup(
     ":user",
     ":user_access_level",
     ":user_basic",
+    ":user_obj",
   ],
-  visibility = ["PUBLIC"],
 )
 
 wings_lib(
@@ -29,7 +30,6 @@ wings_lib(
     "//:wings_config",
     ":place",
   ],
-  visibility = ["PUBLIC"],
 )
 
 wings_lib(
@@ -43,7 +43,6 @@ wings_lib(
   deps = [
     "//:wings_config",
   ],
-  visibility = ["PUBLIC"],
 )
 
 wings_lib(
@@ -57,7 +56,6 @@ wings_lib(
   deps = [
     "//:wings_config",
   ],
-  visibility = ["PUBLIC"],
 )
 
 wings_lib(
@@ -74,7 +72,6 @@ wings_lib(
     ":user_access_level",
     "//src/wings/enum:city",
   ],
-  visibility = ["PUBLIC"],
 )
 
 wings_lib(
@@ -91,7 +88,6 @@ wings_lib(
     ":user_access_level",
     "//src/wings/enum:city",
   ],
-  visibility = ["PUBLIC"],
 )
 
 wings_lib(
@@ -108,7 +104,6 @@ wings_lib(
     ":trip_basic",
     ":user_access_level",
   ],
-  visibility = ["PUBLIC"],
 )
 
 wings_lib(
@@ -122,7 +117,6 @@ wings_lib(
   deps = [
     "//:wings_config",
   ],
-  visibility = ["PUBLIC"],
 )
 
 wings_lib(
@@ -134,7 +128,21 @@ wings_lib(
     "src/turbine/wings": "userbasic.go",
   },
   deps = ["//:wings_config"],
-  visibility = ["PUBLIC"],
+)
+
+wings_lib(
+  name = "user_obj",
+  config = "wings.json",
+  src = "user_obj.wings",
+  outs = {
+    "src/cockpit/wings": "UserObj.ts",
+    "src/turbine/user": "userobj.go",
+  },
+  deps = [
+    "//:wings_config",
+    ":user_basic",
+    ":trip_basic",
+  ],
 )
 
 wings_lib(
@@ -149,7 +157,6 @@ wings_lib(
     "//:wings_config",
     "//src/wings/enum:access_level",
   ],
-  visibility = ["PUBLIC"],
 )
 
 wings_lib(
@@ -163,5 +170,4 @@ wings_lib(
   deps = [
     "//:wings_config",
   ],
-  visibility = ["PUBLIC"],
 )

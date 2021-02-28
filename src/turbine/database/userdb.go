@@ -29,7 +29,10 @@ func DummyUser() wings.User {
 func NewUserDB(newUser structs.IStructs) int {
 	user, ok := newUser.(*wings.NewUser)
 	if !ok {
-		logger.Print(logger.Database, "User add failed since interface passed in is not a NewUser.")
+		logger.Print(
+			logger.Database,
+			"User add failed since interface passed in is not a NewUser.",
+		)
 		return -1
 	}
 
@@ -70,6 +73,31 @@ func GetUserDB(id int, viewer int) structs.IStructs {
 	return &newUser
 }
 
+func GetUserTripsWithID(id int) []int {
+	var trips []sql.NullInt64
+	tripsIDs := []int{}
+	sqlStatement := `
+		SELECT trips
+		FROM users WHERE id=$1;`
+	switch err := db.QueryRow(sqlStatement, id).Scan(
+		pq.Array(&trips),
+	); err {
+	case sql.ErrNoRows:
+		logger.Print(logger.Database, "User "+strconv.Itoa(id)+" not found.")
+		return tripsIDs
+	default:
+		logger.Err(logger.Database, err, "")
+		return tripsIDs
+	}
+
+	for _, trip := range trips {
+		if trip.Valid {
+			tripsIDs = append(tripsIDs, int(trip.Int64))
+		}
+	}
+	return tripsIDs
+}
+
 // GetUserBasicDBWithID - Retrieve basic user information from database with ID.
 func GetUserBasicDBWithID(id int) wings.UserBasic {
 	var user wings.UserBasic
@@ -92,6 +120,26 @@ func GetUserBasicDBWithID(id int) wings.UserBasic {
 	return user
 }
 
+func GetTimeInfoDBWithID(id int) (bool, time.Time) {
+	var timeCreated time.Time
+	sqlStatement := `
+		SELECT time_created
+		FROM users WHERE id=$1;`
+	err := db.QueryRow(sqlStatement, id).Scan(
+		&timeCreated,
+	)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			logger.Print(logger.Database, "User "+strconv.Itoa(id)+" not found.")
+		} else {
+			logger.Err(logger.Database, err, "")
+		}
+		return false, time.Now()
+	}
+
+	return true, timeCreated
+}
+
 // GetUserPasswordHashDB - Retreives and return the password hash of the user account.
 func GetUserPasswordHashDB(user wings.NewUser) string {
 	return getUserWithEmail(user.Email).Password
@@ -111,6 +159,10 @@ func UpdateUserDB(updatedUser structs.IStructs) bool {
 	}
 
 	return updateUser(*user)
+}
+
+func UpdateUserBasicDB(updatedUser wings.UserBasic) bool {
+	return updatingUser(updatedUser.ID, updatedUser.Name, updatedUser.Email, updatedUser.Bio)
 }
 
 func DeleteTripFromUserDB(trip wings.TripBasic, user wings.UserBasic) bool {
@@ -146,7 +198,7 @@ func DeleteUserDB(existingUser structs.IStructs) bool {
 
 	//TODO: More testing to make sure this is the same user
 	DeleteEmailDB(user.ID, user.Email)
-	return deleteUserWithID(existingUser.GetID())
+	return DeleteUserDBWithID(existingUser.GetID())
 }
 
 func addNewUser(newUser wings.NewUser) int {
@@ -262,6 +314,43 @@ func updateUser(updatedUser wings.User) bool {
 	return true
 }
 
+func updatingUser(
+	id int, name string, email string, bio string,
+) bool {
+	existingUser := getUserWithID(id)
+	if existingUser.GetID() != id {
+		logger.Print(logger.Database, "Existing User is not found. Aborting update.")
+		logger.Print(logger.Database,
+			"Given ID is "+strconv.Itoa(id)+
+				" but found ID is "+strconv.Itoa(existingUser.GetID())+
+				" instead.",
+		)
+		return false
+	}
+
+	sqlStatement := `
+		UPDATE users
+		SET name = $2,
+		email = $3,
+		bio = $4
+		WHERE id = $1;`
+
+	_, err := db.Exec(
+		sqlStatement,
+		id,
+		name,
+		email,
+		bio,
+	)
+
+	if err != nil {
+		logger.Err(logger.Database, err, "Failed to update user.")
+		return false
+	}
+
+	return true
+}
+
 func confirmUser(id int) bool {
 	sqlStatement := `
 		UPDATE users
@@ -278,7 +367,7 @@ func confirmUser(id int) bool {
 	return err == nil
 }
 
-func deleteUserWithID(id int) bool {
+func DeleteUserDBWithID(id int) bool {
 	sqlStatement := `
 		DELETE FROM users
 		WHERE id = $1;`

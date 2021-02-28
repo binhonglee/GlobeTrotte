@@ -15,7 +15,7 @@ func TestNewTrip(t *testing.T) {
 	failCondition := -1
 	newNewUser := wings.NewUser{
 		Name:     "DummyUser",
-		Email:    "trip_test_dummyuser.com",
+		Email:    "trip_test@testuser.globetrotte.com",
 		Password: "shouldReplaceThisWithRand",
 	}
 	user = database.GetUserBasicDBWithID(database.NewUserDB(&newNewUser))
@@ -47,7 +47,7 @@ func TestNewTrip(t *testing.T) {
 	}
 }
 
-func TestGetTripObj(t *testing.T) {
+func TestGetTrip(t *testing.T) {
 	retrievedTrip := GetTripObj(trip.ID, user)
 
 	if retrievedTrip.ID != trip.ID {
@@ -97,7 +97,7 @@ func TestGetTripObj(t *testing.T) {
 	// }
 }
 
-func TestUpdateTripDB(t *testing.T) {
+func TestUpdateTrip(t *testing.T) {
 	trip.Details.Name = "new Name for DummyTrip"
 	trip.Details.Description = "new description for dummytrip.com"
 	updatedTrip := UpdateTripObj(trip, user)
@@ -127,7 +127,7 @@ func TestUpdateTripDB(t *testing.T) {
 	}
 }
 
-func TestDeleteTripObj(t *testing.T) {
+func TestDeleteTrip(t *testing.T) {
 	if !DeleteTripObj(trip, user) {
 		t.Errorf("DeleteTripObj(), unable to delete trip.")
 	}

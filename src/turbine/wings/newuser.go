@@ -12,6 +12,7 @@ type NewUser struct {
 	ID       int    `json:"id"`
 	Name     string `json:"name"`
 	Email    string `json:"email"`
+	Bio      string `json:"bio"`
 	Password string `json:"password"`
 }
 

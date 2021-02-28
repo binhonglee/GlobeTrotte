@@ -13,6 +13,7 @@ export default class NewUser implements IWingsStruct {
   public ID: Number = -1;
   public name: String = '';
   public email: String = '';
+  public bio: String = '';
   public password: String = '';
 
   public constructor(obj?: any) {
@@ -20,6 +21,7 @@ export default class NewUser implements IWingsStruct {
       this.ID = obj.id !== undefined && obj.id !== null ? obj.id : -1;
       this.name = obj.name !== undefined && obj.name !== null ? obj.name : '';
       this.email = obj.email !== undefined && obj.email !== null ? obj.email : '';
+      this.bio = obj.bio !== undefined && obj.bio !== null ? obj.bio : '';
       this.password = obj.password !== undefined && obj.password !== null ? obj.password : '';
     }
   }
@@ -34,6 +36,9 @@ export default class NewUser implements IWingsStruct {
       }
       case 'email': {
         return 'email';
+      }
+      case 'bio': {
+        return 'bio';
       }
       case 'password': {
         return 'password';

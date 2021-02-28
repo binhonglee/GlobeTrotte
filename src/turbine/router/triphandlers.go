@@ -2,13 +2,9 @@ package router
 
 import (
 	"net/http"
-	"strconv"
 
-	"github.com/binhonglee/GlobeTrotte/src/turbine/database"
-	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/trip"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
-	"github.com/gorilla/mux"
 )
 
 func addTripObj(res http.ResponseWriter, req *http.Request) {
@@ -22,12 +18,9 @@ func addTripObj(res http.ResponseWriter, req *http.Request) {
 }
 
 func getTripObj(res http.ResponseWriter, req *http.Request) {
-	vars := mux.Vars(req)
 	var id int
-	var err error
-
-	if id, err = strconv.Atoi(vars["id"]); err != nil {
-		logger.Err(logger.Router, err, "")
+	if id = getRequestID(req); id == -1 {
+		respond(res, trip.DummyTripObj())
 		return
 	}
 
@@ -36,12 +29,9 @@ func getTripObj(res http.ResponseWriter, req *http.Request) {
 }
 
 func updateTripObj(res http.ResponseWriter, req *http.Request) {
-	vars := mux.Vars(req)
 	var id int
-	var err error
-
-	if id, err = strconv.Atoi(vars["id"]); err != nil {
-		logger.Err(logger.Router, err, "")
+	if id = getRequestID(req); id == -1 {
+		respond(res, trip.DummyTripObj())
 		return
 	}
 
@@ -56,12 +46,9 @@ func updateTripObj(res http.ResponseWriter, req *http.Request) {
 }
 
 func deleteTripObj(res http.ResponseWriter, req *http.Request) {
-	vars := mux.Vars(req)
 	var id int
-	var err error
-
-	if id, err = strconv.Atoi(vars["id"]); err != nil {
-		logger.Err(logger.Router, err, "")
+	if id = getRequestID(req); id == -1 {
+		respond(res, trip.DummyTripObj())
 		return
 	}
 
@@ -77,8 +64,4 @@ func deleteTripObj(res http.ResponseWriter, req *http.Request) {
 
 func getRecentTripObjs(res http.ResponseWriter, req *http.Request) {
 	respond(res, trip.GetRecentTrips())
-}
-
-func getCaller(req *http.Request) wings.UserBasic {
-	return database.GetUserBasicDBWithID(getUserID(req))
 }

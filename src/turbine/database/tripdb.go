@@ -72,6 +72,54 @@ func GetTripDBWithID(id int) wings.Trip {
 	return fetchTrip(id)
 }
 
+func GetTripBasicWithID(id int) wings.TripBasic {
+	var trip wings.TripBasic
+	var days []int64
+	var cities []int64
+	sqlStatement := `
+		SELECT id, name, cities, days, description, private
+		FROM trips WHERE id=$1;`
+	row := db.QueryRow(sqlStatement, id)
+	switch err := row.Scan(
+		&trip.ID,
+		&trip.Name,
+		pq.Array(&cities),
+		pq.Array(&days),
+		&trip.Description,
+		&trip.Private,
+	); err {
+	case sql.ErrNoRows:
+		logger.Print(logger.Database, "Trip "+strconv.Itoa(id)+" not found.")
+		trip.ID = -1
+	default:
+		logger.Err(logger.Database, err, "")
+		trip.ID = -1
+	}
+
+	trip.Cities = cityIDsToEnumArray(cities)
+	trip.Days = fetchDays(days)
+	return trip
+}
+
+// TOOD: Update to trip permission instead when we begin to allow trip sharing
+func GetTripOwnerWithID(id int) int {
+	var user int
+	sqlStatement := `
+		SELECT userid FROM trips WHERE id=$1;
+	`
+	row := db.QueryRow(sqlStatement, id)
+	switch err := row.Scan(&user); err {
+	case sql.ErrNoRows:
+		logger.Print(logger.Database, "Trip "+strconv.Itoa(id)+" not found.")
+		user = -1
+	default:
+		logger.Err(logger.Database, err, "")
+		user = -1
+	}
+
+	return user
+}
+
 // UpdateTripDB - Update trip information back into the database.
 func UpdateTripDB(updatedTrip structs.IStructs) bool {
 	trip, ok := updatedTrip.(*wings.Trip)

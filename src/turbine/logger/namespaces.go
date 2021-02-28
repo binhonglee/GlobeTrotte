@@ -13,6 +13,7 @@ const (
 	Database = "database"
 	Email    = "email"
 	Flags    = "flags"
+	User     = "user"
 
 	// These are kept private since they should only be used
 	// in this package anyway

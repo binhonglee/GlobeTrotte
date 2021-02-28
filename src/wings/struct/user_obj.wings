@@ -1,0 +1,29 @@
+go-filepath src/turbine/user
+ts-filepath src/cockpit/wings
+
+ts-import { IWingsStruct }:wings-ts-util
+import src/wings/struct/trip_basic.wings
+import src/wings/struct/user_basic.wings
+
+ts-implement IWingsStruct
+
+# All information of a single user.
+
+struct UserObj {
+  id            int     -1
+  details       UserBasic
+  trips          []TripBasic
+  time_created  date
+}
+
+go-func(
+  // GetID (istruct) - Returns the user ID.
+  func (user UserObj) GetID() int {
+    return user.ID
+  }
+
+  // SetID (istruct) - Sets the user ID.
+  func (user *UserObj) SetID(id int) {
+    user.ID = id
+  }
+)

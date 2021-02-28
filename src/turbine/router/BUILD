@@ -6,6 +6,7 @@ go_library(
     "router.go",
     "structhandlers.go",
     "triphandlers.go",
+    "userhandlers.go",
   ],
   deps = [
     "//third_party:mux",
@@ -18,6 +19,7 @@ go_library(
     "//src/turbine/logger:logger",
     "//src/turbine/structs:structs",
     "//src/turbine/trip:trip",
+    "//src/turbine/user:user",
     "//src/turbine/wings:wings",
   ],
   visibility = ["//src/turbine:main"],
