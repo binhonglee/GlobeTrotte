@@ -36,8 +36,8 @@ devDependencies:
   nyc: 15.1.0
   parcel-bundler: 1.12.4
   prettier: 2.2.1
-  pug: 3.0.0
-  pug-plain-loader: 1.1.0_pug@3.0.0
+  pug: 3.0.1
+  pug-plain-loader: 1.1.0_pug@3.0.1
   puppeteer: 5.5.0
   puppeteer-to-istanbul: 1.4.0
   require-extension-hooks: 0.3.3
@@ -3815,7 +3815,7 @@ packages:
       integrity: sha1-o7Bz+Uq0nrb6Vc1lInozQ4BjJJc=
   /babel-walk/3.0.0-canary-5:
     dependencies:
-      '@babel/types': 7.12.12
+      '@babel/types': 7.13.0
     dev: true
     engines:
       node: '>= 10.0.0'
@@ -4890,8 +4890,8 @@ packages:
       integrity: sha512-DW46nrsMJgy9kqAbPt5rKaCr7uFtpo4mSUvLHIUbJEjm0vo+aY5QLwBUq3FK4tRnJr/X0Psc0C4jf/h+HtXSMw==
   /constantinople/4.0.1:
     dependencies:
-      '@babel/parser': 7.12.11
-      '@babel/types': 7.12.12
+      '@babel/parser': 7.13.4
+      '@babel/types': 7.13.0
     dev: true
     resolution:
       integrity: sha512-vCrqcSIq4//Gx74TXXCGnHpulY1dskqLTFGDmhrGxzeXL8lF8kvXv6mpNWlJj1uD4DW23D4ljAqbY4RRaaUZIw==
@@ -10359,7 +10359,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-azINV9dUtzPMFQktvTXciNAfAuVh/L/JCl0vtPCwvOA21uZrC08K/UnmrL+SXGEVc1FwzjW62+xw5S/uaLj6cA==
-  /pug-code-gen/3.0.1:
+  /pug-code-gen/3.0.2:
     dependencies:
       constantinople: 4.0.1
       doctypes: 1.1.0
@@ -10371,7 +10371,7 @@ packages:
       with: 7.0.2
     dev: true
     resolution:
-      integrity: sha512-xJIGvmXTQlkJllq6hqxxjRWcay2F9CU69TuAuiVZgHK0afOhG5txrQOcZyaPHBvSWCU/QQOqEp5XCH94rRZpBQ==
+      integrity: sha512-nJMhW16MbiGRiyR4miDTQMRWDgKplnHyeLvioEJYbk1RsPI3FuA3saEP8uwnTb2nTJEKBU90NFVWJBk4OU5qyg==
   /pug-error/2.0.0:
     dev: true
     resolution:
@@ -10415,10 +10415,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-ukiYM/9cH6Cml+AOl5kETtM9NR3WulyVP2y4HOU45DyMim1IeP/OOiyEWRr6qk5I5klpsBnbuHpwKmTx6WURnw==
-  /pug-plain-loader/1.1.0_pug@3.0.0:
+  /pug-plain-loader/1.1.0_pug@3.0.1:
     dependencies:
       loader-utils: 1.4.0
-      pug: 3.0.0
+      pug: 3.0.1
     dev: true
     peerDependencies:
       pug: ^2.0.0 || ^3.0.0
@@ -10438,9 +10438,9 @@ packages:
     dev: true
     resolution:
       integrity: sha512-yYELe9Q5q9IQhuvqsZNwA5hfPkMJ8u92bQLIMcsMxf/VADjNtEYptU+inlufAFYcWdHlwNfZOEnOOQrZrcyJCQ==
-  /pug/3.0.0:
+  /pug/3.0.1:
     dependencies:
-      pug-code-gen: 3.0.1
+      pug-code-gen: 3.0.2
       pug-filters: 4.0.0
       pug-lexer: 5.0.0
       pug-linker: 4.0.0
@@ -10450,7 +10450,7 @@ packages:
       pug-strip-comments: 2.0.0
     dev: true
     resolution:
-      integrity: sha512-inmsJyFBSHZaiGLaguoFgJGViX0If6AcfcElimvwj9perqjDpUpw79UIEDZbWFmoGVidh08aoE+e8tVkjVJPCw==
+      integrity: sha512-9v1o2yXMfSKJy2PykKyWUhpgx9Pf9D/UlPgIs2pTTxR6DQZ0oivy4I9f8PlWXRY4sjIhDU4TMJ7hQmYnNJc2bw==
   /pump/3.0.0:
     dependencies:
       end-of-stream: 1.4.4
@@ -12869,8 +12869,8 @@ packages:
       integrity: sha1-ZLar9M0Brcrv1QCTk7HY6L7BnbA=
   /with/7.0.2:
     dependencies:
-      '@babel/parser': 7.12.11
-      '@babel/types': 7.12.12
+      '@babel/parser': 7.13.4
+      '@babel/types': 7.13.0
       assert-never: 1.2.1
       babel-walk: 3.0.0-canary-5
     dev: true
@@ -13149,7 +13149,7 @@ specifiers:
   nyc: 15.1.0
   parcel-bundler: 1.12.4
   prettier: 2.2.1
-  pug: 3.0.0
+  pug: 3.0.1
   pug-plain-loader: 1.1.0
   puppeteer: 5.5.0
   puppeteer-to-istanbul: 1.4.0
