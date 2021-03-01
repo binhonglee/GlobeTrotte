@@ -4,6 +4,7 @@ import (
 	"strconv"
 
 	"github.com/binhonglee/GlobeTrotte/src/turbine/database"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/email"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 )
@@ -17,6 +18,7 @@ func DummyUserObj() UserObj {
 func NewUser(newUser wings.NewUser) UserObj {
 	user := UserObj{}
 	user.ID = database.NewUserDB(&newUser)
+	email.NewEmail(user.ID, newUser.Email)
 	if user.ID < 1 {
 		return DummyUserObj()
 	}
@@ -30,7 +32,7 @@ func GetUserObj(id int, self int) UserObj {
 	tripIDs := database.GetUserTripsWithID(id)
 	for _, tripID := range tripIDs {
 		trip := database.GetTripBasicWithID(tripID)
-		if !trip.Private || database.GetTripOwnerWithID(trip.ID) == self {
+		if !trip.Private || database.GetTripOwnerWithID(tripID) == self {
 			user.Trips = append(user.Trips, trip)
 		}
 	}

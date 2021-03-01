@@ -24,8 +24,8 @@ export default {
   },
   async mounted(): Promise<void> {
     this.$data.loading = true;
-    const user = await General.genCurrentUser(this.$router);
-    if (user.confirmed) {
+    const user = await General.genCurrentUserV2(this.$router);
+    if (user.details.confirmed) {
       this.$data.loading = false;
       await General.genRedirectTo(this.$router, Routes.Landing);
       return;

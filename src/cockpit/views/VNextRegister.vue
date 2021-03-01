@@ -45,7 +45,7 @@ import { WingsStructUtil } from "wings-ts-util";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
-import User from "@/wings/User";
+import UserObj from "@/wings/UserObj";
 import CEditItem from "@/components/CEditItem.vue";
 import Routes from "@/routes";
 
@@ -84,11 +84,11 @@ export default {
 
       const res = await HTTPReq.genPOST(
         this.$router,
-        "user",
+        "v2/user",
         WingsStructUtil.stringify(newUser),
       );
 
-      const user = new User(res);
+      const user = new UserObj(res);
       if (user.ID === -1) {
         this.$data.loading = false;
         this.$message({
@@ -98,7 +98,7 @@ export default {
         return;
       }
 
-      localStorage.setItem("user", WingsStructUtil.stringify(user));
+      localStorage.setItem("userobj", WingsStructUtil.stringify(user));
 
       this.$data.loading = false;
       this.$notify(

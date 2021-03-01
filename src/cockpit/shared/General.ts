@@ -2,11 +2,10 @@ import { ElNotificationOptions } from "element-ui/types/notification";
 import { MessageType } from "element-ui/types/message";
 import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "./HTTPReq";
-import User from "@/wings/User";
-import Trip from "@/wings/Trip";
+import TripObj from "@/wings/TripObj";
+import UserObj from "@/wings/UserObj";
 import VueRouter from "vue-router";
 import Routes from "@/routes";
-import TripObj from "@/wings/TripObj";
 
 export default class General {
   public static paramID(v: Vue): string | undefined {
@@ -91,15 +90,12 @@ export default class General {
     };
   }
 
-  public static async genUser(router: VueRouter, id: number): Promise<User> {
-    const user = await HTTPReq.genGET(router, "user/" + id);
-    return new User(user);
-  }
-
-  /* DEPRECATED: Use v2 API instead. */
-  private static async genTrip(router: VueRouter, id: number): Promise<Trip> {
-    const trip = await HTTPReq.genGET(router, "trip/" + id);
-    return new Trip(trip);
+  public static async genUserV2(
+    router: VueRouter,
+    id: number,
+  ): Promise<UserObj> {
+    const user = await HTTPReq.genGET(router, "v2/user/" + id);
+    return new UserObj(user);
   }
 
   public static async genTripV2(
@@ -111,44 +107,39 @@ export default class General {
   }
 
   public static getIsCurrentUser(id: number): boolean {
-    return this.getCurrentUser().ID === id;
+    return this.getCurrentUserV2().ID === id;
   }
 
   public static async genUpdateCurrentUser(router: VueRouter): Promise<void> {
-    await this.genCurrentUser(router);
+    await this.genCurrentUserV2(router);
   }
 
-  public static async genCurrentUser(router: VueRouter): Promise<User> {
-    const id: number = JSON.parse(
-      (await HTTPReq.genGET(router, "whoami")) as string,
-    ).id;
-    if (id === -1) {
+  public static async genCurrentUserV2(router: VueRouter): Promise<UserObj> {
+    const user = new UserObj(await HTTPReq.genGET(router, "v2/whoami"));
+    if (user.ID === -1) {
       localStorage.clear();
     } else {
-      localStorage.setItem(
-        "user",
-        WingsStructUtil.stringify(await this.genUser(router, id)),
-      );
+      localStorage.setItem("userobj", WingsStructUtil.stringify(user));
     }
 
-    return this.getCurrentUser();
+    return this.getCurrentUserV2();
   }
 
-  private static getCurrentUser(): User {
-    const user = localStorage.getItem("user");
+  private static getCurrentUserV2(): UserObj {
+    const user = localStorage.getItem("userobj");
     if (user !== null) {
-      return new User(JSON.parse(user));
+      return new UserObj(JSON.parse(user));
     }
 
-    return new User();
+    return new UserObj();
   }
 
   public static authSession(): boolean {
-    return this.getCurrentUser().ID !== -1;
+    return this.getCurrentUserV2().ID !== -1;
   }
 
   public static confirmed(): boolean {
-    return this.getCurrentUser().confirmed.valueOf();
+    return this.getCurrentUserV2().details.confirmed.valueOf();
   }
 
   public static async genRedirectTo(

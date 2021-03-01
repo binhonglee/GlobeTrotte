@@ -1,7 +1,7 @@
 import VNextRegister from "@/views/VNextRegister.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
-import User from "@/wings/User";
+import UserObj from "@/wings/UserObj";
 import {
   alertSpy,
   messageSpy,
@@ -80,10 +80,13 @@ test("Registration - Password mismatch", async (t) => {
 
 test.serial("Registration - New user (Failure)", async (t) => {
   const returnedUser = WingsStructUtil.stringify(
-    new User({
+    new UserObj({
       id: -1,
-      name: name,
-      email: email,
+      details: {
+        id: -1,
+        name: name,
+        email: email,
+      },
     }),
   );
   const genPOST = sinon
@@ -99,7 +102,7 @@ test.serial("Registration - New user (Failure)", async (t) => {
     confPassword: password,
   });
   t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][1], "user");
+  t.is(genPOST.args[0][1], "v2/user");
   t.is(
     genPOST.args[0][2],
     WingsStructUtil.stringify(
@@ -121,10 +124,13 @@ test.serial("Registration - New user (Failure)", async (t) => {
 
 test.serial("Registration - New user (Success)", async (t) => {
   const returnedUser = WingsStructUtil.stringify(
-    new User({
+    new UserObj({
       id: 10,
-      name: name,
-      email: email,
+      details: {
+        id: 10,
+        name: name,
+        email: email,
+      },
     }),
   );
   const genPOST = sinon
@@ -141,7 +147,7 @@ test.serial("Registration - New user (Success)", async (t) => {
     confPassword: password,
   });
   t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][1], "user");
+  t.is(genPOST.args[0][1], "v2/user");
   t.is(
     genPOST.args[0][2],
     WingsStructUtil.stringify(

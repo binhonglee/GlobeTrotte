@@ -12,6 +12,7 @@ filegroup(
     "//src/wings/struct:email_obj",
     "//src/wings/struct:trip_obj",
     "//src/wings/struct:trip_basic",
+    "//src/wings/struct:user_obj",
     "//src/wings/struct:user_basic",
   ],
   requires = ["ts"],

@@ -12,12 +12,11 @@
           p(
             v-if="trip.details.description !== ''"
           ) {{ trip.details.description }}
-          p Author: 
+          p Author:
             a.tripPreviewUserProfileLink(
               v-bind:href="'/user/' + trip.user.ID"
               type="primary"
             ) {{ trip.user.name }}
-          p Created on: {{ trip.timeCreated.toLocaleDateString() }}
 
         el-carousel-item.tripDayPreview(
           v-for="day in trip.details.days"

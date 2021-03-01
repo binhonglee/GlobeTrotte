@@ -39,7 +39,7 @@ import { WingsStructUtil } from "wings-ts-util";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
-import User from "@/wings/User";
+import UserObj from "@/wings/UserObj";
 import CEditItem from "@/components/CEditItem.vue";
 
 interface Data {
@@ -69,11 +69,11 @@ export default {
 
       const res = await HTTPReq.genPOST(
         this.$router,
-        "login",
+        "v2/login",
         WingsStructUtil.stringify(newUser),
       );
 
-      const user = new User(res);
+      const user = new UserObj(res);
       if (user.ID === -1) {
         this.$data.loading = false;
         this.$message({
@@ -82,7 +82,7 @@ export default {
         });
         return;
       }
-      localStorage.setItem("user", WingsStructUtil.stringify(user));
+      localStorage.setItem("userobj", WingsStructUtil.stringify(user));
       this.$data.loading = false;
       this.$notify(
         General.notifConfig("Success", "You are now logged in.", "success"),

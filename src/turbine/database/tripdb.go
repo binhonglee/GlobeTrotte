@@ -80,19 +80,20 @@ func GetTripBasicWithID(id int) wings.TripBasic {
 		SELECT id, name, cities, days, description, private
 		FROM trips WHERE id=$1;`
 	row := db.QueryRow(sqlStatement, id)
-	switch err := row.Scan(
+	err := row.Scan(
 		&trip.ID,
 		&trip.Name,
 		pq.Array(&cities),
 		pq.Array(&days),
 		&trip.Description,
 		&trip.Private,
-	); err {
-	case sql.ErrNoRows:
-		logger.Print(logger.Database, "Trip "+strconv.Itoa(id)+" not found.")
-		trip.ID = -1
-	default:
-		logger.Err(logger.Database, err, "")
+	)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			logger.Print(logger.Database, "Trip "+strconv.Itoa(id)+" not found.")
+		} else {
+			logger.Err(logger.Database, err, "")
+		}
 		trip.ID = -1
 	}
 
@@ -108,12 +109,13 @@ func GetTripOwnerWithID(id int) int {
 		SELECT userid FROM trips WHERE id=$1;
 	`
 	row := db.QueryRow(sqlStatement, id)
-	switch err := row.Scan(&user); err {
-	case sql.ErrNoRows:
-		logger.Print(logger.Database, "Trip "+strconv.Itoa(id)+" not found.")
-		user = -1
-	default:
-		logger.Err(logger.Database, err, "")
+	err := row.Scan(&user)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			logger.Print(logger.Database, "Trip "+strconv.Itoa(id)+" not found.")
+		} else {
+			logger.Err(logger.Database, err, "")
+		}
 		user = -1
 	}
 

@@ -107,6 +107,12 @@ var actualRoutes = routes{
 		login,
 	},
 	route{
+		"LoginV2",
+		"POST",
+		"/v2/login",
+		loginV2,
+	},
+	route{
 		"Logout",
 		"GET",
 		"/logout",
@@ -165,6 +171,12 @@ var actualRoutes = routes{
 		"GET",
 		"/whoami",
 		whoami,
+	},
+	route{
+		"WhoAmIV2",
+		"GET",
+		"/v2/whoami",
+		whoamiV2,
 	},
 	route{
 		"GetRecentTrips",

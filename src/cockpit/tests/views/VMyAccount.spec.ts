@@ -1,8 +1,7 @@
 import VMyAccount from "@/views/VMyAccount.vue";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
-import TripObj from "@/wings/TripObj";
-import User from "@/wings/User";
+import UserObj from "@/wings/UserObj";
 import {
   alertSpy,
   messageSpy,
@@ -17,28 +16,26 @@ import { WingsStructUtil } from "wings-ts-util";
 import sinon from "sinon";
 import test from "ava";
 
-const currentUser = new User({
+const currentUser = new UserObj({
   id: 10,
-  name: "MyAccount Test User",
-  email: "testmyaccount@globetrotte.com",
-  trips: [5],
-});
-const someTrip = new TripObj({
-  id: 5,
+  details: {
+    id: 10,
+    name: "MyAccount Test User",
+    email: "testmyaccount@globetrotte.com",
+  },
+  trips: [{ id: 5 }],
 });
 let genCurrentUser: sinon.SinonStub;
-let genTrip: sinon.SinonStub;
 
 test.serial.before(() => {
-  genCurrentUser = sinon.stub(General, "genCurrentUser").resolves(currentUser);
-  genTrip = sinon.stub(General, "genTripV2").resolves(someTrip);
+  genCurrentUser = sinon
+    .stub(General, "genCurrentUserV2")
+    .resolves(currentUser);
 });
 
 test.serial.after((t) => {
   t.true(genCurrentUser.called);
-  t.true(genTrip.called);
   genCurrentUser.restore();
-  genTrip.restore();
 });
 
 test.serial("My Account - Delete Account (success)", async (t) => {
@@ -108,8 +105,8 @@ test.serial("My Account - Save Edit (success)", async (t) => {
   wrapper.find(".myAccountSave").trigger("click");
   await wait(500);
   t.true(genPOST.calledOnce);
-  t.is(genPOST.args[0][1], "user/10");
-  t.is(genPOST.args[0][2], WingsStructUtil.stringify(currentUser));
+  t.is(genPOST.args[0][1], "v2/user/10");
+  t.is(genPOST.args[0][2], WingsStructUtil.stringify(currentUser.details));
   t.true(message.item.calledOnce);
   t.is(message.getMessage(), "Profile updated successfully!");
   t.is(message.getType(), "success");
@@ -129,8 +126,8 @@ test.serial("My Account - Save Edit (failure)", async (t) => {
   wrapper.find(".myAccountSave").trigger("click");
   await wait(500);
   t.true(genPOST.calledOnce);
-  t.is(genPOST.args[0][1], "user/10");
-  t.is(genPOST.args[0][2], WingsStructUtil.stringify(currentUser));
+  t.is(genPOST.args[0][1], "v2/user/10");
+  t.is(genPOST.args[0][2], WingsStructUtil.stringify(currentUser.details));
   t.true(alert.item.calledOnce);
   t.is(alert.getTitle(), "Fail");
   t.is(alert.getMessage(), "Save was unsuccessful. Please try again later.");

@@ -79,14 +79,15 @@ func GetUserTripsWithID(id int) []int {
 	sqlStatement := `
 		SELECT trips
 		FROM users WHERE id=$1;`
-	switch err := db.QueryRow(sqlStatement, id).Scan(
+	err := db.QueryRow(sqlStatement, id).Scan(
 		pq.Array(&trips),
-	); err {
-	case sql.ErrNoRows:
-		logger.Print(logger.Database, "User "+strconv.Itoa(id)+" not found.")
-		return tripsIDs
-	default:
-		logger.Err(logger.Database, err, "")
+	)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			logger.Print(logger.Database, "User "+strconv.Itoa(id)+" not found.")
+		} else {
+			logger.Err(logger.Database, err, "")
+		}
 		return tripsIDs
 	}
 
@@ -148,6 +149,10 @@ func GetUserPasswordHashDB(user wings.NewUser) string {
 // GetUserWithEmailDB - Retrieve user information from database with their email.
 func GetUserWithEmailDB(user wings.NewUser) wings.User {
 	return getUserWithID(getUserWithEmail(user.Email).ID)
+}
+
+func GetUserIDDBWithEmail(email string) int {
+	return getUserWithEmail(email).ID
 }
 
 // UpdateUserDB - Update user information back into the database.
@@ -212,7 +217,7 @@ func addNewUser(newUser wings.NewUser) int {
 		newUser.Name,
 		newUser.Email,
 		newUser.Password,
-		"",
+		newUser.Bio,
 		time.Now(),
 		false,
 	).Scan(&id)
@@ -266,7 +271,7 @@ func getUserWithEmail(email string) wings.NewUser {
 		&user.Password,
 	); err {
 	case sql.ErrNoRows:
-		logger.Print(logger.Database, "User not found.")
+		logger.Print(logger.Database, "User "+email+" not found.")
 		user.ID = -1
 	default:
 		logger.Err(logger.Database, err, "")

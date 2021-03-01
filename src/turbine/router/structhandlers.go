@@ -105,6 +105,7 @@ func newUser(res http.ResponseWriter, req *http.Request) {
 		email.NewEmail(newID, item.Email)
 		user := db.GetUserWithEmailDB(*item)
 		newCookie(res, req, user.ID)
+		response(&res, http.StatusAccepted)
 		json.NewEncoder(res).Encode(user)
 	} else {
 		response(&res, http.StatusOK)
@@ -172,6 +173,7 @@ func login(res http.ResponseWriter, req *http.Request) {
 		"Authentication successful for "+item.Email,
 	)
 	newCookie(res, req, user.ID)
+	response(&res, http.StatusAccepted)
 	json.NewEncoder(res).Encode(user)
 }
 
@@ -184,7 +186,6 @@ func newCookie(
 	session.Values["authenticated"] = true
 	session.Values["userid"] = userID
 	session.Save(req, res)
-	response(&res, http.StatusAccepted)
 }
 
 func logout(res http.ResponseWriter, req *http.Request) {

@@ -22,9 +22,9 @@
               tabindex="0" type="default" ref="edit" v-on:click="toggleEdit"
             ) Edit
       .narrow_content(v-else)
-        CEditItem(label="Name" ref="name" :val="user.name")
-        CEditItem(label="Email" ref="email" :val="user.email")
-        CEditItem(label="Bio" type="textarea" ref="bio" :val="user.bio")
+        CEditItem(label="Name" ref="name" :val="user.details.name")
+        CEditItem(label="Email" ref="email" :val="user.details.email")
+        CEditItem(label="Bio" type="textarea" ref="bio" :val="user.details.bio")
         div.myAccountButtonGroups
           el-button.myAccountSave(type="primary" v-on:click="save") Save
           el-button.myAccountCancel(
@@ -44,12 +44,13 @@ import CEditItem from "@/components/CEditItem.vue";
 import CViewUser from "@/components/CViewUser.vue";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
-import User from "@/wings/User";
+import UserBasic from "@/wings/UserBasic";
+import UserObj from "@/wings/UserObj";
 import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
 
 interface Data {
-  user: User;
+  user: UserObj;
   edit: boolean;
   confirmed: boolean;
   unconfirmedLink: string;
@@ -62,7 +63,7 @@ export default {
   },
   data(): Data {
     return {
-      user: new User(),
+      user: new UserObj(),
       edit: false,
       confirmed: true,
       unconfirmedLink: Routes.unconfirmed_NextEmail,
@@ -72,7 +73,8 @@ export default {
     async deleteAccount(): Promise<void> {
       const deletion = await HTTPReq.genDELETE(
         this.$router,
-        "user/" + this.$data.user.ID,
+        "v2/user/" + this.$data.user.ID,
+        WingsStructUtil.stringify(this.$data.user.details),
       );
 
       if (deletion) {
@@ -93,13 +95,17 @@ export default {
       }
     },
     async save(): Promise<void> {
-      this.$data.user.name = this.$refs.name.value;
-      this.$data.user.email = this.$refs.email.value;
-      this.$data.user.bio = this.$refs.bio.value;
+      const user = new UserBasic({
+        id: this.$data.user.ID,
+        name: this.$refs.name.value,
+        email: this.$refs.email.value,
+        bio: this.$refs.bio.value,
+        confirmed: this.$data.user.details.confirmed,
+      });
       const success = await HTTPReq.genPOST(
         this.$router,
-        "user/" + this.$data.user.ID,
-        WingsStructUtil.stringify(this.$data.user),
+        "v2/user/" + this.$data.user.ID,
+        WingsStructUtil.stringify(user),
       );
 
       if (success) {
@@ -129,8 +135,11 @@ export default {
     },
   },
   async beforeMount(): Promise<void> {
-    this.$data.user = await General.genCurrentUser(this.$router);
-    this.$data.confirmed = this.$data.user.confirmed;
+    this.$data.user = await General.genCurrentUserV2(this.$router);
+    if (this.$data.user.ID === -1) {
+      await General.genRedirectTo(this.$router, Routes.Landing);
+    }
+    this.$data.confirmed = this.$data.user.details.confirmed;
   },
 };
 </script>

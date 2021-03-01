@@ -2,7 +2,7 @@ import VNextLogin from "@/views/VNextLogin.vue";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
-import User from "@/wings/User";
+import UserObj from "@/wings/UserObj";
 
 import { mount, Wrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
@@ -56,7 +56,7 @@ test("Login - Cancel", async (t) => {
 test.serial("Login - Wrong password", async (t) => {
   const paramNext = sinon.stub(General, "paramNext").returns("");
   const returnedUser = WingsStructUtil.stringify(
-    new User({
+    new UserObj({
       id: -1,
     }),
   );
@@ -71,7 +71,7 @@ test.serial("Login - Wrong password", async (t) => {
     password: password,
   });
   t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][1], "login");
+  t.is(genPOST.args[0][1], "v2/login");
   t.is(
     genPOST.args[0][2],
     WingsStructUtil.stringify(
@@ -94,7 +94,7 @@ test.serial("Login - Wrong password", async (t) => {
 test.serial("Login - Success", async (t) => {
   const paramNext = sinon.stub(General, "paramNext").returns("");
   const returnedUser = WingsStructUtil.stringify(
-    new User({
+    new UserObj({
       id: 10,
     }),
   );
@@ -112,7 +112,7 @@ test.serial("Login - Success", async (t) => {
   });
   await paramNext.restore();
   t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][1], "login");
+  t.is(genPOST.args[0][1], "v2/login");
   t.is(
     genPOST.args[0][2],
     WingsStructUtil.stringify(

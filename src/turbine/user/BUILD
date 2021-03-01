@@ -6,6 +6,7 @@ go_library(
   ],
   deps = [
     "//src/turbine/database",
+    "//src/turbine/email",
     "//src/turbine/logger",
     "//src/turbine/wings",
   ],

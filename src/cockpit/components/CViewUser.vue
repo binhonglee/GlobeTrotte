@@ -1,16 +1,16 @@
 <template lang="pug">
   .view_user
     div.userInfo.narrow_content
-      h2(v-if="showName").userName {{ user.name }}
+      h2(v-if="showName").userName {{ user.details.name }}
       span.userID ID: {{ user.ID }}
       p.userEmail
         strong Email:
         br
-        | {{ user.email }}
-      p.userBio(v-if="user.bio !== ''")
+        | {{ user.details.email }}
+      p.userBio(v-if="user.details.bio !== ''")
         strong Bio:
         br
-        | {{ user.bio }}
+        | {{ user.details.bio }}
     div.viewUserTrips(v-if="trips.length > 0")
       h2 Trips
       el-card.homePageTripCard(v-for="trip in trips" shadow="hover")
@@ -18,32 +18,36 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import General from "@/shared/General";
 import CTripInCarousel from "./CTripInCarousel.vue";
-import User from "@/wings/User";
+import UserObj from "@/wings/UserObj";
+import TripBasic from "@/wings/TripBasic";
+import TripObj from "@/wings/TripObj";
 
-export default Vue.extend({
-  name: "CViewUser",
+interface Data {
+  trips: Array<TripObj>;
+  lastPopulated: Array<TripBasic>;
+}
+
+export default {
   components: {
     CTripInCarousel,
   },
   props: {
     user: {
-      type: User,
+      type: UserObj,
     },
     showName: {
       type: Boolean,
       default: true,
     },
   },
-  data: () => ({
+  data: (): Data => ({
     trips: [],
     lastPopulated: [],
   }),
   methods: {
     /* istanbul ignore next: will move this to some generic file / lib and test there instead */
-    compareArray(a: [], b: []) {
+    compareArray(a: [], b: []): boolean {
       if (a.length !== b.length) {
         return false;
       }
@@ -58,11 +62,13 @@ export default Vue.extend({
       if (this.compareArray(this.$data.lastPopulated, this.$props.user.trips)) {
         return;
       }
-      this.$data.trips = await Promise.all(
-        this.$props.user.trips.map(async (trip: number) => {
-          return await General.genTripV2(this.$router, trip);
-        }),
-      );
+      this.$data.trips = this.$props.user.trips.map((trip: TripBasic) => {
+        const tripObj = new TripObj();
+        tripObj.ID = trip.ID;
+        tripObj.details = trip;
+        tripObj.user = this.$props.user.details;
+        return tripObj;
+      });
 
       this.$data.lastPopulated = this.$props.user.trips;
     },
@@ -73,7 +79,7 @@ export default Vue.extend({
   async beforeUpdate(): Promise<void> {
     await this.genPopulateTrips();
   },
-});
+};
 </script>
 
 <style lang="scss">

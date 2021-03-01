@@ -1,6 +1,6 @@
 <template lang="pug">
   .get_user.narrow_content
-    h1.title {{ user.name }}
+    h1.title {{ user.details.name }}
     .profile_info
       CViewUser(:user="user" :showName="false")
 </template>
@@ -8,11 +8,11 @@
 <script lang="ts">
 import CViewUser from "@/components/CViewUser.vue";
 import General from "@/shared/General";
-import User from "@/wings/User";
+import UserObj from "@/wings/UserObj";
 import Routes from "@/routes";
 
 interface Data {
-  user: User;
+  user: UserObj;
 }
 
 export default {
@@ -20,16 +20,16 @@ export default {
     CViewUser,
   },
   data: (): Data => ({
-    user: new User(),
+    user: new UserObj(),
   }),
   methods: {
     async init(): Promise<void> {
       if (General.paramID(this) === undefined) {
-        this.$data.user.name = "";
+        this.$data.user.details.name = "";
         return;
       }
 
-      this.$data.user = await General.genUser(
+      this.$data.user = await General.genUserV2(
         this.$router,
         Number(General.paramID(this)),
       );

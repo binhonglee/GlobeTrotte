@@ -17,11 +17,9 @@
 
 <script lang="ts">
 import { WingsStructUtil } from "wings-ts-util";
-import Routes from "@/routes";
 import CEditTrip from "./CEditTrip.vue";
 import CViewTrip from "./CViewTrip.vue";
 import HTTPReq from "@/shared/HTTPReq";
-import General from "@/shared/General";
 import TripObj from "@/wings/TripObj";
 import TripBasic from "@/wings/TripBasic";
 
