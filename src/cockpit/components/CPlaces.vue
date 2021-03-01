@@ -12,12 +12,18 @@
           rel="noopener noreferrer"
           :underline="false"
           :href="place.URL"
+          v-if="place.URL !== ''"
         )
           el-card.placeDisplayCard(shadow="hover")
-            b {{ place.label }}
+            b.link {{ place.label }}
             p.placeDescription(
               v-if="place.description !== ''"
             ) {{ place.description }}
+        el-card.placeDisplayCard(v-else shadow="hover")
+          b {{ place.label }}
+          p.placeDescription(
+            v-if="place.description !== ''"
+          ) {{ place.description }}
 </template>
 
 <script lang="ts">
@@ -32,6 +38,9 @@ export default Vue.extend({
         [];
       },
     },
+  },
+  beforeMount(): void {
+    console.log(this.$props.places);
   },
 });
 </script>
@@ -53,14 +62,15 @@ export default Vue.extend({
 }
 
 .places .placeDisplayCard .el-card__body {
-  b {
+  .link {
     color: #409eff;
   }
+  font-size: 14px;
   padding: 10px;
 }
 
 .placeDisplayCard:hover {
-  b {
+  .link {
     text-decoration: underline;
     text-decoration-color: #409eff;
   }

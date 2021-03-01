@@ -151,8 +151,10 @@ export default {
     filterPlaces(places: Place[]): Place[] | null {
       let toReturn: Place[] = [];
       for (let place of places) {
-        if (place.label !== "" && place.URL !== "") {
-          if (this.filterPlace(place)) {
+        place.label = place.label.trim();
+        place.URL = place.URL.trim();
+        if (place.label !== "") {
+          if (place.URL === "" || this.filterPlace(place)) {
             place.description = place.description.split("\n").join(" ");
             toReturn.push(place);
           } else {
@@ -169,6 +171,7 @@ export default {
         "https://google.com/maps/",
         "https://www.google.com/maps/",
         "https://www.openstreetmap.org/way/",
+        "https://www.bing.com/maps?",
         "https://www.yelp.com/biz/",
       ];
 
