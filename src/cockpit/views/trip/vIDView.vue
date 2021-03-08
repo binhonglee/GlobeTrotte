@@ -21,6 +21,8 @@ import CTripInfo from "@/components/CTripInfo.vue";
 import General from "@/shared/General";
 import TripObj from "@/wings/TripObj";
 import Routes from "@/routes";
+import E from "@/shared/E";
+import R from "@/shared/R";
 
 interface Data {
   inputID: string;
@@ -39,37 +41,34 @@ export default {
       owner: false,
     };
   },
-  props: ["id"],
   methods: {
     async init(): Promise<void> {
-      if (this.$route.params.id === undefined) {
+      const id = General.paramID(this);
+      if (id === undefined) {
         this.$data.trip = new TripObj();
         return;
       }
-      this.$data.inputID = this.$route.params.id;
 
-      this.$data.trip = await General.genTripV2(
-        this.$router,
-        Number(this.$route.params.id),
-      );
+      this.$data.inputID = id;
+      this.$data.trip = await General.genTripV2(this.$router, Number(id));
       if (this.$data.trip.ID !== -1) {
         this.$data.owner = General.getIsCurrentUser(this.$data.trip.user.ID);
         this.$nextTick(function () {
-          this.$refs.tripIDSearch.focus();
+          E.get(this, "tripIDSearch").focus();
         });
 
         return;
       }
 
       this.$notify(General.notifConfig("Error", "Trip not found.", "error"));
-      await General.genRedirectTo(this.$router, Routes.trip_GetView);
+      await R.genRedirectTo(this, Routes.trip_GetView);
     },
     gotoTrip(): void {
       const id: number = parseInt(this.$data.inputID, 10);
       if (String(id) !== this.$data.inputID) {
         alert("Invalid number");
       } else if (this.$route.params.id !== this.$data.inputID) {
-        General.genRedirectTo(this.$router, Routes.trip_GetView + "/" + id);
+        R.genRedirectTo(this, Routes.trip_GetView + "/" + id);
       }
     },
   },

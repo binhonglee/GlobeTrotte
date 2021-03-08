@@ -12,7 +12,7 @@
           p(
             v-if="trip.details.description !== ''"
           ) {{ trip.details.description }}
-          p Author:
+          p Author:&nbsp;
             a.tripPreviewUserProfileLink(
               v-bind:href="'/user/' + trip.user.ID"
               type="primary"

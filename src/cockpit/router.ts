@@ -17,90 +17,42 @@ export default new Router({
     {
       path: "/",
       name: "landing",
-      component: () => import("./views/VLanding.vue"),
+      component: () => import("./views/vLanding.vue"),
     },
     {
       path: "*",
       name: "404",
-      component: () => import("./views/V404.vue"),
+      component: () => import("./views/v404.vue"),
     },
     {
-      path: "/user/:id",
-      name: "GetUserIndex",
-      component: () => import("./views/VGetUser.vue"),
+      path: "/confirm/email",
+      name: "confirm/Email",
+      component: () => import("./views/confirm/vIDEmail.vue"),
     },
     {
-      path: "/user",
-      name: "GetUser",
-      component: () => import("./views/VGetUser.vue"),
+      path: "/confirm/email/:id",
+      name: "confirm/Email",
+      component: () => import("./views/confirm/vIDEmail.vue"),
     },
     {
-      path: "/myaccount",
-      name: "MyAccount",
-      meta: {
-        loggedIn: true,
-      },
-      component: () => import("./views/VMyAccount.vue"),
-    },
-    {
-      path: "/login/:path",
-      name: "NextLoginRedirect",
-      meta: {
-        guest: true,
-      },
-      component: () => import("./views/VNextLogin.vue"),
-    },
-    {
-      path: "/login",
-      name: "NextLogin",
-      meta: {
-        guest: true,
-      },
-      component: () => import("./views/VNextLogin.vue"),
-    },
-    {
-      path: "/ratelimited/:path",
-      name: "NextRateLimitedRedirect",
-      component: () => import("./views/VNextRateLimited.vue"),
-    },
-    {
-      path: "/ratelimited",
-      name: "NextRateLimited",
-      component: () => import("./views/VNextRateLimited.vue"),
-    },
-    {
-      path: "/register/:path",
-      name: "NextRegisterRedirect",
-      meta: {
-        guest: true,
-      },
-      component: () => import("./views/VNextRegister.vue"),
-    },
-    {
-      path: "/register",
-      name: "NextRegister",
-      meta: {
-        guest: true,
-      },
-      component: () => import("./views/VNextRegister.vue"),
-    },
-    {
-      path: "/confirm/email/:uuid",
-      name: "confirm/UuidOnlyEmailUUID",
-      meta: {
-        unconfirmed: true,
-      },
-      component: () => import("./views/confirm/VUuidOnlyEmail.vue"),
-    },
-    {
-      path: "/trip/view/:id",
-      name: "trip/GetViewIndex",
-      component: () => import("./views/trip/VGetView.vue"),
+      path: "/confirm/email/:id/:params",
+      name: "confirm/EmailParams",
+      component: () => import("./views/confirm/vIDEmail.vue"),
     },
     {
       path: "/trip/view",
-      name: "trip/GetView",
-      component: () => import("./views/trip/VGetView.vue"),
+      name: "trip/View",
+      component: () => import("./views/trip/vIDView.vue"),
+    },
+    {
+      path: "/trip/view/:id",
+      name: "trip/View",
+      component: () => import("./views/trip/vIDView.vue"),
+    },
+    {
+      path: "/trip/view/:id/:params",
+      name: "trip/ViewParams",
+      component: () => import("./views/trip/vIDView.vue"),
     },
     {
       path: "/trip/new",
@@ -108,20 +60,80 @@ export default new Router({
       meta: {
         confirmed: true,
       },
-      component: () => import("./views/trip/VNew.vue"),
+      component: () => import("./views/trip/vNew.vue"),
     },
     {
-      path: "/unconfirmed/email/:path",
-      name: "unconfirmed/NextEmailRedirect",
-      meta: {
-        unconfirmed: true,
-      },
-      component: () => import("./views/unconfirmed/VNextEmail.vue"),
+      path: "/trip/new/:params",
+      name: "trip/NewParams",
+      component: () => import("./views/trip/vNew.vue"),
     },
     {
       path: "/unconfirmed/email",
-      name: "unconfirmed/NextEmail",
-      component: () => import("./views/unconfirmed/VNextEmail.vue"),
+      name: "unconfirmed/Email",
+      component: () => import("./views/unconfirmed/vEmail.vue"),
+    },
+    {
+      path: "/unconfirmed/email/:params",
+      name: "unconfirmed/EmailParams",
+      component: () => import("./views/unconfirmed/vEmail.vue"),
+    },
+    {
+      path: "/user",
+      name: "User",
+      component: () => import("./views/vIDUser.vue"),
+    },
+    {
+      path: "/user/:id",
+      name: "User",
+      component: () => import("./views/vIDUser.vue"),
+    },
+    {
+      path: "/user/:id/:params",
+      name: "UserParams",
+      component: () => import("./views/vIDUser.vue"),
+    },
+    {
+      path: "/login",
+      name: "Login",
+      component: () => import("./views/vLogin.vue"),
+    },
+    {
+      path: "/login/:params",
+      name: "LoginParams",
+      component: () => import("./views/vLogin.vue"),
+    },
+    {
+      path: "/myaccount",
+      name: "MyAccount",
+      meta: {
+        loggedIn: true,
+      },
+      component: () => import("./views/vMyAccount.vue"),
+    },
+    {
+      path: "/myaccount/:params",
+      name: "MyAccountParams",
+      component: () => import("./views/vMyAccount.vue"),
+    },
+    {
+      path: "/ratelimited",
+      name: "RateLimited",
+      component: () => import("./views/vRateLimited.vue"),
+    },
+    {
+      path: "/ratelimited/:params",
+      name: "RateLimitedParams",
+      component: () => import("./views/vRateLimited.vue"),
+    },
+    {
+      path: "/register",
+      name: "Register",
+      component: () => import("./views/vRegister.vue"),
+    },
+    {
+      path: "/register/:params",
+      name: "RegisterParams",
+      component: () => import("./views/vRegister.vue"),
     },
   ],
 });

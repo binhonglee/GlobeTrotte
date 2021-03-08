@@ -61,6 +61,8 @@ import Place from "@/wings/Place";
 import City from "@/wings/City";
 import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
+import E from "@/shared/E";
+import R from "@/shared/R";
 
 interface Data {
   cities: Array<City>;
@@ -93,7 +95,9 @@ export default {
   },
   methods: {
     cancel(): void {
-      this.$refs.days.days = (this.$props.trip.details.days ?? []).slice(0);
+      E.get(this, "days").$data.days = (
+        this.$props.trip.details.days ?? []
+      ).slice(0);
       this.$emit("cancel");
     },
     save(): void {
@@ -114,14 +118,14 @@ export default {
         }
       }
 
-      newTrip.name = this.$refs.name.value;
-      newTrip.description = this.$refs.description.value.split("\n").join(" ");
+      newTrip.name = E.getVal(this, "name");
+      newTrip.description = E.getVal(this, "description").split("\n").join(" ");
       newTrip.days = [];
-      const days = this.$refs.days;
+      const days = E.get(this, "days");
       let offBy = 0;
-      for (const day in days.days) {
-        const currentDay = days.days[day];
-        const places = this.filterPlaces(days.$refs["places" + day][0].places);
+      for (const day in days.$data.days) {
+        const currentDay = days.$data.days[day];
+        const places = this.filterPlaces(E.get(days, "places" + day)[0].places);
         if (places === null) {
           this.$alert(
             "We currently only support links to limited " +
@@ -209,7 +213,7 @@ export default {
       );
 
       if (success) {
-        General.genRedirectTo(this.$router, Routes.Landing);
+        R.genRedirectTo(this, Routes.Landing);
       }
     },
     tripToItem(itemType: string): TripEditable {

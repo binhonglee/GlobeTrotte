@@ -54,12 +54,12 @@ export default new Router({
     {
       path: "/",
       name: "landing",
-      component: () => import("./views/VLanding.vue"),
+      component: () => import("./views/vLanding.vue"),
     },
     {
       path: "*",
       name: "404",
-      component: () => import("./views/V404.vue"),
+      component: () => import("./views/v404.vue"),
     },`;
 
 const after = `
@@ -88,11 +88,7 @@ class Params {
   }
 }
 
-const allParams: Params[] = [
-  new Params("get", "Index", "id"),
-  new Params("uuid", "UUID", "uuid"),
-  new Params("next", "Redirect", "path"),
-];
+const allParams: Params[] = [new Params("id", "Index", "id")];
 
 class GenRouter {
   private output = before;
@@ -110,45 +106,57 @@ class GenRouter {
       if (!lstatSync(join(fullpath, file)).isFile()) {
         this.getFiles(folder + file + "/");
       } else if (file.endsWith(".vue")) {
-        this.output += this.getRoutes(folder, file);
+        const routes = this.getParamRoute(folder, file);
+        if (routes !== "") {
+          this.output += routes;
+        }
       }
     });
   }
 
-  private getRoutes(path: string, file: string): string {
-    const name = this.getPath(file);
-    let urlPath = name.toLowerCase();
+  private getParamRoute(path: string, file: string): string {
+    if (file.substr(0, 1) !== "v") {
+      return "";
+    }
+
     let toReturn = "";
+
+    let name = file.substr(1).split(".", 1)[0];
+    let urlPath = name.toLowerCase();
 
     if (presetRoute.includes(urlPath)) {
       return "";
     }
 
-    let returnAfter = false;
+    const params: string[] = [];
     allParams.forEach((param) => {
       if (
         urlPath.length > param.key.length &&
         urlPath.substr(0, param.key.length).localeCompare(param.key) === 0
       ) {
+        name = name.substr(param.key.length);
         urlPath = urlPath.substr(param.key.length);
-        returnAfter = urlPath.substr(0, 4).localeCompare("only") === 0;
-        if (returnAfter) {
-          urlPath = urlPath.substr(4);
-        }
-        toReturn = this.getRoute(
-          path + urlPath + "/:" + param.param,
-          path + name + param.name,
+        toReturn += this.getRoute(
+          path + urlPath + params.join(""),
+          path + name,
           path + file,
         );
+        params.push("/:" + param.param);
       }
     });
 
     paths.push(new Path((path + name).split("/").join("_"), path + urlPath));
-    if (returnAfter) {
-      return toReturn;
-    }
+    urlPath += params.join("");
 
-    return toReturn + this.getRoute(path + urlPath, path + name, path + file);
+    return (
+      toReturn +
+      this.getRoute(path + urlPath, path + name, path + file) +
+      this.getRoute(
+        path + urlPath + "/:params",
+        path + name + "Params",
+        path + file,
+      )
+    );
   }
 
   private getRoute(path: string, name: string, component: string): string {
@@ -193,6 +201,8 @@ class GenRouter {
   private getPath(filename: string): string {
     if (filename.substr(0, 1) === "V") {
       filename = filename.substr(1);
+    } else {
+      return "";
     }
 
     return filename.split(".", 1)[0];

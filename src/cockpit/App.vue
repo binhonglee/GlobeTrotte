@@ -25,11 +25,13 @@
       v-if="authed" index="/myaccount"
     ) My Account
   router-view#content
-  #footer
+  #footerMargin
+    #footer
 </template>
 
 <script lang="ts">
 import General from "./shared/General";
+import R from "./shared/R";
 
 interface Data {
   activeIndex: string;
@@ -75,7 +77,7 @@ export default {
       if (path === this.$data.activeIndex || path === null) {
         return;
       }
-      General.genRedirectTo(this.$router, `${path}`);
+      R.genRedirectTo(this, `${path}`);
     },
   },
   watch: {
@@ -115,6 +117,10 @@ export default {
   width: 100%;
   background-color: #333;
   // color: white;
+}
+
+#footerMargin {
+  height: 120px;
 }
 
 #footerMessage {

@@ -17,6 +17,7 @@ import General from "@/shared/General";
 import TripObj from "@/wings/TripObj";
 import TripBasic from "@/wings/TripBasic";
 import Routes from "@/routes";
+import R from "@/shared/R";
 
 interface Data {
   trip: TripObj;
@@ -46,9 +47,9 @@ export default {
             "v2/trip",
             WingsStructUtil.stringify(trip),
           );
-          await General.genRedirectTo(
-            this.$router,
-            Routes.trip_GetView + "/" + new TripObj(newTrip).ID,
+          await R.genRedirectTo(
+            this,
+            Routes.trip_View + "/" + new TripObj(newTrip).ID,
           );
           return;
         }

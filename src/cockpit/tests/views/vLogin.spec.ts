@@ -1,5 +1,4 @@
-import VNextLogin from "@/views/VNextLogin.vue";
-import General from "@/shared/General";
+import vLogin from "@/views/vLogin.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import UserObj from "@/wings/UserObj";
@@ -15,6 +14,7 @@ import {
 import sinon from "sinon";
 import test from "ava";
 import { ExecutionContext } from "ava";
+import R from "@/shared/R";
 
 const email = "ab@test.com";
 const password = "1234";
@@ -42,19 +42,18 @@ function fillFormAndLogin(
   wrapper.find(".loginConfirm").trigger("click");
 }
 
-test("Login - Cancel", async (t) => {
-  const paramNext = sinon.stub(General, "paramNext").returns("");
-  const wrapper = mount(VNextLogin, newLocalVueAndRouter());
+test.serial("Login - Cancel", async (t) => {
+  const wrapper = mount(vLogin, newLocalVueAndRouter());
   const routerBack = new routerSpy(wrapper, "back");
+  const rNext = sinon.stub(R, "hasNext").returns(false);
   verifyUI(t, wrapper);
   wrapper.find(".loginCancel").trigger("click");
+  rNext.restore();
   t.true(routerBack.item.calledOnce);
-  await paramNext.restore();
   await routerBack.restore();
 });
 
 test.serial("Login - Wrong password", async (t) => {
-  const paramNext = sinon.stub(General, "paramNext").returns("");
   const returnedUser = WingsStructUtil.stringify(
     new UserObj({
       id: -1,
@@ -63,13 +62,15 @@ test.serial("Login - Wrong password", async (t) => {
   const genPOST = sinon
     .stub(HTTPReq, "genPOST")
     .resolves(JSON.parse(returnedUser));
-  const wrapper = mount(VNextLogin);
+  const wrapper = mount(vLogin, newLocalVueAndRouter());
   const message = new messageSpy(wrapper);
+  const rNext = sinon.stub(R, "hasNext").returns(false);
   verifyUI(t, wrapper);
   fillFormAndLogin(t, wrapper, {
     email: email,
     password: password,
   });
+  rNext.restore();
   t.true(genPOST.calledOnce, "Called genPOST once");
   t.is(genPOST.args[0][1], "v2/login");
   t.is(
@@ -87,12 +88,11 @@ test.serial("Login - Wrong password", async (t) => {
   t.true(message.item.calledOnce);
   t.is(message.getMessage(), "Wrong email or password. Please try again.");
   t.is(message.getType(), "error");
-  await paramNext.restore();
   await message.restore();
 });
 
 test.serial("Login - Success", async (t) => {
-  const paramNext = sinon.stub(General, "paramNext").returns("");
+  const rNext = sinon.stub(R, "hasNext").returns(false);
   const returnedUser = WingsStructUtil.stringify(
     new UserObj({
       id: 10,
@@ -101,7 +101,7 @@ test.serial("Login - Success", async (t) => {
   const genPOST = sinon
     .stub(HTTPReq, "genPOST")
     .resolves(JSON.parse(returnedUser));
-  const wrapper = mount(VNextLogin, newLocalVueAndRouter());
+  const wrapper = mount(vLogin, newLocalVueAndRouter());
   await wrapper.vm.$router.push("/login");
   const routerPush = new routerSpy(wrapper, "push");
   const notify = new notifySpy(wrapper);
@@ -110,7 +110,7 @@ test.serial("Login - Success", async (t) => {
     email: email,
     password: password,
   });
-  await paramNext.restore();
+  await rNext.restore();
   t.true(genPOST.calledOnce, "Called genPOST once");
   t.is(genPOST.args[0][1], "v2/login");
   t.is(

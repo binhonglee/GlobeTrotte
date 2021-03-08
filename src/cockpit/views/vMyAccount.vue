@@ -48,6 +48,8 @@ import UserBasic from "@/wings/UserBasic";
 import UserObj from "@/wings/UserObj";
 import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
+import R from "@/shared/R";
+import E from "@/shared/E";
 
 interface Data {
   user: UserObj;
@@ -86,7 +88,7 @@ export default {
             "info",
           ),
         );
-        await General.genRedirectTo(this.$router, Routes.Landing);
+        await R.genRedirectTo(this, Routes.Landing);
       } else {
         this.$message({
           type: "error",
@@ -97,9 +99,9 @@ export default {
     async save(): Promise<void> {
       const user = new UserBasic({
         id: this.$data.user.ID,
-        name: this.$refs.name.value,
-        email: this.$refs.email.value,
-        bio: this.$refs.bio.value,
+        name: E.getVal(this, "name"),
+        email: E.getVal(this, "email"),
+        bio: E.getVal(this, "bio"),
         confirmed: this.$data.user.details.confirmed,
       });
       const success = await HTTPReq.genPOST(
@@ -123,13 +125,13 @@ export default {
     async logout(): Promise<void> {
       await HTTPReq.genGET(this.$router, "logout");
       localStorage.clear();
-      await General.genRedirectTo(this.$router, Routes.Landing);
+      await R.genRedirectTo(this, Routes.Landing);
     },
     toggleEdit(): void {
       this.$data.edit = !this.$data.edit;
       if (this.$data.edit) {
         this.$nextTick(function () {
-          this.$refs.name.$refs.input.focus();
+          E.get(E.get(this, "name"), "input").focus();
         });
       }
     },
@@ -137,7 +139,7 @@ export default {
   async beforeMount(): Promise<void> {
     this.$data.user = await General.genCurrentUserV2(this.$router);
     if (this.$data.user.ID === -1) {
-      await General.genRedirectTo(this.$router, Routes.Landing);
+      await R.genRedirectTo(this, Routes.Landing);
     }
     this.$data.confirmed = this.$data.user.details.confirmed;
   },
@@ -163,7 +165,6 @@ export default {
 }
 
 .myAccountButtonGroups {
-  margin-top: 20px;
   display: inline-block;
   width: 100%;
   text-align: left;

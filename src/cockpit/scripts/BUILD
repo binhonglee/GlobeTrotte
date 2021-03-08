@@ -23,7 +23,7 @@ ts_run_build(
   ],
 )
 
-ts_run(
+ts_binary(
   name = "gen_report",
   script = "genReport.ts",
   srcs = [
@@ -38,7 +38,7 @@ ts_run(
   deps = ["//:pnpm"],
 )
 
-ts_run(
+ts_binary(
   name = "gen_component",
   script = "genComponent.ts",
   deps = ["//:pnpm"],

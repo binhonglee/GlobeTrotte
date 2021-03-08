@@ -11,6 +11,7 @@ import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import EmailObj from "@/wings/EmailObj";
 import Routes from "@/routes";
+import R from "@/shared/R";
 
 interface Data {
   loading: boolean;
@@ -27,10 +28,14 @@ export default {
     const user = await General.genCurrentUserV2(this.$router);
     if (user.details.confirmed) {
       this.$data.loading = false;
-      await General.genRedirectTo(this.$router, Routes.Landing);
+      await R.genRedirectTo(this, Routes.Landing);
       return;
     }
-    const uuid = General.paramUUID(this);
+    const uuid = General.paramID(this);
+    if (uuid === undefined) {
+      await R.genRedirectTo(this, Routes.unconfirmed_NextEmail);
+      return;
+    }
 
     // PROD: Force confirm email only used for testing
     if (uuid.localeCompare("force-confirm") === 0) {
@@ -39,7 +44,7 @@ export default {
       ) {
         await General.genUpdateCurrentUser(this.$router);
         this.$data.loading = false;
-        await General.genRedirectTo(this.$router, Routes.Landing);
+        await R.genRedirectTo(this, Routes.Landing);
         return;
       }
     }
@@ -67,7 +72,7 @@ export default {
           "success",
         ),
       );
-      await General.genRedirectTo(this.$router, Routes.Landing);
+      await R.genRedirectTo(this, Routes.Landing);
     } else {
       this.$notify(
         General.notifConfig(
@@ -76,7 +81,7 @@ export default {
           "error",
         ),
       );
-      await General.genRedirectTo(this.$router, Routes.unconfirmed_NextEmail);
+      await R.genRedirectTo(this, Routes.unconfirmed_NextEmail);
     }
   },
 };

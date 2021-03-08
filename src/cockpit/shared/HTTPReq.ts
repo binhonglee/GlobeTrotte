@@ -1,7 +1,7 @@
 import Axios, { AxiosRequestConfig, Method } from "axios";
 import VueRouter from "vue-router";
-import General from "./General";
 import Routes from "@/routes";
+import R from "./R";
 
 enum AxMethod {
   POST = "POST",
@@ -65,12 +65,13 @@ export default class HTTPReq {
       const toRet = (await Axios.request(fullURI))["data"];
       const currentPath: string = router.currentRoute.path;
       if (
-        !currentPath.startsWith(Routes.NextRateLimited) &&
+        !currentPath.startsWith(Routes.RateLimited) &&
         toRet === "ratelimited"
       ) {
-        await General.genRedirectTo(
+        // eslint-disable-next-line deprecation/deprecation
+        await R.genRedirect(
           router,
-          General.addNext(Routes.NextRateLimited, router.currentRoute.path),
+          R.addParamNext(Routes.RateLimited, router.currentRoute.path),
         );
         return "";
       }

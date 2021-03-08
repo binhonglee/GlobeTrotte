@@ -1,4 +1,4 @@
-import VNextRegister from "@/views/VNextRegister.vue";
+import vRegister from "@/views/vRegister.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import UserObj from "@/wings/UserObj";
@@ -62,7 +62,7 @@ function fillFormAndReg(
 }
 
 test("Registration - Password mismatch", async (t) => {
-  const wrapper = mount(VNextRegister);
+  const wrapper = mount(vRegister);
   const alert = new alertSpy(wrapper);
   verifyUI(t, wrapper);
   fillFormAndReg(t, wrapper, {
@@ -92,7 +92,7 @@ test.serial("Registration - New user (Failure)", async (t) => {
   const genPOST = sinon
     .stub(HTTPReq, "genPOST")
     .resolves(JSON.parse(returnedUser));
-  const wrapper = mount(VNextRegister);
+  const wrapper = mount(vRegister);
   const message = new messageSpy(wrapper);
   verifyUI(t, wrapper);
   fillFormAndReg(t, wrapper, {
@@ -136,7 +136,7 @@ test.serial("Registration - New user (Success)", async (t) => {
   const genPOST = sinon
     .stub(HTTPReq, "genPOST")
     .resolves(JSON.parse(returnedUser));
-  const wrapper = mount(VNextRegister, newLocalVueAndRouter());
+  const wrapper = mount(vRegister, newLocalVueAndRouter());
   const notify = new notifySpy(wrapper);
   const routerPush = new routerSpy(wrapper, "push");
   verifyUI(t, wrapper);
@@ -165,14 +165,14 @@ test.serial("Registration - New user (Success)", async (t) => {
   t.is(notify.getMessage(), "Your account is created successfully!");
   t.is(notify.getType(), "success");
   t.true(routerPush.item.calledOnce);
-  t.is(routerPush.getArg(), "/unconfirmed/email/:myaccount");
+  t.is(routerPush.getArg(), "/unconfirmed/email/:next=myaccount");
   await genPOST.restore();
   await notify.restore();
   await routerPush.restore();
 });
 
 test("Registration - Cancel", async (t) => {
-  const wrapper = mount(VNextRegister, newLocalVueAndRouter());
+  const wrapper = mount(vRegister, newLocalVueAndRouter());
   const routerBack = new routerSpy(wrapper, "back");
   verifyUI(t, wrapper);
   wrapper.find(".registrationCancel").trigger("click");

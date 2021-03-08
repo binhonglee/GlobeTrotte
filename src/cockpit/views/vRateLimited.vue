@@ -10,13 +10,13 @@
 </template>
 
 <script lang="ts">
-import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
+import R from "@/shared/R";
 
 export default {
   async beforeMount(): Promise<void> {
     if (!(await HTTPReq.genGET(this.$router, "ratelimit"))) {
-      General.toNext(this);
+      await R.paramToNext(this);
     }
   },
 };

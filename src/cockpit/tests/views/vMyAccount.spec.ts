@@ -1,4 +1,4 @@
-import VMyAccount from "@/views/VMyAccount.vue";
+import vMyAccount from "@/views/vMyAccount.vue";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import UserObj from "@/wings/UserObj";
@@ -40,7 +40,7 @@ test.serial.after((t) => {
 
 test.serial("My Account - Delete Account (success)", async (t) => {
   const genDELETE = sinon.stub(HTTPReq, "genDELETE").resolves(true);
-  const wrapper = mount(VMyAccount, newLocalVueAndRouter());
+  const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   wrapper.vm.$router.push("/myaccount");
   const notify = new notifySpy(wrapper);
   const routerPush = new routerSpy(wrapper, "push");
@@ -65,7 +65,7 @@ test.serial("My Account - Delete Account (success)", async (t) => {
 
 test.serial("My Account - Delete Account (failure)", async (t) => {
   const genDELETE = sinon.stub(HTTPReq, "genDELETE").resolves(false);
-  const wrapper = mount(VMyAccount, newLocalVueAndRouter());
+  const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   const message = new messageSpy(wrapper);
   wrapper.find(".myAccountEdit").trigger("click");
   t.true(wrapper.vm.$data.edit);
@@ -82,7 +82,7 @@ test.serial("My Account - Delete Account (failure)", async (t) => {
 
 test.serial("My Account - Logout", async (t) => {
   const genGET = sinon.stub(HTTPReq, "genGET").resolves();
-  const wrapper = mount(VMyAccount, newLocalVueAndRouter());
+  const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   wrapper.vm.$router.push("/myaccount");
   const routerPush = new routerSpy(wrapper, "push");
   wrapper.find(".myAccountLogout").trigger("click");
@@ -96,7 +96,7 @@ test.serial("My Account - Logout", async (t) => {
 
 test.serial("My Account - Save Edit (success)", async (t) => {
   const genPOST = sinon.stub(HTTPReq, "genPOST").resolves(true);
-  const wrapper = mount(VMyAccount, newLocalVueAndRouter());
+  const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   const message = new messageSpy(wrapper);
 
   wrapper.find(".myAccountEdit").trigger("click");
@@ -117,7 +117,7 @@ test.serial("My Account - Save Edit (success)", async (t) => {
 
 test.serial("My Account - Save Edit (failure)", async (t) => {
   const genPOST = sinon.stub(HTTPReq, "genPOST").resolves(false);
-  const wrapper = mount(VMyAccount, newLocalVueAndRouter());
+  const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   const alert = new alertSpy(wrapper);
 
   wrapper.find(".myAccountEdit").trigger("click");

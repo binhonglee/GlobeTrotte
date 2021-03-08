@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import General from "@/shared/General";
+import R from "@/shared/R";
 
 interface Data {
   hasNext: boolean;
@@ -38,7 +38,7 @@ export default {
     };
   },
   beforeMount(): void {
-    this.$data.hasNext = General.paramNext(this) !== "";
+    this.$data.hasNext = R.hasNext(this);
   },
 };
 </script>

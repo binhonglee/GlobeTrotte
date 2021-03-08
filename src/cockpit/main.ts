@@ -6,6 +6,8 @@ import "element-ui/lib/theme-chalk/index.css";
 import App from "./App.vue";
 import General from "./shared/General";
 import router from "./router";
+import routes from "./routes";
+import R from "./shared/R";
 
 Axios.defaults.withCredentials = true;
 
@@ -17,31 +19,31 @@ router.beforeEach(async (to: Route, from: Route, next) => {
     if (General.authSession()) {
       next();
     } else {
-      next(General.addNext("/login", to.path));
+      next(R.addParamNext(routes.Login, to.path));
     }
   } else if (to.matched.some((record) => record.meta.confirmed)) {
     if (General.authSession()) {
       if (General.confirmed()) {
         next();
       } else {
-        next(General.addNext("/unconfirmed/email", to.path));
+        next(R.addParamNext(routes.unconfirmed_Email, to.path));
       }
     } else {
-      next(General.addNext("/login", to.path));
+      next(R.addParamNext(routes.Login, to.path));
     }
   } else if (to.matched.some((record) => record.meta.unconfirmed)) {
     if (General.authSession()) {
       if (General.confirmed()) {
-        next(General.getNext(to.path));
+        next(R.getNext(to));
       } else {
         next();
       }
     } else {
-      next(General.addNext("/login", to.path));
+      next(R.addParamNext(routes.Login, to.path));
     }
   } else if (to.matched.some((record) => record.meta.guest)) {
     if (General.authSession()) {
-      next(General.getNext(to.path));
+      next(R.getNext(to));
     } else {
       next();
     }

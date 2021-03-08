@@ -39,9 +39,6 @@ export default Vue.extend({
       },
     },
   },
-  beforeMount(): void {
-    console.log(this.$props.places);
-  },
 });
 </script>
 

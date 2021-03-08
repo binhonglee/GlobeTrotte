@@ -48,6 +48,8 @@ import NewUser from "@/wings/NewUser";
 import UserObj from "@/wings/UserObj";
 import CEditItem from "@/components/CEditItem.vue";
 import Routes from "@/routes";
+import E from "@/shared/E";
+import R from "@/shared/R";
 
 interface Data {
   loading: boolean;
@@ -66,7 +68,7 @@ export default {
     async confirm(): Promise<void> {
       this.$data.loading = true;
       if (
-        this.$refs.password.value.localeCompare(this.$refs.confPassword.value)
+        E.getVal(this, "password").localeCompare(E.getVal(this, "confPassword"))
       ) {
         this.$alert("Password does not match.", "Fail", {
           confirmButtonText: "OK",
@@ -77,9 +79,9 @@ export default {
 
       const newUser = new NewUser();
       newUser.register({
-        name: this.$refs.name.value,
-        email: this.$refs.email.value,
-        password: this.$refs.password.value,
+        name: E.getVal(this, "name"),
+        email: E.getVal(this, "email"),
+        password: E.getVal(this, "password"),
       });
 
       const res = await HTTPReq.genPOST(
@@ -109,13 +111,14 @@ export default {
         ),
       );
 
-      let next = General.getNext(General.paramNext(this));
+      let next = R.getNext(this.$route);
       if (next === Routes.Landing) {
         next = Routes.MyAccount;
       }
-      General.genRedirectTo(
-        this.$router,
-        General.addNext(Routes.unconfirmed_NextEmail, next),
+
+      await R.genRedirectTo(
+        this,
+        R.addParamNext(Routes.unconfirmed_Email, next),
       );
     },
     cancel(): void {
@@ -124,7 +127,7 @@ export default {
   },
   beforeMount(): void {
     this.$nextTick(function () {
-      this.$refs.name.$refs.input.focus();
+      E.get(E.get(this, "name"), "input").focus();
     });
   },
 };

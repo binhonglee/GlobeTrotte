@@ -7,13 +7,13 @@
 
 export default class Routes {
   public static Landing = "/";
-  public static GetUser = "/user";
-  public static MyAccount = "/myaccount";
-  public static NextLogin = "/login";
-  public static NextRateLimited = "/ratelimited";
-  public static NextRegister = "/register";
-  public static confirm_UuidOnlyEmail = "/confirm/email";
-  public static trip_GetView = "/trip/view";
+  public static confirm_Email = "/confirm/email";
+  public static trip_View = "/trip/view";
   public static trip_New = "/trip/new";
-  public static unconfirmed_NextEmail = "/unconfirmed/email";
+  public static unconfirmed_Email = "/unconfirmed/email";
+  public static User = "/user";
+  public static Login = "/login";
+  public static MyAccount = "/myaccount";
+  public static RateLimited = "/ratelimited";
+  public static Register = "/register";
 }

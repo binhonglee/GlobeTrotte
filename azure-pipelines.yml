@@ -111,8 +111,10 @@ steps:
 - script: ./pleasew work &
   displayName: Run turbine on background
 - script: sleep 1
+- script: ./pleasew test --show_all_output //:_cockpit_cypress#test
+  displayName: Run e2e tests
 - script: ./pleasew test --show_all_output
-  displayName: Test all
+  displayName: Test everything else
 
 - script: ./pleasew report
   displayName: Generate Cockpit Report

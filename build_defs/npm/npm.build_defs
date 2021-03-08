@@ -209,7 +209,7 @@ def npm_run(
     tools = [CONFIG.NPM_TOOL],
   )
 
-def ts_run(
+def ts_binary(
   name:str,
   script:str,
   shell:str="/bin/sh",

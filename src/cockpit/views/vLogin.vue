@@ -41,6 +41,8 @@ import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import UserObj from "@/wings/UserObj";
 import CEditItem from "@/components/CEditItem.vue";
+import E from "@/shared/E";
+import R from "@/shared/R";
 
 interface Data {
   loading: boolean;
@@ -63,8 +65,8 @@ export default {
       const newUser = new NewUser();
       newUser.register({
         name: "",
-        email: this.$refs.email.value,
-        password: this.$refs.password.value,
+        email: E.getVal(this, "email"),
+        password: E.getVal(this, "password"),
       });
 
       const res = await HTTPReq.genPOST(
@@ -88,18 +90,18 @@ export default {
         General.notifConfig("Success", "You are now logged in.", "success"),
       );
 
-      General.toNext(this);
+      await R.paramToNext(this, new Map<string, string>(), true);
     },
     cancel(): void {
       this.$router.back();
     },
   },
   beforeMount(): void {
-    if (General.paramNext(this) !== "") {
+    if (R.hasNext(this)) {
       this.$data.showError = true;
     }
     this.$nextTick(function () {
-      this.$refs.email.$refs.input.focus();
+      E.get(E.get(this, "email"), "input").focus();
     });
   },
 };
