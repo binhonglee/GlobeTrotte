@@ -39,7 +39,7 @@ devDependencies:
   prettier: 2.2.1
   pug: 3.0.2
   pug-plain-loader: 1.1.0_pug@3.0.2
-  puppeteer: 5.5.0
+  puppeteer: 8.0.0
   puppeteer-to-istanbul: 1.4.0
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0_require-extension-hooks@0.3.3
@@ -2968,11 +2968,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-5ImO01Fb8YsEOYpV+aeyGYztcYcjGsBvN4D7G5r1ef2cuQOpymjWNQi5V0rKHE6PC2ru3HkoUr/Br2/8GUA84w==
-  /@types/node/14.14.21:
-    dev: true
-    optional: true
-    resolution:
-      integrity: sha512-cHYfKsnwllYhjOzuC5q1VpguABBeecUp24yFluHpn/BQaVxB1CuQ1FSRZCzrPxrkIfWISXV2LbeoBthLWg0+0A==
   /@types/node/14.14.24:
     dev: true
     resolution:
@@ -3011,7 +3006,7 @@ packages:
       integrity: sha512-7EJYyKTL7tFR8+gDbB6Wwz/arpGa0Mywk1TJbNzKzHtzbwVmY4HR9WqS5VV7dsBUKQmPNr192jHr/VpBluj/hg==
   /@types/yauzl/2.9.1:
     dependencies:
-      '@types/node': 14.14.21
+      '@types/node': 14.14.34
     dev: true
     optional: true
     resolution:
@@ -3336,12 +3331,14 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-LWCF/Wn0nfHOmJ9rzQApGnxnvgfROzGilS8936rqN/lfcYkY9MYZzdMqN+2NJ4SlTc+m5HiSa+kNfDtI64dwUA==
-  /agent-base/5.1.1:
+  /agent-base/6.0.2:
+    dependencies:
+      debug: 4.3.1
     dev: true
     engines:
       node: '>= 6.0.0'
     resolution:
-      integrity: sha512-TMeqbNl2fMW0nMjTEPOwe3J/PRFP4vqeoNuQMG0HlMrtm5QxKqdvAkZ1pRBQ/ulIyDD5Yq0nJ7YbdD8ey0TO3g==
+      integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==
   /aggregate-error/3.1.0:
     dependencies:
       clean-stack: 2.2.0
@@ -5633,10 +5630,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-6SsIx+nUUbuK0EthKjv0zrdnajCCXVYGmbYYiYjFVpzcjwEs/JMDZ8tPRG29J/HhN56t3GJp2cGSWDRjjot8Pg==
-  /devtools-protocol/0.0.818844:
+  /devtools-protocol/0.0.854822:
     dev: true
     resolution:
-      integrity: sha512-AD1hi7iVJ8OD0aMLQU5VK0XH9LDlA1+BcPIgrAxPfaibx2DbWucuyOhc4oyQCbnvDDO68nN6/LcKfqTP343Jjg==
+      integrity: sha512-xd4D8kHQtB0KtWW0c9xBZD5LVtm9chkMOfs/3Yn01RhT/sFIsVtzTtypfKoFfWBaL+7xCYLxjOLkhwPXaX/Kcg==
   /diff/4.0.2:
     dev: true
     engines:
@@ -7266,15 +7263,15 @@ packages:
     dev: true
     resolution:
       integrity: sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
-  /https-proxy-agent/4.0.0:
+  /https-proxy-agent/5.0.0:
     dependencies:
-      agent-base: 5.1.1
+      agent-base: 6.0.2
       debug: 4.3.1
     dev: true
     engines:
-      node: '>= 6.0.0'
+      node: '>= 6'
     resolution:
-      integrity: sha512-zoDhWrkR3of1l9QAL8/scJZyLu8j/gBkcwcaQOZh7Gyh/+uJQzGVETdgT30akuwkpL8HTRfssqI3BZuV18teDg==
+      integrity: sha512-EkYm5BcKUGiduxzSt3Eppko+PiNWNEpa4ySk9vTC6wDsQJW9rHSa+UhGNJoRYp7bz6Ht1eaRIa6QaJqO5rCFbA==
   /human-signals/1.1.1:
     dev: true
     engines:
@@ -10588,12 +10585,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-dzW8u/PMqMZppvoXCFod8IkCTI2JL0yP2YUBbaALnX+iJJ6gqjk77fIoK9MqnMqRZAcoa81GLFfZExakWg/Q4Q==
-  /puppeteer/5.5.0:
+  /puppeteer/8.0.0:
     dependencies:
       debug: 4.3.1
-      devtools-protocol: 0.0.818844
+      devtools-protocol: 0.0.854822
       extract-zip: 2.0.1
-      https-proxy-agent: 4.0.0
+      https-proxy-agent: 5.0.0
       node-fetch: 2.6.1
       pkg-dir: 4.2.0
       progress: 2.0.3
@@ -10601,13 +10598,13 @@ packages:
       rimraf: 3.0.2
       tar-fs: 2.1.1
       unbzip2-stream: 1.4.3
-      ws: 7.4.2
+      ws: 7.4.4
     dev: true
     engines:
       node: '>=10.18.1'
     requiresBuild: true
     resolution:
-      integrity: sha512-OM8ZvTXAhfgFA7wBIIGlPQzvyEETzDjeRa4mZRCRHxYL+GNH5WAuYUQdja3rpWZvkX/JKqmuVgbsxDNsDFjMEg==
+      integrity: sha512-D0RzSWlepeWkxPPdK3xhTcefj8rjah1791GE82Pdjsri49sy11ci/JQsAO8K2NRukqvwEtcI+ImP5F4ZiMvtIQ==
   /purgecss/2.3.0:
     dependencies:
       commander: 5.1.0
@@ -13074,20 +13071,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-GIyAXC2cB7LjvpgMt9EKS2ldqr0MTrORaleiOno6TweZ6r3TKtoFQWay/2PceJ3RuBasOHzXNn5Lrw1X0bEjqA==
-  /ws/7.4.2:
-    dev: true
-    engines:
-      node: '>=8.3.0'
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: ^5.0.2
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-    resolution:
-      integrity: sha512-T4tewALS3+qsrpGI/8dqNMLIVdq/g/85U98HPMa6F0m6xTbvhXU6RCQLqPH3+SlomNV/LdY6RXEbBpMH6EOJnA==
   /ws/7.4.4:
     dev: true
     engines:
@@ -13277,7 +13260,7 @@ specifiers:
   prettier: 2.2.1
   pug: 3.0.2
   pug-plain-loader: 1.1.0
-  puppeteer: 5.5.0
+  puppeteer: 8.0.0
   puppeteer-to-istanbul: 1.4.0
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0
