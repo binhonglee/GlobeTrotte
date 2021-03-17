@@ -50,7 +50,7 @@ devDependencies:
   typescript: 4.2.3
   vue-loader: 15.9.6_vue-template-compiler@2.6.12
   vue-template-compiler: 2.6.12
-  wait-on: 5.2.1
+  wait-on: 5.3.0
 lockfileVersion: 5.2
 packages:
   /@ava/babel/1.0.1:
@@ -12801,11 +12801,11 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-4tzD0mF8iSiMiNs30BiLO3EpfGLZUT2MSX/G+o7ZywDzliWQ3OPtTZ0PTC3B3ca1UAf4cJMHB+2Bf56EriJuRA==
-  /wait-on/5.2.1:
+  /wait-on/5.3.0:
     dependencies:
       axios: 0.21.1
       joi: 17.3.0
-      lodash: 4.17.20
+      lodash: 4.17.21
       minimist: 1.2.5
       rxjs: 6.6.3
     dev: true
@@ -12813,7 +12813,7 @@ packages:
       node: '>=8.9.0'
     hasBin: true
     resolution:
-      integrity: sha512-H2F986kNWMU9hKlI9l/ppO6tN8ZSJd35yBljMLa1/vjzWP++Qh6aXyt77/u7ySJFZQqBtQxnvm/xgG48AObXcw==
+      integrity: sha512-DwrHrnTK+/0QFaB9a8Ol5Lna3k7WvUR4jzSKmz0YaPBpuN2sACyiPVKVfj6ejnjcajAcvn3wlbTyMIn9AZouOg==
   /watchify/3.11.1:
     dependencies:
       anymatch: 2.0.0
@@ -13253,5 +13253,5 @@ specifiers:
   vue-loader: 15.9.6
   vue-router: 3.5.1
   vue-template-compiler: 2.6.12
-  wait-on: 5.2.1
+  wait-on: 5.3.0
   wings-ts-util: 0.0.8
