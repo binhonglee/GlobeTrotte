@@ -45,7 +45,7 @@ devDependencies:
   require-extension-hooks-babel: 1.0.0_require-extension-hooks@0.3.3
   require-extension-hooks-vue: 3.0.0_a27a9a5766e8e0417aae090eff1801a8
   sass-loader: 11.0.1_node-sass@5.0.0
-  sinon: 9.2.4
+  sinon: 10.0.0
   tap-xunit: 2.4.1
   typescript: 4.2.3
   vue-loader: 15.9.6_vue-template-compiler@2.6.12
@@ -9046,7 +9046,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
-  /nise/4.0.4:
+  /nise/4.1.0:
     dependencies:
       '@sinonjs/commons': 1.8.2
       '@sinonjs/fake-timers': 6.0.1
@@ -9055,7 +9055,7 @@ packages:
       path-to-regexp: 1.8.0
     dev: true
     resolution:
-      integrity: sha512-bTTRUNlemx6deJa+ZyoCUTRvH3liK5+N6VQZ4NIw90AgDXY6iPnsqplNFf6STcj+ePk0H/xqxnP75Lr0J0Fq3A==
+      integrity: sha512-eQMEmGN/8arp0xsvGoQ+B1qvSkR73B1nWSCh7nOt5neMCtwcQVYQGdzQMhcNscktTsWB54xnlSQFzOAPJD8nXA==
   /node-addon-api/1.7.2:
     dev: true
     resolution:
@@ -11549,17 +11549,17 @@ packages:
     dev: true
     resolution:
       integrity: sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
-  /sinon/9.2.4:
+  /sinon/10.0.0:
     dependencies:
       '@sinonjs/commons': 1.8.2
       '@sinonjs/fake-timers': 6.0.1
       '@sinonjs/samsam': 5.3.1
       diff: 4.0.2
-      nise: 4.0.4
+      nise: 4.1.0
       supports-color: 7.2.0
     dev: true
     resolution:
-      integrity: sha512-zljcULZQsJxVra28qIAL6ow1Z9tpattkCTEJR4RBP3TGc00FcttsP5pK284Nas5WjMZU5Yzy3kAIp3B3KRf5Yg==
+      integrity: sha512-XAn5DxtGVJBlBWYrcYKEhWCz7FLwZGdyvANRyK06419hyEpdT0dMc5A8Vcxg5SCGHc40CsqoKsc1bt1CbJPfNw==
   /slash/3.0.0:
     dev: true
     engines:
@@ -13362,7 +13362,7 @@ specifiers:
   require-extension-hooks-babel: 1.0.0
   require-extension-hooks-vue: 3.0.0
   sass-loader: 11.0.1
-  sinon: 9.2.4
+  sinon: 10.0.0
   tap-xunit: 2.4.1
   typescript: 4.2.3
   vue: 2.6.12
