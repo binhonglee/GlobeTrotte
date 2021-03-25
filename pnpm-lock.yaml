@@ -12,7 +12,7 @@ devDependencies:
   '@babel/preset-env': 7.13.12_@babel+core@7.13.10
   '@babel/preset-typescript': 7.13.0_@babel+core@7.13.10
   '@cypress/code-coverage': 3.9.2_cypress@6.8.0
-  '@types/node': 14.14.35
+  '@types/node': 14.14.36
   '@types/puppeteer': 5.4.3
   '@types/sinon': 9.0.11
   '@typescript-eslint/eslint-plugin': 4.19.0_f26dcf5ec38a04241b14c26bc931244e
@@ -3088,10 +3088,10 @@ packages:
     optional: true
     resolution:
       integrity: sha512-dBPaxocOK6UVyvhbnpFIj2W+S+1cBTkHQbFQfeeJhoKFbzYcVUGHvddeWPSucKATb3F0+pgDq0i6ghEaZjsugA==
-  /@types/node/14.14.35:
+  /@types/node/14.14.36:
     dev: true
     resolution:
-      integrity: sha512-Lt+wj8NVPx0zUmUwumiVXapmaLUcAk3yPuHCFVXras9k5VT9TdhJqKqGVUQCD60OTMCl0qxJ57OiTL0Mic3Iag==
+      integrity: sha512-kjivUwDJfIjngzbhooRnOLhGYz6oRFi+L+EpMjxroDYXwDw9lHrJJ43E+dJ6KAd3V3WxWAJ/qZE9XKYHhjPOFQ==
   /@types/normalize-package-data/2.4.0:
     dev: true
     resolution:
@@ -13327,7 +13327,7 @@ specifiers:
   '@babel/preset-env': 7.13.12
   '@babel/preset-typescript': 7.13.0
   '@cypress/code-coverage': 3.9.2
-  '@types/node': 14.14.35
+  '@types/node': 14.14.36
   '@types/puppeteer': 5.4.3
   '@types/sinon': 9.0.11
   '@typescript-eslint/eslint-plugin': 4.19.0
