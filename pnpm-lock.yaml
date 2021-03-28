@@ -31,8 +31,8 @@ devDependencies:
   eslint-plugin-prettier: 3.3.1_eslint@7.23.0+prettier@2.2.1
   eslint-plugin-vue: 7.8.0_eslint@7.23.0
   forever: 3.0.4
-  jsdom: 16.5.1
-  jsdom-global: 3.0.2_jsdom@16.5.1
+  jsdom: 16.5.2
+  jsdom-global: 3.0.2_jsdom@16.5.2
   node-sass: 5.0.0
   nyc: 15.1.0
   parcel-bundler: 1.12.5
@@ -6235,7 +6235,7 @@ packages:
     dependencies:
       abab: 2.0.5
       whatwg-mimetype: 2.3.0
-      whatwg-url: 8.4.0
+      whatwg-url: 8.5.0
     dev: true
     engines:
       node: '>=10'
@@ -8891,9 +8891,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
-  /jsdom-global/3.0.2_jsdom@16.5.1:
+  /jsdom-global/3.0.2_jsdom@16.5.2:
     dependencies:
-      jsdom: 16.5.1
+      jsdom: 16.5.2
     dev: true
     peerDependencies:
       jsdom: '>=10.0.0'
@@ -8932,7 +8932,7 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-O901mfJSuTdwU2w3Sn+74T+RnDVP+FuV5fH8tcPWyqrseRAb0s5xOtPgCFiPOtLcyK7CLIJwPyD83ZqQWvA5ng==
-  /jsdom/16.5.1:
+  /jsdom/16.5.2:
     dependencies:
       abab: 2.0.5
       acorn: 8.1.0
@@ -8957,7 +8957,7 @@ packages:
       webidl-conversions: 6.1.0
       whatwg-encoding: 1.0.5
       whatwg-mimetype: 2.3.0
-      whatwg-url: 8.4.0
+      whatwg-url: 8.5.0
       ws: 7.4.4
       xml-name-validator: 3.0.0
     dev: true
@@ -8969,7 +8969,7 @@ packages:
       canvas:
         optional: true
     resolution:
-      integrity: sha512-pF73EOsJgwZekbDHEY5VO/yKXUkab/DuvrQB/ANVizbr6UAHJsDdHXuotZYwkJSGQl1JM+ivXaqY+XBDDL4TiA==
+      integrity: sha512-JxNtPt9C1ut85boCbJmffaQ06NBnzkQY/MWO3YxPW8IWS38A26z+B1oBvA9LwKrytewdfymnhi4UNH3/RAgZrg==
   /jsesc/0.5.0:
     dev: true
     hasBin: true
@@ -13758,16 +13758,16 @@ packages:
     dev: true
     resolution:
       integrity: sha512-WUu7Rg1DroM7oQvGWfOiAK21n74Gg+T4elXEQYkOhtyLeWiJFoOGLXPKI/9gzIie9CtwVLm8wtw6YJdKyxSjeg==
-  /whatwg-url/8.4.0:
+  /whatwg-url/8.5.0:
     dependencies:
-      lodash.sortby: 4.7.0
+      lodash: 4.17.21
       tr46: 2.0.2
       webidl-conversions: 6.1.0
     dev: true
     engines:
       node: '>=10'
     resolution:
-      integrity: sha512-vwTUFf6V4zhcPkWp/4CQPr1TW9Ml6SF4lVyaIMBdJw5i6qUUJ1QWM4Z6YYVkfka0OUIzVo/0aNtGVGk256IKWw==
+      integrity: sha512-fy+R77xWv0AiqfLl4nuGUlQ3/6b5uNfQ4WAbGQVMYshCTCCPK9psC1nWh3XHuxGVCtlcDDQPQW1csmmIQo+fwg==
   /which-module/2.0.0:
     dev: true
     resolution:
@@ -14117,7 +14117,7 @@ specifiers:
   eslint-plugin-prettier: 3.3.1
   eslint-plugin-vue: 7.8.0
   forever: 3.0.4
-  jsdom: 16.5.1
+  jsdom: 16.5.2
   jsdom-global: 3.0.2
   node-sass: 5.0.0
   nyc: 15.1.0
