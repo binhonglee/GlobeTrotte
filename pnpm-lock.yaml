@@ -7,7 +7,7 @@ specifiers:
   '@babel/plugin-transform-typescript': 7.13.0
   '@babel/preset-env': 7.13.15
   '@babel/preset-typescript': 7.13.0
-  '@cypress/code-coverage': 3.9.4
+  '@cypress/code-coverage': 3.9.5
   '@types/node': 14.14.42
   '@types/puppeteer': 5.4.3
   '@types/sinon': 10.0.0
@@ -67,7 +67,7 @@ devDependencies:
   '@babel/plugin-transform-typescript': 7.13.0_@babel+core@7.13.16
   '@babel/preset-env': 7.13.15_@babel+core@7.13.16
   '@babel/preset-typescript': 7.13.0_@babel+core@7.13.16
-  '@cypress/code-coverage': 3.9.4_cypress@6.8.0
+  '@cypress/code-coverage': 3.9.5_cypress@6.8.0
   '@types/node': 14.14.42
   '@types/puppeteer': 5.4.3
   '@types/sinon': 10.0.0
@@ -2633,12 +2633,13 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/code-coverage/3.9.4_cypress@6.8.0:
-    resolution: {integrity: sha512-mFUl1MmfqeQe08eONKnAv9uWXRVW2RprqaYf3lJkI5tEhEAP+I9zB+cmjQWKe15vfmadKxqaLStVNYLM0rpYGA==}
+  /@cypress/code-coverage/3.9.5_cypress@6.8.0:
+    resolution: {integrity: sha512-hdABt7EWvLHyfxwrrJkK4gWjBcEE+aTTHm5VgSkHjeIoE9G4rZtS4Zesa9PYbm9r2e7FPYA+ROPER9oMgRKDQg==}
     peerDependencies:
       cypress: '*'
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.1
+      chalk: 4.1.1
       cypress: 6.8.0
       dayjs: 1.10.4
       debug: 4.3.1
