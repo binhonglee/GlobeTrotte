@@ -3,11 +3,12 @@ package router
 import (
 	"net/http"
 
+	"golang.org/x/crypto/bcrypt"
+
 	db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
-	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/user"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
-	bcrypt "golang.org/x/crypto/bcrypt"
 )
 
 func addUserObj(res http.ResponseWriter, req *http.Request) {
@@ -22,7 +23,10 @@ func addUserObj(res http.ResponseWriter, req *http.Request) {
 	hash, err :=
 		bcrypt.GenerateFromPassword([]byte(item.Password), 14)
 	if err != nil || !ok {
-		logger.Err(logger.Router, err, "Password hashing failed or wrong email format")
+		logger.Err(
+			logger.Router, err,
+			"Password hashing failed or wrong email format",
+		)
 		respond(res, user.DummyUserObj())
 		return
 	}

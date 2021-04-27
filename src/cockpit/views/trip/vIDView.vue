@@ -61,14 +61,14 @@ export default {
       }
 
       this.$notify(General.notifConfig("Error", "Trip not found.", "error"));
-      await R.genRedirectTo(this, Routes.trip_GetView);
+      await R.genRedirectTo(this, Routes.trip_View);
     },
     gotoTrip(): void {
       const id: number = parseInt(this.$data.inputID, 10);
       if (String(id) !== this.$data.inputID) {
         alert("Invalid number");
       } else if (this.$route.params.id !== this.$data.inputID) {
-        R.genRedirectTo(this, Routes.trip_GetView + "/" + id);
+        R.genRedirectTo(this, Routes.trip_View + "/" + id);
       }
     },
   },

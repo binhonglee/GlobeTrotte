@@ -77,11 +77,24 @@ export default {
         return;
       }
 
+      const name = E.getVal(this, "name").trim();
+      const email = E.getVal(this, "email").trim();
+      const password = E.getVal(this, "password").trim();
+
+      if (name.length < 1 || email.length < 1 || password.length < 1) {
+        this.$data.loading = false;
+        this.$message({
+          message: "Missing input. Please try again.",
+          type: "error",
+        });
+        return;
+      }
+
       const newUser = new NewUser();
       newUser.register({
-        name: E.getVal(this, "name"),
-        email: E.getVal(this, "email"),
-        password: E.getVal(this, "password"),
+        name: name,
+        email: email,
+        password: password,
       });
 
       const res = await HTTPReq.genPOST(

@@ -24,7 +24,7 @@ cmd = run "//:serve"
 cmd = run "//src/turbine:main"
 
 [Alias "lint"]
-cmd = test "//:_all#lint"
+cmd = run "//:lint_all"
 
 [Go]
 ImportPath = github.com/binhonglee/GlobeTrotte

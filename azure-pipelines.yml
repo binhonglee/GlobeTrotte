@@ -49,7 +49,7 @@ steps:
 - task: GoTool@0
   inputs:
     version: $(goVersion)
-- task: NodeTool@0 
+- task: NodeTool@0
   inputs:
     versionSpec: $(nodeVersion)
 
@@ -105,6 +105,9 @@ steps:
 
 - script: ./pleasew build --show_all_output //...
   displayName: Build all
+
+- script: ./pleasew lint
+  displayName: Lint changes
 
 - script: ./pleasew cover --show_all_output //src/turbine/...
   displayName: Test turbine (with coverage)

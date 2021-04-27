@@ -51,3 +51,8 @@ go_get(
   name = "rate",
   get = "golang.org/x/time/rate",
 )
+
+go_get(
+  name = "cache",
+  get =  "zgo.at/zcache",
+)

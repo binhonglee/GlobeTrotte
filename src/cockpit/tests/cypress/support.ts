@@ -2,6 +2,7 @@ import "@cypress/code-coverage/support";
 
 Cypress.Commands.add("registration", (email, password, confPassword) => {
   cy.url().should("include", "/register");
+  cy.get(".registrationName").type("Test User (should not exist in prod)");
   cy.get(".registrationEmail").type(email);
   cy.get(".registrationPassword").type(password);
   cy.get(".registrationConfPassword").type(confPassword);

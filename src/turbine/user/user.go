@@ -74,10 +74,15 @@ func DeleteUserObj(toDelete wings.UserBasic, self int) bool {
 	return database.DeleteUserDBWithID(toDelete.ID)
 }
 
+// Deprecated: This bypasses proper privacy checks.
+func GetUserObjWithEmail(email string) UserObj {
+	id := database.GetUserIDDBWithEmail(email)
+	return GetUserObj(database.GetUserIDDBWithEmail(email), id)
+}
+
 func same(a wings.UserBasic, b wings.UserBasic) bool {
 	return a.ID == b.ID &&
 		a.Name == b.Name &&
 		a.Email == b.Email &&
-		a.Bio == b.Bio &&
-		a.Confirmed == b.Confirmed
+		a.Bio == b.Bio
 }

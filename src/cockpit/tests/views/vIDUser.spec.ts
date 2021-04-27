@@ -31,7 +31,7 @@ test.serial("Get User - Has user (self)", async (t) => {
   t.true(isSelf.calledOnce);
   t.is(isSelf.args[0][0], 10);
   t.true(routerPush.item.calledOnce);
-  t.is(routerPush.getArg(), "/myaccount");
+  t.is(routerPush.getArg(), "/myaccount/");
   t.true(genUser.calledOnce);
   await genUser.restore();
   await isSelf.restore();

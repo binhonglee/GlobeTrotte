@@ -12,24 +12,6 @@ export default class General {
     return v.$route.params["id"];
   }
 
-  public static paramNext(v: Vue): string {
-    /* istanbul ignore next: $route is a pain to mock, using this as a workaround for testing */
-    try {
-      return v.$route.params["path"] ?? "";
-    } catch (_) {
-      return "";
-    }
-  }
-
-  public static paramUUID(v: Vue): string {
-    /* istanbul ignore next: $route is a pain to mock, using this as a workaround for testing */
-    try {
-      return v.$route.params.uuid ?? "";
-    } catch (_) {
-      return "";
-    }
-  }
-
   public static notifConfig(
     title: string,
     message: string,
@@ -63,7 +45,7 @@ export default class General {
   }
 
   public static getIsCurrentUser(id: number): boolean {
-    return this.getCurrentUserV2().ID === id;
+    return this.getCurrentUser().ID === id;
   }
 
   public static async genUpdateCurrentUser(router: VueRouter): Promise<void> {
@@ -78,10 +60,10 @@ export default class General {
       localStorage.setItem("userobj", WingsStructUtil.stringify(user));
     }
 
-    return this.getCurrentUserV2();
+    return this.getCurrentUser();
   }
 
-  private static getCurrentUserV2(): UserObj {
+  private static getCurrentUser(): UserObj {
     const user = localStorage.getItem("userobj");
     if (user !== null) {
       return new UserObj(JSON.parse(user));
@@ -91,10 +73,10 @@ export default class General {
   }
 
   public static authSession(): boolean {
-    return this.getCurrentUserV2().ID !== -1;
+    return this.getCurrentUser().ID !== -1;
   }
 
   public static confirmed(): boolean {
-    return this.getCurrentUserV2().details.confirmed.valueOf();
+    return this.getCurrentUser().details.confirmed.valueOf();
   }
 }

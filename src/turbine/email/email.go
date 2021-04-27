@@ -12,7 +12,6 @@ import (
 
 	db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
-	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 )
 
 const (
@@ -99,26 +98,12 @@ func init() {
 	logger.Success(logger.Email, "Email config is found and successfully setup.")
 }
 
-func NewEmail(userid int, emailAddress string) bool {
-	uuid := db.AddEmailDB(userid, emailAddress)
-	if uuid == "" {
-		return false
-	}
-
-	if !hasConfig || strings.HasSuffix(emailAddress, "@globetrotte.com") {
-		logger.Print(
-			logger.Email, "Email config not set. Skip sending email...",
-		)
-		return true
-	}
-	html := `<p>Click <a href="` +
-		"https://globetrotte.com/confirm/email/" + uuid +
-		`">here</a> to confirm your GlobeTrotte account email</p>`
+func SendEmail(subject string, content string, emailAddress string) bool {
 	e := &sendEmail.Email{
 		To:      []string{emailAddress},
 		From:    "GlobeTrotte <" + address + ">",
-		Subject: "Confirm your GlobeTrotte email",
-		HTML:    []byte(html),
+		Subject: subject,
+		HTML:    []byte(content),
 	}
 	err := e.Send(
 		host+":"+port,
@@ -140,6 +125,25 @@ func NewEmail(userid int, emailAddress string) bool {
 	return true
 }
 
+func NewEmail(userid int, emailAddress string) bool {
+	uuid := db.AddEmailDB(userid, emailAddress)
+	if uuid == "" {
+		return false
+	}
+
+	if !hasConfig || strings.HasSuffix(emailAddress, "@globetrotte.com") {
+		logger.Print(
+			logger.Email, "Email config not set. Skip sending email...",
+		)
+		return true
+	}
+	html := `<p>Click <a href="` +
+		"https://globetrotte.com/confirm/email/" + uuid +
+		`">here</a> to confirm your GlobeTrotte account email</p>`
+
+	return SendEmail("Confirm your GlobeTrotte email", html, emailAddress)
+}
+
 func ConfirmEmail(confirmation EmailObj) bool {
 	var email emailItem
 	email.id, email.userID, email.emailAddress,
@@ -150,8 +154,8 @@ func ConfirmEmail(confirmation EmailObj) bool {
 		return false
 	}
 
-	user, ok := db.GetUserDB(email.userID, -1).(*wings.User)
-	if !ok || user.ID == -1 || user.Email != confirmation.Email {
+	user := db.GetUserBasicDBWithID(email.userID)
+	if user.ID == -1 || user.Email != confirmation.Email {
 		return false
 	}
 

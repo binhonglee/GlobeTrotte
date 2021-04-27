@@ -32,6 +32,8 @@
         type="default"
         v-on:click="cancel"
       ) Cancel
+    p.forgotPassword
+      a(:href="resetLink") Forgot Password?
 </template>
 
 <script lang="ts">
@@ -43,10 +45,12 @@ import UserObj from "@/wings/UserObj";
 import CEditItem from "@/components/CEditItem.vue";
 import E from "@/shared/E";
 import R from "@/shared/R";
+import Routes from "@/routes";
 
 interface Data {
   loading: boolean;
   showError: boolean;
+  resetLink: string;
 }
 
 export default {
@@ -54,6 +58,7 @@ export default {
     return {
       loading: false,
       showError: false,
+      resetLink: Routes.password_Reset,
     };
   },
   components: {
@@ -120,5 +125,9 @@ export default {
 
 .loginConfirm {
   @include left_col($p-height);
+}
+
+.forgotPassword {
+  text-align: right;
 }
 </style>

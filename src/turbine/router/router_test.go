@@ -51,6 +51,9 @@ func addTest(
 func get(path string, t *testing.T, expectedCode int) *httptest.ResponseRecorder {
 	res := httptest.NewRecorder()
 	req, _ := http.NewRequest("GET", API_PREFIX+path, nil)
+	if cookies != nil {
+		req.AddCookie(cookies)
+	}
 	NewRouter().ServeHTTP(res, req)
 	if res.Code != expectedCode {
 		t.Errorf("getTest(), expected code " +
@@ -98,6 +101,7 @@ func updateTest(
 	path string,
 	t *testing.T,
 	toAdd structs.IStructs,
+	objType interface{},
 	expectedCode int,
 ) {
 	res := httptest.NewRecorder()
@@ -111,6 +115,9 @@ func updateTest(
 		req.AddCookie(cookies)
 	}
 	NewRouter().ServeHTTP(res, req)
+	data, _ = ioutil.ReadAll(res.Body)
+	json.Unmarshal(data, objType)
+
 	if res.Code != expectedCode {
 		t.Errorf("updateTest(), expected code " +
 			strconv.Itoa(expectedCode) + " but received " +
@@ -119,14 +126,23 @@ func updateTest(
 	}
 }
 
-func deleteTest(path string, t *testing.T, expectedCode int) {
+func deleteTest(path string, t *testing.T, toDelete interface{}) bool {
 	res := httptest.NewRecorder()
-	req, _ := http.NewRequest("POST", API_PREFIX+"/del"+path, nil)
+	data, _ := json.Marshal(toDelete)
+	req, _ := http.NewRequest("POST", API_PREFIX+"/del"+path, bytes.NewBuffer(data))
 	if cookies != nil {
 		req.AddCookie(cookies)
 	}
 	NewRouter().ServeHTTP(res, req)
-	if res.Code != expectedCode {
-		t.Errorf("deleteTest(), expected code " + strconv.Itoa(expectedCode) + " but received " + strconv.Itoa(res.Code) + " instead.")
+
+	var success bool
+	data, _ = ioutil.ReadAll(res.Body)
+	json.Unmarshal(data, &success)
+	if res.Code != http.StatusOK {
+		t.Errorf(
+			"deleteTest(), expected code " + strconv.Itoa(http.StatusOK) +
+				" but received " + strconv.Itoa(res.Code) + " instead.",
+		)
 	}
+	return success
 }

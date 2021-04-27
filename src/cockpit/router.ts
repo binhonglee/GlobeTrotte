@@ -15,18 +15,18 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "/",
-      name: "landing",
-      component: () => import("./views/vLanding.vue"),
-    },
-    {
       path: "*",
       name: "404",
       component: () => import("./views/v404.vue"),
     },
     {
+      path: "/",
+      name: "landing",
+      component: () => import("./views/vLanding.vue"),
+    },
+    {
       path: "/confirm/email",
-      name: "confirm/Email",
+      name: "confirm/EmailIndex",
       component: () => import("./views/confirm/vIDEmail.vue"),
     },
     {
@@ -40,8 +40,18 @@ export default new Router({
       component: () => import("./views/confirm/vIDEmail.vue"),
     },
     {
+      path: "/password/reset",
+      name: "password/Reset",
+      component: () => import("./views/password/vReset.vue"),
+    },
+    {
+      path: "/password/reset/:params",
+      name: "password/ResetParams",
+      component: () => import("./views/password/vReset.vue"),
+    },
+    {
       path: "/trip/view",
-      name: "trip/View",
+      name: "trip/ViewIndex",
       component: () => import("./views/trip/vIDView.vue"),
     },
     {
@@ -79,7 +89,7 @@ export default new Router({
     },
     {
       path: "/user",
-      name: "User",
+      name: "UserIndex",
       component: () => import("./views/vIDUser.vue"),
     },
     {
@@ -124,6 +134,16 @@ export default new Router({
       path: "/ratelimited/:params",
       name: "RateLimitedParams",
       component: () => import("./views/vRateLimited.vue"),
+    },
+    {
+      path: "/refresh",
+      name: "Refresh",
+      component: () => import("./views/vRefresh.vue"),
+    },
+    {
+      path: "/refresh/:params",
+      name: "RefreshParams",
+      component: () => import("./views/vRefresh.vue"),
     },
     {
       path: "/register",

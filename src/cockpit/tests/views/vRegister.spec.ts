@@ -165,7 +165,7 @@ test.serial("Registration - New user (Success)", async (t) => {
   t.is(notify.getMessage(), "Your account is created successfully!");
   t.is(notify.getType(), "success");
   t.true(routerPush.item.calledOnce);
-  t.is(routerPush.getArg(), "/unconfirmed/email/:next=myaccount");
+  t.is(routerPush.getArg(), "/unconfirmed/email/:next=myaccount/");
   await genPOST.restore();
   await notify.restore();
   await routerPush.restore();

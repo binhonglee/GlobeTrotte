@@ -24,6 +24,6 @@
   ],
   "exclude": [
     "node_modules",
-    "src/cockpit/tests/cypress/**/*",
+    "src/cockpit/tests/cypress/**/*"
   ]
 }

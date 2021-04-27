@@ -68,7 +68,7 @@ export default {
       user: new UserObj(),
       edit: false,
       confirmed: true,
-      unconfirmedLink: Routes.unconfirmed_NextEmail,
+      unconfirmedLink: Routes.unconfirmed_Email,
     };
   },
   methods: {
@@ -165,6 +165,7 @@ export default {
 }
 
 .myAccountButtonGroups {
+  margin-top: 10px;
   display: inline-block;
   width: 100%;
   text-align: left;

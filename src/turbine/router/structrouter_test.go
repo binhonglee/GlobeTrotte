@@ -6,12 +6,13 @@ import (
 	"strings"
 	"testing"
 
-	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
-	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/trip"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/user"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 )
 
-var addedTrip wings.Trip
-var addedUser wings.User
+var addedTrip trip.TripObj
+var addedUser user.UserObj
 var cookies *http.Cookie
 
 func TestAddInvalidEmailUser(t *testing.T) {
@@ -20,8 +21,8 @@ func TestAddInvalidEmailUser(t *testing.T) {
 		Password: "shouldReplaceThisWithRand",
 	}
 
-	var returned *wings.User
-	addTest("/user", t, &newUser, &returned, true)
+	var returned *user.UserObj
+	addTest("/v2/user", t, &newUser, &returned, true)
 	if returned.ID != -1 {
 		t.Errorf(
 			"Returned ID is expected to be -1 (indicating failure) but was %v.",
@@ -36,33 +37,33 @@ func TestAddUser(t *testing.T) {
 		Password: "shouldReplaceThisWithRand",
 	}
 
-	var returned *wings.User
-	addTest("/user", t, &newUser, &returned, true)
+	var returned *user.UserObj
+	addTest("/v2/user", t, &newUser, &returned, true)
 	addedUser = *returned
 
 	if returned.GetID() == -1 {
 		t.Errorf("User failed to add.")
 	}
 
-	if returned.Email != newUser.Email {
+	if returned.Details.Email != newUser.Email {
 		t.Errorf(
 			"Sent Email is %v but returned Email is %v.",
 			newUser.Email,
-			returned.Email,
+			returned.Details.Email,
 		)
 	}
 }
 
 func TestGetUser(t *testing.T) {
-	var returned *wings.User
+	var returned *user.UserObj
 	getTest(
-		"/user/"+strconv.Itoa(addedUser.GetID()),
+		"/v2/user/"+strconv.Itoa(addedUser.GetID()),
 		t,
 		&returned,
 		http.StatusOK,
 	)
 
-	if _, diff := structs.CompareUser(addedUser, *returned); len(diff) > 0 {
+	if _, diff := user.CompareUserObj(addedUser, *returned); len(diff) > 0 {
 		t.Errorf(
 			"The followings fields does not match:\n%v",
 			strings.Join(diff, ", "),
@@ -89,8 +90,7 @@ func TestCorrectPasswordLogin(t *testing.T) {
 }
 
 func TestAddTrip(t *testing.T) {
-	var newTrip = wings.Trip{
-		UserID: addedUser.ID,
+	var newTrip = wings.TripBasic{
 		Name:   "TestUser",
 		Cities: []wings.City{wings.SanFranciscoCAUS},
 		Days: []wings.Day{
@@ -102,11 +102,13 @@ func TestAddTrip(t *testing.T) {
 		Description: "Description",
 	}
 
-	var returned *wings.Trip
-	addTest("/trip", t, &newTrip, &returned, true)
+	var returned *trip.TripObj
+	addTest("/v2/trip", t, &newTrip, &returned, true)
 	addedTrip = *returned
 
-	if _, diff := removeIDFromArray(structs.CompareTrips(newTrip, *returned)); len(diff) > 1 {
+	if _, diff := removeIDFromArray(
+		trip.CompareTripBasic(newTrip, returned.Details),
+	); len(diff) > 1 {
 		t.Errorf(
 			"The followings fields does not match:\n%v",
 			strings.Join(diff, ", "),
@@ -115,10 +117,12 @@ func TestAddTrip(t *testing.T) {
 }
 
 func TestGetTrip(t *testing.T) {
-	var returned *wings.Trip
-	getTest("/trip/"+strconv.Itoa(addedTrip.GetID()), t, &returned, http.StatusOK)
+	var returned *trip.TripObj
+	getTest("/v2/trip/"+strconv.Itoa(
+		addedTrip.GetID()), t, &returned, http.StatusOK,
+	)
 
-	if _, diff := structs.CompareTrips(addedTrip, *returned); len(diff) > 0 {
+	if _, diff := trip.CompareTripObj(addedTrip, *returned); len(diff) > 0 {
 		t.Errorf(
 			"The followings fields does not match:\n%v",
 			strings.Join(diff, ", "),
@@ -127,24 +131,24 @@ func TestGetTrip(t *testing.T) {
 }
 
 func TestGetNonExistentTrip(t *testing.T) {
-	var returned *wings.Trip
-	getTest("/trip/"+strconv.Itoa(-1), t, &returned, http.StatusOK)
+	var returned *trip.TripObj
+	getTest("/v2/trip/"+strconv.Itoa(-1), t, &returned, http.StatusOK)
+
+	if returned.ID > 0 {
+		t.Errorf("Getting non-existent trip somehow does not return DummyTripObj.")
+	}
 }
 
 func TestUpdateTrip(t *testing.T) {
-	var returned *wings.Trip
-	addedTrip.Description = "Updated description"
+	var returned *trip.TripObj
+	addedTrip.Details.Description = "Updated description"
 
 	updateTest(
-		"/trip/", t,
-		&addedTrip, http.StatusAccepted,
-	)
-	getTest(
-		"/trip/"+strconv.Itoa(addedTrip.ID), t,
-		&returned, http.StatusOK,
+		"/v2/trip/", t,
+		&addedTrip, &returned, http.StatusOK,
 	)
 
-	if _, diff := structs.CompareTrips(addedTrip, *returned); len(diff) > 0 {
+	if _, diff := trip.CompareTripObj(addedTrip, *returned); len(diff) > 0 {
 		t.Errorf(
 			"The followings fields does not match:\n%v",
 			strings.Join(diff, ", "),
@@ -153,19 +157,16 @@ func TestUpdateTrip(t *testing.T) {
 }
 
 func TestUpdateUser(t *testing.T) {
-	var returned *wings.User
-	addedUser.Name = "My NewName"
+	var returned *user.UserObj
+	addedUser.Details.Name = "My NewName"
+	addedUser.Details.ID = addedUser.ID
 
 	updateTest(
-		"/user/", t,
-		&addedUser, http.StatusAccepted,
-	)
-	getTest(
-		"/user/"+strconv.Itoa(addedUser.ID), t,
-		&returned, http.StatusOK,
+		"/v2/user/", t,
+		&addedUser.Details, &returned, http.StatusOK,
 	)
 
-	if _, diff := structs.CompareUser(addedUser, *returned); len(diff) > 0 {
+	if _, diff := user.CompareUserObj(addedUser, *returned); len(diff) > 0 {
 		t.Errorf(
 			"The followings fields does not match:\n%v",
 			strings.Join(diff, ", "),
@@ -174,25 +175,51 @@ func TestUpdateUser(t *testing.T) {
 }
 
 func TestDeleteTrip(t *testing.T) {
-	deleteTest("/trip/"+strconv.Itoa(addedTrip.GetID()), t, http.StatusOK)
+	if !deleteTest(
+		"/v2/trip/"+strconv.Itoa(addedTrip.GetID()),
+		t, addedTrip,
+	) {
+		t.Errorf(
+			"TestDeleteTrip, unable to delete trip.",
+		)
+	}
 }
 
 func TestDeleteNonExistentTrip(t *testing.T) {
-	deleteTest("/trip/"+strconv.Itoa(-1), t, http.StatusForbidden)
+	if deleteTest(
+		"/v2/trip/"+strconv.Itoa(-1),
+		t, trip.DummyTripObj(),
+	) {
+		t.Errorf(
+			"TestDeleteNonExistentTrip, non existent trip deletion should return false.",
+		)
+	}
 }
 
 func TestDeleteUser(t *testing.T) {
-	deleteTest("/user/"+strconv.Itoa(addedUser.GetID()), t, http.StatusOK)
+	if !deleteTest(
+		"/v2/user/"+strconv.Itoa(addedUser.GetID()),
+		t, addedUser.Details,
+	) {
+		t.Errorf(
+			"TestDeleteUser, unable to delete user.",
+		)
+	}
 }
 
 func TestDeleteNonExistentUser(t *testing.T) {
-	deleteTest("/user/"+strconv.Itoa(-1), t, http.StatusForbidden)
+	if deleteTest(
+		"/v2/user/"+strconv.Itoa(-1),
+		t, user.DummyUserObj().Details,
+	) {
+		t.Errorf(
+			"TestDeleteNonExistentUser, non existent user deletion should return false.",
+		)
+	}
 }
 
 func TestLogout(t *testing.T) {
-	get(
-		"/logout", t, http.StatusOK,
-	)
+	get("/logout", t, http.StatusOK)
 }
 
 func removeIDFromArray(status bool, arr []string) (bool, []string) {

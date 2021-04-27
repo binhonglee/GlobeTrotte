@@ -2,6 +2,7 @@ go_library(
   name = "trip",
   srcs = [
     "trip.go",
+    "comparators.go",
     "//src/wings/struct:trip_obj",
   ],
   deps = [

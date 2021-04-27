@@ -1,7 +1,7 @@
 package structs
 
 import (
-	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 )
 
 func CompareTrips(t1 wings.Trip, t2 wings.Trip) (bool, []string) {

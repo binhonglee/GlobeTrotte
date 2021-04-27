@@ -24,10 +24,15 @@ func init() {
 	config := getConfig()
 
 	var port int
-	if parsePort, err := strconv.Atoi(strings.TrimSpace(config["port"])); err == nil {
+	if parsePort, err := strconv.Atoi(
+		strings.TrimSpace(config["port"]),
+	); err == nil {
 		port = parsePort
 	} else {
-		logger.Panic(logger.Database, "Invalid port format: "+strings.TrimSpace(config["port"]))
+		logger.Panic(
+			logger.Database,
+			"Invalid port format: "+strings.TrimSpace(config["port"]),
+		)
 	}
 
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
@@ -73,7 +78,10 @@ func initializeDB() {
 			case "emails":
 				createEmailsTable()
 			default:
-				logger.Panic(logger.Database, "New element was added to 'tableNames' but no creation method is added for it.")
+				logger.Panic(
+					logger.Database,
+					"New element was added to 'tableNames' but no creation method is added for it.",
+				)
 			}
 
 			logger.Print(logger.Database, element+" table created successfully.")

@@ -2,6 +2,7 @@ go_library(
   name = "user",
   srcs = [
     "user.go",
+    "comparators.go",
     "//src/wings/struct:user_obj",
   ],
   deps = [

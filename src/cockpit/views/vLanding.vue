@@ -39,7 +39,7 @@ export default {
   async beforeMount(): Promise<void> {
     this.$data.trips = [];
     const trips = await HTTPReq.genGET(this.$router, "v2/sample_trips");
-    for (const trip of trips) {
+    for (const trip of trips as Array<unknown>) {
       const newTrip = new TripObj(trip);
       if (newTrip.details.days.length > 0) {
         this.$data.trips.push(new TripObj(trip));

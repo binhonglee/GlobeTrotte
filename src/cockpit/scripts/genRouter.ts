@@ -52,14 +52,14 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "/",
-      name: "landing",
-      component: () => import("./views/vLanding.vue"),
-    },
-    {
       path: "*",
       name: "404",
       component: () => import("./views/v404.vue"),
+    },
+    {
+      path: "/",
+      name: "landing",
+      component: () => import("./views/vLanding.vue"),
     },`;
 
 const after = `
@@ -138,7 +138,7 @@ class GenRouter {
         urlPath = urlPath.substr(param.key.length);
         toReturn += this.getRoute(
           path + urlPath + params.join(""),
-          path + name,
+          path + name + param.name,
           path + file,
         );
         params.push("/:" + param.param);

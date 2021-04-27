@@ -25,7 +25,7 @@ export default {
   }),
   async beforeMount(): Promise<void> {
     if (General.paramID(this) === undefined) {
-      await R.genRedirectTo(this, Routes.Landing);
+      await R.genRedirectTo(this, Routes.NotFound);
       return;
     }
 
@@ -41,8 +41,7 @@ export default {
       await R.genRedirectTo(this, Routes.Landing);
     }
 
-    const isCurrentUser = General.getIsCurrentUser(this.$data.user.ID);
-    if (isCurrentUser) {
+    if (General.getIsCurrentUser(this.$data.user.ID)) {
       await R.genRedirectTo(this, Routes.MyAccount);
     }
   },

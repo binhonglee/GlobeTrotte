@@ -1,6 +1,6 @@
 #!/bin/sh
 
-STATUS=$(git status --porcelain)
+STATUS=$(git status --porcelain ':(exclude)pnpm-lock.yaml')
 if [ "$STATUS" != "" ]; then
   echo "$STATUS"
   echo

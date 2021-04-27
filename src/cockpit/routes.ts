@@ -8,6 +8,7 @@
 export default class Routes {
   public static Landing = "/";
   public static confirm_Email = "/confirm/email";
+  public static password_Reset = "/password/reset";
   public static trip_View = "/trip/view";
   public static trip_New = "/trip/new";
   public static unconfirmed_Email = "/unconfirmed/email";
@@ -15,5 +16,6 @@ export default class Routes {
   public static Login = "/login";
   public static MyAccount = "/myaccount";
   public static RateLimited = "/ratelimited";
+  public static Refresh = "/refresh";
   public static Register = "/register";
 }

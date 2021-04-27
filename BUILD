@@ -131,17 +131,21 @@ npm_test(
   ],
 )
 
-gentest(
-  name = "_all#lint",
-  test_cmd = "echo 'Lint everything~'",
-  no_test_output = True,
+sh_cmd(
+  name = "lint_all",
+  # TODO: Turn this into rules to run in parallel instead of sequential.
+  cmd = " && ".join([
+    "./pleasew run //:_eslint#lint",
+    "./pleasew run //:_gofmt#lint",
+    "echo 'All lints completed!'",
+  ]),
   deps = [
-    ":_eslint#test",
+    ":_eslint#lint",
     ":_gofmt#lint",
-  ]
+  ],
 )
 
-npm_test(
+npm_lint(
   name = "eslint",
   cmd = "format",
   visibility = [
@@ -160,7 +164,6 @@ npm_test(
     "//src/wings/enum",
     "//src/wings/struct",
   ],
-  needs_transitive_deps = True,
 )
 
 npm_test(
@@ -178,11 +181,11 @@ npm_test(
   needs_transitive_deps = True,
 )
 
-gentest(
+sh_cmd(
   name = "_gofmt#lint",
-  test_cmd = " && ".join([
+  cmd = " && ".join([
     "current=$(pwd)",
-    "cd $(pwd | awk -F'plz-out' '{print $1}') || exit 1",
+    "cd $(pwd | awk -F'plz-out' '{print $1}')",
     "gofmt -s -w src/turbine/**/*.go",
   ]),
   deps =  [
@@ -190,6 +193,4 @@ gentest(
     "//src/wings/enum",
     "//src/wings/struct",
   ],
-  needs_transitive_deps = True,
-  no_test_output = True,
 )

@@ -262,6 +262,7 @@ func forceConfirmEmail(res http.ResponseWriter, req *http.Request) {
 		respond(res, false)
 		return
 	}
+
 	vars := mux.Vars(req)
 	var id int
 	var err error

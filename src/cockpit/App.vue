@@ -8,7 +8,7 @@
     text-color="white"
     active-text-color="#42b983"
   )
-    el-menu-item.main_menu_item(index="/") Home
+    el-menu-item.main_menu_item(index="") Home
     el-submenu.main_menu_item(index="/trip")
       template.main_menu_item(slot="title") Trips
       el-menu-item.main_menu_item(index="/trip/view") View
@@ -42,7 +42,7 @@ interface Data {
 export default {
   data(): Data {
     return {
-      activeIndex: "/",
+      activeIndex: "",
       authed: false,
       confirmed: false,
     };
@@ -59,7 +59,7 @@ export default {
     setActiveIndex(): void {
       let path = window.location.pathname;
       if (path.length < 2) {
-        this.$data.activeIndex = "/";
+        this.$data.activeIndex = "";
         return;
       }
 

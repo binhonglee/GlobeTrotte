@@ -12,7 +12,7 @@
   "files.watcherExclude": {
     "**/.git/**": true,
     "**/node_modules/*/**": true,
-    "**/plz-out/**": true,
+    "**/plz-out/**": true
   },
   "go.buildOnSave": "off",
   "go.formatTool": "gofmt",

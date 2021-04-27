@@ -33,7 +33,7 @@ export default {
     }
     const uuid = General.paramID(this);
     if (uuid === undefined) {
-      await R.genRedirectTo(this, Routes.unconfirmed_NextEmail);
+      await R.genRedirectTo(this, Routes.unconfirmed_Email);
       return;
     }
 
@@ -81,7 +81,7 @@ export default {
           "error",
         ),
       );
-      await R.genRedirectTo(this, Routes.unconfirmed_NextEmail);
+      await R.genRedirectTo(this, Routes.unconfirmed_Email);
     }
   },
 };

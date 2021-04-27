@@ -383,3 +383,16 @@ func DeleteUserDBWithID(id int) bool {
 	logger.Print(logger.Database, "User ID "+strconv.Itoa(id)+" deleted")
 	return true
 }
+
+func UpdatePassword(id int, email string, newPasswordHash string) bool {
+	sqlStatement := `
+		UPDATE users
+		SET password = $3
+		WHERE id = $1 AND email = $2;`
+	if _, err := db.Exec(sqlStatement, id, email, newPasswordHash); err != nil {
+		logger.Err(logger.Database, err, "")
+		return false
+	}
+	logger.Print(logger.Database, "Password for "+email+" is updated")
+	return true
+}

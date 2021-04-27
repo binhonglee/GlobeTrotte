@@ -250,7 +250,7 @@ def npm_test(
   if requires_server is not None:
     cmd += "$CMD"
   if result_dir is not None or result_file is not None:
-    cmd += " || echo \"Test failed.\""
+    cmd += " || echo \"Please only set either result_dir or result_file and not both.\""
   cmd += ")"
   for out in outs:
     cmd = " && ".join([
@@ -309,6 +309,22 @@ def npm_test(
     visibility = visibility,
     no_test_output = (result_dir == None and result_file == None),
     needs_transitive_deps = needs_transitive_deps,
+  )
+
+def npm_lint(
+  name:str,
+  cmd:str,
+  srcs:list=[],
+  deps:list=[],
+  visibility:list=None,
+  needs_transitive_deps:bool=False,
+):
+  return sh_cmd(
+    name = f"_{name}#lint",
+    srcs = srcs,
+    deps = deps,
+    visibility = visibility,
+    cmd = CONFIG.NPM_TOOL + " run " + cmd,
   )
 
 def _gen_run_typescript(script_name:str):

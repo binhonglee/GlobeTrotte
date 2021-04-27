@@ -53,22 +53,10 @@ var actualRoutes = routes{
 		getAPIRateLimitStatus,
 	},
 	route{
-		"AddUser",
-		"POST",
-		"/user",
-		newUser,
-	},
-	route{
 		"AddUserObj",
 		"POST",
 		"/v2/user",
 		addUserObj,
-	},
-	route{
-		"GetUser",
-		"GET",
-		"/user/{id}",
-		getUser,
 	},
 	route{
 		"GetUserObj",
@@ -77,22 +65,10 @@ var actualRoutes = routes{
 		getUserObj,
 	},
 	route{
-		"UpdateUser",
-		"POST",
-		"/user/{id}",
-		updateUser,
-	},
-	route{
 		"UpdateUserObj",
 		"POST",
 		"/v2/user/{id}",
 		updateUserObj,
-	},
-	route{
-		"DeleteUser",
-		"POST",
-		"/del/user/{id}",
-		deleteUser,
 	},
 	route{
 		"DeleteUserObj",
@@ -119,22 +95,10 @@ var actualRoutes = routes{
 		logout,
 	},
 	route{
-		"AddTrip",
-		"POST",
-		"/trip",
-		addTrip,
-	},
-	route{
 		"AddTripObj",
 		"POST",
 		"/v2/trip",
 		addTripObj,
-	},
-	route{
-		"UpdateTrip",
-		"POST",
-		"/trip/{id}",
-		updateTrip,
 	},
 	route{
 		"UpdateTripObj",
@@ -143,22 +107,10 @@ var actualRoutes = routes{
 		updateTripObj,
 	},
 	route{
-		"GetTrip",
-		"GET",
-		"/trip/{id}",
-		getTrip,
-	},
-	route{
 		"GetTripObj",
 		"GET",
 		"/v2/trip/{id}",
 		getTripObj,
-	},
-	route{
-		"DeleteTrip",
-		"POST",
-		"/del/trip/{id}",
-		deleteTrip,
 	},
 	route{
 		"DeleteTripObj",
@@ -167,28 +119,28 @@ var actualRoutes = routes{
 		deleteTripObj,
 	},
 	route{
-		"WhoAmI",
-		"GET",
-		"/whoami",
-		whoami,
-	},
-	route{
 		"WhoAmIV2",
 		"GET",
 		"/v2/whoami",
 		whoamiV2,
 	},
 	route{
-		"GetRecentTrips",
-		"GET",
-		"/sample_trips",
-		getRecentTrips,
-	},
-	route{
 		"GetRecentTripObjs",
 		"GET",
 		"/v2/sample_trips",
 		getRecentTripObjs,
+	},
+	route{
+		"SendResetPasswordEmail",
+		"POST",
+		"/reset/send_email",
+		sendResetEmail,
+	},
+	route{
+		"ResetPassword",
+		"POST",
+		"/reset/password",
+		resetPassword,
 	},
 	route{
 		"ConfirmEmail",

@@ -171,3 +171,16 @@ wings_lib(
     "//:wings_config",
   ],
 )
+
+wings_lib(
+  name = "reset_password",
+  config = "wings.json",
+  src = "reset_password.wings",
+  outs = {
+    "src/cockpit/wings": "ResetPassword.ts",
+    "src/turbine/access": "resetpassword.go",
+  },
+  deps = [
+    "//:wings_config",
+  ],
+)

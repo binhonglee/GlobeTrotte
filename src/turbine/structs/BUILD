@@ -4,6 +4,8 @@ go_library(
     "istructs.go",
     "comparator.go",
   ],
-  deps = ["//src/turbine/wings:wings"],
+  deps = [
+    "//src/turbine/wings:wings",
+  ],
   visibility = ["//src/turbine/..."],
 )

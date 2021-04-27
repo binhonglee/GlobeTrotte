@@ -125,7 +125,9 @@ export default {
       let offBy = 0;
       for (const day in days.$data.days) {
         const currentDay = days.$data.days[day];
-        const places = this.filterPlaces(E.get(days, "places" + day)[0].places);
+        const places = this.filterPlaces(
+          E.getEl(days, "places" + day, 0).places,
+        );
         if (places === null) {
           this.$alert(
             "We currently only support links to limited " +
@@ -224,7 +226,7 @@ export default {
       this.$data.cities = this.$props.trip.details.cities;
       this.$data.private = this.$props.trip.details.private;
       this.$nextTick(function () {
-        this.$refs.name.$refs.input.focus();
+        E.get(E.get(this, "name"), "input").focus();
       });
     },
   },
