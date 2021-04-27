@@ -10,7 +10,7 @@ specifiers:
   '@cypress/code-coverage': 3.9.4
   '@types/node': 14.14.37
   '@types/puppeteer': 5.4.3
-  '@types/sinon': 9.0.11
+  '@types/sinon': 10.0.0
   '@typescript-eslint/eslint-plugin': 4.20.0
   '@typescript-eslint/parser': 4.20.0
   '@vue/eslint-config-prettier': 6.0.0
@@ -70,7 +70,7 @@ devDependencies:
   '@cypress/code-coverage': 3.9.4_cypress@6.8.0
   '@types/node': 14.14.37
   '@types/puppeteer': 5.4.3
-  '@types/sinon': 9.0.11
+  '@types/sinon': 10.0.0
   '@typescript-eslint/eslint-plugin': 4.20.0_7448dc1756632cc6400f187319207d38
   '@typescript-eslint/parser': 4.20.0_eslint@7.23.0+typescript@4.2.3
   '@vue/eslint-config-prettier': 6.0.0_6406a8bb1d5dadd638e96ccc52b8f431
@@ -2862,6 +2862,12 @@ packages:
       '@sinonjs/commons': 1.8.3
     dev: true
 
+  /@sinonjs/fake-timers/7.0.5:
+    resolution: {integrity: sha512-fUt6b15bjV/VW93UP5opNXJxdwZSbK1EdiwnhN7XrQrcpaOhMJpZ/CjwFpM3THpxwA+YviBUJKSuEqKlCK5alw==}
+    dependencies:
+      '@sinonjs/commons': 1.8.3
+    dev: true
+
   /@sinonjs/samsam/5.3.1:
     resolution: {integrity: sha512-1Hc0b1TtyfBu8ixF/tpfSHTVWKwCBLY4QJbkgnE7HcwyvT2xArDxb4K7dMgqRm3szI+LJbzmW/s4xxEhv6hwDg==}
     dependencies:
@@ -2907,10 +2913,10 @@ packages:
     resolution: {integrity: sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==}
     dev: true
 
-  /@types/sinon/9.0.11:
-    resolution: {integrity: sha512-PwP4UY33SeeVKodNE37ZlOsR9cReypbMJOhZ7BVE0lB+Hix3efCOxiJWiE5Ia+yL9Cn2Ch72EjFTRze8RZsNtg==}
+  /@types/sinon/10.0.0:
+    resolution: {integrity: sha512-jDZ55oCKxqlDmoTBBbBBEx+N8ZraUVhggMZ9T5t+6/Dh8/4NiOjSUfpLrPiEwxQDlAe3wpAkoXhWvE6LibtsMQ==}
     dependencies:
-      '@types/sinonjs__fake-timers': 6.0.2
+      '@sinonjs/fake-timers': 7.0.5
     dev: true
 
   /@types/sinonjs__fake-timers/6.0.2:
