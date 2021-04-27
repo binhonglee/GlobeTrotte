@@ -26,7 +26,7 @@ specifiers:
   element-ui: 2.15.1
   eslint: 7.23.0
   eslint-plugin-deprecation: 1.2.0
-  eslint-plugin-prettier: 3.3.1
+  eslint-plugin-prettier: 3.4.0
   eslint-plugin-vue: 7.8.0
   forever: 3.0.4
   jsdom: 16.5.2
@@ -73,7 +73,7 @@ devDependencies:
   '@types/sinon': 9.0.11
   '@typescript-eslint/eslint-plugin': 4.20.0_7448dc1756632cc6400f187319207d38
   '@typescript-eslint/parser': 4.20.0_eslint@7.23.0+typescript@4.2.3
-  '@vue/eslint-config-prettier': 6.0.0_6406a8bb1d5dadd638e96ccc52b8f431
+  '@vue/eslint-config-prettier': 6.0.0_28fd376810d59d7582b75e2fae393a40
   '@vue/eslint-config-typescript': 7.0.0_cd749861b051dcd4c7feb8570842898e
   '@vue/test-utils': 1.1.3_ae554d8947d7e926b014dda25865f517
   ava: 3.15.0
@@ -84,7 +84,7 @@ devDependencies:
   cypress: 6.8.0
   eslint: 7.23.0
   eslint-plugin-deprecation: 1.2.0_eslint@7.23.0+typescript@4.2.3
-  eslint-plugin-prettier: 3.3.1_eslint@7.23.0+prettier@2.2.1
+  eslint-plugin-prettier: 3.4.0_eslint@7.23.0+prettier@2.2.1
   eslint-plugin-vue: 7.8.0_eslint@7.23.0
   forever: 3.0.4
   jsdom: 16.5.2
@@ -3114,7 +3114,7 @@ packages:
       prettier: 1.19.1
     dev: true
 
-  /@vue/eslint-config-prettier/6.0.0_6406a8bb1d5dadd638e96ccc52b8f431:
+  /@vue/eslint-config-prettier/6.0.0_28fd376810d59d7582b75e2fae393a40:
     resolution: {integrity: sha512-wFQmv45c3ige5EA+ngijq40YpVcIkAy0Lihupnsnd1Dao5CBbPyfCzqtejFLZX1EwH/kCJdpz3t6s+5wd3+KxQ==}
     peerDependencies:
       eslint: '>= 5.0.0'
@@ -3123,7 +3123,7 @@ packages:
     dependencies:
       eslint: 7.23.0
       eslint-config-prettier: 6.15.0_eslint@7.23.0
-      eslint-plugin-prettier: 3.3.1_eslint@7.23.0+prettier@2.2.1
+      eslint-plugin-prettier: 3.4.0_eslint@7.23.0+prettier@2.2.1
       prettier: 2.2.1
     dev: true
 
@@ -5824,8 +5824,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-prettier/3.3.1_eslint@7.23.0+prettier@2.2.1:
-    resolution: {integrity: sha512-Rq3jkcFY8RYeQLgk2cCwuc0P7SEFwDravPhsJZOQ5N4YI4DSg50NyqJ/9gdZHzQlHf8MvafSesbNJCcP/FF6pQ==}
+  /eslint-plugin-prettier/3.4.0_eslint@7.23.0+prettier@2.2.1:
+    resolution: {integrity: sha512-UDK6rJT6INSfcOo545jiaOwB701uAIt2/dR7WnFQoGCVl1/EMqdANBmwUaqqQ45aXprsTGzSa39LI1PyuRBxxw==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
       eslint: '>=5.0.0'
