@@ -29,7 +29,7 @@ specifiers:
   eslint-plugin-prettier: 3.3.1
   eslint-plugin-vue: 7.8.0
   forever: 3.0.4
-  jsdom: 16.5.2
+  jsdom: 16.5.3
   jsdom-global: 3.0.2
   node-sass: 5.0.0
   nyc: 15.1.0
@@ -87,8 +87,8 @@ devDependencies:
   eslint-plugin-prettier: 3.3.1_eslint@7.23.0+prettier@2.2.1
   eslint-plugin-vue: 7.8.0_eslint@7.23.0
   forever: 3.0.4
-  jsdom: 16.5.2
-  jsdom-global: 3.0.2_jsdom@16.5.2
+  jsdom: 16.5.3
+  jsdom-global: 3.0.2_jsdom@16.5.3
   node-sass: 5.0.0
   nyc: 15.1.0
   parcel-bundler: 1.12.5
@@ -7656,12 +7656,12 @@ packages:
     resolution: {integrity: sha1-peZUwuWi3rXyAdls77yoDA7y9RM=}
     dev: true
 
-  /jsdom-global/3.0.2_jsdom@16.5.2:
+  /jsdom-global/3.0.2_jsdom@16.5.3:
     resolution: {integrity: sha1-a9KZwTsMRiay2iwDk81DhdYGrLk=}
     peerDependencies:
       jsdom: '>=10.0.0'
     dependencies:
-      jsdom: 16.5.2
+      jsdom: 16.5.3
     dev: true
 
   /jsdom/14.1.0:
@@ -7696,8 +7696,8 @@ packages:
       xml-name-validator: 3.0.0
     dev: true
 
-  /jsdom/16.5.2:
-    resolution: {integrity: sha512-JxNtPt9C1ut85boCbJmffaQ06NBnzkQY/MWO3YxPW8IWS38A26z+B1oBvA9LwKrytewdfymnhi4UNH3/RAgZrg==}
+  /jsdom/16.5.3:
+    resolution: {integrity: sha512-Qj1H+PEvUsOtdPJ056ewXM4UJPCi4hhLA8wpiz9F2YvsRBhuFsXxtrIFAgGBDynQA9isAMGE91PfUYbdMPXuTA==}
     engines: {node: '>=10'}
     peerDependencies:
       canvas: ^2.5.0
