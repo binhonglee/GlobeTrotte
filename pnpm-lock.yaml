@@ -15,7 +15,7 @@ specifiers:
   '@typescript-eslint/parser': 4.20.0
   '@vue/eslint-config-prettier': 6.0.0
   '@vue/eslint-config-typescript': 7.0.0
-  '@vue/test-utils': 1.1.3
+  '@vue/test-utils': 1.1.4
   ava: 3.15.0
   axios: 0.21.1
   babel-loader: 8.2.2
@@ -75,7 +75,7 @@ devDependencies:
   '@typescript-eslint/parser': 4.20.0_eslint@7.23.0+typescript@4.2.3
   '@vue/eslint-config-prettier': 6.0.0_6406a8bb1d5dadd638e96ccc52b8f431
   '@vue/eslint-config-typescript': 7.0.0_cd749861b051dcd4c7feb8570842898e
-  '@vue/test-utils': 1.1.3_ae554d8947d7e926b014dda25865f517
+  '@vue/test-utils': 1.1.4_ae554d8947d7e926b014dda25865f517
   ava: 3.15.0
   babel-loader: 8.2.2_@babel+core@7.13.16
   babel-plugin-istanbul: 6.0.0
@@ -3145,8 +3145,8 @@ packages:
       - supports-color
     dev: true
 
-  /@vue/test-utils/1.1.3_ae554d8947d7e926b014dda25865f517:
-    resolution: {integrity: sha512-BAY1Cwe9JpkJseimC295EW3YlAmgIJI9OPkg2FSP62+PHZooB0B+wceDi9TYyU57oqzL0yLbcP73JKFpKiLc9A==}
+  /@vue/test-utils/1.1.4_ae554d8947d7e926b014dda25865f517:
+    resolution: {integrity: sha512-9BeL8IqGvJKy553lq/07rhYURQkpS/k+j19rJ/4eDpGJk7z872M0YrBWFhjS14yMKlvYVYOCfWnVIXyrAx0xNw==}
     peerDependencies:
       vue: 2.x
       vue-template-compiler: ^2.x
