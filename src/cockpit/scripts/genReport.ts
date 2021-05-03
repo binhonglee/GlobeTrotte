@@ -53,6 +53,7 @@ for (const dir of getDirs(process.cwd())) {
 }
 
 for (const report of reports) {
+  console.log("Processing " + report + "...");
   writeFileSync(
     report,
     readFileSync(report)

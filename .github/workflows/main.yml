@@ -51,7 +51,7 @@ jobs:
     - run: cp config/test.email.config config/email.config
 
     - run: ./pleasew build --show_all_output //...
-    - run: ./pleasew lint
+    - run: ./pleasew lint --show_all_output
     - run: ./scripts/leftover.sh
 
   e2e:
@@ -108,7 +108,7 @@ jobs:
 
     - run: ./pleasew work -- -toFile=true &
     - run: sleep 1
-    - run: ./pleasew test //:_cockpit_cypress#test
+    - run: ./pleasew test --show_all_output //:_cockpit_cypress#test
 
     - uses: actions/upload-artifact@v2
       with:
@@ -157,7 +157,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: turbine-output
-        path: 'plz-out/bin/src/turbine'
+        path: 'plz-out/log'
       if: ${{ always() }}
 
   cockpit:
@@ -189,16 +189,17 @@ jobs:
 
     - run: ./scripts/setup.sh -w
     - run: sudo npm i -g pnpm
-    - run: ./pleasew test //src/cockpit/...
+    - run: ./pleasew test --show_all_output //src/cockpit/...
 
     - uses: actions/upload-artifact@v2
       with:
         name: unit-test-nyc-output
-        path: 'plz-out/gen/src/cockpit/**/.nyc_output'
+        path: 'plz-out/gen/src/cockpit/'
       if: ${{ always() }}
+    - run: ./pleasew report --show_all_output
 
   coverage:
-    needs: [cockpit, e2e]
+    needs: [cockpit, e2e, turbine]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -214,5 +215,5 @@ jobs:
       with:
         name: turbine-output
 
-    - run: ./pleasew report
+    - run: ./pleasew report --show_all_output
     - run: bash <(curl -s https://codecov.io/bash)
