@@ -16,7 +16,7 @@ type route struct {
 
 type routes []route
 
-const API_PREFIX = "/api"
+const api_prefix = "/api"
 
 // NewRouter - Just an average router that create routes.
 func NewRouter() http.Handler {
@@ -24,7 +24,7 @@ func NewRouter() http.Handler {
 	for _, actualRoute := range actualRoutes {
 		router.
 			Methods(actualRoute.Method).
-			Path(API_PREFIX + actualRoute.Pattern).
+			Path(api_prefix + actualRoute.Pattern).
 			Name(actualRoute.Name).
 			Handler(actualRoute.HandlerFunc)
 	}

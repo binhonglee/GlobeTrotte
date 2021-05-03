@@ -4,8 +4,57 @@ env:
   DISPLAY: :99
 
 jobs:
-  test:
-    timeout-minutes: 10
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache please
+      id: cache-please
+      uses: actions/cache@v1
+      with:
+        path: ~/.please
+        key: ${{ runner.os }}-please
+    - name: Use Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.15.x
+    - name: Cache pnpm-store
+      id: cache-pnpm-store
+      uses: actions/cache@v1
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-store
+    - name: Cache node_modules
+      id: cache-node-modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ hashFiles('**/package.json') }}-pnpm
+    - name: Cache cypress
+      id: cache-cypress
+      uses: actions/cache@v1
+      with:
+        path: ~/.cache/Cypress
+        key: ${{ hashFiles('**/package.json') }}-cypress
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+    - name: Use Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.15.x
+
+    - run: ./scripts/setup.sh -g -s -w
+    - run: sudo npm i -g pnpm
+    - run: cp config/test.psql.config config/psql.config
+    - run: cp config/test.email.config config/email.config
+
+    - run: ./pleasew build --show_all_output //...
+    - run: ./pleasew lint
+    - run: ./scripts/leftover.sh
+
+  e2e:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -57,22 +106,10 @@ jobs:
     - run: cp config/test.psql.config config/psql.config
     - run: cp config/test.email.config config/email.config
 
-    - run: ./pleasew build --show_all_output //...
-    - run: ./pleasew lint
-
-    - run: ./pleasew cover --show_all_output //src/turbine/...
-    - run: ./pleasew work &
+    - run: ./pleasew work -- -toFile=true &
     - run: sleep 1
-    - run: ./pleasew test --show_all_output
+    - run: ./pleasew test //:_cockpit_cypress#test
 
-    - run: ./pleasew report
-    - run: bash <(curl -s https://codecov.io/bash)
-    - run: ./scripts/leftover.sh
-    - uses: actions/upload-artifact@v2
-      with:
-        name: cypress
-        path: cypress
-      if: ${{ always() }}
     - uses: actions/upload-artifact@v2
       with:
         name: logs
@@ -80,6 +117,102 @@ jobs:
       if: ${{ always() }}
     - uses: actions/upload-artifact@v2
       with:
-        name: coverage
-        path: coverage
+        name: e2e-nyc-output
+        path: '.nyc_output'
       if: ${{ always() }}
+    - uses: actions/upload-artifact@v2
+      with:
+        name: cypress
+        path: cypress
+      if: ${{ always() }}
+
+  turbine:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: test
+          POSTGRES_DB: test
+          POSTGRES_PASSWORD: test
+        ports:
+          - 5432:5432
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache please
+      id: cache-please
+      uses: actions/cache@v1
+      with:
+        path: ~/.please
+        key: ${{ runner.os }}-please
+    - name: Use Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.15.x
+
+    - run: ./scripts/setup.sh -g -w
+    - run: cp config/test.psql.config config/psql.config
+    - run: cp config/test.email.config config/email.config
+    - run: ./pleasew cover --show_all_output //src/turbine/...
+    - uses: actions/upload-artifact@v2
+      with:
+        name: turbine-output
+        path: 'plz-out/bin/src/turbine'
+      if: ${{ always() }}
+
+  cockpit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache please
+      id: cache-please
+      uses: actions/cache@v1
+      with:
+        path: ~/.please
+        key: ${{ runner.os }}-please
+    - name: Cache pnpm-store
+      id: cache-pnpm-store
+      uses: actions/cache@v1
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-store
+    - name: Cache node_modules
+      id: cache-node-modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ hashFiles('**/package.json') }}-pnpm
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+
+    - run: ./scripts/setup.sh -w
+    - run: sudo npm i -g pnpm
+    - run: ./pleasew test //src/cockpit/...
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: unit-test-nyc-output
+        path: 'plz-out/gen/src/cockpit/**/.nyc_output'
+      if: ${{ always() }}
+
+  coverage:
+    needs: [cockpit, e2e]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: ./scripts/setup.sh -w
+    - run: sudo npm i -g pnpm
+    - uses: actions/download-artifact@v2
+      with:
+        name: unit-test-nyc-output
+    - uses: actions/download-artifact@v2
+      with:
+        name: e2e-nyc-output
+    - uses: actions/download-artifact@v2
+      with:
+        name: turbine-output
+
+    - run: ./pleasew report
+    - run: bash <(curl -s https://codecov.io/bash)

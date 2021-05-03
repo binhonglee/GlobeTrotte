@@ -102,7 +102,7 @@ func GetTripBasicWithID(id int) wings.TripBasic {
 	return trip
 }
 
-// TOOD: Update to trip permission instead when we begin to allow trip sharing
+// TODO: Update to trip permission instead when we begin to allow trip sharing
 func GetTripOwnerWithID(id int) int {
 	var user int
 	sqlStatement := `

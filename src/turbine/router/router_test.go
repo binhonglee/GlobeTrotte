@@ -13,7 +13,7 @@ import (
 )
 
 func TestPasswd(t *testing.T) {
-	request, _ := http.NewRequest("GET", API_PREFIX+"/passwd", nil)
+	request, _ := http.NewRequest("GET", api_prefix+"/passwd", nil)
 
 	response := httptest.NewRecorder()
 	NewRouter().ServeHTTP(response, request)
@@ -33,7 +33,7 @@ func addTest(
 	res := httptest.NewRecorder()
 	data, _ := json.Marshal(toAdd)
 	req, _ := http.NewRequest(
-		"POST", API_PREFIX+path, bytes.NewBuffer(data))
+		"POST", api_prefix+path, bytes.NewBuffer(data))
 	if cookies != nil {
 		req.AddCookie(cookies)
 	}
@@ -50,7 +50,7 @@ func addTest(
 
 func get(path string, t *testing.T, expectedCode int) *httptest.ResponseRecorder {
 	res := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", API_PREFIX+path, nil)
+	req, _ := http.NewRequest("GET", api_prefix+path, nil)
 	if cookies != nil {
 		req.AddCookie(cookies)
 	}
@@ -75,7 +75,7 @@ func loginTest(
 	data, _ := json.Marshal(toAdd)
 	req, _ := http.NewRequest(
 		"POST",
-		API_PREFIX+"/login",
+		api_prefix+"/login",
 		bytes.NewBuffer(data),
 	)
 	NewRouter().ServeHTTP(res, req)
@@ -108,7 +108,7 @@ func updateTest(
 	data, _ := json.Marshal(toAdd)
 	req, _ := http.NewRequest(
 		"POST",
-		API_PREFIX+path+strconv.Itoa(toAdd.GetID()),
+		api_prefix+path+strconv.Itoa(toAdd.GetID()),
 		bytes.NewBuffer(data),
 	)
 	if cookies != nil {
@@ -129,7 +129,7 @@ func updateTest(
 func deleteTest(path string, t *testing.T, toDelete interface{}) bool {
 	res := httptest.NewRecorder()
 	data, _ := json.Marshal(toDelete)
-	req, _ := http.NewRequest("POST", API_PREFIX+"/del"+path, bytes.NewBuffer(data))
+	req, _ := http.NewRequest("POST", api_prefix+"/del"+path, bytes.NewBuffer(data))
 	if cookies != nil {
 		req.AddCookie(cookies)
 	}
