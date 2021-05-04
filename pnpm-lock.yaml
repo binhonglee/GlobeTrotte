@@ -25,7 +25,7 @@ specifiers:
   cypress: 6.9.1
   element-ui: 2.15.1
   eslint: 7.25.0
-  eslint-plugin-deprecation: 1.2.0
+  eslint-plugin-deprecation: 1.2.1
   eslint-plugin-prettier: 3.4.0
   eslint-plugin-vue: 7.9.0
   forever: 3.0.4
@@ -83,7 +83,7 @@ devDependencies:
   babel-preset-typescript-vue: 1.1.1_@babel+core@7.14.0
   cypress: 6.9.1
   eslint: 7.25.0
-  eslint-plugin-deprecation: 1.2.0_eslint@7.25.0+typescript@4.2.4
+  eslint-plugin-deprecation: 1.2.1_eslint@7.25.0+typescript@4.2.4
   eslint-plugin-prettier: 3.4.0_eslint@7.25.0+prettier@2.2.1
   eslint-plugin-vue: 7.9.0_eslint@7.25.0
   forever: 3.0.4
@@ -5951,8 +5951,8 @@ packages:
       get-stdin: 6.0.0
     dev: true
 
-  /eslint-plugin-deprecation/1.2.0_eslint@7.25.0+typescript@4.2.4:
-    resolution: {integrity: sha512-SrZqomFYofRbxJ9dlAcu526/tiZoWoZgHdZWKHjrRT/uLfTtTTjdVf0gdy0AZxK8nH5ri0fukgwS28llUueitA==}
+  /eslint-plugin-deprecation/1.2.1_eslint@7.25.0+typescript@4.2.4:
+    resolution: {integrity: sha512-8KFAWPO3AvF0szxIh1ivRtHotd1fzxVOuNR3NI8dfCsQKgcxu9fAgEY+eTKvCRLAwwI8kaDDfImMt+498+EgRw==}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0
       typescript: ^3.7.5 || ^4.0.0
