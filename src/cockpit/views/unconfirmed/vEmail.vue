@@ -25,13 +25,14 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import R from "@/shared/R";
 
 interface Data {
   hasNext: boolean;
 }
 
-export default {
+export default defineComponent({
   data(): Data {
     return {
       hasNext: false,
@@ -40,7 +41,7 @@ export default {
   beforeMount(): void {
     this.$data.hasNext = R.hasNext(this);
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

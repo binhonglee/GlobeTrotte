@@ -41,6 +41,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
@@ -49,13 +50,14 @@ import UserObj from "@/wings/UserObj";
 import CEditItem from "@/components/CEditItem.vue";
 import Routes from "@/routes";
 import E from "@/shared/E";
-import R from "@/shared/R";
+import Routing from "@/shared/Routing";
+import router from "@/router";
 
 interface Data {
   loading: boolean;
 }
 
-export default {
+export default defineComponent({
   data(): Data {
     return {
       loading: false,
@@ -98,7 +100,6 @@ export default {
       });
 
       const res = await HTTPReq.genPOST(
-        this.$router,
         "v2/user",
         WingsStructUtil.stringify(newUser),
       );
@@ -124,18 +125,17 @@ export default {
         ),
       );
 
-      let next = R.getNext(this.$route);
+      let next = Routing.getNext(this.$route);
       if (next === Routes.Landing) {
         next = Routes.MyAccount;
       }
 
-      await R.genRedirectTo(
-        this,
-        R.addParamNext(Routes.unconfirmed_Email, next),
+      await Routing.genRedirectTo(
+        Routing.addParamNext(Routes.unconfirmed_Email, next),
       );
     },
     cancel(): void {
-      this.$router.back();
+      router.back();
     },
   },
   beforeMount(): void {
@@ -143,7 +143,7 @@ export default {
       E.get(E.get(this, "name"), "input").focus();
     });
   },
-};
+});
 </script>
 
 <style lang="scss">

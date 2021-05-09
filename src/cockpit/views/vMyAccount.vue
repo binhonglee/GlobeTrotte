@@ -40,6 +40,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import CEditItem from "@/components/CEditItem.vue";
 import CViewUser from "@/components/CViewUser.vue";
 import General from "@/shared/General";
@@ -48,7 +49,7 @@ import UserBasic from "@/wings/UserBasic";
 import UserObj from "@/wings/UserObj";
 import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
-import R from "@/shared/R";
+import Routing from "@/shared/Routing";
 import E from "@/shared/E";
 
 interface Data {
@@ -58,7 +59,7 @@ interface Data {
   unconfirmedLink: string;
 }
 
-export default {
+export default defineComponent({
   components: {
     CEditItem,
     CViewUser,
@@ -74,7 +75,6 @@ export default {
   methods: {
     async deleteAccount(): Promise<void> {
       const deletion = await HTTPReq.genDELETE(
-        this.$router,
         "v2/user/" + this.$data.user.ID,
         WingsStructUtil.stringify(this.$data.user.details),
       );
@@ -88,7 +88,7 @@ export default {
             "info",
           ),
         );
-        await R.genRedirectTo(this, Routes.Landing);
+        await Routing.genRedirectTo(Routes.Landing);
       } else {
         this.$message({
           type: "error",
@@ -105,7 +105,6 @@ export default {
         confirmed: this.$data.user.details.confirmed,
       });
       const success = await HTTPReq.genPOST(
-        this.$router,
         "v2/user/" + this.$data.user.ID,
         WingsStructUtil.stringify(user),
       );
@@ -123,9 +122,9 @@ export default {
       }
     },
     async logout(): Promise<void> {
-      await HTTPReq.genGET(this.$router, "logout");
+      await HTTPReq.genGET("logout");
       localStorage.clear();
-      await R.genRedirectTo(this, Routes.Landing);
+      await Routing.genRedirectTo(Routes.Landing);
     },
     toggleEdit(): void {
       this.$data.edit = !this.$data.edit;
@@ -137,13 +136,13 @@ export default {
     },
   },
   async beforeMount(): Promise<void> {
-    this.$data.user = await General.genCurrentUserV2(this.$router);
+    this.$data.user = await General.genCurrentUser();
     if (this.$data.user.ID === -1) {
-      await R.genRedirectTo(this, Routes.Landing);
+      await Routing.genRedirectTo(Routes.Landing);
     }
-    this.$data.confirmed = this.$data.user.details.confirmed;
+    this.$data.confirmed = this.$data.user.details.confirmed.valueOf();
   },
-};
+});
 </script>
 
 <style lang="scss">

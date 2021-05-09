@@ -1,15 +1,15 @@
-import { ElNotificationOptions } from "element-ui/types/notification";
-import { MessageType } from "element-ui/types/message";
+import { ElNotificationOptions } from "element-plus/types/notification";
+import { MessageType } from "element-plus/types/message";
 import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "./HTTPReq";
 import TripObj from "@/wings/TripObj";
 import UserObj from "@/wings/UserObj";
-import VueRouter from "vue-router";
+import router from "@/router";
 
 export default class General {
-  public static paramID(v: Vue): string | undefined {
+  public static paramID(): string | undefined {
     /* istanbul ignore next: $route is a pain to mock, using this as a workaround for testing */
-    return v.$route.params["id"];
+    return router.params["id"];
   }
 
   public static notifConfig(
@@ -28,19 +28,13 @@ export default class General {
     };
   }
 
-  public static async genUserV2(
-    router: VueRouter,
-    id: number,
-  ): Promise<UserObj> {
-    const user = await HTTPReq.genGET(router, "v2/user/" + id);
+  public static async genUser(id: number): Promise<UserObj> {
+    const user = await HTTPReq.genGET("v2/user/" + id);
     return new UserObj(user);
   }
 
-  public static async genTripV2(
-    router: VueRouter,
-    id: number,
-  ): Promise<TripObj> {
-    const trip = await HTTPReq.genGET(router, "v2/trip/" + id);
+  public static async genTrip(id: number): Promise<TripObj> {
+    const trip = await HTTPReq.genGET("v2/trip/" + id);
     return new TripObj(trip);
   }
 
@@ -48,12 +42,12 @@ export default class General {
     return this.getCurrentUser().ID === id;
   }
 
-  public static async genUpdateCurrentUser(router: VueRouter): Promise<void> {
-    await this.genCurrentUserV2(router);
+  public static async genUpdateCurrentUser(): Promise<void> {
+    await this.genCurrentUser();
   }
 
-  public static async genCurrentUserV2(router: VueRouter): Promise<UserObj> {
-    const user = new UserObj(await HTTPReq.genGET(router, "v2/whoami"));
+  public static async genCurrentUser(): Promise<UserObj> {
+    const user = new UserObj(await HTTPReq.genGET("v2/whoami"));
     if (user.ID === -1) {
       localStorage.clear();
     } else {

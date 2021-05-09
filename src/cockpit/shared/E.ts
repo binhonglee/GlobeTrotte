@@ -1,3 +1,5 @@
+import { CreateComponentPublicInstance } from "vue";
+
 type RefType = HTMLElement & Vue;
 
 /*
@@ -5,15 +7,19 @@ type RefType = HTMLElement & Vue;
  * vue / HTML elements.
  */
 export default class E {
-  public static getVal(v: Vue, name: string): string {
+  public static getVal(v: CreateComponentPublicInstance, name: string): string {
     return (v.$refs[name] as HTMLInputElement).value;
   }
 
-  public static getEl(v: Vue, name: string, index: number): RefType {
+  public static getEl(
+    v: CreateComponentPublicInstance,
+    name: string,
+    index: number,
+  ): RefType {
     return (v.$refs[name] as RefType[])[index];
   }
 
-  public static get(v: Vue, name: string): RefType {
+  public static get(v: CreateComponentPublicInstance, name: string): RefType {
     return v.$refs[name] as RefType;
   }
 }

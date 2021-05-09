@@ -6,17 +6,18 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import CViewUser from "@/components/CViewUser.vue";
 import General from "@/shared/General";
 import UserObj from "@/wings/UserObj";
 import Routes from "@/routes";
-import R from "@/shared/R";
+import Routing from "@/shared/Routing";
 
 interface Data {
   user: UserObj;
 }
 
-export default {
+export default defineComponent({
   components: {
     CViewUser,
   },
@@ -24,28 +25,25 @@ export default {
     user: new UserObj(),
   }),
   async beforeMount(): Promise<void> {
-    if (General.paramID(this) === undefined) {
-      await R.genRedirectTo(this, Routes.NotFound);
+    if (General.paramID() === undefined) {
+      await Routing.genRedirectTo(Routes.NotFound);
       return;
     }
 
-    this.$data.user = await General.genUserV2(
-      this.$router,
-      Number(General.paramID(this)),
-    );
+    this.$data.user = await General.genUser(Number(General.paramID()));
 
     if (this.$data.user.ID === -1) {
       await this.$alert("User not found.", "Error", {
         confirmButtonText: "OK",
       });
-      await R.genRedirectTo(this, Routes.Landing);
+      await Routing.genRedirectTo(Routes.Landing);
     }
 
-    if (General.getIsCurrentUser(this.$data.user.ID)) {
-      await R.genRedirectTo(this, Routes.MyAccount);
+    if (General.getIsCurrentUser(this.$data.user.ID.valueOf())) {
+      await Routing.genRedirectTo(Routes.MyAccount);
     }
   },
-};
+});
 </script>
 
 <style lang="scss">

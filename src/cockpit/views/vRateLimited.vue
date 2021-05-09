@@ -10,14 +10,15 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import HTTPReq from "@/shared/HTTPReq";
 import R from "@/shared/R";
 
-export default {
+export default defineComponent({
   async beforeMount(): Promise<void> {
-    if (!(await HTTPReq.genGET(this.$router, "ratelimit"))) {
+    if (!(await HTTPReq.genGET("ratelimit"))) {
       await R.paramToNext(this);
     }
   },
-};
+});
 </script>

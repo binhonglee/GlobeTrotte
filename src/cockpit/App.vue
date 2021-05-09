@@ -31,7 +31,8 @@
 
 <script lang="ts">
 import General from "./shared/General";
-import R from "./shared/R";
+import Routing from "./shared/Routing";
+import { defineComponent } from "vue";
 
 interface Data {
   activeIndex: string;
@@ -39,7 +40,7 @@ interface Data {
   confirmed: boolean;
 }
 
-export default {
+export default defineComponent({
   data(): Data {
     return {
       activeIndex: "",
@@ -77,7 +78,7 @@ export default {
       if (path === this.$data.activeIndex || path === null) {
         return;
       }
-      R.genRedirectTo(this, `${path}`);
+      Routing.genRedirectTo(`${path}`);
     },
   },
   watch: {
@@ -90,7 +91,7 @@ export default {
       deep: true,
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

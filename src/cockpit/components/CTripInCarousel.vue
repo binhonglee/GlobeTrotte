@@ -26,10 +26,11 @@
 </template>
 
 <script lang="ts">
-import CPlaces from "./CPlaces.vue";
+import { defineComponent } from "vue";
+import CPlaces from "@/components/CPlaces.vue";
 import TripObj from "@/wings/TripObj";
 
-export default {
+export default defineComponent({
   name: "CTripInCarousel",
   components: {
     CPlaces,
@@ -39,7 +40,7 @@ export default {
       type: TripObj,
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

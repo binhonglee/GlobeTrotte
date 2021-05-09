@@ -1,7 +1,7 @@
 import Axios, { AxiosRequestConfig, Method } from "axios";
 import VueRouter from "vue-router";
-import Routes from "@/routes";
 import R from "./R";
+import Redirect from "./redirect";
 
 enum AxMethod {
   POST = "POST",
@@ -16,30 +16,23 @@ export default abstract class H {
   protected static pathPrefix: string;
   protected static delPrefix: string;
   protected static rateLimited: string;
+  protected static router: ?VueRouter;
 
-  public static async genGET(router: VueRouter, uri: string): Promise<unknown> {
-    return this.genSendRequest(router, uri, AxMethod.GET);
+  public static async genGET(uri: string): Promise<unknown> {
+    return this.genSendRequest(this.getRouter(), uri, AxMethod.GET);
   }
 
-  public static async genDELETE(
-    router: VueRouter,
-    uri: string,
-    data = "",
-  ): Promise<unknown> {
+  public static async genDELETE(uri: string, data = ""): Promise<unknown> {
     return this.genSendRequest(
-      router,
+      this.getRouter(),
       this.delPrefix + uri,
       AxMethod.POST,
       data,
     );
   }
 
-  public static async genPOST(
-    router: VueRouter,
-    uri: string,
-    data: string,
-  ): Promise<unknown> {
-    return this.genSendRequest(router, uri, AxMethod.POST, data);
+  public static async genPOST(uri: string, data: string): Promise<unknown> {
+    return this.genSendRequest(this.getRouter(), uri, AxMethod.POST, data);
   }
 
   public static getURI(path: string): string {
@@ -64,13 +57,15 @@ export default abstract class H {
       const toRet = (await Axios.request(fullURI))["data"];
       const currentPath: string = router.currentRoute.path;
       if (
-        !currentPath.startsWith(Routes.RateLimited) &&
+        !currentPath.startsWith(this.rateLimited) &&
         toRet === this.rateLimited
       ) {
         // eslint-disable-next-line deprecation/deprecation
-        await R.genRedirect(
+        await Redirect.genRedirect(
           router,
-          R.addParamNext(Routes.RateLimited, router.currentRoute.path),
+          R.addParamNext(this.rateLimited, router.currentRoute.path),
+          false,
+          this.rateLimited,
         );
         return "";
       }
@@ -78,5 +73,12 @@ export default abstract class H {
     } catch (e) {
       return "";
     }
+  }
+
+  protected static getRouter(): VueRouter {
+    if (this.router === undefined || this.router === null) {
+      throw new ReferenceError("Router is null or undefined.");
+    }
+    return this.router;
   }
 }

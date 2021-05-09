@@ -10,6 +10,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import CEditTrip from "@/components/CEditTrip.vue";
 import HTTPReq from "@/shared/HTTPReq";
@@ -17,13 +18,14 @@ import General from "@/shared/General";
 import TripObj from "@/wings/TripObj";
 import TripBasic from "@/wings/TripBasic";
 import Routes from "@/routes";
-import R from "@/shared/R";
+import router from "@/router";
+import Routing from "@/shared/Routing";
 
 interface Data {
   trip: TripObj;
 }
 
-export default {
+export default defineComponent({
   data(): Data {
     return {
       trip: new TripObj({
@@ -36,19 +38,17 @@ export default {
   },
   methods: {
     cancel(): void {
-      this.$router.back();
+      router.back();
     },
     async save(trip: TripBasic): Promise<void> {
-      const user = await General.genCurrentUserV2(this.$router);
+      const user = await General.genCurrentUser();
       try {
         if (user.ID !== 0) {
           const newTrip = await HTTPReq.genPOST(
-            this.$router,
             "v2/trip",
             WingsStructUtil.stringify(trip),
           );
-          await R.genRedirectTo(
-            this,
+          await Routing.genRedirectTo(
             Routes.trip_View + "/" + new TripObj(newTrip).ID,
           );
           return;
@@ -60,7 +60,7 @@ export default {
       });
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

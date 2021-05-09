@@ -21,7 +21,7 @@ const currentUser = new UserObj({
 });
 
 test.serial("Get User - Has user (self)", async (t) => {
-  const genUser = sinon.stub(General, "genUserV2").resolves(currentUser);
+  const genUser = sinon.stub(General, "genUser").resolves(currentUser);
   const isSelf = sinon.stub(General, "getIsCurrentUser").returns(true);
   const paramID = sinon.stub(General, "paramID").returns("10");
   const wrapper = mount(vIDUser, newLocalVueAndRouter());
@@ -40,7 +40,7 @@ test.serial("Get User - Has user (self)", async (t) => {
 });
 
 test.serial("Get User - Has user (not self)", async (t) => {
-  const genUser = sinon.stub(General, "genUserV2").resolves(currentUser);
+  const genUser = sinon.stub(General, "genUser").resolves(currentUser);
   const isSelf = sinon.stub(General, "getIsCurrentUser").returns(false);
   const paramID = sinon.stub(General, "paramID").returns("10");
   mount(vIDUser, newLocalVueAndRouter());
@@ -55,7 +55,7 @@ test.serial("Get User - Has user (not self)", async (t) => {
 });
 
 test.serial("Get User - Not found", async (t) => {
-  const genUser = sinon.stub(General, "genUserV2").callsFake(async () => {
+  const genUser = sinon.stub(General, "genUser").callsFake(async () => {
     // This is so there is enough time for alertSpy to be
     // created before it reaches the alert code
     await wait(500);

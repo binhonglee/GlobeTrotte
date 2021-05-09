@@ -7,13 +7,14 @@ const componentFileTemplate = `<template lang="pug">
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 
 interface Data {}
 
-export default {
+export default defineComponent({
   data: (): Data => ({}),
   // TODO
-};
+});
 </script>
 
 <style lang="scss" scoped>

@@ -18,6 +18,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import CTripInCarousel from "./CTripInCarousel.vue";
 import UserObj from "@/wings/UserObj";
 import TripBasic from "@/wings/TripBasic";
@@ -28,13 +29,14 @@ interface Data {
   lastPopulated: Array<TripBasic>;
 }
 
-export default {
+export default defineComponent({
   components: {
     CTripInCarousel,
   },
   props: {
     user: {
       type: UserObj,
+      required: true,
     },
     showName: {
       type: Boolean,
@@ -47,7 +49,7 @@ export default {
   }),
   methods: {
     /* istanbul ignore next: will move this to some generic file / lib and test there instead */
-    compareArray(a: [], b: []): boolean {
+    compareArray(a: TripBasic[], b: TripBasic[]): boolean {
       if (a.length !== b.length) {
         return false;
       }
@@ -79,7 +81,7 @@ export default {
   async beforeUpdate(): Promise<void> {
     await this.genPopulateTrips();
   },
-};
+});
 </script>
 
 <style lang="scss">

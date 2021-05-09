@@ -21,6 +21,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import CTripInCarousel from "@/components/CTripInCarousel.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import TripObj from "@/wings/TripObj";
@@ -29,7 +30,7 @@ interface Data {
   trips: TripObj[];
 }
 
-export default {
+export default defineComponent({
   components: {
     CTripInCarousel,
   },
@@ -38,7 +39,7 @@ export default {
   }),
   async beforeMount(): Promise<void> {
     this.$data.trips = [];
-    const trips = await HTTPReq.genGET(this.$router, "v2/sample_trips");
+    const trips = await HTTPReq.genGET("v2/sample_trips");
     for (const trip of trips as Array<unknown>) {
       const newTrip = new TripObj(trip);
       if (newTrip.details.days.length > 0) {
@@ -46,7 +47,7 @@ export default {
       }
     }
   },
-};
+});
 </script>
 
 <style lang="scss">

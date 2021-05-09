@@ -60,10 +60,11 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import CEditItem from "@/components/CEditItem.vue";
 import Routes from "@/routes";
-import R from "@/shared/R";
 import E from "@/shared/E";
+import Routing from "@/shared/Routing";
 import ResetPassword from "@/wings/ResetPassword";
 import HTTPReq from "@/shared/HTTPReq";
 import { WingsStructUtil } from "wings-ts-util";
@@ -74,7 +75,7 @@ interface Data {
   loading: boolean;
 }
 
-export default {
+export default defineComponent({
   components: {
     CEditItem,
   },
@@ -86,7 +87,6 @@ export default {
   methods: {
     async confirmEmail(): Promise<void> {
       const success = await HTTPReq.genPOST(
-        this.$router,
         "reset/send_email",
         WingsStructUtil.stringify(E.getVal(this, "email")),
       );
@@ -97,8 +97,7 @@ export default {
           message: "Password reset code sent!",
         });
 
-        await R.genRefreshRedirect(
-          this,
+        await Routing.genRefreshRedirect(
           Routes.password_Reset,
           new Map<string, string>(
             Object.entries({
@@ -131,7 +130,6 @@ export default {
       rp.password = E.getVal(this, "password");
 
       const success = await HTTPReq.genPOST(
-        this.$router,
         "reset/password",
         WingsStructUtil.stringify(rp),
       );
@@ -141,7 +139,7 @@ export default {
           type: "success",
           message: "Password reset is successful.",
         });
-        await R.genRedirectTo(this, Routes.Login);
+        await Routing.genRedirectTo(Routes.Login);
       } else {
         this.$message({
           type: "error",
@@ -150,7 +148,7 @@ export default {
       }
     },
     async cancel(): Promise<void> {
-      await R.paramToNext(this);
+      await Routing.paramToNext(this);
     },
   },
   async mounted(): Promise<void> {
@@ -161,11 +159,11 @@ export default {
     }
   },
   async beforeMount(): Promise<void> {
-    const paramMap = R.getParamMap(this);
+    const paramMap = Routing.getParamMap(this);
     this.$data.email = paramMap.get("email") ?? "";
     this.$data.step = +(paramMap.get("step") ?? "") ?? 1;
   },
-};
+});
 </script>
 
 <style lang="scss">

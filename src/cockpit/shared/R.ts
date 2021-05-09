@@ -1,11 +1,32 @@
-import Routes from "@/routes";
 import VueRouter, { Route } from "vue-router";
+import Redirect from "./redirect";
 
 /*
  * R is short for Route so functions included here are loosely related to path
  * routing between views.
  */
-export default class R {
+export default abstract class R {
+  protected static router: VueRouter;
+  protected static ratelimited: string;
+  protected static default: string;
+
+  public static async genRedirectTo(
+    path: string,
+    map: Map<string, string> = new Map<string, string>(),
+    id = "",
+    overrideRateLimit = false,
+  ): Promise<void> {
+    if (path !== "/") {
+      path = this.getSubPath(path, map, id);
+    }
+    await Redirect.genRedirect(
+      this.router,
+      path,
+      overrideRateLimit,
+      this.ratelimited,
+    );
+  }
+
   public static getParamMap(v: Vue): Map<string, string> {
     const params = v.$route.params["params"];
     return this.paramMapFromString(params);
@@ -61,67 +82,12 @@ export default class R {
     return path + "/" + this.setParamMap(map);
   }
 
-  // Unlike genRedirectTo, this is for when you are redirecting back to the same
-  // page with different params.The page needs to be refreshed to have the new
-  // params dealt with (remounted).
-  public static async genRefreshRedirect(
-    v: Vue,
-    path: string,
-    map: Map<string, string> = new Map<string, string>(),
-    id = "",
-  ): Promise<void> {
-    await this.genRedirectTo(
-      v,
-      Routes.Refresh,
-      new Map<string, string>(
-        Object.entries({
-          next: this.getSubPath(path, map, id)
-            .replaceAll("/", ".slash.")
-            .replaceAll(":", ".colon.")
-            .replaceAll("=", ".equal."),
-        }),
-      ),
-    );
-  }
-
-  public static async genRedirectTo(
-    v: Vue,
-    path: string,
-    map: Map<string, string> = new Map<string, string>(),
-    id = "",
-    overrideRateLimit = false,
-  ): Promise<void> {
-    if (path !== "/") {
-      path = this.getSubPath(path, map, id);
-    }
-    // eslint-disable-next-line deprecation/deprecation
-    await this.genRedirect(v.$router, path, overrideRateLimit);
-  }
-
-  private static getSubPath(
+  protected static getSubPath(
     path: string,
     map: Map<string, string>,
     id: string,
-  ) {
+  ): string {
     return path + (id.length > 0 ? "/" + id : "") + "/" + this.setParamMap(map);
-  }
-
-  /**
-   * @deprecated Avoid introducing new use of this. Use `genRedirectTo()` instead
-   */
-  public static async genRedirect(
-    r: VueRouter,
-    path: string,
-    overrideRateLimit = false,
-  ): Promise<void> {
-    if (
-      r.currentRoute.path.startsWith(Routes.RateLimited) &&
-      !overrideRateLimit
-    ) {
-      return;
-    }
-
-    await r.push(path);
   }
 
   public static async paramToNext(
@@ -130,10 +96,7 @@ export default class R {
     force_redirect = false,
   ): Promise<void> {
     const path = this.getParamMap(v).get("next");
-    if (!force_redirect) {
-      return;
-    }
-    await this.genRedirectTo(v, this.next(path ?? Routes.Landing, map));
+    await this.genRedirectTo(path ?? this.default, map, null, force_redirect);
   }
 
   public static getNext(
@@ -141,7 +104,7 @@ export default class R {
     map: Map<string, string> = new Map<string, string>(),
   ): string {
     const path = this.paramMapFromString(r.params["params"]).get("next");
-    return this.next(path ?? Routes.Landing, map);
+    return this.next(path ?? this.default, map);
   }
 
   private static next(path: string, map: Map<string, string>): string {

@@ -17,12 +17,13 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import CTripInfo from "@/components/CTripInfo.vue";
 import General from "@/shared/General";
 import TripObj from "@/wings/TripObj";
 import Routes from "@/routes";
 import E from "@/shared/E";
-import R from "@/shared/R";
+import Routing from "@/shared/Routing";
 
 interface Data {
   inputID: string;
@@ -30,7 +31,7 @@ interface Data {
   owner: boolean;
 }
 
-export default {
+export default defineComponent({
   components: {
     CTripInfo,
   },
@@ -43,16 +44,18 @@ export default {
   },
   methods: {
     async init(): Promise<void> {
-      const id = General.paramID(this);
+      const id = General.paramID();
       if (id === undefined) {
         this.$data.trip = new TripObj();
         return;
       }
 
       this.$data.inputID = id;
-      this.$data.trip = await General.genTripV2(this.$router, Number(id));
+      this.$data.trip = await General.genTrip(Number(id));
       if (this.$data.trip.ID !== -1) {
-        this.$data.owner = General.getIsCurrentUser(this.$data.trip.user.ID);
+        this.$data.owner = General.getIsCurrentUser(
+          this.$data.trip.user.ID.valueOf(),
+        );
         this.$nextTick(function () {
           E.get(this, "tripIDSearch").focus();
         });
@@ -61,14 +64,14 @@ export default {
       }
 
       this.$notify(General.notifConfig("Error", "Trip not found.", "error"));
-      await R.genRedirectTo(this, Routes.trip_View);
+      await Routing.genRedirectTo(Routes.trip_View);
     },
     gotoTrip(): void {
       const id: number = parseInt(this.$data.inputID, 10);
       if (String(id) !== this.$data.inputID) {
         alert("Invalid number");
       } else if (this.$route.params.id !== this.$data.inputID) {
-        R.genRedirectTo(this, Routes.trip_View + "/" + id);
+        Routing.genRedirectTo(Routes.trip_View + "/" + id);
       }
     },
   },
@@ -80,7 +83,7 @@ export default {
       await this.init();
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

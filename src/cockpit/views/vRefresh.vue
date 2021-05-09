@@ -2,19 +2,19 @@
 </template>
 
 <script lang="ts">
-import R from "@/shared/R";
+import { defineComponent } from "vue";
+import Routing from "@/shared/Routing";
 import Routes from "@/routes";
 
-export default {
+export default defineComponent({
   async beforeMount(): Promise<void> {
-    const paramMap = R.getParamMap(this);
-    await R.genRedirectTo(
-      this,
+    const paramMap = Routing.getParamMap(this);
+    await Routing.genRedirectTo(
       (paramMap.get("next") ?? Routes.Landing)
         .replaceAll(".slash.", "/")
         .replaceAll(".colon.", ":")
         .replaceAll(".equal.", "="),
     );
   },
-};
+});
 </script>

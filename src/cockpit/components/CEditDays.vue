@@ -24,6 +24,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import CEditPlaces from "@/components/CEditPlaces.vue";
 import Day from "@/wings/Day";
 
@@ -31,16 +32,14 @@ interface Data {
   days: Day[];
 }
 
-export default {
+export default defineComponent({
   data: (): Data => ({
     days: [],
   }),
   props: {
     givenDays: {
       type: Array,
-      default: (): [] => {
-        return [];
-      },
+      required: true,
     },
   },
   methods: {
@@ -55,7 +54,7 @@ export default {
       this.$data.days.splice(index, 1);
       let dayMap: { [key: number]: Day } = {};
       for (let day of this.$data.days) {
-        dayMap[day.dayOf] = day;
+        dayMap[day.dayOf.valueOf()] = day;
       }
       const size = this.$data.days.length;
       this.$data.days = [];
@@ -75,12 +74,12 @@ export default {
     },
   },
   beforeMount(): void {
-    this.$data.days = (this.$props.givenDays ?? []).slice(0);
+    this.$data.days = (this.$props.givenDays ?? []).slice(0) as Day[];
   },
   components: {
     CEditPlaces,
   },
-};
+});
 </script>
 
 <style lang="scss">

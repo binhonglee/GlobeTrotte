@@ -28,9 +28,7 @@ const currentUser = new UserObj({
 let genCurrentUser: sinon.SinonStub;
 
 test.serial.before(() => {
-  genCurrentUser = sinon
-    .stub(General, "genCurrentUserV2")
-    .resolves(currentUser);
+  genCurrentUser = sinon.stub(General, "genCurrentUser").resolves(currentUser);
 });
 
 test.serial.after((t) => {
@@ -39,7 +37,7 @@ test.serial.after((t) => {
 });
 
 test.serial("My Account - Delete Account (success)", async (t) => {
-  const genDELETE = sinon.stub(HTTPReq, "genDELETE").resolves(true);
+  const genDELETE = sinon.stub(HTTPRq, "genDELETE").resolves(true);
   const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   wrapper.vm.$router.push("/myaccount");
   const notify = new notifySpy(wrapper);
@@ -64,7 +62,7 @@ test.serial("My Account - Delete Account (success)", async (t) => {
 });
 
 test.serial("My Account - Delete Account (failure)", async (t) => {
-  const genDELETE = sinon.stub(HTTPReq, "genDELETE").resolves(false);
+  const genDELETE = sinon.stub(HTTPRq, "genDELETE").resolves(false);
   const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   const message = new messageSpy(wrapper);
   wrapper.find(".myAccountEdit").trigger("click");
@@ -81,7 +79,7 @@ test.serial("My Account - Delete Account (failure)", async (t) => {
 });
 
 test.serial("My Account - Logout", async (t) => {
-  const genGET = sinon.stub(HTTPReq, "genGET").resolves();
+  const genGET = sinon.stub(HTTPRq, "genGET").resolves();
   const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   wrapper.vm.$router.push("/myaccount");
   const routerPush = new routerSpy(wrapper, "push");
@@ -95,7 +93,7 @@ test.serial("My Account - Logout", async (t) => {
 });
 
 test.serial("My Account - Save Edit (success)", async (t) => {
-  const genPOST = sinon.stub(HTTPReq, "genPOST").resolves(true);
+  const genPOST = sinon.stub(HTTPRq, "genPOST").resolves(true);
   const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   const message = new messageSpy(wrapper);
 
@@ -116,7 +114,7 @@ test.serial("My Account - Save Edit (success)", async (t) => {
 });
 
 test.serial("My Account - Save Edit (failure)", async (t) => {
-  const genPOST = sinon.stub(HTTPReq, "genPOST").resolves(false);
+  const genPOST = sinon.stub(HTTPRq, "genPOST").resolves(false);
   const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   const alert = new alertSpy(wrapper);
 

@@ -14,10 +14,13 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
+
 interface Data {
   value: string;
 }
-export default {
+
+export default defineComponent({
   name: "CEditItem",
   props: {
     label: {
@@ -47,7 +50,7 @@ export default {
   beforeMount(): void {
     this.$data.value = this.$props.val ?? "";
   },
-};
+});
 </script>
 
 <style lang="scss">

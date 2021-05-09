@@ -16,6 +16,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import CEditTrip from "./CEditTrip.vue";
 import CViewTrip from "./CViewTrip.vue";
@@ -27,7 +28,7 @@ interface Data {
   editMode: boolean;
 }
 
-export default {
+export default defineComponent({
   name: "CTripInfo",
   components: {
     CViewTrip,
@@ -39,6 +40,7 @@ export default {
   props: {
     trip: {
       type: TripObj,
+      required: true,
     },
     editable: {
       type: Boolean,
@@ -49,7 +51,6 @@ export default {
       const tripObj = this.$props.trip;
       tripObj.details = trip;
       const success = await HTTPReq.genPOST(
-        this.$router,
         "v2/trip/" + trip.ID,
         WingsStructUtil.stringify(tripObj),
       );
@@ -71,7 +72,7 @@ export default {
   beforeMount(): void {
     this.$data.editMode = false;
   },
-};
+});
 </script>
 
 <style lang="scss">

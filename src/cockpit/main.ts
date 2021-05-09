@@ -1,8 +1,8 @@
 import Axios from "axios";
-import ElementUI from "element-ui";
-import Vue from "vue";
+import ElementPlus from "element-plus";
+import { createApp } from "vue";
 import { Route } from "vue-router";
-import "element-ui/lib/theme-chalk/index.css";
+import "element-plus/lib/theme-chalk/index.css";
 import App from "./App.vue";
 import General from "./shared/General";
 import router from "./router";
@@ -11,8 +11,8 @@ import R from "./shared/R";
 
 Axios.defaults.withCredentials = true;
 
-Vue.use(ElementUI);
-Vue.config.productionTip = false;
+const app = createApp(App);
+app.use(ElementPlus);
 
 router.beforeEach(async (to: Route, from: Route, next) => {
   if (to.matched.some((record) => record.meta.loggedIn)) {
@@ -52,7 +52,6 @@ router.beforeEach(async (to: Route, from: Route, next) => {
   }
 });
 
-new Vue({
-  router,
-  render: (h) => h(App),
-}).$mount("#app");
+app.config.globalProperties.$router = router;
+app.use(router);
+app.mount("#app");

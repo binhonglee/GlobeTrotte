@@ -3,7 +3,7 @@ import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import UserObj from "@/wings/UserObj";
 
-import { mount, Wrapper } from "@vue/test-utils";
+import { mount, VueWrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
 import {
   messageSpy,
@@ -19,7 +19,7 @@ import R from "@/shared/R";
 const email = "ab@test.com";
 const password = "1234";
 
-function verifyUI(t: ExecutionContext<unknown>, wrapper: Wrapper<Vue>): void {
+function verifyUI(t: ExecutionContext<unknown>, wrapper: VueWrapper): void {
   t.is(wrapper.find(".loginUsernameLabel").text(), "Email:");
   t.is(wrapper.find(".loginPasswordLabel").text(), "Password:");
 }
@@ -31,7 +31,7 @@ interface FormLogin {
 
 function fillFormAndLogin(
   t: ExecutionContext<unknown>,
-  wrapper: Wrapper<Vue>,
+  wrapper: VueWrapper,
   form: FormLogin,
 ): void {
   wrapper.find(".loginUsername").find(".el-input__inner").setValue(form.email);

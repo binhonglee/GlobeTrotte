@@ -37,6 +37,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
@@ -45,6 +46,7 @@ import UserObj from "@/wings/UserObj";
 import CEditItem from "@/components/CEditItem.vue";
 import E from "@/shared/E";
 import R from "@/shared/R";
+import router from "@/router";
 import Routes from "@/routes";
 
 interface Data {
@@ -53,7 +55,7 @@ interface Data {
   resetLink: string;
 }
 
-export default {
+export default defineComponent({
   data(): Data {
     return {
       loading: false,
@@ -75,7 +77,6 @@ export default {
       });
 
       const res = await HTTPReq.genPOST(
-        this.$router,
         "v2/login",
         WingsStructUtil.stringify(newUser),
       );
@@ -98,7 +99,7 @@ export default {
       await R.paramToNext(this, new Map<string, string>(), true);
     },
     cancel(): void {
-      this.$router.back();
+      router.back();
     },
   },
   beforeMount(): void {
@@ -109,7 +110,7 @@ export default {
       E.get(E.get(this, "email"), "input").focus();
     });
   },
-};
+});
 </script>
 
 <style lang="scss">

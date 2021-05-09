@@ -6,18 +6,19 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import EmailObj from "@/wings/EmailObj";
 import Routes from "@/routes";
-import R from "@/shared/R";
+import Routing from "@/shared/Routing";
 
 interface Data {
   loading: boolean;
 }
 
-export default {
+export default defineComponent({
   data(): Data {
     return {
       loading: false,
@@ -25,32 +26,29 @@ export default {
   },
   async mounted(): Promise<void> {
     this.$data.loading = true;
-    const user = await General.genCurrentUserV2(this.$router);
+    const user = await General.genCurrentUser();
     if (user.details.confirmed) {
       this.$data.loading = false;
-      await R.genRedirectTo(this, Routes.Landing);
+      await Routing.genRedirectTo(Routes.Landing);
       return;
     }
-    const uuid = General.paramID(this);
+    const uuid = General.paramID();
     if (uuid === undefined) {
-      await R.genRedirectTo(this, Routes.unconfirmed_Email);
+      await Routing.genRedirectTo(Routes.unconfirmed_Email);
       return;
     }
 
     // PROD: Force confirm email only used for testing
     if (uuid.localeCompare("force-confirm") === 0) {
-      if (
-        await HTTPReq.genGET(this.$router, "force_confirm_email/" + user.ID)
-      ) {
-        await General.genUpdateCurrentUser(this.$router);
+      if (await HTTPReq.genGET("force_confirm_email/" + user.ID)) {
+        await General.genUpdateCurrentUser();
         this.$data.loading = false;
-        await R.genRedirectTo(this, Routes.Landing);
+        await Routing.genRedirectTo(Routes.Landing);
         return;
       }
     }
 
     const res = await HTTPReq.genPOST(
-      this.$router,
       "confirm/email",
       WingsStructUtil.stringify(
         new EmailObj({
@@ -61,7 +59,7 @@ export default {
       ),
     );
 
-    await General.genUpdateCurrentUser(this.$router);
+    await General.genUpdateCurrentUser();
     this.$data.loading = false;
 
     if (res) {
@@ -72,7 +70,7 @@ export default {
           "success",
         ),
       );
-      await R.genRedirectTo(this, Routes.Landing);
+      await Routing.genRedirectTo(Routes.Landing);
     } else {
       this.$notify(
         General.notifConfig(
@@ -81,10 +79,10 @@ export default {
           "error",
         ),
       );
-      await R.genRedirectTo(this, Routes.unconfirmed_Email);
+      await Routing.genRedirectTo(Routes.unconfirmed_Email);
     }
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

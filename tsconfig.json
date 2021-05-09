@@ -1,22 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "strict": true,
-    "jsx": "preserve",
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
     "baseUrl": ".",
-    "typeRoots": ["./node_modules/@types"],
-    "types": ["node", "cypress"],
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "jsx": "preserve",
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+    "module": "esnext",
+    "moduleResolution": "node",
     "paths": {
       "@/*": ["src/cockpit/*"]
     },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext",
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["node", "cypress", "vite/client"],
   },
   "include": [
     "src/cockpit/**/*.ts",

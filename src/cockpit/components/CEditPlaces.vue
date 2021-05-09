@@ -35,19 +35,34 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { defineComponent } from "vue";
 import Place from "@/wings/Place";
 
-export default Vue.extend({
+interface Data {
+  places: Place[];
+}
+
+export default defineComponent({
   name: "CEditPlaces",
-  data: () => ({
+  data: (): Data => ({
     places: [],
   }),
   props: {
     givenPlaces: {
       type: Array,
-      default: () => {
+      default: (): Place[] => {
         return [];
+      },
+      validator: function (value) {
+        if (!Array.isArray(value)) {
+          return false;
+        }
+        value.forEach((element) => {
+          if (!(element instanceof Place)) {
+            return false;
+          }
+        });
+        return true;
       },
     },
   },
@@ -60,7 +75,7 @@ export default Vue.extend({
     },
   },
   beforeMount() {
-    this.$data.places = (this.$props.givenPlaces ?? []).slice(0);
+    this.$data.places = (this.$props.givenPlaces ?? []).slice(0) as Place[];
   },
 });
 </script>

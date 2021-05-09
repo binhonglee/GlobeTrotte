@@ -48,10 +48,11 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import CEditDays from "./CEditDays.vue";
 import CEditItem from "./CEditItem.vue";
 import CEditPlaces from "./CEditPlaces.vue";
-import { CityUtil } from "@/shared/CityUtil";
+import { CityObj, CityUtil } from "@/shared/CityUtil";
 import TripEditable from "@/shared/TripEditable";
 import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
@@ -62,17 +63,17 @@ import City from "@/wings/City";
 import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
 import E from "@/shared/E";
-import R from "@/shared/R";
+import Routing from "@/shared/Routing";
 
 interface Data {
   cities: Array<City>;
-  possibleCities: Array<City>;
+  possibleCities: Array<CityObj>;
   private: boolean;
   saving: boolean;
   deleting: boolean;
 }
 
-export default {
+export default defineComponent({
   components: {
     CEditDays,
     CEditItem,
@@ -88,9 +89,11 @@ export default {
   props: {
     trip: {
       type: TripObj,
+      required: true,
     },
     isNew: {
       type: Boolean,
+      required: true,
     },
   },
   methods: {
@@ -192,15 +195,13 @@ export default {
       this.$data.deleting = true;
       let success = Boolean(
         await HTTPReq.genDELETE(
-          this.$router,
           "v2/trip/" + this.$props.trip.ID,
           WingsStructUtil.stringify(this.$props.trip),
         ),
       );
       if (!success) {
         success =
-          (await General.genTripV2(this.$router, this.$props.trip.ID)).ID ===
-          -1;
+          (await General.genTrip(this.$props.trip.ID.valueOf())).ID === -1;
       }
 
       this.$data.deleting = false;
@@ -215,7 +216,7 @@ export default {
       );
 
       if (success) {
-        R.genRedirectTo(this, Routes.Landing);
+        Routing.genRedirectTo(Routes.Landing);
       }
     },
     tripToItem(itemType: string): TripEditable {
@@ -224,7 +225,7 @@ export default {
     update(): void {
       this.$data.possibleCities = CityUtil.sortedCityList();
       this.$data.cities = this.$props.trip.details.cities;
-      this.$data.private = this.$props.trip.details.private;
+      this.$data.private = this.$props.trip.details.private.valueOf();
       this.$nextTick(function () {
         E.get(E.get(this, "name"), "input").focus();
       });
@@ -233,7 +234,7 @@ export default {
   beforeMount(): void {
     this.update();
   },
-};
+});
 </script>
 
 <style lang="scss">

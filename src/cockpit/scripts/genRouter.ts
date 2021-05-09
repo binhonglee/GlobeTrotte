@@ -15,15 +15,10 @@ class Path {
   }
 }
 
-const paths: Path[] = [new Path("Landing", "")];
+const paths: Path[] = [new Path("Landing", ""), new Path("NotFound", "404")];
 
 const meta: Meta = {
-  guest: [
-    "NextLogin",
-    "NextLoginRedirect",
-    "NextRegister",
-    "NextRegisterRedirect",
-  ],
+  guest: ["Login", "Register"],
   loggedIn: ["MyAccount"],
   confirmed: ["trip/New"],
   unconfirmed: ["confirm/UuidOnlyEmailUUID", "unconfirmed/NextEmailRedirect"],
@@ -43,16 +38,14 @@ const before =
   prefix +
   `
 import Vue from "vue";
-import Router from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
-Vue.use(Router);
-
-export default new Router({
+export default createRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "*",
+      path: "/:pathMatch(.*)",
       name: "404",
       component: () => import("./views/v404.vue"),
     },
@@ -162,7 +155,11 @@ class GenRouter {
   private getRoute(path: string, name: string, component: string): string {
     let metaTxt = "";
     for (const key of Object.keys(meta)) {
-      if (meta[key].includes(name)) {
+      if (
+        meta[key].includes(name) ||
+        (name.slice(name.length - 6, name.length) === "Params" &&
+          meta[key].includes(name.slice(0, name.length - 6)))
+      ) {
         metaTxt +=
           `
         ` +

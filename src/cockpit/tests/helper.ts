@@ -1,7 +1,14 @@
 import sinon from "sinon";
-import { createLocalVue, MountOptions, Wrapper } from "@vue/test-utils";
-import VueRouter from "vue-router";
+import { mount, VueWrapper } from "@vue/test-utils";
+// import { createLocalVue, MountOptions, Wrapper } from "@vue/test-utils";
+import App from "@/App";
 import router from "@/router";
+import ElementPlus from "element-plus";
+import { ElNotification, ElAlert, ElMessage } from "element-plus";
+import {
+  ComponentPublicInstance,
+  ComponentOptionsBase,
+} from "@vue/runtime-core";
 
 type routerFunctions =
   | "replace"
@@ -22,13 +29,34 @@ type routerFunctions =
   | "addRoutes"
   | "resolve";
 
+interface ElPlus {
+  $notify(args: unknown): typeof ElNotification;
+  $alert(args: unknown): typeof ElAlert;
+  $message(args: unknown): typeof ElMessage;
+  $router(args: unknown): typeof router;
+}
+
+type ComponentType = ComponentPublicInstance<
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  false,
+  ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>
+> &
+  ElPlus;
+
 export async function wait(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export class notifySpy {
   public item: sinon.SinonSpy = sinon.spy();
-  public constructor(wrapper: Wrapper<Vue>) {
+  public constructor(wrapper: VueWrapper<ComponentType>) {
     this.item = sinon.spy(wrapper.vm, "$notify");
   }
 
@@ -48,7 +76,7 @@ export class notifySpy {
 
 export class alertSpy {
   public item: sinon.SinonSpy = sinon.spy();
-  public constructor(wrapper: Wrapper<Vue>) {
+  public constructor(wrapper: VueWrapper<ComponentType>) {
     this.item = sinon.spy(wrapper.vm, "$alert");
   }
 
@@ -68,7 +96,7 @@ export class alertSpy {
 
 export class messageSpy {
   public item: sinon.SinonSpy = sinon.spy();
-  public constructor(wrapper: Wrapper<Vue>) {
+  public constructor(wrapper: VueWrapper<ComponentType>) {
     this.item = sinon.spy(wrapper.vm, "$message");
   }
 
@@ -85,7 +113,10 @@ export class messageSpy {
 
 export class routerSpy {
   public item: sinon.SinonSpy = sinon.spy();
-  public constructor(wrapper: Wrapper<Vue>, name: routerFunctions) {
+  public constructor(
+    wrapper: VueWrapper<ComponentType>,
+    name: routerFunctions,
+  ) {
     this.item = sinon.spy(wrapper.vm.$router, name);
   }
 
@@ -98,11 +129,13 @@ export class routerSpy {
   }
 }
 
-export function newLocalVueAndRouter(): MountOptions<Vue> {
-  const localVue = createLocalVue();
-  localVue.use(VueRouter);
-  return {
-    localVue,
-    router,
-  };
+export function newLocalVueAndRouter(): VueWrapper<ComponentType> {
+  return mount(App, {
+    mocks: {
+      router: router,
+    },
+    global: {
+      plugins: [ElementPlus],
+    },
+  });
 }

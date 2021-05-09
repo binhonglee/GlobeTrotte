@@ -15,6 +15,7 @@ filegroup(
   srcs = [
     ".npmrc",
     ".babelrc",
+    "vite.config.ts",
     "package.json",
     "pnpm-lock.yaml",
   ],

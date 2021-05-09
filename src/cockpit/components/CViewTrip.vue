@@ -30,6 +30,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import { CityUtil } from "@/shared/CityUtil";
 import CPlaces from "./CPlaces.vue";
 import City from "@/wings/City";
@@ -39,7 +40,7 @@ interface Data {
   cities: City[];
 }
 
-export default {
+export default defineComponent({
   name: "CViewTrip",
   components: { CPlaces },
   data(): Data {
@@ -67,7 +68,7 @@ export default {
       }
     }
   },
-};
+});
 </script>
 
 <style lang="scss">
