@@ -1,5 +1,4 @@
-import { ElNotificationOptions } from "element-plus/types/notification";
-import { MessageType } from "element-plus/types/message";
+import { ElNotificationOptions, MessageType } from "element-plus-details";
 import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "./HTTPReq";
 import TripObj from "@/wings/TripObj";
@@ -9,7 +8,11 @@ import router from "@/router";
 export default class General {
   public static paramID(): string | undefined {
     /* istanbul ignore next: $route is a pain to mock, using this as a workaround for testing */
-    return router.params["id"];
+    try {
+      return router.currentRoute.value.params["id"] as string;
+    } catch {
+      return undefined;
+    }
   }
 
   public static notifConfig(

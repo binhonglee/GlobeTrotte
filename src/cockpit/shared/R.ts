@@ -1,12 +1,13 @@
-import VueRouter, { Route } from "vue-router";
+import { Router, RouteLocationNormalized } from "vue-router";
 import Redirect from "./redirect";
 
 /*
  * R is short for Route so functions included here are loosely related to path
  * routing between views.
  */
+
 export default abstract class R {
-  protected static router: VueRouter;
+  protected static router: Router;
   protected static ratelimited: string;
   protected static default: string;
 
@@ -27,8 +28,8 @@ export default abstract class R {
     );
   }
 
-  public static getParamMap(v: Vue): Map<string, string> {
-    const params = v.$route.params["params"];
+  public static getParamMap(): Map<string, string> {
+    const params = this.router.currentRoute.value.params["params"] as string;
     return this.paramMapFromString(params);
   }
 
@@ -58,8 +59,8 @@ export default abstract class R {
     return toReturn;
   }
 
-  public static hasNext(v: Vue): boolean {
-    return this.getParamMap(v).has("next");
+  public static hasNext(): boolean {
+    return this.getParamMap().has("next");
   }
 
   public static addParamNext(
@@ -91,19 +92,20 @@ export default abstract class R {
   }
 
   public static async paramToNext(
-    v: Vue,
     map: Map<string, string> = new Map<string, string>(),
     force_redirect = false,
   ): Promise<void> {
-    const path = this.getParamMap(v).get("next");
-    await this.genRedirectTo(path ?? this.default, map, null, force_redirect);
+    const path = this.getParamMap().get("next");
+    await this.genRedirectTo(path ?? this.default, map, "", force_redirect);
   }
 
   public static getNext(
-    r: Route,
+    r: RouteLocationNormalized,
     map: Map<string, string> = new Map<string, string>(),
   ): string {
-    const path = this.paramMapFromString(r.params["params"]).get("next");
+    const path = this.paramMapFromString(r.params["params"] as string).get(
+      "next",
+    );
     return this.next(path ?? this.default, map);
   }
 

@@ -12,12 +12,12 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import HTTPReq from "@/shared/HTTPReq";
-import R from "@/shared/R";
+import Routing from "@/shared/Routing";
 
 export default defineComponent({
   async beforeMount(): Promise<void> {
     if (!(await HTTPReq.genGET("ratelimit"))) {
-      await R.paramToNext(this);
+      await Routing.paramToNext();
     }
   },
 });

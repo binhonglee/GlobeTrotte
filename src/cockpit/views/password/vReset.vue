@@ -148,7 +148,7 @@ export default defineComponent({
       }
     },
     async cancel(): Promise<void> {
-      await Routing.paramToNext(this);
+      await Routing.paramToNext();
     },
   },
   async mounted(): Promise<void> {
@@ -159,7 +159,7 @@ export default defineComponent({
     }
   },
   async beforeMount(): Promise<void> {
-    const paramMap = Routing.getParamMap(this);
+    const paramMap = Routing.getParamMap();
     this.$data.email = paramMap.get("email") ?? "";
     this.$data.step = +(paramMap.get("step") ?? "") ?? 1;
   },

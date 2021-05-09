@@ -41,8 +41,7 @@ import Vue from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 export default createRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
+  history: createWebHistory(process.env.BASE_URL),
   routes: [
     {
       path: "/:pathMatch(.*)",

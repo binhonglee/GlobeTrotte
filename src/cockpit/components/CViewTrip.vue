@@ -64,7 +64,7 @@ export default defineComponent({
     this.$data.cities = [];
     if (this.$props.trip !== undefined) {
       for (let city of this.$props.trip.details.cities) {
-        this.$data.cities.push(CityUtil.toString(city));
+        this.$data.cities.push(city);
       }
     }
   },

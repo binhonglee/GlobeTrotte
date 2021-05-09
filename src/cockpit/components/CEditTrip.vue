@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { DefineComponent, defineComponent } from "vue";
 import CEditDays from "./CEditDays.vue";
 import CEditItem from "./CEditItem.vue";
 import CEditPlaces from "./CEditPlaces.vue";
@@ -226,7 +226,7 @@ export default defineComponent({
       this.$data.possibleCities = CityUtil.sortedCityList();
       this.$data.cities = this.$props.trip.details.cities;
       this.$data.private = this.$props.trip.details.private.valueOf();
-      this.$nextTick(function () {
+      this.$nextTick(function (this: DefineComponent) {
         E.get(E.get(this, "name"), "input").focus();
       });
     },

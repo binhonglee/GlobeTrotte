@@ -25,7 +25,7 @@ export default class Routing extends R {
             .replaceAll("=", ".equal."),
         }),
       ),
-      null,
+      "",
       true,
     );
   }

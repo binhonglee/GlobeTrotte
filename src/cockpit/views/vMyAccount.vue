@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, DefineComponent } from "vue";
 import CEditItem from "@/components/CEditItem.vue";
 import CViewUser from "@/components/CViewUser.vue";
 import General from "@/shared/General";
@@ -129,7 +129,7 @@ export default defineComponent({
     toggleEdit(): void {
       this.$data.edit = !this.$data.edit;
       if (this.$data.edit) {
-        this.$nextTick(function () {
+        this.$nextTick(function (this: DefineComponent) {
           E.get(E.get(this, "name"), "input").focus();
         });
       }

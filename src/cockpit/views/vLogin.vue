@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { DefineComponent, defineComponent } from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
@@ -45,7 +45,7 @@ import NewUser from "@/wings/NewUser";
 import UserObj from "@/wings/UserObj";
 import CEditItem from "@/components/CEditItem.vue";
 import E from "@/shared/E";
-import R from "@/shared/R";
+import Routing from "@/shared/Routing";
 import router from "@/router";
 import Routes from "@/routes";
 
@@ -96,17 +96,17 @@ export default defineComponent({
         General.notifConfig("Success", "You are now logged in.", "success"),
       );
 
-      await R.paramToNext(this, new Map<string, string>(), true);
+      await Routing.paramToNext(new Map<string, string>(), true);
     },
     cancel(): void {
       router.back();
     },
   },
   beforeMount(): void {
-    if (R.hasNext(this)) {
+    if (Routing.hasNext()) {
       this.$data.showError = true;
     }
-    this.$nextTick(function () {
+    this.$nextTick(function (this: DefineComponent) {
       E.get(E.get(this, "email"), "input").focus();
     });
   },

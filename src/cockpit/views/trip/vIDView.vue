@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { DefineComponent, defineComponent } from "vue";
 import CTripInfo from "@/components/CTripInfo.vue";
 import General from "@/shared/General";
 import TripObj from "@/wings/TripObj";
@@ -56,7 +56,7 @@ export default defineComponent({
         this.$data.owner = General.getIsCurrentUser(
           this.$data.trip.user.ID.valueOf(),
         );
-        this.$nextTick(function () {
+        this.$nextTick(function (this: DefineComponent) {
           E.get(this, "tripIDSearch").focus();
         });
 

@@ -1,5 +1,5 @@
 import Axios, { AxiosRequestConfig, Method } from "axios";
-import VueRouter from "vue-router";
+import { Router } from "vue-router";
 import R from "./R";
 import Redirect from "./redirect";
 
@@ -16,7 +16,7 @@ export default abstract class H {
   protected static pathPrefix: string;
   protected static delPrefix: string;
   protected static rateLimited: string;
-  protected static router: ?VueRouter;
+  protected static router: Router;
 
   public static async genGET(uri: string): Promise<unknown> {
     return this.genSendRequest(this.getRouter(), uri, AxMethod.GET);
@@ -40,7 +40,7 @@ export default abstract class H {
   }
 
   private static async genSendRequest(
-    router: VueRouter,
+    router: Router,
     uri: string,
     type: Method,
     data = "",
@@ -55,7 +55,7 @@ export default abstract class H {
     }
     try {
       const toRet = (await Axios.request(fullURI))["data"];
-      const currentPath: string = router.currentRoute.path;
+      const currentPath: string = router.currentRoute.value.path;
       if (
         !currentPath.startsWith(this.rateLimited) &&
         toRet === this.rateLimited
@@ -63,7 +63,7 @@ export default abstract class H {
         // eslint-disable-next-line deprecation/deprecation
         await Redirect.genRedirect(
           router,
-          R.addParamNext(this.rateLimited, router.currentRoute.path),
+          R.addParamNext(this.rateLimited, router.currentRoute.value.path),
           false,
           this.rateLimited,
         );
@@ -75,7 +75,7 @@ export default abstract class H {
     }
   }
 
-  protected static getRouter(): VueRouter {
+  protected static getRouter(): Router {
     if (this.router === undefined || this.router === null) {
       throw new ReferenceError("Router is null or undefined.");
     }

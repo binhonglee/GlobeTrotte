@@ -1,15 +1,15 @@
-import { VueRouter } from "vue-router";
+import { Router } from "vue-router";
 
 export default class Redirect {
   public static async genRedirect(
-    r: VueRouter,
+    r: Router,
     path: string,
     overrideRateLimit = false,
-    rateLimitedPath: string = null,
+    rateLimitedPath: string | null = null,
   ): Promise<void> {
     if (
       rateLimitedPath !== null &&
-      r.currentRoute.path.startsWith(rateLimitedPath) &&
+      r.currentRoute.value.path.startsWith(rateLimitedPath) &&
       !overrideRateLimit
     ) {
       return;

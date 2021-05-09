@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { DefineComponent, defineComponent } from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
@@ -139,7 +139,7 @@ export default defineComponent({
     },
   },
   beforeMount(): void {
-    this.$nextTick(function () {
+    this.$nextTick(function (this: DefineComponent) {
       E.get(E.get(this, "name"), "input").focus();
     });
   },

@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import R from "@/shared/R";
+import Routing from "@/shared/Routing";
 
 interface Data {
   hasNext: boolean;
@@ -39,7 +39,7 @@ export default defineComponent({
     };
   },
   beforeMount(): void {
-    this.$data.hasNext = R.hasNext(this);
+    this.$data.hasNext = Routing.hasNext();
   },
 });
 </script>

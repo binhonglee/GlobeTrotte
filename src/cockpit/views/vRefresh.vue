@@ -8,7 +8,7 @@ import Routes from "@/routes";
 
 export default defineComponent({
   async beforeMount(): Promise<void> {
-    const paramMap = Routing.getParamMap(this);
+    const paramMap = Routing.getParamMap();
     await Routing.genRedirectTo(
       (paramMap.get("next") ?? Routes.Landing)
         .replaceAll(".slash.", "/")
