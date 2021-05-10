@@ -1,8 +1,8 @@
 <template lang="pug">
-  .confirm_email_uuid
-    h1 Email Confirmation
-    .emailConfirmationLoadingBox(v-loading="loading")
-    p Confirming your email address...
+.confirm_email_uuid
+  h1 Email Confirmation
+  .emailConfirmationLoadingBox(v-loading="loading")
+  p Confirming your email address...
 </template>
 
 <script lang="ts">

@@ -1,62 +1,62 @@
 <template lang="pug">
-  .password_reset.narrow_content
-    h1.title Reset Password
-    form.resetPasswordStart(v-if="step < 2")
-      CEditItem(
-        className="emailInput"
-        label="Email"
-        ref="email"
-        :val="email"
-        v-on:keydown.enter.native="confirmEmail"
-      )
-      br
-      el-button.resetPasswordSave(
-        type="primary"
-        v-on:click="confirmEmail"
-        v-loading.fullscreen.lock="loading"
-      ) Confirm
-      el-button.resetPasswordCancel(
-        type="default"
-        v-on:click="cancel"
-      ) Cancel
-    form.resetPasswordInput(v-else)
-      CEditItem(
-        className="resetEmail"
-        label="Email"
-        ref="email"
-        :val="email"
-        @enter="confirmReset"
-      )
-      CEditItem(
-        className="resetCode"
-        label="Code"
-        ref="code"
-        @enter="confirmReset"
-      )
-      CEditItem(
-        className="resetPassword"
-        label="Password"
-        ref="password"
-        type="password"
-        @enter="confirmReset"
-      )
-      CEditItem(
-        className="resetConfPassword"
-        label="Confirm Password"
-        ref="confPassword"
-        type="password"
-        @enter="confirmReset"
-      )
-      br
-      el-button.resetPasswordSave(
-        type="primary"
-        v-on:click="confirmReset"
-        v-loading.fullscreen.lock="loading"
-      ) Confirm
-      el-button.resetPasswordCancel(
-        type="default"
-        v-on:click="cancel"
-      ) Cancel
+.password_reset.narrow_content
+  h1.title Reset Password
+  form.resetPasswordStart(v-if="step < 2")
+    CEditItem(
+      className="emailInput"
+      label="Email"
+      ref="email"
+      :val="email"
+      v-on:keydown.enter.native="confirmEmail"
+    )
+    br
+    el-button.resetPasswordSave(
+      type="primary"
+      v-on:click="confirmEmail"
+      v-loading.fullscreen.lock="loading"
+    ) Confirm
+    el-button.resetPasswordCancel(
+      type="default"
+      v-on:click="cancel"
+    ) Cancel
+  form.resetPasswordInput(v-else)
+    CEditItem(
+      className="resetEmail"
+      label="Email"
+      ref="email"
+      :val="email"
+      @enter="confirmReset"
+    )
+    CEditItem(
+      className="resetCode"
+      label="Code"
+      ref="code"
+      @enter="confirmReset"
+    )
+    CEditItem(
+      className="resetPassword"
+      label="Password"
+      ref="password"
+      type="password"
+      @enter="confirmReset"
+    )
+    CEditItem(
+      className="resetConfPassword"
+      label="Confirm Password"
+      ref="confPassword"
+      type="password"
+      @enter="confirmReset"
+    )
+    br
+    el-button.resetPasswordSave(
+      type="primary"
+      v-on:click="confirmReset"
+      v-loading.fullscreen.lock="loading"
+    ) Confirm
+    el-button.resetPasswordCancel(
+      type="default"
+      v-on:click="cancel"
+    ) Cancel
 </template>
 
 <script lang="ts">

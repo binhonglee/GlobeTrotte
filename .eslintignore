@@ -9,3 +9,4 @@ src/cockpit/router.ts
 src/cockpit/tests/_setup.js
 src/cockpit/tests/cypress/**/*.ts
 src/wings/*
+vite.config.ts

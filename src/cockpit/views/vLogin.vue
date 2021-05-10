@@ -1,39 +1,39 @@
 <template lang="pug">
-  .login.narrow_content
-    h1.title Login
-    el-alert.tripPrivateAlertBar(
-      v-if="showError"
-      title="Please login to continue."
-      type="error"
-      :closable="false"
-      show-icon
+.login.narrow_content
+  h1.title Login
+  el-alert.tripPrivateAlertBar(
+    v-if="showError"
+    title="Please login to continue."
+    type="error"
+    :closable="false"
+    show-icon
+  )
+  form.loginbox
+    CEditItem.loginUsernameItem(
+      label="Email"
+      ref="email"
+      className="loginUsername"
+      @enter="confirm"
     )
-    form.loginbox
-      CEditItem.loginUsernameItem(
-        label="Email"
-        ref="email"
-        className="loginUsername"
-        @enter="confirm"
-      )
-      CEditItem(
-        label="Password"
-        ref="password"
-        className="loginPassword"
-        type="password"
-        @enter="confirm"
-      )
-      br
-      el-button.loginConfirm(
-        type="primary"
-        v-on:click="confirm"
-        v-loading.fullscreen.lock="loading"
-      ) Confirm
-      el-button.loginCancel(
-        type="default"
-        v-on:click="cancel"
-      ) Cancel
-    p.forgotPassword
-      a(:href="resetLink") Forgot Password?
+    CEditItem(
+      label="Password"
+      ref="password"
+      className="loginPassword"
+      type="password"
+      @enter="confirm"
+    )
+    br
+    el-button.loginConfirm(
+      type="primary"
+      v-on:click="confirm"
+      v-loading.fullscreen.lock="loading"
+    ) Confirm
+    el-button.loginCancel(
+      type="default"
+      v-on:click="cancel"
+    ) Cancel
+  p.forgotPassword
+    a(:href="resetLink") Forgot Password?
 </template>
 
 <script lang="ts">

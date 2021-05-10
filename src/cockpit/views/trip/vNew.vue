@@ -1,12 +1,12 @@
 <template lang="pug">
-  .new_trip.narrow_content
-    h1.title New Trip
-    CEditTrip.newTrip(
-      :trip="trip"
-      :isNew="true"
-      @save="save"
-      @cancel="cancel"
-    )
+.new_trip.narrow_content
+  h1.title New Trip
+  CEditTrip.newTrip(
+    :trip="trip"
+    :isNew="true"
+    @save="save"
+    @cancel="cancel"
+  )
 </template>
 
 <script lang="ts">

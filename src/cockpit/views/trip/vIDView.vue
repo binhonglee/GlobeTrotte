@@ -1,19 +1,19 @@
 <template lang="pug">
-  .get_view_trip.narrow_content
-    h1.title Trip
-    |     Trip ID:
-    el-input.tripSearchInput(
-      ref="tripIDSearch"
-      type="text"
-      v-model="inputID"
-      v-on:keydown.enter.native="gotoTrip"
-    )
-    el-button.tripSearchInput(v-on:click="gotoTrip") Find
-    CTripInfo(
-      v-if="trip.ID !== -1"
-      :trip="trip"
-      :editable="owner"
-    )
+.get_view_trip.narrow_content
+  h1.title Trip
+  |     Trip ID:
+  el-input.tripSearchInput(
+    ref="tripIDSearch"
+    type="text"
+    v-model="inputID"
+    v-on:keydown.enter.native="gotoTrip"
+  )
+  el-button.tripSearchInput(v-on:click="gotoTrip") Find
+  CTripInfo(
+    v-if="trip.ID !== -1"
+    :trip="trip"
+    :editable="owner"
+  )
 </template>
 
 <script lang="ts">

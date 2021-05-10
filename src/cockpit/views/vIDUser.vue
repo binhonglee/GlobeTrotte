@@ -1,8 +1,8 @@
 <template lang="pug">
-  .get_user
-    h1.title {{ user.details.name }}
-    .profile_info
-      CViewUser(:user="user" :showName="false")
+.get_user
+  h1.title {{ user.details.name }}
+  .profile_info
+    CViewUser(:user="user" :showName="false")
 </template>
 
 <script lang="ts">

@@ -1,27 +1,27 @@
 <template lang="pug">
-  .confirm_email
-    h1 Email Confirmation
+.confirm_email
+  h1 Email Confirmation
+  p
+    | Please confirm your email address before you proceed.
+    br
+    | Look for a confirmation email in your inbox that
+    | looks like below and click on the link.
+  el-card.emailConfirmationScreenshot
+    h2 Confirm your GlobeTrotte email
     p
-      | Please confirm your email address before you proceed.
+      | GlobeTrotte &lt;noreply&commat;globetrotte.com&gt;
       br
-      | Look for a confirmation email in your inbox that
-      | looks like below and click on the link.
-    el-card.emailConfirmationScreenshot
-      h2 Confirm your GlobeTrotte email
-      p
-        | GlobeTrotte &lt;noreply&commat;globetrotte.com&gt;
-        br
-        | To: You
-      p
-        | Click
-        | 
-        a(href="") here
-        | 
-        | to confirm your GlobeTrotte account email
-    p(v-if="hasNext")
-      | Once you've completed the account confirmation
-      | process, you can refresh this page to continue
-      | browsing this website.
+      | To: You
+    p
+      | Click
+      | 
+      a(href="") here
+      | 
+      | to confirm your GlobeTrotte account email
+  p(v-if="hasNext")
+    | Once you've completed the account confirmation
+    | process, you can refresh this page to continue
+    | browsing this website.
 </template>
 
 <script lang="ts">
@@ -45,7 +45,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.emailConfirmationScreenshot {
+.confirm_email .emailConfirmationScreenshot {
   margin: auto;
   max-width: 500px;
   text-align: left;

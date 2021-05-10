@@ -1,25 +1,27 @@
 <template lang="pug">
-  .places
-    ul.placesList(
-      v-if="places !== undefined"
+.places
+  ul.placesList(
+    v-if="places !== undefined"
+  )
+    el-row.place(
+      v-for="place in places"
+      v-bind:key="place.URL"
     )
-      el-row.place(
-        v-for="place in places"
-        v-bind:key="place.URL"
+      el-link.placeLink(
+        target="_blank"
+        rel="noopener noreferrer"
+        :underline="false"
+        :href="place.URL"
+        v-if="place.URL !== ''"
       )
-        el-link.placeLink(
-          target="_blank"
-          rel="noopener noreferrer"
-          :underline="false"
-          :href="place.URL"
-          v-if="place.URL !== ''"
-        )
-          el-card.placeDisplayCard(shadow="hover")
+        el-card.placeDisplayCard(shadow="hover")
+          .placeDisplayCardContent
             b.link {{ place.label }}
             p.placeDescription(
               v-if="place.description !== ''"
             ) {{ place.description }}
-        el-card.placeDisplayCard(v-else shadow="hover")
+      el-card.placeDisplayCard(v-else shadow="hover")
+        .placeDisplayCardContent
           b {{ place.label }}
           p.placeDescription(
             v-if="place.description !== ''"
@@ -58,12 +60,17 @@ export default defineComponent({
   width: 100%;
 }
 
-.places .placeDisplayCard .el-card__body {
-  .link {
-    color: #409eff;
+.places .placeDisplayCard {
+  width: 345px;
+
+  .placeDisplayCardContent {
+    font-size: 14px;
+    padding: 5px;
+
+    .link {
+      color: #409eff;
+    }
   }
-  font-size: 14px;
-  padding: 10px;
 }
 
 .placeDisplayCard:hover {

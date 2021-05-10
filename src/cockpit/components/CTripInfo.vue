@@ -1,18 +1,18 @@
 <template lang="pug">
-  .trip_info
-    div.view_trip_info(v-if="!editMode")
-      CViewTrip(
-        :trip="trip"
-        :editable="editable"
-        @edit-trip="enableEditMode"
-      )
-    div.edit_trip_info(v-else)
-      CEditTrip(
-        :trip="trip"
-        :isNew="false"
-        @save="save"
-        @cancel="cancel"
-      )
+.trip_info
+  div.view_trip_info(v-if="!editMode")
+    CViewTrip(
+      :trip="trip"
+      :editable="editable"
+      @edit-trip="enableEditMode"
+    )
+  div.edit_trip_info(v-else)
+    CEditTrip(
+      :trip="trip"
+      :isNew="false"
+      @save="save"
+      @cancel="cancel"
+    )
 </template>
 
 <script lang="ts">

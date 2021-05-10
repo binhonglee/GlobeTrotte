@@ -88,6 +88,9 @@ export default abstract class R {
     map: Map<string, string>,
     id: string,
   ): string {
+    if (path.endsWith("/")) {
+      path = path.substr(0, path.length - 1);
+    }
     return path + (id.length > 0 ? "/" + id : "") + "/" + this.setParamMap(map);
   }
 
@@ -96,7 +99,12 @@ export default abstract class R {
     force_redirect = false,
   ): Promise<void> {
     const path = this.getParamMap().get("next");
-    await this.genRedirectTo(path ?? this.default, map, "", force_redirect);
+    await this.genRedirectTo(
+      this.next(path ?? this.default),
+      map,
+      "",
+      force_redirect,
+    );
   }
 
   public static getNext(
@@ -109,7 +117,10 @@ export default abstract class R {
     return this.next(path ?? this.default, map);
   }
 
-  private static next(path: string, map: Map<string, string>): string {
+  private static next(
+    path: string,
+    map: Map<string, string> = new Map<string, string>(),
+  ): string {
     if (path === undefined || path.length < 2) {
       // TODO: Log error
       map.delete("next");

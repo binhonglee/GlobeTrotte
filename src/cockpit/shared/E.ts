@@ -1,4 +1,4 @@
-type RefType = HTMLElement & any;
+import { DefineComponent } from "@vue/runtime-core";
 
 /*
  * E is short for Element so functions included here are loosely related to
@@ -14,6 +14,8 @@ type RefType = HTMLElement & any;
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+type RefType = HTMLElement & any;
 
 export default class E {
   public static getVal(v: any, name: string): string {

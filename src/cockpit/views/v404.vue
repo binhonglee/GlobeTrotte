@@ -1,6 +1,6 @@
 <template lang="pug">
-  ._404.narrow_content
-    h3 Uhh, there's nothing to see here...
+._404.narrow_content
+  h3 Uhh, there's nothing to see here...
 </template>
 
 <script lang="ts">

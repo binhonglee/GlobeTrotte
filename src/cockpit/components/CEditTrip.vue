@@ -1,50 +1,50 @@
 <template lang="pug">
-  .edit_trip
-    form.edit_form
-      CEditItem(
-        :className="'editTripName'"
-        :label="'Name'"
-        :ref="'name'"
-        :val="trip.details.name"
+.edit_trip
+  form.edit_form
+    CEditItem(
+      :className="'editTripName'"
+      :label="'Name'"
+      :ref="'name'"
+      :val="trip.details.name"
+    )
+    CEditItem(
+      :className="'editTripDescription'"
+      :label="'Description'"
+      :ref="'description'"
+      :type="'textarea'"
+      :val="trip.details.description"
+    )
+    .editTripPrivacy
+      span.editLabel Private:
+      el-switch.editInput(v-model="private")
+    .editCity
+      span.editLabel Cities:
+      el-select.editInput(
+        v-model="cities"
+        filterable
+        multiple
+        no-match-text="City not found"
+        placeholder=""
       )
-      CEditItem(
-        :className="'editTripDescription'"
-        :label="'Description'"
-        :ref="'description'"
-        :type="'textarea'"
-        :val="trip.details.description"
-      )
-      .editTripPrivacy
-        span.editLabel Private:
-        el-switch.editInput(v-model="private")
-      .editCity
-        span.editLabel Cities:
-        el-select.editInput(
-          v-model="cities"
-          filterable
-          multiple
-          no-match-text="City not found"
-          placeholder=""
+        el-option.editTripSingleCity(
+          v-for="item in possibleCities"
+          :label="item.label"
+          :value="item.key"
         )
-          el-option.editTripSingleCity(
-            v-for="item in possibleCities"
-            :label="item.label"
-            :value="item.key"
-          )
-      CEditDays(ref="days" :givenDays="trip.details.days")
-      div.confirmationButtons
-        el-button.saveEditTrip(
-          type="primary" v-on:click="save" :loading="saving"
-        ) Save
-        el-button.cancelEditTrip(
-          type="default" v-on:click="cancel"
-        ) Cancel
-        el-button.deleteTrip(
-          v-if="!isNew"
-          v-on:click="del"
-          type="danger"
-          :loading="deleting"
-        ) Delete
+    CEditDays(ref="days" :givenDays="trip.details.days")
+    div.confirmationButtons
+      el-button.saveEditTrip(
+        type="primary" v-on:click="save" :loading="saving"
+      ) Save
+      el-button.cancelEditTrip(
+        type="default" v-on:click="cancel"
+      ) Cancel
+      el-button.deleteTrip(
+        v-if="!isNew"
+        v-on:click="del"
+        type="danger"
+        :loading="deleting"
+      ) Delete
 </template>
 
 <script lang="ts">
@@ -126,11 +126,9 @@ export default defineComponent({
       newTrip.days = [];
       const days = E.get(this, "days");
       let offBy = 0;
-      for (const day in days.$data.days) {
-        const currentDay = days.$data.days[day];
-        const places = this.filterPlaces(
-          E.getEl(days, "places" + day, 0).places,
-        );
+      for (const day in days.days) {
+        const currentDay = days.days[day];
+        const places = this.filterPlaces(currentDay.places);
         if (places === null) {
           this.$alert(
             "We currently only support links to limited " +

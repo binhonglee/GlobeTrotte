@@ -1,43 +1,43 @@
 <template lang="pug">
-  .new_user.narrow_content
-    h1.title Create Account
-    form.newUser
-      CEditItem(
-        className="registrationName"
-        label="Name"
-        ref="name"
-        @enter="confirm"
-      )
-      CEditItem(
-        className="registrationEmail"
-        label="Email"
-        ref="email"
-        @enter="confirm"
-      )
-      CEditItem(
-        className="registrationPassword"
-        label="Password"
-        ref="password"
-        type="password"
-        @enter="confirm"
-      )
-      CEditItem(
-        className="registrationConfPassword"
-        label="Confirm Password"
-        ref="confPassword"
-        type="password"
-        @enter="confirm"
-      )
-      br
-      el-button.registrationSave(
-        type="primary"
-        v-on:click="confirm"
-        v-loading.fullscreen.lock="loading"
-      ) Confirm
-      el-button.registrationCancel(
-        type="default"
-        v-on:click="cancel"
-      ) Cancel
+.new_user.narrow_content
+  h1.title Create Account
+  form.newUser
+    CEditItem(
+      className="registrationName"
+      label="Name"
+      ref="name"
+      @enter="confirm"
+    )
+    CEditItem(
+      className="registrationEmail"
+      label="Email"
+      ref="email"
+      @enter="confirm"
+    )
+    CEditItem(
+      className="registrationPassword"
+      label="Password"
+      ref="password"
+      type="password"
+      @enter="confirm"
+    )
+    CEditItem(
+      className="registrationConfPassword"
+      label="Confirm Password"
+      ref="confPassword"
+      type="password"
+      @enter="confirm"
+    )
+    br
+    el-button.registrationSave(
+      type="primary"
+      v-on:click="confirm"
+      v-loading.fullscreen.lock="loading"
+    ) Confirm
+    el-button.registrationCancel(
+      type="default"
+      v-on:click="cancel"
+    ) Cancel
 </template>
 
 <script lang="ts">

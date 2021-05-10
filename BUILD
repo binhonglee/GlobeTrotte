@@ -118,7 +118,7 @@ npm_test(
   srcs = ["cypress.json"],
   cmd = "test:cypress",
   result_dir = "cypress/junit",
-  requires_server = 1234,
+  requires_server = 3000,
   set_home = True,
   deps = [
     ":pnpm",

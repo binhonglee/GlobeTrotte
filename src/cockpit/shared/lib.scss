@@ -24,10 +24,22 @@ $edit-width: 250px;
   padding-right: 10px;
 }
 
-@mixin right_button() {
-  float: right;
+@mixin button() {
   margin-top: 5px;
   margin-bottom: 10px;
   vertical-align: middle;
   font-size: 10px;
+}
+
+@mixin right_button() {
+  @include button;
+  float: right;
+}
+
+@mixin wide_button() {
+  @include button;
+  font-size: 12px;
+  min-height: 28px;
+  padding: 5px;
+  width: 100%;
 }

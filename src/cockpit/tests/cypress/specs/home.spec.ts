@@ -5,7 +5,8 @@ describe("Menubar", () => {
       cy.get(".main_menu")
         .contains("ul", "Home")
         .contains("ul", "Trips")
-        .contains("ul", "View");
+        .trigger("mouseenter");
+      cy.contains("ul", "View");
     });
   });
 });

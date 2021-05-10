@@ -1,4 +1,4 @@
-declare module "element-plus-details" {
+declare module "element-plus-option-types" {
   type MessageType = "success" | "warning" | "info" | "error";
   interface ElNotificationOptions {
     message: string;

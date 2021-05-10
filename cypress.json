@@ -6,7 +6,7 @@
   "screenshotsFolder": "cypress/screenshots",
   "videosFolder": "cypress/videos",
   "supportFile": "src/cockpit/tests/cypress/support.ts",
-  "baseUrl": "http://localhost:1234",
+  "baseUrl": "http://localhost:3000",
   "reporter": "junit",
   "reporterOptions": {
     "mochaFile": "cypress/junit/[hash].xml",

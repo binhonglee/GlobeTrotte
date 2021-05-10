@@ -1,16 +1,16 @@
 <template lang="pug">
-  .edit_item(v-bind:class="type === 'textarea' ? 'edit_item_large' : 'edit_item_small'")
-    span.editLabel(:class="className + 'Label'") {{ label }}:
-    el-input.editInput(
-      :class="className"
-      :ref="'input'"
-      :rows="type === 'textarea' ? 3 : 1"
-      :type="type"
-      :show-password="type === 'password'"
-      v-model="value"
-      v-on:keyup.enter.native="enter"
-    )
-    br
+.edit_item(v-bind:class="type === 'textarea' ? 'edit_item_large' : 'edit_item_small'")
+  span.editLabel(:class="className + 'Label'") {{ label }}:
+  el-input.editInput(
+    :class="className"
+    :ref="'input'"
+    :rows="type === 'textarea' ? 3 : 1"
+    :type="type"
+    :show-password="type === 'password'"
+    v-model="value"
+    v-on:keyup.enter.native="enter"
+  )
+  br
 </template>
 
 <script lang="ts">

@@ -1,11 +1,12 @@
 <template lang="pug">
-  .edit_days
-    el-card.editDay(
-      v-for="(day, index) in days"
-      shadow="hover"
-      :key="day.dayOf"
-      :class="'day' + day.dayOf"
-    )
+.edit_days
+  el-card.editDay(
+    v-for="(day, index) in days"
+    shadow="hover"
+    :key="day.dayOf"
+    :class="'day' + day.dayOf"
+  )
+    .editDayCardContent
       div.editDayTitle
         b Day {{ day.dayOf }}
         el-button.removeDay(
@@ -17,10 +18,10 @@
         :givenPlaces="day.places"
         :ref="'places' + index"
       )
-    el-button.addDay(
-      icon='el-icon-plus'
-      v-on:click='pushDay'
-    ) Add another day
+  el-button.addDay(
+    icon='el-icon-plus'
+    v-on:click='pushDay'
+  ) Add another day
 </template>
 
 <script lang="ts">
@@ -82,7 +83,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../shared/lib";
 
 .editPlaces {
@@ -91,8 +92,12 @@ export default defineComponent({
 
 .editDay {
   margin: 10px 0 10px 0;
-  padding: 0 0 13px 0;
+  padding: 0;
   width: 100%;
+
+  .editDayCardContent {
+    padding: 10px;
+  }
 }
 
 .editDayTitle {
@@ -102,6 +107,7 @@ export default defineComponent({
 .addDay {
   @include right_button();
   font-size: 12px;
+  min-height: 28px;
   padding: 5px;
   width: 100%;
 }
@@ -109,7 +115,9 @@ export default defineComponent({
 .removeDay {
   @include right_button();
   font-size: 12px;
-  padding: 5px;
-  margin: 0;
+  margin-top: -5px;
+  min-height: 28px;
+  padding: 0 5px;
+  line-height: 10px;
 }
 </style>

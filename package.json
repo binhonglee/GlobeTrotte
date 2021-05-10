@@ -4,7 +4,7 @@
   "private": true,
   "author": "BinHong Lee <binhong@binhong.me>",
   "scripts": {
-    "serve": "pnpm run checkBackend && vite preview",
+    "serve": "pnpm run checkBackend && vite",
     "build": "vue-tsc --noEmit --skipLibCheck && vite build",
     "lint": "eslint \"src/**/*.{vue,ts}\"",
     "check:tsc": "vue-tsc --noEmit",
@@ -12,7 +12,7 @@
     "endServer": "forever stop ./node_modules/vite/bin/vite.js",
     "format": "pnpm run lint -- --fix",
     "preflight": "pnpm i && pnpm run genRouter && mv router.ts src/cockpit/",
-    "startServer": "forever start ./node_modules/vite/bin/vite.js preview && wait-on http://localhost:5000",
+    "startServer": "forever start ./node_modules/vite/bin/vite.js && wait-on http://localhost:3000",
     "test:ava": "pnpm run preflight && nyc ava",
     "test:cypress": "cypress install && cypress run",
     "test:cypress:plz": "pnpm run checkBackend && NODE_ENV=test pnpm run startServer && pnpm run xvfb:run && $xvfb pnpm run test:cypress && pnpm run endServer",

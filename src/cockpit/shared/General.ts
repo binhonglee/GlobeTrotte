@@ -1,4 +1,4 @@
-import { ElNotificationOptions, MessageType } from "element-plus-details";
+import { ElNotificationOptions, MessageType } from "element-plus-option-types";
 import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "./HTTPReq";
 import TripObj from "@/wings/TripObj";

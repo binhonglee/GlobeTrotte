@@ -1,5 +1,6 @@
 <template lang="pug">
-  .trip_in_carousel
+.trip_in_carousel
+  el-card.carouselTripCard(shadow="hover")
     el-carousel.viewUserTripInfoCarousel(
       indicator-position="outside"
       arrow="never"
@@ -45,6 +46,15 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "../shared/lib";
+
+.trip_in_carousel {
+  display: inline-block;
+}
+.carouselTripCard {
+  display: inline-block;
+  margin: 15px;
+  width: 330px;
+}
 
 .tripDayPreview {
   overflow: auto;

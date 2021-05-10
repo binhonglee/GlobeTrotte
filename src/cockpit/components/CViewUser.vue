@@ -1,20 +1,20 @@
 <template lang="pug">
-  .view_user
-    div.userInfo.narrow_content
-      h2(v-if="showName").userName {{ user.details.name }}
-      span.userID ID: {{ user.ID }}
-      p.userEmail
-        strong Email:
-        br
-        | {{ user.details.email }}
-      p.userBio(v-if="user.details.bio !== ''")
-        strong Bio:
-        br
-        | {{ user.details.bio }}
-    div.viewUserTrips(v-if="trips.length > 0")
-      h2 Trips
-      el-card.homePageTripCard(v-for="trip in trips" shadow="hover")
-        CTripInCarousel(:trip="trip")
+.view_user
+  div.userInfo.narrow_content
+    h2(v-if="showName").userName {{ user.details.name }}
+    span.userID ID: {{ user.ID }}
+    p.userEmail
+      strong Email:
+      br
+      | {{ user.details.email }}
+    p.userBio(v-if="user.details.bio !== ''")
+      strong Bio:
+      br
+      | {{ user.details.bio }}
+  el-divider.viewUserDivider
+  div.viewUserTrips(v-if="trips.length > 0")
+    h2 Trips
+    CTripInCarousel(v-for="trip in trips" :trip="trip")
 </template>
 
 <script lang="ts">
@@ -100,6 +100,10 @@ export default defineComponent({
   h2 {
     margin: 20px 0 0 0;
   }
+}
+
+.viewUserDivider {
+  width: 100%;
 }
 
 .userID {

@@ -1,42 +1,42 @@
 <template lang="pug">
-  .my_account
-    h1.title My Account
-    el-link.unconfirmedEmailLink(:href="unconfirmedLink" :underline="false")
-      el-alert.narrow_content.accountUnconfirmedAlertBar(
-        v-if="!confirmed"
-        title="Unconfirmed"
-        description="Please confirm you email address to access the full site."
-        type="error"
-        :closable="false"
-        show-icon
-      )
-    .profileInfo
-      div(v-if="!edit")
-        CViewUser(:user="user")
-        .narrow_content
-          .myAccountButtonGroups
-            el-button.myAccountLogout(
-              type="danger" v-on:click="logout"
-            ) Logout
-            el-button.myAccountEdit(
-              tabindex="0" type="default" ref="edit" v-on:click="toggleEdit"
-            ) Edit
-      .narrow_content(v-else)
-        CEditItem(label="Name" ref="name" :val="user.details.name")
-        CEditItem(label="Email" ref="email" :val="user.details.email")
-        CEditItem(label="Bio" type="textarea" ref="bio" :val="user.details.bio")
-        div.myAccountButtonGroups
-          el-button.myAccountSave(type="primary" v-on:click="save") Save
-          el-button.myAccountCancel(
-            type="default"
-            ref="cancel"
-            v-on:click="toggleEdit"
-          ) Cancel
-        div.myAccountDeletion
-          el-button.myAccountDelete(
-            type="danger" v-on:click="deleteAccount"
-          ) Delete Account
-          el-button(style="hidden: true" v-if="false")
+.my_account
+  h1.title My Account
+  el-link.unconfirmedEmailLink(:href="unconfirmedLink" :underline="false")
+    el-alert.narrow_content.accountUnconfirmedAlertBar(
+      v-if="!confirmed"
+      title="Unconfirmed"
+      description="Please confirm you email address to access the full site."
+      type="error"
+      :closable="false"
+      show-icon
+    )
+  .profileInfo
+    div(v-if="!edit")
+      CViewUser(:user="user")
+      .narrow_content
+        .myAccountButtonGroups
+          el-button.myAccountLogout(
+            type="danger" v-on:click="logout"
+          ) Logout
+          el-button.myAccountEdit(
+            tabindex="0" type="default" ref="edit" v-on:click="toggleEdit"
+          ) Edit
+    .narrow_content(v-else)
+      CEditItem(label="Name" ref="name" :val="user.details.name")
+      CEditItem(label="Email" ref="email" :val="user.details.email")
+      CEditItem(label="Bio" type="textarea" ref="bio" :val="user.details.bio")
+      div.myAccountButtonGroups
+        el-button.myAccountSave(type="primary" v-on:click="save") Save
+        el-button.myAccountCancel(
+          type="default"
+          ref="cancel"
+          v-on:click="toggleEdit"
+        ) Cancel
+      div.myAccountDeletion
+        el-button.myAccountDelete(
+          type="danger" v-on:click="deleteAccount"
+        ) Delete Account
+        el-button(style="hidden: true" v-if="false")
 </template>
 
 <script lang="ts">

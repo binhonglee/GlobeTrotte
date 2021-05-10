@@ -39,7 +39,7 @@ func allowCORS(res *http.ResponseWriter) {
 	if flags.ProdServer() {
 		return
 	}
-	var url = "http://localhost:1234"
+	var url = "http://localhost:3000"
 
 	(*res).Header().Set(
 		"Access-Control-Allow-Origin", url)

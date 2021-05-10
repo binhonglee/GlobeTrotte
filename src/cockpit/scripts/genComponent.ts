@@ -2,8 +2,8 @@ import { existsSync, writeFileSync } from "fs";
 
 const componentFolder = "src/cockpit/components/";
 const componentFileTemplate = `<template lang="pug">
-  .COMPONENT_NAME_SNAKE
-    //- TODO
+.COMPONENT_NAME_SNAKE
+  //- TODO
 </template>
 
 <script lang="ts">
