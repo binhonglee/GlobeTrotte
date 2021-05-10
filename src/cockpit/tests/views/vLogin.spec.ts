@@ -10,6 +10,7 @@ import {
   notifySpy,
   newLocalVueAndRouter,
   routerSpy,
+  Vue,
 } from "../helper";
 import sinon from "sinon";
 import test from "ava";
@@ -19,7 +20,10 @@ import R from "@/shared/R";
 const email = "ab@test.com";
 const password = "1234";
 
-function verifyUI(t: ExecutionContext<unknown>, wrapper: VueWrapper): void {
+function verifyUI(
+  t: ExecutionContext<unknown>,
+  wrapper: VueWrapper<Vue>,
+): void {
   t.is(wrapper.find(".loginUsernameLabel").text(), "Email:");
   t.is(wrapper.find(".loginPasswordLabel").text(), "Password:");
 }
@@ -31,7 +35,7 @@ interface FormLogin {
 
 function fillFormAndLogin(
   t: ExecutionContext<unknown>,
-  wrapper: VueWrapper,
+  wrapper: VueWrapper<Vue>,
   form: FormLogin,
 ): void {
   wrapper.find(".loginUsername").find(".el-input__inner").setValue(form.email);
@@ -72,9 +76,9 @@ test.serial("Login - Wrong password", async (t) => {
   });
   rNext.restore();
   t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][1], "v2/login");
+  t.is(genPOST.args[0][0], "v2/login");
   t.is(
-    genPOST.args[0][2],
+    genPOST.args[0][1],
     WingsStructUtil.stringify(
       new NewUser({
         id: -1,
@@ -112,9 +116,9 @@ test.serial("Login - Success", async (t) => {
   });
   await rNext.restore();
   t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][1], "v2/login");
+  t.is(genPOST.args[0][0], "v2/login");
   t.is(
-    genPOST.args[0][2],
+    genPOST.args[0][1],
     WingsStructUtil.stringify(
       new NewUser({
         id: -1,

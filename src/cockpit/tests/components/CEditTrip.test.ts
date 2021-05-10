@@ -12,7 +12,9 @@ const mockedTrip = new mockTripObj();
 test("renders empty component", (t) => {
   const trip = mockedTrip.trip;
   const wrapper = shallowMount(CEditTrip, {
-    propsData: trip,
-  });
+    props: {
+      trip: trip,
+    },
+  } as any);
   t.regex(wrapper.find(".editLabel").text(), /City:/);
 });

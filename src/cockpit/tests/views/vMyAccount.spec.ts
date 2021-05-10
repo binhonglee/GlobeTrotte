@@ -37,7 +37,7 @@ test.serial.after((t) => {
 });
 
 test.serial("My Account - Delete Account (success)", async (t) => {
-  const genDELETE = sinon.stub(HTTPRq, "genDELETE").resolves(true);
+  const genDELETE = sinon.stub(HTTPReq, "genDELETE").resolves(true);
   const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   wrapper.vm.$router.push("/myaccount");
   const notify = new notifySpy(wrapper);
@@ -62,7 +62,7 @@ test.serial("My Account - Delete Account (success)", async (t) => {
 });
 
 test.serial("My Account - Delete Account (failure)", async (t) => {
-  const genDELETE = sinon.stub(HTTPRq, "genDELETE").resolves(false);
+  const genDELETE = sinon.stub(HTTPReq, "genDELETE").resolves(false);
   const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   const message = new messageSpy(wrapper);
   wrapper.find(".myAccountEdit").trigger("click");
@@ -79,7 +79,7 @@ test.serial("My Account - Delete Account (failure)", async (t) => {
 });
 
 test.serial("My Account - Logout", async (t) => {
-  const genGET = sinon.stub(HTTPRq, "genGET").resolves();
+  const genGET = sinon.stub(HTTPReq, "genGET").resolves();
   const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   wrapper.vm.$router.push("/myaccount");
   const routerPush = new routerSpy(wrapper, "push");
@@ -93,7 +93,7 @@ test.serial("My Account - Logout", async (t) => {
 });
 
 test.serial("My Account - Save Edit (success)", async (t) => {
-  const genPOST = sinon.stub(HTTPRq, "genPOST").resolves(true);
+  const genPOST = sinon.stub(HTTPReq, "genPOST").resolves(true);
   const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   const message = new messageSpy(wrapper);
 
@@ -103,8 +103,8 @@ test.serial("My Account - Save Edit (success)", async (t) => {
   wrapper.find(".myAccountSave").trigger("click");
   await wait(500);
   t.true(genPOST.calledOnce);
-  t.is(genPOST.args[0][1], "v2/user/10");
-  t.is(genPOST.args[0][2], WingsStructUtil.stringify(currentUser.details));
+  t.is(genPOST.args[0][0], "v2/user/10");
+  t.is(genPOST.args[0][1], WingsStructUtil.stringify(currentUser.details));
   t.true(message.item.calledOnce);
   t.is(message.getMessage(), "Profile updated successfully!");
   t.is(message.getType(), "success");
@@ -114,7 +114,7 @@ test.serial("My Account - Save Edit (success)", async (t) => {
 });
 
 test.serial("My Account - Save Edit (failure)", async (t) => {
-  const genPOST = sinon.stub(HTTPRq, "genPOST").resolves(false);
+  const genPOST = sinon.stub(HTTPReq, "genPOST").resolves(false);
   const wrapper = mount(vMyAccount, newLocalVueAndRouter());
   const alert = new alertSpy(wrapper);
 
@@ -124,8 +124,8 @@ test.serial("My Account - Save Edit (failure)", async (t) => {
   wrapper.find(".myAccountSave").trigger("click");
   await wait(500);
   t.true(genPOST.calledOnce);
-  t.is(genPOST.args[0][1], "v2/user/10");
-  t.is(genPOST.args[0][2], WingsStructUtil.stringify(currentUser.details));
+  t.is(genPOST.args[0][0], "v2/user/10");
+  t.is(genPOST.args[0][1], WingsStructUtil.stringify(currentUser.details));
   t.true(alert.item.calledOnce);
   t.is(alert.getTitle(), "Fail");
   t.is(alert.getMessage(), "Save was unsuccessful. Please try again later.");

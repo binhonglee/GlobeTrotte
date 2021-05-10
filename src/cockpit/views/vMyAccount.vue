@@ -22,9 +22,11 @@
             tabindex="0" type="default" ref="edit" v-on:click="toggleEdit"
           ) Edit
     .narrow_content(v-else)
-      CEditItem(label="Name" ref="name" :val="user.details.name")
-      CEditItem(label="Email" ref="email" :val="user.details.email")
-      CEditItem(label="Bio" type="textarea" ref="bio" :val="user.details.bio")
+      CEditItem(label="Name" ref="name" :val="user.details.name.valueOf()")
+      CEditItem(label="Email" ref="email" :val="user.details.email.valueOf()")
+      CEditItem(
+        label="Bio" type="textarea" ref="bio" :val="user.details.bio.valueOf()"
+      )
       div.myAccountButtonGroups
         el-button.myAccountSave(type="primary" v-on:click="save") Save
         el-button.myAccountCancel(

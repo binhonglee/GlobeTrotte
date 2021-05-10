@@ -29,16 +29,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import Place from "@/wings/Place";
+import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "CPlaces",
   props: {
     places: {
-      type: Array,
-      default: () => {
-        [];
-      },
+      type: Array as PropType<Array<Place>>,
+      required: true,
     },
   },
 });

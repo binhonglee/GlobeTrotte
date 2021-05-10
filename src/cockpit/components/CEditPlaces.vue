@@ -1,7 +1,7 @@
 <template lang="pug">
 .edit_places
   ul.places(
-    v-for="(place, index) in this.$data.places"
+    v-for="(place, index) in places"
     v-bind:key="index"
   )
     div.editPlace(:class="'place' + index")

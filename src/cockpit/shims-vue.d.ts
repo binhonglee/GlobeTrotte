@@ -1,9 +1,9 @@
 import { ElNotification, ElAlert, ElMessage } from "element-plus";
 import VueRouter, { Route } from "vue-router";
-import { DefineComponent } from "vue";
 
 declare module "*.vue" {
-  const component: DefineComponent<{}, {}, any>;
+  import { DefineComponent } from "vue";
+  const component: DefineComponent;
   export default component;
 }
 

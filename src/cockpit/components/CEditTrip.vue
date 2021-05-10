@@ -5,14 +5,14 @@
       :className="'editTripName'"
       :label="'Name'"
       :ref="'name'"
-      :val="trip.details.name"
+      :val="trip.details.name.valueOf()"
     )
     CEditItem(
       :className="'editTripDescription'"
       :label="'Description'"
       :ref="'description'"
       :type="'textarea'"
-      :val="trip.details.description"
+      :val="trip.details.description.valueOf()"
     )
     .editTripPrivacy
       span.editLabel Private:

@@ -39,6 +39,7 @@ export default defineComponent({
   props: {
     trip: {
       type: TripObj,
+      required: true,
     },
   },
 });

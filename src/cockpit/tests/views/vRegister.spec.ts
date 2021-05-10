@@ -8,10 +8,11 @@ import {
   newLocalVueAndRouter,
   notifySpy,
   routerSpy,
+  Vue,
   wait,
 } from "../helper";
 
-import { mount, Wrapper } from "@vue/test-utils";
+import { mount, VueWrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
 import sinon from "sinon";
 import test, { ExecutionContext } from "ava";
@@ -20,7 +21,10 @@ const name = "Ab Cd";
 const email = "ab@test.com";
 const password = "1234";
 
-function verifyUI(t: ExecutionContext<unknown>, wrapper: Wrapper<Vue>): void {
+function verifyUI(
+  t: ExecutionContext<unknown>,
+  wrapper: VueWrapper<Vue>,
+): void {
   t.is(wrapper.find(".registrationNameLabel").text(), "Name:");
   t.is(wrapper.find(".registrationEmailLabel").text(), "Email:");
   t.is(wrapper.find(".registrationPasswordLabel").text(), "Password:");
@@ -39,7 +43,7 @@ interface FormReg {
 
 function fillFormAndReg(
   t: ExecutionContext<unknown>,
-  wrapper: Wrapper<Vue>,
+  wrapper: VueWrapper<Vue>,
   form: FormReg,
 ): void {
   wrapper
@@ -102,9 +106,9 @@ test.serial("Registration - New user (Failure)", async (t) => {
     confPassword: password,
   });
   t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][1], "v2/user");
+  t.is(genPOST.args[0][0], "v2/user");
   t.is(
-    genPOST.args[0][2],
+    genPOST.args[0][1],
     WingsStructUtil.stringify(
       new NewUser({
         id: -1,
@@ -147,9 +151,9 @@ test.serial("Registration - New user (Success)", async (t) => {
     confPassword: password,
   });
   t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][1], "v2/user");
+  t.is(genPOST.args[0][0], "v2/user");
   t.is(
-    genPOST.args[0][2],
+    genPOST.args[0][1],
     WingsStructUtil.stringify(
       new NewUser({
         id: -1,
