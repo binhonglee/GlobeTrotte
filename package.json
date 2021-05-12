@@ -34,7 +34,7 @@
     "@babel/preset-env": "7.14.2",
     "@babel/preset-typescript": "7.13.0",
     "@cypress/code-coverage": "3.9.5",
-    "@types/node": "14.14.44",
+    "@types/node": "14.14.45",
     "@types/puppeteer": "5.4.3",
     "@types/sinon": "10.0.0",
     "@typescript-eslint/eslint-plugin": "4.23.0",
