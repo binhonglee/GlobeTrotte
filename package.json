@@ -61,7 +61,7 @@
     "prettier": "2.3.0",
     "pug": "3.0.2",
     "pug-plain-loader": "1.1.0",
-    "puppeteer": "9.1.1",
+    "puppeteer": "10.0.0",
     "puppeteer-to-istanbul": "1.4.0",
     "require-extension-hooks": "0.3.3",
     "require-extension-hooks-babel": "1.0.0",
