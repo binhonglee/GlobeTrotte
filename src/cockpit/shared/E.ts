@@ -1,5 +1,3 @@
-import { DefineComponent } from "@vue/runtime-core";
-
 /*
  * E is short for Element so functions included here are loosely related to
  * vue / HTML elements.

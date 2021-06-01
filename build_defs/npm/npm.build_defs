@@ -21,6 +21,7 @@ def ava_tests(
   ava_dirs:list=[],
   deps:list=[],
   visibility:list=[],
+  vue_components:bool=False,
 ):
   rules = []
   pre_build = " && ".join([
@@ -45,6 +46,7 @@ def ava_tests(
       nyc = nyc,
       deps = deps + ava_dirs,
       visibility = visibility,
+      vue_component = vue_components,
     )
     rules += [on_test]
 
@@ -64,7 +66,19 @@ def ava_test(
   nyc:bool=True,
   deps:list=[],
   visibility:list=[],
+  vue_component:bool=False,
 ):
+  if vue_component and _assert_boolean(CONFIG.DISABLE_VUE_COMPONENT_TESTS):
+    return build_rule(
+      name = name,
+      data = [src] + ava_dirs + deps,
+      test_cmd = "echo 'Skipped...'",
+      test = True,
+      test_only = True,
+      no_test_output = True,
+      visibility = visibility,
+    )
+
   use_nyc = "nyc --silent " if nyc else ""
   if pre_build is None:
     pre_build = " && ".join([
@@ -328,18 +342,44 @@ def npm_lint(
   )
 
 def _gen_run_typescript(script_name:str):
+  ts_runner = ["ts-eager", "ts-node"]
+  if CONFIG.TYPESCRIPT_TOOL in ts_runner:
+    return " ".join([
+      CONFIG.NPX_TOOL,
+      CONFIG.TYPESCRIPT_TOOL,
+      "./$PKG_DIR/" + script_name,
+    ])
+
   out_name = script_name[:-3] + ".js"
-  return " ".join([
-    CONFIG.NPX_TOOL,
-    CONFIG.TYPESCRIPT_TOOL,
-    "./$PKG_DIR/" + script_name,
-    "--outDir",
-    CONFIG.TYPESCRIPT_OUT_DIR,
-    "&&",
-    CONFIG.NODE_TOOL,
-    CONFIG.TYPESCRIPT_OUT_DIR + "/" + out_name,
-    "\\\$*",
-  ])
+
+  if CONFIG.TYPESCRIPT_TOOL == "esbuild":
+    return " ".join([
+      CONFIG.NPX_TOOL,
+      CONFIG.TYPESCRIPT_TOOL,
+      "--bundle",
+      "./$PKG_DIR/" + script_name,
+      "--platform=node",
+      "--outdir=" + CONFIG.TYPESCRIPT_OUT_DIR,
+      "&&",
+      CONFIG.NODE_TOOL,
+      CONFIG.TYPESCRIPT_OUT_DIR + "/" + out_name,
+      "\\\$*",
+    ])
+
+  if CONFIG.TYPESCRIPT_TOOL == "tsc":
+    return " ".join([
+      CONFIG.NPX_TOOL,
+      CONFIG.TYPESCRIPT_TOOL,
+      "./$PKG_DIR/" + script_name,
+      "--outDir",
+      CONFIG.TYPESCRIPT_OUT_DIR,
+      "&&",
+      CONFIG.NODE_TOOL,
+      CONFIG.TYPESCRIPT_OUT_DIR + "/" + out_name,
+      "\\\$*",
+    ])
+  
+  assert True, False
 
 def _check_server_running(requires_server:int):
   return " ".join([
@@ -370,8 +410,26 @@ def _go_to_top_level():
 def _top_level_dir():
   return "$(pwd | awk -F'plz-out' '{print $1}')"
 
+def _assert_boolean(str:str):
+  switcher = {
+    "True": True,
+    "False": False,
+    "true": True,
+    "false": False,
+    "Yes": True,
+    "No": False,
+    "yes": True,
+    "no": False,
+  }
+  result = switcher.get(str, "ERR")
+  if result == "ERR":
+    assert True, False
+  else:
+    return result
+
 CONFIG.setdefault("NPM_TOOL", "npm")
 CONFIG.setdefault("NPX_TOOL", "npx")
 CONFIG.setdefault("NODE_TOOL", "node")
 CONFIG.setdefault("TYPESCRIPT_TOOL", "tsc")
 CONFIG.setdefault("TYPESCRIPT_OUT_DIR", "./plz-out/tsc")
+CONFIG.setdefault("DISABLE_VUE_COMPONENT_TESTS", False)

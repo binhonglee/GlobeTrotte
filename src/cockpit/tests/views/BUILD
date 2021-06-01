@@ -8,4 +8,5 @@ ava_tests(
     "//src/cockpit/views:views",
     "//src/cockpit/components:components",
   ],
+  vue_components = True,
 )

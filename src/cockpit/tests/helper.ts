@@ -1,6 +1,5 @@
 import sinon from "sinon";
 import { mount, VueWrapper } from "@vue/test-utils";
-// import { createLocalVue, MountOptions, Wrapper } from "@vue/test-utils";
 import App from "@/App.vue";
 import router from "@/router";
 import ElementPlus from "element-plus";

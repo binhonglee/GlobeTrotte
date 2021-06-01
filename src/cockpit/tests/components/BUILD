@@ -5,4 +5,5 @@ ava_tests(
   srcs = glob(["**/*.spec.ts"]),
   ava_dirs = ["//:ava_test_deps"],
   deps = ["//src/cockpit/tests/mockData"],
+  vue_components = True,
 )
