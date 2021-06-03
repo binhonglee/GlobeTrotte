@@ -100,10 +100,10 @@ jobs:
         imageName: "ubuntu-latest"
         nodeVersion: "14.x"
         goVersion: "1.15.6"
-      mac-node-14-go-1-15-6:
-        imageName: "macos-latest"
-        nodeVersion: "14.x"
-        goVersion: "1.15.6"
+      # mac-node-14-go-1-15-6:
+      #   imageName: "macos-latest"
+      #   nodeVersion: "14.x"
+      #   goVersion: "1.15.6"
 
   steps:
   - task: GoTool@0
@@ -166,7 +166,10 @@ jobs:
   - script: ./pleasew work &
     displayName: Run turbine on background
   - script: sleep 1
-  - script: ./pleasew test --show_all_output //:_cockpit_cypress#test
+  - script: ./pleasew show &
+    displayName: Run cockpit on background
+  - script: sleep 1
+  - script: ./pleasew test --show_all_output //:cockpit_cypress
     displayName: Run e2e tests
 
 - job: turbine

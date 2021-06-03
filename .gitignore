@@ -1,6 +1,7 @@
 .cache
 .nyc_output/
 coverage/
+jest_coverage/
 /cypress/
 email.config
 dist/

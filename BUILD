@@ -1,8 +1,24 @@
 subinclude("//build_defs/npm")
+subinclude("//build_defs/npm:ava")
+subinclude("//build_defs/npm:jest")
+
+filegroup(
+  name = "babel_config",
+  srcs = [".babelrc"],
+)
 
 filegroup(
   name = "ava_config",
-  srcs = ["ava.config.js"],
+  srcs = [
+    "ava.config.js",
+  ],
+)
+
+filegroup(
+  name = "jest_config",
+  srcs = [
+    "jest.config.ts",
+  ],
 )
 
 filegroup(
@@ -14,7 +30,6 @@ filegroup(
   name = "pnpm_config",
   srcs = [
     ".npmrc",
-    ".babelrc",
     "vite.config.ts",
     "package.json",
     "pnpm-lock.yaml",
@@ -98,6 +113,7 @@ ava_dir(
   name = "ava_test_deps",
   srcs = [
     ":ava_config",
+    ":babel_config",
     ":pnpm_config",
     ":nycrc",
     ":tsconfig",
@@ -113,16 +129,34 @@ ava_dir(
   ],
 )
 
+jest_dir(
+  name = "jest_test_deps",
+  srcs = [
+    ":jest_config",
+    ":pnpm_config",
+    ":tsconfig",
+    "//src/cockpit:core_files",
+    "//src/cockpit/components:components",
+    "//src/cockpit/shared:shared",
+    "//src/cockpit/views:views",
+    "//src/cockpit/wings:wings",
+  ],
+  visibility = [
+    "//src/cockpit/tests/..."
+  ],
+)
+
 npm_test(
   name = "cockpit_cypress",
   srcs = ["cypress.json"],
-  cmd = "test:cypress",
+  cmd = "test:cypress:plz",
   result_dir = "cypress/junit",
   requires_server = 3000,
   set_home = True,
   deps = [
     ":pnpm",
     ":index_html",
+    ":babel_config",
     ":eslint_config",
     "//src/assets:assets",
     "//src/cockpit:core_files",

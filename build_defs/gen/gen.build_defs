@@ -1,0 +1,32 @@
+def _go_to_top_level():
+  return "cd " + _top_level_dir() + " || exit 1"
+
+def _top_level_dir():
+  return "$(pwd | awk -F'plz-out' '{print $1}')"
+
+def _assert_boolean(str:str):
+  switcher = {
+    "True": True,
+    "False": False,
+    "true": True,
+    "false": False,
+    "Yes": True,
+    "No": False,
+    "yes": True,
+    "no": False,
+  }
+  result = switcher.get(str, "ERR")
+  if result == "ERR":
+    fail()
+  else:
+    return result
+
+def _home_path():
+  return " ".join([
+    "if [[ \"$OSTYPE\" == \"darwin\"* ]];",
+    "then HOME=\"/Users/$USER\";",
+    "elif [[ \"$OSTYPE\" == \"linux-gnu\"* ]];",
+    "then HOME=\"/home/$USER\";",
+    "fi",
+  ])
+

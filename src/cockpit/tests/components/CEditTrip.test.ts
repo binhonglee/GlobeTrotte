@@ -15,6 +15,7 @@ test("renders empty component", (t) => {
     props: {
       trip: trip,
     },
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   } as any);
   t.regex(wrapper.find(".editLabel").text(), /City:/);
 });

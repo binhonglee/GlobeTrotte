@@ -1,0 +1,126 @@
+subinclude("//build_defs/npm")
+
+def ava_dir(
+  name:str,
+  srcs:list=[],
+  deps:list=[],
+  visibility:list=[],
+):
+  return build_rule(
+    name = name,
+    srcs = srcs,
+    cmd = "zip -r " + name + ".ava_dir ./",
+    outs = [name + ".ava_dir"],
+    deps = deps,
+    test_only = True,
+    visibility = visibility
+  )
+
+def ava_tests(
+  name:str,
+  srcs:list,
+  nyc:bool=True,
+  ava_dirs:list=[],
+  deps:list=[],
+  visibility:list=[],
+  vue_components:bool=False,
+):
+  rules = []
+  pre_build = " && ".join([
+    _set_node_modules(),
+  ])
+  for ava_dir in ava_dirs:
+    ava_dir_name = ava_dir.split(":")
+    if len(name) < 2:
+      temp = ava_dir.split("/")
+      ava_dir_name = temp[len(temp) - 1]
+    else:
+      ava_dir_name = ava_dir_name[1]
+    pre_build += " && unzip -o " + ava_dir_name + ".ava_dir"
+
+  for src in srcs:
+    filename = src[:-8]
+    rule_name = f'_{name}#{filename}'
+    on_test = ava_test(
+      name = rule_name,
+      src = src,
+      pre_build = pre_build,
+      nyc = nyc,
+      deps = deps + ava_dirs,
+      visibility = visibility,
+      vue_component = vue_components,
+    )
+    rules += [on_test]
+
+  return build_rule(
+    name = f"_{name}#test",
+    srcs = srcs,
+    deps = rules,
+    test_only = True,
+    visibility = visibility,
+  )
+
+def ava_test(
+  name:str,
+  src:str,
+  ava_dirs:list=[],
+  pre_build:str=None,
+  nyc:bool=True,
+  deps:list=[],
+  visibility:list=[],
+  vue_component:bool=False,
+):
+  if vue_component and _assert_boolean(CONFIG.DISABLE_VUE_COMPONENT_TESTS):
+    return build_rule(
+      name = name,
+      data = [src] + ava_dirs + deps,
+      test_cmd = "echo 'Skipped...'",
+      test = True,
+      test_only = True,
+      no_test_output = True,
+      visibility = visibility,
+    )
+
+  use_nyc = "nyc --silent " if nyc else ""
+  if pre_build is None:
+    pre_build = " && ".join([
+      _set_node_modules(),
+    ])
+    for ava_dir in ava_dirs:
+      ava_dir_name = ava_dir.split(":")
+      if len(name) < 2:
+        temp = ava_dir.split("/")
+        ava_dir_name = temp[len(temp) - 1]
+      else:
+        ava_dir_name = ava_dir_name[1]
+      pre_build += " && unzip -o " + ava_dir_name + ".ava_dir"
+
+  return build_rule(
+    name = name,
+    data = [src] + ava_dirs + deps,
+    test_cmd = " ".join([
+      pre_build,
+      "&&",
+      "$TOOL " + use_nyc + "ava",
+      "--",
+      "--serial",
+      "--concurrency=1",
+      "$PKG_DIR/" + src,
+      "|",
+      "tee",
+      ">($TOOL tap-xunit > test.results)",
+      "&&",
+      "mkdir -p",
+      name,
+      "&&",
+      "mv .nyc_output",
+      name + "/.nyc_output",
+    ]),
+    test_outputs = [name + "/.nyc_output"],
+    test = True,
+    test_only = True,
+    visibility = visibility,
+    test_tools = [CONFIG.NPX_TOOL],
+  )
+
+CONFIG.setdefault("DISABLE_VUE_COMPONENT_TESTS", False)

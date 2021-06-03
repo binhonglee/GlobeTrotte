@@ -17,14 +17,15 @@
     "strict": true,
     "target": "esnext",
     "typeRoots": ["./node_modules/@types"],
-    "types": ["node", "cypress", "vite/client"],
+    "types": ["node", "cypress", "vite/client", "@types/jest"],
   },
   "include": [
     "src/cockpit/**/*.ts",
+    "src/cockpit/**/*.d.ts",
     "src/cockpit/**/*.vue"
   ],
   "exclude": [
-    "node_modules",
-    "src/cockpit/tests/cypress/**/*"
-  ]
+    "src/cockpit/tests/cypress/**/*",
+    "plz-out/"
+  ],
 }

@@ -107,19 +107,21 @@ jobs:
     - run: cp config/test.email.config config/email.config
 
     - run: ./pleasew work -- -toFile=true &
-    - run: sleep 1
-    - run: ./pleasew test --show_all_output //:_cockpit_cypress#test
+    - run: sleep 3
+    - run: ./pleasew show &
+    - run: sleep 5
+    - run: ./pleasew test --show_all_output //:cockpit_cypress
 
     - uses: actions/upload-artifact@v2
       with:
         name: logs
         path: logs
       if: ${{ always() }}
-    - uses: actions/upload-artifact@v2
-      with:
-        name: e2e-nyc-output
-        path: '.nyc_output'
-      if: ${{ always() }}
+    # - uses: actions/upload-artifact@v2
+    #   with:
+    #     name: e2e-nyc-output
+    #     path: '.nyc_output'
+    #   if: ${{ always() }}
     - uses: actions/upload-artifact@v2
       with:
         name: cypress
@@ -208,9 +210,9 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: unit-test-nyc-output
-    - uses: actions/download-artifact@v2
-      with:
-        name: e2e-nyc-output
+    # - uses: actions/download-artifact@v2
+    #   with:
+    #     name: e2e-nyc-output
     - uses: actions/download-artifact@v2
       with:
         name: turbine-output

@@ -1,4 +1,4 @@
-subinclude("//build_defs/npm")
+subinclude("//build_defs/npm:ava")
 
 ava_tests(
   name = "shared",

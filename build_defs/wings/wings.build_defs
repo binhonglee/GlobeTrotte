@@ -1,3 +1,5 @@
+subinclude("//build_defs/gen")
+
 def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visibility:list=None, deps:list=[]):
   all_out_files = []
 
@@ -59,14 +61,5 @@ def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visi
     binary = False,
     visibility = visibility,
   )
-
-def _home_path():
-  return " ".join([
-    "if [[ \"$OSTYPE\" == \"darwin\"* ]];",
-    "then HOME=\"/Users/$USER\";",
-    "elif [[ \"$OSTYPE\" == \"linux-gnu\"* ]];",
-    "then HOME=\"/home/$USER\";",
-    "fi",
-  ])
 
 CONFIG.setdefault("WINGS_TOOL", "wings")

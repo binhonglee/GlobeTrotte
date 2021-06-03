@@ -31,6 +31,7 @@ interface ElPlus {
   $router(args: unknown): typeof router;
 }
 
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 export type Vue = any & ElPlus;
 
 export async function wait(ms: number): Promise<void> {
