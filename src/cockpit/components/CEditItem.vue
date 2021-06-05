@@ -9,7 +9,6 @@
     :show-password="type === 'password'"
     v-model="value"
     v-on:keyup.enter.native="enter"
-    :id="id"
     :maxlength="getMaxLength()"
   )
   br
@@ -47,10 +46,6 @@ export default defineComponent({
     className: {
       type: String,
       default: "",
-    },
-    id: {
-      type: String,
-      default: "editItem",
     },
   },
   data: (): Data => ({
