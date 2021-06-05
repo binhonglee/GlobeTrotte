@@ -81,14 +81,6 @@ export default defineComponent({
   },
   beforeMount(): void {
     this.$data.value = this.getInitialValue();
-    console.table([
-      this.$data.value,
-      this.$props.val,
-      this.$data.NAME_CHAR_MAX_COUNT,
-      this.getInitialValue(),
-      this.isDescription(),
-      this.getMaxLength(),
-    ]);
   },
 });
 </script>
