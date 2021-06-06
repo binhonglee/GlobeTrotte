@@ -253,7 +253,7 @@ export default defineComponent({
         );
         return false;
       }
-      if (description.length > DESCRIPTION_CHAR_MAX_COUNT) {
+      if (!description || description.length > DESCRIPTION_CHAR_MAX_COUNT) {
         this.showAlert(
           `Trip description cannot be longer than ${DESCRIPTION_CHAR_MAX_COUNT}.`,
         );
