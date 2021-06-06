@@ -28,3 +28,13 @@ jest_test(
     "//src/cockpit/components:components",
   ],
 )
+
+jest_test(
+  name = "CEditTrip",
+  src = "CEditTrip.test.ts",
+  jest_dirs = ["//:jest_test_deps"],
+  deps = [
+    "//src/cockpit/tests/mockData",
+    "//src/cockpit/components:components",
+  ],
+)
