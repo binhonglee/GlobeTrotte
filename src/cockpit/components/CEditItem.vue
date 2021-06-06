@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { DescriptionCharMaxCount, NameCharMaxCount } from "../shared/constants";
+import { DescriptionCharMaxCount, NameCharMaxCount } from "@/shared/constants";
 
 /** Constants */
 const NAME_ROW_COUNT = 1;
