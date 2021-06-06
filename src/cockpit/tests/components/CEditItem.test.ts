@@ -33,12 +33,9 @@ describe("CEditItem", () => {
       props: {
         label: item.label,
         val: item.value,
+        nameCharMaxCount: mockDescriptionMaxChar,
+        descriptionCharMaxCount: mockDescriptionMaxChar,
       },
-      data: () => ({
-        value: "",
-        NAME_CHAR_MAX_COUNT: mockNameMaxChar,
-        DESCRIPTION_CHAR_MAX_COUNT: mockDescriptionMaxChar,
-      }),
     });
     const editInput = wrapper.find(inputClass);
     expect(editInput.exists()).toBeTruthy();
@@ -67,11 +64,9 @@ describe("CEditItem", () => {
       props: {
         label: item.label,
         val: item.value,
+        nameCharMaxCount: mockDescriptionMaxChar,
+        descriptionCharMaxCount: mockDescriptionMaxChar,
       },
-      data: () => ({
-        NAME_CHAR_MAX_COUNT: mockDescriptionMaxChar,
-        DESCRIPTION_CHAR_MAX_COUNT: mockDescriptionMaxChar,
-      }),
     });
     const editInput = wrapper.find(inputClass);
     expect(editInput.exists()).toBeTruthy();

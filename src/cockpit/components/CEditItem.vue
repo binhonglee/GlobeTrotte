@@ -27,8 +27,6 @@ const DESCRIPTION_ROW_COUNT = 3;
 
 interface Data {
   value: string;
-  DESCRIPTION_CHAR_MAX_COUNT: number;
-  NAME_CHAR_MAX_COUNT: number;
 }
 
 export default defineComponent({
@@ -49,11 +47,17 @@ export default defineComponent({
       type: String,
       default: "",
     },
+    nameCharMaxCount: {
+      type: Number,
+      default: NAME_CHAR_MAX_COUNT,
+    },
+    descriptionCharMaxCount: {
+      type: Number,
+      default: DESCRIPTION_CHAR_MAX_COUNT,
+    },
   },
   data: (): Data => ({
     value: "",
-    DESCRIPTION_CHAR_MAX_COUNT,
-    NAME_CHAR_MAX_COUNT,
   }),
   methods: {
     enter(): void {
@@ -64,8 +68,8 @@ export default defineComponent({
     },
     getMaxLength(): number {
       return this.isDescription()
-        ? this.$data.DESCRIPTION_CHAR_MAX_COUNT
-        : this.$data.NAME_CHAR_MAX_COUNT;
+        ? this.$props.descriptionCharMaxCount
+        : this.$props.nameCharMaxCount;
     },
     getMaxRows(): number {
       return this.isDescription() ? DESCRIPTION_ROW_COUNT : NAME_ROW_COUNT;
