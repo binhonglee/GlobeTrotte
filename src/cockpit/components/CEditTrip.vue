@@ -243,7 +243,6 @@ export default defineComponent({
       });
     },
     checkValidNameDescription(name: string, description: string): boolean {
-      console.table([name, description]);
       if (!name || name.length < NAME_CHAR_MIN_COUNT) {
         this.showAlert(`Trip name is too short.`);
         return false;
