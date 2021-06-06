@@ -1,11 +1,8 @@
 import CEditItem from "@/components/CEditItem.vue";
 import Item from "@/shared/TripEditable";
-import { mockTripObj } from "@/tests/mockData/data";
 import { expect } from "@jest/globals";
-
 import { mount } from "@vue/test-utils";
 
-const mockedTrip = new mockTripObj();
 const mockLabelName = "name";
 const mockLabelDescription = "description";
 const mockLabelRandom = "random";
