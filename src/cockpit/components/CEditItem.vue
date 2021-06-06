@@ -16,10 +16,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import {
+  DESCRIPTION_MAX_COUNT,
+  NAME_CHAR_MAX_COUNT,
+} from "../shared/constants";
 
 /** Constants */
-const DESCRIPTION_MAX_COUNT = 500;
-const NAME_CHAR_MAX_COUNT = 50;
 const NAME_ROW_COUNT = 1;
 const DESCRIPTION_ROW_COUNT = 3;
 
