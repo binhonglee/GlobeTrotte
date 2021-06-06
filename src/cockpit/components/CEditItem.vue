@@ -16,7 +16,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { DescriptionCharMaxCount, NameCharMaxCount } from "@/shared/constants";
+import {
+  DESCRIPTION_CHAR_MAX_COUNT,
+  NAME_CHAR_MAX_COUNT,
+} from "@/shared/constants";
 
 /** Constants */
 const NAME_ROW_COUNT = 1;
@@ -24,8 +27,8 @@ const DESCRIPTION_ROW_COUNT = 3;
 
 interface Data {
   value: string;
-  DescriptionCharMaxCount: number;
-  NameCharMaxCount: number;
+  DESCRIPTION_CHAR_MAX_COUNT: number;
+  NAME_CHAR_MAX_COUNT: number;
 }
 
 export default defineComponent({
@@ -49,8 +52,8 @@ export default defineComponent({
   },
   data: (): Data => ({
     value: "",
-    DescriptionCharMaxCount,
-    NameCharMaxCount,
+    DESCRIPTION_CHAR_MAX_COUNT,
+    NAME_CHAR_MAX_COUNT,
   }),
   methods: {
     enter(): void {
@@ -61,8 +64,8 @@ export default defineComponent({
     },
     getMaxLength(): number {
       return this.isDescription()
-        ? this.$data.DescriptionCharMaxCount
-        : this.$data.NameCharMaxCount;
+        ? this.$data.DESCRIPTION_CHAR_MAX_COUNT
+        : this.$data.NAME_CHAR_MAX_COUNT;
     },
     getMaxRows(): number {
       return this.isDescription() ? DESCRIPTION_ROW_COUNT : NAME_ROW_COUNT;

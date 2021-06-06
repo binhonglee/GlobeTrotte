@@ -65,9 +65,9 @@ import { WingsStructUtil } from "wings-ts-util";
 import E from "@/shared/E";
 import Routing from "@/shared/Routing";
 import {
-  DescriptionCharMaxCount,
-  NameCharMaxCount,
-  NameCharMinCount,
+  DESCRIPTION_CHAR_MAX_COUNT,
+  NAME_CHAR_MAX_COUNT,
+  NAME_CHAR_MIN_COUNT,
 } from "@/shared/constants";
 
 interface Data {
@@ -244,17 +244,19 @@ export default defineComponent({
     },
     checkValidNameDescription(name: string, description: string): boolean {
       console.table([name, description]);
-      if (!name || name.length < NameCharMinCount) {
+      if (!name || name.length < NAME_CHAR_MIN_COUNT) {
         this.showAlert(`Trip name is too short.`);
         return false;
       }
-      if (name.length > NameCharMaxCount) {
-        this.showAlert(`Trip name cannot be longer than ${NameCharMaxCount}.`);
+      if (name.length > NAME_CHAR_MAX_COUNT) {
+        this.showAlert(
+          `Trip name cannot be longer than ${NAME_CHAR_MAX_COUNT}.`,
+        );
         return false;
       }
-      if (description.length > DescriptionCharMaxCount) {
+      if (description.length > DESCRIPTION_CHAR_MAX_COUNT) {
         this.showAlert(
-          `Trip description cannot be longer than ${DescriptionCharMaxCount}.`,
+          `Trip description cannot be longer than ${DESCRIPTION_CHAR_MAX_COUNT}.`,
         );
         return false;
       }

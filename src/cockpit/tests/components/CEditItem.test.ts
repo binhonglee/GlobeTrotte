@@ -36,8 +36,8 @@ describe("CEditItem", () => {
       },
       data: () => ({
         value: "",
-        NameCharMaxCount: mockNameMaxChar,
-        DescriptionCharMaxCount: mockDescriptionMaxChar,
+        NAME_CHAR_MAX_COUNT: mockNameMaxChar,
+        DESCRIPTION_CHAR_MAX_COUNT: mockDescriptionMaxChar,
       }),
     });
     const editInput = wrapper.find(inputClass);
@@ -69,8 +69,8 @@ describe("CEditItem", () => {
         val: item.value,
       },
       data: () => ({
-        NameCharMaxCount: mockDescriptionMaxChar,
-        DescriptionCharMaxCount: mockDescriptionMaxChar,
+        NAME_CHAR_MAX_COUNT: mockDescriptionMaxChar,
+        DESCRIPTION_CHAR_MAX_COUNT: mockDescriptionMaxChar,
       }),
     });
     const editInput = wrapper.find(inputClass);
