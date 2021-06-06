@@ -64,6 +64,11 @@ import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
 import E from "@/shared/E";
 import Routing from "@/shared/Routing";
+import {
+  DescriptionCharMaxCount,
+  NameCharMaxCount,
+  NameCharMinCount,
+} from "@/shared/constants";
 
 interface Data {
   cities: Array<City>;
@@ -105,10 +110,9 @@ export default defineComponent({
     },
     save(): void {
       let newTrip = new TripBasic();
+
       if (this.$data.cities.length < 1) {
-        this.$alert("Cities cannot be empty", "", {
-          confirmButtonText: "OK",
-        });
+        this.showAlert("Cities cannot be empty");
         return;
       }
       this.$data.saving = true;
@@ -121,8 +125,18 @@ export default defineComponent({
         }
       }
 
-      newTrip.name = E.getVal(this, "name");
-      newTrip.description = E.getVal(this, "description").split("\n").join(" ");
+      const tripName = E.getVal(this, "name");
+      const tripDescription = E.getVal(this, "description")
+        .split("\n")
+        .join(" ");
+      const valid = this.checkValidNameDescription(tripName, tripDescription);
+      if (!valid) {
+        this.$data.saving = false;
+        return;
+      }
+      newTrip.name = tripName;
+      newTrip.description = tripDescription;
+
       newTrip.days = [];
       const days = E.get(this, "days");
       let offBy = 0;
@@ -226,6 +240,29 @@ export default defineComponent({
       this.$data.private = this.$props.trip.details.private.valueOf();
       this.$nextTick(function (this: DefineComponent) {
         E.get(E.get(this, "name"), "input").focus();
+      });
+    },
+    checkValidNameDescription(name: string, description: string): boolean {
+      console.table([name, description]);
+      if (!name || name.length < NameCharMinCount) {
+        this.showAlert(`Trip name is too short.`);
+        return false;
+      }
+      if (name.length > NameCharMaxCount) {
+        this.showAlert(`Trip name cannot be longer than ${NameCharMaxCount}.`);
+        return false;
+      }
+      if (description.length > DescriptionCharMaxCount) {
+        this.showAlert(
+          `Trip description cannot be longer than ${DescriptionCharMaxCount}.`,
+        );
+        return false;
+      }
+      return true;
+    },
+    showAlert(message: string): void {
+      this.$alert(message, "", {
+        confirmButtonText: "OK",
       });
     },
   },
