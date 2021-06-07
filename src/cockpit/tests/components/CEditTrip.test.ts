@@ -3,8 +3,9 @@
 
 import CEditTrip from "@/components/CEditTrip.vue";
 import { mockTripObj } from "@/tests/mockData/data";
+import { alertSpy } from "../helper";
 
-import { shallowMount } from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
 import { expect } from "@jest/globals";
 
 const mockedTrip = new mockTripObj();
@@ -12,7 +13,7 @@ const mockedTrip = new mockTripObj();
 describe("CEditTrip", () => {
   it("renders component", () => {
     const trip = mockedTrip.trip;
-    const wrapper = shallowMount(CEditTrip, {
+    const wrapper = mount(CEditTrip, {
       props: {
         trip,
       },
@@ -24,13 +25,17 @@ describe("CEditTrip", () => {
 
   it("simulate save trip", () => {
     const trip = mockedTrip.trip;
-    const wrapper = shallowMount(CEditTrip, {
+    const wrapper = mount(CEditTrip, {
       props: {
         trip,
       },
     });
+    console.log(wrapper.html());
+    const alert = new alertSpy(wrapper);
     const saveEditTrip = wrapper.find(".saveEditTrip");
-    saveEditTrip.trigger("click");
     expect(saveEditTrip.exists()).toBeTruthy();
+
+    saveEditTrip.trigger("click");
+    expect(alert.getOptions("confirmButtonText")).toBe("OK");
   });
 });
