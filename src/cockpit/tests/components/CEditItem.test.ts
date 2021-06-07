@@ -9,6 +9,7 @@ const mockLabelRandom = "random";
 const mockVal = "something";
 const mockNameMaxChar = 5;
 const mockDescriptionMaxChar = 7;
+const mockDescriptionRowMinCount = 3;
 
 const labelClass = ".editLabel";
 const inputClass = ".editInput";
@@ -33,12 +34,12 @@ describe("CEditItem", () => {
       props: {
         label: item.label,
         val: item.value,
-        nameCharMaxCount: mockDescriptionMaxChar,
-        descriptionCharMaxCount: mockDescriptionMaxChar,
+        valMaxCount: mockNameMaxChar,
       },
     });
     const editInput = wrapper.find(inputClass);
     expect(editInput.exists()).toBeTruthy();
+    expect(editInput.attributes("rows")).toBe("1");
     expect(editInput.attributes("modelvalue")).not.toContain(mockVal);
     expect(editInput.attributes("modelvalue")).toContain(
       mockVal.slice(0, mockNameMaxChar),
@@ -64,12 +65,13 @@ describe("CEditItem", () => {
       props: {
         label: item.label,
         val: item.value,
-        nameCharMaxCount: mockDescriptionMaxChar,
-        descriptionCharMaxCount: mockDescriptionMaxChar,
+        valMaxCount: mockDescriptionMaxChar,
+        rowMinCount: mockDescriptionRowMinCount,
       },
     });
     const editInput = wrapper.find(inputClass);
     expect(editInput.exists()).toBeTruthy();
+    expect(editInput.attributes("rows")).toBe(`${mockDescriptionRowMinCount}`);
     expect(editInput.attributes("modelvalue")).not.toContain(mockVal);
     expect(editInput.attributes("modelvalue")).toContain(
       mockVal.slice(0, mockDescriptionMaxChar),

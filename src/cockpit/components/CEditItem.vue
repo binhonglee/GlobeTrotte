@@ -4,26 +4,19 @@
   el-input.editInput(
     :class="className"
     :ref="'input'"
-    :rows="getMaxRows()"
+    :rows="rowMinCount"
     :type="type"
     :show-password="type === 'password'"
     v-model="value"
     v-on:keyup.enter.native="enter"
-    :maxlength="getMaxLength()"
+    :maxlength="valMaxCount"
   )
   br
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import {
-  DESCRIPTION_CHAR_MAX_COUNT,
-  NAME_CHAR_MAX_COUNT,
-} from "@/shared/constants";
-
-/** Constants */
-const NAME_ROW_COUNT = 1;
-const DESCRIPTION_ROW_COUNT = 3;
+import { NAME_CHAR_MAX_COUNT } from "@/shared/constants";
 
 interface Data {
   value: string;
@@ -47,13 +40,13 @@ export default defineComponent({
       type: String,
       default: "",
     },
-    nameCharMaxCount: {
+    valMaxCount: {
       type: Number,
       default: NAME_CHAR_MAX_COUNT,
     },
-    descriptionCharMaxCount: {
+    rowMinCount: {
       type: Number,
-      default: DESCRIPTION_CHAR_MAX_COUNT,
+      default: 1,
     },
   },
   data: (): Data => ({
@@ -66,17 +59,9 @@ export default defineComponent({
     isDescription(): boolean {
       return this.$props.type === "textarea";
     },
-    getMaxLength(): number {
-      return this.isDescription()
-        ? this.$props.descriptionCharMaxCount
-        : this.$props.nameCharMaxCount;
-    },
-    getMaxRows(): number {
-      return this.isDescription() ? DESCRIPTION_ROW_COUNT : NAME_ROW_COUNT;
-    },
     getInitialValue(): string {
       return this.$props.val
-        ? this.$props.val.slice(0, this.getMaxLength())
+        ? this.$props.val.slice(0, this.$props.valMaxCount)
         : "";
     },
   },
