@@ -13,6 +13,8 @@
       :ref="'description'"
       :type="'textarea'"
       :val="trip.details.description.valueOf()"
+      :val-max-count="descriptionMaxCharCount"
+      :row-min-count="descriptionRowMinCount"
     )
     .editTripPrivacy
       span.editLabel Private:
@@ -78,6 +80,8 @@ interface Data {
   deleting: boolean;
 }
 
+const DESCRIPTION_ROW_MIN_COUNT = 3;
+
 export default defineComponent({
   components: {
     CEditDays,
@@ -99,6 +103,14 @@ export default defineComponent({
     isNew: {
       type: Boolean,
       required: true,
+    },
+  },
+  computed: {
+    descriptionMaxCharCount() {
+      return DESCRIPTION_CHAR_MAX_COUNT;
+    },
+    descriptionRowMinCount() {
+      return DESCRIPTION_ROW_MIN_COUNT;
     },
   },
   methods: {
