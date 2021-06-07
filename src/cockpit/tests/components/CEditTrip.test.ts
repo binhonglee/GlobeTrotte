@@ -14,7 +14,8 @@ describe("CEditTrip", () => {
     const trip = mockedTrip.trip;
     const wrapper = mount(CEditTrip, {
       props: {
-        trip,
+        trip: trip,
+        isNew: false,
       },
     });
     const editCity = wrapper.find(".editCity");
