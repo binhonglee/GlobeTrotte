@@ -30,8 +30,17 @@ cmd = run "//:lint_all"
 ImportPath = github.com/binhonglee/GlobeTrotte
 
 [Buildconfig]
+
+# npm
 npm-tool = "pnpm"
 npx-tool = "pnpx"
 typescript-tool = "esbuild"
 # Still haven't figure out how to do Vue 3 component testing
 disable-vue-component-tests = True
+
+# wings
+wings-config-rule = "//:wings_config"
+wings-formatter-go = "gofmt -s -w $FILE"
+
+# eslint is really slow :( just ignoring them for now.
+# wings-formatter-ts = "pnpx eslint $FILE --fix"
