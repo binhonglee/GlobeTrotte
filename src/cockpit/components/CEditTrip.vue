@@ -13,6 +13,8 @@
       :ref="'description'"
       :type="'textarea'"
       :val="trip.details.description.valueOf()"
+      :val-max-count="descriptionMaxCharCount"
+      :row-min-count="descriptionRowMinCount"
     )
     .editTripPrivacy
       span.editLabel Private:
@@ -64,6 +66,11 @@ import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
 import E from "@/shared/E";
 import Routing from "@/shared/Routing";
+import {
+  DESCRIPTION_CHAR_MAX_COUNT,
+  NAME_CHAR_MAX_COUNT,
+  NAME_CHAR_MIN_COUNT,
+} from "@/shared/constants";
 
 interface Data {
   cities: Array<City>;
@@ -72,6 +79,8 @@ interface Data {
   saving: boolean;
   deleting: boolean;
 }
+
+const DESCRIPTION_ROW_MIN_COUNT = 3;
 
 export default defineComponent({
   components: {
@@ -96,6 +105,14 @@ export default defineComponent({
       required: true,
     },
   },
+  computed: {
+    descriptionMaxCharCount() {
+      return DESCRIPTION_CHAR_MAX_COUNT;
+    },
+    descriptionRowMinCount() {
+      return DESCRIPTION_ROW_MIN_COUNT;
+    },
+  },
   methods: {
     cancel(): void {
       E.get(this, "days").$data.days = (
@@ -105,10 +122,9 @@ export default defineComponent({
     },
     save(): void {
       let newTrip = new TripBasic();
+
       if (this.$data.cities.length < 1) {
-        this.$alert("Cities cannot be empty", "", {
-          confirmButtonText: "OK",
-        });
+        this.showAlert("Cities cannot be empty");
         return;
       }
       this.$data.saving = true;
@@ -121,8 +137,18 @@ export default defineComponent({
         }
       }
 
-      newTrip.name = E.getVal(this, "name");
-      newTrip.description = E.getVal(this, "description").split("\n").join(" ");
+      const tripName = E.getVal(this, "name");
+      const tripDescription = E.getVal(this, "description")
+        .split("\n")
+        .join(" ");
+      const valid = this.checkValidNameDescription(tripName, tripDescription);
+      if (!valid) {
+        this.$data.saving = false;
+        return;
+      }
+      newTrip.name = tripName;
+      newTrip.description = tripDescription;
+
       newTrip.days = [];
       const days = E.get(this, "days");
       let offBy = 0;
@@ -226,6 +252,30 @@ export default defineComponent({
       this.$data.private = this.$props.trip.details.private.valueOf();
       this.$nextTick(function (this: DefineComponent) {
         E.get(E.get(this, "name"), "input").focus();
+      });
+    },
+    checkValidNameDescription(name: string, description: string): boolean {
+      if (!name || name.length < NAME_CHAR_MIN_COUNT) {
+        this.showAlert(`Trip name is too short.`);
+        return false;
+      }
+      if (name.length > NAME_CHAR_MAX_COUNT) {
+        this.showAlert(
+          `Trip name cannot be longer than ${NAME_CHAR_MAX_COUNT}.`,
+        );
+        return false;
+      }
+      if (!description || description.length > DESCRIPTION_CHAR_MAX_COUNT) {
+        this.showAlert(
+          `Trip description cannot be longer than ${DESCRIPTION_CHAR_MAX_COUNT}.`,
+        );
+        return false;
+      }
+      return true;
+    },
+    showAlert(message: string): void {
+      this.$alert(message, "", {
+        confirmButtonText: "OK",
       });
     },
   },

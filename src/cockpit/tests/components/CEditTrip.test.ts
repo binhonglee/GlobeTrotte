@@ -4,18 +4,38 @@
 import CEditTrip from "@/components/CEditTrip.vue";
 import { mockTripObj } from "@/tests/mockData/data";
 
-import { shallowMount } from "@vue/test-utils";
-import test from "ava";
+import { mount } from "@vue/test-utils";
+import { expect } from "@jest/globals";
 
 const mockedTrip = new mockTripObj();
 
-test("renders empty component", (t) => {
-  const trip = mockedTrip.trip;
-  const wrapper = shallowMount(CEditTrip, {
-    props: {
-      trip: trip,
-    },
-    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-  } as any);
-  t.regex(wrapper.find(".editLabel").text(), /City:/);
+describe("CEditTrip", () => {
+  it("renders component", () => {
+    const trip = mockedTrip.trip;
+    const wrapper = mount(CEditTrip, {
+      props: {
+        trip: trip,
+        isNew: false,
+      },
+    });
+    const editCity = wrapper.find(".editCity");
+    expect(editCity.exists()).toBeTruthy();
+    expect(editCity.text()).toContain("Cities");
+  });
+
+  // To investigate failure
+  // it("simulate save trip", () => {
+  //   const trip = mockedTrip.trip;
+  //   const wrapper = mount(CEditTrip, {
+  //     props: {
+  //       trip,
+  //     },
+  //   });
+  //   console.log(wrapper.html());
+  //   const saveEditTrip = wrapper.find(".saveEditTrip");
+  //   expect(saveEditTrip.exists()).toBeTruthy();
+
+  //   saveEditTrip.trigger("click");
+  //   // Add test in the future after local test works
+  // });
 });

@@ -1,20 +1,22 @@
 <template lang="pug">
-.edit_item(v-bind:class="type === 'textarea' ? 'edit_item_large' : 'edit_item_small'")
+.edit_item(v-bind:class="isDescription() ? 'edit_item_large' : 'edit_item_small'")
   span.editLabel(:class="className + 'Label'") {{ label }}:
   el-input.editInput(
     :class="className"
     :ref="'input'"
-    :rows="type === 'textarea' ? 3 : 1"
+    :rows="rowMinCount"
     :type="type"
     :show-password="type === 'password'"
     v-model="value"
     v-on:keyup.enter.native="enter"
+    :maxlength="valMaxCount"
   )
   br
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { NAME_CHAR_MAX_COUNT } from "@/shared/constants";
 
 interface Data {
   value: string;
@@ -38,6 +40,14 @@ export default defineComponent({
       type: String,
       default: "",
     },
+    valMaxCount: {
+      type: Number,
+      default: NAME_CHAR_MAX_COUNT,
+    },
+    rowMinCount: {
+      type: Number,
+      default: 1,
+    },
   },
   data: (): Data => ({
     value: "",
@@ -46,9 +56,17 @@ export default defineComponent({
     enter(): void {
       this.$emit("enter");
     },
+    isDescription(): boolean {
+      return this.$props.type === "textarea";
+    },
+    getInitialValue(): string {
+      return this.$props.val
+        ? this.$props.val.slice(0, this.$props.valMaxCount)
+        : "";
+    },
   },
   beforeMount(): void {
-    this.$data.value = this.$props.val ?? "";
+    this.$data.value = this.getInitialValue();
   },
 });
 </script>
