@@ -39,6 +39,7 @@ typescript-tool = "esbuild"
 disable-vue-component-tests = True
 
 # wings
+wings-tool = "//:wings_binary"
 wings-config-rule = "//:wings_config"
 wings-formatter-go = "gofmt -s -w $FILE"
 

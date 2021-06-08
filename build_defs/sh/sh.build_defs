@@ -1,0 +1,14 @@
+subinclude("//build_defs/gen")
+
+def sh_exec(name:str, cmd:str, outs:list, set_home_path:bool=False, deps:list=[], tools:dict|list=[], visibility:list=[]):
+  if set_home_path:
+    cmd = _home_path() + " && " + cmd
+
+  return build_rule(
+    name = name,
+    cmd = cmd,
+    outs = outs,
+    tools = tools,
+    deps = deps,
+    visibility = visibility,
+  )
