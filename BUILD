@@ -1,6 +1,7 @@
 subinclude("//build_defs/npm")
 subinclude("//build_defs/npm:ava")
 subinclude("//build_defs/npm:jest")
+subinclude("//build_defs/sh")
 
 filegroup(
   name = "babel_config",
@@ -63,6 +64,15 @@ filegroup(
   name = "wings_config",
   srcs = ["wings.json"],
   visibility = ["//src/wings/..."],
+)
+
+sh_exec(
+  name = "wings_binary",
+  # TODO: update the wings script to allow downloading the right binary to specified location
+  cmd = "curl -s https://wings.sh/install.sh | sh && cp $HOME/.wings/bin/wings ./",
+  outs = ["wings"],
+  set_home_path = True,
+  visibility = ["PUBLIC"],
 )
 
 filegroup(

@@ -226,17 +226,7 @@ installWings() {
     return
   fi
   
-  case $OS in
-    "Darwin")
-      Download_OS="macosx"
-      ;;
-    "Linux")
-      Download_OS="linux"
-      ;;
-  esac
-
-  sudo curl -L https://github.com/binhonglee/wings/releases/download/v0.0.6-alpha/wings_64bit_$Download_OS -o /usr/local/bin/wings
-  sudo chmod +x /usr/local/bin/wings
+  curl -s https://wings.sh/install.sh | sh
 }
 
 if ! echo "$SUPPORTED_OS" | grep -w "$OS" > /dev/null; then

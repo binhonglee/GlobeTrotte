@@ -1,23 +1,36 @@
 subinclude("//build_defs/gen")
 
-def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visibility:list=None, deps:list=[]):
+def wings_lib(
+  name:str, src:str, outs:dict, test_only=False, visibility:list=None, deps:list=[],
+):
   all_out_files = []
 
-  filegroup(
+  src_file = filegroup(
     name = f"_{name}#wings",
     srcs = [src],
+    requires = ["wings"],
     visibility = visibility,
-    binary = False,
+    exported_deps = deps,
     test_only = test_only,
   )
 
+  config = []
+  if CONFIG.WINGS_CONFIG_RULE != "":
+    config = [CONFIG.WINGS_CONFIG_RULE]
+
   cmd = " && ".join([
     _home_path(),
-    "FILES=$(find * -name '*.wings')",
-    "$TOOL -c:" + config + " $FILES",
+    "$TOOL -c:" + CONFIG.WINGS_CONFIG_FILENAME + " $SRC",
   ])
 
   for i in outs.keys():
+    filetype = (outs[i].split("."))[-1]
+    if CONFIG["WINGS_FORMATTER_" + upper(filetype)] != "":
+      cmd += " && " + " && ".join([
+        _go_to_top_level(),
+        "FILE=\"" + i + "/" + outs[i] + "\"",
+        CONFIG["WINGS_FORMATTER_" + upper(filetype)],
+      ])
     all_out_files.append(i + "/" + outs[i])
 
   gen_files = build_rule(
@@ -26,8 +39,7 @@ def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visi
     tools = [CONFIG.WINGS_TOOL],
     cmd = cmd,
     outs = all_out_files,
-    deps = deps + [":" + f"_{name}#wings"],
-    needs_transitive_deps = True,
+    deps = [src_file] + config,
     test_only = test_only,
     binary = False,
     visibility = visibility,
@@ -38,10 +50,12 @@ def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visi
   for i in outs.keys():
     filetype = (outs[i].split("."))[-1]
     lang_name = f"_{name}#{filetype}"
+    cmd = "mv $PKG_DIR/" + i + "/" + outs[i] + " ./"
+
     build_rule(
       name = lang_name,
       srcs = [gen_files],
-      cmd = "mv $PKG_DIR/" + i + "/" + outs[i] + " ./",
+      cmd = cmd,
       outs = [outs[i]],
       visibility = visibility,
       binary = False,
@@ -50,11 +64,12 @@ def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visi
     )
 
     provides[filetype] = ":" + lang_name
+  provides["wings"] = src_file
 
   return filegroup(
     name = name,
-    srcs = [gen_files],
-    deps = deps + provides.values() + [":" + f"_{name}#wings"],
+    srcs = [gen_files, src_file],
+    deps = deps + provides.values(),
     needs_transitive_deps = True,
     test_only = test_only,
     provides = provides,
@@ -63,3 +78,7 @@ def wings_lib(name:str, src:str, outs:dict, config:str="", test_only=False, visi
   )
 
 CONFIG.setdefault("WINGS_TOOL", "wings")
+CONFIG.setdefault("WINGS_CONFIG_RULE", "")
+CONFIG.setdefault("WINGS_CONFIG_FILENAME", "wings.json")
+CONFIG.setdefault("WINGS_FORMATTER_GO", "")
+CONFIG.setdefault("WINGS_FORMATTER_TS", "")
