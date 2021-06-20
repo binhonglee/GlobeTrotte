@@ -137,6 +137,7 @@ def npm_test(
   result_file:str=None,
   visibility:list=None,
   requires_server:int=None,
+  server_start_cmd:str=None,
   needs_transitive_deps:bool=False,
 ):
   cmd = "(" + CONFIG.NPM_TOOL + " run " + cmd
@@ -158,7 +159,7 @@ def npm_test(
 
   if requires_server is not None:
     cmd = " && ".join([
-      _check_port_running(requires_server),
+      _check_port_running(requires_server, server_start_cmd),
       cmd,
     ])
 
@@ -211,7 +212,7 @@ def npm_lint(
   needs_transitive_deps:bool=False,
 ):
   return sh_cmd(
-    name = f"_{name}#lint",
+    name = name,
     srcs = srcs,
     deps = deps,
     visibility = visibility,
@@ -258,10 +259,10 @@ def _gen_run_typescript(script_name:str):
   
   fail()
 
-def _check_port_running(port:int):
+def _check_port_running(port:int, server_cmd:str=None):
   return " ".join([
     "if [[ ! $(lsof -i:" + str(port) + " | grep -v \"CLOSE_WAIT\") ]];",
-    "then echo \"Please make sure server is started at " + str(port) + "\" && exit 1;",
+    "then echo \"Please make sure server is started at " + str(port) + "\" && exit 1;" if server_cmd is None else "then " + server_cmd + ";",
     "fi",
   ])
 
@@ -276,3 +277,5 @@ CONFIG.setdefault("NPX_TOOL", "npx")
 CONFIG.setdefault("NODE_TOOL", "node")
 CONFIG.setdefault("TYPESCRIPT_TOOL", "tsc")
 CONFIG.setdefault("TYPESCRIPT_OUT_DIR", "./plz-out/tsc")
+
+CONFIG.setdefault("CORE_FILES", "")

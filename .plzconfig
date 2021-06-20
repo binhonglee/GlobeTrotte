@@ -35,6 +35,7 @@ ImportPath = github.com/binhonglee/GlobeTrotte
 npm-tool = "pnpm"
 npx-tool = "pnpx"
 typescript-tool = "esbuild"
+core-files = "//src/cockpit:core_files"
 # Still haven't figure out how to do Vue 3 component testing
 disable-vue-component-tests = True
 

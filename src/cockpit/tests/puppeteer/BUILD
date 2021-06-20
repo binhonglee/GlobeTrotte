@@ -5,7 +5,7 @@ filegroup(
   srcs = ["_withPage.ts"],
 )
 
-# ava_test(
+# ava_tests(
 #   name = "puppeteer",
 #   srcs = glob(["**/*.spec.ts"]),
 #   deps = [

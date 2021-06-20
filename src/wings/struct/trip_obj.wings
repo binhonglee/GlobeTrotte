@@ -4,7 +4,6 @@ ts-filepath src/cockpit/wings
 ts-import { IWingsStruct }:wings-ts-util
 import src/wings/struct/trip_basic.wings
 import src/wings/struct/user_basic.wings
-import src/wings/struct/user_access_level.wings
 
 ts-implement IWingsStruct
 

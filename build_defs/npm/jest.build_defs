@@ -16,6 +16,33 @@ def jest_dir(
     visibility = visibility
   )
 
+def jest_tests(
+  name:str,
+  srcs:list=[],
+  jest_dirs:list=[],
+  deps:list=[],
+  visibility:list=[],
+):
+  test_rules = []
+
+  for src in srcs:
+    test = jest_test(
+      name = src[:-8],
+      src = src,
+      jest_dirs = jest_dirs,
+      deps = deps,
+      visibility = visibility,
+    )
+    test_rules += [test]
+
+  return build_rule(
+    name = name,
+    data = test_rules + srcs,
+    test_cmd = "echo 'test'",
+    test_only = True,
+    visibility = visibility,
+  )
+
 def jest_test(
   name:str,
   src:str,
@@ -33,23 +60,34 @@ def jest_test(
       jest_dir_name = jest_dir_name[1]
     pre_build += " && unzip -o " + jest_dir_name + ".jest_dir"
 
+  out_dir = _jest_out_dir(name)
+  if CONFIG.CORE_FILES != "":
+    deps += [CONFIG.CORE_FILES]
+
   return build_rule(
     name = name,
     data = [src] + jest_dirs + deps,
-    test_cmd = " ".join([
+    test_cmd = " && ".join([
       pre_build,
-      "&&",
-      "$TOOL jest",
-      "--maxConcurrency=1",
-      "$PKG_DIR/" + src,
-      "&&",
+      " ".join([
+        "$TOOL",
+        "jest",
+        "--maxConcurrency=1",
+        "--silent",
+        "$PKG_DIR/" + src,
+      ]),
       "cp jest_coverage/test_results.xml test.results",
-      "&&",
-      "mv jest_coverage " + name + "_jest_coverage",
+      "cp jest_coverage/cobertura-coverage.xml test.coverage",
+      "mkdir -p " + out_dir,
+      "mv jest_coverage/* " + out_dir,
     ]),
-    test_outputs = [name + "_jest_coverage"],
+    test_outputs = [out_dir],
     test = True,
     test_only = True,
     visibility = visibility,
-    test_tools = [CONFIG.NPX_TOOL]
+    test_tools = [CONFIG.NPX_TOOL],
+    labels = ['jest'],
   )
+
+def _jest_out_dir(name: str):
+  return name + "/.nyc_output"

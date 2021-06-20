@@ -16,7 +16,7 @@
     "*.js"
   ],
   "reporter": [
-    "clover",
+    "cobertura",
     "json",
     "text",
     "text-summary"

@@ -51,10 +51,6 @@ jobs:
           command: ./pleasew work
           background: true
       - run: sleep 1
-      - run:
-          command: ./pleasew show
-          background: true
-      - run: sleep 5
       - run: ./pleasew test --show_all_output
       - run: ./pleasew report
       - run: ./scripts/leftover.sh

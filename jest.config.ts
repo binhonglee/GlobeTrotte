@@ -28,11 +28,11 @@ export default async (): Promise<Config.InitialOptions> => {
     collectCoverageFrom: [
       "**/*.{ts,vue}",
       "!**/node_modules/**",
-      "!**/plz-out/**"
     ],
     coverageDirectory: coverageDir,
     coverageProvider: "v8",
-    coveragePathIgnorePatterns: ["/node_modules/", "/plz-out/"],
+    coveragePathIgnorePatterns: ["/node_modules/"],
+    coverageReporters: ["json", "cobertura"],
     verbose: true,
     globals: {
       "vue-jest": {

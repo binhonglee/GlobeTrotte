@@ -162,6 +162,7 @@ npm_test(
   cmd = "test:cypress:plz",
   result_dir = "cypress/junit",
   requires_server = 3000,
+  server_start_cmd = "pnpm run startServer",
   set_home = True,
   deps = [
     ":pnpm",
@@ -180,13 +181,13 @@ sh_cmd(
   name = "lint_all",
   # TODO: Turn this into rules to run in parallel instead of sequential.
   cmd = " && ".join([
-    "./pleasew run //:_eslint#lint",
-    "./pleasew run //:_gofmt#lint",
+    "./pleasew run //:eslint",
+    "./pleasew run //:gofmt",
     "echo 'All lints completed!'",
   ]),
   deps = [
-    ":_eslint#lint",
-    ":_gofmt#lint",
+    ":eslint",
+    ":gofmt",
   ],
 )
 
@@ -227,7 +228,7 @@ npm_test(
 )
 
 sh_cmd(
-  name = "_gofmt#lint",
+  name = "gofmt",
   cmd = " && ".join([
     "current=$(pwd)",
     "cd $(pwd | awk -F'plz-out' '{print $1}')",

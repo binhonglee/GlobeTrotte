@@ -7,7 +7,6 @@
 
 import TripBasic from './TripBasic';
 import UserBasic from './UserBasic';
-import UserAccessLevel from './UserAccessLevel';
 import { IWingsStruct } from 'wings-ts-util';
 
 // All information of a single trip.

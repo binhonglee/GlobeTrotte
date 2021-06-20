@@ -4,7 +4,7 @@ def _go_to_top_level():
 def _top_level_dir():
   return "$(pwd | awk -F'plz-out' '{print $1}')"
 
-def _assert_boolean(str:str):
+def _assert_boolean(string:str, default:bool = None):
   switcher = {
     "True": True,
     "False": False,
@@ -15,9 +15,12 @@ def _assert_boolean(str:str):
     "yes": True,
     "no": False,
   }
-  result = switcher.get(str, "ERR")
+  result = switcher.get(string, "ERR")
   if result == "ERR":
-    fail()
+    if default is None:
+      fail()
+    else:
+      return default
   else:
     return result
 

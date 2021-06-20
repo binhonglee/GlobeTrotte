@@ -6,15 +6,15 @@ coverage:
   status:
     project:
       default:
-        target: 50%
+        target: 45%
         threshold: 10%
     patch:
       default:
-        target: 50%
+        target: 45%
         threshold: 10%
   precision: 2
   round: up
-  range: "50...100"
+  range: "45...100"
   notify:
     gitter:
       default:
@@ -36,6 +36,8 @@ comment:
 ignore:
   - "**/scripts/**"
   - "src/turbine/logger/*"
+  - "jest.config.ts"
+  - "vite.config.ts"
 
-github_checks:
+  github_checks:
     annotations: true

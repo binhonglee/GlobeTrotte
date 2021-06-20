@@ -166,9 +166,6 @@ jobs:
   - script: ./pleasew work &
     displayName: Run turbine on background
   - script: sleep 1
-  - script: ./pleasew show &
-    displayName: Run cockpit on background
-  - script: sleep 1
   - script: ./pleasew test --show_all_output //:cockpit_cypress
     displayName: Run e2e tests
 
@@ -287,3 +284,5 @@ jobs:
 
   - script: ./pleasew test --show_all_output //src/cockpit/...
     displayName: Test cockpit
+  - script: ./pleasew test --show_all_output //:tsc
+    displayName: Cockpit typecheck
