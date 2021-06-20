@@ -35,9 +35,8 @@ comment:
 
 ignore:
   - "**/scripts/**"
+  - "**/*.config.ts"
   - "src/turbine/logger/*"
-  - "jest.config.ts"
-  - "vite.config.ts"
 
   github_checks:
     annotations: true

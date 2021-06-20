@@ -68,9 +68,9 @@ filegroup(
 
 sh_exec(
   name = "wings_binary",
-  # TODO: update the wings script to allow downloading the right binary to specified location
-  cmd = "curl -s https://wings.sh/install.sh | sh && cp $HOME/.wings/bin/wings ./",
+  cmd = "curl -s https://wings.sh/install.sh | sh -s -- -d",
   outs = ["wings"],
+  binary = True,
   set_home_path = True,
   visibility = ["PUBLIC"],
 )

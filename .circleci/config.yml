@@ -34,7 +34,7 @@ jobs:
       - run: echo 'export DISPLAY=:99' >> $BASH_ENV
       - run: echo 'export PATH=/home/circleci/.nimble/bin:$HOME/wings:$PATH' >> $BASH_ENV
       - run: echo 'export USER="circleci"' >> $BASH_ENV
-      - run: ./scripts/setup.sh -g -s -w
+      - run: ./scripts/setup.sh -g -s
 
       - run: sudo npm i -g pnpm
       - run: cp config/test.psql.config config/psql.config

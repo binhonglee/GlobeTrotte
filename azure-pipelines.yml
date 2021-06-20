@@ -188,7 +188,7 @@ jobs:
     inputs:
       version: $(goVersion)
 
-  - script: ./scripts/setup.sh -gqwc
+  - script: ./scripts/setup.sh -gqc
     displayName: Run install script
 
   - script: |
@@ -260,7 +260,7 @@ jobs:
     condition: eq(variables['Agent.OS'], 'Darwin')
     displayName: Cache Cypress (MacOS)
 
-  - script: ./scripts/setup.sh -wn
+  - script: ./scripts/setup.sh -n
     displayName: Run install script
 
   - script: |

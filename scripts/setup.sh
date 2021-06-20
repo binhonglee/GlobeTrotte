@@ -42,6 +42,19 @@ config() {
     return
   fi
 
+  echo "Waiting for postgres service to be connected..."
+  WAIT_PSQL_TIMEOUT="."
+  while ! nc -z localhost 5432 && [ "$WAIT_PSQL_TIMEOUT" != ".........." ]; do
+    echo "$WAIT_PSQL_TIMEOUT"
+    WAIT_PSQL_TIMEOUT="$WAIT_PSQL_TIMEOUT""."
+    sleep 1
+  done
+
+  if [ "$WAIT_PSQL_TIMEOUT" = ".........." ]; then
+    echo "Wait for postgres service timed out. Exiting..."
+    exit 1
+  fi
+
   if [ -e "$PSQL_CONFIG_FILE" ]; then
     echo "Seems like \`$PSQL_CONFIG_FILE\` file already exist. Skipping..."
   else
@@ -218,17 +231,6 @@ installShellcheck() {
   esac
 }
 
-installWings() {
-  TEST_WINGS=$(wings -v)
-
-  if [ "$TEST_WINGS" != "" ]; then
-    echo "Seems like \`wings\` is already installed. Skipping..."
-    return
-  fi
-  
-  curl -s https://wings.sh/install.sh | sh
-}
-
 if ! echo "$SUPPORTED_OS" | grep -w "$OS" > /dev/null; then
   echo "Unfortunately this is an unsupported OS."
   exit 1
@@ -240,11 +242,10 @@ if [ ${#*} -lt 1 ]; then
   installPNPM
   installPostgreSQL
   installShellcheck
-  installWings
   config
 fi
 
-while getopts cghnpqsw opt; do
+while getopts cghnpqs opt; do
   case $opt in
     c)
       config
@@ -266,9 +267,6 @@ while getopts cghnpqsw opt; do
       ;;
     s)
       installShellcheck
-      ;;
-    w)
-      installWings
       ;;
     *)
       "Invalid flag $opt. Use -h to show usage."

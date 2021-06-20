@@ -5,6 +5,7 @@ def sh_exec(
   cmd:str,
   outs:list,
   set_home_path:bool=False,
+  binary:bool=False,
   deps:list=[],
   tools:dict|list=[],
   visibility:list=[]
@@ -16,6 +17,7 @@ def sh_exec(
     name = name,
     cmd = cmd,
     outs = outs,
+    binary = binary,
     tools = tools,
     deps = deps,
     visibility = visibility,

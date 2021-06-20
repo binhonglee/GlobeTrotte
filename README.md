@@ -27,7 +27,6 @@ _You can install all these requirements with `./scripts/setup.sh` if needed._
 - [please](https://please.build) (optional)
 - [postgresql](https://www.postgresql.org/)
 - [shellcheck](https://github.com/koalaman/shellcheck) (Shell script lint)
-- [wings](https://wings.sh/) (Generally, the `devel` branch version is prefered since I develop both projects side by side.)
 
 \*_Note: Replace `plz` with `./pleasew` if you do not have please installed._
 

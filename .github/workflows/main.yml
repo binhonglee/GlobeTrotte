@@ -45,7 +45,7 @@ jobs:
       with:
         go-version: 1.15.x
 
-    - run: ./scripts/setup.sh -g -s -w
+    - run: ./scripts/setup.sh -g -s
     - run: sudo npm i -g pnpm
     - run: cp config/test.psql.config config/psql.config
     - run: cp config/test.email.config config/email.config
@@ -101,7 +101,7 @@ jobs:
       with:
         go-version: 1.15.x
 
-    - run: ./scripts/setup.sh -g -s -w
+    - run: ./scripts/setup.sh -g -s
     - run: sudo npm i -g pnpm
     - run: cp config/test.psql.config config/psql.config
     - run: cp config/test.email.config config/email.config
@@ -150,7 +150,7 @@ jobs:
       with:
         go-version: 1.15.x
 
-    - run: ./scripts/setup.sh -g -w
+    - run: ./scripts/setup.sh -g
     - run: cp config/test.psql.config config/psql.config
     - run: cp config/test.email.config config/email.config
     - run: ./pleasew cover --show_all_output //src/turbine/...
@@ -187,7 +187,6 @@ jobs:
       with:
         node-version: '14'
 
-    - run: ./scripts/setup.sh -w
     - run: sudo npm i -g pnpm
     - run: ./pleasew test --show_all_output //src/cockpit/...
     - run: ./pleasew test --show_all_output //:tsc
@@ -204,7 +203,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: ./scripts/setup.sh -w
     - run: sudo npm i -g pnpm
     - uses: actions/download-artifact@v2
       with:
