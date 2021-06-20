@@ -35,7 +35,7 @@ specifiers:
   eslint-plugin-vue: 7.11.1
   forever: 4.0.1
   jest: 26.6.3
-  jest-junit: 12.1.0
+  jest-junit: 12.2.0
   jsdom: 16.6.0
   jsdom-global: 3.0.2
   node-sass: 6.0.0
@@ -104,7 +104,7 @@ devDependencies:
   eslint-plugin-vue: 7.11.1_eslint@7.29.0
   forever: 4.0.1
   jest: 26.6.3_ts-node@10.0.0
-  jest-junit: 12.1.0
+  jest-junit: 12.2.0
   jsdom: 16.6.0
   jsdom-global: 3.0.2_jsdom@16.6.0
   node-sass: 6.0.0
@@ -8814,13 +8814,13 @@ packages:
       - utf-8-validate
     dev: true
 
-  /jest-junit/12.1.0:
-    resolution: {integrity: sha512-Z45INyzEAqTkCHX/hGCPgVFfZP3hQVgI68CgoEwkCiBuxETsPsniq5yPd8oxbMMHtDCpUlxXzoq7jY35dcuLKw==}
+  /jest-junit/12.2.0:
+    resolution: {integrity: sha512-ecGzF3KEQwLbMP5xMO7wqmgmyZlY/5yWDvgE/vFa+/uIT0KsU5nluf0D2fjIlOKB+tb6DiuSSpZuGpsmwbf7Fw==}
     engines: {node: '>=10.12.0'}
     dependencies:
       mkdirp: 1.0.4
       strip-ansi: 5.2.0
-      uuid: 3.4.0
+      uuid: 8.3.2
       xml: 1.0.1
     dev: true
 
@@ -13272,7 +13272,6 @@ packages:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
     dev: true
-    optional: true
 
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
