@@ -63,7 +63,7 @@
     "jsdom-global": "3.0.2",
     "node-sass": "6.0.0",
     "nyc": "15.1.0",
-    "prettier": "2.3.0",
+    "prettier": "2.3.1",
     "pug": "3.0.2",
     "pug-plain-loader": "1.1.0",
     "puppeteer": "10.0.0",
