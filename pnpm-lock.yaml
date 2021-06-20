@@ -61,7 +61,7 @@ specifiers:
   vue-jest: 5.0.0-alpha.10
   vue-loader: 16.2.0
   vue-router: 4.0.9
-  vue-tsc: 0.1.7
+  vue-tsc: 0.2.0
   wait-on: 5.3.0
   wings-ts-util: 0.0.8
 
@@ -129,7 +129,7 @@ devDependencies:
   vue-jest: 5.0.0-alpha.10_f838d91bc4047ad69b52f60237ef16ca
   vue-loader: 16.2.0
   vue-router: 4.0.9_vue@3.0.6
-  vue-tsc: 0.1.7_vue@3.0.6
+  vue-tsc: 0.2.0_typescript@4.3.4+vue@3.0.6
   wait-on: 5.3.0
 
 packages:
@@ -13618,10 +13618,13 @@ packages:
     resolution: {integrity: sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==}
     dev: true
 
-  /vue-tsc/0.1.7_vue@3.0.6:
-    resolution: {integrity: sha512-wQfgo8ZAaBN5mo27cRYQUnOsgR6UIp197w1cNlgukzaD3Mj/GEjwAPuZ6hxpIZiPewLRKNp60SpPM78iuexHQg==}
+  /vue-tsc/0.2.0_typescript@4.3.4+vue@3.0.6:
+    resolution: {integrity: sha512-PNnK3hxMwi1k5UmXyZq2Nv/fprgne3V1oyh5pWzkLPI5XMd2+ed4N4pFF/cyziXw5SDYDYnrw+Nkt5o/cUXTnw==}
     hasBin: true
+    peerDependencies:
+      typescript: '*'
     dependencies:
+      typescript: 4.3.4
       vscode-vue-languageservice: 0.25.22_vue@3.0.6
     transitivePeerDependencies:
       - vue
