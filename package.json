@@ -36,7 +36,7 @@
     "@types/jest": "26.0.23",
     "@types/node": "14.17.3",
     "@types/puppeteer": "5.4.3",
-    "@types/sinon": "10.0.1",
+    "@types/sinon": "10.0.2",
     "@typescript-eslint/eslint-plugin": "4.26.0",
     "@typescript-eslint/parser": "4.26.0",
     "@vitejs/plugin-vue": "1.2.3",
