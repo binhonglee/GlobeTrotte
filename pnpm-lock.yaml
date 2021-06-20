@@ -24,7 +24,7 @@ specifiers:
   babel-loader: 8.2.2
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
-  babel-preset-typescript-vue3: 2.0.11
+  babel-preset-typescript-vue3: 2.0.12
   cypress: 6.9.1
   element-plus: 1.0.2-beta.41
   esbuild: 0.11.23
@@ -94,7 +94,7 @@ devDependencies:
   babel-loader: 8.2.2_@babel+core@7.14.3
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
-  babel-preset-typescript-vue3: 2.0.11_@babel+core@7.14.3+vue@3.0.6
+  babel-preset-typescript-vue3: 2.0.12_@babel+core@7.14.3+vue@3.0.6
   cypress: 6.9.1
   esbuild: 0.11.23
   esbuild-jest: 0.5.0_esbuild@0.11.23
@@ -4549,15 +4549,15 @@ packages:
       babel-preset-current-node-syntax: 1.0.1_@babel+core@7.14.3
     dev: true
 
-  /babel-preset-typescript-vue3/2.0.11_@babel+core@7.14.3+vue@3.0.6:
-    resolution: {integrity: sha512-vuCFN9qH82DIM/LrAPnmbnoqIku9cTPv9rxxmsIVU43Yy06vX4T+9Dg8571u8IVxB2PjmxPGodSGE6KKiDM3Zw==}
+  /babel-preset-typescript-vue3/2.0.12_@babel+core@7.14.3+vue@3.0.6:
+    resolution: {integrity: sha512-Asp5oXEWfUaOC9gKjsaSRtmQOZ1hTjz+RkIoiiZQTqEdmcEDwhh7gbzozSxN64DXgfv8RW1TfA6Ts9qn3i6hgg==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.14.3
       '@babel/helper-plugin-utils': 7.13.0
-      '@babel/plugin-transform-typescript': 7.13.0_@babel+core@7.14.3
+      '@babel/plugin-transform-typescript': 7.14.4_@babel+core@7.14.3
       '@babel/preset-typescript': 7.13.0_@babel+core@7.14.3
       '@vue/compiler-sfc': 3.0.11_vue@3.0.6
     transitivePeerDependencies:
