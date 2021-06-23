@@ -48,7 +48,7 @@
     "babel-loader": "8.2.2",
     "babel-plugin-istanbul": "6.0.0",
     "babel-plugin-module-resolver": "4.1.0",
-    "babel-preset-typescript-vue3": "2.0.12",
+    "babel-preset-typescript-vue3": "2.0.14",
     "cypress": "7.6.0",
     "esbuild": "0.12.9",
     "esbuild-jest": "0.5.0",
