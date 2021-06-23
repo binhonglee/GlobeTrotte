@@ -24,7 +24,7 @@ specifiers:
   babel-loader: 8.2.2
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
-  babel-preset-typescript-vue3: 2.0.12
+  babel-preset-typescript-vue3: 2.0.14
   cypress: 7.6.0
   element-plus: 1.0.2-beta.41
   esbuild: 0.12.9
@@ -94,7 +94,7 @@ devDependencies:
   babel-loader: 8.2.2_@babel+core@7.14.6
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
-  babel-preset-typescript-vue3: 2.0.12_@babel+core@7.14.6+vue@3.0.6
+  babel-preset-typescript-vue3: 2.0.14_@babel+core@7.14.6+vue@3.0.6
   cypress: 7.6.0
   esbuild: 0.12.9
   esbuild-jest: 0.5.0_esbuild@0.12.9
@@ -2493,19 +2493,6 @@ packages:
       '@babel/helper-plugin-utils': 7.14.5
     dev: true
 
-  /@babel/plugin-transform-typescript/7.14.4_@babel+core@7.14.6:
-    resolution: {integrity: sha512-WYdcGNEO7mCCZ2XzRlxwGj3PgeAr50ifkofOUC/+IN/GzKLB+biDPVBUAQN2C/dVZTvEXCp80kfQ1FFZPrwykQ==}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.14.6
-      '@babel/helper-create-class-features-plugin': 7.14.6_@babel+core@7.14.6
-      '@babel/helper-plugin-utils': 7.14.5
-      '@babel/plugin-syntax-typescript': 7.14.5_@babel+core@7.14.6
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@babel/plugin-transform-typescript/7.14.6_@babel+core@7.14.6:
     resolution: {integrity: sha512-XlTdBq7Awr4FYIzqhmYY80WN0V0azF74DMPyFqVHBvf81ZUgc4X7ZOpx6O8eLDK6iM5cCQzeyJw0ynTaefixRA==}
     engines: {node: '>=6.9.0'}
@@ -2835,19 +2822,6 @@ packages:
       '@babel/plugin-transform-react-jsx': 7.14.5_@babel+core@7.4.5
       '@babel/plugin-transform-react-jsx-self': 7.14.5_@babel+core@7.4.5
       '@babel/plugin-transform-react-jsx-source': 7.14.5_@babel+core@7.4.5
-    dev: true
-
-  /@babel/preset-typescript/7.13.0_@babel+core@7.14.6:
-    resolution: {integrity: sha512-LXJwxrHy0N3f6gIJlYbLta1D9BDtHpQeqwzM0LIfjDlr6UE/D5Mc7W4iDiQzaE+ks0sTjT26ArcHWnJVt0QiHw==}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.14.6
-      '@babel/helper-plugin-utils': 7.14.5
-      '@babel/helper-validator-option': 7.14.5
-      '@babel/plugin-transform-typescript': 7.14.4_@babel+core@7.14.6
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@babel/preset-typescript/7.14.5_@babel+core@7.14.6:
@@ -4681,16 +4655,16 @@ packages:
       babel-preset-current-node-syntax: 1.0.1_@babel+core@7.14.3
     dev: true
 
-  /babel-preset-typescript-vue3/2.0.12_@babel+core@7.14.6+vue@3.0.6:
-    resolution: {integrity: sha512-Asp5oXEWfUaOC9gKjsaSRtmQOZ1hTjz+RkIoiiZQTqEdmcEDwhh7gbzozSxN64DXgfv8RW1TfA6Ts9qn3i6hgg==}
+  /babel-preset-typescript-vue3/2.0.14_@babel+core@7.14.6+vue@3.0.6:
+    resolution: {integrity: sha512-aChegBF7AUMkIyR7aDeAa/boeeLPxfx2lObr4/H7VXXB3PR6KHtsriRFs/vzELCm1rvButQJAFpBRexJqUYTSA==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.14.6
       '@babel/helper-plugin-utils': 7.14.5
-      '@babel/plugin-transform-typescript': 7.14.4_@babel+core@7.14.6
-      '@babel/preset-typescript': 7.13.0_@babel+core@7.14.6
+      '@babel/plugin-transform-typescript': 7.14.6_@babel+core@7.14.6
+      '@babel/preset-typescript': 7.14.5_@babel+core@7.14.6
       '@vue/compiler-sfc': 3.0.11_vue@3.0.6
     transitivePeerDependencies:
       - supports-color
