@@ -40,7 +40,7 @@ specifiers:
   jsdom-global: 3.0.2
   node-sass: 6.0.0
   nyc: 15.1.0
-  prettier: 2.3.1
+  prettier: 2.3.2
   pug: 3.0.2
   pug-plain-loader: 1.1.0
   puppeteer: 10.0.0
@@ -87,7 +87,7 @@ devDependencies:
   '@typescript-eslint/parser': 4.28.1_eslint@7.29.0+typescript@4.3.4
   '@vitejs/plugin-vue': 1.2.4_@vue+compiler-sfc@3.0.11
   '@vue/compiler-sfc': 3.0.11_vue@3.0.6
-  '@vue/eslint-config-prettier': 6.0.0_240c86402bfae441919e14e1390d1f83
+  '@vue/eslint-config-prettier': 6.0.0_5b1c828826569b0f1f34173de35e97d9
   '@vue/eslint-config-typescript': 7.0.0_7378ab76e6c741273c649e330ba0f2f1
   '@vue/test-utils': 2.0.0-rc.6_vue@3.0.6
   ava: 3.15.0
@@ -100,7 +100,7 @@ devDependencies:
   esbuild-jest: 0.5.0_esbuild@0.12.11
   eslint: 7.29.0
   eslint-plugin-deprecation: 1.2.1_eslint@7.29.0+typescript@4.3.4
-  eslint-plugin-prettier: 3.4.0_eslint@7.29.0+prettier@2.3.1
+  eslint-plugin-prettier: 3.4.0_eslint@7.29.0+prettier@2.3.2
   eslint-plugin-vue: 7.12.1_eslint@7.29.0
   forever: 4.0.1
   jest: 26.6.3_ts-node@10.0.0
@@ -109,7 +109,7 @@ devDependencies:
   jsdom-global: 3.0.2_jsdom@16.6.0
   node-sass: 6.0.0
   nyc: 15.1.0
-  prettier: 2.3.1
+  prettier: 2.3.2
   pug: 3.0.2
   pug-plain-loader: 1.1.0_pug@3.0.2
   puppeteer: 10.0.0
@@ -3894,7 +3894,7 @@ packages:
     resolution: {integrity: sha512-44fPrrN1cqcs6bFkT0C+yxTM6PZXLbR+ESh1U1j8UD22yO04gXvxH62HApMjLbS3WqJO/iCNC+CYT+evPQh2EQ==}
     dev: true
 
-  /@vue/eslint-config-prettier/6.0.0_240c86402bfae441919e14e1390d1f83:
+  /@vue/eslint-config-prettier/6.0.0_5b1c828826569b0f1f34173de35e97d9:
     resolution: {integrity: sha512-wFQmv45c3ige5EA+ngijq40YpVcIkAy0Lihupnsnd1Dao5CBbPyfCzqtejFLZX1EwH/kCJdpz3t6s+5wd3+KxQ==}
     peerDependencies:
       eslint: '>= 5.0.0'
@@ -3903,8 +3903,8 @@ packages:
     dependencies:
       eslint: 7.29.0
       eslint-config-prettier: 6.15.0_eslint@7.29.0
-      eslint-plugin-prettier: 3.4.0_eslint@7.29.0+prettier@2.3.1
-      prettier: 2.3.1
+      eslint-plugin-prettier: 3.4.0_eslint@7.29.0+prettier@2.3.2
+      prettier: 2.3.2
     dev: true
 
   /@vue/eslint-config-typescript/7.0.0_7378ab76e6c741273c649e330ba0f2f1:
@@ -6597,7 +6597,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-prettier/3.4.0_eslint@7.29.0+prettier@2.3.1:
+  /eslint-plugin-prettier/3.4.0_eslint@7.29.0+prettier@2.3.2:
     resolution: {integrity: sha512-UDK6rJT6INSfcOo545jiaOwB701uAIt2/dR7WnFQoGCVl1/EMqdANBmwUaqqQ45aXprsTGzSa39LI1PyuRBxxw==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
@@ -6609,7 +6609,7 @@ packages:
         optional: true
     dependencies:
       eslint: 7.29.0
-      prettier: 2.3.1
+      prettier: 2.3.2
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -10894,8 +10894,8 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier/2.3.1:
-    resolution: {integrity: sha512-p+vNbgpLjif/+D+DwAZAbndtRrR0md0MwfmOVN9N+2RgyACMT+7tfaRnT+WDPkqnuVwleyuBIG2XBxKDme3hPA==}
+  /prettier/2.3.2:
+    resolution: {integrity: sha512-lnJzDfJ66zkMy58OL5/NY5zp70S7Nz6KqcKkXYzn2tMVrNxvbqaBpg7H3qHaLxCJ5lNMsGuM8+ohS7cZrthdLQ==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
