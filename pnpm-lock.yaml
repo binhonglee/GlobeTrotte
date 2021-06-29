@@ -43,7 +43,7 @@ specifiers:
   prettier: 2.3.2
   pug: 3.0.2
   pug-plain-loader: 1.1.0
-  puppeteer: 10.0.0
+  puppeteer: 10.1.0
   puppeteer-to-istanbul: 1.4.0
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0
@@ -112,7 +112,7 @@ devDependencies:
   prettier: 2.3.2
   pug: 3.0.2
   pug-plain-loader: 1.1.0_pug@3.0.2
-  puppeteer: 10.0.0
+  puppeteer: 10.1.0
   puppeteer-to-istanbul: 1.4.0
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0_require-extension-hooks@0.3.3
@@ -125,7 +125,7 @@ devDependencies:
   ts-node: 10.0.0_359a3d6c0c6c47e7e704e0ed7b68004a
   typescript: 4.3.4
   vite: 2.3.8
-  vite-plugin-test: 0.0.5_75f3b694999531bc6430c72546b9ab1a
+  vite-plugin-test: 0.0.5_6310a645277ab1b03b098e241f4ac067
   vue-jest: 5.0.0-alpha.10_f838d91bc4047ad69b52f60237ef16ca
   vue-loader: 16.2.0
   vue-router: 4.0.9_vue@3.0.6
@@ -3586,7 +3586,7 @@ packages:
   /@types/yauzl/2.9.1:
     resolution: {integrity: sha512-A1b8SU4D10uoPjwb0lnHmmu8wZhR9d+9o2PKBQT2jU5YPTKsxac6M2qGAdY7VcL+dHHhARVUDmeg0rOrcd9EjA==}
     dependencies:
-      '@types/node': 14.17.3
+      '@types/node': 14.17.4
     dev: true
     optional: true
 
@@ -4212,7 +4212,7 @@ packages:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
     dev: true
 
-  /aria-mocha/0.7.3_75f3b694999531bc6430c72546b9ab1a:
+  /aria-mocha/0.7.3_6310a645277ab1b03b098e241f4ac067:
     resolution: {integrity: sha512-0DP8PXtWiXd8YVqHZVJ4l0wX1N+XvyKoUEX6gbapkYi1ZfrFQfr3Lx0Q9eaYrsSK58BctsI2BJ8sQjz8NgmlDg==}
     hasBin: true
     peerDependencies:
@@ -4221,7 +4221,7 @@ packages:
       chai: 4.3.4
       istanbul-api: 3.0.0
       mocha: 8.4.0
-      puppeteer: 10.0.0
+      puppeteer: 10.1.0
       sade: 1.7.4
       ts-node: 9.1.1_typescript@4.3.4
     transitivePeerDependencies:
@@ -11158,8 +11158,8 @@ packages:
       yargs: 15.4.1
     dev: true
 
-  /puppeteer/10.0.0:
-    resolution: {integrity: sha512-AxHvCb9IWmmP3gMW+epxdj92Gglii+6Z4sb+W+zc2hTTu10HF0yg6hGXot5O74uYkVqG3lfDRLfnRpi6WOwi5A==}
+  /puppeteer/10.1.0:
+    resolution: {integrity: sha512-bsyDHbFBvbofZ63xqF7hMhuKBX1h4WsqFIAoh1GuHr/Y9cewh+EFNAOdqWSkQRHLiBU/MY6M+8PUnXXjAPtuSg==}
     engines: {node: '>=10.18.1'}
     requiresBuild: true
     dependencies:
@@ -13334,13 +13334,13 @@ packages:
       vfile-message: 2.0.4
     dev: true
 
-  /vite-plugin-test/0.0.5_75f3b694999531bc6430c72546b9ab1a:
+  /vite-plugin-test/0.0.5_6310a645277ab1b03b098e241f4ac067:
     resolution: {integrity: sha512-jaJDnmoeppqnDac+5wz2OPfs1rZ60+7bFd+gQWAgZ/Wo1urpgGq2xCYFWSkTK2VeUPYFVL2yrBN2clOuYvU1RA==}
     peerDependencies:
       puppeteer: ^8.0.0
     dependencies:
-      aria-mocha: 0.7.3_75f3b694999531bc6430c72546b9ab1a
-      puppeteer: 10.0.0
+      aria-mocha: 0.7.3_6310a645277ab1b03b098e241f4ac067
+      puppeteer: 10.1.0
     transitivePeerDependencies:
       - supports-color
       - typescript
