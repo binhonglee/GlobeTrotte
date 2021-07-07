@@ -25,7 +25,7 @@ specifiers:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.14
-  cypress: 7.6.0
+  cypress: 7.7.0
   element-plus: 1.0.2-beta.53
   esbuild: 0.12.15
   esbuild-jest: 0.5.0
@@ -78,7 +78,7 @@ devDependencies:
   '@babel/plugin-transform-typescript': 7.14.6_@babel+core@7.14.6
   '@babel/preset-env': 7.14.7_@babel+core@7.14.6
   '@babel/preset-typescript': 7.14.5_@babel+core@7.14.6
-  '@cypress/code-coverage': 3.9.8_cypress@7.6.0
+  '@cypress/code-coverage': 3.9.8_cypress@7.7.0
   '@types/jest': 26.0.24
   '@types/node': 14.17.4
   '@types/puppeteer': 5.4.3
@@ -95,7 +95,7 @@ devDependencies:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.14_@babel+core@7.14.6+vue@3.0.6
-  cypress: 7.6.0
+  cypress: 7.7.0
   esbuild: 0.12.15
   esbuild-jest: 0.5.0_esbuild@0.12.15
   eslint: 7.30.0
@@ -2930,14 +2930,14 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/code-coverage/3.9.8_cypress@7.6.0:
+  /@cypress/code-coverage/3.9.8_cypress@7.7.0:
     resolution: {integrity: sha512-DxZjozoLoIq8h0xrlB6CKb7gcEo1wqFaLYhb/V1oZwixogwRXUgWnQuqTdgBo9A7TrlOc6LsKXEAbIRps0R+Jg==}
     peerDependencies:
       cypress: '*'
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.1
       chalk: 4.1.1
-      cypress: 7.6.0
+      cypress: 7.7.0
       dayjs: 1.10.5
       debug: 4.3.2
       execa: 4.1.0
@@ -5880,8 +5880,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /cypress/7.6.0:
-    resolution: {integrity: sha512-tTwQExY28CKt6cY85/2V1uLExcMfpBEBWXt/EcE2ht/Onl9k4lxUS7ul1UnUO5MrYwMIHMdGVh13DxdzXj4Z5w==}
+  /cypress/7.7.0:
+    resolution: {integrity: sha512-uYBYXNoI5ym0UxROwhQXWTi8JbUEjpC6l/bzoGZNxoKGsLrC1SDPgIDJMgLX/MeEdPL0UInXLDUWN/rSyZUCjQ==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
@@ -11222,6 +11222,7 @@ packages:
   /querystring/0.2.0:
     resolution: {integrity: sha1-sgmEkgO7Jd+CDadW50cAWHhSFiA=}
     engines: {node: '>=0.4.x'}
+    deprecated: The
     dev: true
 
   /queue-microtask/1.2.3:
