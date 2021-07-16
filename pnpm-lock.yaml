@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@ava/babel': 1.0.1
+  '@ava/babel': 2.0.0
   '@babel/core': 7.14.6
   '@babel/plugin-transform-runtime': 7.14.5
   '@babel/plugin-transform-typescript': 7.14.6
@@ -72,7 +72,7 @@ dependencies:
   wings-ts-util: 0.0.8
 
 devDependencies:
-  '@ava/babel': 1.0.1
+  '@ava/babel': 2.0.0
   '@babel/core': 7.14.6
   '@babel/plugin-transform-runtime': 7.14.5_@babel+core@7.14.6
   '@babel/plugin-transform-typescript': 7.14.6_@babel+core@7.14.6
@@ -134,25 +134,25 @@ devDependencies:
 
 packages:
 
-  /@ava/babel/1.0.1:
-    resolution: {integrity: sha512-mGKpGeT6J4UjK2sxPjvwWl/GtsF9+eNyn2HHa7OknWWWYuw+rof/UaTAn1CA0z4sTw4Mruik/ihEasMw+JM6aQ==}
-    engines: {node: '>=10.18.0 <11 || >=12.14.0 <13 || >=13.5.0'}
+  /@ava/babel/2.0.0:
+    resolution: {integrity: sha512-50ol1X2AOuX82UskqQYx7XCvv/05GQA2dib/n4XP99sg63fIVtzwpPZ7amLN7mghhGRr2fjXFbuRgJ4+VeDsIg==}
+    engines: {node: '>=12.22 <13 || >=14.16 <15 || >=16'}
     dependencies:
       '@ava/require-precompiled': 1.0.0
-      '@babel/core': 7.14.3
+      '@babel/core': 7.14.6
       '@babel/generator': 7.14.5
-      '@babel/plugin-proposal-dynamic-import': 7.14.5_@babel+core@7.14.3
-      '@babel/plugin-proposal-nullish-coalescing-operator': 7.14.5_@babel+core@7.14.3
-      '@babel/plugin-proposal-optional-chaining': 7.14.5_@babel+core@7.14.3
-      '@babel/plugin-transform-modules-commonjs': 7.14.5_@babel+core@7.14.3
+      '@babel/plugin-proposal-dynamic-import': 7.14.5_@babel+core@7.14.6
+      '@babel/plugin-proposal-nullish-coalescing-operator': 7.14.5_@babel+core@7.14.6
+      '@babel/plugin-proposal-optional-chaining': 7.14.5_@babel+core@7.14.6
+      '@babel/plugin-transform-modules-commonjs': 7.14.5_@babel+core@7.14.6
       babel-plugin-espower: 3.0.1
-      concordance: 4.0.0
+      concordance: 5.0.4
       convert-source-map: 1.8.0
-      dot-prop: 5.3.0
+      dot-prop: 6.0.1
       empower-core: 1.2.0
-      escape-string-regexp: 2.0.0
-      find-up: 4.1.0
-      is-plain-object: 3.0.1
+      escape-string-regexp: 4.0.0
+      find-up: 5.0.0
+      is-plain-object: 5.0.0
       md5-hex: 3.0.1
       package-hash: 4.0.0
       pkg-conf: 3.1.0
@@ -5607,23 +5607,6 @@ packages:
       typedarray: 0.0.6
     dev: true
 
-  /concordance/4.0.0:
-    resolution: {integrity: sha512-l0RFuB8RLfCS0Pt2Id39/oCPykE01pyxgAFypWTlaGRgvLkZrtczZ8atEHpTeEIW+zYWXTBuA9cCSeEOScxReQ==}
-    engines: {node: '>=6.12.3 <7 || >=8.9.4 <9 || >=10.0.0'}
-    dependencies:
-      date-time: 2.1.0
-      esutils: 2.0.3
-      fast-diff: 1.2.0
-      js-string-escape: 1.0.1
-      lodash.clonedeep: 4.5.0
-      lodash.flattendeep: 4.4.0
-      lodash.islength: 4.0.1
-      lodash.merge: 4.6.2
-      md5-hex: 2.0.0
-      semver: 5.7.1
-      well-known-symbols: 2.0.0
-    dev: true
-
   /concordance/5.0.4:
     resolution: {integrity: sha512-OAcsnTEYu1ARJqWVGwf4zh4JDfHZEaSNlNccFmt8YjB2l/n19/PF2viLINHc57vO4FKIAFl2FWASIGZZWZ2Kxw==}
     engines: {node: '>=10.18.0 <11 || >=12.14.0 <13 || >=14'}
@@ -5951,13 +5934,6 @@ packages:
       abab: 2.0.5
       whatwg-mimetype: 2.3.0
       whatwg-url: 8.6.0
-    dev: true
-
-  /date-time/2.1.0:
-    resolution: {integrity: sha512-/9+C44X7lot0IeiyfgJmETtRMhBidBYM2QFFIkGa0U1k+hSyY87Nw7PY3eDqpvCBm7I3WCSfPeZskW/YYq6m4g==}
-    engines: {node: '>=4'}
-    dependencies:
-      time-zone: 1.0.0
     dev: true
 
   /date-time/3.1.0:
@@ -6350,6 +6326,13 @@ packages:
   /dot-prop/5.3.0:
     resolution: {integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==}
     engines: {node: '>=8'}
+    dependencies:
+      is-obj: 2.0.0
+    dev: true
+
+  /dot-prop/6.0.1:
+    resolution: {integrity: sha512-tE7ztYzXHIeyvc7N+hR3oi7FIbf/NIjVP9hmAt3yMXzrQ072/fpjGLx2GxNxGxUl5V73MEqYzioOMoVhGMJ5cA==}
+    engines: {node: '>=10'}
     dependencies:
       is-obj: 2.0.0
     dev: true
@@ -8330,11 +8313,6 @@ packages:
       isobject: 3.0.1
     dev: true
 
-  /is-plain-object/3.0.1:
-    resolution: {integrity: sha512-Xnpx182SBMrr/aBik8y+GuR4U1L9FqMSojwDQwPMmxyC6bvEqly9UBCxhauBF5vNh2gwWJNX6oDV7O+OM4z34g==}
-    engines: {node: '>=0.10.0'}
-    dev: true
-
   /is-plain-object/5.0.0:
     resolution: {integrity: sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==}
     engines: {node: '>=0.10.0'}
@@ -9480,10 +9458,6 @@ packages:
     resolution: {integrity: sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=}
     dev: true
 
-  /lodash.islength/4.0.1:
-    resolution: {integrity: sha1-Tpho1FJXXXUK/9NYyXlUPcIO1Xc=}
-    dev: true
-
   /lodash.iteratee/4.7.0:
     resolution: {integrity: sha1-vkF32yiajMw8CZDx2ya1si/BVUw=}
     dev: true
@@ -9660,22 +9634,11 @@ packages:
       escape-string-regexp: 4.0.0
     dev: true
 
-  /md5-hex/2.0.0:
-    resolution: {integrity: sha1-0FiOnxx0lUSS7NJKwKxs6ZfZLjM=}
-    engines: {node: '>=4'}
-    dependencies:
-      md5-o-matic: 0.1.1
-    dev: true
-
   /md5-hex/3.0.1:
     resolution: {integrity: sha512-BUiRtTtV39LIJwinWBjqVsU9xhdnz7/i889V859IBFpuqGAj6LuOvHv5XLbgZ2R7ptJoJaEcxkv88/h25T7Ciw==}
     engines: {node: '>=8'}
     dependencies:
       blueimp-md5: 2.18.0
-    dev: true
-
-  /md5-o-matic/0.1.1:
-    resolution: {integrity: sha1-givM1l4RfFFPqxdrJZRdVBAKA8M=}
     dev: true
 
   /md5.js/1.3.5:
