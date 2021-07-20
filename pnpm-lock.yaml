@@ -7,7 +7,7 @@ specifiers:
   '@babel/plugin-transform-typescript': 7.14.6
   '@babel/preset-env': 7.14.7
   '@babel/preset-typescript': 7.14.5
-  '@cypress/code-coverage': 3.9.8
+  '@cypress/code-coverage': 3.9.9
   '@types/jest': 26.0.24
   '@types/node': 14.17.5
   '@types/puppeteer': 5.4.4
@@ -78,7 +78,7 @@ devDependencies:
   '@babel/plugin-transform-typescript': 7.14.6_@babel+core@7.14.6
   '@babel/preset-env': 7.14.7_@babel+core@7.14.6
   '@babel/preset-typescript': 7.14.5_@babel+core@7.14.6
-  '@cypress/code-coverage': 3.9.8_cypress@8.0.0
+  '@cypress/code-coverage': 3.9.9_cypress@8.0.0
   '@types/jest': 26.0.24
   '@types/node': 14.17.5
   '@types/puppeteer': 5.4.4
@@ -2930,15 +2930,15 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/code-coverage/3.9.8_cypress@8.0.0:
-    resolution: {integrity: sha512-DxZjozoLoIq8h0xrlB6CKb7gcEo1wqFaLYhb/V1oZwixogwRXUgWnQuqTdgBo9A7TrlOc6LsKXEAbIRps0R+Jg==}
+  /@cypress/code-coverage/3.9.9_cypress@8.0.0:
+    resolution: {integrity: sha512-dBojYCqZeb0h0rthAUWZFyFCAIpmBIAw1r68laKRS+L+TsjbsKUjsn7tvSHxNVvlmC1kFjHyRpyOig2sKjJlcg==}
     peerDependencies:
       cypress: '*'
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.1
       chalk: 4.1.1
       cypress: 8.0.0
-      dayjs: 1.10.5
+      dayjs: 1.10.6
       debug: 4.3.2
       execa: 4.1.0
       globby: 11.0.4
@@ -5969,6 +5969,10 @@ packages:
 
   /dayjs/1.10.5:
     resolution: {integrity: sha512-BUFis41ikLz+65iH6LHQCDm4YPMj5r1YFLdupPIyM4SGcXMmtiLQ7U37i+hGS8urIuqe7I/ou3IS1jVc4nbN4g==}
+
+  /dayjs/1.10.6:
+    resolution: {integrity: sha512-AztC/IOW4L1Q41A86phW5Thhcrco3xuAA+YX/BLpLWWjRcTj5TOt/QImBLmCKlrF7u7k47arTnOyL6GnbG8Hvw==}
+    dev: true
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
