@@ -55,7 +55,7 @@ specifiers:
   ts-jest: 26.5.6
   ts-node: 10.0.0
   typescript: 4.3.5
-  vite: 2.4.1
+  vite: 2.4.3
   vite-plugin-test: 0.0.5
   vue: 3.0.6
   vue-jest: 5.0.0-alpha.10
@@ -124,7 +124,7 @@ devDependencies:
   ts-jest: 26.5.6_jest@26.6.3+typescript@4.3.5
   ts-node: 10.0.0_400a4096d34ae850b4639c830a4747bf
   typescript: 4.3.5
-  vite: 2.4.1
+  vite: 2.4.3
   vite-plugin-test: 0.0.5_75aa1fbde91849c6f179bc32af9fcd9a
   vue-jest: 5.0.0-alpha.10_a78e3d989a80c34524cab3ed1a794eac
   vue-loader: 16.3.1
@@ -6555,12 +6555,6 @@ packages:
       esbuild: 0.12.15
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /esbuild/0.12.14:
-    resolution: {integrity: sha512-z8p+6FGiplR7a3pPonXREbm+8IeXjBGvDpVidZmGB/AJMsJSfGCU+n7KOMCazA9AwvagadRWBhiKorC0w9WJvw==}
-    hasBin: true
-    requiresBuild: true
     dev: true
 
   /esbuild/0.12.15:
@@ -13337,12 +13331,12 @@ packages:
       - typescript
     dev: true
 
-  /vite/2.4.1:
-    resolution: {integrity: sha512-4BpKRis9uxIqPfIEcJ18LTBsamqnDFxTx45CXwagHjNltHa6PFEvf8Pe6OpgIHb0OyWT30OXOSSQvdOaX4OBiQ==}
+  /vite/2.4.3:
+    resolution: {integrity: sha512-iT6NPeiUUZ2FkzC3eazytOEMRaM4J+xgRQcNcpRcbmfYjakCFP4WKPJpeEz1U5JEKHAtwv3ZBQketQUFhFU3ng==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
-      esbuild: 0.12.14
+      esbuild: 0.12.15
       postcss: 8.3.5
       resolve: 1.20.0
       rollup: 2.52.1
