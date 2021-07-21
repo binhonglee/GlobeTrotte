@@ -8,7 +8,7 @@
       :autoplay="false"
     )
       a(:href="'/trip/view/' + trip.ID")
-        el-carousel-item.tripDayPreview
+        el-carousel-item.tripDayPreview.tripDayTopic
           h3 {{ trip.details.name }}
           p(
             v-if="trip.details.description !== ''"
@@ -22,7 +22,7 @@
         el-carousel-item.tripDayPreview(
           v-for="day in trip.details.days"
         )
-          h3 Day {{ day.dayOf }}
+          h3.tripDayTopic Day {{ day.dayOf }}
           CPlaces(:places="day.places")
 </template>
 
@@ -59,17 +59,20 @@ export default defineComponent({
 
 .tripDayPreview {
   overflow: auto;
-  width: 280px;
-  margin: 10px;
+  padding: 0;
 
   .tripPreviewUserProfileLink {
     color: #409eff;
   }
 }
 
+.tripDayTopic {
+  padding: 10px;
+}
+
 .viewUserTripInfoCarousel {
   text-align: left;
-
+  padding: 5px;
   .el-carousel__container {
     height: 200px;
   }

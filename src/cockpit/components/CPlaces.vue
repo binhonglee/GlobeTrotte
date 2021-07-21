@@ -5,7 +5,7 @@
   )
     el-row.place(
       v-for="place in places"
-      v-bind:key="place.URL"
+      v-bind:key="place.URL.valueOf()"
     )
       el-link.placeLink(
         target="_blank"
@@ -20,7 +20,7 @@
             p.placeDescription(
               v-if="place.description !== ''"
             ) {{ place.description }}
-      el-card.placeDisplayCard(v-else shadow="hover")
+      el-card.placeLink.placeDisplayCard(v-else shadow="hover")
         .placeDisplayCardContent
           b {{ place.label }}
           p.placeDescription(
@@ -49,6 +49,10 @@ export default defineComponent({
   margin: 0;
 }
 
+.place {
+  padding: 5px;
+}
+
 .placesList {
   margin-top: 10px;
   padding: 0;
@@ -60,8 +64,6 @@ export default defineComponent({
 }
 
 .places .placeDisplayCard {
-  width: 345px;
-
   .placeDisplayCardContent {
     font-size: 14px;
     padding: 5px;

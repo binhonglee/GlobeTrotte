@@ -106,7 +106,7 @@ jobs:
     - run: cp config/test.psql.config config/psql.config
     - run: cp config/test.email.config config/email.config
 
-    - run: ./pleasew work -- -toFile=true &
+    - run: ./pleasew run "//src/turbine:main" -- -toFile=true &
     - run: sleep 3
     - run: ./pleasew test --show_all_output //:cockpit_cypress
 

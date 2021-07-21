@@ -20,6 +20,8 @@ var currentFile *os.File
 
 func init() {
 	startTime = time.Now()
+	fmt.Println()
+	fmt.Println("Server initialization begins...")
 }
 
 // FromMain - Initializing from main

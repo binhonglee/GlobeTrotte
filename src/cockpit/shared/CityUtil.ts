@@ -25,6 +25,7 @@ export class CityUtil {
       new CityObj(City.PhoneixAZUS),
       new CityObj(City.SanFranciscoCAUS),
       new CityObj(City.SanJoseCAUS),
+      new CityObj(City.SantaCruzCAUS),
       new CityObj(City.SeattleWAUS),
       new CityObj(City.WashingtonDCUS),
     ];
@@ -46,6 +47,7 @@ export class CityUtil {
       [City.PhoneixAZUS]: "Phoenix, Arizona, US",
       [City.SanFranciscoCAUS]: "San Francisco, California, US",
       [City.SanJoseCAUS]: "San Jose, California, US",
+      [City.SantaCruzCAUS]: "Santa Cruz, California, US",
       [City.SeattleWAUS]: "Seattle, Washington, US",
       [City.WashingtonDCUS]: "Washington, D.C., US",
     };

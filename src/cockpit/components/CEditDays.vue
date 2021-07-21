@@ -3,7 +3,7 @@
   el-card.editDay(
     v-for="(day, index) in days"
     shadow="hover"
-    :key="day.dayOf"
+    :key="day.dayOf.valueOf()"
     :class="'day' + day.dayOf"
   )
     .editDayCardContent

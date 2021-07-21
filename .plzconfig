@@ -21,7 +21,7 @@ cmd = run "//scripts:reset"
 cmd = run "//:serve"
 
 [Alias "work"]
-cmd = run "//src/turbine:main"
+cmd = watch --run "//src/turbine:main"
 
 [Alias "lint"]
 cmd = run "//:lint_all"

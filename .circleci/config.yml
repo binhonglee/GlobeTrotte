@@ -48,7 +48,7 @@ jobs:
       - run: ./pleasew test --show_all_output //src/cockpit/tests/components/...
       - run: ./pleasew test --show_all_output //src/cockpit/tests/views/...
       - run:
-          command: ./pleasew work
+          command: ./pleasew run "//src/turbine:main"
           background: true
       - run: sleep 1
       - run: ./pleasew test --show_all_output

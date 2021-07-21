@@ -9,6 +9,7 @@ enum City {
   UNKNOWN,
   SanFranciscoCAUS,
   SanJoseCAUS,
+  SantaCruzCAUS,
   NewYorkNYUS,
   AnchorageAKUS,
   ParisFR,

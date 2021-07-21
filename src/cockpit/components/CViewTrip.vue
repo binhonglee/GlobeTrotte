@@ -20,7 +20,7 @@
     el-tag.tripCity(v-for="city in cities") {{ city }}
   el-card.viewDayCard(
     v-for="day in trip.details.days"
-    :key="day.ID"
+    :key="day.ID.valueOf()"
   )
     .viewDayCardContent
       h3.dayTitle Day {{ day.dayOf }}
