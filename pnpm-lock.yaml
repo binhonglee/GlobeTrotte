@@ -26,7 +26,7 @@ specifiers:
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.14
   cypress: 8.0.0
-  element-plus: 1.0.2-beta.55
+  element-plus: 1.0.2-beta.57
   esbuild: 0.12.15
   esbuild-jest: 0.5.0
   eslint: 7.31.0
@@ -67,7 +67,7 @@ specifiers:
 
 dependencies:
   axios: 0.21.1
-  element-plus: 1.0.2-beta.55_vue@3.0.6
+  element-plus: 1.0.2-beta.57_vue@3.0.6
   vue: 3.0.6
   wings-ts-util: 0.0.8
 
@@ -3596,10 +3596,6 @@ packages:
     resolution: {integrity: sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==}
     dev: true
 
-  /@types/lodash/4.14.170:
-    resolution: {integrity: sha512-bpcvu/MKHHeYX+qeEN8GE7DIravODWdACVA1ctevD8CN24RhPZIKMn9ntfAsrvLfSX3cR5RrBKAbYm9bGs0A+Q==}
-    dev: false
-
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
@@ -6024,10 +6020,10 @@ packages:
 
   /dayjs/1.10.5:
     resolution: {integrity: sha512-BUFis41ikLz+65iH6LHQCDm4YPMj5r1YFLdupPIyM4SGcXMmtiLQ7U37i+hGS8urIuqe7I/ou3IS1jVc4nbN4g==}
+    dev: true
 
   /dayjs/1.10.6:
     resolution: {integrity: sha512-AztC/IOW4L1Q41A86phW5Thhcrco3xuAA+YX/BLpLWWjRcTj5TOt/QImBLmCKlrF7u7k47arTnOyL6GnbG8Hvw==}
-    dev: true
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -6445,15 +6441,14 @@ packages:
     resolution: {integrity: sha512-2Tg+7jSl3oPxgsBsWKh5H83QazTkmWG/cnNwJplmyZc7KcN61+I10oUgaXSVk/NwfvN3BdkKDR4FYuRBQQ2v0A==}
     dev: true
 
-  /element-plus/1.0.2-beta.55_vue@3.0.6:
-    resolution: {integrity: sha512-I9EYxOA5H9KQ58SpFE0yejGPoAd3ui12wRLLtoS2bHdF9mrep5c6v+2cJwyc9abXGBf2RzZ8tqAp/OCCfdzjlQ==}
+  /element-plus/1.0.2-beta.57_vue@3.0.6:
+    resolution: {integrity: sha512-LWeEkG+2AzO930x14yB9fmvDGg155V4f9hQgVmJaDER3YPrh1Cka0TDI9jWzA03sQ64GrtHBuePzNJLadGp+vw==}
     peerDependencies:
       vue: 3.1.x
     dependencies:
       '@popperjs/core': 2.9.2
-      '@types/lodash': 4.14.170
       async-validator: 3.5.2
-      dayjs: 1.10.5
+      dayjs: 1.10.6
       lodash: 4.17.21
       mitt: 2.1.0
       normalize-wheel: 1.0.1
