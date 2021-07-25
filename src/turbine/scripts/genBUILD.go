@@ -6,42 +6,63 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
+	"sort"
 	"strings"
 )
 
-type gopkg struct {
-	name    string
-	version string
-	deps    []string
-}
-
 type Config struct {
-	Ignore     map[string]bool     `json:"ignore"`
 	Install    map[string][]string `json:"install"`
-	Name       string              `json:"name"`
 	OutputFile string              `json:"output"`
 	Silent     bool                `json:"silent"`
 }
 
+type gopkg struct {
+	name     string
+	version  string
+	deps     map[string]bool
+	installs map[string]bool
+}
+
+type golistmod struct {
+	Path    string `json:"Path"`
+	Version string `json:"Version"`
+}
+
+type golistobj struct {
+	ImportPath string    `json:"ImportPath"`
+	Module     golistmod `json:"Module"`
+	Deps       []string  `json:"Deps"`
+}
+
+type node struct {
+	next *node
+	key  string
+}
+
+type llist struct {
+	head *node
+	tail *node
+}
+
+var toProcess llist
+var processed map[string]bool
+var f *os.File
+var config Config
+
 func main() {
 	jsonFile, err := os.Open(os.Args[1])
+	directDeps := []string{}
+	if err != nil {
+		panic(err)
+	}
 	byteValue, _ := ioutil.ReadAll(jsonFile)
-	var config Config
 	json.Unmarshal(byteValue, &config)
+	moduleName := strings.TrimSpace(string(run("go", "list", "-m")))
 
-	f, _ := os.Create(config.OutputFile)
+	f, _ = os.Create(config.OutputFile)
 	defer f.Close()
 
 	packages := make(map[string]gopkg)
-
-	cmd := exec.Command("go", "mod", "graph")
-	stdout, err := cmd.Output()
-
-	if err != nil {
-		fmt.Println(err.Error())
-		return
-	}
-
 	f.WriteString(`
 # DO NOT EDIT MANUALLY AS IT IS GENERATED AND WILL BE OVERWRITTEN.
 #
@@ -53,45 +74,25 @@ func main() {
 package(default_visibility = ["PUBLIC"])
 `)
 
-	row := strings.Split(string(stdout), "\n")
+	row := strings.Split(string(run("go", "mod", "graph")), "\n")
 	for i := 0; i < len(row); i++ {
 		words := strings.Split(row[i], " ")
-
-		if len(words) != 2 {
-			continue
+		if len(words) != 2 || words[0] != moduleName {
+			break
 		}
 
-		key := strToGopkg(words[0])
 		value := strToGopkg(words[1])
-
-		if _, ok := config.Ignore[value.name]; ok {
-			continue
-		}
-
-		if pkg, ok := packages[key.name]; ok {
-			key = pkg
-		}
-
-		key.deps = append(key.deps, value.name)
-		packages[key.name] = key
-
-		if _, ok := packages[value.name]; !ok {
-			packages[value.name] = value
-		}
+		directDeps = append(directDeps, value.name)
 	}
 
-	for _, gopkg := range packages {
-		if gopkg.name == config.Name {
-			continue
-		}
-		f.WriteString(printGopkg(gopkg, config.Install))
-	}
+	sort.Strings(directDeps)
+	processDirectDeps(directDeps)
 
 	f.Sync()
 
 	if !config.Silent {
 		prefix := "//" + strings.TrimSuffix(config.OutputFile, "/BUILD")
-		fmt.Println(getDeps(packages[config.Name].deps, prefix))
+		fmt.Println(getDeps(packages[moduleName].deps, prefix))
 	}
 }
 
@@ -109,7 +110,7 @@ func strToGopkg(rawString string) gopkg {
 	return toReturn
 }
 
-func printGopkg(pkg gopkg, install map[string][]string) string {
+func printGopkgs(pkg gopkg) string {
 	toReturn := `
 go_module(
   name = "$NAME",
@@ -120,10 +121,10 @@ go_module(
 	toReturn = strings.ReplaceAll(toReturn, "$NAME", getModuleName(pkg.name))
 	toReturn = strings.ReplaceAll(toReturn, "$MODULE", pkg.name)
 	toReturn = strings.ReplaceAll(toReturn, "$VERSION", pkg.version)
-	if installs, ok := install[pkg.name]; ok {
+	if len(pkg.installs) > 0 {
 		replacement := "\n  install = ["
 
-		for _, value := range installs {
+		for _, value := range sortedKeys(pkg.installs) {
 			replacement += "\n    \"" + value + "\","
 		}
 		replacement += "\n  ],"
@@ -140,18 +141,198 @@ func getModuleName(pkgName string) string {
 	return strings.Join(strings.Split(pkgName, "/")[1:], "_")
 }
 
-func getDeps(deps []string, prefix string) string {
+func getDeps(deps map[string]bool, prefix string) string {
 	if len(deps) < 1 {
 		return ""
 	}
 
 	toReturn := ""
-	for i := 0; i < len(deps); i++ {
+	for _, dep := range sortedKeys(deps) {
 		line := `
     "$DEP",`
-		line = strings.Replace(line, "$DEP", prefix+":"+getModuleName(deps[i]), 1)
+		line = strings.Replace(line, "$DEP", prefix+":"+getModuleName(dep), 1)
 		toReturn += line
 	}
 
 	return "\n  deps = [" + toReturn + "\n  ],"
+}
+
+func (l *llist) add(key string) {
+	list := &node{
+		next: nil,
+		key:  key,
+	}
+
+	if l.head == nil {
+		l.head = list
+		l.tail = list
+	} else {
+		l.tail.next = list
+		l.tail = list
+	}
+}
+
+func nextUnprocessed(c *node) *node {
+	if c == nil {
+		return nil
+	}
+	if _, ok := processed[c.key]; ok {
+		return nextUnprocessed(c.next)
+	}
+	return c
+}
+
+func processDirectDeps(directDeps []string) {
+	pkgs := make(map[string]gopkg)
+	processed = make(map[string]bool)
+	for _, name := range directDeps {
+		installPkgs := []string{"."}
+		if arr, ok := config.Install[name]; ok {
+			installPkgs = arr
+		}
+
+		for _, i := range installPkgs {
+			if i == "." {
+				i = name
+			} else {
+				i = name + "/" + i
+			}
+			newPkg := getModuleInfo(i)
+
+			if pkg, ok := pkgs[newPkg.name]; ok {
+				newPkg = mergeGopkg(pkg, newPkg)
+			}
+			// newPkg.installs = map[string]bool{"...": true}
+			pkgs[newPkg.name] = newPkg
+			processed[i] = true
+		}
+	}
+
+	c := toProcess.head
+
+	for nextUnprocessed(c) != nil {
+		newPkg := getModuleInfo(c.key)
+
+		if pkg, ok := pkgs[newPkg.name]; ok {
+			newPkg = mergeGopkg(pkg, newPkg)
+		}
+		pkgs[newPkg.name] = newPkg
+		processed[c.key] = true
+		c = c.next
+	}
+
+	keys := []string{}
+	for k := range pkgs {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+
+	for _, k := range keys {
+		if k == "" {
+			continue
+		}
+		f.WriteString(printGopkgs(pkgs[k]))
+	}
+}
+
+func getModuleInfo(name string) gopkg {
+	var mod golistobj
+
+	res := runNoPanic("go", "list", "--json", name)
+	if len(res) == 0 {
+		return gopkg{}
+	}
+
+	json.Unmarshal(res, &mod)
+	var temp []string
+	sort.Strings(mod.Deps)
+	for _, dep := range mod.Deps {
+		if strings.HasPrefix(dep, mod.Module.Path) {
+			toProcess.add(dep)
+			continue
+		}
+		words := strings.Split(dep, "/")
+		firstWord := strings.Split(words[0], ".")
+		if len(words) >= 3 && len(firstWord) >= 2 {
+			var t golistobj
+			json.Unmarshal(run("go", "list", "--json", dep), &t)
+			if t.Module.Path == mod.Module.Path {
+				continue
+			}
+			temp = append(temp, t.Module.Path)
+			if _, ok := processed[dep]; !ok {
+				toProcess.add(dep)
+			}
+		}
+	}
+	mod.Deps = temp
+
+	var toRet gopkg
+	toRet.name = mod.Module.Path
+	toRet.deps = make(map[string]bool)
+	for _, dep := range mod.Deps {
+		toRet.deps[dep] = true
+	}
+	toRet.installs = make(map[string]bool)
+	install := strings.TrimPrefix(mod.ImportPath, mod.Module.Path)
+	if install == "" {
+		install = "."
+	} else {
+		install = strings.TrimPrefix(install, "/")
+	}
+	toRet.installs[install] = true
+	toRet.version = mod.Module.Version
+
+	return toRet
+}
+
+func mergeGopkg(first gopkg, second gopkg) gopkg {
+	if first.name != second.name || first.version != second.version {
+		panic("Can't merge package of different name and / or version.")
+	}
+
+	for dep := range second.deps {
+		if _, ok := first.deps[dep]; !ok {
+			first.deps[dep] = true
+		}
+	}
+
+	for install := range second.installs {
+		if _, ok := first.installs[install]; !ok {
+			first.installs[install] = true
+		}
+	}
+
+	return first
+}
+
+func run(name string, args ...string) []byte {
+	cmd := exec.Command(name, args...)
+	stdout, err := cmd.Output()
+
+	if err != nil {
+		panic(err)
+	}
+
+	return stdout
+}
+
+func runNoPanic(name string, args ...string) []byte {
+	cmd := exec.Command(name, args...)
+	stdout, err := cmd.Output()
+
+	if err != nil {
+		return []byte{}
+	}
+
+	return stdout
+}
+
+func sortedKeys(m map[string]bool) []string {
+	keys := make([]string, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+	return keys
 }

@@ -9,7 +9,8 @@ pull_request_rules:
       - "status-success=cockpit"
       - "status-success=coverage"
       - "status-success=binhonglee.GlobeTrotte"
-      - "status-success=ci/circleci: build"
+      # CircleCI is consistently timing out right now. Will uncomment once the issue is fixed. 
+      # - "status-success=ci/circleci: build"
       - "status-success=codebeat"
       - "status-success=license/cla"
     actions:
@@ -25,7 +26,7 @@ pull_request_rules:
       - "status-success=cockpit"
       - "status-success=coverage"
       - "status-success=binhonglee.GlobeTrotte"
-      - "status-success=ci/circleci: build"
+      # - "status-success=ci/circleci: build"
       - "status-success=codebeat"
       - "status-success=license/cla"
     actions:
@@ -41,7 +42,7 @@ pull_request_rules:
       - "status-success=cockpit"
       - "status-success=coverage"
       - "status-success=binhonglee.GlobeTrotte"
-      - "status-success=ci/circleci: build"
+      # - "status-success=ci/circleci: build"
       - "status-success=codebeat"
       - "status-success=license/cla"
     actions:

@@ -1,17 +1,8 @@
 {
-  "name": "github.com/binhonglee/GlobeTrotte",
   "output": "third_party/go/BUILD",
-  "ignore": {
-    "golang.org/x/net": true,
-    "golang.org/x/sys": true,
-    "golang.org/x/term": true,
-    "golang.org/x/text": true,
-    "golang.org/x/tools": true
-  },
   "install": {
-    "github.com/lib/pq": [".", "oid", "scram"],
-    "golang.org/x/crypto": ["bcrypt", "blowfish"],
+    "golang.org/x/crypto": ["bcrypt"],
     "golang.org/x/time": ["rate"]
   },
-  "silent": true
+  "silent": false
 }
