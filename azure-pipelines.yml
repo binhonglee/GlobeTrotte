@@ -210,6 +210,8 @@ jobs:
     condition: eq(variables['Agent.OS'], 'Darwin')
     displayName: Fix wings.json (MacOS)
 
+  - script: ./pleasew go_mod
+    displayName: Regenerate third_party/go/BUILD file
   - script: ./pleasew cover --show_all_output //src/turbine/...
     displayName: Test turbine (with coverage)
 

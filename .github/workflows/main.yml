@@ -153,6 +153,7 @@ jobs:
     - run: ./scripts/setup.sh -g
     - run: cp config/test.psql.config config/psql.config
     - run: cp config/test.email.config config/email.config
+    - run: ./pleasew go_mod
     - run: ./pleasew cover --show_all_output //src/turbine/...
     - uses: actions/upload-artifact@v2
       with:

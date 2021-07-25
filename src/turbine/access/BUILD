@@ -9,9 +9,9 @@ go_library(
     "//src/turbine/email",
     "//src/turbine/logger",
     "//src/turbine/user",
-    "//third_party:bcrypt",
-    "//third_party:cache",
-    "//third_party:uuid",
+    "//third_party/go:x_crypto",
+    "//third_party/go:zcache",
+    "//third_party/go:google_uuid",
   ],
   visibility = ["//src/turbine/..."],
 )

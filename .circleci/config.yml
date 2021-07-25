@@ -40,6 +40,7 @@ jobs:
       - run: cp config/test.psql.config config/psql.config
       - run: cp config/test.email.config config/email.config
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run: ./pleasew go_mod
 
       # run tests
       - run: ./pleasew build --show_all_output

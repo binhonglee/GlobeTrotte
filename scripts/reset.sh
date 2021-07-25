@@ -10,8 +10,10 @@ if [ "$OS" = "Darwin" ]; then
 else
   rm -rf ~/.cache/please
 fi
-echo "Removing a bunch of directories..."
-rm -rf .nyc_output coverage cypress dist jest_coverage logs node_modules plz-out
+
+echo "Removing a bunch of files and directories..."
+rm -rf .nyc_output coverage cypress dist jest_coverage logs node_modules plz-out third_party/go/BUILD
+
 echo "Removing generated wings files..."
 rm -rf src/cockpit/wings/*.ts src/turbine/wings/*.go
 
@@ -30,6 +32,9 @@ echo "All removal completed successfully!"
 echo
 echo "Initializing pnpm..."
 pnpm i
+
+echo "Generating third party BUILD file for Go..."
+./pleasew go_mod
 
 if [ "$1" = "--all" ]; then
   echo

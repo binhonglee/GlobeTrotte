@@ -3,6 +3,7 @@
 ARCH=$(uname -m)
 OS=$(uname -s)
 SUPPORTED_OS="Darwin Linux"
+INSTALL_GO_VERSION="1.16.6"
 
 toPrint=""
 
@@ -97,8 +98,6 @@ installGo() {
   if [ "$TEST_GO" != "" ]; then
     echo "Seems like \`go\` is already installed. Skipping..."
   else
-    GO_VERSION="1.15.8"
-
     case $ARCH in
       "x86_64")
         ARCH="amd64"
@@ -126,7 +125,7 @@ installGo() {
 
     GO_OS=$(echo "$OS" | awk '{print tolower($0)}')
 
-    filename="go""$GO_VERSION"."$GO_OS""-""$ARCH"".tar.gz"
+    filename="go""$INSTALL_GO_VERSION"."$GO_OS""-""$ARCH"".tar.gz"
     if [ ! -f "$filename" ]; then
       curl -L https://dl.google.com/go/"$filename" -o "$filename"
     fi

@@ -1,9 +1,12 @@
 [Please]
-Version = >=15.5.0
+Version = 16.1.1
 
 [Build]
 PassEnv = PATH
 PassEnv = USER
+
+[Alias "go_mod"]
+cmd = run //src/turbine/scripts:genBUILD config/build.json
 
 [Alias "report"]
 cmd = run "//src/cockpit/scripts:gen_report"
@@ -36,7 +39,8 @@ npm-tool = "pnpm"
 npx-tool = "pnpx"
 typescript-tool = "esbuild"
 core-files = "//src/cockpit:core_files"
-# Still haven't figure out how to do Vue 3 component testing
+
+# Still haven't figure out how to do Vue 3 component testing on ava
 disable-vue-component-tests = True
 
 # wings

@@ -9,8 +9,8 @@ go_library(
     "userdb.go",
   ],
   deps = [
-    "//third_party:pq",
-    "//third_party:uuid",
+    "//third_party/go:lib_pq",
+    "//third_party/go:google_uuid",
     "//src/turbine/flags:flags",
     "//src/turbine/logger:logger",
     "//src/turbine/structs:structs",
