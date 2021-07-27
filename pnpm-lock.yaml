@@ -55,7 +55,7 @@ specifiers:
   ts-jest: 26.5.6
   ts-node: 10.1.0
   typescript: 4.3.5
-  vite: 2.4.3
+  vite: 2.4.4
   vite-plugin-test: 0.0.5
   vue: 3.0.6
   vue-jest: 5.0.0-alpha.10
@@ -124,7 +124,7 @@ devDependencies:
   ts-jest: 26.5.6_jest@26.6.3+typescript@4.3.5
   ts-node: 10.1.0_13403c2f2d9ddab699dd2f492f123cbf
   typescript: 4.3.5
-  vite: 2.4.3
+  vite: 2.4.4
   vite-plugin-test: 0.0.5_75aa1fbde91849c6f179bc32af9fcd9a
   vue-jest: 5.0.0-alpha.10_c619fff50e390235b35f591a79a1e1e5
   vue-loader: 16.3.1
@@ -10446,6 +10446,15 @@ packages:
       source-map-js: 0.6.2
     dev: true
 
+  /postcss/8.3.6:
+    resolution: {integrity: sha512-wG1cc/JhRgdqB6WHEuyLTedf3KIRuD0hG6ldkFEZNCjRxiC+3i6kkWUUbiJQayP28iwG35cEmAbe98585BYV0A==}
+    engines: {node: ^10 || ^12 || >=14}
+    dependencies:
+      colorette: 1.2.2
+      nanoid: 3.1.23
+      source-map-js: 0.6.2
+    dev: true
+
   /prelude-ls/1.1.2:
     resolution: {integrity: sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ=}
     engines: {node: '>= 0.8.0'}
@@ -12599,13 +12608,13 @@ packages:
       - typescript
     dev: true
 
-  /vite/2.4.3:
-    resolution: {integrity: sha512-iT6NPeiUUZ2FkzC3eazytOEMRaM4J+xgRQcNcpRcbmfYjakCFP4WKPJpeEz1U5JEKHAtwv3ZBQketQUFhFU3ng==}
+  /vite/2.4.4:
+    resolution: {integrity: sha512-m1wK6pFJKmaYA6AeZIUXyiAgUAAJzVXhIMYCdZUpCaFMGps0v0IlNJtbmPvkUhVEyautalajmnW5X6NboUPsnw==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
       esbuild: 0.12.15
-      postcss: 8.3.5
+      postcss: 8.3.6
       resolve: 1.20.0
       rollup: 2.52.1
     optionalDependencies:
