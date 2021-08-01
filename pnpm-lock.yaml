@@ -9,7 +9,7 @@ specifiers:
   '@babel/preset-typescript': 7.14.5
   '@cypress/code-coverage': 3.9.9
   '@types/jest': 26.0.24
-  '@types/node': 14.17.6
+  '@types/node': 14.17.7
   '@types/puppeteer': 5.4.4
   '@types/sinon': 10.0.2
   '@typescript-eslint/eslint-plugin': 4.28.4
@@ -80,7 +80,7 @@ devDependencies:
   '@babel/preset-typescript': 7.14.5_@babel+core@7.14.8
   '@cypress/code-coverage': 3.9.9_cypress@8.0.0
   '@types/jest': 26.0.24
-  '@types/node': 14.17.6
+  '@types/node': 14.17.7
   '@types/puppeteer': 5.4.4
   '@types/sinon': 10.0.2
   '@typescript-eslint/eslint-plugin': 4.28.4_b1648df9f9ba40bdeef3710a5a5af353
@@ -122,7 +122,7 @@ devDependencies:
   sinon: 11.1.1
   tap-xunit: 2.4.1
   ts-jest: 26.5.6_jest@26.6.3+typescript@4.3.5
-  ts-node: 10.1.0_13403c2f2d9ddab699dd2f492f123cbf
+  ts-node: 10.1.0_7360de416e8b444360c6ec4574012a61
   typescript: 4.3.5
   vite: 2.4.3
   vite-plugin-test: 0.0.5_75aa1fbde91849c6f179bc32af9fcd9a
@@ -3506,8 +3506,8 @@ packages:
     resolution: {integrity: sha512-bjqH2cX/O33jXT/UmReo2pM7DIJREPMnarixbQ57DOOzzFaI6D2+IcwaJQaJpv0M1E9TIhPCYVxrkcityLjlqA==}
     dev: true
 
-  /@types/node/14.17.6:
-    resolution: {integrity: sha512-iBxsxU7eswQDGhlr3AiamBxOssaYxbM+NKXVil8jg9yFXvrfEFbDumLD/2dMTB+zYyg7w+Xjt8yuxfdbUHAtcQ==}
+  /@types/node/14.17.7:
+    resolution: {integrity: sha512-SYTdMaW47se8499q8m0fYKZZRlmq0RaRv6oYmlVm6DUm31l0fhOl1D03X8hGxohCKTI2Bg6w7W0TiYB51aJzag==}
     dev: true
 
   /@types/normalize-package-data/2.4.0:
@@ -8378,7 +8378,7 @@ packages:
       jest-validate: 26.6.2
       micromatch: 4.0.4
       pretty-format: 26.6.2
-      ts-node: 10.1.0_13403c2f2d9ddab699dd2f492f123cbf
+      ts-node: 10.1.0_7360de416e8b444360c6ec4574012a61
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -12187,7 +12187,7 @@ packages:
       yargs-parser: 20.2.7
     dev: true
 
-  /ts-node/10.1.0_13403c2f2d9ddab699dd2f492f123cbf:
+  /ts-node/10.1.0_7360de416e8b444360c6ec4574012a61:
     resolution: {integrity: sha512-6szn3+J9WyG2hE+5W8e0ruZrzyk1uFLYye6IGMBadnOzDh8aP7t8CbFpsfCiEx2+wMixAhjFt7lOZC4+l+WbEA==}
     engines: {node: '>=12.0.0'}
     hasBin: true
@@ -12206,7 +12206,7 @@ packages:
       '@tsconfig/node12': 1.0.9
       '@tsconfig/node14': 1.0.1
       '@tsconfig/node16': 1.0.1
-      '@types/node': 14.17.6
+      '@types/node': 14.17.7
       arg: 4.1.3
       create-require: 1.1.1
       diff: 4.0.2
