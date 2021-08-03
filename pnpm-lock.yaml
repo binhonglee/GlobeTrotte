@@ -27,7 +27,7 @@ specifiers:
   babel-preset-typescript-vue3: 2.0.14
   cypress: 8.0.0
   element-plus: 1.0.2-beta.65
-  esbuild: 0.12.15
+  esbuild: 0.12.17
   esbuild-jest: 0.5.0
   eslint: 7.32.0
   eslint-plugin-deprecation: 1.2.1
@@ -96,8 +96,8 @@ devDependencies:
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.14_@babel+core@7.14.8+vue@3.0.6
   cypress: 8.0.0
-  esbuild: 0.12.15
-  esbuild-jest: 0.5.0_esbuild@0.12.15
+  esbuild: 0.12.17
+  esbuild-jest: 0.5.0_esbuild@0.12.17
   eslint: 7.32.0
   eslint-plugin-deprecation: 1.2.1_eslint@7.32.0+typescript@4.3.5
   eslint-plugin-prettier: 3.4.0_eslint@7.32.0+prettier@2.3.2
@@ -6450,7 +6450,7 @@ packages:
     resolution: {integrity: sha512-Um/+FxMr9CISWh0bi5Zv0iOD+4cFh5qLeks1qhAopKVAJw3drgKbKySikp7wGhDL0HPeaja0P5ULZrxLkniUVg==}
     dev: true
 
-  /esbuild-jest/0.5.0_esbuild@0.12.15:
+  /esbuild-jest/0.5.0_esbuild@0.12.17:
     resolution: {integrity: sha512-AMZZCdEpXfNVOIDvURlqYyHwC8qC1/BFjgsrOiSL1eyiIArVtHL8YAC83Shhn16cYYoAWEW17yZn0W/RJKJKHQ==}
     peerDependencies:
       esbuild: '>=0.8.50'
@@ -6458,13 +6458,19 @@ packages:
       '@babel/core': 7.14.3
       '@babel/plugin-transform-modules-commonjs': 7.14.5_@babel+core@7.14.3
       babel-jest: 26.6.3_@babel+core@7.14.3
-      esbuild: 0.12.15
+      esbuild: 0.12.17
     transitivePeerDependencies:
       - supports-color
     dev: true
 
   /esbuild/0.12.15:
     resolution: {integrity: sha512-72V4JNd2+48eOVCXx49xoSWHgC3/cCy96e7mbXKY+WOWghN00cCmlGnwVLRhRHorvv0dgCyuMYBZlM2xDM5OQw==}
+    hasBin: true
+    requiresBuild: true
+    dev: true
+
+  /esbuild/0.12.17:
+    resolution: {integrity: sha512-GshKJyVYUnlSXIZj/NheC2O0Kblh42CS7P1wJyTbbIHevTG4jYMS9NNw8EOd8dDWD0dzydYHS01MpZoUcQXB4g==}
     hasBin: true
     requiresBuild: true
     dev: true
