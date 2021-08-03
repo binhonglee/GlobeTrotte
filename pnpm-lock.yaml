@@ -25,7 +25,7 @@ specifiers:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.14
-  cypress: 8.0.0
+  cypress: 8.1.0
   element-plus: 1.0.2-beta.65
   esbuild: 0.12.17
   esbuild-jest: 0.5.0
@@ -78,7 +78,7 @@ devDependencies:
   '@babel/plugin-transform-typescript': 7.14.6_@babel+core@7.14.8
   '@babel/preset-env': 7.14.9_@babel+core@7.14.8
   '@babel/preset-typescript': 7.14.5_@babel+core@7.14.8
-  '@cypress/code-coverage': 3.9.10_cypress@8.0.0
+  '@cypress/code-coverage': 3.9.10_cypress@8.1.0
   '@types/jest': 26.0.24
   '@types/node': 14.17.7
   '@types/puppeteer': 5.4.4
@@ -95,7 +95,7 @@ devDependencies:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.14_@babel+core@7.14.8+vue@3.0.6
-  cypress: 8.0.0
+  cypress: 8.1.0
   esbuild: 0.12.17
   esbuild-jest: 0.5.0_esbuild@0.12.17
   eslint: 7.32.0
@@ -3022,14 +3022,14 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/code-coverage/3.9.10_cypress@8.0.0:
+  /@cypress/code-coverage/3.9.10_cypress@8.1.0:
     resolution: {integrity: sha512-aJokd9B1/cI8uQAH4tPw9yuZg7a/bdl1xO4xSeO4ly5Tlj8L3/eJ2vvJf5RcfHAZQE1OMOYY7ZtPuBBE8eItYw==}
     peerDependencies:
       cypress: '*'
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.1
       chalk: 4.1.2
-      cypress: 8.0.0
+      cypress: 8.1.0
       dayjs: 1.10.6
       debug: 4.3.2
       execa: 4.1.0
@@ -3513,10 +3513,6 @@ packages:
 
   /@types/node/14.17.4:
     resolution: {integrity: sha512-8kQ3+wKGRNN0ghtEn7EGps/B8CzuBz1nXZEIGGLP2GnwbqYn4dbTs7k+VKLTq1HvZLRCIDtN3Snx1Ege8B7L5A==}
-    dev: true
-
-  /@types/node/14.17.5:
-    resolution: {integrity: sha512-bjqH2cX/O33jXT/UmReo2pM7DIJREPMnarixbQ57DOOzzFaI6D2+IcwaJQaJpv0M1E9TIhPCYVxrkcityLjlqA==}
     dev: true
 
   /@types/node/14.17.7:
@@ -5807,28 +5803,28 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /cypress/8.0.0:
-    resolution: {integrity: sha512-Hhbc7FtbeCSg5Ui2zxXQLynk7IYGIygG8NqTauS4EtCWyp2k6s4g8P4KUZXwRbhuryN/+/dCd1kPtFbhBx8MuQ==}
+  /cypress/8.1.0:
+    resolution: {integrity: sha512-GXjlqPjY/6HPbQwAp3AvlA1Mk/NoJTAmqVSUhQsuM/1xDpd/FQHkxVuq5h6O6RrAoCXSgpZPXFsVtdqE+FwEJw==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
     dependencies:
       '@cypress/request': 2.88.5
       '@cypress/xvfb': 1.2.4
-      '@types/node': 14.17.5
+      '@types/node': 14.17.7
       '@types/sinonjs__fake-timers': 6.0.2
       '@types/sizzle': 2.3.3
       arch: 2.2.0
       blob-util: 2.0.2
       bluebird: 3.7.2
       cachedir: 2.3.0
-      chalk: 4.1.1
+      chalk: 4.1.2
       check-more-types: 2.24.0
       cli-cursor: 3.1.0
       cli-table3: 0.6.0
       commander: 5.1.0
       common-tags: 1.8.0
-      dayjs: 1.10.5
+      dayjs: 1.10.6
       debug: 4.3.2_supports-color@8.1.1
       enquirer: 2.3.6
       eventemitter2: 6.4.4
@@ -5881,10 +5877,6 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       time-zone: 1.0.0
-    dev: true
-
-  /dayjs/1.10.5:
-    resolution: {integrity: sha512-BUFis41ikLz+65iH6LHQCDm4YPMj5r1YFLdupPIyM4SGcXMmtiLQ7U37i+hGS8urIuqe7I/ou3IS1jVc4nbN4g==}
     dev: true
 
   /dayjs/1.10.6:
@@ -9262,7 +9254,7 @@ packages:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
     engines: {node: '>=10'}
     dependencies:
-      chalk: 4.1.1
+      chalk: 4.1.2
       is-unicode-supported: 0.1.0
     dev: true
 
