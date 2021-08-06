@@ -2,7 +2,6 @@ package router
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -18,8 +17,7 @@ import (
 )
 
 func passwd(res http.ResponseWriter, req *http.Request) {
-	fmt.Fprint(res, "hunter2")
-	response(&res, http.StatusOK)
+	respond(res, "hunter2")
 }
 
 // DEPRECATED: Do not add new use of this function.

@@ -36,6 +36,7 @@ export default defineComponent({
   }),
   async beforeMount(): Promise<void> {
     this.$data.trips = [];
+    console.log(process.env.NODE_ENV);
     const trips = await HTTPReq.genGET("v2/sample_trips");
     for (const trip of trips as Array<unknown>) {
       const newTrip = new TripObj(trip);

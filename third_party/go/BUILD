@@ -11,7 +11,7 @@ package(default_visibility = ["PUBLIC"])
 go_module(
   name = "google_uuid",
   module = "github.com/google/uuid",
-  version = "v1.2.0",
+  version = "v1.3.0",
   install = [
     ".",
   ],

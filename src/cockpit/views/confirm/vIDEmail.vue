@@ -38,13 +38,14 @@ export default defineComponent({
       return;
     }
 
-    // PROD: Force confirm email only used for testing
-    if (uuid.localeCompare("force-confirm") === 0) {
-      if (await HTTPReq.genGET("force_confirm_email/" + user.ID)) {
-        await General.genUpdateCurrentUser();
-        this.$data.loading = false;
-        await Routing.genRedirectTo(Routes.Landing);
-        return;
+    if (process.env.NODE_ENV !== "production") {
+      if (uuid.localeCompare("force-confirm") === 0) {
+        if (await HTTPReq.genGET("force_confirm_email/" + user.ID)) {
+          await General.genUpdateCurrentUser();
+          this.$data.loading = false;
+          await Routing.genRedirectTo(Routes.Landing);
+          return;
+        }
       }
     }
 
@@ -53,7 +54,7 @@ export default defineComponent({
       WingsStructUtil.stringify(
         new EmailObj({
           uuid: uuid,
-          email: user.email,
+          email: user.details.email,
           userid: user.ID,
         }),
       ),

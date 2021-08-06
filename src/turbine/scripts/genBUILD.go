@@ -37,6 +37,7 @@ type golistobj struct {
 type node struct {
 	next *node
 	key  string
+	val  *golistobj
 }
 
 type llist struct {
@@ -45,7 +46,7 @@ type llist struct {
 }
 
 var toProcess llist
-var processed map[string]bool
+var processed map[string]string
 var f *os.File
 var config Config
 
@@ -157,10 +158,15 @@ func getDeps(deps map[string]bool, prefix string) string {
 	return "\n  deps = [" + toReturn + "\n  ],"
 }
 
-func (l *llist) add(key string) {
+func (l *llist) add(key string, val *golistobj) {
 	list := &node{
 		next: nil,
 		key:  key,
+		val:  nil,
+	}
+
+	if val != nil {
+		list.val = val
 	}
 
 	if l.head == nil {
@@ -184,7 +190,7 @@ func nextUnprocessed(c *node) *node {
 
 func processDirectDeps(directDeps []string) {
 	pkgs := make(map[string]gopkg)
-	processed = make(map[string]bool)
+	processed = make(map[string]string)
 	for _, name := range directDeps {
 		installPkgs := []string{"."}
 		if arr, ok := config.Install[name]; ok {
@@ -197,27 +203,27 @@ func processDirectDeps(directDeps []string) {
 			} else {
 				i = name + "/" + i
 			}
-			newPkg := getModuleInfo(i)
+			newPkg := getModuleInfo(i, nil)
 
 			if pkg, ok := pkgs[newPkg.name]; ok {
 				newPkg = mergeGopkg(pkg, newPkg)
 			}
 			// newPkg.installs = map[string]bool{"...": true}
 			pkgs[newPkg.name] = newPkg
-			processed[i] = true
+			processed[i] = newPkg.name
 		}
 	}
 
 	c := toProcess.head
 
 	for nextUnprocessed(c) != nil {
-		newPkg := getModuleInfo(c.key)
+		newPkg := getModuleInfo(c.key, c.val)
 
 		if pkg, ok := pkgs[newPkg.name]; ok {
 			newPkg = mergeGopkg(pkg, newPkg)
 		}
 		pkgs[newPkg.name] = newPkg
-		processed[c.key] = true
+		processed[c.key] = newPkg.name
 		c = c.next
 	}
 
@@ -235,33 +241,39 @@ func processDirectDeps(directDeps []string) {
 	}
 }
 
-func getModuleInfo(name string) gopkg {
+func getModuleInfo(name string, gmod *golistobj) gopkg {
 	var mod golistobj
+	if gmod == nil {
+		res := runNoPanic("go", "list", "--json", name)
+		if len(res) == 0 {
+			return gopkg{}
+		}
 
-	res := runNoPanic("go", "list", "--json", name)
-	if len(res) == 0 {
-		return gopkg{}
+		json.Unmarshal(res, &mod)
+	} else {
+		mod = *gmod
 	}
 
-	json.Unmarshal(res, &mod)
 	var temp []string
 	sort.Strings(mod.Deps)
 	for _, dep := range mod.Deps {
 		if strings.HasPrefix(dep, mod.Module.Path) {
-			toProcess.add(dep)
+			toProcess.add(dep, nil)
 			continue
 		}
 		words := strings.Split(dep, "/")
 		firstWord := strings.Split(words[0], ".")
 		if len(words) >= 3 && len(firstWord) >= 2 {
-			var t golistobj
-			json.Unmarshal(run("go", "list", "--json", dep), &t)
-			if t.Module.Path == mod.Module.Path {
-				continue
-			}
-			temp = append(temp, t.Module.Path)
-			if _, ok := processed[dep]; !ok {
-				toProcess.add(dep)
+			if val, ok := processed[dep]; ok {
+				temp = append(temp, val)
+			} else {
+				var t golistobj
+				json.Unmarshal(run("go", "list", "--json", dep), &t)
+				if t.Module.Path == mod.Module.Path {
+					continue
+				}
+				temp = append(temp, t.Module.Path)
+				toProcess.add(dep, &t)
 			}
 		}
 	}
