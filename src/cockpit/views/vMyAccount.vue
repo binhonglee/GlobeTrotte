@@ -130,11 +130,6 @@ export default defineComponent({
     },
     toggleEdit(): void {
       this.$data.edit = !this.$data.edit;
-      if (this.$data.edit) {
-        this.$nextTick(function (this: DefineComponent) {
-          E.get(E.get(this, "name"), "input").focus();
-        });
-      }
     },
   },
   async beforeMount(): Promise<void> {
@@ -143,6 +138,11 @@ export default defineComponent({
       await Routing.genRedirectTo(Routes.Landing);
     }
     this.$data.confirmed = this.$data.user.details.confirmed.valueOf();
+  },
+  mounted(): void {
+    if (this.$data.edit) {
+      E.get(E.get(this, "name"), "input").focus();
+    }
   },
 });
 </script>

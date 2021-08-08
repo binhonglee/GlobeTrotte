@@ -250,9 +250,6 @@ export default defineComponent({
       this.$data.possibleCities = CityUtil.sortedCityList();
       this.$data.cities = this.$props.trip.details.cities;
       this.$data.private = this.$props.trip.details.private.valueOf();
-      this.$nextTick(function (this: DefineComponent) {
-        E.get(E.get(this, "name"), "input").focus();
-      });
     },
     checkValidNameDescription(name: string, description: string): boolean {
       if (!name || name.length < NAME_CHAR_MIN_COUNT) {
@@ -281,6 +278,9 @@ export default defineComponent({
   },
   beforeMount(): void {
     this.update();
+  },
+  mounted(): void {
+    E.get(E.get(this, "name"), "input").focus();
   },
 });
 </script>

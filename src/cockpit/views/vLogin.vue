@@ -106,9 +106,9 @@ export default defineComponent({
     if (Routing.hasNext()) {
       this.$data.showError = true;
     }
-    this.$nextTick(function (this: DefineComponent) {
-      E.get(E.get(this, "email"), "input").focus();
-    });
+  },
+  mounted(): void {
+    E.get(E.get(this, "email"), "input").focus();
   },
 });
 </script>

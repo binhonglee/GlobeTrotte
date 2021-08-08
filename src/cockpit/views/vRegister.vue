@@ -138,10 +138,8 @@ export default defineComponent({
       router.back();
     },
   },
-  beforeMount(): void {
-    this.$nextTick(function (this: DefineComponent) {
-      E.get(E.get(this, "name"), "input").focus();
-    });
+  mounted(): void {
+    E.get(E.get(this, "name"), "input").focus();
   },
 });
 </script>

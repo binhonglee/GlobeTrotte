@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { DefineComponent, defineComponent } from "vue";
+import { defineComponent } from "vue";
 import CTripInfo from "@/components/CTripInfo.vue";
 import General from "@/shared/General";
 import TripObj from "@/wings/TripObj";
@@ -56,10 +56,6 @@ export default defineComponent({
         this.$data.owner = General.getIsCurrentUser(
           this.$data.trip.user.ID.valueOf(),
         );
-        this.$nextTick(function (this: DefineComponent) {
-          E.get(this, "tripIDSearch").focus();
-        });
-
         return;
       }
 
@@ -77,6 +73,9 @@ export default defineComponent({
   },
   async beforeMount(): Promise<void> {
     await this.init();
+  },
+  mounted(): void {
+    E.get(this, "tripIDSearch").focus();
   },
   watch: {
     "$route.path": async function (): Promise<void> {
