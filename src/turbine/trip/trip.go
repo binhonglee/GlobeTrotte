@@ -19,8 +19,7 @@ func NewTrip(newTrip wings.TripBasic, self wings.UserBasic) TripObj {
 	tripObj.User = self
 	tripObj.LastUpdated = time.Now()
 	tripObj.TimeCreated = time.Now()
-	trip := parseTripObjToTrip(tripObj)
-	tripObj.ID = database.AddTripDB(&trip)
+	tripObj.ID = database.AddTripDB(parseTripObjToTrip(tripObj))
 	if tripObj.ID == -1 {
 		return DummyTripObj()
 	}
@@ -57,8 +56,7 @@ func UpdateTripObj(toUpdate TripObj, self wings.UserBasic) TripObj {
 	}
 
 	toUpdate.LastUpdated = time.Now()
-	trip := parseTripObjToTrip(toUpdate)
-	if database.UpdateTripDB(&trip) {
+	if database.UpdateTripDB(parseTripObjToTrip(toUpdate)) {
 		return GetTripObj(toUpdate.ID, self)
 	}
 
@@ -71,7 +69,7 @@ func DeleteTripObj(toDelete TripObj, self wings.UserBasic) bool {
 	}
 
 	trip := parseTripObjToTrip(toDelete)
-	return database.DeleteTripDB(&trip) &&
+	return database.DeleteTripDB(trip) &&
 		database.DeleteTripFromUserDB(toDelete.Details, self)
 }
 

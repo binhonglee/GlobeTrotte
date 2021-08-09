@@ -12,7 +12,6 @@ import (
 	"strconv"
 
 	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
-	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
 	"github.com/jackc/pgtype"
@@ -27,17 +26,8 @@ func DummyTrip() wings.Trip {
 }
 
 // AddTripDB - Adding new trip into the database.
-func AddTripDB(newTrip structs.IStructs) int {
-	trip, ok := newTrip.(*wings.Trip)
-	if !ok {
-		logger.Print(
-			logger.Database,
-			"Trip add failed since interface passed in is not a trip.",
-		)
-		return -1
-	}
-
-	newTripID := addTrip(*trip)
+func AddTripDB(trip wings.Trip) int {
+	newTripID := addTrip(trip)
 	user := getUserWithID(trip.UserID)
 	if user.ID == -1 {
 		logger.Print(
@@ -48,7 +38,7 @@ func AddTripDB(newTrip structs.IStructs) int {
 	}
 
 	user.Trips = append(user.Trips, newTripID)
-	if ok = updateUser(user); !ok {
+	if ok := updateUser(user); !ok {
 		logger.Print(
 			logger.Database,
 			"Fail to add trip id to new user.",
@@ -57,15 +47,6 @@ func AddTripDB(newTrip structs.IStructs) int {
 	}
 
 	return newTripID
-}
-
-// GetTripDB - Retrieve trip information from database with ID.
-func GetTripDB(id int, userid int) structs.IStructs {
-	trip := fetchTrip(id)
-	if trip.Private && trip.UserID != userid {
-		trip = DummyTrip()
-	}
-	return &trip
 }
 
 // GetTripDBWithID - Retrieve trip information from database with ID.
@@ -130,17 +111,8 @@ func GetTripOwnerWithID(id int) int {
 }
 
 // UpdateTripDB - Update trip information back into the database.
-func UpdateTripDB(updatedTrip structs.IStructs) bool {
-	trip, ok := updatedTrip.(*wings.Trip)
-	if !ok {
-		logger.Print(
-			logger.Database,
-			"Trip update failed since interface passed in is not a trip.",
-		)
-		return false
-	}
-
-	existingTrip := fetchTrip(updatedTrip.GetID())
+func UpdateTripDB(trip wings.Trip) bool {
+	existingTrip := fetchTrip(trip.ID)
 	if existingTrip.UserID != trip.UserID {
 		logger.Print(
 			logger.Database,
@@ -149,22 +121,13 @@ func UpdateTripDB(updatedTrip structs.IStructs) bool {
 		return false
 	}
 
-	return updateTrip(*trip)
+	return updateTrip(trip)
 }
 
 // DeleteTripDB - Delete trip from the database.
-func DeleteTripDB(existingTrip structs.IStructs) bool {
-	trip, ok := existingTrip.(*wings.Trip)
-	if !ok {
-		logger.Print(
-			logger.Database,
-			"Trip deletion failed since interface passed in is not a trip.",
-		)
-		return false
-	}
-
-	existingTrip = GetTripDB(trip.GetID(), trip.UserID)
-	if existingTrip.GetID() == -1 {
+func DeleteTripDB(trip wings.Trip) bool {
+	t := GetTripDBWithID(trip.GetID())
+	if t.ID == -1 {
 		return false
 	}
 
