@@ -60,7 +60,7 @@ specifiers:
   vue: 3.1.5
   vue-jest: 5.0.0-alpha.10
   vue-loader: 16.5.0
-  vue-router: 4.0.10
+  vue-router: 4.0.11
   vue-tsc: 0.2.2
   wait-on: 6.0.0
   wings-ts-util: 0.0.8
@@ -128,7 +128,7 @@ devDependencies:
   vite-plugin-test: 0.0.5_528a2faf5d33f86f55303189d7a65541
   vue-jest: 5.0.0-alpha.10_5b419dba154f5d5b74c82a38f50efecb
   vue-loader: 16.5.0_@vue+compiler-sfc@3.1.5
-  vue-router: 4.0.10_vue@3.1.5
+  vue-router: 4.0.11_vue@3.1.5
   vue-tsc: 0.2.2_typescript@4.3.5
   wait-on: 6.0.0
 
@@ -13294,8 +13294,8 @@ packages:
       loader-utils: 2.0.0
     dev: true
 
-  /vue-router/4.0.10_vue@3.1.5:
-    resolution: {integrity: sha512-YbPf6QnZpyyWfnk7CUt2Bme+vo7TLfg1nGZNkvYqKYh4vLaFw6Gn8bPGdmt5m4qrGnKoXLqc4htAsd3dIukICA==}
+  /vue-router/4.0.11_vue@3.1.5:
+    resolution: {integrity: sha512-sha6I8fx9HWtvTrFZfxZkiQQBpqSeT+UCwauYjkdOQYRvwsGwimlQQE2ayqUwuuXGzquFpCPoXzYKWlzL4OuXg==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
