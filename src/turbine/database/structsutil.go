@@ -4,6 +4,7 @@ import (
 	"strconv"
 
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
+	"github.com/jackc/pgtype"
 )
 
 func daysToIDArray(days wings.Days) []int {
@@ -46,4 +47,10 @@ func tripsToString(tripIDs []int) string {
 	}
 
 	return toReturn
+}
+
+func int64V(arr pgtype.Int4Array) []int64 {
+	var ret []int64
+	arr.AssignTo(&ret)
+	return ret
 }

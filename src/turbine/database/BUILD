@@ -10,6 +10,8 @@ go_library(
   ],
   deps = [
     "//third_party/go:lib_pq",
+    "//third_party/go:jackc_pgtype",
+    "//third_party/go:jackc_pgx_v4",
     "//third_party/go:google_uuid",
     "//src/turbine/flags:flags",
     "//src/turbine/logger:logger",

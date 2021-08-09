@@ -8,14 +8,15 @@
 package database
 
 import (
-	"database/sql"
+	"context"
 	"strconv"
 
 	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
-	"github.com/lib/pq"
+	"github.com/jackc/pgtype"
+	"github.com/jackc/pgx/v4"
 )
 
 // DummyTrip -- Self explanatory, trip that's empty / placeholder
@@ -74,22 +75,26 @@ func GetTripDBWithID(id int) wings.Trip {
 
 func GetTripBasicWithID(id int) wings.TripBasic {
 	var trip wings.TripBasic
-	var days []int64
-	var cities []int64
+	var cities pgtype.Int4Array
+	var days pgtype.Int4Array
+
 	sqlStatement := `
 		SELECT id, name, cities, days, description, private
 		FROM trips WHERE id=$1;`
-	row := db.QueryRow(sqlStatement, id)
+	c := getConn()
+	row := c.QueryRow(context.Background(), sqlStatement, id)
 	err := row.Scan(
 		&trip.ID,
 		&trip.Name,
-		pq.Array(&cities),
-		pq.Array(&days),
+		&cities,
+		&days,
 		&trip.Description,
 		&trip.Private,
 	)
+	defer c.Close()
+
 	if err != nil {
-		if err == sql.ErrNoRows {
+		if err == pgx.ErrNoRows {
 			logger.Print(logger.Database, "Trip "+strconv.Itoa(id)+" not found.")
 		} else {
 			logger.Err(logger.Database, err, "")
@@ -97,8 +102,8 @@ func GetTripBasicWithID(id int) wings.TripBasic {
 		trip.ID = -1
 	}
 
-	trip.Cities = cityIDsToEnumArray(cities)
-	trip.Days = fetchDays(days)
+	trip.Cities = cityIDsToEnumArray(int64V(cities))
+	trip.Days = fetchDays(int64V(days))
 	return trip
 }
 
@@ -108,10 +113,12 @@ func GetTripOwnerWithID(id int) int {
 	sqlStatement := `
 		SELECT userid FROM trips WHERE id=$1;
 	`
-	row := db.QueryRow(sqlStatement, id)
+	c := getConn()
+	row := c.QueryRow(context.Background(), sqlStatement, id)
 	err := row.Scan(&user)
+	defer c.Close()
 	if err != nil {
-		if err == sql.ErrNoRows {
+		if err == pgx.ErrNoRows {
 			logger.Print(logger.Database, "Trip "+strconv.Itoa(id)+" not found.")
 		} else {
 			logger.Err(logger.Database, err, "")
@@ -180,7 +187,9 @@ func GetRecentTrips() []wings.Trip {
 		ORDER BY time_created DESC
 		LIMIT 10
 	`
-	rows, err := db.Query(sqlStatement)
+	c := getConn()
+	rows, err := c.Query(context.Background(), sqlStatement)
+	defer c.Close()
 	logger.Err(logger.Database, err, "")
 
 	defer rows.Close()
@@ -204,17 +213,20 @@ func addTrip(newTrip wings.Trip) int {
 		VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 		RETURNING id`
 	id := 0
-	err := db.QueryRow(
+	c := getConn()
+	err := c.QueryRow(
+		context.Background(),
 		sqlStatement,
 		newTrip.UserID,
 		newTrip.Name,
 		newTrip.Private,
-		pq.Array(cityEnumArrayToIDs(newTrip.Cities)),
+		cityEnumArrayToIDs(newTrip.Cities),
 		newTrip.Description,
-		pq.Array(daysToIDArray(newTrip.Days)),
+		daysToIDArray(newTrip.Days),
 		newTrip.TimeCreated,
 		newTrip.LastUpdated,
 	).Scan(&id)
+	defer c.Close()
 
 	if err != nil {
 		logger.Err(logger.Database, err, "")
@@ -237,12 +249,15 @@ func addDay(newDay wings.Day) int {
 		VALUES($1, $2, $3)
 		RETURNING id`
 	id := 0
-	err := db.QueryRow(
+	c := getConn()
+	err := c.QueryRow(
+		context.Background(),
 		sqlStatement,
 		newDay.TripID,
 		newDay.DayOf,
-		pq.Array(placesToIDArray(newDay.Places)),
+		placesToIDArray(newDay.Places),
 	).Scan(&id)
+	defer c.Close()
 
 	if err != nil {
 		logger.Failure(logger.Database, "Failed to add new day.")
@@ -261,12 +276,15 @@ func addPlace(newPlace wings.Place) int {
 		VALUES($1, $2, $3)
 		RETURNING id`
 	id := 0
-	err := db.QueryRow(
+	c := getConn()
+	err := c.QueryRow(
+		context.Background(),
 		sqlStatement,
 		newPlace.Label,
 		newPlace.URL,
 		newPlace.Description,
 	).Scan(&id)
+	defer c.Close()
 
 	if err != nil {
 		logger.Failure(logger.Database, "Failed to add new day.")
@@ -281,32 +299,39 @@ func addPlace(newPlace wings.Place) int {
 
 func fetchTrip(id int) wings.Trip {
 	var trip wings.Trip
-	var days []int64
-	var cities []int64
+	var days pgtype.Int4Array
+	var cities pgtype.Int4Array
 	sqlStatement := `
 		SELECT id, userid, name, private, cities, description, days, time_created, last_updated
 		FROM trips WHERE id=$1;`
-	row := db.QueryRow(sqlStatement, id)
+	c := getConn()
+	row := c.QueryRow(
+		context.Background(),
+		sqlStatement,
+		id,
+	)
 	switch err := row.Scan(
 		&trip.ID,
 		&trip.UserID,
 		&trip.Name,
 		&trip.Private,
-		pq.Array(&cities),
+		&cities,
 		&trip.Description,
-		pq.Array(&days),
+		&days,
 		&trip.TimeCreated,
 		&trip.LastUpdated,
 	); err {
-	case sql.ErrNoRows:
+	case pgx.ErrNoRows:
 		logger.Print(logger.Database, "Trip not found.")
 		trip.ID = -1
 	default:
 		logger.Err(logger.Database, err, "")
 	}
 
-	trip.Cities = cityIDsToEnumArray(cities)
-	trip.Days = fetchDays(days)
+	defer c.Close()
+
+	trip.Cities = cityIDsToEnumArray(int64V(cities))
+	trip.Days = fetchDays(int64V(days))
 	return trip
 }
 
@@ -320,18 +345,24 @@ func fetchDays(ids []int64) wings.Days {
 
 func fetchDay(id int64) wings.Day {
 	var day wings.Day
-	var places []int64
+	var places pgtype.Int4Array
 	sqlStatement := `
 		SELECT id, trip_id, day_of, places
 		FROM days WHERE id=$1;`
-	row := db.QueryRow(sqlStatement, id)
+	c := getConn()
+	row := c.QueryRow(
+		context.Background(),
+		sqlStatement,
+		id,
+	)
+	defer c.Close()
 	switch err := row.Scan(
 		&day.ID,
 		&day.TripID,
 		&day.DayOf,
-		pq.Array(&places),
+		&places,
 	); err {
-	case sql.ErrNoRows:
+	case pgx.ErrNoRows:
 		logger.Print(
 			logger.Database,
 			"Day "+strconv.FormatInt(id, 10)+" not found.",
@@ -340,7 +371,7 @@ func fetchDay(id int64) wings.Day {
 	default:
 		logger.Err(logger.Database, err, "")
 	}
-	day.Places = fetchPlaces(places)
+	day.Places = fetchPlaces(int64V(places))
 	return day
 }
 
@@ -357,14 +388,15 @@ func fetchPlace(id int64) wings.Place {
 	sqlStatement := `
 		SELECT id, label, url, description
 		FROM places WHERE id=$1;`
-	row := db.QueryRow(sqlStatement, id)
+	c := getConn()
+	row := c.QueryRow(context.Background(), sqlStatement, id)
 	switch err := row.Scan(
 		&place.ID,
 		&place.Label,
 		&place.URL,
 		&place.Description,
 	); err {
-	case sql.ErrNoRows:
+	case pgx.ErrNoRows:
 		logger.Print(
 			logger.Database,
 			"Place "+strconv.FormatInt(id, 10)+" not found.",
@@ -373,6 +405,7 @@ func fetchPlace(id int64) wings.Place {
 	default:
 		logger.Err(logger.Database, err, "")
 	}
+	defer c.Close()
 	return place
 }
 
@@ -422,22 +455,25 @@ func updateTrip(updatedTrip wings.Trip) bool {
 		last_updated = $7
 		WHERE id = $1;`
 
-	_, err := db.Exec(
+	c := getConn()
+	_, err := c.Exec(
+		context.Background(),
 		sqlStatement,
 		updatedTrip.ID,
 		updatedTrip.Name,
 		updatedTrip.Private,
 		updatedTrip.Description,
-		pq.Array(cityEnumArrayToIDs(updatedTrip.Cities)),
-		pq.Array(daysToIDArray(updatedTrip.Days)),
+		cityEnumArrayToIDs(updatedTrip.Cities),
+		daysToIDArray(updatedTrip.Days),
 		updatedTrip.LastUpdated,
 	)
+	defer c.Close()
 
 	if err != nil {
 		logger.Err(
 			logger.Database,
 			err,
-			"Failed to update trip.",
+			"Failed to update trip "+strconv.Itoa(updatedTrip.ID),
 		)
 		return false
 	}
@@ -482,18 +518,21 @@ func updateDay(
 		places = $4
 		WHERE id = $1;`
 
-	_, err := db.Exec(
+	c := getConn()
+	_, err := c.Exec(
+		context.Background(),
 		sqlStatement,
 		updatedDay.ID,
 		updatedDay.TripID,
 		updatedDay.DayOf,
-		pq.Array(placesToIDArray(updatedDay.Places)),
+		placesToIDArray(updatedDay.Places),
 	)
+	defer c.Close()
 
 	if err != nil {
 		logger.Err(
 			logger.Database, err,
-			"Failed to update day"+strconv.Itoa(updatedDay.ID),
+			"Failed to update day "+strconv.Itoa(updatedDay.ID),
 		)
 		return false
 	}
@@ -519,13 +558,16 @@ func updatePlace(updatedPlace *wings.Place) bool {
 		description = $4
 		WHERE id = $1;`
 
-	_, err := db.Exec(
+	c := getConn()
+	_, err := c.Exec(
+		context.Background(),
 		sqlStatement,
 		updatedPlace.ID,
 		updatedPlace.Label,
 		updatedPlace.URL,
 		updatedPlace.Description,
 	)
+	defer c.Close()
 
 	if err != nil {
 		logger.Err(
@@ -572,13 +614,15 @@ func deleteFromTableWithID(id int, table string) bool {
 	sqlStatement := `
 		DELETE FROM ` + table + `
 		WHERE id = $1;`
-	if _, err := db.Exec(sqlStatement, id); err != nil {
+	c := getConn()
+	if _, err := c.Exec(context.Background(), sqlStatement, id); err != nil {
 		logger.Err(
 			logger.Database, err,
 			"Failed deleting ID: "+strconv.Itoa(id)+" from "+table,
 		)
 		return false
 	}
+	defer c.Close()
 	logger.Print(
 		logger.Database,
 		"ID: "+strconv.Itoa(id)+" deleted from "+table,

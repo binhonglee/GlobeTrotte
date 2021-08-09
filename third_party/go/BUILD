@@ -135,6 +135,7 @@ go_module(
   install = [
     ".",
     "internal/sanitize",
+    "pgxpool",
   ],
   deps = [
     ":jackc_chunkreader_v2",
@@ -144,8 +145,18 @@ go_module(
     ":jackc_pgproto3_v2",
     ":jackc_pgservicefile",
     ":jackc_pgtype",
+    ":jackc_puddle",
     ":x_crypto",
     ":x_text",
+  ],
+)
+
+go_module(
+  name = "jackc_puddle",
+  module = "github.com/jackc/puddle",
+  version = "v1.1.3",
+  install = [
+    ".",
   ],
 )
 

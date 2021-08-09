@@ -18,10 +18,10 @@ func DummyUserObj() UserObj {
 func NewUser(newUser wings.NewUser) UserObj {
 	user := UserObj{}
 	user.ID = database.NewUserDB(&newUser)
-	email.NewEmail(user.ID, newUser.Email)
 	if user.ID < 1 {
 		return DummyUserObj()
 	}
+	email.NewEmail(user.ID, newUser.Email)
 	return GetUserObj(user.ID, user.ID)
 }
 

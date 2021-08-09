@@ -225,7 +225,7 @@ func addNewUser(newUser wings.NewUser) int {
 		logger.Err(logger.Database, err, "")
 		return -1
 	}
-	logger.Print(logger.Database, "New record ID is: "+strconv.Itoa(id))
+	logger.Print(logger.Database, "New user ID is: "+strconv.Itoa(id))
 	return id
 }
 

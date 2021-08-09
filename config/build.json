@@ -2,7 +2,8 @@
   "output": "third_party/go/BUILD",
   "install": {
     "golang.org/x/crypto": ["bcrypt"],
-    "golang.org/x/time": ["rate"]
+    "golang.org/x/time": ["rate"],
+    "github.com/jackc/pgx/v4": ["pgxpool"]
   },
-  "silent": false
+  "silent": true
 }

@@ -2,6 +2,7 @@ package database
 
 import (
 	"bufio"
+	"context"
 	"database/sql"
 	"fmt"
 	"io"
@@ -12,12 +13,14 @@ import (
 
 	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	// This is needed for PostgreSQL to work properly
+	"github.com/jackc/pgx/v4/pgxpool"
 	_ "github.com/lib/pq"
 )
 
 const configFile = "config/psql.config"
 
 var db *sql.DB
+var pgxConnString string
 var tableNames = [6]string{"users", "trips", "cities", "days", "places", "emails"}
 
 func init() {
@@ -45,10 +48,31 @@ func init() {
 		logger.Panic(logger.Database, "Invalid DB config")
 	}
 
+	pgxConnString = fmt.Sprintf(
+		"postgres://%s:%s@%s:%d//%s",
+		config["user"],
+		config["password"],
+		config["host"], port,
+		config["dbname"],
+	)
+
 	initializeDB()
 
 	logger.PanicErr(logger.Database, db.Ping(), "Unable to connect to database")
 	logger.Success(logger.Database, "DB initialization is complete!")
+}
+
+func getConn() *pgxpool.Pool {
+	var conn *pgxpool.Pool
+	if getConn, err := pgxpool.Connect(
+		context.Background(),
+		pgxConnString,
+	); err == nil {
+		conn = getConn
+	} else {
+		logger.Err(logger.Database, err, "Unable to connect to database.\n")
+	}
+	return conn
 }
 
 func initializeDB() {
@@ -59,6 +83,32 @@ func initializeDB() {
 		);`
 
 	for _, element := range tableNames {
+		var t bool
+		c := getConn()
+		if err := c.QueryRow(context.Background(), fmt.Sprintf(ifTableExists, element)).Scan(&t); err != nil {
+			switch element {
+			case "users":
+				createUsersTable()
+			case "trips":
+				createTripsTable()
+			case "cities":
+				createCitiesTable()
+			case "days":
+				createDaysTable()
+			case "places":
+				createPlacesTable()
+			case "emails":
+				createEmailsTable()
+			default:
+				logger.Panic(
+					logger.Database,
+					"New element was added to 'tableNames' but no creation method is added for it.",
+				)
+			}
+
+			logger.Print(logger.Database, element+" table created successfully.")
+		}
+		defer c.Close()
 		_, err := db.Exec(fmt.Sprintf(ifTableExists, element))
 
 		if err != nil {
@@ -194,7 +244,7 @@ func getConfig() map[string]string {
 			break
 		}
 
-		word := strings.Split(line, ":")
+		word := strings.Split(strings.TrimSpace(line), ":")
 		if len(word) == 2 {
 			config[word[0]] = word[1]
 		}
