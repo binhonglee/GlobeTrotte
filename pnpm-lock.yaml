@@ -25,7 +25,7 @@ specifiers:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.14
-  cypress: 8.2.0
+  cypress: 8.3.0
   element-plus: 1.0.2-beta.70
   esbuild: 0.12.20
   esbuild-jest: 0.5.0
@@ -78,7 +78,7 @@ devDependencies:
   '@babel/plugin-transform-typescript': 7.15.0_@babel+core@7.15.0
   '@babel/preset-env': 7.15.0_@babel+core@7.15.0
   '@babel/preset-typescript': 7.15.0_@babel+core@7.15.0
-  '@cypress/code-coverage': 3.9.10_cypress@8.2.0
+  '@cypress/code-coverage': 3.9.10_cypress@8.3.0
   '@types/jest': 27.0.1
   '@types/node': 14.17.9
   '@types/puppeteer': 5.4.4
@@ -95,7 +95,7 @@ devDependencies:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.14_@babel+core@7.15.0+vue@3.2.2
-  cypress: 8.2.0
+  cypress: 8.3.0
   esbuild: 0.12.20
   esbuild-jest: 0.5.0_esbuild@0.12.20
   eslint: 7.32.0
@@ -3291,14 +3291,14 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/code-coverage/3.9.10_cypress@8.2.0:
+  /@cypress/code-coverage/3.9.10_cypress@8.3.0:
     resolution: {integrity: sha512-aJokd9B1/cI8uQAH4tPw9yuZg7a/bdl1xO4xSeO4ly5Tlj8L3/eJ2vvJf5RcfHAZQE1OMOYY7ZtPuBBE8eItYw==}
     peerDependencies:
       cypress: '*'
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.1
       chalk: 4.1.2
-      cypress: 8.2.0
+      cypress: 8.3.0
       dayjs: 1.10.6
       debug: 4.3.2
       execa: 4.1.0
@@ -6139,8 +6139,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /cypress/8.2.0:
-    resolution: {integrity: sha512-jg7S5VxxslwsgEyAkCE9ZCkFADxOUY1bSWScp1cWnga88K0TZgFQ0zdxyG9Mw/4spLGuvkriIZ62am+TR6C04w==}
+  /cypress/8.3.0:
+    resolution: {integrity: sha512-zA5Rcq8AZIfRfPXU0CCcauofF+YpaU9HYbfqkunFTmFV0Kdlo14tNjH2E3++MkjXKFnv3/pXq+HgxWtw8CSe8Q==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
