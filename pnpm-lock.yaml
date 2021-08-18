@@ -26,7 +26,7 @@ specifiers:
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.14
   cypress: 8.3.0
-  element-plus: 1.0.2-beta.70
+  element-plus: 1.0.2-beta.71
   esbuild: 0.12.20
   esbuild-jest: 0.5.0
   eslint: 7.32.0
@@ -67,7 +67,7 @@ specifiers:
 
 dependencies:
   axios: 0.21.1
-  element-plus: 1.0.2-beta.70_vue@3.2.4
+  element-plus: 1.0.2-beta.71_vue@3.2.4
   vue: 3.2.4
   wings-ts-util: 0.0.8
 
@@ -6646,8 +6646,8 @@ packages:
     resolution: {integrity: sha512-2Tg+7jSl3oPxgsBsWKh5H83QazTkmWG/cnNwJplmyZc7KcN61+I10oUgaXSVk/NwfvN3BdkKDR4FYuRBQQ2v0A==}
     dev: true
 
-  /element-plus/1.0.2-beta.70_vue@3.2.4:
-    resolution: {integrity: sha512-q9nqxELedLTFMCff5M5CsFbjWQYa6FvcLr1p7QZI64stZ7oEx1EcFnLEeP7dTg0g6iZf1fnaL5df1fVKWY0Dcg==}
+  /element-plus/1.0.2-beta.71_vue@3.2.4:
+    resolution: {integrity: sha512-tlfbRORIav8gJcIpjZI5F6aJIVHIaDuGO6/vKu43lgYq4JS2JPNRTjvrSE2p4f5xLfaFNfOWjCS3sybXLfMg8g==}
     peerDependencies:
       vue: 3.1.x
     dependencies:
