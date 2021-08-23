@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import { DefineComponent, defineComponent } from "vue";
+import { defineComponent } from "vue";
 import CEditDays from "./CEditDays.vue";
 import CEditItem from "./CEditItem.vue";
 import CEditPlaces from "./CEditPlaces.vue";

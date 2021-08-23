@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, DefineComponent } from "vue";
+import { defineComponent } from "vue";
 import CEditItem from "@/components/CEditItem.vue";
 import CViewUser from "@/components/CViewUser.vue";
 import General from "@/shared/General";

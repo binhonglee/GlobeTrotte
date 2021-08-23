@@ -83,12 +83,6 @@ var actualRoutes = routes{
 		login,
 	},
 	route{
-		"LoginV2",
-		"POST",
-		"/v2/login",
-		loginV2,
-	},
-	route{
 		"Logout",
 		"GET",
 		"/logout",
@@ -154,5 +148,11 @@ var actualRoutes = routes{
 		"GET",
 		"/force_confirm_email/{id}",
 		forceConfirmEmail,
+	},
+	route{
+		"GetEmailCode",
+		"POST",
+		"/get_email_code",
+		testGetConfirmCode,
 	},
 }

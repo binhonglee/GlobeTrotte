@@ -37,12 +37,12 @@
 </template>
 
 <script lang="ts">
-import { DefineComponent, defineComponent } from "vue";
+import { defineComponent } from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
-import NewUser from "@/wings/NewUser";
 import UserObj from "@/wings/UserObj";
+import LoginCredential from "@/wings/LoginCredential";
 import CEditItem from "@/components/CEditItem.vue";
 import E from "@/shared/E";
 import Routing from "@/shared/Routing";
@@ -69,16 +69,14 @@ export default defineComponent({
   methods: {
     async confirm(): Promise<void> {
       this.$data.loading = true;
-      const newUser = new NewUser();
-      newUser.register({
-        name: "",
+      const loginCredential = new LoginCredential({
         email: E.getVal(this, "email"),
         password: E.getVal(this, "password"),
       });
 
       const res = await HTTPReq.genPOST(
-        "v2/login",
-        WingsStructUtil.stringify(newUser),
+        "login",
+        WingsStructUtil.stringify(loginCredential),
       );
 
       const user = new UserObj(res);

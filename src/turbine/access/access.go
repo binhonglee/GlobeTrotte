@@ -78,3 +78,20 @@ func TriggerResetPassword(rp ResetPassword) bool {
 	c.Delete(strconv.Itoa(u.ID))
 	return true
 }
+
+func Login(u LoginCredential) (user.UserObj, bool) {
+	err := bcrypt.CompareHashAndPassword(
+		[]byte(database.GetUserPwHashDB(u.Email)),
+		[]byte(u.Password),
+	)
+
+	if err != nil {
+		return user.DummyUserObj(), false
+	}
+
+	logger.Print(
+		logger.Access,
+		"Authentication successful for "+u.Email,
+	)
+	return user.GetUserObjWithEmail(u.Email), true
+}

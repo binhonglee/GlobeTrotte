@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { DefineComponent, defineComponent } from "vue";
+import { defineComponent } from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";

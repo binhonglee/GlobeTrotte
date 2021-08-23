@@ -5,7 +5,6 @@ import (
 
 	"golang.org/x/crypto/bcrypt"
 
-	db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/user"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
@@ -96,55 +95,4 @@ func whoamiV2(
 		val = -1
 	}
 	respond(res, user.GetUserObj(val, val))
-}
-
-func loginV2(res http.ResponseWriter, req *http.Request) {
-	var item *wings.NewUser
-	var ok bool
-	unpackJSON(&res, req, &item)
-	dummyUser := user.DummyUserObj()
-	if item == nil {
-		respond(res, dummyUser)
-		return
-	}
-
-	item.Email, ok = handleEmails(item.Email)
-	if !ok {
-		respond(res, dummyUser)
-		return
-	}
-
-	err := bcrypt.CompareHashAndPassword(
-		[]byte(db.GetUserPasswordHashDB(*item)),
-		[]byte(item.Password),
-	)
-
-	if err != nil {
-		logger.Err(
-			logger.Router,
-			err,
-			"Failed authentication attempt for "+item.Email,
-		)
-		respond(res, dummyUser)
-		return
-	}
-
-	userid := db.GetUserIDDBWithEmail(item.Email)
-	user := user.GetUserObj(userid, userid)
-	if user.ID == -1 {
-		logger.Err(
-			logger.Router,
-			err,
-			"Failed to find user for "+item.Email,
-		)
-		respond(res, dummyUser)
-		return
-	}
-
-	logger.Print(
-		logger.Router,
-		"V2 authentication successful for "+item.Email,
-	)
-	newCookie(res, req, user.ID)
-	respond(res, user)
 }

@@ -146,6 +146,10 @@ func GetUserPasswordHashDB(user wings.NewUser) string {
 	return getUserWithEmail(user.Email).Password
 }
 
+func GetUserPwHashDB(email string) string {
+	return getUserWithEmail(email).Password
+}
+
 // GetUserWithEmailDB - Retrieve user information from database with their email.
 func GetUserWithEmailDB(user wings.NewUser) wings.User {
 	return getUserWithID(getUserWithEmail(user.Email).ID)

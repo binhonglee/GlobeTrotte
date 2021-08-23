@@ -120,6 +120,17 @@ func ConfirmEmailDB(
 	return confirmUser(userid)
 }
 
+func GetEmailConfirmCodeDB(emailAddress string, userid int) string {
+	var code string
+	sqlStatement := `
+		SELECT code
+		FROM emails WHERE emailAddress = $1 AND userid = $2;
+	`
+	err := db.QueryRow(sqlStatement, emailAddress, userid).Scan(&code)
+	logger.Err(logger.Database, err, "Failed to fetch code with user id "+strconv.Itoa(userid))
+	return emailAddress
+}
+
 func ForceConfirm(uid int) bool {
 	if flags.ProdServer() {
 		return false

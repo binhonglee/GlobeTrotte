@@ -166,6 +166,7 @@ npm_test(
   set_home = True,
   deps = [
     ":pnpm",
+    ":pnpm_config",
     ":index_html",
     ":babel_config",
     ":eslint_config",

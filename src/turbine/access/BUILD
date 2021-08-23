@@ -3,6 +3,7 @@ go_library(
   srcs = [
     "access.go",
     "//src/wings/struct:reset_password",
+    "//src/wings/struct:login_credential",
   ],
   deps = [
     "//src/turbine/database",

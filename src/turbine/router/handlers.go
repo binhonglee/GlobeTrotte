@@ -6,24 +6,14 @@ import (
 	"io/ioutil"
 	"net/http"
 	"regexp"
-	"strconv"
 	"strings"
 
 	flags "github.com/binhonglee/GlobeTrotte/src/turbine/flags"
 	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
-	structs "github.com/binhonglee/GlobeTrotte/src/turbine/structs"
-
-	"github.com/gorilla/mux"
 )
 
 func passwd(res http.ResponseWriter, req *http.Request) {
 	respond(res, "hunter2")
-}
-
-// DEPRECATED: Do not add new use of this function.
-func response(res *http.ResponseWriter, status int) {
-	(*res).Header().Set("Content-Type", "application/json; charset=UTF-8")
-	(*res).WriteHeader(status)
 }
 
 func respond(res http.ResponseWriter, info interface{}) {
@@ -65,106 +55,6 @@ func unpackJSON(
 			"",
 		)
 	}
-}
-
-func addItem(
-	res *http.ResponseWriter,
-	req *http.Request,
-	addFunc func(structs.IStructs) int,
-	item structs.IStructs,
-	skipRes bool,
-) int {
-	if newID := addFunc(item); newID != -1 {
-		item.SetID(newID)
-		allowCORS(res)
-		if !skipRes {
-			response(res, http.StatusCreated)
-			json.NewEncoder(*res).Encode(item)
-		}
-		return newID
-	} else {
-		allowCORS(res)
-		if !skipRes {
-			response(res, http.StatusNotAcceptable)
-		}
-		return -1
-	}
-}
-
-func getItem(
-	res *http.ResponseWriter,
-	req *http.Request,
-	getFunc func(int, int) structs.IStructs,
-	v interface{},
-) {
-	vars := mux.Vars(req)
-	var id int
-	var err error
-
-	if id, err = strconv.Atoi(vars["id"]); err != nil {
-		logger.Err(logger.Router, err, "")
-		return
-	}
-	allowCORS(res)
-
-	item := getFunc(id, getUserID(req))
-	if item.GetID() > 0 {
-		respond(*res, item)
-	} else {
-		respond(*res, v)
-	}
-}
-
-func updateItem(
-	res *http.ResponseWriter,
-	req *http.Request,
-	id int,
-	updateFunc func(structs.IStructs) bool,
-	getFunc func(int, int) structs.IStructs,
-	item structs.IStructs,
-) bool {
-	if rItem := getFunc(
-		item.GetID(),
-		getUserID(req),
-	); rItem.GetID() != id {
-		response(res, http.StatusNotFound)
-		return false
-	}
-
-	if updated := updateFunc(item); updated {
-		allowCORS(res)
-		response(res, http.StatusAccepted)
-		json.NewEncoder(*res).Encode(true)
-		return true
-	} else {
-		respond(*res, false)
-		return false
-	}
-}
-
-func deleteItem(
-	res *http.ResponseWriter,
-	req *http.Request,
-	id int,
-	getFunc func(int, int) structs.IStructs,
-	deleteFunc func(structs.IStructs) bool,
-) bool {
-	inf := getFunc(id, getUserID(req))
-
-	return deleteFunc(inf)
-}
-
-func setDeletionStatus(
-	res *http.ResponseWriter,
-	success bool,
-) {
-	if success {
-		respond(*res, true)
-	} else {
-		response(res, http.StatusNotFound)
-		json.NewEncoder(*res).Encode(false)
-	}
-	allowCORS(res)
 }
 
 func handleEmails(email string) (string, bool) {

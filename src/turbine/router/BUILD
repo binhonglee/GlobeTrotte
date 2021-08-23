@@ -19,6 +19,7 @@ go_library(
     "//src/turbine/email:email",
     "//src/turbine/flags:flags",
     "//src/turbine/logger:logger",
+    "//src/turbine/nonprod:nonprod",
     "//src/turbine/structs:structs",
     "//src/turbine/trip:trip",
     "//src/turbine/user:user",

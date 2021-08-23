@@ -15,6 +15,7 @@ filegroup(
     "//src/wings/struct:user_obj",
     "//src/wings/struct:user_basic",
     "//src/wings/struct:reset_password",
+    "//src/wings/struct:login_credential",
   ],
   requires = ["ts"],
   visibility = [

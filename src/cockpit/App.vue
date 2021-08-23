@@ -10,7 +10,7 @@
   )
     el-menu-item.main_menu_item(index="") Home
     el-submenu.main_menu_item(index="/trip")
-      template.main_menu_item(#title="") Trips
+      template.main_menu_item(#title) Trips
       el-menu-item.main_menu_item(index="/trip/view") View
       el-menu-item.main_menu_item(
         v-if="confirmed" index="/trip/new"

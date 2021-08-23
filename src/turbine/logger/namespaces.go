@@ -14,6 +14,8 @@ const (
 	Email    = "email"
 	Flags    = "flags"
 	User     = "user"
+	Access   = "access"
+	NonProd  = "nonprod"
 
 	// These are kept private since they should only be used
 	// in this package anyway

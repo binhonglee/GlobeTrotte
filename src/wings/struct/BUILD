@@ -6,6 +6,7 @@ filegroup(
   deps = [
     ":day",
     ":email_obj",
+    ":login_credential",
     ":new_user",
     ":place",
     ":trip",
@@ -149,4 +150,13 @@ wings_lib(
     "src/cockpit/wings": "ResetPassword.ts",
     "src/turbine/access": "resetpassword.go",
   },
+)
+
+wings_lib(
+  name = "login_credential",
+  src = "login_credential.wings",
+  outs = {
+    "src/cockpit/wings": "LoginCredential.ts",
+    "src/turbine/access": "logincredential.go",
+  }
 )
