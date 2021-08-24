@@ -56,7 +56,7 @@ specifiers:
   ts-jest: 26.5.6
   ts-node: 10.2.1
   typescript: 4.3.5
-  vite: 2.5.0
+  vite: 2.5.1
   vite-plugin-test: 0.0.5
   vue: 3.2.4
   vue-jest: 5.0.0-alpha.10
@@ -80,7 +80,7 @@ devDependencies:
   '@babel/preset-env': 7.15.0_@babel+core@7.15.0
   '@babel/preset-typescript': 7.15.0_@babel+core@7.15.0
   '@cypress/code-coverage': 3.9.10_cypress@8.3.0
-  '@cypress/vite-dev-server': 2.0.7_vite@2.5.0
+  '@cypress/vite-dev-server': 2.0.7_vite@2.5.1
   '@types/jest': 27.0.1
   '@types/node': 14.17.11
   '@types/puppeteer': 5.4.4
@@ -126,7 +126,7 @@ devDependencies:
   ts-jest: 26.5.6_jest@26.6.3+typescript@4.3.5
   ts-node: 10.2.1_a3da7f9f56afe7b98c9382c63365a60d
   typescript: 4.3.5
-  vite: 2.5.0
+  vite: 2.5.1
   vite-plugin-test: 0.0.5_528a2faf5d33f86f55303189d7a65541
   vue-jest: 5.0.0-alpha.10_43980e5dc11beeb44332b258b1f06a1c
   vue-loader: 16.5.0_@vue+compiler-sfc@3.2.4
@@ -3338,14 +3338,14 @@ packages:
       uuid: 3.4.0
     dev: true
 
-  /@cypress/vite-dev-server/2.0.7_vite@2.5.0:
+  /@cypress/vite-dev-server/2.0.7_vite@2.5.1:
     resolution: {integrity: sha512-0RAYG/WvgB2lAiu+voqMtGy2PdbwVz8EB6q1+u2G8akHepbe8KSrObdO7EHCZXzMQ0VQlmToonO4Qx+OUwPPwg==}
     peerDependencies:
       vite: '>= 2.1.3'
     dependencies:
       debug: 4.3.2
       get-port: 5.1.1
-      vite: 2.5.0
+      vite: 2.5.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -6781,12 +6781,6 @@ packages:
       esbuild: 0.12.22
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /esbuild/0.12.20:
-    resolution: {integrity: sha512-u7+0qTo9Z64MD9PhooEngCmzyEYJ6ovFhPp8PLNh3UasR5Ihjv6HWVXqm8uHmasdQlpsAf0IsY4U0YVUfCpt4Q==}
-    hasBin: true
-    requiresBuild: true
     dev: true
 
   /esbuild/0.12.22:
@@ -13111,12 +13105,12 @@ packages:
       - typescript
     dev: true
 
-  /vite/2.5.0:
-    resolution: {integrity: sha512-Dn4B+g54PJsMG5WCc4QeFy1ygMXRdTtFrUPegqfk4+vzVQcbF/DqqmI/1bxezArzbujBJg/67QeT5wz8edfJVQ==}
+  /vite/2.5.1:
+    resolution: {integrity: sha512-FwmLbbz8MB1pBs9dKoRDgpiqoijif8hSK1+NNUYc12/cnf+pM2UFhhQ1rcpXgbMhm/5c2USZdVAf0FSkSxaFDA==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     dependencies:
-      esbuild: 0.12.20
+      esbuild: 0.12.22
       postcss: 8.3.6
       resolve: 1.20.0
       rollup: 2.52.1
