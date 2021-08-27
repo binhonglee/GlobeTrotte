@@ -26,7 +26,7 @@ specifiers:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.14
-  cypress: 8.3.0
+  cypress: 8.3.1
   element-plus: 1.0.2-beta.71
   esbuild: 0.12.23
   esbuild-jest: 0.5.0
@@ -79,7 +79,7 @@ devDependencies:
   '@babel/plugin-transform-typescript': 7.15.0_@babel+core@7.15.0
   '@babel/preset-env': 7.15.0_@babel+core@7.15.0
   '@babel/preset-typescript': 7.15.0_@babel+core@7.15.0
-  '@cypress/code-coverage': 3.9.10_cypress@8.3.0
+  '@cypress/code-coverage': 3.9.10_cypress@8.3.1
   '@cypress/vite-dev-server': 2.0.7_vite@2.5.1
   '@types/jest': 27.0.1
   '@types/node': 14.17.12
@@ -97,7 +97,7 @@ devDependencies:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.14_@babel+core@7.15.0+vue@3.2.6
-  cypress: 8.3.0
+  cypress: 8.3.1
   esbuild: 0.12.23
   esbuild-jest: 0.5.0_esbuild@0.12.23
   eslint: 7.32.0
@@ -3293,14 +3293,14 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/code-coverage/3.9.10_cypress@8.3.0:
+  /@cypress/code-coverage/3.9.10_cypress@8.3.1:
     resolution: {integrity: sha512-aJokd9B1/cI8uQAH4tPw9yuZg7a/bdl1xO4xSeO4ly5Tlj8L3/eJ2vvJf5RcfHAZQE1OMOYY7ZtPuBBE8eItYw==}
     peerDependencies:
       cypress: '*'
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.1
       chalk: 4.1.2
-      cypress: 8.3.0
+      cypress: 8.3.1
       dayjs: 1.10.6
       debug: 4.3.2
       execa: 4.1.0
@@ -3312,8 +3312,8 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/request/2.88.5:
-    resolution: {integrity: sha512-TzEC1XMi1hJkywWpRfD2clreTa/Z+lOrXDCxxBTBPEcY5azdPi56A6Xw+O4tWJnaJH3iIE7G5aDXZC6JgRZLcA==}
+  /@cypress/request/2.88.6:
+    resolution: {integrity: sha512-z0UxBE/+qaESAHY9p9sM2h8Y4XqtsbDCt0/DPOrqA/RZgKi4PkxdpXyK4wCCnSk1xHqWHZZAE+gV6aDAR6+caQ==}
     engines: {node: '>= 6'}
     dependencies:
       aws-sign2: 0.7.0
@@ -3329,13 +3329,12 @@ packages:
       isstream: 0.1.2
       json-stringify-safe: 5.0.1
       mime-types: 2.1.31
-      oauth-sign: 0.9.0
       performance-now: 2.1.0
       qs: 6.5.2
       safe-buffer: 5.2.1
       tough-cookie: 2.5.0
       tunnel-agent: 0.6.0
-      uuid: 3.4.0
+      uuid: 8.3.2
     dev: true
 
   /@cypress/vite-dev-server/2.0.7_vite@2.5.1:
@@ -6180,15 +6179,15 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /cypress/8.3.0:
-    resolution: {integrity: sha512-zA5Rcq8AZIfRfPXU0CCcauofF+YpaU9HYbfqkunFTmFV0Kdlo14tNjH2E3++MkjXKFnv3/pXq+HgxWtw8CSe8Q==}
+  /cypress/8.3.1:
+    resolution: {integrity: sha512-1v6pfx+/5cXhaT5T6QKOvnkawmEHWHLiVzm3MYMoQN1fkX2Ma1C32STd3jBStE9qT5qPSTILjGzypVRxCBi40g==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@cypress/request': 2.88.5
+      '@cypress/request': 2.88.6
       '@cypress/xvfb': 1.2.4
-      '@types/node': 14.17.9
+      '@types/node': 14.17.12
       '@types/sinonjs__fake-timers': 6.0.2
       '@types/sizzle': 2.3.3
       arch: 2.2.0
