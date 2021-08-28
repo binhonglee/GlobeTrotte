@@ -49,7 +49,7 @@ specifiers:
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0
   require-extension-hooks-vue: 3.0.0
-  sass: 1.38.1
+  sass: 1.38.2
   sass-loader: 12.1.0
   sinon: 11.1.2
   tap-xunit: 2.4.1
@@ -119,8 +119,8 @@ devDependencies:
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0_require-extension-hooks@0.3.3
   require-extension-hooks-vue: 3.0.0_require-extension-hooks@0.3.3
-  sass: 1.38.1
-  sass-loader: 12.1.0_node-sass@6.0.1+sass@1.38.1
+  sass: 1.38.2
+  sass-loader: 12.1.0_node-sass@6.0.1+sass@1.38.2
   sinon: 11.1.2
   tap-xunit: 2.4.1
   ts-jest: 26.5.6_jest@26.6.3+typescript@4.3.5
@@ -11840,7 +11840,7 @@ packages:
       yargs: 13.3.2
     dev: true
 
-  /sass-loader/12.1.0_node-sass@6.0.1+sass@1.38.1:
+  /sass-loader/12.1.0_node-sass@6.0.1+sass@1.38.2:
     resolution: {integrity: sha512-FVJZ9kxVRYNZTIe2xhw93n3xJNYZADr+q69/s98l9nTCrWASo+DR2Ot0s5xTKQDDEosUkatsGeHxcH4QBp5bSg==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -11859,11 +11859,11 @@ packages:
       klona: 2.0.4
       neo-async: 2.6.2
       node-sass: 6.0.1
-      sass: 1.38.1
+      sass: 1.38.2
     dev: true
 
-  /sass/1.38.1:
-    resolution: {integrity: sha512-Lj8nPaSYOuRhgqdyShV50fY5jKnvaRmikUNalMPmbH+tKMGgEKVkltI/lP30PEfO2T1t6R9yc2QIBLgOc3uaFw==}
+  /sass/1.38.2:
+    resolution: {integrity: sha512-Bz1fG6qiyF0FX6m/I+VxtdVKz1Dfmg/e9kfDy2PhWOkq3T384q2KxwIfP0fXpeI+EyyETdOauH+cRHQDFASllA==}
     engines: {node: '>=8.9.0'}
     hasBin: true
     dependencies:
