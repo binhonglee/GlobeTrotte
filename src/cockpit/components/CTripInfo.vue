@@ -4,7 +4,7 @@
     CViewTrip(
       :trip="trip"
       :editable="editable"
-      @edit-trip="enableEditMode"
+      @enableEditMode="enableEditMode"
     )
   div.edit_trip_info(v-else)
     CEditTrip(

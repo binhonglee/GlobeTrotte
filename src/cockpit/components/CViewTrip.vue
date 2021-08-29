@@ -43,21 +43,22 @@ interface Data {
 export default defineComponent({
   name: "CViewTrip",
   components: { CPlaces },
-  data(): Data {
-    return { cities: [] };
+  emits: {
+    enableEditMode() {
+      return true;
+    },
   },
+  data: (): Data => ({ cities: [] }),
   props: {
     trip: {
       type: TripObj,
-      default: (): void => {
-        new TripObj();
-      },
+      required: true,
     },
     editable: { type: Boolean },
   },
   methods: {
     enableEditMode(): void {
-      this.$emit("edit-trip", this.$props.trip);
+      this.$emit("enableEditMode");
     },
   },
   async beforeMount(): Promise<void> {

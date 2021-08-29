@@ -75,6 +75,11 @@ sh_exec(
   visibility = ["PUBLIC"],
 )
 
+# pnpm(
+#   name= "pnpm",
+#   version = "v16.7.0",
+# )
+
 filegroup(
   name = "nycrc",
   srcs = [".nycrc.json"],
@@ -84,7 +89,7 @@ filegroup(
 )
 
 npm_install(
-  name = "pnpm",
+  name = "pnpm_install",
   srcs = [":pnpm_config"],
 )
 
@@ -92,7 +97,7 @@ npm_run_build(
   name = "cockpit",
   cmd = "build",
   srcs = [
-    ":pnpm",
+    ":pnpm_install",
     ":pnpm_config",
     ":prettier",
     ":tsconfig",
@@ -109,7 +114,7 @@ npm_run(
   name = "serve",
   cmd = "serve",
   deps = [
-    ":pnpm",
+    ":pnpm_install",
     ":prettier",
     ":index_html",
     ":eslint_config",
@@ -162,10 +167,10 @@ npm_test(
   cmd = "test:cypress:plz",
   result_dir = "cypress/junit",
   requires_server = 3000,
-  server_start_cmd = "pnpm run startServer",
+  server_start_cmd = "startServer",
   set_home = True,
   deps = [
-    ":pnpm",
+    ":pnpm_install",
     ":pnpm_config",
     ":index_html",
     ":babel_config",
@@ -178,7 +183,7 @@ npm_test(
   ],
 )
 
-sh_cmd(
+sh_tools_cmd(
   name = "lint_all",
   # TODO: Turn this into rules to run in parallel instead of sequential.
   cmd = " && ".join([
@@ -199,7 +204,7 @@ npm_lint(
     "//src/cockpit/..."
   ],
   srcs = [
-    ":pnpm",
+    ":pnpm_install",
     ":pnpm_config",
     ":prettier",
     ":tsconfig",
@@ -215,9 +220,10 @@ npm_lint(
 
 npm_test(
   name = "tsc",
-  cmd = "check:tsc",
+  raw = True,
+  cmd = "vue-tsc --noEmit --skipLibCheck",
   srcs = [
-    ":pnpm",
+    ":pnpm_install",
     ":pnpm_config",
     ":prettier",
     ":tsconfig",
@@ -228,10 +234,9 @@ npm_test(
   needs_transitive_deps = True,
 )
 
-sh_cmd(
+sh_tools_cmd(
   name = "gofmt",
   cmd = " && ".join([
-    "current=$(pwd)",
     "cd $(pwd | awk -F'plz-out' '{print $1}')",
     "gofmt -s -w src/turbine/**/*.go",
   ]),

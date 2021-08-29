@@ -37,6 +37,8 @@ ImportPath = github.com/binhonglee/GlobeTrotte
 # npm
 npm-tool = "pnpm"
 npx-tool = "pnpx"
+# Still a few issues to iron out
+# npm-rule = "//:pnpm"
 typescript-tool = "esbuild"
 core-files = "//src/cockpit:core_files"
 

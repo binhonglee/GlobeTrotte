@@ -21,6 +21,7 @@ def wings_lib(
   cmd = " && ".join([
     _home_path(),
     "$TOOL -c:" + CONFIG.WINGS_CONFIG_FILENAME + " $SRC",
+    "echo " + CONFIG.get("WINGS_CONFIG_RULE")
   ])
 
   for i in outs.keys():

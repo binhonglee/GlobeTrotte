@@ -1,4 +1,5 @@
 subinclude("//build_defs/gen")
+subinclude("//build_defs/sh")
 
 def npm_run_build(
   name:str,
@@ -23,7 +24,7 @@ def npm_run_build(
     deps = deps,
     test_only = test_only,
     visibility = visibility,
-    tools=[CONFIG.NPM_TOOL],
+    tools=[_get_npm_tool()],
   )
 
 def ts_run_build(
@@ -44,6 +45,10 @@ def ts_run_build(
   return build_rule(
     name = name,
     srcs = srcs +  [script],
+    tools = {
+      "npx": _get_npx_tool(),
+      "node": _get_node_tool(),
+    },
     cmd = cmd,
     outs = outs,
     deps = deps,
@@ -76,52 +81,46 @@ def npm_install(name:str, srcs:list=[], deps:list=[]):
     deps = deps,
     outs = [out],
     visibility = ["PUBLIC"],
-    tools=[CONFIG.NPM_TOOL],
+    tools=[_get_npm_tool()],
   )
 
 def npm_run(
   name:str,
   cmd:str,
-  shell:str="/bin/sh",
   srcs:list=[],
   deps:list=[],
   visibility:list=None,
   test_only:bool=False,
 ):
-  cmd = "$TOOL run " + cmd
-  cmds = f'{{ tee -a > "$OUT" << EOF\n#!{shell}\n{cmd}\nEOF\n}}'
-  return build_rule(
+  return sh_tools_cmd(
     name = name,
-    outs = [name + ".sh"],
     srcs = srcs,
-    cmd = "touch $OUT && " + cmds,
+    cmd = "$TOOL run " + cmd,
     deps = deps,
     visibility = visibility,
-    binary = True,
     test_only = test_only,
-    tools = [CONFIG.NPM_TOOL],
+    tools = [_get_npm_tool()],
   )
 
 def ts_binary(
   name:str,
   script:str,
-  shell:str="/bin/sh",
   srcs:list=[],
   deps:list=[],
   post_run:list=[],
   visibility:list=None,
   test_only:bool=False,
 ):
-  cmd = " && ".join([_gen_run_typescript(script)] + post_run)
-  cmd = f'{{ tee -a > "$OUT" << EOF\n#!{shell}\n{cmd}\nEOF\n}}'
-  return build_rule(
+  return sh_tools_cmd(
     name = name,
-    outs = [name + ".sh"],
     srcs = srcs,
-    cmd = "touch $OUT && " + cmd,
+    cmd = " && ".join([_gen_run_typescript(script)] + post_run),
+    tools = {
+      "npx": _get_npx_tool(),
+      "node": _get_node_tool(),
+    },
     deps = deps,
     visibility = visibility,
-    binary = True,
     test_only = test_only,
   )
 
@@ -131,6 +130,7 @@ def npm_test(
   srcs:list=[],
   outs:list=[],
   deps:list=[],
+  raw:bool=False,
   link:bool=False,
   set_home:bool=False,
   result_dir:str=None,
@@ -140,16 +140,13 @@ def npm_test(
   server_start_cmd:str=None,
   needs_transitive_deps:bool=False,
 ):
-  cmd = "(" + CONFIG.NPM_TOOL + " run " + cmd
-  if result_dir is not None or result_file is not None:
-    cmd += " || echo \"Please only set either result_dir or result_file and not both.\""
-  cmd += ")"
-  for out in outs:
-    cmd = " && ".join([
-      "rm -rf " + out,
-      "mkdir -p " + out,
-      cmd,
-    ])
+  if raw:
+    cmd = f"$TOOLS_NPX {cmd}"
+  else:
+    cmd = f"$TOOLS_NPM run {cmd}"
+
+  if result_dir is not None and result_file is not None:
+    cmd = "echo \"Please only set either result_dir or result_file and not both.\" && exit 1"
 
   if set_home:
     cmd = " && ".join([
@@ -159,7 +156,7 @@ def npm_test(
 
   if requires_server is not None:
     cmd = " && ".join([
-      _check_port_running(requires_server, server_start_cmd),
+      _check_port_running(requires_server, "$TOOLS_NPM run " + server_start_cmd),
       cmd,
     ])
 
@@ -168,14 +165,14 @@ def npm_test(
       "rm -rf " + result_dir,
       "mkdir -p " + result_dir,
       cmd,
-      "cat " + result_dir + "/* > $TMP_DIR/test.results",
+      "cat " + result_dir + "/* > \\\$TMP_DIR/test.results",
     ])
     
   if result_file is not None:
     cmd = " && ".join([
       "rm " + result_file,
       cmd,
-      "cat " + result_file + " > $TMP_DIR/test.results",
+      "cat " + result_file + " > \\\$TMP_DIR/test.results",
     ])
 
   cmd = " && ".join([
@@ -183,21 +180,19 @@ def npm_test(
     cmd,
   ])
 
-  move = "ln -s" if link else "cp -R"
-  for out in outs:
-    cmd = " && ".join([
-      cmd,
-      " ".join([move, out, "$TMP_DIR/" + out]),
-    ])
-
   return build_rule(
     name = name,
     srcs = srcs,
-    outs = outs,
+    cmd = _scriptify("\n".join(cmd.split(" && "))),
+    outs = [name + ".sh"],
     deps = deps,
     test = True,
-    test_cmd = cmd,
+    test_cmd = f"chmod +x {name}.sh && ./{name}.sh",
     test_only = True,
+    tools = {
+      "npm": _get_npm_tool(),
+      "npx": _get_npx_tool(),
+    },
     visibility = visibility,
     no_test_output = (result_dir == None and result_file == None),
     needs_transitive_deps = needs_transitive_deps,
@@ -208,22 +203,170 @@ def npm_lint(
   cmd:str,
   srcs:list=[],
   deps:list=[],
+  raw:bool=False,
   visibility:list=None,
   needs_transitive_deps:bool=False,
 ):
-  return sh_cmd(
+  if raw:
+    cmd = f"$TOOLS_NPX {cmd}"
+  else:
+    cmd = f"$TOOLS_NPM run {cmd}"
+  return sh_tools_cmd(
     name = name,
     srcs = srcs,
+    cmd = cmd,
+    tools = {
+      "npm": _get_npm_tool(),
+      "npx": _get_npx_tool(),
+    },
     deps = deps,
     visibility = visibility,
-    cmd = CONFIG.NPM_TOOL + " run " + cmd,
+  )
+
+def pnpm(
+  name:str,
+  version:str,
+):
+  cmd = " && ".join([
+    _get_fnm_dir(),
+    "VERSION='" + version + "'",
+    "curl -f https://get.pnpm.io/v6.14.js | $TOOLS_NODE - add --global pnpm",
+    "ln -s $FNM_DIR/node-versions/$VERSION/installation/pnpm-global/5/node_modules/pnpm/bin $TMP_DIR",
+  ])
+
+  node_version(
+    name = name,
+    version = version,
+    node_only = True,
+  )
+
+  pnpm_bin = build_rule(
+    name = name,
+    cmd = cmd,
+    outs = ["bin"],
+    tools = {
+      "NODE": _get_node_tool(),
+    },
+    binary = True,
+    visibility = ["PUBLIC"],
+  )
+
+  build_rule(
+    name = f"_{name}#npm",
+    srcs = [pnpm_bin],
+    cmd = " && ".join([
+      _get_fnm_dir(),
+      "VERSION='" + version + "'",
+      "ln -s $FNM_DIR/node-versions/$VERSION/installation/pnpm-global/5/node_modules/pnpm/bin/pnpm.cjs $TMP_DIR",
+      "cd $TMP_DIR",
+      "mv pnpm.cjs pnpm",
+    ]),
+    outs = ["pnpm"],
+    visibility = ["PUBLIC"],
+  )
+
+  build_rule(
+    name = f"_{name}#npx",
+    srcs = [pnpm_bin],
+    cmd = " && ".join([
+      _get_fnm_dir(),
+      "VERSION='" + version + "'",
+      "ln -s $FNM_DIR/node-versions/$VERSION/installation/pnpm-global/5/node_modules/pnpm/bin/pnpx.cjs $TMP_DIR",
+      "cd $TMP_DIR",
+      "mv pnpx.cjs pnpx",
+    ]),
+    outs = ["pnpx"],
+    visibility = ["PUBLIC"],
+  )
+
+  return pnpm_bin
+
+def node_version(
+  name:str,
+  version:str,
+  node_only:bool=False,
+):
+  CONFIG["NODE_VERSION"] = version
+  cmd = " && ".join([
+    "VERSION='" + CONFIG.NODE_VERSION + "'",
+    _get_fnm_dir(),
+    "$TOOL install $VERSION --fnm-dir $FNM_DIR",
+    "NODE_BIN_DIR=$FNM_DIR/node-versions/$VERSION/installation/bin",
+    "ln -s $NODE_BIN_DIR/node $TMP_DIR",
+  ])
+
+  fnm = fnm(
+    name = f"_{name}#fnm",
+  )
+
+  node = build_rule(
+    name = f"_{name}#node",
+    cmd = cmd,
+    outs = ["node"],
+    binary = True,
+    tools = [fnm],
+    visibility = ["PUBLIC"],
+  )
+
+  srcs = [node]
+
+  if not node_only:
+    srcs += build_rule(
+      name = f"_{name}#npm",
+      srcs = [node],
+      cmd = " && ".join([
+        "VERSION='" + CONFIG.NODE_VERSION + "'",
+        _get_fnm_dir(),
+        "$TOOL install $VERSION --fnm-dir $FNM_DIR",
+        "NODE_BIN_DIR=$FNM_DIR/node-versions/$VERSION/installation/bin",
+        "cp $NODE_BIN_DIR/npm $TMP_DIR",
+      ]),
+      outs = ["npm"],
+      visibility = ["PUBLIC"],
+    )
+
+    srcs += build_rule(
+      name = f"_{name}#npx",
+      srcs = [node],
+      cmd = " && ".join([
+        "VERSION='" + CONFIG.NODE_VERSION + "'",
+        _get_fnm_dir(),
+        "$TOOL install $VERSION --fnm-dir $FNM_DIR",
+        "NODE_BIN_DIR=$FNM_DIR/node-versions/$VERSION/installation/bin",
+        "cp $NODE_BIN_DIR/npx $TMP_DIR",
+      ]),
+      outs = ["npx"],
+      visibility = ["PUBLIC"],
+    )
+
+  if node_only:
+    return node
+  else:
+    return filegroup(
+      name = name,
+      srcs = srcs,
+    )
+
+def fnm(
+  name:str
+):
+  return build_rule(
+    name = name,
+    cmd = " && ".join([
+      _get_fnm_dir(),
+      "curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir $FNM_DIR --skip-shell",
+      "cp $FNM_DIR/fnm $OUT",
+    ]),
+    outs = ["fnm"],
+    binary = True,
+    visibility = ["PUBLIC"],
   )
 
 def _gen_run_typescript(script_name:str):
   ts_runner = ["ts-eager", "ts-node"]
   if CONFIG.TYPESCRIPT_TOOL in ts_runner:
     return " ".join([
-      CONFIG.NPX_TOOL,
+      "$TOOLS_NPX",
       CONFIG.TYPESCRIPT_TOOL,
       "./$PKG_DIR/" + script_name,
     ])
@@ -232,27 +375,27 @@ def _gen_run_typescript(script_name:str):
 
   if CONFIG.TYPESCRIPT_TOOL == "esbuild":
     return " ".join([
-      CONFIG.NPX_TOOL,
+      "$TOOLS_NPX",
       CONFIG.TYPESCRIPT_TOOL,
       "--bundle",
       "./$PKG_DIR/" + script_name,
       "--platform=node",
       "--outdir=" + CONFIG.TYPESCRIPT_OUT_DIR,
       "&&",
-      CONFIG.NODE_TOOL,
+      "$TOOLS_NODE",
       CONFIG.TYPESCRIPT_OUT_DIR + "/" + out_name,
       "\\\$*",
     ])
 
   if CONFIG.TYPESCRIPT_TOOL == "tsc":
     return " ".join([
-      CONFIG.NPX_TOOL,
+      "$TOOLS_NPX",
       CONFIG.TYPESCRIPT_TOOL,
       "./$PKG_DIR/" + script_name,
       "--outDir",
       CONFIG.TYPESCRIPT_OUT_DIR,
       "&&",
-      CONFIG.NODE_TOOL,
+      "$TOOLS_NODE",
       CONFIG.TYPESCRIPT_OUT_DIR + "/" + out_name,
       "\\\$*",
     ])
@@ -261,7 +404,7 @@ def _gen_run_typescript(script_name:str):
 
 def _check_port_running(port:int, server_cmd:str=None):
   return " ".join([
-    "if [[ ! $(lsof -i:" + str(port) + " | grep -v \"CLOSE_WAIT\") ]];",
+    "if [ ! \\\$(lsof -i:" + str(port) + " | grep -v \"CLOSE_WAIT\") ];",
     "then echo \"Please make sure server is started at " + str(port) + "\" && exit 1;" if server_cmd is None else "then " + server_cmd + ";",
     "fi",
   ])
@@ -272,9 +415,38 @@ def _set_node_modules():
     "ln -s " + _top_level_dir() + "node_modules ./",
   ])
 
+def _get_fnm_dir():
+  return " && ".join([
+    _home_path(),
+    "FNM_DIR=" + _top_level_dir() + "plz-out/.fnm",
+  ])
+
+def _get_node_tool():
+  if CONFIG.NPM_RULE != "":
+    return ":_".join(CONFIG.NPM_RULE.split(":")) + "#node"
+  else:
+    return CONFIG.NODE_TOOL
+
+def _get_npm_tool():
+  if CONFIG.NPM_RULE != "":
+    return ":_".join(CONFIG.NPM_RULE.split(":")) + "#npm"
+  else:
+    return CONFIG.NPM_TOOL
+
+def _get_npx_tool():
+  if CONFIG.NPM_RULE != "":
+    return ":_".join(CONFIG.NPM_RULE.split(":")) + "#npx"
+  else:
+    return CONFIG.NPX_TOOL
+
+# def _get_bin_dir():
+#   return "export PATH=" + _top_level_dir() + "plz-out/bin:$PATH"
+
 CONFIG.setdefault("NPM_TOOL", "npm")
 CONFIG.setdefault("NPX_TOOL", "npx")
 CONFIG.setdefault("NODE_TOOL", "node")
+CONFIG.setdefault("NPM_RULE", "")
+CONFIG.setdefault("NODE_VERSION", "node")
 CONFIG.setdefault("TYPESCRIPT_TOOL", "tsc")
 CONFIG.setdefault("TYPESCRIPT_OUT_DIR", "./plz-out/tsc")
 

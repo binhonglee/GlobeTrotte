@@ -17,7 +17,7 @@ ts_run_build(
   outs = ["router.ts", "routes.ts"],
   make_copy = True,
   copy_path = "src/cockpit/",
-  deps =["//:pnpm"],
+  deps =["//:pnpm_install"],
   visibility = [
     "//src/cockpit:core_files",
   ],
@@ -35,11 +35,11 @@ ts_binary(
     "pnpx nyc report",
   ],
   test_only = True,
-  deps = ["//:pnpm"],
+  deps = ["//:pnpm_install"],
 )
 
 ts_binary(
   name = "gen_component",
   script = "genComponent.ts",
-  deps = ["//:pnpm"],
+  deps = ["//:pnpm_install"],
 )

@@ -49,6 +49,11 @@ export default defineComponent({
       default: 1,
     },
   },
+  emits: {
+    enter() {
+      return true;
+    },
+  },
   data: (): Data => ({
     value: "",
   }),

@@ -1,5 +1,5 @@
 import sinon from "sinon";
-import { mount, VueWrapper } from "@vue/test-utils";
+import { mount, MountingOptions, VueWrapper } from "@vue/test-utils";
 import App from "@/App.vue";
 import router from "@/router";
 import ElementPlus from "element-plus";
@@ -110,7 +110,7 @@ export class routerSpy {
   }
 }
 
-export function newLocalVueAndRouter(): VueWrapper<Vue> {
+export function newLocalVueAndRouter(): MountingOptions<Vue, Vue> {
   return mount(App, {
     global: {
       plugins: [ElementPlus],

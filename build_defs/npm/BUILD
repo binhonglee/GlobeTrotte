@@ -3,7 +3,10 @@ package(default_visibility = ["PUBLIC"])
 filegroup(
   name = "npm",
   srcs = ["npm.build_defs"],
-  deps = ["//build_defs/gen"],
+  deps = [
+    "//build_defs/gen",
+    "//build_defs/sh",
+  ],
 )
 
 filegroup(

@@ -8,7 +8,7 @@ def sh_exec(
   binary:bool=False,
   deps:list=[],
   tools:dict|list=[],
-  visibility:list=[]
+  visibility:list=[],
 ):
   if set_home_path:
     cmd = _home_path() + " && " + cmd
@@ -22,3 +22,35 @@ def sh_exec(
     deps = deps,
     visibility = visibility,
   )
+
+def sh_tools_cmd(
+  name:str,
+  srcs:list=[],
+  cmd:str,
+  set_home_path:bool=False,
+  deps:list=[],
+  tools:dict|list=[],
+  test_only:bool=False,
+  visibility:list=[],
+):
+  if set_home_path:
+    cmd = _home_path() + " && " + cmd
+  cmd = "\n".join(cmd.split(" && "))
+  cmd = _scriptify(cmd)
+
+  return build_rule(
+    name = name,
+    srcs = srcs,
+    cmd = "touch $OUT && " + cmd,
+    outs = [name + ".sh"],
+    binary = True,
+    tools = tools,
+    deps = deps,
+    test_only = test_only,
+    visibility = visibility,
+  )
+
+def _scriptify(cmd:str):
+  return f'{{ tee -a > "$OUT" << EOF\n#!{CONFIG.SHELL_TOOL}\n{cmd}\nEOF\n}}'
+
+CONFIG.setdefault("SHELL_TOOL", "/bin/sh")

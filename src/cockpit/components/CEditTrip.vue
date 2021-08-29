@@ -88,6 +88,14 @@ export default defineComponent({
     CEditItem,
     CEditPlaces,
   },
+  emits: {
+    save(trip: TripBasic) {
+      return trip.ID !== -1;
+    },
+    cancel() {
+      return true;
+    },
+  },
   data: (): Data => ({
     cities: [],
     possibleCities: [],
