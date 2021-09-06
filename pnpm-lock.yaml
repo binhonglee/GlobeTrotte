@@ -15,7 +15,7 @@ specifiers:
   '@types/sinon': 10.0.2
   '@typescript-eslint/eslint-plugin': 4.30.0
   '@typescript-eslint/parser': 4.30.0
-  '@vitejs/plugin-vue': 1.6.0
+  '@vitejs/plugin-vue': 1.6.1
   '@vue/compiler-sfc': 3.2.9
   '@vue/eslint-config-prettier': 6.0.0
   '@vue/eslint-config-typescript': 7.0.0
@@ -87,7 +87,7 @@ devDependencies:
   '@types/sinon': 10.0.2
   '@typescript-eslint/eslint-plugin': 4.30.0_8a8a2d3eaa9257455a03c16dce5f55b3
   '@typescript-eslint/parser': 4.30.0_eslint@7.32.0+typescript@4.4.2
-  '@vitejs/plugin-vue': 1.6.0_@vue+compiler-sfc@3.2.9
+  '@vitejs/plugin-vue': 1.6.1_@vue+compiler-sfc@3.2.9
   '@vue/compiler-sfc': 3.2.9
   '@vue/eslint-config-prettier': 6.0.0_2127539a99f1ff5da0f49b56a079f074
   '@vue/eslint-config-typescript': 7.0.0_5323b138541b857d99ca1e2f590de75b
@@ -4325,8 +4325,8 @@ packages:
     resolution: {integrity: sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==}
     dev: true
 
-  /@vitejs/plugin-vue/1.6.0_@vue+compiler-sfc@3.2.9:
-    resolution: {integrity: sha512-n3i8htn8pTg9M+kM3cnEfsPZx/6ngInlTroth6fA1LQTJq5aTVQ8ggaE5pPoAy9vCgHPtcaXMzwpldhqRAkebQ==}
+  /@vitejs/plugin-vue/1.6.1_@vue+compiler-sfc@3.2.9:
+    resolution: {integrity: sha512-tX2Ju8fOyEtfstfmwjfSJcstTFXwzdFAUbYJ5bWWifvKIgbe6B0FbM8l3Wb7wOaaxKn4FYkii7WQnAPcsTqaIA==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       '@vue/compiler-sfc': ^3.2.6
