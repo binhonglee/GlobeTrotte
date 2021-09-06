@@ -21,7 +21,7 @@
     "xvfb:run": "if [[ \"$OSTYPE\" == \"darwin\"* ]]; then xvfb=\"\"; elif [[ \"$OSTYPE\" == \"linux-gnu\"* ]]; then xvfb=\"xvfb-run -a \"; fi"
   },
   "dependencies": {
-    "axios": "0.21.3",
+    "axios": "0.21.4",
     "element-plus": "1.0.2-beta.71",
     "vue": "3.2.9",
     "wings-ts-util": "0.0.8"
