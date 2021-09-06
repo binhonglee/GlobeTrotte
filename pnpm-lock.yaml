@@ -21,7 +21,7 @@ specifiers:
   '@vue/eslint-config-typescript': 7.0.0
   '@vue/test-utils': 2.0.0-rc.14
   ava: 3.15.0
-  axios: 0.21.3
+  axios: 0.21.4
   babel-loader: 8.2.2
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
@@ -67,7 +67,7 @@ specifiers:
   wings-ts-util: 0.0.8
 
 dependencies:
-  axios: 0.21.3
+  axios: 0.21.4
   element-plus: 1.0.2-beta.71_vue@3.2.9
   vue: 3.2.9
   wings-ts-util: 0.0.8
@@ -5115,8 +5115,8 @@ packages:
       - debug
     dev: true
 
-  /axios/0.21.3:
-    resolution: {integrity: sha512-JtoZ3Ndke/+Iwt5n+BgSli/3idTvpt5OjKyoCmz4LX5+lPiY5l7C1colYezhlxThjNa/NhngCUWZSZFypIFuaA==}
+  /axios/0.21.4:
+    resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
       follow-redirects: 1.14.1
     transitivePeerDependencies:
