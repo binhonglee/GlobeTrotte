@@ -34,7 +34,7 @@
     "@babel/preset-env": "7.15.6",
     "@babel/preset-typescript": "7.15.0",
     "@cypress/code-coverage": "3.9.10",
-    "@cypress/vite-dev-server": "2.0.8",
+    "@cypress/vite-dev-server": "2.1.0",
     "@types/jest": "27.0.1",
     "@types/node": "14.17.15",
     "@types/puppeteer": "5.4.4",
