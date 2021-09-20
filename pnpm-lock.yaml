@@ -60,7 +60,7 @@ specifiers:
   vite-plugin-test: 0.0.5
   vue: 3.2.12
   vue-jest: 5.0.0-alpha.10
-  vue-loader: 16.5.0
+  vue-loader: 16.6.0
   vue-router: 4.0.11
   vue-tsc: 0.3.0
   wait-on: 6.0.0
@@ -129,7 +129,7 @@ devDependencies:
   vite: 2.5.10
   vite-plugin-test: 0.0.5_cd18c8cbe1911fc92dc394a781bb7844
   vue-jest: 5.0.0-alpha.10_9429187d35c1910a0967d2981be3c1ec
-  vue-loader: 16.5.0_@vue+compiler-sfc@3.2.12
+  vue-loader: 16.6.0_@vue+compiler-sfc@3.2.12
   vue-router: 4.0.11_vue@3.2.12
   vue-tsc: 0.3.0_typescript@4.4.3
   wait-on: 6.0.0
@@ -13678,10 +13678,10 @@ packages:
       - supports-color
     dev: true
 
-  /vue-loader/16.5.0_@vue+compiler-sfc@3.2.12:
-    resolution: {integrity: sha512-WXh+7AgFxGTgb5QAkQtFeUcHNIEq3PGVQ8WskY5ZiFbWBkOwcCPRs4w/2tVyTbh2q6TVRlO3xfvIukUtjsu62A==}
+  /vue-loader/16.6.0_@vue+compiler-sfc@3.2.12:
+    resolution: {integrity: sha512-0VveRdfbvvJdnFWID2X64XSABczpzItF//WRWRVta7UPP56PVIA5DdBw1TJLtDfQNIv2Sh2yZ+umGyjALuVoEg==}
     peerDependencies:
-      '@vue/compiler-sfc': ^3.0.8
+      '@vue/compiler-sfc': ^3.2.12
       webpack: ^4.1.0 || ^5.0.0-0
     peerDependenciesMeta:
       '@vue/compiler-sfc':

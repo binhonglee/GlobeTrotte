@@ -83,7 +83,7 @@
     "vite": "2.5.10",
     "vite-plugin-test": "0.0.5",
     "vue-jest": "5.0.0-alpha.10",
-    "vue-loader": "16.5.0",
+    "vue-loader": "16.6.0",
     "vue-router": "4.0.11",
     "vue-tsc": "0.3.0",
     "wait-on": "6.0.0"
