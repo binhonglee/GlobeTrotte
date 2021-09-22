@@ -60,7 +60,7 @@ specifiers:
   vite-plugin-test: 0.0.5
   vue: 3.2.13
   vue-jest: 5.0.0-alpha.10
-  vue-loader: 16.7.0
+  vue-loader: 16.7.1
   vue-router: 4.0.11
   vue-tsc: 0.3.0
   wait-on: 6.0.0
@@ -129,7 +129,7 @@ devDependencies:
   vite: 2.5.10
   vite-plugin-test: 0.0.5_cae1d9d6bc27be189fa20ccd84d448d5
   vue-jest: 5.0.0-alpha.10_8aae32acee9929b92db49b7a75694f16
-  vue-loader: 16.7.0
+  vue-loader: 16.7.1
   vue-router: 4.0.11_vue@3.2.13
   vue-tsc: 0.3.0_typescript@4.4.3
   wait-on: 6.0.0
@@ -13672,8 +13672,8 @@ packages:
       - supports-color
     dev: true
 
-  /vue-loader/16.7.0:
-    resolution: {integrity: sha512-43I0grWtwSCE8fiH/hAwFK+6sNlmvDuHhXScYH8HVSVAMS81IM66tgUOcxbPCeqhhz/1BE51YPxX59eZKGallQ==}
+  /vue-loader/16.7.1:
+    resolution: {integrity: sha512-6dOj/8DQ3lcfLwsFT9X5N1qvaMSqi8zsYTD0hE4iNp7G/mgZ39cgzvwCP3rxDwQD2adl65UmoRxnqBTHrK4u6A==}
     peerDependencies:
       webpack: ^4.1.0 || ^5.0.0-0
     dependencies:
