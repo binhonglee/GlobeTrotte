@@ -19,7 +19,7 @@ specifiers:
   '@vue/compiler-sfc': 3.2.16
   '@vue/eslint-config-prettier': 6.0.0
   '@vue/eslint-config-typescript': 7.0.0
-  '@vue/test-utils': 2.0.0-rc.14
+  '@vue/test-utils': 2.0.0-rc.15
   ava: 3.15.0
   axios: 0.21.4
   babel-loader: 8.2.2
@@ -91,7 +91,7 @@ devDependencies:
   '@vue/compiler-sfc': 3.2.16
   '@vue/eslint-config-prettier': 6.0.0_07ea7830c059e0b322b8e6cb8d02712b
   '@vue/eslint-config-typescript': 7.0.0_6206e63df2a67a196202627e217b5893
-  '@vue/test-utils': 2.0.0-rc.14_vue@3.2.16
+  '@vue/test-utils': 2.0.0-rc.15_vue@3.2.16
   ava: 3.15.0
   babel-loader: 8.2.2_@babel+core@7.15.5
   babel-plugin-istanbul: 6.0.0
@@ -4624,8 +4624,8 @@ packages:
     resolution: {integrity: sha512-j2j1MRmjalVKr3YBTxl/BClSIc8UQ8NnPpLYclxerK65JIowI4O7n8O8lElveEtEoHxy1d7BelPUDI0Q4bumqg==}
     dev: true
 
-  /@vue/test-utils/2.0.0-rc.14_vue@3.2.16:
-    resolution: {integrity: sha512-gmaeKqRCCMfxUtWN2L9fb9mYW5YocNc9KPj6F5uwlyXevlKELi40Oaz0PICYjzHI+7+dC4bV5Dg6Vjnf51VjvQ==}
+  /@vue/test-utils/2.0.0-rc.15_vue@3.2.16:
+    resolution: {integrity: sha512-cb+Ri4PDRhtGCJuaLyl1HO9jXcwEj6AFwcNXace8FhhwelDzOdjyIgOb25xtDiUojzWjPuzGLKZQr/5WB7MLew==}
     peerDependencies:
       vue: ^3.0.1
     dependencies:
