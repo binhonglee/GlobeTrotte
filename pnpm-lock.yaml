@@ -21,7 +21,7 @@ specifiers:
   '@vue/eslint-config-typescript': 7.0.0
   '@vue/test-utils': 2.0.0-rc.15
   ava: 3.15.0
-  axios: 0.21.4
+  axios: 0.22.0
   babel-loader: 8.2.2
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
@@ -67,7 +67,7 @@ specifiers:
   wings-ts-util: 0.0.8
 
 dependencies:
-  axios: 0.21.4
+  axios: 0.22.0
   element-plus: 1.0.2-beta.71_vue@3.2.19
   vue: 3.2.19
   wings-ts-util: 0.0.8
@@ -5047,10 +5047,10 @@ packages:
       - debug
     dev: true
 
-  /axios/0.21.4:
-    resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
+  /axios/0.22.0:
+    resolution: {integrity: sha512-Z0U3uhqQeg1oNcihswf4ZD57O3NrR1+ZXhxaROaWpDmsDTx7T2HNBV2ulBtie2hwJptu8UvgnJoK+BIqdzh/1w==}
     dependencies:
-      follow-redirects: 1.14.1
+      follow-redirects: 1.14.4
     transitivePeerDependencies:
       - debug
     dev: false
@@ -7823,6 +7823,17 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: true
+
+  /follow-redirects/1.14.4:
+    resolution: {integrity: sha512-zwGkiSXC1MUJG/qmeIFH2HBJx9u0V46QGUe3YR1fXG8bXQxq7fLj0RjLZQ5nubr9qNJUZrH+xUcwXEoXNpfS+g==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
 
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
