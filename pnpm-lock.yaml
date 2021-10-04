@@ -36,7 +36,7 @@ specifiers:
   eslint-plugin-vue: 7.18.0
   forever: 4.0.1
   jest: 26.6.3
-  jest-junit: 12.3.0
+  jest-junit: 13.0.0
   jsdom: 17.0.0
   jsdom-global: 3.0.2
   node-sass: 6.0.1
@@ -106,7 +106,7 @@ devDependencies:
   eslint-plugin-vue: 7.18.0_eslint@7.32.0
   forever: 4.0.1
   jest: 26.6.3_ts-node@10.2.1
-  jest-junit: 12.3.0
+  jest-junit: 13.0.0
   jsdom: 17.0.0
   jsdom-global: 3.0.2_jsdom@17.0.0
   node-sass: 6.0.1
@@ -4715,6 +4715,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /ansi-regex/5.0.1:
+    resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
+    engines: {node: '>=8'}
+    dev: true
+
   /ansi-styles/2.2.1:
     resolution: {integrity: sha1-tDLdM1i2NM914eRmQ2gkBTPB3b4=}
     engines: {node: '>=0.10.0'}
@@ -9318,12 +9323,12 @@ packages:
       - utf-8-validate
     dev: true
 
-  /jest-junit/12.3.0:
-    resolution: {integrity: sha512-+NmE5ogsEjFppEl90GChrk7xgz8xzvF0f+ZT5AnhW6suJC93gvQtmQjfyjDnE0Z2nXJqEkxF0WXlvjG/J+wn/g==}
+  /jest-junit/13.0.0:
+    resolution: {integrity: sha512-JSHR+Dhb32FGJaiKkqsB7AR3OqWKtldLd6ZH2+FJ8D4tsweb8Id8zEVReU4+OlrRO1ZluqJLQEETm+Q6/KilBg==}
     engines: {node: '>=10.12.0'}
     dependencies:
       mkdirp: 1.0.4
-      strip-ansi: 5.2.0
+      strip-ansi: 6.0.1
       uuid: 8.3.2
       xml: 1.0.1
     dev: true
@@ -12691,6 +12696,13 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       ansi-regex: 5.0.0
+    dev: true
+
+  /strip-ansi/6.0.1:
+    resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==}
+    engines: {node: '>=8'}
+    dependencies:
+      ansi-regex: 5.0.1
     dev: true
 
   /strip-bom-buf/2.0.0:
