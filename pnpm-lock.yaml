@@ -8,7 +8,7 @@ specifiers:
   '@babel/preset-env': 7.15.6
   '@babel/preset-typescript': 7.15.0
   '@cypress/code-coverage': 3.9.11
-  '@cypress/vite-dev-server': 2.1.0
+  '@cypress/vite-dev-server': 2.1.1
   '@types/jest': 27.0.2
   '@types/node': 14.17.20
   '@types/puppeteer': 5.4.4
@@ -80,7 +80,7 @@ devDependencies:
   '@babel/preset-env': 7.15.6_@babel+core@7.15.5
   '@babel/preset-typescript': 7.15.0_@babel+core@7.15.5
   '@cypress/code-coverage': 3.9.11_cypress@8.5.0
-  '@cypress/vite-dev-server': 2.1.0_vite@2.6.2
+  '@cypress/vite-dev-server': 2.1.1_vite@2.6.2
   '@types/jest': 27.0.2
   '@types/node': 14.17.20
   '@types/puppeteer': 5.4.4
@@ -3599,8 +3599,8 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@cypress/vite-dev-server/2.1.0_vite@2.6.2:
-    resolution: {integrity: sha512-tItMwUB0BIPl8Uqai+zrqmqaWHPPR/r9mGHDw+q+8y7xLaM08rOWgUYiTwR8IptEIwz4YGnxDkO30i+kB49S6Q==}
+  /@cypress/vite-dev-server/2.1.1_vite@2.6.2:
+    resolution: {integrity: sha512-/1joEKftc2CxMeuNPpU4eYkcEsNTKdvXifNgy3ukgX9z5xEDtSwQ4GryQDic9coq8vlw2xbaUpAh435wkJL9Vw==}
     peerDependencies:
       vite: '>= 2.1.3'
     dependencies:
