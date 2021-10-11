@@ -26,7 +26,7 @@ specifiers:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16
-  cypress: 8.5.0
+  cypress: 8.6.0
   element-plus: 1.0.2-beta.71
   esbuild: 0.13.4
   esbuild-jest: 0.5.0
@@ -79,7 +79,7 @@ devDependencies:
   '@babel/plugin-transform-typescript': 7.15.8_@babel+core@7.15.8
   '@babel/preset-env': 7.15.8_@babel+core@7.15.8
   '@babel/preset-typescript': 7.15.0_@babel+core@7.15.8
-  '@cypress/code-coverage': 3.9.11_cypress@8.5.0
+  '@cypress/code-coverage': 3.9.11_cypress@8.6.0
   '@cypress/vite-dev-server': 2.1.1_vite@2.6.7
   '@types/jest': 27.0.2
   '@types/node': 14.17.21
@@ -97,7 +97,7 @@ devDependencies:
   babel-plugin-istanbul: 6.0.0
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16_@babel+core@7.15.8
-  cypress: 8.5.0
+  cypress: 8.6.0
   esbuild: 0.13.4
   esbuild-jest: 0.5.0_esbuild@0.13.4
   eslint: 8.0.0
@@ -3560,14 +3560,14 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/code-coverage/3.9.11_cypress@8.5.0:
+  /@cypress/code-coverage/3.9.11_cypress@8.6.0:
     resolution: {integrity: sha512-SA+fPILiiE0UHlMAwuv592D+wbKKdLbXz7BAN2a2RvW4fLbkVn1dXLATUFYf/6LkKrLaXJ3RENsoW9JqjBLzeQ==}
     peerDependencies:
       cypress: '*'
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.1
       chalk: 4.1.2
-      cypress: 8.5.0
+      cypress: 8.6.0
       dayjs: 1.10.7
       debug: 4.3.2
       execa: 4.1.0
@@ -4074,10 +4074,6 @@ packages:
 
   /@types/node/14.17.17:
     resolution: {integrity: sha512-niAjcewgEYvSPCZm3OaM9y6YQrL2SEPH9PymtE6fuZAvFiP6ereCcvApGl2jKTq7copTIguX3PBvfP08LN4LvQ==}
-    dev: true
-
-  /@types/node/14.17.19:
-    resolution: {integrity: sha512-jjYI6NkyfXykucU6ELEoT64QyKOdvaA6enOqKtP4xUsGY0X0ZUZz29fUmrTRo+7v7c6TgDu82q3GHHaCEkqZwA==}
     dev: true
 
   /@types/node/14.17.21:
@@ -6412,15 +6408,15 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /cypress/8.5.0:
-    resolution: {integrity: sha512-MMkXIS+Ro2KETn4gAlG3tIc/7FiljuuCZP0zpd9QsRG6MZSyZW/l1J3D4iQM6WHsVxuX4rFChn5jPFlC2tNSvQ==}
+  /cypress/8.6.0:
+    resolution: {integrity: sha512-F7qEK/6Go5FsqTueR+0wEw2vOVKNgk5847Mys8vsWkzPoEKdxs+7N9Y1dit+zhaZCLtMPyrMwjfA53ZFy+lSww==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
     dependencies:
       '@cypress/request': 2.88.6
       '@cypress/xvfb': 1.2.4
-      '@types/node': 14.17.19
+      '@types/node': 14.17.21
       '@types/sinonjs__fake-timers': 6.0.2
       '@types/sizzle': 2.3.3
       arch: 2.2.0
@@ -12632,7 +12628,7 @@ packages:
     dependencies:
       emoji-regex: 8.0.0
       is-fullwidth-code-point: 3.0.0
-      strip-ansi: 6.0.0
+      strip-ansi: 6.0.1
     dev: true
 
   /string.prototype.trimend/1.0.4:
@@ -13997,7 +13993,7 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       string-width: 4.2.2
-      strip-ansi: 6.0.0
+      strip-ansi: 6.0.1
     dev: true
 
   /wrap-ansi/7.0.0:
@@ -14006,7 +14002,7 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       string-width: 4.2.2
-      strip-ansi: 6.0.0
+      strip-ansi: 6.0.1
     dev: true
 
   /wrappy/1.0.2:
