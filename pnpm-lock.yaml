@@ -10,7 +10,7 @@ specifiers:
   '@cypress/code-coverage': 3.9.11
   '@cypress/vite-dev-server': 2.1.1
   '@types/jest': 27.0.2
-  '@types/node': 14.17.23
+  '@types/node': 14.17.25
   '@types/puppeteer': 5.4.4
   '@types/sinon': 10.0.4
   '@typescript-eslint/eslint-plugin': 5.0.0
@@ -82,7 +82,7 @@ devDependencies:
   '@cypress/code-coverage': 3.9.11_cypress@8.6.0
   '@cypress/vite-dev-server': 2.1.1_vite@2.6.7
   '@types/jest': 27.0.2
-  '@types/node': 14.17.23
+  '@types/node': 14.17.25
   '@types/puppeteer': 5.4.4
   '@types/sinon': 10.0.4
   '@typescript-eslint/eslint-plugin': 5.0.0_d8f15b12d289fecfef32450ca1e4b77e
@@ -124,7 +124,7 @@ devDependencies:
   sinon: 11.1.2
   tap-xunit: 2.4.1
   ts-jest: 26.5.6_jest@26.6.3+typescript@4.4.4
-  ts-node: 10.3.0_f2f79da33b8dc455681d01b13dd79982
+  ts-node: 10.3.0_0d1523798ad604aa4a38671f5fe8d6c4
   typescript: 4.4.4
   vite: 2.6.7_sass@1.42.1
   vite-plugin-test: 0.0.5_6ac4b1efef9676ca06ea0b0d43067526
@@ -4080,8 +4080,8 @@ packages:
     resolution: {integrity: sha512-zv8ukKci1mrILYiQOwGSV4FpkZhyxQtuFWGya2GujWg+zVAeRQ4qbaMmWp9vb9889CFA8JECH7lkwCL6Ygg8kA==}
     dev: true
 
-  /@types/node/14.17.23:
-    resolution: {integrity: sha512-476I8l9SsG1AqYWfG38IClUije4SgDu39Z8SDD7dEBCb8eZaADN4T57cMjN09F6bEInes41/Wuv5cbIfLgarbA==}
+  /@types/node/14.17.25:
+    resolution: {integrity: sha512-85DGKK4X9h+JEbs69xggu9j6y/aAExbfZzTrUMSqSwATwYXywbxRLaNQyJ7WibJjsC4OcxJWJwtuANUzDqMc7A==}
     dev: true
 
   /@types/node/14.17.3:
@@ -9406,7 +9406,7 @@ packages:
       jest-validate: 26.6.2
       micromatch: 4.0.4
       pretty-format: 26.6.2
-      ts-node: 10.3.0_f2f79da33b8dc455681d01b13dd79982
+      ts-node: 10.3.0_0d1523798ad604aa4a38671f5fe8d6c4
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -13226,7 +13226,7 @@ packages:
       yargs-parser: 20.2.7
     dev: true
 
-  /ts-node/10.3.0_f2f79da33b8dc455681d01b13dd79982:
+  /ts-node/10.3.0_0d1523798ad604aa4a38671f5fe8d6c4:
     resolution: {integrity: sha512-RYIy3i8IgpFH45AX4fQHExrT8BxDeKTdC83QFJkNzkvt8uFB6QJ8XMyhynYiKMLxt9a7yuXaDBZNOYS3XjDcYw==}
     hasBin: true
     peerDependencies:
@@ -13245,7 +13245,7 @@ packages:
       '@tsconfig/node12': 1.0.9
       '@tsconfig/node14': 1.0.1
       '@tsconfig/node16': 1.0.2
-      '@types/node': 14.17.23
+      '@types/node': 14.17.25
       acorn: 8.5.0
       acorn-walk: 8.1.1
       arg: 4.1.3
