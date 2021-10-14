@@ -61,7 +61,7 @@ specifiers:
   vue: 3.2.20
   vue-jest: 5.0.0-alpha.10
   vue-loader: 16.8.1
-  vue-router: 4.0.11
+  vue-router: 4.0.12
   vue-tsc: 0.28.3
   wait-on: 6.0.0
   wings-ts-util: 0.0.8
@@ -130,7 +130,7 @@ devDependencies:
   vite-plugin-test: 0.0.5_6ac4b1efef9676ca06ea0b0d43067526
   vue-jest: 5.0.0-alpha.10_5e302889d88c8409c12ee7a9080eb0a5
   vue-loader: 16.8.1
-  vue-router: 4.0.11_vue@3.2.20
+  vue-router: 4.0.12_vue@3.2.20
   vue-tsc: 0.28.3_typescript@4.4.4
   wait-on: 6.0.0
 
@@ -4460,8 +4460,8 @@ packages:
       vue-template-es2015-compiler: 1.9.1
     dev: true
 
-  /@vue/devtools-api/6.0.0-beta.14:
-    resolution: {integrity: sha512-44fPrrN1cqcs6bFkT0C+yxTM6PZXLbR+ESh1U1j8UD22yO04gXvxH62HApMjLbS3WqJO/iCNC+CYT+evPQh2EQ==}
+  /@vue/devtools-api/6.0.0-beta.19:
+    resolution: {integrity: sha512-ObzQhgkoVeoyKv+e8+tB/jQBL2smtk/NmC9OmFK8UqdDpoOdv/Kf9pyDWL+IFyM7qLD2C75rszJujvGSPSpGlw==}
     dev: true
 
   /@vue/eslint-config-prettier/6.0.0_25eba323c3088add261186b25106dbd0:
@@ -13857,12 +13857,12 @@ packages:
       loader-utils: 2.0.0
     dev: true
 
-  /vue-router/4.0.11_vue@3.2.20:
-    resolution: {integrity: sha512-sha6I8fx9HWtvTrFZfxZkiQQBpqSeT+UCwauYjkdOQYRvwsGwimlQQE2ayqUwuuXGzquFpCPoXzYKWlzL4OuXg==}
+  /vue-router/4.0.12_vue@3.2.20:
+    resolution: {integrity: sha512-CPXvfqe+mZLB1kBWssssTiWg4EQERyqJZes7USiqfW9B5N2x+nHlnsM1D3b5CaJ6qgCvMmYJnz+G0iWjNCvXrg==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
-      '@vue/devtools-api': 6.0.0-beta.14
+      '@vue/devtools-api': 6.0.0-beta.19
       vue: 3.2.20
     dev: true
 
