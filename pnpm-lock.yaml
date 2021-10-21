@@ -22,7 +22,7 @@ specifiers:
   '@vue/test-utils': 2.0.0-rc.16
   ava: 3.15.0
   axios: 0.23.0
-  babel-loader: 8.2.2
+  babel-loader: 8.2.3
   babel-plugin-istanbul: 6.1.1
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16
@@ -93,7 +93,7 @@ devDependencies:
   '@vue/eslint-config-typescript': 8.0.0_f0343b52b3e342de154fde57f59f8fba
   '@vue/test-utils': 2.0.0-rc.16_vue@3.2.20
   ava: 3.15.0
-  babel-loader: 8.2.2_@babel+core@7.15.8
+  babel-loader: 8.2.3_@babel+core@7.15.8
   babel-plugin-istanbul: 6.1.1
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16_@babel+core@7.15.8
@@ -4006,10 +4006,6 @@ packages:
       pretty-format: 27.0.6
     dev: true
 
-  /@types/json-schema/7.0.7:
-    resolution: {integrity: sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==}
-    dev: true
-
   /@types/json-schema/7.0.9:
     resolution: {integrity: sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==}
     dev: true
@@ -5045,8 +5041,8 @@ packages:
       - supports-color
     dev: true
 
-  /babel-loader/8.2.2_@babel+core@7.15.8:
-    resolution: {integrity: sha512-JvTd0/D889PQBtUXJ2PXaKU/pjZDMtHA9V2ecm+eNRmmBCMR09a+fmpGTNwnJtFmFl5Ei7Vy47LjBb+L0wQ99g==}
+  /babel-loader/8.2.3_@babel+core@7.15.8:
+    resolution: {integrity: sha512-n4Zeta8NC3QAsuyiizu0GkmRcQ6clkV9WFUnUf1iXP//IeSKbWjofW3UHyZVwlOB4y039YQKefawyTn64Zwbuw==}
     engines: {node: '>= 8.9'}
     peerDependencies:
       '@babel/core': ^7.0.0
@@ -12194,7 +12190,7 @@ packages:
     resolution: {integrity: sha512-SHiNtMOUGWBQJwzISiVYKu82GiV4QYGePp3odlY1tuKO7gPtphAT5R/py0fA6xtbgLL/RvtJZnU9b8s0F1q0Xg==}
     engines: {node: '>= 8.9.0'}
     dependencies:
-      '@types/json-schema': 7.0.7
+      '@types/json-schema': 7.0.9
       ajv: 6.12.6
       ajv-keywords: 3.5.2_ajv@6.12.6
     dev: true
