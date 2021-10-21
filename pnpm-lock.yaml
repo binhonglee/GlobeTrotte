@@ -49,7 +49,7 @@ specifiers:
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0
   require-extension-hooks-vue: 3.0.0
-  sass: 1.43.2
+  sass: 1.43.3
   sass-loader: 12.2.0
   sinon: 11.1.2
   tap-xunit: 2.4.1
@@ -119,14 +119,14 @@ devDependencies:
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0_require-extension-hooks@0.3.3
   require-extension-hooks-vue: 3.0.0_require-extension-hooks@0.3.3
-  sass: 1.43.2
-  sass-loader: 12.2.0_node-sass@6.0.1+sass@1.43.2
+  sass: 1.43.3
+  sass-loader: 12.2.0_node-sass@6.0.1+sass@1.43.3
   sinon: 11.1.2
   tap-xunit: 2.4.1
   ts-jest: 26.5.6_jest@26.6.3+typescript@4.4.4
   ts-node: 10.3.0_64c822b0f0ef3f125d8d3681dcee4e14
   typescript: 4.4.4
-  vite: 2.6.10_sass@1.43.2
+  vite: 2.6.10_sass@1.43.3
   vite-plugin-test: 0.0.5_6ac4b1efef9676ca06ea0b0d43067526
   vue-jest: 5.0.0-alpha.10_5e302889d88c8409c12ee7a9080eb0a5
   vue-loader: 16.8.1
@@ -3553,7 +3553,7 @@ packages:
     dependencies:
       debug: 4.3.2
       get-port: 5.1.1
-      vite: 2.6.10_sass@1.43.2
+      vite: 2.6.10_sass@1.43.3
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -4265,7 +4265,7 @@ packages:
     peerDependencies:
       vite: ^2.5.10
     dependencies:
-      vite: 2.6.10_sass@1.43.2
+      vite: 2.6.10_sass@1.43.3
     dev: true
 
   /@volar/code-gen/0.28.7:
@@ -5819,7 +5819,7 @@ packages:
       glob-parent: 3.1.0
       inherits: 2.0.4
       is-binary-path: 1.0.1
-      is-glob: 4.0.1
+      is-glob: 4.0.3
       normalize-path: 3.0.0
       path-is-absolute: 1.0.1
       readdirp: 2.2.1
@@ -8814,13 +8814,6 @@ packages:
 
   /is-glob/3.1.0:
     resolution: {integrity: sha1-e6WuJCF4BKxwcHuWkiVnSGzD6Eo=}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      is-extglob: 2.1.1
-    dev: true
-
-  /is-glob/4.0.1:
-    resolution: {integrity: sha512-5G0tKtBTFImOqDnLB2hG6Bp2qcKEFduo4tZu9MT/H6NQv/ghhy30o55ufafxJ/LdH79LLs2Kfrn85TLKyA7BUg==}
     engines: {node: '>=0.10.0'}
     dependencies:
       is-extglob: 2.1.1
@@ -12149,7 +12142,7 @@ packages:
       yargs: 13.3.2
     dev: true
 
-  /sass-loader/12.2.0_node-sass@6.0.1+sass@1.43.2:
+  /sass-loader/12.2.0_node-sass@6.0.1+sass@1.43.3:
     resolution: {integrity: sha512-qducnp5vSV+8A8MZxuH6zV0MUg4MOVISScl2wDTCAn/2WJX+9Auxh92O/rnkdR2bvi5QxZBafnzkzRrWGZvm7w==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -12168,11 +12161,11 @@ packages:
       klona: 2.0.4
       neo-async: 2.6.2
       node-sass: 6.0.1
-      sass: 1.43.2
+      sass: 1.43.3
     dev: true
 
-  /sass/1.43.2:
-    resolution: {integrity: sha512-DncYhjl3wBaPMMJR0kIUaH3sF536rVrOcqqVGmTZHQRRzj7LQlyGV7Mb8aCKFyILMr5VsPHwRYtyKpnKYlmQSQ==}
+  /sass/1.43.3:
+    resolution: {integrity: sha512-BJnLngqWpMeS65UvlYYEuCb3/fLxDxhHtOB/gWPxs6NKrslTxGt3ZxwIvOe/0Jm4tWwM/+tIpE3wj4dLEhPDeQ==}
     engines: {node: '>=8.9.0'}
     hasBin: true
     dependencies:
@@ -13487,7 +13480,7 @@ packages:
       - typescript
     dev: true
 
-  /vite/2.6.10_sass@1.43.2:
+  /vite/2.6.10_sass@1.43.3:
     resolution: {integrity: sha512-XbevwpDJMs3lKiGEj0UQScsOCpwHIjFgfzPnFVkPgnxsF9oPv1uGyckLg58XkXv6LnO46KN9yZqJzINFmAxtUg==}
     engines: {node: '>=12.2.0'}
     hasBin: true
@@ -13507,7 +13500,7 @@ packages:
       postcss: 8.3.8
       resolve: 1.20.0
       rollup: 2.57.0
-      sass: 1.43.2
+      sass: 1.43.3
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
