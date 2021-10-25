@@ -26,7 +26,7 @@ specifiers:
   babel-plugin-istanbul: 6.1.1
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16
-  cypress: 8.6.0
+  cypress: 8.7.0
   element-plus: 1.0.2-beta.71
   esbuild: 0.13.9
   esbuild-jest: 0.5.0
@@ -79,7 +79,7 @@ devDependencies:
   '@babel/plugin-transform-typescript': 7.15.8_@babel+core@7.15.8
   '@babel/preset-env': 7.15.8_@babel+core@7.15.8
   '@babel/preset-typescript': 7.15.0_@babel+core@7.15.8
-  '@cypress/code-coverage': 3.9.11_cypress@8.6.0
+  '@cypress/code-coverage': 3.9.11_cypress@8.7.0
   '@cypress/vite-dev-server': 2.2.0_vite@2.6.11
   '@types/jest': 27.0.2
   '@types/node': 14.17.31
@@ -97,7 +97,7 @@ devDependencies:
   babel-plugin-istanbul: 6.1.1
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16_@babel+core@7.15.8
-  cypress: 8.6.0
+  cypress: 8.7.0
   esbuild: 0.13.9
   esbuild-jest: 0.5.0_esbuild@0.13.9
   eslint: 8.1.0
@@ -3502,14 +3502,14 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/code-coverage/3.9.11_cypress@8.6.0:
+  /@cypress/code-coverage/3.9.11_cypress@8.7.0:
     resolution: {integrity: sha512-SA+fPILiiE0UHlMAwuv592D+wbKKdLbXz7BAN2a2RvW4fLbkVn1dXLATUFYf/6LkKrLaXJ3RENsoW9JqjBLzeQ==}
     peerDependencies:
       cypress: '*'
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.1
       chalk: 4.1.2
-      cypress: 8.6.0
+      cypress: 8.7.0
       dayjs: 1.10.7
       debug: 4.3.2
       execa: 4.1.0
@@ -3666,7 +3666,7 @@ packages:
       '@jest/types': 26.6.2
       '@types/node': 14.17.31
       ansi-escapes: 4.3.2
-      chalk: 4.1.1
+      chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.6
       jest-changed-files: 26.6.2
@@ -3686,7 +3686,7 @@ packages:
       p-each-series: 2.2.0
       rimraf: 3.0.2
       slash: 3.0.0
-      strip-ansi: 6.0.0
+      strip-ansi: 6.0.1
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -6388,8 +6388,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /cypress/8.6.0:
-    resolution: {integrity: sha512-F7qEK/6Go5FsqTueR+0wEw2vOVKNgk5847Mys8vsWkzPoEKdxs+7N9Y1dit+zhaZCLtMPyrMwjfA53ZFy+lSww==}
+  /cypress/8.7.0:
+    resolution: {integrity: sha512-b1bMC3VQydC6sXzBMFnSqcvwc9dTZMgcaOzT0vpSD+Gq1yFc+72JDWi55sfUK5eIeNLAtWOGy1NNb6UlhMvB+Q==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
@@ -9190,7 +9190,7 @@ packages:
       '@jest/core': 26.6.3_ts-node@10.4.0
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      chalk: 4.1.1
+      chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.6
       import-local: 3.0.2
