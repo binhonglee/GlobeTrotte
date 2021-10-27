@@ -74,7 +74,7 @@
     "require-extension-hooks-babel": "1.0.0",
     "require-extension-hooks-vue": "3.0.0",
     "sass": "1.43.4",
-    "sass-loader": "12.2.0",
+    "sass-loader": "12.3.0",
     "sinon": "11.1.2",
     "tap-xunit": "2.4.1",
     "ts-jest": "26.5.6",
