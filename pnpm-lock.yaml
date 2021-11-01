@@ -37,7 +37,7 @@ specifiers:
   forever: 4.0.1
   jest: 26.6.3
   jest-junit: 13.0.0
-  jsdom: 18.0.0
+  jsdom: 18.0.1
   jsdom-global: 3.0.2
   node-sass: 6.0.1
   nyc: 15.1.0
@@ -107,8 +107,8 @@ devDependencies:
   forever: 4.0.1
   jest: 26.6.3_ts-node@10.4.0
   jest-junit: 13.0.0
-  jsdom: 18.0.0
-  jsdom-global: 3.0.2_jsdom@18.0.0
+  jsdom: 18.0.1
+  jsdom-global: 3.0.2_jsdom@18.0.1
   node-sass: 6.0.1
   nyc: 15.1.0
   prettier: 2.4.1
@@ -5112,10 +5112,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /decimal.js/10.2.1:
-    resolution: {integrity: sha512-KaL7+6Fw6i5A2XSnsbhm/6B+NuEA7TZ4vqxnd5tXz9sbKtrN9Srj8ab4vKVdK8YAqZO9P1kg45Y6YLoduPf+kw==}
-    dev: true
-
   /decimal.js/10.3.1:
     resolution: {integrity: sha512-V0pfhfr8suzyPGOx3nmq4aHqabehUZn6Ch9kyFpV79TGDTWFmHqUqXdabR7QHqxzrYolF4+tVmJhUG4OURg5dQ==}
     dev: true
@@ -8219,12 +8215,12 @@ packages:
     resolution: {integrity: sha1-peZUwuWi3rXyAdls77yoDA7y9RM=}
     dev: true
 
-  /jsdom-global/3.0.2_jsdom@18.0.0:
+  /jsdom-global/3.0.2_jsdom@18.0.1:
     resolution: {integrity: sha1-a9KZwTsMRiay2iwDk81DhdYGrLk=}
     peerDependencies:
       jsdom: '>=10.0.0'
     dependencies:
-      jsdom: 18.0.0
+      jsdom: 18.0.1
     dev: true
 
   /jsdom/16.6.0:
@@ -8242,7 +8238,7 @@ packages:
       cssom: 0.4.4
       cssstyle: 2.3.0
       data-urls: 2.0.0
-      decimal.js: 10.2.1
+      decimal.js: 10.3.1
       domexception: 2.0.1
       escodegen: 2.0.0
       form-data: 3.0.1
@@ -8269,8 +8265,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /jsdom/18.0.0:
-    resolution: {integrity: sha512-HVLuBcFmwdWulStv5U+J59b1AyzXhM92KXlM8HQ3ecYtRM2OQEUCPMa4oNuDeCBmtRcC7tJvb0Xz5OeFXMOKTA==}
+  /jsdom/18.0.1:
+    resolution: {integrity: sha512-mgVzrYP4IJiJKVqXkAdBn+jg+nQgPusBxTJulz3m1Y/1RIrkk8aDoNaQE5BNbHwe72WwiwE7k3Av2THXDpvzPQ==}
     engines: {node: '>=12'}
     peerDependencies:
       canvas: ^2.5.0
