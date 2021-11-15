@@ -23,7 +23,7 @@
   "dependencies": {
     "axios": "0.24.0",
     "element-plus": "1.0.2-beta.71",
-    "vue": "3.2.21",
+    "vue": "3.2.22",
     "wings-ts-util": "0.0.8"
   },
   "devDependencies": {
