@@ -9,7 +9,7 @@ specifiers:
   '@babel/preset-typescript': 7.16.0
   '@cypress/code-coverage': 3.9.11
   '@cypress/vite-dev-server': 2.2.0
-  '@types/jest': 27.0.2
+  '@types/jest': 27.0.3
   '@types/node': 16.11.7
   '@types/puppeteer': 5.4.4
   '@types/sinon': 10.0.6
@@ -81,7 +81,7 @@ devDependencies:
   '@babel/preset-typescript': 7.16.0_@babel+core@7.16.0
   '@cypress/code-coverage': 3.9.11_cypress@9.0.0
   '@cypress/vite-dev-server': 2.2.0_vite@2.6.14
-  '@types/jest': 27.0.2
+  '@types/jest': 27.0.3
   '@types/node': 16.11.7
   '@types/puppeteer': 5.4.4
   '@types/sinon': 10.0.6
@@ -2660,8 +2660,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest/27.0.2:
-    resolution: {integrity: sha512-4dRxkS/AFX0c5XW6IPMNOydLn2tEhNhJV7DnYK+0bjoJZ+QTmfucBlihX7aoEsh/ocYtkLC73UbnBXBXIxsULA==}
+  /@types/jest/27.0.3:
+    resolution: {integrity: sha512-cmmwv9t7gBYt7hNKH5Spu7Kuu/DotGa+Ff+JGRKZ4db5eh8PnKS4LuebJ3YLUoyOyIHraTGyULn23YtEAm0VSg==}
     dependencies:
       jest-diff: 27.0.6
       pretty-format: 27.0.6
@@ -3252,11 +3252,6 @@ packages:
   /ansi-regex/4.1.0:
     resolution: {integrity: sha512-1apePfXM1UOSqw0o9IiFAovVz9M5S1Dg+4TrDwfMewQ6p/rmMueb7tWZjQ1rx4Loy1ArBggoqGpfqqdI4rondg==}
     engines: {node: '>=6'}
-    dev: true
-
-  /ansi-regex/5.0.0:
-    resolution: {integrity: sha512-bY6fj56OUQ0hU1KjFNDQuJFezqKdrAyFdIevADiqrWHwSlbmBNMHp5ak2f40Pm8JTFyM2mqxkG6ngkHO11f/lg==}
-    engines: {node: '>=8'}
     dev: true
 
   /ansi-regex/5.0.1:
@@ -9838,7 +9833,7 @@ packages:
     engines: {node: '>= 10'}
     dependencies:
       '@jest/types': 26.6.2
-      ansi-regex: 5.0.0
+      ansi-regex: 5.0.1
       ansi-styles: 4.3.0
       react-is: 17.0.2
     dev: true
@@ -9848,7 +9843,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.0.6
-      ansi-regex: 5.0.0
+      ansi-regex: 5.0.1
       ansi-styles: 5.2.0
       react-is: 17.0.2
     dev: true
@@ -11147,7 +11142,7 @@ packages:
     resolution: {integrity: sha512-AuvKTrTfQNYNIctbR1K/YGTR1756GycPsg7b9bdV9Duqur4gv6aKqHXah67Z8ImS7WEz5QVcOtlfW2rZEugt6w==}
     engines: {node: '>=8'}
     dependencies:
-      ansi-regex: 5.0.0
+      ansi-regex: 5.0.1
     dev: true
 
   /strip-ansi/6.0.1:

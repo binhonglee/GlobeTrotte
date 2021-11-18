@@ -35,7 +35,7 @@
     "@babel/preset-typescript": "7.16.0",
     "@cypress/code-coverage": "3.9.11",
     "@cypress/vite-dev-server": "2.2.0",
-    "@types/jest": "27.0.2",
+    "@types/jest": "27.0.3",
     "@types/node": "16.11.7",
     "@types/puppeteer": "5.4.4",
     "@types/sinon": "10.0.6",
