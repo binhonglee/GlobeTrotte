@@ -15,6 +15,7 @@ const (
 	Flags    = "flags"
 	User     = "user"
 	Access   = "access"
+	Config   = "config"
 	NonProd  = "nonprod"
 
 	// These are kept private since they should only be used

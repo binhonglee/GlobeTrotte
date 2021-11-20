@@ -1,21 +1,18 @@
 package email
 
 import (
-	"bufio"
-	"io"
 	"net/smtp"
-	"os"
-	"path/filepath"
 	"strings"
 
 	sendEmail "github.com/jordan-wright/email"
 
+	"github.com/binhonglee/GlobeTrotte/src/turbine/config"
 	db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 )
 
 const (
-	configFile = "config/email.config"
+	configsFile = "configs/email.configs"
 )
 
 var hasConfig bool = true
@@ -34,13 +31,13 @@ type emailItem struct {
 }
 
 func init() {
-	config := getConfig()
+	configs := config.GetConfigStringMap("email")
 
 	if !hasConfig {
 		return
 	}
 
-	if val, ok := config["address"]; ok && val != "" {
+	if val, ok := configs["address"]; ok && val != "" {
 		address = val
 	} else {
 		hasConfig = false
@@ -51,7 +48,7 @@ func init() {
 		return
 	}
 
-	if val, ok := config["username"]; ok && val != "" {
+	if val, ok := configs["username"]; ok && val != "" {
 		username = val
 	} else {
 		hasConfig = false
@@ -62,7 +59,7 @@ func init() {
 		return
 	}
 
-	if val, ok := config["password"]; ok && val != "" {
+	if val, ok := configs["password"]; ok && val != "" {
 		password = val
 	} else {
 		hasConfig = false
@@ -73,7 +70,7 @@ func init() {
 		return
 	}
 
-	if val, ok := config["host"]; ok && val != "" {
+	if val, ok := configs["host"]; ok && val != "" {
 		host = val
 	} else {
 		hasConfig = false
@@ -84,7 +81,7 @@ func init() {
 		return
 	}
 
-	if val, ok := config["port"]; ok && val != "" {
+	if val, ok := configs["port"]; ok && val != "" {
 		port = val
 	} else {
 		hasConfig = false
@@ -179,42 +176,4 @@ func UpdateEmail(userid int, newEmail string) bool {
 
 		return NewEmail(userid, newEmail)
 	}
-}
-
-func getConfig() map[string]string {
-	pwd, _ := os.Getwd()
-	file, err := os.Open(filepath.Join(pwd, configFile))
-
-	defer file.Close()
-	if err != nil {
-		hasConfig = false
-		logger.Err(
-			logger.Email, err, "Failed to open config file.",
-		)
-		return map[string]string{}
-	}
-	config := make(map[string]string)
-
-	reader := bufio.NewReader(file)
-	var line string
-
-	for {
-		line, err = reader.ReadString('\n')
-		if err != nil {
-			break
-		}
-
-		word := strings.Split(line, ":")
-		if len(word) == 2 {
-			config[word[0]] = strings.TrimSpace(word[1])
-		}
-	}
-
-	if err != io.EOF {
-		logger.Err(logger.Email, err, "")
-		hasConfig = false
-		return map[string]string{}
-	}
-
-	return config
 }

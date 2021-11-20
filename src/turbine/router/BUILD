@@ -35,7 +35,7 @@ go_test(
     "structrouter_test.go",
   ],
   flaky = 2,
-  data = ["//config:psql.config"],
+  data = ["//config:kdl_config"],
   deps = [
     ":router",
     # This is to prevent race condition on intializing tables

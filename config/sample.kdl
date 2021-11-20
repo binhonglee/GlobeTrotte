@@ -1,0 +1,15 @@
+psql {
+  host "localhost"
+  port 5432
+  user ""
+  password ""
+  dbname ""
+}
+
+email {
+  address ""
+  username ""
+  password ""
+  host ""
+  port 587
+}

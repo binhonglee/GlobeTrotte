@@ -8,6 +8,8 @@ import (
 	"os/exec"
 	"sort"
 	"strings"
+	"sync"
+	"time"
 )
 
 type Config struct {
@@ -18,6 +20,7 @@ type Config struct {
 
 type gopkg struct {
 	name     string
+	key      string
 	version  string
 	deps     map[string]bool
 	installs map[string]bool
@@ -51,6 +54,7 @@ var f *os.File
 var config Config
 
 func main() {
+	start := time.Now()
 	jsonFile, err := os.Open(os.Args[1])
 	directDeps := []string{}
 	if err != nil {
@@ -58,7 +62,19 @@ func main() {
 	}
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 	json.Unmarshal(byteValue, &config)
-	moduleName := strings.TrimSpace(string(run("go", "list", "-m")))
+	var wg sync.WaitGroup
+	wg.Add(2)
+	var moduleName string
+	var row []string
+	go func() {
+		moduleName = strings.TrimSpace(string(run("go", "list", "-m")))
+		wg.Done()
+	}()
+	go func() {
+		row = strings.Split(string(run("go", "mod", "graph")), "\n")
+		wg.Done()
+	}()
+	wg.Wait()
 
 	f, _ = os.Create(config.OutputFile)
 	defer f.Close()
@@ -75,7 +91,6 @@ func main() {
 package(default_visibility = ["PUBLIC"])
 `)
 
-	row := strings.Split(string(run("go", "mod", "graph")), "\n")
 	for i := 0; i < len(row); i++ {
 		words := strings.Split(row[i], " ")
 		if len(words) != 2 || words[0] != moduleName {
@@ -85,6 +100,7 @@ package(default_visibility = ["PUBLIC"])
 		value := strToGopkg(words[1])
 		directDeps = append(directDeps, value.name)
 	}
+	fmt.Println(time.Since(start))
 
 	sort.Strings(directDeps)
 	processDirectDeps(directDeps)
@@ -95,6 +111,7 @@ package(default_visibility = ["PUBLIC"])
 		prefix := "//" + strings.TrimSuffix(config.OutputFile, "/BUILD")
 		fmt.Println(getDeps(packages[moduleName].deps, prefix))
 	}
+	fmt.Println(time.Since(start))
 }
 
 func strToGopkg(rawString string) gopkg {
@@ -191,6 +208,7 @@ func nextUnprocessed(c *node) *node {
 func processDirectDeps(directDeps []string) {
 	pkgs := make(map[string]gopkg)
 	processed = make(map[string]string)
+	var wg sync.WaitGroup
 	for _, name := range directDeps {
 		installPkgs := []string{"."}
 		if arr, ok := config.Install[name]; ok {
@@ -203,28 +221,38 @@ func processDirectDeps(directDeps []string) {
 			} else {
 				i = name + "/" + i
 			}
-			newPkg := getModuleInfo(i, nil)
+			wg.Add(1)
+			go func(i string) {
+				newPkg := getModuleInfo(i, nil)
 
-			if pkg, ok := pkgs[newPkg.name]; ok {
-				newPkg = mergeGopkg(pkg, newPkg)
-			}
-			// newPkg.installs = map[string]bool{"...": true}
-			pkgs[newPkg.name] = newPkg
-			processed[i] = newPkg.name
+				if pkg, ok := pkgs[newPkg.name]; ok {
+					newPkg = mergeGopkg(pkg, newPkg)
+				}
+				pkgs[newPkg.name] = newPkg
+				processed[i] = newPkg.name
+				wg.Done()
+			}(i)
 		}
 	}
 
+	wg.Wait()
 	c := toProcess.head
+	for {
+		c = nextUnprocessed(c)
+		for c != nil {
+			newPkg := getModuleInfo(c.key, c.val)
+			if pkg, ok := pkgs[newPkg.name]; ok {
+				newPkg = mergeGopkg(pkg, newPkg)
+			}
+			pkgs[newPkg.name] = newPkg
+			processed[c.key] = newPkg.name
 
-	for nextUnprocessed(c) != nil {
-		newPkg := getModuleInfo(c.key, c.val)
-
-		if pkg, ok := pkgs[newPkg.name]; ok {
-			newPkg = mergeGopkg(pkg, newPkg)
+			c = nextUnprocessed(c)
 		}
-		pkgs[newPkg.name] = newPkg
-		processed[c.key] = newPkg.name
-		c = c.next
+
+		if nextUnprocessed(c) == nil {
+			break
+		}
 	}
 
 	keys := []string{}
@@ -256,6 +284,7 @@ func getModuleInfo(name string, gmod *golistobj) gopkg {
 
 	var temp []string
 	sort.Strings(mod.Deps)
+	var wg sync.WaitGroup
 	for _, dep := range mod.Deps {
 		if strings.HasPrefix(dep, mod.Module.Path) {
 			toProcess.add(dep, nil)
@@ -267,20 +296,26 @@ func getModuleInfo(name string, gmod *golistobj) gopkg {
 			if val, ok := processed[dep]; ok {
 				temp = append(temp, val)
 			} else {
-				var t golistobj
-				json.Unmarshal(run("go", "list", "--json", dep), &t)
-				if t.Module.Path == mod.Module.Path {
-					continue
-				}
-				temp = append(temp, t.Module.Path)
-				toProcess.add(dep, &t)
+				wg.Add(1)
+				go func(dep string) {
+					var t golistobj
+					json.Unmarshal(run("go", "list", "--json", dep), &t)
+					if t.Module.Path == mod.Module.Path {
+						return
+					}
+					temp = append(temp, t.Module.Path)
+					toProcess.add(dep, &t)
+					wg.Done()
+				}(dep)
 			}
 		}
 	}
+	wg.Wait()
 	mod.Deps = temp
 
 	var toRet gopkg
 	toRet.name = mod.Module.Path
+	toRet.key = name
 	toRet.deps = make(map[string]bool)
 	for _, dep := range mod.Deps {
 		toRet.deps[dep] = true

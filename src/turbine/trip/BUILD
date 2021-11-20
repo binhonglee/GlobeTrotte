@@ -18,7 +18,7 @@ go_test(
   srcs = [
     "trip_test.go",
   ],
-  data = ["//config:psql.config"],
+  data = ["//config:kdl_config"],
   deps = [
     ":trip",
     # This is to prevent race condition on intializing tables

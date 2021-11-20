@@ -1,6 +1,7 @@
 .cache
 .nyc_output/
 coverage/
+config.kdl
 jest_coverage/
 /cypress/
 email.config
@@ -11,5 +12,4 @@ logs/
 plz-out/
 .plz_clean*
 pnpm-debug.log
-psql.config
 /*.log

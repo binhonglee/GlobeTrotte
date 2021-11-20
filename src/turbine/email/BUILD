@@ -6,6 +6,7 @@ go_library(
   ],
   deps = [
     "//third_party/go:jordan-wright_email",
+    "//src/turbine/config:config",
     "//src/turbine/database:database",
     "//src/turbine/wings:wings",
     "//src/turbine/logger:logger",

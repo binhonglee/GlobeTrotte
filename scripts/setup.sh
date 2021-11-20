@@ -34,8 +34,7 @@ printEnd() {
 }
 
 config() {
-  PSQL_CONFIG_FILE="config/psql.config"
-  EMAIL_CONFIG_FILE="config/email.config"
+  CONFIG_FILE="config/config.kdl"
 
   if [ ! -d "config" ]; then
     echo "'config' directory not found."
@@ -56,8 +55,8 @@ config() {
     exit 1
   fi
 
-  if [ -e "$PSQL_CONFIG_FILE" ]; then
-    echo "Seems like \`$PSQL_CONFIG_FILE\` file already exist. Skipping..."
+  if [ -e "$CONFIG_FILE" ]; then
+    echo "Seems like \`$CONFIG_FILE\` file already exist. Skipping..."
   else
     echo "Setting up databases..."
     case $OS in
@@ -74,21 +73,15 @@ config() {
     esac
 
     echo "Creating psql config file..."
-    touch "$PSQL_CONFIG_FILE"
+    touch "$CONFIG_FILE"
     {
-      echo "host:localhost"
-      echo "port:5432"
-      echo "user:$USER"
-      echo "password:test"
-      echo "dbname:globetrotte"
-    } >> "$PSQL_CONFIG_FILE"
-  fi
-
-  if [ -e "$EMAIL_CONFIG_FILE" ]; then
-    echo "Seems like \`$EMAIL_CONFIG_FILE\` file already exist. Skipping..."
-  else
-    echo "Creating email config file..."
-    touch "$EMAIL_CONFIG_FILE"
+      echo "psql {"
+      echo "  host \"localhost\""
+      echo "  port 5432"
+      echo "  user \"$USER\""
+      echo "  password \"test\""
+      echo "  dbname \"globetrotte\""
+    } >> "$CONFIG_FILE"
   fi
 }
 

@@ -19,7 +19,7 @@ go_test(
   srcs = [
     "user_test.go",
   ],
-  data = ["//config:psql.config"],
+  data = ["//config:kdl_config"],
   deps = [
     ":user",
     # This is to prevent race condition on intializing tables

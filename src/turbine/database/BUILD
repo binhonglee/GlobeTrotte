@@ -13,6 +13,7 @@ go_library(
     "//third_party/go:jackc_pgtype",
     "//third_party/go:jackc_pgx_v4",
     "//third_party/go:google_uuid",
+    "//src/turbine/config:config",
     "//src/turbine/flags:flags",
     "//src/turbine/logger:logger",
     "//src/turbine/structs:structs",
@@ -28,7 +29,7 @@ go_test(
     "dbinteraction_test.go",
   ],
   flaky = 2,
-  data = ["//config:psql.config"],
+  data = ["//config:kdl_config"],
   deps = [":database"],
   visibility = ["//src/turbine/..."],
 )

@@ -1,30 +1,27 @@
 package database
 
 import (
-	"bufio"
 	"context"
 	"database/sql"
 	"fmt"
-	"io"
-	"os"
-	"path/filepath"
 	"strconv"
 	"strings"
 
-	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
-	// This is needed for PostgreSQL to work properly
+	"github.com/binhonglee/GlobeTrotte/src/turbine/config"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
+
 	"github.com/jackc/pgx/v4/pgxpool"
+
+	// This is needed for PostgreSQL to work properly
 	_ "github.com/lib/pq"
 )
-
-const configFile = "config/psql.config"
 
 var db *sql.DB
 var pgxConnString string
 var tableNames = [6]string{"users", "trips", "cities", "days", "places", "emails"}
 
 func init() {
-	config := getConfig()
+	config := config.GetConfigStringMap("psql")
 
 	var port int
 	if parsePort, err := strconv.Atoi(
@@ -225,34 +222,4 @@ func createEmailsTable() {
 	_, err := db.Exec(createTable)
 
 	logger.PanicErr(logger.Database, err, "Failed to create `emails` table.")
-}
-
-func getConfig() map[string]string {
-	pwd, _ := os.Getwd()
-	file, err := os.Open(filepath.Join(pwd, configFile))
-
-	defer file.Close()
-	logger.PanicErr(logger.Database, err, "Failed to open config file.")
-	config := make(map[string]string)
-
-	reader := bufio.NewReader(file)
-	var line string
-
-	for {
-		line, err = reader.ReadString('\n')
-		if err != nil {
-			break
-		}
-
-		word := strings.Split(strings.TrimSpace(line), ":")
-		if len(word) == 2 {
-			config[word[0]] = word[1]
-		}
-	}
-
-	if err != io.EOF {
-		panic(fmt.Sprintf(" > Failed!: %v\n", err))
-	}
-
-	return config
 }

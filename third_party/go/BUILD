@@ -9,6 +9,15 @@
 package(default_visibility = ["PUBLIC"])
 
 go_module(
+  name = "binhonglee_kdlgo",
+  module = "github.com/binhonglee/kdlgo",
+  version = "v0.0.0-20210917071614-b8ef000e6242",
+  install = [
+    ".",
+  ],
+)
+
+go_module(
   name = "google_uuid",
   module = "github.com/google/uuid",
   version = "v1.3.0",
@@ -172,7 +181,7 @@ go_module(
 go_module(
   name = "lib_pq",
   module = "github.com/lib/pq",
-  version = "v1.10.2",
+  version = "v1.10.4",
   install = [
     ".",
     "oid",
@@ -183,7 +192,7 @@ go_module(
 go_module(
   name = "x_crypto",
   module = "golang.org/x/crypto",
-  version = "v0.0.0-20210817164053-32db794688a5",
+  version = "v0.0.0-20211117183948-ae814b36b871",
   install = [
     "bcrypt",
     "blowfish",
@@ -215,7 +224,7 @@ go_module(
 go_module(
   name = "x_time",
   module = "golang.org/x/time",
-  version = "v0.0.0-20210723032227-1f47c861a9ac",
+  version = "v0.0.0-20211116232009-f0f3c7e86c11",
   install = [
     "rate",
   ],
