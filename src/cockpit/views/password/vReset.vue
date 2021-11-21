@@ -19,6 +19,8 @@
       type="default"
       v-on:click="cancel"
     ) Cancel
+    p.backToLogin
+      a(:href="loginLink") Back to Login
   form.resetPasswordInput(v-else)
     CEditItem(
       className="resetEmail"
@@ -62,16 +64,17 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import CEditItem from "@/components/CEditItem.vue";
-import Routes from "@/routes";
 import E from "@/shared/E";
 import Routing from "@/shared/Routing";
 import ResetPassword from "@/wings/ResetPassword";
 import HTTPReq from "@/shared/HTTPReq";
+import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
 
 interface Data {
   email: string;
   step: number;
+  loginLink: string;
   loading: boolean;
 }
 
@@ -82,6 +85,7 @@ export default defineComponent({
   data: (): Data => ({
     email: "",
     step: 0,
+    loginLink: Routes.Login,
     loading: false,
   }),
   methods: {
@@ -180,5 +184,9 @@ export default defineComponent({
 
 .resetPasswordCancel {
   @include right_col($p-height);
+}
+
+.backToLogin {
+  text-align: right;
 }
 </style>

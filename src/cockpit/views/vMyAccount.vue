@@ -1,7 +1,11 @@
 <template lang="pug">
 .my_account
   h1.title My Account
-  el-link.unconfirmedEmailLink(:href="unconfirmedLink" :underline="false")
+  el-link.unconfirmedEmailLink(
+    :href="unconfirmedLink"
+    :underline="false"
+    v-loading.fullscreen.lock="loading"
+  )
     el-alert.narrow_content.accountUnconfirmedAlertBar(
       v-if="!confirmed"
       title="Unconfirmed"
@@ -38,27 +42,30 @@
         el-button.myAccountDelete(
           type="danger" v-on:click="deleteAccount"
         ) Delete Account
-        el-button(style="hidden: true" v-if="false")
 </template>
 
 <script lang="ts">
+import { useLoadingBar } from "naive-ui";
 import { defineComponent } from "vue";
 import CEditItem from "@/components/CEditItem.vue";
 import CViewUser from "@/components/CViewUser.vue";
 import General from "@/shared/General";
+import E from "@/shared/E";
 import HTTPReq from "@/shared/HTTPReq";
+import Routing from "@/shared/Routing";
 import UserBasic from "@/wings/UserBasic";
 import UserObj from "@/wings/UserObj";
 import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
-import Routing from "@/shared/Routing";
-import E from "@/shared/E";
+import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
 
 interface Data {
   user: UserObj;
   edit: boolean;
   confirmed: boolean;
+  loading: boolean;
   unconfirmedLink: string;
+  loadingBar: LoadingBarApiInjection;
 }
 
 export default defineComponent({
@@ -71,11 +78,14 @@ export default defineComponent({
       user: new UserObj(),
       edit: false,
       confirmed: true,
+      loading: false,
       unconfirmedLink: Routes.unconfirmed_Email,
+      loadingBar: useLoadingBar(),
     };
   },
   methods: {
     async deleteAccount(): Promise<void> {
+      this.$data.loadingBar.start();
       const deletion = await HTTPReq.genDELETE(
         "v2/user/" + this.$data.user.ID,
         WingsStructUtil.stringify(this.$data.user.details),
@@ -90,8 +100,10 @@ export default defineComponent({
             "info",
           ),
         );
+        this.$data.loadingBar.finish();
         await Routing.genRedirectTo(Routes.Landing);
       } else {
+        this.$data.loadingBar.error();
         this.$message({
           type: "error",
           message: "Account deletion attempt failed.",
@@ -99,6 +111,7 @@ export default defineComponent({
       }
     },
     async save(): Promise<void> {
+      this.$data.loadingBar.start();
       const user = new UserBasic({
         id: this.$data.user.ID,
         name: E.getVal(this, "name"),
@@ -113,11 +126,13 @@ export default defineComponent({
 
       if (success) {
         this.toggleEdit();
+        this.$data.loadingBar.finish();
         this.$message({
           message: "Profile updated successfully!",
           type: "success",
         });
       } else {
+        this.$data.loadingBar.error();
         this.$alert("Save was unsuccessful. Please try again later.", "Fail", {
           confirmButtonText: "OK",
         });
@@ -133,6 +148,7 @@ export default defineComponent({
     },
   },
   async beforeMount(): Promise<void> {
+    this.$data.loading = true;
     this.$data.user = await General.genCurrentUser();
     if (this.$data.user.ID === -1) {
       await Routing.genRedirectTo(Routes.Landing);
@@ -143,6 +159,7 @@ export default defineComponent({
     if (this.$data.edit) {
       E.get(E.get(this, "name"), "input").focus();
     }
+    this.$data.loading = false;
   },
 });
 </script>

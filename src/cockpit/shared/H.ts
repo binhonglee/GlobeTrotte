@@ -18,6 +18,18 @@ export default abstract class H {
   protected static rateLimited: string;
   protected static router: Router;
 
+  protected static beforeSendRequest(): void {
+    return;
+  }
+
+  protected static sendRequestSuccess(): void {
+    return;
+  }
+
+  protected static sendRequestFailure(): void {
+    return;
+  }
+
   public static async genGET(uri: string): Promise<unknown> {
     return this.genSendRequest(this.getRouter(), uri, AxMethod.GET);
   }
@@ -51,6 +63,7 @@ export default abstract class H {
     type: Method,
     data = "",
   ): Promise<unknown> {
+    this.beforeSendRequest();
     const fullURI: AxiosRequestConfig = {
       method: type,
       url: this.getURI(uri),
@@ -66,6 +79,7 @@ export default abstract class H {
         !currentPath.startsWith(this.rateLimited) &&
         toRet === this.rateLimited
       ) {
+        this.sendRequestSuccess();
         // eslint-disable-next-line deprecation/deprecation
         await Redirect.genRedirect(
           router,
@@ -75,8 +89,10 @@ export default abstract class H {
         );
         return "";
       }
+      this.sendRequestSuccess();
       return toRet;
     } catch (e) {
+      this.sendRequestFailure();
       return "";
     }
   }
