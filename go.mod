@@ -3,7 +3,7 @@ module github.com/binhonglee/GlobeTrotte
 go 1.15
 
 require (
-	github.com/binhonglee/kdlgo v0.0.0-20210917071614-b8ef000e6242
+	github.com/binhonglee/kdlgo v0.0.0-20211115042352-099938a8d3fc
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
 	github.com/gorilla/sessions v1.2.1
