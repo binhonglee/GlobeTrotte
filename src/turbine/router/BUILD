@@ -15,6 +15,7 @@ go_library(
     "//third_party/go:x_time",
     "//third_party/go:gorilla_sessions",
     "//src/turbine/access:access",
+    "//src/turbine/config:config",
     "//src/turbine/database:database",
     "//src/turbine/email:email",
     "//src/turbine/flags:flags",

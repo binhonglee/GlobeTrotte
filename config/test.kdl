@@ -5,3 +5,7 @@ psql {
   password "test"
   dbname "test"
 }
+
+access {
+  key "test_magic_string"
+}

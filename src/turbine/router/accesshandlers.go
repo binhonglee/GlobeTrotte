@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/binhonglee/GlobeTrotte/src/turbine/access"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/config"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/flags"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/nonprod"
@@ -14,10 +15,12 @@ import (
 	"github.com/gorilla/sessions"
 )
 
-var (
-	key   = []byte("somethingsomething-magic")
-	store = sessions.NewCookieStore(key)
-)
+var store *sessions.CookieStore
+
+func init() {
+	key := config.GetConfigStringMap("access")["key"]
+	store = sessions.NewCookieStore([]byte(key))
+}
 
 func login(res http.ResponseWriter, req *http.Request) {
 	var item *access.LoginCredential

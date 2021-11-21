@@ -14,7 +14,9 @@ import (
 	"github.com/binhonglee/GlobeTrotte/src/turbine/user"
 )
 
-var c = zcache.New(35*time.Minute, 60*time.Minute)
+var (
+	resetCodeCache = zcache.New(35*time.Minute, 60*time.Minute)
+)
 
 func randSeq(n int) string {
 	var numbers = []rune("0123456789")
@@ -40,7 +42,7 @@ func SendPasswordResetEmail(emailAddress string) bool {
 		`If you did not request for password reset, please ignore this email.`
 
 	if email.SendEmail("Reset GlobeTrotte Password", html, u.Details.Email) {
-		c.Set(strconv.Itoa(u.ID), resetCode, zcache.DefaultExpiration)
+		resetCodeCache.Set(strconv.Itoa(u.ID), resetCode, zcache.DefaultExpiration)
 		return true
 	}
 
@@ -52,7 +54,7 @@ func verifyCode(u user.UserObj, resetCode string) bool {
 		return false
 	}
 
-	code, ok := c.Get(strconv.Itoa(u.ID))
+	code, ok := resetCodeCache.Get(strconv.Itoa(u.ID))
 	return ok && code == resetCode
 }
 
@@ -75,7 +77,7 @@ func TriggerResetPassword(rp ResetPassword) bool {
 	if !database.UpdatePassword(u.ID, rp.Email, string(hash)) {
 		return false
 	}
-	c.Delete(strconv.Itoa(u.ID))
+	resetCodeCache.Delete(strconv.Itoa(u.ID))
 	return true
 }
 

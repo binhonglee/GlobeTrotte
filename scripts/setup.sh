@@ -81,6 +81,12 @@ config() {
       echo "  user \"$USER\""
       echo "  password \"test\""
       echo "  dbname \"globetrotte\""
+      echo "}"
+      echo ""
+      echo "access {"
+      echo "  key \"$USER-devenvironment\""
+      echo "}"
+      echo ""
     } >> "$CONFIG_FILE"
   fi
 }
