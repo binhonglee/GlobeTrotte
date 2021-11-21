@@ -12,6 +12,7 @@ export default class Routes {
   public static password_Reset = "/password/reset";
   public static trip_View = "/trip/view";
   public static trip_New = "/trip/new";
+  public static trip_Search = "/trip/search";
   public static unconfirmed_Email = "/unconfirmed/email";
   public static User = "/user";
   public static Login = "/login";

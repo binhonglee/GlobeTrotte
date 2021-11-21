@@ -113,6 +113,12 @@ var actualRoutes = routes{
 		deleteTripObj,
 	},
 	route{
+		"SearchTripObjs",
+		"POST",
+		"/trip/search",
+		searchTripObjs,
+	},
+	route{
 		"WhoAmIV2",
 		"GET",
 		"/v2/whoami",
