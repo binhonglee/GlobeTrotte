@@ -137,18 +137,39 @@ func DeleteTripDB(trip wings.Trip) bool {
 	)
 }
 
-func GetTripsWithCityDB(city wings.City) []wings.Trip {
+func SearchTripsDB(cities []wings.City, days int, query string) []wings.Trip {
 	toReturn := make([]wings.Trip, 0)
-	sqlStatement := `
-		SELECT id
-		FROM trips
-		WHERE
-			$1 = ANY(cities)
-			AND CARDINALITY(days) > 0
-		ORDER BY time_created DESC;
-	`
+	args := make([]interface{}, 0)
+	sqlStatement := "SELECT id FROM trips WHERE CARDINALITY(days) > 0"
+	count := 1
+	if days > 0 {
+		sqlStatement += " AND CARDINALITY(days) = $" + strconv.Itoa(count)
+		args = append(args, days)
+		count++
+	}
+
+	if len(cities) > 0 {
+		sqlStatement += " AND ("
+		for i, city := range cities {
+			if i > 0 {
+				sqlStatement += " OR "
+			}
+			sqlStatement += "$" + strconv.Itoa(count) + " = ANY(cities)"
+			args = append(args, int(city))
+			count++
+		}
+		sqlStatement += ")"
+	}
+
+	if len(query) > 0 {
+		sqlStatement += " AND $" + strconv.Itoa(count) + " ~ name"
+		args = append(args, query)
+		count++
+	}
+	sqlStatement += ";"
+
 	c := getConn()
-	rows, err := c.Query(context.Background(), sqlStatement, int(city))
+	rows, err := c.Query(context.Background(), sqlStatement, args...)
 	defer c.Close()
 	logger.Err(logger.Database, err, "")
 

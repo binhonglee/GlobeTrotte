@@ -69,5 +69,5 @@ func getRecentTripObjs(res http.ResponseWriter, req *http.Request) {
 func searchTripObjs(res http.ResponseWriter, req *http.Request) {
 	var item trip.TripsSearchQuery
 	unpackJSON(&res, req, &item)
-	respond(res, trip.SearchTripsByCity(item.Cities[0], getCaller(req)))
+	respond(res, trip.SearchTrips(item, getCaller(req)))
 }

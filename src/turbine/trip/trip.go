@@ -72,18 +72,20 @@ func DeleteTripObj(toDelete TripObj, self wings.UserBasic) bool {
 		database.DeleteTripFromUserDB(toDelete.Details, self)
 }
 
-func SearchTripsByCity(city wings.City, self wings.UserBasic) TripObjs {
-	tripObjs := parseTripsToTripObjs(database.GetTripsWithCityDB(city))
+func SearchTrips(query TripsSearchQuery, self wings.UserBasic) TripObjs {
+	tripObjs := parseTripsToTripObjs(database.SearchTripsDB(query.Cities, query.Length, query.Query))
 	var ret TripObjs
 
 	for _, tripObj := range tripObjs {
-		if tripObj.Details.Private && tripObj.User.ID != self.ID {
-			for _, access := range tripObj.Details.SharedWith {
-				if access.UserID == self.ID && access.Access != wings.None {
-					ret = append(ret, tripObj)
-				}
-			}
-		} else {
+		if !tripObj.Details.Private ||
+			tripObj.User.ID == self.ID ||
+			checkTripPrivacy(
+				tripObj.Details,
+				map[wings.AccessLevel]bool{
+					wings.Owner: true, wings.Edit: true, wings.View: true,
+				},
+				self.ID,
+			) {
 			ret = append(ret, tripObj)
 		}
 	}

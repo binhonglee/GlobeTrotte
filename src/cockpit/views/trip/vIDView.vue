@@ -1,14 +1,6 @@
 <template lang="pug">
 .get_view_trip.narrow_content
   h1.title Trip
-  |     Trip ID:
-  el-input.tripSearchInput(
-    ref="tripIDSearch"
-    type="text"
-    v-model="inputID"
-    v-on:keydown.enter.native="gotoTrip"
-  )
-  el-button.tripSearchInput(v-on:click="gotoTrip") Find
   CTripInfo(
     v-if="trip.ID !== -1"
     :trip="trip"
@@ -62,20 +54,9 @@ export default defineComponent({
       this.$notify(General.notifConfig("Error", "Trip not found.", "error"));
       await Routing.genRedirectTo(Routes.trip_View);
     },
-    gotoTrip(): void {
-      const id: number = parseInt(this.$data.inputID, 10);
-      if (String(id) !== this.$data.inputID) {
-        alert("Invalid number");
-      } else if (this.$route.params.id !== this.$data.inputID) {
-        Routing.genRedirectTo(Routes.trip_View + "/" + id);
-      }
-    },
   },
   async beforeMount(): Promise<void> {
     await this.init();
-  },
-  mounted(): void {
-    E.get(this, "tripIDSearch").focus();
   },
   watch: {
     "$route.path": async function (): Promise<void> {

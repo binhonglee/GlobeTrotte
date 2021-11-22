@@ -9,7 +9,6 @@
     show-icon
   )
   h2.tripName {{ trip.details.name }}
-  span.tripID {{ trip.ID }}
   p.tripDescription(
     v-if="trip.details.description !== ''"
   ) {{ trip.details.description }}
@@ -97,10 +96,6 @@ export default defineComponent({
 
 .viewDayCardContent {
   padding: 10px 10px 0 10px;
-}
-
-.tripID {
-  @include right_col($p-height);
 }
 
 .enableTripEdit {

@@ -1,10 +1,16 @@
 <template lang="pug">
-.search_trip.narrow_content
+.search_trip
   h1.title Search Trip
   form.tripSearchForm
+    el-input.tripSearchQueryInput(
+      placeholder="Trip to Alaska"
+      v-model="query"
+      v-on:keyup.enter.native="search"
+    )
     el-select.tripSearchCityInput(
-      v-model="selectedCity"
+      v-model="selectedCities"
       filterable
+      multiple
       no-match-text="City not found"
       placeholder="City"
     )
@@ -14,10 +20,18 @@
         :value="item.key"
       )
     el-button(v-on:click="search") Find
-  .TripSearchResultCarousel
+  .tripSearchResultCarousel(v-if="trips.length > 0")
     CTripInCarousel(
       v-for="trip in trips"
       :trip="trip"
+    )
+  .tripSearchNoResultFound(v-else-if="!searching")
+    el-alert.narrow_content.accountUnconfirmedAlertBar(
+      title="No results"
+      description="We could not find any trips that matches your search parameters. Please try again."
+      type="error"
+      :closable="false"
+      show-icon
     )
 </template>
 
@@ -30,11 +44,14 @@ import City from "@/wings/City";
 import TripObj from "@/wings/TripObj";
 import TripsSearchQuery from "@/wings/TripSearchQuery";
 import { WingsStructUtil } from "wings-ts-util";
+import Routing from "@/shared/Routing";
 
 interface Data {
-  selectedCity: City | null;
+  length: number;
   possibleCities: Array<CityObj>;
+  query: string;
   searching: boolean;
+  selectedCities: City[];
   trips: TripObj[];
 }
 
@@ -43,29 +60,47 @@ export default defineComponent({
     CTripInCarousel,
   },
   data: (): Data => ({
-    selectedCity: null,
+    length: 0,
     possibleCities: [],
+    query: "",
     searching: false,
+    selectedCities: [],
     trips: [],
   }),
-  beforeMount(): void {
+  async beforeMount(): Promise<void> {
+    this.$data.searching = true;
     this.$data.possibleCities = CityUtil.sortedCityList();
+    const paramMap = Routing.getParamMap();
+    const length = +(paramMap.get("length") ?? "");
+    this.$data.length = isNaN(length) ? 0 : length;
+    this.$data.query = paramMap.get("query") ?? "";
+    this.$data.selectedCities = CityUtil.stringToCities(
+      paramMap.get("cities") ?? "",
+    );
+    await this.search();
+    this.$data.searching = false;
   },
   methods: {
     async search(): Promise<void> {
-      if (this.$data.selectedCity === null) {
+      if (this.$data.selectedCities.length < 1 && this.$data.query.length < 1) {
         return;
       }
 
       const searchQuery = new TripsSearchQuery({
-        cities: [this.$data.selectedCity],
+        cities: this.$data.selectedCities,
+        length: this.$data.length,
+        query: this.$data.query,
       });
       this.$data.searching = true;
       const res = await HTTPReq.genPOST(
         "trip/search",
         WingsStructUtil.stringify(searchQuery),
       );
+
       this.$data.trips = [];
+      if (res === null) {
+        return;
+      }
 
       for (const trip of res as Array<unknown>) {
         const newTrip = new TripObj(trip);
@@ -73,8 +108,6 @@ export default defineComponent({
           this.$data.trips.push(new TripObj(trip));
         }
       }
-
-      console.log(res);
       this.$data.searching = false;
     },
   },
@@ -84,10 +117,20 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "../../shared/lib";
 
-.tripSearchForm {
-  @include trip_display();
+.tripSearchQueryInput {
+  max-width: 300px;
 }
+
+.tripSearchForm {
+  padding-bottom: 30px;
+  text-align: center;
+}
+
 .tripSearchCityInput {
   padding: 0 10px;
+}
+
+.tripSearchNoResultFound {
+  text-align: left;
 }
 </style>
