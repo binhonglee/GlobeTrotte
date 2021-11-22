@@ -78,6 +78,16 @@ export default createRouter({
       component: () => import("./views/trip/vNew.vue"),
     },
     {
+      path: "/trip/search",
+      name: "trip/Search",
+      component: () => import("./views/trip/vSearch.vue"),
+    },
+    {
+      path: "/trip/search/:params",
+      name: "trip/SearchParams",
+      component: () => import("./views/trip/vSearch.vue"),
+    },
+    {
       path: "/unconfirmed/email",
       name: "unconfirmed/Email",
       component: () => import("./views/unconfirmed/vEmail.vue"),

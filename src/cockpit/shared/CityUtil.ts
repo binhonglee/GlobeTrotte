@@ -53,4 +53,23 @@ export class CityUtil {
     };
     return cityName[city] ?? unrecognized;
   }
+
+  public static citiesToString(cities: City[]): string {
+    let toRet = "";
+    for (const city of cities) {
+      toRet += city + ",";
+    }
+    return toRet;
+  }
+
+  public static stringToCities(str: string): City[] {
+    const toRet: City[] = [];
+    const cities = str.split(",");
+    for (const city of cities) {
+      if (city.length > 0 && city !== "0") {
+        toRet.push(+city);
+      }
+    }
+    return toRet;
+  }
 }

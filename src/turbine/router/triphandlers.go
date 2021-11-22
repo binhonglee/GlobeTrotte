@@ -65,3 +65,9 @@ func deleteTripObj(res http.ResponseWriter, req *http.Request) {
 func getRecentTripObjs(res http.ResponseWriter, req *http.Request) {
 	respond(res, trip.GetRecentTrips())
 }
+
+func searchTripObjs(res http.ResponseWriter, req *http.Request) {
+	var item trip.TripsSearchQuery
+	unpackJSON(&res, req, &item)
+	respond(res, trip.SearchTrips(item, getCaller(req)))
+}

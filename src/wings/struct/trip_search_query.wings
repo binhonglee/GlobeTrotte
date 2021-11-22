@@ -1,0 +1,15 @@
+go-filepath src/turbine/trip
+ts-filepath src/cockpit/wings
+
+ts-import { IWingsStruct }:wings-ts-util
+import src/wings/enum/city.wings
+
+ts-implement IWingsStruct
+
+# Search query for trips
+
+struct TripsSearchQuery {
+  cities []City
+  length int
+  query  str
+}

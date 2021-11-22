@@ -9,7 +9,6 @@ enum City {
   UNKNOWN,
   SanFranciscoCAUS,
   SanJoseCAUS,
-  SantaCruzCAUS,
   NewYorkNYUS,
   AnchorageAKUS,
   ParisFR,
@@ -22,6 +21,7 @@ enum City {
   PageAZUS,
   LosAngelesCAUS,
   LasVegasNVUS,
+  SantaCruzCAUS,
 }
 
 export default City;

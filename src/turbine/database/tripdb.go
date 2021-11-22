@@ -91,9 +91,7 @@ func GetTripBasicWithID(id int) wings.TripBasic {
 // TODO: Update to trip permission instead when we begin to allow trip sharing
 func GetTripOwnerWithID(id int) int {
 	var user int
-	sqlStatement := `
-		SELECT userid FROM trips WHERE id=$1;
-	`
+	sqlStatement := `SELECT userid FROM trips WHERE id=$1;`
 	c := getConn()
 	row := c.QueryRow(context.Background(), sqlStatement, id)
 	err := row.Scan(&user)
@@ -139,6 +137,53 @@ func DeleteTripDB(trip wings.Trip) bool {
 	)
 }
 
+func SearchTripsDB(cities []wings.City, days int, query string) []wings.Trip {
+	toReturn := make([]wings.Trip, 0)
+	args := make([]interface{}, 0)
+	sqlStatement := "SELECT id FROM trips WHERE CARDINALITY(days) > 0"
+	count := 1
+	if days > 0 {
+		sqlStatement += " AND CARDINALITY(days) = $" + strconv.Itoa(count)
+		args = append(args, days)
+		count++
+	}
+
+	if len(cities) > 0 {
+		sqlStatement += " AND ("
+		for i, city := range cities {
+			if i > 0 {
+				sqlStatement += " OR "
+			}
+			sqlStatement += "$" + strconv.Itoa(count) + " = ANY(cities)"
+			args = append(args, int(city))
+			count++
+		}
+		sqlStatement += ")"
+	}
+
+	if len(query) > 0 {
+		sqlStatement += " AND $" + strconv.Itoa(count) + " ~ name"
+		args = append(args, query)
+		count++
+	}
+	sqlStatement += ";"
+
+	c := getConn()
+	rows, err := c.Query(context.Background(), sqlStatement, args...)
+	defer c.Close()
+	logger.Err(logger.Database, err, "")
+
+	defer rows.Close()
+	for rows.Next() {
+		var id int
+		err = rows.Scan(&id)
+		logger.Err(logger.Database, err, "")
+		toReturn = append(toReturn, fetchTrip(int(id)))
+	}
+
+	return toReturn
+}
+
 func GetRecentTrips() []wings.Trip {
 	toReturn := make([]wings.Trip, 0)
 	sqlStatement := `
@@ -148,7 +193,7 @@ func GetRecentTrips() []wings.Trip {
 			private = FALSE
 			AND CARDINALITY(days) > 0
 		ORDER BY time_created DESC
-		LIMIT 10
+		LIMIT 10;
 	`
 	c := getConn()
 	rows, err := c.Query(context.Background(), sqlStatement)
@@ -174,7 +219,7 @@ func addTrip(newTrip wings.Trip) int {
 	sqlStatement := `
 		INSERT INTO trips (userid, name, private, cities, description, days, time_created, last_updated)
 		VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-		RETURNING id`
+		RETURNING id;`
 	id := 0
 	c := getConn()
 	err := c.QueryRow(
@@ -210,7 +255,7 @@ func addDay(newDay wings.Day) int {
 	sqlStatement := `
 		INSERT INTO days (trip_id, day_of, places)
 		VALUES($1, $2, $3)
-		RETURNING id`
+		RETURNING id;`
 	id := 0
 	c := getConn()
 	err := c.QueryRow(
@@ -237,7 +282,7 @@ func addPlace(newPlace wings.Place) int {
 	sqlStatement := `
 		INSERT INTO places (label, url, description)
 		VALUES($1, $2, $3)
-		RETURNING id`
+		RETURNING id;`
 	id := 0
 	c := getConn()
 	err := c.QueryRow(

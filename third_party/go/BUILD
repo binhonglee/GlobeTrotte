@@ -11,7 +11,7 @@ package(default_visibility = ["PUBLIC"])
 go_module(
   name = "binhonglee_kdlgo",
   module = "github.com/binhonglee/kdlgo",
-  version = "v0.0.0-20210917071614-b8ef000e6242",
+  version = "v0.0.0-20211115042352-099938a8d3fc",
   install = [
     ".",
   ],

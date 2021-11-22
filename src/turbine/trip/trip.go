@@ -29,7 +29,6 @@ func NewTrip(newTrip wings.TripBasic, self wings.UserBasic) TripObj {
 func GetTripObj(id int, self wings.UserBasic) TripObj {
 	trip := database.GetTripDBWithID(id)
 	tripObj := parseTripToTripObj(trip)
-	tripObj.User = database.GetUserBasicDBWithID(trip.UserID)
 	if tripObj.ID == -1 || tripObj.User.ID == -1 {
 		return DummyTripObj()
 	}
@@ -73,15 +72,29 @@ func DeleteTripObj(toDelete TripObj, self wings.UserBasic) bool {
 		database.DeleteTripFromUserDB(toDelete.Details, self)
 }
 
-func GetRecentTrips() []TripObj {
-	recentTrips := database.GetRecentTrips()
-	trips := make([]TripObj, len(recentTrips))
+func SearchTrips(query TripsSearchQuery, self wings.UserBasic) TripObjs {
+	tripObjs := parseTripsToTripObjs(database.SearchTripsDB(query.Cities, query.Length, query.Query))
+	var ret TripObjs
 
-	for index, trip := range recentTrips {
-		trips[index] = parseTripToTripObj(trip)
+	for _, tripObj := range tripObjs {
+		if !tripObj.Details.Private ||
+			tripObj.User.ID == self.ID ||
+			checkTripPrivacy(
+				tripObj.Details,
+				map[wings.AccessLevel]bool{
+					wings.Owner: true, wings.Edit: true, wings.View: true,
+				},
+				self.ID,
+			) {
+			ret = append(ret, tripObj)
+		}
 	}
 
-	return trips
+	return ret
+}
+
+func GetRecentTrips() TripObjs {
+	return parseTripsToTripObjs(database.GetRecentTrips())
 }
 
 func checkTripPrivacy(
@@ -119,7 +132,18 @@ func parseTripToTripObj(trip wings.Trip) TripObj {
 	tripObj.User = database.GetUserBasicDBWithID(trip.UserID)
 	tripObj.LastUpdated = trip.LastUpdated
 	tripObj.TimeCreated = trip.TimeCreated
+	tripObj.User = database.GetUserBasicDBWithID(trip.UserID)
 	return tripObj
+}
+
+func parseTripsToTripObjs(trips wings.Trips) TripObjs {
+	ret := make([]TripObj, len(trips))
+
+	for index, trip := range trips {
+		ret[index] = parseTripToTripObj(trip)
+	}
+
+	return ret
 }
 
 func parseTripToTripBasic(trip wings.Trip) wings.TripBasic {

@@ -4,6 +4,7 @@ go_library(
     "trip.go",
     "comparators.go",
     "//src/wings/struct:trip_obj",
+    "//src/wings/struct:trip_search_query",
   ],
   deps = [
     "//src/turbine/database",

@@ -13,7 +13,6 @@ const (
 	UNKNOWN          = iota
 	SanFranciscoCAUS = iota
 	SanJoseCAUS      = iota
-	SantaCruzCAUS    = iota
 	NewYorkNYUS      = iota
 	AnchorageAKUS    = iota
 	ParisFR          = iota
@@ -26,4 +25,5 @@ const (
 	PageAZUS         = iota
 	LosAngelesCAUS   = iota
 	LasVegasNVUS     = iota
+	SantaCruzCAUS    = iota
 )

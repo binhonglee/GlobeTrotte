@@ -12,6 +12,7 @@ filegroup(
     ":trip",
     ":trip_basic",
     ":trip_obj",
+    ":trip_search_query",
     ":user",
     ":user_access_level",
     ":user_basic",
@@ -88,6 +89,18 @@ wings_lib(
     ":user_basic",
     ":trip_basic",
     ":user_access_level",
+  ],
+)
+
+wings_lib(
+  name = "trip_search_query",
+  src = "trip_search_query.wings",
+  outs = {
+    "src/cockpit/wings": "TripSearchQuery.ts",
+    "src/turbine/trip": "tripsearchquery.go",
+  },
+  deps = [
+    "//src/wings/enum:city",
   ],
 )
 
