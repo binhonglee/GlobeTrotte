@@ -39,7 +39,7 @@ specifiers:
   jest-junit: 13.0.0
   jsdom: 18.1.1
   jsdom-global: 3.0.2
-  naive-ui: 2.21.0
+  naive-ui: 2.21.1
   node-sass: 6.0.1
   nyc: 15.1.0
   prettier: 2.4.1
@@ -110,7 +110,7 @@ devDependencies:
   jest-junit: 13.0.0
   jsdom: 18.1.1
   jsdom-global: 3.0.2_jsdom@18.1.1
-  naive-ui: 2.21.0_73ed03614c103b583a859dbcd7469c7c
+  naive-ui: 2.21.1_73ed03614c103b583a859dbcd7469c7c
   node-sass: 6.0.1
   nyc: 15.1.0
   prettier: 2.4.1
@@ -2707,13 +2707,6 @@ packages:
     resolution: {integrity: sha512-c3mAZEuK0lvBp8tmuL74XRKn1+y2dcwOUpH7x4WrF6gk1GIgiluDRgMYQtw2OFcBvAJWlt6ASU3tSqxp0Uu0Aw==}
     dependencies:
       '@types/istanbul-lib-report': 3.0.0
-    dev: true
-
-  /@types/jest/26.0.24:
-    resolution: {integrity: sha512-E/X5Vib8BWqZNRlDxj9vYXhsDwPYbPINqKF9BsnSoon4RQ0D9moEuLD8txgyypFLH7J4+Lho9Nr/c8H0Fi+17w==}
-    dependencies:
-      jest-diff: 26.6.2
-      pretty-format: 26.6.2
     dev: true
 
   /@types/jest/27.0.3:
@@ -9057,8 +9050,8 @@ packages:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
     dev: true
 
-  /naive-ui/2.21.0_73ed03614c103b583a859dbcd7469c7c:
-    resolution: {integrity: sha512-sClbHnRsXlWzxP8wHuqtElqj1yx2ddLYO7N90a3Yll9kHMTXVvLTDwNNKgCZMHvKiQHaLGp19bEjJkxVH821rQ==}
+  /naive-ui/2.21.1_73ed03614c103b583a859dbcd7469c7c:
+    resolution: {integrity: sha512-lBVJ4OWEGVc+qBITAdIQHg2rcl4jqihdC1R/HtWAWBQJN68rclE/W44EWOw/EiFdje2nPigjyTPOU6srzxWP3g==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
@@ -9075,7 +9068,7 @@ packages:
       highlight.js: 11.3.1
       lodash: 4.17.21
       lodash-es: 4.17.21
-      seemly: 0.3.2
+      seemly: 0.3.3
       treemate: 0.3.8
       vdirs: 0.1.4_vue@3.2.22
       vfonts: 0.1.0
@@ -10757,10 +10750,10 @@ packages:
       source-map: 0.4.4
     dev: true
 
-  /seemly/0.3.2:
-    resolution: {integrity: sha512-xEDcywG5NmDhvHqt1bZlxCnoagfWOLwM5AObg8TiNcZPnTJwusa7eVm+/iRU9LhxLBDS14/yJFSMhhd3+RWUFQ==}
+  /seemly/0.3.3:
+    resolution: {integrity: sha512-mAyqemz41e9HiZPMXAn7NtTExJgztwco5cdZjrt/iViU/oFeav+Q8K1c93M/tIZZ00QkT65JMr4xXQk7Vv5hWQ==}
     dependencies:
-      '@types/jest': 26.0.24
+      '@types/jest': 27.0.3
     dev: true
 
   /semver-diff/3.1.1:
@@ -12336,7 +12329,7 @@ packages:
       css-render: 0.15.6
       evtd: 0.2.3
       resize-observer-polyfill: 1.5.1
-      seemly: 0.3.2
+      seemly: 0.3.3
       vdirs: 0.1.4_vue@3.2.22
       vooks: 0.2.10_vue@3.2.22
       vue: 3.2.22
