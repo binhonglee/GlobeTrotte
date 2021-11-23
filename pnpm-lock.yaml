@@ -27,7 +27,7 @@ specifiers:
   babel-plugin-istanbul: 6.1.1
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16
-  cypress: 9.0.0
+  cypress: 9.1.0
   element-plus: 1.0.2-beta.71
   esbuild: 0.13.15
   esbuild-jest: 0.5.0
@@ -80,7 +80,7 @@ devDependencies:
   '@babel/plugin-transform-typescript': 7.16.1_@babel+core@7.16.0
   '@babel/preset-env': 7.16.4_@babel+core@7.16.0
   '@babel/preset-typescript': 7.16.0_@babel+core@7.16.0
-  '@cypress/code-coverage': 3.9.11_cypress@9.0.0
+  '@cypress/code-coverage': 3.9.11_cypress@9.1.0
   '@cypress/vite-dev-server': 2.2.1_vite@2.6.14
   '@delagen/eslint-plugin-deprecation': 1.3.0_eslint@8.3.0+typescript@4.5.2
   '@types/jest': 27.0.3
@@ -99,7 +99,7 @@ devDependencies:
   babel-plugin-istanbul: 6.1.1
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16_@babel+core@7.16.0
-  cypress: 9.0.0
+  cypress: 9.1.0
   esbuild: 0.13.15
   esbuild-jest: 0.5.0_esbuild@0.13.15
   eslint: 8.3.0
@@ -2187,14 +2187,14 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/code-coverage/3.9.11_cypress@9.0.0:
+  /@cypress/code-coverage/3.9.11_cypress@9.1.0:
     resolution: {integrity: sha512-SA+fPILiiE0UHlMAwuv592D+wbKKdLbXz7BAN2a2RvW4fLbkVn1dXLATUFYf/6LkKrLaXJ3RENsoW9JqjBLzeQ==}
     peerDependencies:
       cypress: '*'
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.1
       chalk: 4.1.2
-      cypress: 9.0.0
+      cypress: 9.1.0
       dayjs: 1.10.7
       debug: 4.3.2
       execa: 4.1.0
@@ -2529,7 +2529,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.3
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 16.11.8
+      '@types/node': 16.11.9
       '@types/yargs': 15.0.13
       chalk: 4.1.2
     dev: true
@@ -4946,8 +4946,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /cypress/9.0.0:
-    resolution: {integrity: sha512-/93SWBZTw7BjFZ+I9S8SqkFYZx7VhedDjTtRBmXO0VzTeDbmxgK/snMJm/VFjrqk/caWbI+XY4Qr80myDMQvYg==}
+  /cypress/9.1.0:
+    resolution: {integrity: sha512-fyXcCN51vixkPrz/vO/Qy6WL3hKYJzCQFeWofOpGOFewVVXrGfmfSOGFntXpzWBXsIwPn3wzW0HOFw51jZajNQ==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
