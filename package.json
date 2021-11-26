@@ -23,7 +23,7 @@
   "dependencies": {
     "axios": "0.24.0",
     "element-plus": "1.0.2-beta.71",
-    "vue": "3.2.22",
+    "vue": "3.2.23",
     "wings-ts-util": "0.0.8"
   },
   "devDependencies": {
@@ -43,7 +43,7 @@
     "@typescript-eslint/eslint-plugin": "5.4.0",
     "@typescript-eslint/parser": "5.4.0",
     "@vitejs/plugin-vue": "1.10.1",
-    "@vue/compiler-sfc": "3.2.22",
+    "@vue/compiler-sfc": "3.2.23",
     "@vue/eslint-config-prettier": "6.0.0",
     "@vue/eslint-config-typescript": "9.1.0",
     "@vue/test-utils": "2.0.0-rc.17",
