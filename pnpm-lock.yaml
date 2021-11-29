@@ -39,7 +39,7 @@ specifiers:
   jest-junit: 13.0.0
   jsdom: 18.1.1
   jsdom-global: 3.0.2
-  naive-ui: 2.21.1
+  naive-ui: 2.21.2
   node-sass: 6.0.1
   nyc: 15.1.0
   prettier: 2.5.0
@@ -110,7 +110,7 @@ devDependencies:
   jest-junit: 13.0.0
   jsdom: 18.1.1
   jsdom-global: 3.0.2_jsdom@18.1.1
-  naive-ui: 2.21.1_22336cb88fe73e43e1c17d1b15719bac
+  naive-ui: 2.21.2_vue@3.2.23
   node-sass: 6.0.1
   nyc: 15.1.0
   prettier: 2.5.0
@@ -227,20 +227,6 @@ packages:
       source-map: 0.5.7
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@babel/eslint-parser/7.16.3_@babel+core@7.16.0+eslint@8.3.0:
-    resolution: {integrity: sha512-iB4ElZT0jAt7PKVaeVulOECdGe6UnmA/O0P9jlF5g5GBOwDVbna8AXhHRu4s27xQf6OkveyA8iTDv1jHdDejgQ==}
-    engines: {node: ^10.13.0 || ^12.13.0 || >=14.0.0}
-    peerDependencies:
-      '@babel/core': '>=7.11.0'
-      eslint: ^7.5.0 || ^8.0.0
-    dependencies:
-      '@babel/core': 7.16.0
-      eslint: 8.3.0
-      eslint-scope: 5.1.1
-      eslint-visitor-keys: 2.1.0
-      semver: 6.3.0
     dev: true
 
   /@babel/generator/7.14.8:
@@ -9217,12 +9203,11 @@ packages:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
     dev: true
 
-  /naive-ui/2.21.1_22336cb88fe73e43e1c17d1b15719bac:
-    resolution: {integrity: sha512-lBVJ4OWEGVc+qBITAdIQHg2rcl4jqihdC1R/HtWAWBQJN68rclE/W44EWOw/EiFdje2nPigjyTPOU6srzxWP3g==}
+  /naive-ui/2.21.2_vue@3.2.23:
+    resolution: {integrity: sha512-3wcXLsFdZvrFMO2k46QcjhM/ln9RnM4PIpCshhx9hfgVGEcLBzwmoYhf9fQC5k6MpPN3hG6AxhC2I5gbILqhzQ==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
-      '@babel/eslint-parser': 7.16.3_@babel+core@7.16.0+eslint@8.3.0
       '@css-render/plugin-bem': 0.15.6
       '@css-render/vue3-ssr': 0.15.6_vue@3.2.23
       '@types/lodash': 4.14.177
@@ -9241,10 +9226,7 @@ packages:
       vfonts: 0.1.0
       vooks: 0.2.10_vue@3.2.23
       vue: 3.2.23
-      vueuc: 0.4.15_89e7ec3258896f4bc2944cafca047175
-    transitivePeerDependencies:
-      - '@babel/core'
-      - eslint
+      vueuc: 0.4.18_89e7ec3258896f4bc2944cafca047175
     dev: true
 
   /nan/2.14.2:
@@ -12486,8 +12468,8 @@ packages:
       '@vue/shared': 3.2.23
     dev: false
 
-  /vueuc/0.4.15_89e7ec3258896f4bc2944cafca047175:
-    resolution: {integrity: sha512-VTYDA2avdHRlkqJunsE4d9P3eBPgfW4tiA6sTt3iiVU69d+y25xMEbU8P+stQgptd34A9qMUwYSfvOXDbteW6w==}
+  /vueuc/0.4.18_89e7ec3258896f4bc2944cafca047175:
+    resolution: {integrity: sha512-fHoMFbwfaVs4S3U5tCSu2i4Xm5GZDNw9FuFNjRwCXiLB1S3rYTYuhjUWdX/+38SL5d9ivEkpsvfve/Msp2lwwg==}
     peerDependencies:
       '@css-render/vue3-ssr': ^0.15.3
       vue: ^3.0.11
