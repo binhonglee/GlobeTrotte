@@ -7,8 +7,8 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
 	github.com/gorilla/sessions v1.2.1
-	github.com/jackc/pgtype v1.9.0
-	github.com/jackc/pgx/v4 v4.14.0
+	github.com/jackc/pgtype v1.9.1
+	github.com/jackc/pgx/v4 v4.14.1
 	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
 	github.com/lib/pq v1.10.4
 	golang.org/x/crypto v0.0.0-20211117183948-ae814b36b871
