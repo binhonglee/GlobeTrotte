@@ -45,7 +45,7 @@ specifiers:
   prettier: 2.5.0
   pug: 3.0.2
   pug-plain-loader: 1.1.0
-  puppeteer: 12.0.0
+  puppeteer: 12.0.1
   puppeteer-to-istanbul: 1.4.0
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0
@@ -116,7 +116,7 @@ devDependencies:
   prettier: 2.5.0
   pug: 3.0.2
   pug-plain-loader: 1.1.0_pug@3.0.2
-  puppeteer: 12.0.0
+  puppeteer: 12.0.1
   puppeteer-to-istanbul: 1.4.0
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0_require-extension-hooks@0.3.3
@@ -129,7 +129,7 @@ devDependencies:
   ts-node: 10.4.0_36929cccfdb926da0bb85cc291f27124
   typescript: 4.5.2
   vite: 2.6.14_sass@1.43.5
-  vite-plugin-test: 0.0.5_3cb52349608ca59b2106e815be84ef40
+  vite-plugin-test: 0.0.5_ca37fbf44a7c1e8c9a411156be8d9f68
   vue-jest: 5.0.0-alpha.10_f8ac71e11d91a88224b00e8a94ff4ef5
   vue-loader: 16.8.3
   vue-router: 4.0.12_vue@3.2.23
@@ -3368,7 +3368,7 @@ packages:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
     dev: true
 
-  /aria-mocha/0.7.3_3cb52349608ca59b2106e815be84ef40:
+  /aria-mocha/0.7.3_ca37fbf44a7c1e8c9a411156be8d9f68:
     resolution: {integrity: sha512-0DP8PXtWiXd8YVqHZVJ4l0wX1N+XvyKoUEX6gbapkYi1ZfrFQfr3Lx0Q9eaYrsSK58BctsI2BJ8sQjz8NgmlDg==}
     hasBin: true
     peerDependencies:
@@ -3377,7 +3377,7 @@ packages:
       chai: 4.3.4
       istanbul-api: 3.0.0
       mocha: 8.4.0
-      puppeteer: 12.0.0
+      puppeteer: 12.0.1
       sade: 1.7.4
       ts-node: 9.1.1_typescript@4.5.2
     transitivePeerDependencies:
@@ -10321,8 +10321,8 @@ packages:
       yargs: 15.4.1
     dev: true
 
-  /puppeteer/12.0.0:
-    resolution: {integrity: sha512-a+vLxtwuDLUIq8Vz8X5bX+YMhcQrgyfq0Jo5Wcm49EfUawgCxeCN9/rUAS3VdAAiQZ1PKiv9pGyQN8jj1ypecQ==}
+  /puppeteer/12.0.1:
+    resolution: {integrity: sha512-YQ3GRiyZW0ddxTW+iiQcv2/8TT5c3+FcRUCg7F8q2gHqxd5akZN400VRXr9cHQKLWGukmJLDiE72MrcLK9tFHQ==}
     engines: {node: '>=10.18.1'}
     requiresBuild: true
     dependencies:
@@ -12204,13 +12204,13 @@ packages:
     resolution: {integrity: sha512-vQBcvntBlnAPonAkGNM8iJ9NxE3PucA+V2W95xiN75YJKxirLJvOws2kEyOEO45T4N+YTbQOCR2m77Y05pfVhQ==}
     dev: true
 
-  /vite-plugin-test/0.0.5_3cb52349608ca59b2106e815be84ef40:
+  /vite-plugin-test/0.0.5_ca37fbf44a7c1e8c9a411156be8d9f68:
     resolution: {integrity: sha512-jaJDnmoeppqnDac+5wz2OPfs1rZ60+7bFd+gQWAgZ/Wo1urpgGq2xCYFWSkTK2VeUPYFVL2yrBN2clOuYvU1RA==}
     peerDependencies:
       puppeteer: ^8.0.0
     dependencies:
-      aria-mocha: 0.7.3_3cb52349608ca59b2106e815be84ef40
-      puppeteer: 12.0.0
+      aria-mocha: 0.7.3_ca37fbf44a7c1e8c9a411156be8d9f68
+      puppeteer: 12.0.1
     transitivePeerDependencies:
       - supports-color
       - typescript
