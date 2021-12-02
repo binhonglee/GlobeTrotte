@@ -37,7 +37,7 @@ specifiers:
   forever: 4.0.1
   jest: 26.6.3
   jest-junit: 13.0.0
-  jsdom: 18.1.1
+  jsdom: 19.0.0
   jsdom-global: 3.0.2
   naive-ui: 2.21.3
   node-sass: 6.0.1
@@ -108,8 +108,8 @@ devDependencies:
   forever: 4.0.1
   jest: 26.6.3_ts-node@10.4.0
   jest-junit: 13.0.0
-  jsdom: 18.1.1
-  jsdom-global: 3.0.2_jsdom@18.1.1
+  jsdom: 19.0.0
+  jsdom-global: 3.0.2_jsdom@19.0.0
   naive-ui: 2.21.3_vue@3.2.23
   node-sass: 6.0.1
   nyc: 15.1.0
@@ -2526,14 +2526,6 @@ packages:
     dependencies:
       acorn: 7.4.1
       acorn-walk: 7.2.0
-    dev: true
-
-  /acorn-jsx/5.3.1_acorn@8.5.0:
-    resolution: {integrity: sha512-K0Ptm/47OKfQRpNQ2J/oIN/3QYiK6FwW+eJbILhsdxh2WTLdl+30o8aGdTbm5JbffpFFAg/g+zi1E+jvJha5ng==}
-    peerDependencies:
-      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
-    dependencies:
-      acorn: 8.5.0
     dev: true
 
   /acorn-jsx/5.3.1_acorn@8.6.0:
@@ -5603,8 +5595,8 @@ packages:
     resolution: {integrity: sha512-r5EQJcYZ2oaGbeR0jR0fFVijGOcwai07/690YRXLINuhmVeRY4UKSAsQPe/0BNuDgwP7Ophoc1PRsr2E3tkbdQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.5.0
-      acorn-jsx: 5.3.1_acorn@8.5.0
+      acorn: 8.6.0
+      acorn-jsx: 5.3.1_acorn@8.6.0
       eslint-visitor-keys: 3.1.0
     dev: true
 
@@ -7856,12 +7848,12 @@ packages:
     resolution: {integrity: sha1-peZUwuWi3rXyAdls77yoDA7y9RM=}
     dev: true
 
-  /jsdom-global/3.0.2_jsdom@18.1.1:
+  /jsdom-global/3.0.2_jsdom@19.0.0:
     resolution: {integrity: sha1-a9KZwTsMRiay2iwDk81DhdYGrLk=}
     peerDependencies:
       jsdom: '>=10.0.0'
     dependencies:
-      jsdom: 18.1.1
+      jsdom: 19.0.0
     dev: true
 
   /jsdom/16.6.0:
@@ -7906,8 +7898,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /jsdom/18.1.1:
-    resolution: {integrity: sha512-NmJQbjQ/gpS/1at/ce3nCx89HbXL/f5OcenBe8wU1Eik0ROhyUc3LtmG3567dEHAGXkN8rmILW/qtCOPxPHQJw==}
+  /jsdom/19.0.0:
+    resolution: {integrity: sha512-RYAyjCbxy/vri/CfnjUWJQQtZ3LKlLnDqj+9XLNnJPgEGeirZs3hllKR20re8LUZ6o1b1X4Jat+Qd26zmP41+A==}
     engines: {node: '>=12'}
     peerDependencies:
       canvas: ^2.5.0
@@ -7916,7 +7908,7 @@ packages:
         optional: true
     dependencies:
       abab: 2.0.5
-      acorn: 8.5.0
+      acorn: 8.6.0
       acorn-globals: 6.0.0
       cssom: 0.5.0
       cssstyle: 2.3.0
