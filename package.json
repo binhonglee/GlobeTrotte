@@ -55,7 +55,7 @@
     "cypress": "9.1.0",
     "esbuild": "0.14.1",
     "esbuild-jest": "0.5.0",
-    "eslint": "8.3.0",
+    "eslint": "8.4.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-vue": "8.1.1",
     "forever": "4.0.1",
