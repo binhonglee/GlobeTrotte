@@ -39,7 +39,7 @@ specifiers:
   jest-junit: 13.0.0
   jsdom: 19.0.0
   jsdom-global: 3.0.2
-  naive-ui: 2.21.3
+  naive-ui: 2.21.4
   node-sass: 6.0.1
   nyc: 15.1.0
   prettier: 2.5.1
@@ -110,7 +110,7 @@ devDependencies:
   jest-junit: 13.0.0
   jsdom: 19.0.0
   jsdom-global: 3.0.2_jsdom@19.0.0
-  naive-ui: 2.21.3_vue@3.2.23
+  naive-ui: 2.21.4_vue@3.2.23
   node-sass: 6.0.1
   nyc: 15.1.0
   prettier: 2.5.1
@@ -8710,8 +8710,8 @@ packages:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
     dev: true
 
-  /naive-ui/2.21.3_vue@3.2.23:
-    resolution: {integrity: sha512-nXu2JSb5IijXR39VxVMsyM4OHuria+XB2El9eLzNHY2bEidFcQo+SRMcPQ46fjaE15TLUIDoQ8KNIBfxC26Xwg==}
+  /naive-ui/2.21.4_vue@3.2.23:
+    resolution: {integrity: sha512-5S2VehwnsSaqI/j06bVynoiQ6ZbW6/rKz/sjioWgyagsAK5k0CbdW8Ij4gTXgqv6YUORQdQcPNmFhqqxQ4D3gQ==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
@@ -8728,7 +8728,7 @@ packages:
       lodash: 4.17.21
       lodash-es: 4.17.21
       seemly: 0.3.3
-      treemate: 0.3.8
+      treemate: 0.3.9
       vdirs: 0.1.4_vue@3.2.23
       vfonts: 0.1.0
       vooks: 0.2.10_vue@3.2.23
@@ -11273,8 +11273,8 @@ packages:
       punycode: 2.1.1
     dev: true
 
-  /treemate/0.3.8:
-    resolution: {integrity: sha512-wv9lBoPaeWsOgBSX09cpDi1HcO/A3aNfY+Qhvu8JnOSvVfSTmcXMKGrg9g8oTgWA8YLVqq+wt8p+eQvAhqKqlQ==}
+  /treemate/0.3.9:
+    resolution: {integrity: sha512-/TE70ZXKy5s91EIM+Law46emnD50XmsKl6vlSjPt0XZnGtTgUS0qw3EDyC651CJYdkdpsMgW0HVpbH0xhpBjew==}
     dev: true
 
   /trim-newlines/3.0.1:
