@@ -39,7 +39,7 @@ specifiers:
   jest-junit: 13.0.0
   jsdom: 19.0.0
   jsdom-global: 3.0.2
-  naive-ui: 2.21.4
+  naive-ui: 2.21.5
   node-sass: 7.0.0
   nyc: 15.1.0
   prettier: 2.5.1
@@ -110,7 +110,7 @@ devDependencies:
   jest-junit: 13.0.0
   jsdom: 19.0.0
   jsdom-global: 3.0.2_jsdom@19.0.0
-  naive-ui: 2.21.4_vue@3.2.24
+  naive-ui: 2.21.5_vue@3.2.24
   node-sass: 7.0.0
   nyc: 15.1.0
   prettier: 2.5.1
@@ -8738,8 +8738,8 @@ packages:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
     dev: true
 
-  /naive-ui/2.21.4_vue@3.2.24:
-    resolution: {integrity: sha512-5S2VehwnsSaqI/j06bVynoiQ6ZbW6/rKz/sjioWgyagsAK5k0CbdW8Ij4gTXgqv6YUORQdQcPNmFhqqxQ4D3gQ==}
+  /naive-ui/2.21.5_vue@3.2.24:
+    resolution: {integrity: sha512-/vgWS4DdV7Ck8LgqAZCAynnLC9AXP9na1G3Uou1OeHYOgy3w07AcffpZVsAQtgYYuU8fRd6ogAABoLX3wZmRFg==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
