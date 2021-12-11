@@ -50,7 +50,7 @@ specifiers:
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0
   require-extension-hooks-vue: 3.0.0
-  sass: 1.44.0
+  sass: 1.45.0
   sass-loader: 12.4.0
   sinon: 12.0.1
   tap-xunit: 2.4.1
@@ -121,14 +121,14 @@ devDependencies:
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0_require-extension-hooks@0.3.3
   require-extension-hooks-vue: 3.0.0_require-extension-hooks@0.3.3
-  sass: 1.44.0
-  sass-loader: 12.4.0_node-sass@7.0.0+sass@1.44.0
+  sass: 1.45.0
+  sass-loader: 12.4.0_node-sass@7.0.0+sass@1.45.0
   sinon: 12.0.1
   tap-xunit: 2.4.1
   ts-jest: 26.5.6_jest@26.6.3+typescript@4.5.3
   ts-node: 10.4.0_74e588db5264178750052e53ffe97b8f
   typescript: 4.5.3
-  vite: 2.7.1_sass@1.44.0
+  vite: 2.7.1_sass@1.45.0
   vite-plugin-test: 0.0.5_b45914f787e6cdc89f6a3a6de6b67e04
   vue-jest: 5.0.0-alpha.10_1afa1ad60a81e3fb8bee695f8d2e4c48
   vue-loader: 16.8.3
@@ -1620,7 +1620,7 @@ packages:
     dependencies:
       debug: 4.3.2
       get-port: 5.1.1
-      vite: 2.7.1_sass@1.44.0
+      vite: 2.7.1_sass@1.45.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2368,7 +2368,7 @@ packages:
     peerDependencies:
       vite: ^2.5.10
     dependencies:
-      vite: 2.7.1_sass@1.44.0
+      vite: 2.7.1_sass@1.45.0
     dev: true
 
   /@volar/code-gen/0.29.8:
@@ -10405,7 +10405,7 @@ packages:
       yargs: 13.3.2
     dev: true
 
-  /sass-loader/12.4.0_node-sass@7.0.0+sass@1.44.0:
+  /sass-loader/12.4.0_node-sass@7.0.0+sass@1.45.0:
     resolution: {integrity: sha512-7xN+8khDIzym1oL9XyS6zP6Ges+Bo2B2xbPrjdMHEYyV3AQYhd/wXeru++3ODHF0zMjYmVadblSKrPrjEkL8mg==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -10424,16 +10424,17 @@ packages:
       klona: 2.0.4
       neo-async: 2.6.2
       node-sass: 7.0.0
-      sass: 1.44.0
+      sass: 1.45.0
     dev: true
 
-  /sass/1.44.0:
-    resolution: {integrity: sha512-0hLREbHFXGQqls/K8X+koeP+ogFRPF4ZqetVB19b7Cst9Er8cOR0rc6RU7MaI4W1JmUShd1BPgPoeqmmgMMYFw==}
+  /sass/1.45.0:
+    resolution: {integrity: sha512-ONy5bjppoohtNkFJRqdz1gscXamMzN3wQy1YH9qO2FiNpgjLhpz/IPRGg0PpCjyz/pWfCOaNEaiEGCcjOFAjqw==}
     engines: {node: '>=8.9.0'}
     hasBin: true
     dependencies:
       chokidar: 3.5.2
       immutable: 4.0.0
+      source-map-js: 1.0.1
     dev: true
 
   /saxes/5.0.1:
@@ -11809,7 +11810,7 @@ packages:
       - typescript
     dev: true
 
-  /vite/2.7.1_sass@1.44.0:
+  /vite/2.7.1_sass@1.45.0:
     resolution: {integrity: sha512-TDXXhcu5lyQ6uosK4ZWaOyB4VzOiizk0biitRzDzaEtgSUi8rVYPc4k1xgOjLSf0OuceDJmojFKXHOX9DB1WuQ==}
     engines: {node: '>=12.2.0'}
     hasBin: true
@@ -11829,7 +11830,7 @@ packages:
       postcss: 8.4.4
       resolve: 1.20.0
       rollup: 2.60.2
-      sass: 1.44.0
+      sass: 1.45.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
