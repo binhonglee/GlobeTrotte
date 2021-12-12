@@ -1,0 +1,61 @@
+name: Build for prod
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache please
+      id: cache-please
+      uses: actions/cache@v1
+      with:
+        path: ~/.please
+        key: ${{ runner.os }}-please
+    - name: Use Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.15.x
+    - name: Cache pnpm-store
+      id: cache-pnpm-store
+      uses: actions/cache@v1
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-store
+    - name: Cache node_modules
+      id: cache-node-modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ hashFiles('**/package.json') }}-pnpm
+
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+    - name: Use Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.15.x
+
+    - name: Install PNPM
+      run: sudo npm i -g pnpm
+
+    - name: Build
+      run: ./pleasew build --show_all_output //deploy
+    - name: Remove BUILD file in deploy dir
+      run: rm deploy/BUILD
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./deploy
+        publish_branch: deploy
+        commit_message: ${{ github.event.head_commit.message }}
+        # Not that this is jekyll but to prevent having the weird '.nojekyll' file
+        enable_jekyll: true

@@ -108,6 +108,7 @@ npm_run_build(
     "//src/assets:assets",
     "//src/cockpit:core_files",
   ],
+  visibility = ["//deploy"],
 )
 
 npm_run(

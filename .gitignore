@@ -13,3 +13,5 @@ plz-out/
 .plz_clean*
 pnpm-debug.log
 /*.log
+deploy/dist
+deploy/main

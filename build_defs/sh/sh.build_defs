@@ -50,6 +50,29 @@ def sh_tools_cmd(
     visibility = visibility,
   )
 
+def sh_copy_file(
+  name:str,
+  srcs:list=[],
+  out:str,
+  deps:list=[],
+  visibility:list=[],
+):
+  return build_rule(
+    name = name,
+    srcs = srcs,
+    cmd = " && ".join([
+      _go_to_top_level(),
+      "cd $PKG_DIR",
+      "if [ -e \"" + out + "\" ]; then rm -rf " + out + "; fi",
+      "cd $TMP_DIR",
+      "cp -R $SRCS " + _top_level_dir() + "$PKG_DIR",
+      "cp -R $SRCS $TMP_DIR || echo 'File already exist.'",
+    ]),
+    outs = [out],
+    deps = deps,
+    visibility = visibility,
+  )
+
 def _scriptify(cmd:str):
   return f'{{ tee -a > "$OUT" << EOF\n#!{CONFIG.SHELL_TOOL}\n{cmd}\nEOF\n}}'
 

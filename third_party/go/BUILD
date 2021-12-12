@@ -68,7 +68,7 @@ go_module(
 go_module(
   name = "jackc_pgconn",
   module = "github.com/jackc/pgconn",
-  version = "v1.10.0",
+  version = "v1.10.1",
   install = [
     ".",
     "internal/ctxwatch",
@@ -106,7 +106,7 @@ go_module(
 go_module(
   name = "jackc_pgproto3_v2",
   module = "github.com/jackc/pgproto3/v2",
-  version = "v2.1.1",
+  version = "v2.2.0",
   install = [
     ".",
   ],
@@ -128,7 +128,7 @@ go_module(
 go_module(
   name = "jackc_pgtype",
   module = "github.com/jackc/pgtype",
-  version = "v1.9.0",
+  version = "v1.9.1",
   install = [
     ".",
   ],
@@ -140,7 +140,7 @@ go_module(
 go_module(
   name = "jackc_pgx_v4",
   module = "github.com/jackc/pgx/v4",
-  version = "v4.13.0",
+  version = "v4.14.1",
   install = [
     ".",
     "internal/sanitize",
@@ -163,7 +163,7 @@ go_module(
 go_module(
   name = "jackc_puddle",
   module = "github.com/jackc/puddle",
-  version = "v1.1.3",
+  version = "v1.2.0",
   install = [
     ".",
   ],
@@ -192,7 +192,7 @@ go_module(
 go_module(
   name = "x_crypto",
   module = "golang.org/x/crypto",
-  version = "v0.0.0-20211117183948-ae814b36b871",
+  version = "v0.0.0-20211209193657-4570a0811e8b",
   install = [
     "bcrypt",
     "blowfish",
