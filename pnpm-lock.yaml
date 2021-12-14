@@ -39,7 +39,7 @@ specifiers:
   jest-junit: 13.0.0
   jsdom: 19.0.0
   jsdom-global: 3.0.2
-  naive-ui: 2.21.5
+  naive-ui: 2.22.0
   node-sass: 7.0.0
   nyc: 15.1.0
   prettier: 2.5.1
@@ -110,7 +110,7 @@ devDependencies:
   jest-junit: 13.0.0
   jsdom: 19.0.0
   jsdom-global: 3.0.2_jsdom@19.0.0
-  naive-ui: 2.21.5_vue@3.2.26
+  naive-ui: 2.22.0_vue@3.2.26
   node-sass: 7.0.0
   nyc: 15.1.0
   prettier: 2.5.1
@@ -4580,16 +4580,16 @@ packages:
       whatwg-url: 10.0.0
     dev: true
 
-  /date-fns-tz/1.1.6_date-fns@2.26.0:
+  /date-fns-tz/1.1.6_date-fns@2.27.0:
     resolution: {integrity: sha512-nyy+URfFI3KUY7udEJozcoftju+KduaqkVfwyTIE0traBiVye09QnyWKLZK7drRr5h9B7sPJITmQnS3U6YOdQg==}
     peerDependencies:
       date-fns: '>=2.0.0-alpha.13'
     dependencies:
-      date-fns: 2.26.0
+      date-fns: 2.27.0
     dev: true
 
-  /date-fns/2.26.0:
-    resolution: {integrity: sha512-VQI812dRi3cusdY/fhoBKvc6l2W8BPWU1FNVnFH9Nttjx4AFBRzfSVb/Eyc7jBT6e9sg1XtAGsYpBQ6c/jygbg==}
+  /date-fns/2.27.0:
+    resolution: {integrity: sha512-sj+J0Mo2p2X1e306MHq282WS4/A8Pz/95GIFcsPNMPMZVI3EUrAdSv90al1k+p74WGLCruMXk23bfEDZa71X9Q==}
     engines: {node: '>=0.11'}
     dev: true
 
@@ -8791,8 +8791,8 @@ packages:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
     dev: true
 
-  /naive-ui/2.21.5_vue@3.2.26:
-    resolution: {integrity: sha512-/vgWS4DdV7Ck8LgqAZCAynnLC9AXP9na1G3Uou1OeHYOgy3w07AcffpZVsAQtgYYuU8fRd6ogAABoLX3wZmRFg==}
+  /naive-ui/2.22.0_vue@3.2.26:
+    resolution: {integrity: sha512-nBGSocnmKGXXvyJB65Fa4BXdQZqQ7qffNrmNOo0NX6o1pd9cTimJJDdiGzVsPd1pyD2nTlfvOkddQLMOJZ9Zhw==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
@@ -8802,8 +8802,8 @@ packages:
       '@types/lodash-es': 4.17.5
       async-validator: 4.0.7
       css-render: 0.15.6
-      date-fns: 2.26.0
-      date-fns-tz: 1.1.6_date-fns@2.26.0
+      date-fns: 2.27.0
+      date-fns-tz: 1.1.6_date-fns@2.27.0
       evtd: 0.2.3
       highlight.js: 11.3.1
       lodash: 4.17.21
