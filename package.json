@@ -34,7 +34,7 @@
     "@babel/preset-env": "7.16.5",
     "@babel/preset-typescript": "7.16.5",
     "@cypress/code-coverage": "3.9.12",
-    "@cypress/vite-dev-server": "2.2.1",
+    "@cypress/vite-dev-server": "2.2.2",
     "@delagen/eslint-plugin-deprecation": "1.3.2",
     "@types/jest": "27.0.3",
     "@types/node": "16.11.14",
