@@ -1,1 +1,0 @@
-import{o as e,d as o,i as t,j as n}from"./vendor.95e19654.js";import{_ as s}from"./index.c31fb35e.js";const r={class:"_404 narrow_content"},_=t("h3",null,"Uhh, there's nothing to see here...",-1),a=[_];function c(i,p,h,l,f,v){return e(),o("div",r,a)}const d=n({});var x=s(d,[["render",c]]);export{x as default};
