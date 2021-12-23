@@ -27,6 +27,7 @@ export default defineComponent({
   props: {
     label: {
       type: String,
+      required: true,
     },
     val: {
       type: String,
@@ -57,6 +58,9 @@ export default defineComponent({
   data: (): Data => ({
     value: "",
   }),
+  beforeMount(): void {
+    this.$data.value = this.getInitialValue();
+  },
   methods: {
     enter(): void {
       this.$emit("enter");
@@ -69,9 +73,6 @@ export default defineComponent({
         ? this.$props.val.slice(0, this.$props.valMaxCount)
         : "";
     },
-  },
-  beforeMount(): void {
-    this.$data.value = this.getInitialValue();
   },
 });
 </script>

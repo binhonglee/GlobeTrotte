@@ -58,13 +58,16 @@ interface Data {
 }
 
 export default defineComponent({
+  components: {
+    CEditItem,
+  },
   data(): Data {
     return {
       loading: false,
     };
   },
-  components: {
-    CEditItem,
+  mounted(): void {
+    E.get(E.get(this, "name"), "input").focus();
   },
   methods: {
     async confirm(): Promise<void> {
@@ -137,9 +140,6 @@ export default defineComponent({
     cancel(): void {
       router.back();
     },
-  },
-  mounted(): void {
-    E.get(E.get(this, "name"), "input").focus();
   },
 });
 </script>

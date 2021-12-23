@@ -53,6 +53,16 @@ export default defineComponent({
       confirmed: false,
     };
   },
+  watch: {
+    $route: {
+      handler: function (): void {
+        this.setAuthed();
+        this.setActiveIndex();
+      },
+      immediate: true,
+      deep: true,
+    },
+  },
   beforeMount(): void {
     this.setAuthed();
     this.setActiveIndex();
@@ -73,7 +83,7 @@ export default defineComponent({
         return;
       }
 
-      if (path.substr(path.length - 1).localeCompare("/") === 0) {
+      if (path.substring(path.length - 1).localeCompare("/") === 0) {
         path = path.slice(0, -1);
       }
       const paths = path.split("/");
@@ -88,16 +98,6 @@ export default defineComponent({
         return;
       }
       Routing.genRedirectTo(`${path}`);
-    },
-  },
-  watch: {
-    $route: {
-      handler: function (): void {
-        this.setAuthed();
-        this.setActiveIndex();
-      },
-      immediate: true,
-      deep: true,
     },
   },
 });

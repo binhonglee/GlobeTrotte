@@ -69,7 +69,7 @@ export default abstract class R {
     map = new Map<string, string>(),
   ): string {
     if (next.startsWith("/")) {
-      next = next.substr(1, next.length);
+      next = next.substring(1);
     }
     const nexts = next.split("&");
     const first = nexts.shift()?.split("/").join(".") ?? "";
@@ -89,7 +89,7 @@ export default abstract class R {
     id: string,
   ): string {
     if (path.endsWith("/")) {
-      path = path.substr(0, path.length - 1);
+      path = path.substring(0, path.length - 1);
     }
     return path + (id.length > 0 ? "/" + id : "") + "/" + this.setParamMap(map);
   }

@@ -14,7 +14,6 @@ import CTripInfo from "@/components/CTripInfo.vue";
 import General from "@/shared/General";
 import TripObj from "@/wings/TripObj";
 import Routes from "@/routes";
-import E from "@/shared/E";
 import Routing from "@/shared/Routing";
 
 interface Data {
@@ -33,6 +32,14 @@ export default defineComponent({
       trip: new TripObj(),
       owner: false,
     };
+  },
+  watch: {
+    "$route.path": async function (): Promise<void> {
+      await this.init();
+    },
+  },
+  async beforeMount(): Promise<void> {
+    await this.init();
   },
   methods: {
     async init(): Promise<void> {
@@ -53,14 +60,6 @@ export default defineComponent({
 
       this.$notify(General.notifConfig("Error", "Trip not found.", "error"));
       await Routing.genRedirectTo(Routes.trip_View);
-    },
-  },
-  async beforeMount(): Promise<void> {
-    await this.init();
-  },
-  watch: {
-    "$route.path": async function (): Promise<void> {
-      await this.init();
     },
   },
 });

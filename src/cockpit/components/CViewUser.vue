@@ -47,6 +47,12 @@ export default defineComponent({
     trips: [],
     lastPopulated: [],
   }),
+  async beforeMount(): Promise<void> {
+    await this.genPopulateTrips();
+  },
+  async beforeUpdate(): Promise<void> {
+    await this.genPopulateTrips();
+  },
   methods: {
     /* istanbul ignore next: will move this to some generic file / lib and test there instead */
     compareArray(a: TripBasic[], b: TripBasic[]): boolean {
@@ -74,12 +80,6 @@ export default defineComponent({
 
       this.$data.lastPopulated = this.$props.user.trips;
     },
-  },
-  async beforeMount(): Promise<void> {
-    await this.genPopulateTrips();
-  },
-  async beforeUpdate(): Promise<void> {
-    await this.genPopulateTrips();
   },
 });
 </script>

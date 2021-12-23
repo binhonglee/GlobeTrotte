@@ -88,6 +88,18 @@ export default defineComponent({
     loginLink: Routes.Login,
     loading: false,
   }),
+  async mounted(): Promise<void> {
+    if (this.$data.step < 2) {
+      E.get(E.get(this, "email"), "input").focus();
+    } else {
+      E.get(E.get(this, "code"), "input").focus();
+    }
+  },
+  async beforeMount(): Promise<void> {
+    const paramMap = Routing.getParamMap();
+    this.$data.email = paramMap.get("email") ?? "";
+    this.$data.step = +(paramMap.get("step") ?? "") ?? 1;
+  },
   methods: {
     async confirmEmail(): Promise<void> {
       const success = await HTTPReq.genPOST(
@@ -154,18 +166,6 @@ export default defineComponent({
     async cancel(): Promise<void> {
       await Routing.paramToNext();
     },
-  },
-  async mounted(): Promise<void> {
-    if (this.$data.step < 2) {
-      E.get(E.get(this, "email"), "input").focus();
-    } else {
-      E.get(E.get(this, "code"), "input").focus();
-    }
-  },
-  async beforeMount(): Promise<void> {
-    const paramMap = Routing.getParamMap();
-    this.$data.email = paramMap.get("email") ?? "";
-    this.$data.step = +(paramMap.get("step") ?? "") ?? 1;
   },
 });
 </script>

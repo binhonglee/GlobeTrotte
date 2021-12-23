@@ -59,6 +59,9 @@ interface Data {
 }
 
 export default defineComponent({
+  components: {
+    CEditItem,
+  },
   data(): Data {
     return {
       loading: false,
@@ -67,8 +70,13 @@ export default defineComponent({
       loadingBar: useLoadingBar(),
     };
   },
-  components: {
-    CEditItem,
+  beforeMount(): void {
+    if (Routing.hasNext()) {
+      this.$data.showError = true;
+    }
+  },
+  mounted(): void {
+    E.get(E.get(this, "email"), "input").focus();
   },
   methods: {
     async confirm(): Promise<void> {
@@ -106,14 +114,6 @@ export default defineComponent({
     cancel(): void {
       router.back();
     },
-  },
-  beforeMount(): void {
-    if (Routing.hasNext()) {
-      this.$data.showError = true;
-    }
-  },
-  mounted(): void {
-    E.get(E.get(this, "email"), "input").focus();
   },
 });
 </script>

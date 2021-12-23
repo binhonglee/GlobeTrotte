@@ -42,12 +42,6 @@ interface Data {
 export default defineComponent({
   name: "CViewTrip",
   components: { CPlaces },
-  emits: {
-    enableEditMode() {
-      return true;
-    },
-  },
-  data: (): Data => ({ cities: [] }),
   props: {
     trip: {
       type: TripObj,
@@ -55,11 +49,12 @@ export default defineComponent({
     },
     editable: { type: Boolean },
   },
-  methods: {
-    enableEditMode(): void {
-      this.$emit("enableEditMode");
+  emits: {
+    enableEditMode() {
+      return true;
     },
   },
+  data: (): Data => ({ cities: [] }),
   async beforeMount(): Promise<void> {
     this.$data.cities = [];
     if (this.$props.trip !== undefined) {
@@ -67,6 +62,11 @@ export default defineComponent({
         this.$data.cities.push(CityUtil.toString(city));
       }
     }
+  },
+  methods: {
+    enableEditMode(): void {
+      this.$emit("enableEditMode");
+    },
   },
 });
 </script>

@@ -88,6 +88,16 @@ export default defineComponent({
     CEditItem,
     CEditPlaces,
   },
+  props: {
+    trip: {
+      type: TripObj,
+      required: true,
+    },
+    isNew: {
+      type: Boolean,
+      required: true,
+    },
+  },
   emits: {
     save(trip: TripBasic) {
       return trip.ID !== -1;
@@ -103,16 +113,6 @@ export default defineComponent({
     saving: false,
     deleting: false,
   }),
-  props: {
-    trip: {
-      type: TripObj,
-      required: true,
-    },
-    isNew: {
-      type: Boolean,
-      required: true,
-    },
-  },
   computed: {
     descriptionMaxCharCount() {
       return DESCRIPTION_CHAR_MAX_COUNT;
@@ -120,6 +120,12 @@ export default defineComponent({
     descriptionRowMinCount() {
       return DESCRIPTION_ROW_MIN_COUNT;
     },
+  },
+  beforeMount(): void {
+    this.update();
+  },
+  mounted(): void {
+    E.get(E.get(this, "name"), "input").focus();
   },
   methods: {
     cancel(): void {
@@ -283,12 +289,6 @@ export default defineComponent({
         confirmButtonText: "OK",
       });
     },
-  },
-  beforeMount(): void {
-    this.update();
-  },
-  mounted(): void {
-    E.get(E.get(this, "name"), "input").focus();
   },
 });
 </script>

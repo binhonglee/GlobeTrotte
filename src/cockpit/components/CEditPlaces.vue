@@ -44,9 +44,6 @@ interface Data {
 
 export default defineComponent({
   name: "CEditPlaces",
-  data: (): Data => ({
-    places: [],
-  }),
   props: {
     givenPlaces: {
       type: Array,
@@ -66,6 +63,12 @@ export default defineComponent({
       },
     },
   },
+  data: (): Data => ({
+    places: [],
+  }),
+  beforeMount() {
+    this.$data.places = (this.$props.givenPlaces ?? []).slice(0) as Place[];
+  },
   methods: {
     pushPlace(): void {
       this.$data.places.push(new Place());
@@ -73,9 +76,6 @@ export default defineComponent({
     removePlace(index: number): void {
       this.$data.places.splice(index, 1);
     },
-  },
-  beforeMount() {
-    this.$data.places = (this.$props.givenPlaces ?? []).slice(0) as Place[];
   },
 });
 </script>

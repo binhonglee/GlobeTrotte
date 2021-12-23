@@ -34,9 +34,6 @@ export default defineComponent({
     CViewTrip,
     CEditTrip,
   },
-  data: (): Data => ({
-    editMode: false,
-  }),
   props: {
     trip: {
       type: TripObj,
@@ -45,6 +42,12 @@ export default defineComponent({
     editable: {
       type: Boolean,
     },
+  },
+  data: (): Data => ({
+    editMode: false,
+  }),
+  beforeMount(): void {
+    this.$data.editMode = false;
   },
   methods: {
     async save(trip: TripBasic): Promise<void> {
@@ -68,9 +71,6 @@ export default defineComponent({
     enableEditMode(): void {
       this.$data.editMode = true;
     },
-  },
-  beforeMount(): void {
-    this.$data.editMode = false;
   },
 });
 </script>

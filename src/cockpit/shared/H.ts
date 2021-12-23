@@ -80,7 +80,7 @@ export default abstract class H {
         toRet === this.rateLimited
       ) {
         this.sendRequestSuccess();
-        // eslint-disable-next-line deprecation/deprecation
+        // eslint-disable-next-line @delagen/deprecation/deprecation
         await Redirect.genRedirect(
           router,
           R.addParamNext(this.rateLimited, router.currentRoute.value.path),

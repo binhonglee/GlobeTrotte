@@ -83,6 +83,20 @@ export default defineComponent({
       loadingBar: useLoadingBar(),
     };
   },
+  async beforeMount(): Promise<void> {
+    this.$data.loading = true;
+    this.$data.user = await General.genCurrentUser();
+    if (this.$data.user.ID === -1) {
+      await Routing.genRedirectTo(Routes.Landing);
+    }
+    this.$data.confirmed = this.$data.user.details.confirmed.valueOf();
+  },
+  mounted(): void {
+    if (this.$data.edit) {
+      E.get(E.get(this, "name"), "input").focus();
+    }
+    this.$data.loading = false;
+  },
   methods: {
     async deleteAccount(): Promise<void> {
       this.$data.loadingBar.start();
@@ -146,20 +160,6 @@ export default defineComponent({
     toggleEdit(): void {
       this.$data.edit = !this.$data.edit;
     },
-  },
-  async beforeMount(): Promise<void> {
-    this.$data.loading = true;
-    this.$data.user = await General.genCurrentUser();
-    if (this.$data.user.ID === -1) {
-      await Routing.genRedirectTo(Routes.Landing);
-    }
-    this.$data.confirmed = this.$data.user.details.confirmed.valueOf();
-  },
-  mounted(): void {
-    if (this.$data.edit) {
-      E.get(E.get(this, "name"), "input").focus();
-    }
-    this.$data.loading = false;
   },
 });
 </script>

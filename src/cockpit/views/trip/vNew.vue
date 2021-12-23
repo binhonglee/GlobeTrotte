@@ -26,15 +26,15 @@ interface Data {
 }
 
 export default defineComponent({
+  components: {
+    CEditTrip,
+  },
   data(): Data {
     return {
       trip: new TripObj({
         details: { days: [{ day_of: 1, places: [{}] }] },
       }),
     };
-  },
-  components: {
-    CEditTrip,
   },
   methods: {
     cancel(): void {

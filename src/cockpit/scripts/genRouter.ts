@@ -107,13 +107,13 @@ class GenRouter {
   }
 
   private getParamRoute(path: string, file: string): string {
-    if (file.substr(0, 1) !== "v") {
+    if (file.substring(0, 1) !== "v") {
       return "";
     }
 
     let toReturn = "";
 
-    let name = file.substr(1).split(".", 1)[0];
+    let name = file.substring(1).split(".", 1)[0];
     let urlPath = name.toLowerCase();
 
     if (presetRoute.includes(urlPath)) {
@@ -124,10 +124,10 @@ class GenRouter {
     allParams.forEach((param) => {
       if (
         urlPath.length > param.key.length &&
-        urlPath.substr(0, param.key.length).localeCompare(param.key) === 0
+        urlPath.substring(0, param.key.length).localeCompare(param.key) === 0
       ) {
-        name = name.substr(param.key.length);
-        urlPath = urlPath.substr(param.key.length);
+        name = name.substring(param.key.length);
+        urlPath = urlPath.substring(param.key.length);
         toReturn += this.getRoute(
           path + urlPath + params.join(""),
           path + name + param.name,
@@ -195,8 +195,8 @@ class GenRouter {
   }
 
   private getPath(filename: string): string {
-    if (filename.substr(0, 1) === "V") {
-      filename = filename.substr(1);
+    if (filename.substring(0, 1) === "V") {
+      filename = filename.substring(1);
     } else {
       return "";
     }

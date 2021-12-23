@@ -34,14 +34,20 @@ interface Data {
 }
 
 export default defineComponent({
-  data: (): Data => ({
-    days: [],
-  }),
+  components: {
+    CEditPlaces,
+  },
   props: {
     givenDays: {
       type: Array,
       required: true,
     },
+  },
+  data: (): Data => ({
+    days: [],
+  }),
+  beforeMount(): void {
+    this.$data.days = (this.$props.givenDays ?? []).slice(0) as Day[];
   },
   methods: {
     pushDay(): void {
@@ -73,12 +79,6 @@ export default defineComponent({
         this.$data.days.push(currentDay);
       }
     },
-  },
-  beforeMount(): void {
-    this.$data.days = (this.$props.givenDays ?? []).slice(0) as Day[];
-  },
-  components: {
-    CEditPlaces,
   },
 });
 </script>
