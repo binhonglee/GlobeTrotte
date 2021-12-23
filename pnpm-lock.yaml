@@ -19,7 +19,7 @@ specifiers:
   '@vitejs/plugin-vue': 2.0.1
   '@vue/compiler-sfc': 3.2.26
   '@vue/eslint-config-prettier': 7.0.0
-  '@vue/eslint-config-typescript': 9.1.0
+  '@vue/eslint-config-typescript': 10.0.0
   '@vue/test-utils': 2.0.0-rc.18
   ava: 3.15.0
   axios: 0.24.0
@@ -92,7 +92,7 @@ devDependencies:
   '@vitejs/plugin-vue': 2.0.1_vite@2.7.6+vue@3.2.26
   '@vue/compiler-sfc': 3.2.26
   '@vue/eslint-config-prettier': 7.0.0_eslint@8.5.0+prettier@2.5.1
-  '@vue/eslint-config-typescript': 9.1.0_d3aed4c9dae7615b020b4f133941a9fb
+  '@vue/eslint-config-typescript': 10.0.0_41e1ec30d0187917d0a0a293146dcb64
   '@vue/test-utils': 2.0.0-rc.18_vue@3.2.26
   ava: 3.15.0
   babel-loader: 8.2.3_@babel+core@7.16.5
@@ -2568,12 +2568,10 @@ packages:
       prettier: 2.5.1
     dev: true
 
-  /@vue/eslint-config-typescript/9.1.0_d3aed4c9dae7615b020b4f133941a9fb:
-    resolution: {integrity: sha512-j/852/ZYQ5wDvCD3HE2q4uqJwJAceer2FwoEch1nFo+zTOsPrbzbE3cuWIs3kvu5hdFsGTMYwRwjI6fqZKDMxQ==}
+  /@vue/eslint-config-typescript/10.0.0_41e1ec30d0187917d0a0a293146dcb64:
+    resolution: {integrity: sha512-F94cL8ug3FaYXlCfU5/wiGjk1qeadmoBpRGAOBq+qre3Smdupa59dd6ZJrsfRODpsMPyTG7330juMDsUvpZ3Rw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
-      '@typescript-eslint/eslint-plugin': ^5.0.0
-      '@typescript-eslint/parser': ^5.0.0
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
       eslint-plugin-vue: ^8.0.1
     dependencies:
@@ -2584,6 +2582,7 @@ packages:
       vue-eslint-parser: 8.0.1_eslint@8.5.0
     transitivePeerDependencies:
       - supports-color
+      - typescript
     dev: true
 
   /@vue/reactivity-transform/3.2.26:
