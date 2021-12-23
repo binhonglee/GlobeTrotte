@@ -1,4 +1,4 @@
-name: Build for prod
+name: Deploy prod
 on:
   push:
     branches:
@@ -57,5 +57,7 @@ jobs:
         publish_dir: ./deploy
         publish_branch: deploy
         commit_message: ${{ github.event.head_commit.message }}
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
         # Not that this is jekyll but to prevent having the weird '.nojekyll' file
         enable_jekyll: true

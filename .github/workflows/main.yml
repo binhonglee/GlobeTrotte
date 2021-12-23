@@ -46,11 +46,13 @@ jobs:
         go-version: 1.15.x
 
     - run: ./scripts/setup.sh -g -s
+    - run: ./pleasew go_mod
     - run: sudo npm i -g pnpm
     - run: cp config/test.kdl config/config.kdl
 
     - run: ./pleasew build --show_all_output //...
     - run: ./pleasew lint --show_all_output
+    - run: git checkout third_party/go/BUILD
     - run: ./scripts/leftover.sh
 
   e2e:
@@ -101,6 +103,7 @@ jobs:
         go-version: 1.15.x
 
     - run: ./scripts/setup.sh -g -s
+    - run: ./pleasew go_mod
     - run: sudo npm i -g pnpm
     - run: cp config/test.kdl config/config.kdl
 
