@@ -15,4 +15,11 @@ export default defineConfig({
       allow: [".."],
     },
   },
+  test: {
+    global: true,
+    environment: "happy-dom",
+    include: [
+      "src/cockpit/**/*_vitest.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}",
+    ],
+  },
 });

@@ -1,6 +1,7 @@
 subinclude("//build_defs/npm")
 subinclude("//build_defs/npm:ava")
 subinclude("//build_defs/npm:jest")
+subinclude("//build_defs/npm:vitest")
 subinclude("//build_defs/sh")
 
 filegroup(
@@ -19,6 +20,13 @@ filegroup(
   name = "jest_config",
   srcs = [
     "jest.config.ts",
+  ],
+)
+
+filegroup(
+  name = "vitest_config",
+  srcs = [
+    "vitest.config.ts",
   ],
 )
 
@@ -149,6 +157,23 @@ jest_dir(
   name = "jest_test_deps",
   srcs = [
     ":jest_config",
+    ":pnpm_config",
+    ":tsconfig",
+    "//src/cockpit:core_files",
+    "//src/cockpit/components:components",
+    "//src/cockpit/shared:shared",
+    "//src/cockpit/views:views",
+    "//src/cockpit/wings:wings",
+  ],
+  visibility = [
+    "//src/cockpit/tests/..."
+  ],
+)
+
+vitest_dir(
+  name = "vitest_test_deps",
+  srcs = [
+    ":vitest_config",
     ":pnpm_config",
     ":tsconfig",
     "//src/cockpit:core_files",

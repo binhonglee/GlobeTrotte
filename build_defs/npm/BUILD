@@ -20,3 +20,9 @@ filegroup(
   srcs = ["jest.build_defs"],
   deps = [":npm"],
 )
+
+filegroup(
+  name = "vitest",
+  srcs = ["vitest.build_defs"],
+  deps = [":npm"],
+)

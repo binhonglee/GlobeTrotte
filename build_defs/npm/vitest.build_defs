@@ -1,0 +1,64 @@
+subinclude("//build_defs/npm")
+
+def vitest_dir(
+  name:str,
+  srcs:list=[],
+  deps:list=[],
+  visibility:list=[],
+):
+  return build_rule(
+    name = name,
+    srcs = srcs,
+    cmd = "zip -r " + name + ".vitest_dir ./",
+    outs = [name + ".vitest_dir"],
+    deps = deps,
+    test_only = True,
+    visibility = visibility
+  )
+
+def vitest_test(
+  name:str,
+  src:str,
+  vitest_dirs:list=[],
+  deps:list=[],
+  visibility:list=[],
+):
+  pre_build = _set_node_modules()
+  for vitest_dir in vitest_dirs:
+    vitest_dir_name = vitest_dir.split(":")
+    if len(name) < 2:
+      temp = vitest_dir.split("/")
+      vitest_dir_name = temp[len(temp) - 1]
+    else:
+      vitest_dir_name = vitest_dir_name[1]
+    pre_build += " && unzip -o " + vitest_dir_name + ".vitest_dir"
+
+  out_dir = _vitest_out_dir(name)
+  if CONFIG.CORE_FILES != "":
+    deps += [CONFIG.CORE_FILES]
+
+  return build_rule(
+    name = name,
+    data = [src] + vitest_dirs + deps,
+    test_cmd = " && ".join([
+      pre_build,
+      " ".join([
+        _get_npx_tool(),
+        "vitest",
+        "--coverage",
+        "$PKG_DIR/" + src,
+      ]),
+      "cp jest_coverage/test_results.xml test.results",
+      "cp jest_coverage/cobertura-coverage.xml test.coverage",
+      "mkdir -p " + out_dir,
+      "mv jest_coverage/* " + out_dir,
+    ]),
+    test_outputs = [out_dir],
+    test = True,
+    test_only = True,
+    visibility = visibility,
+    labels = ['vitest'],
+  )
+
+def _vitest_out_dir(name: str):
+  return name + "/.nyc_output"

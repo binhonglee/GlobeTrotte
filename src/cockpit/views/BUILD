@@ -4,6 +4,7 @@ filegroup(
   visibility = [
     "//:ava_test_deps",
     "//:jest_test_deps",
+    "//:vitest_test_deps",
     "//:cockpit",
     "//src/cockpit:core_files",
     "//src/cockpit/scripts:gen_router",
