@@ -63,7 +63,7 @@
     "jest-junit": "13.0.0",
     "jsdom": "19.0.0",
     "jsdom-global": "3.0.2",
-    "naive-ui": "2.23.1",
+    "naive-ui": "2.23.2",
     "node-sass": "7.0.1",
     "nyc": "15.1.0",
     "prettier": "2.5.1",
