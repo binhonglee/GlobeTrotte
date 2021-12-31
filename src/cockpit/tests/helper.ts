@@ -2,8 +2,13 @@ import sinon from "sinon";
 import { mount, MountingOptions, VueWrapper } from "@vue/test-utils";
 import App from "@/App.vue";
 import router from "@/router";
-import ElementPlus from "element-plus";
-import { ElNotification, ElAlert, ElMessage } from "element-plus";
+import ElementPlus, {
+  ElMessageBox,
+  ElMessage,
+  ElNotification,
+} from "element-plus";
+import naive from "naive-ui";
+import { GlobalMountOptions } from "@vue/test-utils/dist/types";
 
 type routerFunctions =
   | "replace"
@@ -26,7 +31,7 @@ type routerFunctions =
 
 interface ElPlus {
   $notify(args: unknown): typeof ElNotification;
-  $alert(args: unknown): typeof ElAlert;
+  $alert(args: unknown): typeof ElMessageBox.alert;
   $message(args: unknown): typeof ElMessage;
   $router(args: unknown): typeof router;
 }
@@ -119,4 +124,22 @@ export function newLocalVueAndRouter(): MountingOptions<Vue, Vue> {
       },
     },
   });
+}
+
+export function mountingOptions(): MountingOptions<Vue, Vue> {
+  return {
+    global: globalMountingOptions(),
+  };
+}
+
+export function globalMountingOptions(): GlobalMountOptions {
+  return {
+    plugins: [ElementPlus, naive],
+    mocks: {
+      $router: router,
+      $message: ElMessage,
+      $notify: ElNotification,
+      $alert: ElMessageBox.alert,
+    },
+  };
 }

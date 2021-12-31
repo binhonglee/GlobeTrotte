@@ -22,11 +22,21 @@ export default async (): Promise<Config.InitialOptions> => {
       ],
     ],
     collectCoverage: true,
-    collectCoverageFrom: ["**/*.{ts,vue}", "!**/node_modules/**"],
+    collectCoverageFrom: [
+      "**/*.{ts,vue}",
+      "!**/node_modules/**",
+      "!**/*.{config,d}.ts",
+    ],
     coverageDirectory: coverageDir,
     coverageProvider: "v8",
-    coveragePathIgnorePatterns: ["/node_modules/"],
-    coverageReporters: ["json", "cobertura"],
+    coveragePathIgnorePatterns: [
+      "/node_modules/",
+      "<rootDir>/src/cockpit/tests/",
+      "<rootDir>/src/cockpit/scripts/",
+      "<rootDir>/src/cockpit/main.ts",
+      "<rootDir>/plz-out/",
+    ],
+    coverageReporters: ["json", "cobertura", "text-summary"],
     verbose: true,
     globals: {
       "vue-jest": {
@@ -35,5 +45,6 @@ export default async (): Promise<Config.InitialOptions> => {
         },
       },
     },
+    testRegex: "src/cockpit/tests/.*\\.spec\\.ts$",
   };
 };

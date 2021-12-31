@@ -5,16 +5,16 @@ import UserObj from "@/wings/UserObj";
 import {
   alertSpy,
   messageSpy,
-  newLocalVueAndRouter,
+  mountingOptions,
   notifySpy,
-  routerSpy,
   wait,
-} from "../helper";
+} from "@/tests/helper";
 
 import { mount } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
 import sinon from "sinon";
-import test from "ava";
+import { expect } from "@jest/globals";
+import Routing from "@/shared/Routing";
 
 const currentUser = new UserObj({
   id: 10,
@@ -27,109 +27,111 @@ const currentUser = new UserObj({
 });
 let genCurrentUser: sinon.SinonStub;
 
-test.serial.before(() => {
-  genCurrentUser = sinon.stub(General, "genCurrentUser").resolves(currentUser);
-});
+describe("My Account", () => {
+  beforeAll(() => {
+    jest.spyOn(Routing, "genRedirectTo").mockImplementation(async () => {
+      return;
+    });
 
-test.serial.after((t) => {
-  t.true(genCurrentUser.called);
-  genCurrentUser.restore();
-});
+    genCurrentUser = sinon
+      .stub(General, "genCurrentUser")
+      .resolves(currentUser);
+  });
 
-test.serial("My Account - Delete Account (success)", async (t) => {
-  const genDELETE = sinon.stub(HTTPReq, "genDELETE").resolves(true);
-  const wrapper = mount(vMyAccount, newLocalVueAndRouter());
-  wrapper.vm.$router.push("/myaccount");
-  const notify = new notifySpy(wrapper);
-  const routerPush = new routerSpy(wrapper, "push");
+  afterAll(() => {
+    genCurrentUser.restore();
+  });
 
-  wrapper.find(".myAccountEdit").trigger("click");
-  t.true(wrapper.vm.$data.edit);
-  await wait(100);
-  wrapper.find(".myAccountDelete").trigger("click");
-  await wait(500);
-  t.true(genDELETE.calledOnce);
-  t.true(notify.item.calledOnce);
-  t.is(notify.getTitle(), "Deleted");
-  t.is(notify.getMessage(), "Your account is now deleted.");
-  t.is(notify.getType(), "info");
-  await wait(500);
-  t.true(routerPush.item.calledOnce);
-  t.is(routerPush.getArg(), "/");
-  await genDELETE.restore();
-  await notify.restore();
-  await routerPush.restore();
-});
+  it("Delete Account (success)", async () => {
+    const wrapper = mount(vMyAccount, mountingOptions());
+    const notify = new notifySpy(wrapper);
+    wrapper.find(".myAccountEdit").trigger("click");
+    expect(wrapper.vm.$data.edit).toEqual(true);
+    await wait(100);
+    const genDELETE = sinon.stub(HTTPReq, "genDELETE").resolves(true);
+    wrapper.find(".myAccountDelete").trigger("click");
+    await wait(500);
+    expect(genDELETE.calledOnce).toEqual(true);
+    expect(notify.item.calledOnce).toEqual(true);
+    expect(notify.getTitle()).toEqual("Deleted");
+    expect(notify.getMessage()).toEqual("Your account is now deleted.");
+    expect(notify.getType()).toEqual("info");
+    await wait(500);
+    await genDELETE.restore();
+    await notify.restore();
+  });
 
-test.serial("My Account - Delete Account (failure)", async (t) => {
-  const genDELETE = sinon.stub(HTTPReq, "genDELETE").resolves(false);
-  const wrapper = mount(vMyAccount, newLocalVueAndRouter());
-  const message = new messageSpy(wrapper);
-  wrapper.find(".myAccountEdit").trigger("click");
-  t.true(wrapper.vm.$data.edit);
-  await wait(100);
-  wrapper.find(".myAccountDelete").trigger("click");
-  await wait(500);
-  t.true(genDELETE.calledOnce);
-  t.true(message.item.calledOnce);
-  t.is(message.getMessage(), "Account deletion attempt failed.");
-  t.is(message.getType(), "error");
-  await genDELETE.restore();
-  await message.restore();
-});
+  it("Delete Account (failure)", async () => {
+    const genDELETE = sinon.stub(HTTPReq, "genDELETE").resolves(false);
+    const wrapper = mount(vMyAccount, mountingOptions());
+    const message = new messageSpy(wrapper);
+    wrapper.find(".myAccountEdit").trigger("click");
+    expect(wrapper.vm.$data.edit).toEqual(true);
+    await wait(100);
+    wrapper.find(".myAccountDelete").trigger("click");
+    await wait(500);
+    expect(genDELETE.calledOnce).toEqual(true);
+    expect(message.item.calledOnce).toEqual(true);
+    expect(message.getMessage()).toEqual("Account deletion attempt failed.");
+    expect(message.getType()).toEqual("error");
+    await genDELETE.restore();
+    await message.restore();
+  });
 
-test.serial("My Account - Logout", async (t) => {
-  const genGET = sinon.stub(HTTPReq, "genGET").resolves();
-  const wrapper = mount(vMyAccount, newLocalVueAndRouter());
-  wrapper.vm.$router.push("/myaccount");
-  const routerPush = new routerSpy(wrapper, "push");
-  wrapper.find(".myAccountLogout").trigger("click");
-  await wait(500);
-  t.true(genGET.calledOnce);
-  t.true(routerPush.item.calledOnce);
-  t.is(routerPush.getArg(), "/");
-  await genGET.restore();
-  await routerPush.restore();
-});
+  it("My Account - Logout", async () => {
+    const genGET = sinon.stub(HTTPReq, "genGET").resolves();
+    const wrapper = mount(vMyAccount, mountingOptions());
+    wrapper.find(".myAccountLogout").trigger("click");
+    await wait(500);
+    expect(genGET.calledOnce).toEqual(true);
+    await genGET.restore();
+  });
 
-test.serial("My Account - Save Edit (success)", async (t) => {
-  const genPOST = sinon.stub(HTTPReq, "genPOST").resolves(true);
-  const wrapper = mount(vMyAccount, newLocalVueAndRouter());
-  const message = new messageSpy(wrapper);
+  it("Save Edit (success)", async () => {
+    const genPOST = sinon.stub(HTTPReq, "genPOST").resolves(true);
+    const wrapper = mount(vMyAccount, mountingOptions());
+    const message = new messageSpy(wrapper);
 
-  wrapper.find(".myAccountEdit").trigger("click");
-  t.true(wrapper.vm.$data.edit);
-  await wait(100);
-  wrapper.find(".myAccountSave").trigger("click");
-  await wait(500);
-  t.true(genPOST.calledOnce);
-  t.is(genPOST.args[0][0], "v2/user/10");
-  t.is(genPOST.args[0][1], WingsStructUtil.stringify(currentUser.details));
-  t.true(message.item.calledOnce);
-  t.is(message.getMessage(), "Profile updated successfully!");
-  t.is(message.getType(), "success");
-  t.false(wrapper.vm.$data.edit);
-  await genPOST.restore();
-  await message.restore();
-});
+    wrapper.find(".myAccountEdit").trigger("click");
+    expect(wrapper.vm.$data.edit).toEqual(true);
+    await wait(100);
+    wrapper.find(".myAccountSave").trigger("click");
+    await wait(500);
+    expect(genPOST.calledOnce).toEqual(true);
+    expect(genPOST.args[0][0]).toEqual("v2/user/10");
+    expect(genPOST.args[0][1]).toEqual(
+      WingsStructUtil.stringify(currentUser.details),
+    );
+    expect(message.item.calledOnce).toEqual(true);
+    expect(message.getMessage()).toEqual("Profile updated successfully!");
+    expect(message.getType()).toEqual("success");
+    expect(wrapper.vm.$data.edit).toEqual(false);
+    await genPOST.restore();
+    await message.restore();
+  });
 
-test.serial("My Account - Save Edit (failure)", async (t) => {
-  const genPOST = sinon.stub(HTTPReq, "genPOST").resolves(false);
-  const wrapper = mount(vMyAccount, newLocalVueAndRouter());
-  const alert = new alertSpy(wrapper);
+  it("Save Edit (failure)", async () => {
+    const genPOST = sinon.stub(HTTPReq, "genPOST").resolves(false);
+    const wrapper = mount(vMyAccount, mountingOptions());
+    const alert = new alertSpy(wrapper);
 
-  wrapper.find(".myAccountEdit").trigger("click");
-  t.true(wrapper.vm.$data.edit);
-  await wait(100);
-  wrapper.find(".myAccountSave").trigger("click");
-  await wait(500);
-  t.true(genPOST.calledOnce);
-  t.is(genPOST.args[0][0], "v2/user/10");
-  t.is(genPOST.args[0][1], WingsStructUtil.stringify(currentUser.details));
-  t.true(alert.item.calledOnce);
-  t.is(alert.getTitle(), "Fail");
-  t.is(alert.getMessage(), "Save was unsuccessful. Please try again later.");
-  t.is(alert.getOptions("confirmButtonText"), "OK");
-  await genPOST.restore();
-  await alert.restore();
+    wrapper.find(".myAccountEdit").trigger("click");
+    expect(wrapper.vm.$data.edit).toEqual(true);
+    await wait(100);
+    wrapper.find(".myAccountSave").trigger("click");
+    await wait(500);
+    expect(genPOST.calledOnce).toEqual(true);
+    expect(genPOST.args[0][0]).toEqual("v2/user/10");
+    expect(genPOST.args[0][1]).toEqual(
+      WingsStructUtil.stringify(currentUser.details),
+    );
+    expect(alert.item.calledOnce).toEqual(true);
+    expect(alert.getTitle()).toEqual("Fail");
+    expect(alert.getMessage()).toEqual(
+      "Save was unsuccessful. Please try again later.",
+    );
+    expect(alert.getOptions("confirmButtonText")).toEqual("OK");
+    await genPOST.restore();
+    await alert.restore();
+  });
 });

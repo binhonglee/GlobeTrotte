@@ -117,6 +117,13 @@ export default abstract class R {
     return this.next(path ?? this.default, map);
   }
 
+  public static fakeGetNext(
+    map: Map<string, string> = new Map<string, string>(),
+    to: string = this.default,
+  ): string {
+    return this.next(to, map);
+  }
+
   private static next(
     path: string,
     map: Map<string, string> = new Map<string, string>(),

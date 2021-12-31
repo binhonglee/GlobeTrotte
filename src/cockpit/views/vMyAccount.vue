@@ -45,7 +45,6 @@
 </template>
 
 <script lang="ts">
-import { useLoadingBar } from "naive-ui";
 import { defineComponent } from "vue";
 import CEditItem from "@/components/CEditItem.vue";
 import CViewUser from "@/components/CViewUser.vue";
@@ -65,7 +64,7 @@ interface Data {
   confirmed: boolean;
   loading: boolean;
   unconfirmedLink: string;
-  loadingBar: LoadingBarApiInjection;
+  loadingBar: LoadingBarApiInjection | null;
 }
 
 export default defineComponent({
@@ -80,7 +79,7 @@ export default defineComponent({
       confirmed: true,
       loading: false,
       unconfirmedLink: Routes.unconfirmed_Email,
-      loadingBar: useLoadingBar(),
+      loadingBar: General.loadingBar(),
     };
   },
   async beforeMount(): Promise<void> {
@@ -99,7 +98,7 @@ export default defineComponent({
   },
   methods: {
     async deleteAccount(): Promise<void> {
-      this.$data.loadingBar.start();
+      this.$data.loadingBar?.start();
       const deletion = await HTTPReq.genDELETE(
         "v2/user/" + this.$data.user.ID,
         WingsStructUtil.stringify(this.$data.user.details),
@@ -114,10 +113,10 @@ export default defineComponent({
             "info",
           ),
         );
-        this.$data.loadingBar.finish();
+        this.$data.loadingBar?.finish();
         await Routing.genRedirectTo(Routes.Landing);
       } else {
-        this.$data.loadingBar.error();
+        this.$data.loadingBar?.error();
         this.$message({
           type: "error",
           message: "Account deletion attempt failed.",
@@ -125,7 +124,7 @@ export default defineComponent({
       }
     },
     async save(): Promise<void> {
-      this.$data.loadingBar.start();
+      this.$data.loadingBar?.start();
       const user = new UserBasic({
         id: this.$data.user.ID,
         name: E.getVal(this, "name"),
@@ -140,13 +139,13 @@ export default defineComponent({
 
       if (success) {
         this.toggleEdit();
-        this.$data.loadingBar.finish();
+        this.$data.loadingBar?.finish();
         this.$message({
           message: "Profile updated successfully!",
           type: "success",
         });
       } else {
-        this.$data.loadingBar.error();
+        this.$data.loadingBar?.error();
         this.$alert("Save was unsuccessful. Please try again later.", "Fail", {
           confirmButtonText: "OK",
         });

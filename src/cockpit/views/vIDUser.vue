@@ -37,6 +37,7 @@ export default defineComponent({
         confirmButtonText: "OK",
       });
       await Routing.genRedirectTo(Routes.Landing);
+      return;
     }
 
     if (General.getIsCurrentUser(this.$data.user.ID.valueOf())) {

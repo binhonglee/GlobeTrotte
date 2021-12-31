@@ -1,20 +1,23 @@
 import CEditPlaces from "@/components/CEditPlaces.vue";
 import { mockPlace } from "@/tests/mockData/data";
-
-import { shallowMount } from "@vue/test-utils";
-import test from "ava";
+import { describe, expect, it } from "@jest/globals";
+import { mount } from "@vue/test-utils";
+import { globalMountingOptions, mountingOptions } from "../helper";
 
 const mockedPlace = new mockPlace();
 
-test("renders empty component", (t) => {
-  const wrapper = shallowMount(CEditPlaces, {});
-  t.false(wrapper.find(".editPlace").exists());
-});
-
-test("renders one place object", (t) => {
-  const places = [mockedPlace.place];
-  const wrapper = shallowMount(CEditPlaces, {
-    propsData: { givenPlaces: places },
+describe("CEditPlaces", () => {
+  it("renders empty component", () => {
+    const wrapper = mount(CEditPlaces, mountingOptions());
+    expect(wrapper.find(".editPlace").exists()).toBeFalsy();
   });
-  t.true(wrapper.find(".editPlace").exists());
+
+  it("renders one place object", () => {
+    const places = [mockedPlace.place];
+    const wrapper = mount(CEditPlaces, {
+      global: globalMountingOptions(),
+      propsData: { givenPlaces: places },
+    });
+    expect(wrapper.find(".editPlace").exists()).toBeTruthy();
+  });
 });

@@ -1,11 +1,9 @@
-// Intentionally kept as test.ts as its consistently failing.
-// Will rename back to spec after its fixed.
-
 import CEditTrip from "@/components/CEditTrip.vue";
 import { mockTripObj } from "@/tests/mockData/data";
 
 import { mount } from "@vue/test-utils";
-import { expect } from "@jest/globals";
+import { describe, expect, it } from "@jest/globals";
+import { globalMountingOptions } from "../helper";
 
 const mockedTrip = new mockTripObj();
 
@@ -13,6 +11,7 @@ describe("CEditTrip", () => {
   it("renders component", () => {
     const trip = mockedTrip.trip;
     const wrapper = mount(CEditTrip, {
+      global: globalMountingOptions(),
       props: {
         trip: trip,
         isNew: false,
@@ -31,7 +30,6 @@ describe("CEditTrip", () => {
   //       trip,
   //     },
   //   });
-  //   console.log(wrapper.html());
   //   const saveEditTrip = wrapper.find(".saveEditTrip");
   //   expect(saveEditTrip.exists()).toBeTruthy();
 

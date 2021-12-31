@@ -1,9 +1,11 @@
 import v404 from "@/views/v404.vue";
 
-import { shallowMount } from "@vue/test-utils";
-import test from "ava";
+import { mount } from "@vue/test-utils";
+import { expect } from "@jest/globals";
 
-test("404 Page not found", (t) => {
-  const wrapper = shallowMount(v404, {});
-  t.is(wrapper.text(), "Uhh, there's nothing to see here...");
+describe("404", () => {
+  it("404 Page not found", () => {
+    const wrapper = mount(v404, {});
+    expect(wrapper.text()).toEqual("Uhh, there's nothing to see here...");
+  });
 });

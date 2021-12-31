@@ -1,42 +1,41 @@
 import CTripInfo from "@/components/CTripInfo.vue";
 import { mockTripObj } from "@/tests/mockData/data";
-
-import { shallowMount } from "@vue/test-utils";
-import test from "ava";
+import { describe, expect, it } from "@jest/globals";
+import { mount } from "@vue/test-utils";
+import { globalMountingOptions } from "../helper";
 
 const mockedTrip = new mockTripObj();
 
-test("renders empty component", (t) => {
-  const wrapper = shallowMount(CTripInfo, {});
-  t.is(wrapper.find(".view_trip_info").exists(), true);
-  t.is(wrapper.find(".edit_trip_info").exists(), false);
-});
-
-test("renders one component", (t) => {
-  const wrapper = shallowMount(CTripInfo, {
-    propsData: {
-      trip: mockedTrip.trip,
-    },
+describe("CTripInfo", () => {
+  it("renders one component", () => {
+    const wrapper = mount(CTripInfo, {
+      global: globalMountingOptions(),
+      propsData: {
+        trip: mockedTrip.trip,
+      },
+    });
+    expect(wrapper.find(".view_trip_info").exists()).toBeTruthy();
   });
-  t.is(wrapper.find(".view_trip_info").exists(), true);
-});
 
-test("renders one edit component", (t) => {
-  const wrapper = shallowMount(CTripInfo, {
-    propsData: {
-      trip: mockedTrip.trip,
-      editable: true,
-    },
+  it("renders one edit component", () => {
+    const wrapper = mount(CTripInfo, {
+      global: globalMountingOptions(),
+      propsData: {
+        trip: mockedTrip.trip,
+        editable: true,
+      },
+    });
+    expect(wrapper.find(".view_trip_info").exists()).toBeTruthy();
   });
-  t.is(wrapper.find(".view_trip_info").exists(), true);
-});
 
-test("renders one view component", (t) => {
-  const wrapper = shallowMount(CTripInfo, {
-    propsData: {
-      trip: mockedTrip.trip,
-      editable: false,
-    },
+  it("renders one view component", () => {
+    const wrapper = mount(CTripInfo, {
+      global: globalMountingOptions(),
+      propsData: {
+        trip: mockedTrip.trip,
+        editable: false,
+      },
+    });
+    expect(wrapper.find(".view_trip_info").exists()).toBeTruthy();
   });
-  t.is(wrapper.find(".view_trip_info").exists(), true);
 });

@@ -24,13 +24,6 @@ filegroup(
 )
 
 filegroup(
-  name = "vitest_config",
-  srcs = [
-    "vitest.config.ts",
-  ],
-)
-
-filegroup(
   name = "index_html",
   srcs = ["index.html"],
 )
@@ -142,9 +135,10 @@ ava_dir(
     ":nycrc",
     ":tsconfig",
     "//src/cockpit:core_files",
-    "//src/cockpit/tests:ava_setup",
     "//src/cockpit/components:components",
     "//src/cockpit/shared:shared",
+    "//src/cockpit/tests:ava_setup",
+    "//src/cockpit/tests:helper",
     "//src/cockpit/views:views",
     "//src/cockpit/wings:wings",
   ],
@@ -162,6 +156,7 @@ jest_dir(
     "//src/cockpit:core_files",
     "//src/cockpit/components:components",
     "//src/cockpit/shared:shared",
+    "//src/cockpit/tests:helper",
     "//src/cockpit/views:views",
     "//src/cockpit/wings:wings",
   ],
@@ -173,7 +168,6 @@ jest_dir(
 vitest_dir(
   name = "vitest_test_deps",
   srcs = [
-    ":vitest_config",
     ":pnpm_config",
     ":tsconfig",
     "//src/cockpit:core_files",

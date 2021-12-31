@@ -1,3 +1,4 @@
+import { compileScript } from "vue/compiler-sfc";
 import City from "../wings/City";
 
 export class CityObj {
@@ -8,6 +9,11 @@ export class CityObj {
     this.key = key;
     this.label = CityUtil.toString(this.key);
   }
+}
+
+export interface Options {
+  label: string;
+  value: string;
 }
 
 export class CityUtil {
@@ -29,6 +35,12 @@ export class CityUtil {
       new CityObj(City.SeattleWAUS),
       new CityObj(City.WashingtonDCUS),
     ];
+  }
+
+  public static sortedCityOptions(): Options[] {
+    return this.sortedCityList().map((obj) => {
+      return { label: obj.label, value: obj.key.toString() };
+    });
   }
 
   public static toString(city: City): string {
@@ -58,6 +70,17 @@ export class CityUtil {
     let toRet = "";
     for (const city of cities) {
       toRet += city + ",";
+    }
+    return toRet;
+  }
+
+  public static stringToCityStringArray(str: string): string[] {
+    const toRet: string[] = [];
+    const cities = str.split(",");
+    for (const city of cities) {
+      if (city.length > 0 && city !== "0") {
+        toRet.push(city.toString());
+      }
     }
     return toRet;
   }

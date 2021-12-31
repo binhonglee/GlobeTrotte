@@ -46,6 +46,7 @@ export default defineComponent({
       const id = General.paramID();
       if (id === undefined) {
         this.$data.trip = new TripObj();
+        await Routing.genRedirectTo(Routes.trip_Search);
         return;
       }
 
@@ -59,7 +60,7 @@ export default defineComponent({
       }
 
       this.$notify(General.notifConfig("Error", "Trip not found.", "error"));
-      await Routing.genRedirectTo(Routes.trip_View);
+      await Routing.genRedirectTo(Routes.trip_Search);
     },
   },
 });

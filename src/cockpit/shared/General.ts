@@ -1,9 +1,11 @@
 import { ElNotificationOptions, MessageType } from "element-plus-option-types";
 import { WingsStructUtil } from "wings-ts-util";
-import HTTPReq from "./HTTPReq";
+import HTTPReq from "@/shared/HTTPReq";
 import TripObj from "@/wings/TripObj";
 import UserObj from "@/wings/UserObj";
 import router from "@/router";
+import { useLoadingBar } from "naive-ui";
+import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
 
 export default class General {
   public static paramID(): string | undefined {
@@ -75,5 +77,13 @@ export default class General {
 
   public static confirmed(): boolean {
     return this.getCurrentUser().details.confirmed.valueOf();
+  }
+
+  public static loadingBar(): LoadingBarApiInjection | null {
+    try {
+      return useLoadingBar();
+    } catch (_) {
+      return null;
+    }
   }
 }

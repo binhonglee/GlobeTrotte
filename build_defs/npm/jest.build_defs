@@ -73,6 +73,7 @@ def jest_test(
         "$TOOL",
         "jest",
         "--maxConcurrency=1",
+        "--maxWorkers=1",
         "--silent",
         "$PKG_DIR/" + src,
       ]),

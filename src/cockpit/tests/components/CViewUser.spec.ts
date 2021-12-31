@@ -1,25 +1,29 @@
 import CViewUser from "@/components/CViewUser.vue";
 import { mockUserObj } from "@/tests/mockData/data";
-import { shallowMount } from "@vue/test-utils";
-import test from "ava";
+import { describe, expect, it } from "@jest/globals";
+import { mount } from "@vue/test-utils";
+import { globalMountingOptions } from "../helper";
 
-test("render component", (t) => {
-  const user = new mockUserObj().user;
-  const wrapper = shallowMount(CViewUser, {
-    propsData: { user },
+describe("CViewUser", () => {
+  it("render component", () => {
+    const user = new mockUserObj().user;
+    const wrapper = mount(CViewUser, {
+      global: globalMountingOptions(),
+      propsData: { user },
+    });
+
+    expect(wrapper.find(".userInfo").exists()).toBeTruthy();
+    expect(wrapper.find(".userName").text()).toMatch(
+      new RegExp(user.details.name.valueOf()),
+    );
+    expect(wrapper.find(".userID").text()).toMatch(
+      new RegExp(user.ID.toString()),
+    );
+    expect(wrapper.find(".userEmail").text()).toMatch(
+      new RegExp(user.details.email.valueOf()),
+    );
+    expect(wrapper.find(".userBio").text()).toMatch(
+      new RegExp(user.details.bio.valueOf()),
+    );
   });
-  t.true(wrapper.find(".userInfo").exists());
-  t.regex(
-    wrapper.find(".userName").text(),
-    new RegExp(user.details.name.valueOf()),
-  );
-  t.regex(wrapper.find(".userID").text(), new RegExp(user.ID.toString()));
-  t.regex(
-    wrapper.find(".userEmail").text(),
-    new RegExp(user.details.email.valueOf()),
-  );
-  t.regex(
-    wrapper.find(".userBio").text(),
-    new RegExp(user.details.bio.valueOf()),
-  );
 });

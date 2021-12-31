@@ -37,7 +37,6 @@
 </template>
 
 <script lang="ts">
-import { useLoadingBar } from "naive-ui";
 import { defineComponent } from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import CEditItem from "@/components/CEditItem.vue";
@@ -55,7 +54,7 @@ interface Data {
   loading: boolean;
   showError: boolean;
   resetLink: string;
-  loadingBar: LoadingBarApiInjection;
+  loadingBar: LoadingBarApiInjection | null;
 }
 
 export default defineComponent({
@@ -67,7 +66,7 @@ export default defineComponent({
       loading: false,
       showError: false,
       resetLink: Routes.password_Reset,
-      loadingBar: useLoadingBar(),
+      loadingBar: General.loadingBar(),
     };
   },
   beforeMount(): void {
@@ -81,7 +80,7 @@ export default defineComponent({
   methods: {
     async confirm(): Promise<void> {
       this.$data.loading = true;
-      this.$data.loadingBar.start();
+      this.$data.loadingBar?.start();
       const loginCredential = new LoginCredential({
         email: E.getVal(this, "email"),
         password: E.getVal(this, "password"),
@@ -94,7 +93,7 @@ export default defineComponent({
 
       const user = new UserObj(res);
       if (user.ID === -1) {
-        this.$data.loadingBar.error();
+        this.$data.loadingBar?.error();
         this.$data.loading = false;
         this.$message({
           type: "error",
@@ -102,7 +101,7 @@ export default defineComponent({
         });
         return;
       }
-      this.$data.loadingBar.finish();
+      this.$data.loadingBar?.finish();
       localStorage.setItem("userobj", WingsStructUtil.stringify(user));
       this.$data.loading = false;
       this.$notify(

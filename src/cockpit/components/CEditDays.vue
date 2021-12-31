@@ -1,27 +1,35 @@
-<template lang="pug">
-.edit_days
-  el-card.editDay(
-    v-for="(day, index) in days"
-    shadow="hover"
-    :key="day.dayOf.valueOf()"
-    :class="'day' + day.dayOf"
-  )
-    .editDayCardContent
-      div.editDayTitle
-        b Day {{ day.dayOf }}
-        el-button.removeDay(
-          type='danger'
-          icon='el-icon-close'
-          plain v-on:click='removeDay(index)'
-        ) Delete this day
-      CEditPlaces.editPlaces(
-        :givenPlaces="day.places"
-        :ref="'places' + index"
-      )
-  el-button.addDay(
-    icon='el-icon-plus'
-    v-on:click='pushDay'
-  ) Add another day
+<template>
+  <div class="edit_days">
+    <el-card
+      v-for="(day, index) in days"
+      :key="day.dayOf.valueOf()"
+      class="editDay"
+      shadow="hover"
+      :class="'day' + day.dayOf"
+    >
+      <div class="editDayCardContent">
+        <div class="editDayTitle"
+          ><b>Day {{ day.dayOf }}</b>
+          <el-button
+            class="removeDay"
+            type="danger"
+            icon="el-icon-close"
+            plain="plain"
+            @click="removeDay(index)"
+            >Delete this day</el-button
+          >
+        </div>
+        <CEditPlaces
+          :ref="'places' + index"
+          class="editPlaces"
+          :given-places="day.places"
+        />
+      </div>
+    </el-card>
+    <el-button class="addDay" icon="el-icon-plus" @click="pushDay"
+      >Add another day</el-button
+    >
+  </div>
 </template>
 
 <script lang="ts">
@@ -47,7 +55,7 @@ export default defineComponent({
     days: [],
   }),
   beforeMount(): void {
-    this.$data.days = (this.$props.givenDays ?? []).slice(0) as Day[];
+    this.$data.days = this.$props.givenDays.slice(0) as Day[];
   },
   methods: {
     pushDay(): void {

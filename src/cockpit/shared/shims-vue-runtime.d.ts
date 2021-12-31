@@ -1,9 +1,9 @@
-import { ElNotification, ElAlert, ElMessage } from "element-plus";
+import { ElNotification, ElMessageBox, ElMessage } from "element-plus";
 
 declare module "@vue/runtime-core" {
   interface ComponentCustomProperties {
     $notify: ElNotification;
-    $alert: ElAlert;
+    $alert: ElMessageBox.alert;
     $message: ElMessage;
   }
 }

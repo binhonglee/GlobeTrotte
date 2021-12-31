@@ -2,24 +2,19 @@
 .landing
   h1.title GlobeTrotte
   form.tripSearchForm
-  el-input.tripSearchQueryInput(
-    placeholder="Trip to Alaska"
-    v-model="query"
-    v-on:keyup.enter.native="search"
-  )
-  el-select.tripSearchCityInput(
-    v-model="selectedCities"
-    filterable
-    multiple
-    no-match-text="City not found"
-    placeholder="City"
-  )
-    el-option.tripSearchSingleCity(
-      v-for="item in possibleCities"
-      :label="item.label"
-      :value="item.key"
+    n-input.tripSearchQueryInput(
+      placeholder="Trip to Alaska"
+      v-model:value="query"
+      v-on:keyup.enter.native="search"
     )
-  el-button(v-on:click="search") Find
+    n-select.tripSearchCityInput(
+      v-model:value="selectedCities"
+      :options="possibleCities"
+      filterable
+      multiple
+      placeholder="City"
+    )
+    el-button(v-on:click="search") Find
   p
     | Feel free to click around but nothing is set in
     | stone. Do not save any important infomation here.
@@ -41,14 +36,15 @@ import { defineComponent } from "vue";
 import CTripInCarousel from "@/components/CTripInCarousel.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import TripObj from "@/wings/TripObj";
-import { CityObj, CityUtil } from "@/shared/CityUtil";
+import { Options, CityUtil } from "@/shared/CityUtil";
 import Routing from "@/shared/Routing";
 import Routes from "@/routes";
 import City from "@/wings/City";
+import { NSelect, NInput } from "naive-ui";
 
 interface Data {
   length: number;
-  possibleCities: Array<CityObj>;
+  possibleCities: Array<Options>;
   query: string;
   selectedCities: City[];
   trips: TripObj[];
@@ -56,6 +52,8 @@ interface Data {
 
 export default defineComponent({
   components: {
+    NInput,
+    NSelect,
     CTripInCarousel,
   },
   data: (): Data => ({
@@ -66,7 +64,7 @@ export default defineComponent({
     trips: [],
   }),
   async beforeMount(): Promise<void> {
-    this.$data.possibleCities = CityUtil.sortedCityList();
+    this.$data.possibleCities = CityUtil.sortedCityOptions();
     this.$data.trips = [];
     console.log(process.env.NODE_ENV);
     const trips = await HTTPReq.genGET("v2/sample_trips");
@@ -111,11 +109,19 @@ export default defineComponent({
 }
 
 .tripSearchForm {
+  padding-bottom: 30px;
   text-align: center;
 }
 
+.tripSearchQueryInput {
+  display: inline-block;
+  text-align: left;
+}
+
 .tripSearchCityInput {
-  padding: 0 10px;
+  margin: auto;
+  padding: 10px 0;
+  max-width: 300px;
 }
 
 .homePageTripCarousel {

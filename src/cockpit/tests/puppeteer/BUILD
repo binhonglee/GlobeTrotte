@@ -7,7 +7,7 @@ filegroup(
 
 # ava_tests(
 #   name = "puppeteer",
-#   srcs = glob(["**/*.spec.ts"]),
+#   srcs = glob(["**/*.test.ts"]),
 #   deps = [
 #     "//:ava_test_deps",
 #     ":puppeteer_deps",

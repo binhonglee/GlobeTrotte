@@ -1,34 +1,31 @@
 import CViewTrip from "@/components/CViewTrip.vue";
-// import { CityUtil } from "@/shared/CityUtil";
+import { CityUtil } from "@/shared/CityUtil";
 import { mockTripObj } from "@/tests/mockData/data";
-
-import { shallowMount } from "@vue/test-utils";
-import test from "ava";
+import { describe, expect, it } from "@jest/globals";
+import { mount } from "@vue/test-utils";
+import { globalMountingOptions } from "../helper";
 
 const mockedTrip = new mockTripObj();
 
-test("Empty component", (t) => {
-  const wrapper = shallowMount(CViewTrip, {});
-  t.is(wrapper.text(), "");
-});
-
-test("One trip in component", (t) => {
-  const wrapper = shallowMount(CViewTrip, {
-    propsData: {
-      trip: mockedTrip.trip,
-    },
+describe("CViewTrip", () => {
+  it("One trip in component", () => {
+    const wrapper = mount(CViewTrip, {
+      global: globalMountingOptions(),
+      propsData: {
+        trip: mockedTrip.trip,
+      },
+    });
+    expect(wrapper.find(".tripName").text()).toEqual(
+      mockedTrip.trip.details.name,
+    );
+    expect(wrapper.find(".tripDescription").text()).toEqual(
+      mockedTrip.trip.details.description,
+    );
+    expect(wrapper.find(".tripCity").text()).toEqual(
+      CityUtil.toString(mockedTrip.trip.details.cities[0]),
+    );
+    expect(wrapper.find(".tripCreatorInfo").text()).toEqual(
+      "Author: " + mockedTrip.trip.user.name,
+    );
   });
-  t.is(wrapper.find(".tripName").text(), mockedTrip.trip.details.name);
-  t.is(wrapper.find(".tripID").text(), mockedTrip.ID.toString());
-  t.is(
-    wrapper.find(".tripDescription").text(),
-    mockedTrip.trip.details.description,
-  );
-  // t.is(wrapper.find("#city").text(),
-  //   CityUtil.toString(mockedTrip.cities[0]),
-  // );
-  t.is(
-    wrapper.find(".tripCreatorInfo").text(),
-    "Author: " + mockedTrip.trip.user.name,
-  );
 });

@@ -1,20 +1,22 @@
 import CPlaces from "@/components/CPlaces.vue";
 import { mockPlace } from "@/tests/mockData/data";
-
-import { shallowMount } from "@vue/test-utils";
-import test from "ava";
+import { describe, expect, it } from "@jest/globals";
+import { mount } from "@vue/test-utils";
+import { globalMountingOptions } from "../helper";
 
 const mockedPlace = new mockPlace();
 
-test("renders empty component", (t) => {
-  const wrapper = shallowMount(CPlaces, {});
-  t.is(wrapper.find(".places").text(), "");
-});
+describe("CPlaces", () => {
+  it("renders one component", () => {
+    const wrapper = mount(CPlaces, {
+      global: globalMountingOptions(),
+      propsData: {
+        places: [mockedPlace.place],
+      },
+    });
 
-test("renders one component", (t) => {
-  const wrapper = shallowMount(CPlaces, {
-    propsData: { places: [mockedPlace.place] },
+    expect(wrapper.find(".place").text()).toMatch(
+      new RegExp(mockedPlace.label),
+    );
   });
-
-  t.regex(wrapper.find(".place").text(), new RegExp(mockedPlace.label));
 });

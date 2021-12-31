@@ -1,31 +1,27 @@
 import vLogin from "@/views/vLogin.vue";
 import HTTPReq from "@/shared/HTTPReq";
-import NewUser from "@/wings/NewUser";
 import UserObj from "@/wings/UserObj";
-
+import Routing from "@/shared/Routing";
+import { describe, expect, it } from "@jest/globals";
 import { mount, VueWrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
 import {
   messageSpy,
   notifySpy,
-  newLocalVueAndRouter,
+  mountingOptions,
   routerSpy,
   Vue,
 } from "../helper";
 import sinon from "sinon";
-import test from "ava";
-import { ExecutionContext } from "ava";
 import R from "@/shared/R";
+import LoginCredential from "@/wings/LoginCredential";
 
 const email = "ab@test.com";
 const password = "1234";
 
-function verifyUI(
-  t: ExecutionContext<unknown>,
-  wrapper: VueWrapper<Vue>,
-): void {
-  t.is(wrapper.find(".loginUsernameLabel").text(), "Email:");
-  t.is(wrapper.find(".loginPasswordLabel").text(), "Password:");
+function verifyUI(wrapper: VueWrapper<Vue>): void {
+  expect(wrapper.find(".loginUsernameLabel").text()).toEqual("Email:");
+  expect(wrapper.find(".loginPasswordLabel").text()).toEqual("Password:");
 }
 
 interface FormLogin {
@@ -33,11 +29,7 @@ interface FormLogin {
   password: string;
 }
 
-function fillFormAndLogin(
-  t: ExecutionContext<unknown>,
-  wrapper: VueWrapper<Vue>,
-  form: FormLogin,
-): void {
+function fillFormAndLogin(wrapper: VueWrapper<Vue>, form: FormLogin): void {
   wrapper.find(".loginUsername").find(".el-input__inner").setValue(form.email);
   wrapper
     .find(".loginPassword")
@@ -46,95 +38,98 @@ function fillFormAndLogin(
   wrapper.find(".loginConfirm").trigger("click");
 }
 
-test.serial("Login - Cancel", async (t) => {
-  const wrapper = mount(vLogin, newLocalVueAndRouter());
-  const routerBack = new routerSpy(wrapper, "back");
-  const rNext = sinon.stub(R, "hasNext").returns(false);
-  verifyUI(t, wrapper);
-  wrapper.find(".loginCancel").trigger("click");
-  rNext.restore();
-  t.true(routerBack.item.calledOnce);
-  await routerBack.restore();
-});
-
-test.serial("Login - Wrong password", async (t) => {
-  const returnedUser = WingsStructUtil.stringify(
-    new UserObj({
-      id: -1,
-    }),
-  );
-  const genPOST = sinon
-    .stub(HTTPReq, "genPOST")
-    .resolves(JSON.parse(returnedUser));
-  const wrapper = mount(vLogin, newLocalVueAndRouter());
-  const message = new messageSpy(wrapper);
-  const rNext = sinon.stub(R, "hasNext").returns(false);
-  verifyUI(t, wrapper);
-  fillFormAndLogin(t, wrapper, {
-    email: email,
-    password: password,
+describe("Login", () => {
+  beforeAll(() => {
+    jest.spyOn(Routing, "genRedirectTo").mockImplementation(async () => {
+      return;
+    });
   });
-  rNext.restore();
-  t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][0], "v2/login");
-  t.is(
-    genPOST.args[0][1],
-    WingsStructUtil.stringify(
-      new NewUser({
-        id: -1,
-        name: "",
-        email: email,
-        password: password,
-      }),
-    ),
-  );
-  await genPOST.restore();
-  t.true(message.item.calledOnce);
-  t.is(message.getMessage(), "Wrong email or password. Please try again.");
-  t.is(message.getType(), "error");
-  await message.restore();
-});
 
-test.serial("Login - Success", async (t) => {
-  const rNext = sinon.stub(R, "hasNext").returns(false);
-  const returnedUser = WingsStructUtil.stringify(
-    new UserObj({
-      id: 10,
-    }),
-  );
-  const genPOST = sinon
-    .stub(HTTPReq, "genPOST")
-    .resolves(JSON.parse(returnedUser));
-  const wrapper = mount(vLogin, newLocalVueAndRouter());
-  await wrapper.vm.$router.push("/login");
-  const routerPush = new routerSpy(wrapper, "push");
-  const notify = new notifySpy(wrapper);
-  verifyUI(t, wrapper);
-  fillFormAndLogin(t, wrapper, {
-    email: email,
-    password: password,
+  it("Cancel", async () => {
+    const wrapper = mount(vLogin, mountingOptions());
+    const routerBack = new routerSpy(wrapper, "back");
+    const rNext = sinon.stub(R, "hasNext").returns(false);
+    verifyUI(wrapper);
+    wrapper.find(".loginCancel").trigger("click");
+    rNext.restore();
+    expect(routerBack.item.calledOnce).toBeTruthy();
+    await routerBack.restore();
   });
-  await rNext.restore();
-  t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][0], "v2/login");
-  t.is(
-    genPOST.args[0][1],
-    WingsStructUtil.stringify(
-      new NewUser({
+
+  it("Wrong password", async () => {
+    const returnedUser = WingsStructUtil.stringify(
+      new UserObj({
         id: -1,
-        name: "",
-        email: email,
-        password: password,
       }),
-    ),
-  );
-  await genPOST.restore();
-  t.true(routerPush.item.calledOnce);
-  t.is(routerPush.getArg(), "/");
-  await routerPush.restore();
-  t.true(notify.item.calledOnce);
-  t.is(notify.getTitle(), "Success");
-  t.is(notify.getMessage(), "You are now logged in.");
-  t.is(notify.getType(), "success");
-  await notify.restore();
+    );
+    const genPOST = sinon
+      .stub(HTTPReq, "genPOST")
+      .resolves(JSON.parse(returnedUser));
+    const wrapper = mount(vLogin, mountingOptions());
+    const message = new messageSpy(wrapper);
+    const rNext = sinon.stub(R, "hasNext").returns(false);
+    verifyUI(wrapper);
+    fillFormAndLogin(wrapper, {
+      email: email,
+      password: password,
+    });
+    rNext.restore();
+    expect(genPOST.calledOnce).toBeTruthy();
+    expect(genPOST.args[0][0]).toEqual("login");
+    expect(genPOST.args[0][1]).toEqual(
+      WingsStructUtil.stringify(
+        new LoginCredential({
+          email: email,
+          password: password,
+        }),
+      ),
+    );
+    await genPOST.restore();
+    expect(message.item.calledOnce).toBeTruthy();
+    expect(message.getMessage()).toEqual(
+      "Wrong email or password. Please try again.",
+    );
+    expect(message.getType()).toEqual("error");
+    await message.restore();
+  });
+
+  it("Success", async () => {
+    const rNext = sinon.stub(R, "hasNext").returns(false);
+    const returnedUser = WingsStructUtil.stringify(
+      new UserObj({
+        id: 10,
+      }),
+    );
+    const genPOST = sinon
+      .stub(HTTPReq, "genPOST")
+      .resolves(JSON.parse(returnedUser));
+    const wrapper = mount(vLogin, mountingOptions());
+    // const routerPush = new routerSpy(wrapper, "push");
+    const notify = new notifySpy(wrapper);
+    verifyUI(wrapper);
+    fillFormAndLogin(wrapper, {
+      email: email,
+      password: password,
+    });
+    await rNext.restore();
+    expect(genPOST.calledOnce).toBeTruthy();
+    expect(genPOST.args[0][0]).toEqual("login");
+    expect(genPOST.args[0][1]).toEqual(
+      WingsStructUtil.stringify(
+        new LoginCredential({
+          email: email,
+          password: password,
+        }),
+      ),
+    );
+    await genPOST.restore();
+    // expect(routerPush.item.calledOnce).toBeTruthy();
+    // expect(routerPush.getArg()).toEqual("/");
+    // await routerPush.restore();
+    expect(notify.item.calledOnce).toBeTruthy();
+    expect(notify.getTitle()).toEqual("Success");
+    expect(notify.getMessage()).toEqual("You are now logged in.");
+    expect(notify.getType()).toEqual("success");
+    await notify.restore();
+  });
 });

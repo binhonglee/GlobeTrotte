@@ -2,23 +2,18 @@
 .search_trip
   h1.title Search Trip
   form.tripSearchForm
-    el-input.tripSearchQueryInput(
+    n-input.tripSearchQueryInput(
       placeholder="Trip to Alaska"
-      v-model="query"
+      v-model:value="query"
       v-on:keyup.enter.native="search"
     )
-    el-select.tripSearchCityInput(
-      v-model="selectedCities"
+    n-select.tripSearchCityInput(
+      v-model:value="selectedCities"
+      :options="possibleCities"
       filterable
       multiple
-      no-match-text="City not found"
       placeholder="City"
     )
-      el-option.tripSearchSingleCity(
-        v-for="item in possibleCities"
-        :label="item.label"
-        :value="item.key"
-      )
     el-button(v-on:click="search") Find
   .tripSearchResultCarousel(v-if="trips.length > 0")
     CTripInCarousel(
@@ -38,25 +33,27 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import CTripInCarousel from "@/components/CTripInCarousel.vue";
-import { CityObj, CityUtil } from "@/shared/CityUtil";
+import { Options, CityUtil } from "@/shared/CityUtil";
 import HTTPReq from "@/shared/HTTPReq";
-import City from "@/wings/City";
 import TripObj from "@/wings/TripObj";
 import TripsSearchQuery from "@/wings/TripSearchQuery";
 import { WingsStructUtil } from "wings-ts-util";
 import Routing from "@/shared/Routing";
+import { NSelect, NInput, c } from "naive-ui";
 
 interface Data {
   length: number;
-  possibleCities: Array<CityObj>;
+  possibleCities: Array<Options>;
   query: string;
   searching: boolean;
-  selectedCities: City[];
+  selectedCities: string[];
   trips: TripObj[];
 }
 
 export default defineComponent({
   components: {
+    NInput,
+    NSelect,
     CTripInCarousel,
   },
   data: (): Data => ({
@@ -69,12 +66,12 @@ export default defineComponent({
   }),
   async beforeMount(): Promise<void> {
     this.$data.searching = true;
-    this.$data.possibleCities = CityUtil.sortedCityList();
+    this.$data.possibleCities = CityUtil.sortedCityOptions();
     const paramMap = Routing.getParamMap();
     const length = +(paramMap.get("length") ?? "");
     this.$data.length = isNaN(length) ? 0 : length;
     this.$data.query = paramMap.get("query") ?? "";
-    this.$data.selectedCities = CityUtil.stringToCities(
+    this.$data.selectedCities = CityUtil.stringToCityStringArray(
       paramMap.get("cities") ?? "",
     );
     await this.search();
@@ -85,9 +82,12 @@ export default defineComponent({
       if (this.$data.selectedCities.length < 1 && this.$data.query.length < 1) {
         return;
       }
+      const cities = CityUtil.stringToCities(
+        this.$data.selectedCities.join(","),
+      );
 
       const searchQuery = new TripsSearchQuery({
-        cities: this.$data.selectedCities,
+        cities: cities,
         length: this.$data.length,
         query: this.$data.query,
       });
@@ -126,8 +126,15 @@ export default defineComponent({
   text-align: center;
 }
 
+.tripSearchQueryInput {
+  display: inline-block;
+  text-align: left;
+}
+
 .tripSearchCityInput {
-  padding: 0 10px;
+  margin: auto;
+  padding: 10px 0;
+  max-width: 300px;
 }
 
 .tripSearchNoResultFound {

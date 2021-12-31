@@ -1,5 +1,4 @@
-/// <reference types="vitest/global.d.ts" />
-
+import { expect, test } from "vitest";
 import { mount } from "@vue/test-utils";
 import v404 from "@/views/v404.vue";
 

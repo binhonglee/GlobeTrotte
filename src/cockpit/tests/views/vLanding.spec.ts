@@ -1,15 +1,17 @@
 import HTTPReq from "@/shared/HTTPReq";
 import vLanding from "@/views/vLanding.vue";
-
-import { shallowMount } from "@vue/test-utils";
+import { describe, expect, it } from "@jest/globals";
+import { mount } from "@vue/test-utils";
 import sinon from "sinon";
-import test from "ava";
+import { mountingOptions } from "../helper";
 
-test("Landing Page", async (t) => {
-  const genGET = sinon.stub(HTTPReq, "genGET").resolves([]);
-  const wrapper = shallowMount(vLanding, {});
-  t.is(wrapper.find(".title").text(), "GlobeTrotte");
-  t.true(genGET.calledOnce);
-  t.is(genGET.args[0][0], "v2/sample_trips");
-  await genGET.restore();
+describe("Landing", () => {
+  it("Load Page", async () => {
+    const genGET = sinon.stub(HTTPReq, "genGET").resolves([]);
+    const wrapper = mount(vLanding, mountingOptions());
+    expect(wrapper.find(".title").text()).toEqual("GlobeTrotte");
+    expect(genGET.calledOnce).toEqual(true);
+    expect(genGET.args[0][0]).toEqual("v2/sample_trips");
+    await genGET.restore();
+  });
 });

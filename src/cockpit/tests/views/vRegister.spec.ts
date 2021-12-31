@@ -5,31 +5,29 @@ import UserObj from "@/wings/UserObj";
 import {
   alertSpy,
   messageSpy,
-  newLocalVueAndRouter,
+  mountingOptions,
   notifySpy,
   routerSpy,
   Vue,
   wait,
 } from "../helper";
-
+import { describe, expect, it } from "@jest/globals";
 import { mount, VueWrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
 import sinon from "sinon";
-import test, { ExecutionContext } from "ava";
+import Routing from "@/shared/Routing";
 
 const name = "Ab Cd";
 const email = "ab@test.com";
 const password = "1234";
 
-function verifyUI(
-  t: ExecutionContext<unknown>,
-  wrapper: VueWrapper<Vue>,
-): void {
-  t.is(wrapper.find(".registrationNameLabel").text(), "Name:");
-  t.is(wrapper.find(".registrationEmailLabel").text(), "Email:");
-  t.is(wrapper.find(".registrationPasswordLabel").text(), "Password:");
-  t.is(
-    wrapper.find(".registrationConfPasswordLabel").text(),
+function verifyUI(wrapper: VueWrapper<Vue>): void {
+  expect(wrapper.find(".registrationNameLabel").text()).toEqual("Name:");
+  expect(wrapper.find(".registrationEmailLabel").text()).toEqual("Email:");
+  expect(wrapper.find(".registrationPasswordLabel").text()).toEqual(
+    "Password:",
+  );
+  expect(wrapper.find(".registrationConfPasswordLabel").text()).toEqual(
     "Confirm Password:",
   );
 }
@@ -41,11 +39,7 @@ interface FormReg {
   confPassword: string;
 }
 
-function fillFormAndReg(
-  t: ExecutionContext<unknown>,
-  wrapper: VueWrapper<Vue>,
-  form: FormReg,
-): void {
+function fillFormAndReg(wrapper: VueWrapper<Vue>, form: FormReg): void {
   wrapper
     .find(".registrationName")
     .find(".el-input__inner")
@@ -65,121 +59,129 @@ function fillFormAndReg(
   wrapper.find(".registrationSave").trigger("click");
 }
 
-test("Registration - Password mismatch", async (t) => {
-  const wrapper = mount(vRegister);
-  const alert = new alertSpy(wrapper);
-  verifyUI(t, wrapper);
-  fillFormAndReg(t, wrapper, {
-    name: name,
-    email: email,
-    password: password,
-    confPassword: password + "a",
+describe("vRegister", () => {
+  it("Registration - Password mismatch", async () => {
+    const wrapper = mount(vRegister, mountingOptions());
+    const alert = new alertSpy(wrapper);
+    verifyUI(wrapper);
+    fillFormAndReg(wrapper, {
+      name: name,
+      email: email,
+      password: password,
+      confPassword: password + "a",
+    });
+    expect(alert.item.calledOnce).toBeTruthy();
+    expect(alert.getTitle()).toEqual("Fail");
+    expect(alert.getMessage()).toEqual("Password does not match.");
+    expect(alert.getOptions("confirmButtonText")).toEqual("OK");
+    await alert.restore();
   });
-  t.true(alert.item.calledOnce);
-  t.is(alert.getTitle(), "Fail");
-  t.is(alert.getMessage(), "Password does not match.");
-  t.is(alert.getOptions("confirmButtonText"), "OK");
-  await alert.restore();
-});
 
-test.serial("Registration - New user (Failure)", async (t) => {
-  const returnedUser = WingsStructUtil.stringify(
-    new UserObj({
-      id: -1,
-      details: {
+  it("Registration - New user (Failure)", async () => {
+    const returnedUser = WingsStructUtil.stringify(
+      new UserObj({
         id: -1,
-        name: name,
-        email: email,
-      },
-    }),
-  );
-  const genPOST = sinon
-    .stub(HTTPReq, "genPOST")
-    .resolves(JSON.parse(returnedUser));
-  const wrapper = mount(vRegister);
-  const message = new messageSpy(wrapper);
-  verifyUI(t, wrapper);
-  fillFormAndReg(t, wrapper, {
-    name: name,
-    email: email,
-    password: password,
-    confPassword: password,
-  });
-  t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][0], "v2/user");
-  t.is(
-    genPOST.args[0][1],
-    WingsStructUtil.stringify(
-      new NewUser({
-        id: -1,
-        name: name,
-        email: email,
-        password: password,
+        details: {
+          id: -1,
+          name: name,
+          email: email,
+        },
       }),
-    ),
-  );
-  await wait(500);
-  t.true(message.item.calledOnce, "Called $message once");
-  t.is(message.getMessage(), "Invalid email. Please try again.");
-  t.is(message.getType(), "error");
-  await genPOST.restore();
-  await message.restore();
-});
+    );
+    const genPOST = sinon
+      .stub(HTTPReq, "genPOST")
+      .resolves(JSON.parse(returnedUser));
+    const wrapper = mount(vRegister, mountingOptions());
+    const message = new messageSpy(wrapper);
+    verifyUI(wrapper);
+    fillFormAndReg(wrapper, {
+      name: name,
+      email: email,
+      password: password,
+      confPassword: password,
+    });
+    expect(genPOST.calledOnce).toBeTruthy();
+    expect(genPOST.args[0][0]).toEqual("v2/user");
+    expect(genPOST.args[0][1]).toEqual(
+      WingsStructUtil.stringify(
+        new NewUser({
+          id: -1,
+          name: name,
+          email: email,
+          password: password,
+        }),
+      ),
+    );
+    await wait(500);
+    expect(message.item.calledOnce).toBeTruthy();
+    expect(message.getMessage()).toEqual("Invalid email. Please try again.");
+    expect(message.getType()).toEqual("error");
+    await genPOST.restore();
+    await message.restore();
+  });
 
-test.serial("Registration - New user (Success)", async (t) => {
-  const returnedUser = WingsStructUtil.stringify(
-    new UserObj({
-      id: 10,
-      details: {
+  it("Registration - New user (Success)", async () => {
+    const returnedUser = WingsStructUtil.stringify(
+      new UserObj({
         id: 10,
-        name: name,
-        email: email,
-      },
-    }),
-  );
-  const genPOST = sinon
-    .stub(HTTPReq, "genPOST")
-    .resolves(JSON.parse(returnedUser));
-  const wrapper = mount(vRegister, newLocalVueAndRouter());
-  const notify = new notifySpy(wrapper);
-  const routerPush = new routerSpy(wrapper, "push");
-  verifyUI(t, wrapper);
-  fillFormAndReg(t, wrapper, {
-    name: name,
-    email: email,
-    password: password,
-    confPassword: password,
-  });
-  t.true(genPOST.calledOnce, "Called genPOST once");
-  t.is(genPOST.args[0][0], "v2/user");
-  t.is(
-    genPOST.args[0][1],
-    WingsStructUtil.stringify(
-      new NewUser({
-        id: -1,
-        name: name,
-        email: email,
-        password: password,
+        details: {
+          id: 10,
+          name: name,
+          email: email,
+        },
       }),
-    ),
-  );
-  await wait(500);
-  t.true(notify.item.calledOnce, "Called $notify once");
-  t.is(notify.getTitle(), "Success");
-  t.is(notify.getMessage(), "Your account is created successfully!");
-  t.is(notify.getType(), "success");
-  t.true(routerPush.item.calledOnce);
-  t.is(routerPush.getArg(), "/unconfirmed/email/:next=myaccount/");
-  await genPOST.restore();
-  await notify.restore();
-  await routerPush.restore();
-});
+    );
+    const genPOST = sinon
+      .stub(HTTPReq, "genPOST")
+      .resolves(JSON.parse(returnedUser));
+    const wrapper = mount(vRegister, mountingOptions());
+    const notify = new notifySpy(wrapper);
+    const redirection = sinon.stub(Routing, "genRedirectTo").resolves();
+    const getNext = sinon.stub(Routing, "getNext").callsFake((r, m) => {
+      return Routing.fakeGetNext(m);
+    });
+    verifyUI(wrapper);
+    fillFormAndReg(wrapper, {
+      name: name,
+      email: email,
+      password: password,
+      confPassword: password,
+    });
+    expect(genPOST.calledOnce).toBeTruthy();
+    expect(genPOST.args[0][0]).toEqual("v2/user");
+    expect(genPOST.args[0][1]).toEqual(
+      WingsStructUtil.stringify(
+        new NewUser({
+          id: -1,
+          name: name,
+          email: email,
+          password: password,
+        }),
+      ),
+    );
+    await wait(500);
+    expect(notify.item.calledOnce).toBeTruthy();
+    expect(notify.getTitle()).toEqual("Success");
+    expect(notify.getMessage()).toEqual(
+      "Your account is created successfully!",
+    );
+    expect(notify.getType()).toEqual("success");
+    expect(redirection.calledOnce).toBeTruthy();
+    expect(redirection.args[0][0]).toEqual(
+      "/unconfirmed/email/:next=myaccount",
+    );
+    await genPOST.restore();
+    await notify.restore();
+    await redirection.restore();
+    await getNext.restore();
+  });
 
-test("Registration - Cancel", async (t) => {
-  const wrapper = mount(vRegister, newLocalVueAndRouter());
-  const routerBack = new routerSpy(wrapper, "back");
-  verifyUI(t, wrapper);
-  wrapper.find(".registrationCancel").trigger("click");
-  t.true(routerBack.item.calledOnce);
-  await routerBack.restore();
+  it("Registration - Cancel", async () => {
+    const wrapper = mount(vRegister, mountingOptions());
+    const routerBack = new routerSpy(wrapper, "back");
+    verifyUI(wrapper);
+    wrapper.find(".registrationCancel").trigger("click");
+    expect(routerBack.item.calledOnce).toBeTruthy();
+    await routerBack.restore();
+  });
 });

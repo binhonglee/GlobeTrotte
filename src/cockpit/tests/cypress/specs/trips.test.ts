@@ -19,7 +19,7 @@ describe("Trips", () => {
     cy.get(".editTripName").type(tripName);
     cy.get(".editTripDescription").type(tripDescription);
     cy.get(".editCity").find(".editInput").click();
-    cy.get(".editTripSingleCity").first().click();
+    cy.get(".n-select-menu").first().click();
     cy.get(".editTripDescription").click();
     cy.get(".day1").find(".removeDay").click();
     cy.get(".day1").should("not.exist");

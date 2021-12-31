@@ -21,18 +21,13 @@
       el-switch.editInput(v-model="private")
     .editCity
       span.editLabel Cities:
-      el-select.editInput(
-        v-model="cities"
+      n-select.editInput(
+        v-model:value="cities"
+        :options="possibleCities"
         filterable
         multiple
-        no-match-text="City not found"
         placeholder=""
       )
-        el-option.editTripSingleCity(
-          v-for="item in possibleCities"
-          :label="item.label"
-          :value="item.key"
-        )
     CEditDays(ref="days" :givenDays="trip.details.days")
     div.confirmationButtons
       el-button.saveEditTrip(
@@ -54,14 +49,13 @@ import { defineComponent } from "vue";
 import CEditDays from "./CEditDays.vue";
 import CEditItem from "./CEditItem.vue";
 import CEditPlaces from "./CEditPlaces.vue";
-import { CityObj, CityUtil } from "@/shared/CityUtil";
+import { CityUtil, Options } from "@/shared/CityUtil";
 import TripEditable from "@/shared/TripEditable";
 import HTTPReq from "@/shared/HTTPReq";
 import General from "@/shared/General";
 import TripBasic from "@/wings/TripBasic";
 import TripObj from "@/wings/TripObj";
 import Place from "@/wings/Place";
-import City from "@/wings/City";
 import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
 import E from "@/shared/E";
@@ -71,10 +65,11 @@ import {
   NAME_CHAR_MAX_COUNT,
   NAME_CHAR_MIN_COUNT,
 } from "@/shared/constants";
+import { NSelect } from "naive-ui";
 
 interface Data {
-  cities: Array<City>;
-  possibleCities: Array<CityObj>;
+  cities: Array<string>;
+  possibleCities: Array<Options>;
   private: boolean;
   saving: boolean;
   deleting: boolean;
@@ -84,6 +79,7 @@ const DESCRIPTION_ROW_MIN_COUNT = 3;
 
 export default defineComponent({
   components: {
+    NSelect,
     CEditDays,
     CEditItem,
     CEditPlaces,
@@ -142,14 +138,7 @@ export default defineComponent({
         return;
       }
       this.$data.saving = true;
-      newTrip.cities = [];
-      for (let city of this.$data.cities) {
-        if (typeof city === "number") {
-          newTrip.cities.push(city);
-        } else {
-          newTrip.cities.push(parseInt(City[city], 10));
-        }
-      }
+      newTrip.cities = CityUtil.stringToCities(this.$data.cities.join(","));
 
       const tripName = E.getVal(this, "name");
       const tripDescription = E.getVal(this, "description")
@@ -261,8 +250,10 @@ export default defineComponent({
       return new TripEditable(itemType, this.$props.trip[itemType]);
     },
     update(): void {
-      this.$data.possibleCities = CityUtil.sortedCityList();
-      this.$data.cities = this.$props.trip.details.cities;
+      this.$data.possibleCities = CityUtil.sortedCityOptions();
+      this.$data.cities = CityUtil.stringToCityStringArray(
+        this.$props.trip.details.cities.join(","),
+      );
       this.$data.private = this.$props.trip.details.private.valueOf();
     },
     checkValidNameDescription(name: string, description: string): boolean {

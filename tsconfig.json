@@ -28,6 +28,7 @@
   ],
   "exclude": [
     "src/cockpit/tests/cypress/**/*",
+    "src/cockpit/tests/puppeteer/**/*",
     "plz-out/"
   ],
 }
