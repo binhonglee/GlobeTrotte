@@ -9,7 +9,7 @@ specifiers:
   '@babel/preset-typescript': 7.16.7
   '@cypress/code-coverage': 3.9.12
   '@cypress/vite-dev-server': 2.2.2
-  '@cypress/vue': ^3.1.0
+  '@cypress/vue': 3.1.0
   '@delagen/eslint-plugin-deprecation': 1.3.2
   '@types/jest': 27.4.0
   '@types/node': 16.11.17
@@ -17,7 +17,7 @@ specifiers:
   '@types/sinon': 10.0.6
   '@typescript-eslint/eslint-plugin': 5.8.1
   '@typescript-eslint/parser': 5.8.1
-  '@vicons/ionicons5': ^0.11.0
+  '@vicons/ionicons5': 0.11.0
   '@vitejs/plugin-vue': 2.0.1
   '@vue/compiler-sfc': 3.2.26
   '@vue/eslint-config-prettier': 7.0.0
@@ -29,7 +29,7 @@ specifiers:
   babel-plugin-istanbul: 6.1.1
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16
-  c8: ^7.10.0
+  c8: 7.11.0
   cypress: 9.2.0
   element-plus: 1.0.2-beta.71
   esbuild: 0.14.10
@@ -62,12 +62,12 @@ specifiers:
   ts-node: 10.4.0
   typescript: 4.5.4
   vite: 2.7.10
-  vitest: ^0.0.103
+  vitest: 0.0.103
   vue: 3.2.26
   vue-jest: 5.0.0-alpha.10
   vue-loader: 17.0.0
   vue-router: 4.0.12
-  vue-template-compiler: ^2.6.14
+  vue-template-compiler: 2.6.14
   vue-tsc: 0.30.1
   wait-on: 6.0.0
   wings-ts-util: 0.0.8
@@ -106,7 +106,7 @@ devDependencies:
   babel-plugin-istanbul: 6.1.1
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16_@babel+core@7.16.7
-  c8: 7.10.0
+  c8: 7.11.0
   cypress: 9.2.0
   esbuild: 0.14.10
   esbuild-jest: 0.5.0_esbuild@0.14.10
@@ -138,7 +138,7 @@ devDependencies:
   ts-node: 10.4.0_00264fd83560919cd06c986889baae0a
   typescript: 4.5.4
   vite: 2.7.10_sass@1.45.2
-  vitest: 0.0.103_9bedf197b0983273a28671681a16c8b0
+  vitest: 0.0.103_510698702ba0d968b1ce265f258933c7
   vue-jest: 5.0.0-alpha.10_3f144fa2473aca22061ba468c317863c
   vue-loader: 17.0.0
   vue-router: 4.0.12_vue@3.2.26
@@ -5164,8 +5164,8 @@ packages:
       semver: 7.3.5
     dev: true
 
-  /c8/7.10.0:
-    resolution: {integrity: sha512-OAwfC5+emvA6R7pkYFVBTOtI5ruf9DahffGmIqUc9l6wEh0h7iAFP6dt/V9Ioqlr2zW5avX9U9/w1I4alTRHkA==}
+  /c8/7.11.0:
+    resolution: {integrity: sha512-XqPyj1uvlHMr+Y1IeRndC2X5P7iJzJlEJwBpCdBbq2JocXOgJfr+JVfJkyNMGROke5LfKrhSFXGFXnwnRJAUJw==}
     engines: {node: '>=10.12.0'}
     hasBin: true
     dependencies:
@@ -8854,7 +8854,7 @@ packages:
     dependencies:
       archy: 1.0.0
       cross-spawn: 7.0.3
-      istanbul-lib-coverage: 3.0.0
+      istanbul-lib-coverage: 3.2.0
       make-dir: 3.1.0
       p-map: 3.0.0
       rimraf: 3.0.2
@@ -13378,7 +13378,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.0.103_9bedf197b0983273a28671681a16c8b0:
+  /vitest/0.0.103_510698702ba0d968b1ce265f258933c7:
     resolution: {integrity: sha512-ow2FTAup8BrPykDdUNmHf1WldzZ9CsSgRnaCOPca4Mxb5qe9EViwJvLXjVxl8i4yQEOhx2rTSOJv6k1TN+HlAg==}
     engines: {node: '>=14.14.0'}
     hasBin: true
@@ -13397,7 +13397,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.0
       '@types/chai-subset': 1.3.3
-      c8: 7.10.0
+      c8: 7.11.0
       chai: 4.3.4
       happy-dom: 2.25.1
       jsdom: 19.0.0
