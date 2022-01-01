@@ -5,6 +5,14 @@ Version = 16.1.1
 PassEnv = PATH
 PassEnv = USER
 
+[Colours]
+go = "cyan"
+wings = "magenta"
+npm-run = "red"
+npm-lint = "bold_yellow"
+npm-test = "bold_green"
+shell = "grey"
+
 [Alias "go_mod"]
 cmd = run //src/turbine/scripts:genBUILD config/build.json
 

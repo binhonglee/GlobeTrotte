@@ -9,6 +9,7 @@ def sh_exec(
   deps:list=[],
   tools:dict|list=[],
   visibility:list=[],
+  requires:list=["shell"],
 ):
   if set_home_path:
     cmd = _home_path() + " && " + cmd
@@ -21,6 +22,7 @@ def sh_exec(
     tools = tools,
     deps = deps,
     visibility = visibility,
+    requires = requires,
   )
 
 def sh_tools_cmd(
@@ -32,6 +34,7 @@ def sh_tools_cmd(
   tools:dict|list=[],
   test_only:bool=False,
   visibility:list=[],
+  requires:list=["shell"],
 ):
   if set_home_path:
     cmd = _home_path() + " && " + cmd
@@ -48,6 +51,7 @@ def sh_tools_cmd(
     deps = deps,
     test_only = test_only,
     visibility = visibility,
+    requires = requires,
   )
 
 def sh_copy_file(
@@ -56,6 +60,7 @@ def sh_copy_file(
   out:str,
   deps:list=[],
   visibility:list=[],
+  requires:list=["shell"],
 ):
   return build_rule(
     name = name,
@@ -71,6 +76,7 @@ def sh_copy_file(
     outs = [out],
     deps = deps,
     visibility = visibility,
+    requires = requires,
   )
 
 def _scriptify(cmd:str):

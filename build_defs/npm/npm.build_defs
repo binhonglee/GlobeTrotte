@@ -25,6 +25,7 @@ def npm_run_build(
     test_only = test_only,
     visibility = visibility,
     tools=[_get_npm_tool()],
+    requires = ["npm-run"],
   )
 
 def ts_run_build(
@@ -54,6 +55,7 @@ def ts_run_build(
     deps = deps,
     test_only = test_only,
     visibility = visibility,
+    requires = ["npm-run"],
   )
 
 def npm_install(name:str, srcs:list=[], deps:list=[]):
@@ -82,6 +84,7 @@ def npm_install(name:str, srcs:list=[], deps:list=[]):
     outs = [out],
     visibility = ["PUBLIC"],
     tools=[_get_npm_tool()],
+    requires = ["npm-run"],
   )
 
 def npm_run(
@@ -100,6 +103,7 @@ def npm_run(
     visibility = visibility,
     test_only = test_only,
     tools = [_get_npm_tool()],
+    requires = ["npm-run"],
   )
 
 def ts_binary(
@@ -122,6 +126,7 @@ def ts_binary(
     deps = deps,
     visibility = visibility,
     test_only = test_only,
+    requires = ["npm-run"],
   )
 
 def npm_test(
@@ -196,6 +201,7 @@ def npm_test(
     visibility = visibility,
     no_test_output = (result_dir == None and result_file == None),
     needs_transitive_deps = needs_transitive_deps,
+    requires = ["npm-test"],
   )
 
 def npm_lint(
@@ -221,6 +227,7 @@ def npm_lint(
     },
     deps = deps,
     visibility = visibility,
+    requires = ["npm-lint"],
   )
 
 def pnpm(

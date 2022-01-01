@@ -61,6 +61,7 @@ def wings_lib(
       visibility = visibility,
       binary = False,
       test_only = test_only,
+      requires = ["wings"],
       needs_transitive_deps = True,
     )
 
@@ -75,6 +76,7 @@ def wings_lib(
     test_only = test_only,
     provides = provides,
     binary = False,
+    requires = ["wings"],
     visibility = visibility,
   )
 

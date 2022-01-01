@@ -45,6 +45,7 @@ def ava_tests(
     deps = rules,
     test_only = True,
     visibility = visibility,
+    requires = ["npm-test"],
   )
 
 def ava_test(
@@ -107,6 +108,7 @@ def ava_test(
     visibility = visibility,
     test_tools = [CONFIG.NPX_TOOL],
     labels = ['ava'],
+    requires = ["npm-test"],
   )
 
 CONFIG.setdefault("DISABLE_VUE_COMPONENT_TESTS", False)
