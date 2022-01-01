@@ -36,7 +36,7 @@ export default async (): Promise<Config.InitialOptions> => {
       "<rootDir>/src/cockpit/main.ts",
       "<rootDir>/plz-out/",
     ],
-    coverageReporters: ["json", "cobertura", "text-summary"],
+    coverageReporters: ["json", "cobertura"],
     verbose: true,
     globals: {
       "vue-jest": {

@@ -6,7 +6,7 @@ describe("Menubar", () => {
         .contains("ul", "Home")
         .contains("ul", "Trips")
         .trigger("mouseenter");
-      cy.contains("ul", "View");
+      cy.contains("ul", "Search");
     });
   });
 });
@@ -16,13 +16,9 @@ describe("Homepage", () => {
     cy.visit("/");
     cy.contains("h1", "GlobeTrotte");
   });
-
   it("description", () => {
     cy.visit("/");
-    cy.contains("p", "Feel free to click around but nothing is set in");
-    cy.contains("p", "stone. Do not save any important infomation here.");
-    cy.contains("p", "Everything can and will be wiped from time to time.");
-    cy.contains("p", "You should check back again soon!");
+    cy.contains("h3", "Look for your next travel plan here!");
   });
   it("navigate to register", () => {
     cy.visit("/");
@@ -34,10 +30,10 @@ describe("Homepage", () => {
     cy.contains("li", "Login").click();
     cy.url().should("include", "/login");
   });
-  it("navigate to view trip", () => {
+  it("navigate to search trip", () => {
     cy.visit("/");
     cy.contains("li", "Trip").trigger("mouseenter");
-    cy.contains("li", "View").click();
-    cy.url().should("include", "/trip/view");
+    cy.contains("li", "Search").click();
+    cy.url().should("include", "/trip/search");
   });
 });

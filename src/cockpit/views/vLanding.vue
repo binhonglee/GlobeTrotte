@@ -1,6 +1,8 @@
 <template lang="pug">
 .landing
   h1.title GlobeTrotte
+  h3.subtitle Look for your next travel plan here!
+  br
   form.tripSearchForm
     n-input.tripSearchQueryInput(
       placeholder="Trip to Alaska"
@@ -15,17 +17,8 @@
       placeholder="City"
     )
     el-button(v-on:click="search") Find
-  p
-    | Feel free to click around but nothing is set in
-    | stone. Do not save any important infomation here.
-    | Everything can and will be wiped from time to time.
-    br
-    br
-    | You should check back again soon!
-  br
-  br
   .homePageTripCarousel
-    CTripInCarousel(
+    CTripPreviewCard(
       v-for="trip in trips"
       :trip="trip"
     )
@@ -33,7 +26,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import CTripInCarousel from "@/components/CTripInCarousel.vue";
+import CTripPreviewCard from "@/components/CTripPreviewCard.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import TripObj from "@/wings/TripObj";
 import { Options, CityUtil } from "@/shared/CityUtil";
@@ -54,7 +47,7 @@ export default defineComponent({
   components: {
     NInput,
     NSelect,
-    CTripInCarousel,
+    CTripPreviewCard,
   },
   data: (): Data => ({
     length: 0,

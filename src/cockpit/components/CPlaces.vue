@@ -49,10 +49,6 @@ export default defineComponent({
   margin: 0;
 }
 
-.place {
-  padding: 5px;
-}
-
 .placesList {
   margin-top: 10px;
   padding: 0;

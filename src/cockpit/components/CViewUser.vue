@@ -14,12 +14,12 @@
   el-divider.viewUserDivider
   div.viewUserTrips(v-if="trips.length > 0")
     h2 Trips
-    CTripInCarousel(v-for="trip in trips" :trip="trip")
+    CTripPreviewCard(v-for="trip in trips" :trip="trip")
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import CTripInCarousel from "./CTripInCarousel.vue";
+import CTripPreviewCard from "./CTripPreviewCard.vue";
 import UserObj from "@/wings/UserObj";
 import TripBasic from "@/wings/TripBasic";
 import TripObj from "@/wings/TripObj";
@@ -31,7 +31,7 @@ interface Data {
 
 export default defineComponent({
   components: {
-    CTripInCarousel,
+    CTripPreviewCard,
   },
   props: {
     user: {
