@@ -58,3 +58,10 @@ Cypress.Commands.add("deleteAccount", () => {
   cy.contains("button", "Delete Account").click();
   cy.isLoggedOut();
 });
+
+Cypress.Commands.add("tripSearch", () => {
+  cy.visit("/");
+  cy.contains("li", "Trip").trigger("mouseenter");
+  cy.contains("li", "Search").click();
+  cy.url().should("include", "/trip/search");
+})

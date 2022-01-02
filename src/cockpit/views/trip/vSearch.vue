@@ -3,7 +3,7 @@
   h1.title Search Trip
   form.tripSearchForm
     n-input.tripSearchQueryInput(
-      placeholder="Trip to Alaska"
+      placeholder="Alaska"
       v-model:value="query"
       v-on:keyup.enter.native="search"
     )
@@ -14,7 +14,7 @@
       multiple
       placeholder="City"
     )
-    el-button(v-on:click="search") Find
+    el-button.tripSearchButton(v-on:click="search") Find
   .tripSearchResultCarousel(v-if="trips.length > 0")
     CTripPreviewCard(
       v-for="trip in trips"
@@ -33,7 +33,7 @@
       template(#icon)
         n-icon
           search
-      | Try look for "Trip to Alaska"
+      | Try search for "Alaska"
 </template>
 
 <script lang="ts">

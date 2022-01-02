@@ -16,15 +16,10 @@
     )
   .profileInfo
     div(v-if="!edit")
-      CViewUser(:user="user")
-      .narrow_content
-        .myAccountButtonGroups
-          el-button.myAccountLogout(
-            type="danger" v-on:click="logout"
-          ) Logout
-          el-button.myAccountEdit(
-            tabindex="0" type="default" ref="edit" v-on:click="toggleEdit"
-          ) Edit
+      CViewUser(
+        :user="user" :self="true"
+        @logout="logout" @toggleEdit="toggleEdit"
+      )
     .narrow_content(v-else)
       CEditItem(label="Name" ref="name" :val="user.details.name.valueOf()")
       CEditItem(label="Email" ref="email" :val="user.details.email.valueOf()")
@@ -181,15 +176,8 @@ export default defineComponent({
   width: 100%;
 }
 
-.myAccountButtonGroups {
-  margin-top: 10px;
-  display: inline-block;
-  width: 100%;
-  text-align: left;
-}
-
 .profileInfo {
-  @include trip_display();
+  text-align: left;
 }
 
 .myAccountLogout,

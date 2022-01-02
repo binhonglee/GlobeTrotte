@@ -2,15 +2,15 @@
 .view_user
   div.userInfo.narrow_content
     h2(v-if="showName").userName {{ user.details.name }}
-    span.userID ID: {{ user.ID }}
-    p.userEmail
-      strong Email:
-      br
-      | {{ user.details.email }}
     p.userBio(v-if="user.details.bio !== ''")
-      strong Bio:
-      br
       | {{ user.details.bio }}
+    .userInfoButtonGroups(v-if="self")
+      el-button.myAccountLogout(
+        type="danger" v-on:click="logout"
+      ) Logout
+      el-button.myAccountEdit(
+        tabindex="0" type="default" ref="edit" v-on:click="toggleEdit"
+      ) Edit
   el-divider.viewUserDivider
   div.viewUserTrips(v-if="trips.length > 0")
     h2 Trips
@@ -41,6 +41,18 @@ export default defineComponent({
     showName: {
       type: Boolean,
       default: true,
+    },
+    self: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  emits: {
+    logout() {
+      return true;
+    },
+    toggleEdit() {
+      return true;
     },
   },
   data: (): Data => ({
@@ -80,19 +92,21 @@ export default defineComponent({
 
       this.$data.lastPopulated = this.$props.user.trips;
     },
+    logout(): void {
+      this.$emit("logout");
+    },
+    toggleEdit(): void {
+      this.$emit("toggleEdit");
+    },
   },
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../shared/lib";
 
-.tripInfoPopup {
-  padding: 0;
-}
-
 .userInfo {
-  padding: 0;
+  padding: 10px;
 }
 
 .viewUserTrips {
@@ -106,11 +120,14 @@ export default defineComponent({
   width: 100%;
 }
 
-.userID {
-  @include right_col($p-height);
-}
-
 .userName {
   @include left_col($p-height);
+}
+
+.userInfoButtonGroups {
+  margin-top: 10px;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
 }
 </style>

@@ -16,12 +16,6 @@ describe("CViewUser", () => {
     expect(wrapper.find(".userName").text()).toMatch(
       new RegExp(user.details.name.valueOf()),
     );
-    expect(wrapper.find(".userID").text()).toMatch(
-      new RegExp(user.ID.toString()),
-    );
-    expect(wrapper.find(".userEmail").text()).toMatch(
-      new RegExp(user.details.email.valueOf()),
-    );
     expect(wrapper.find(".userBio").text()).toMatch(
       new RegExp(user.details.bio.valueOf()),
     );

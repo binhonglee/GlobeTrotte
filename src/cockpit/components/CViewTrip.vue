@@ -14,7 +14,8 @@
   ) {{ trip.details.description }}
   p.tripCreatorInfo Author: 
     a(v-bind:href="'/user/' + trip.user.ID") {{ trip.user.name }}
-  p.tripCreatedDate Created on: {{ trip.timeCreated.toLocaleDateString() }}
+  p.tripCreatedDate Created on: {{ trip.timeCreated.toDateString() }}
+  p.tripUpdatedDate Last Updated: {{ trip.lastUpdated.toDateString() }}
   div.tripCities
     el-tag.tripCity(v-for="city in cities") {{ city }}
   el-card.viewDayCard(

@@ -11,11 +11,14 @@
         p(
           v-if="trip.details.description !== ''"
         ) {{ trip.details.description }}
-        p Author:&nbsp;
+        p
           a.tripPreviewUserProfileLink(
             v-bind:href="'/user/' + trip.user.ID"
             type="primary"
           ) {{ trip.user.name }}
+        .cityTags
+          n-tag.cityTag(v-for="city in cities" type="info") {{ city }}
+        p Last Updated: {{ trip.lastUpdated.toDateString() }}
       .daysInTrip(v-for="day in trip.details.days")
         n-divider
         .tripDayPreview
@@ -26,9 +29,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { NCard, NDivider } from "naive-ui";
+import { NCard, NDivider, NTag } from "naive-ui";
 import CPlaces from "@/components/CPlaces.vue";
 import TripObj from "@/wings/TripObj";
+import { CityUtil } from "@/shared/CityUtil";
 
 export default defineComponent({
   name: "CTripPreviewCard",
@@ -36,12 +40,23 @@ export default defineComponent({
     CPlaces,
     NCard,
     NDivider,
+    NTag,
   },
   props: {
     trip: {
       type: TripObj,
       required: true,
     },
+  },
+  data: function () {
+    return {
+      cities: [""],
+    };
+  },
+  mounted(): void {
+    this.$data.cities = this.$props.trip.details.cities.map((city) => {
+      return CityUtil.toString(city);
+    });
   },
 });
 </script>
@@ -80,5 +95,9 @@ export default defineComponent({
 .tripTitleName,
 .endOfCardPadding {
   margin-top: 24px;
+}
+
+.cityTag {
+  margin-right: 5px;
 }
 </style>

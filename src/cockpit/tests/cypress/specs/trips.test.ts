@@ -9,6 +9,8 @@ const tripDescription =
   "This is a test trip. If you see this, it means " +
   "someone is testing in prod.";
 
+const searchTripURL = ""
+
 let newTripURL: string;
 describe("Trips", () => {
   it("create new trip", () => {
@@ -83,6 +85,19 @@ describe("Trips", () => {
     cy.get(".view_trip").contains(".tripDescription", tripDescription);
     cy.get(".enableTripEdit").should("not.exist");
     cy.logout();
+  });
+
+  it("search for the trip", () => {
+    cy.tripSearch();
+    cy.get(".tripSearchQueryInput").type("Test");
+    cy.get(".tripSearchButton").click();
+    cy.get(".tripSearchResultCarousel").contains("h3", tripName);
+    cy.get(".tripSearchResultCarousel").contains("p", tripDescription);
+    cy.get(".trip_preview_card").first().click();
+    if (newTripURL.endsWith("/")) {
+      newTripURL = newTripURL.substring(0, newTripURL.length - 1);
+    }
+    cy.url().should("include", newTripURL);
   });
 
   it("deletes trip", () => {

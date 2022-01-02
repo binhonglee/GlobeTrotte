@@ -5,7 +5,7 @@
   br
   form.tripSearchForm
     n-input.tripSearchQueryInput(
-      placeholder="Trip to Alaska"
+      placeholder="Alaska"
       v-model:value="query"
       v-on:keyup.enter.native="search"
     )
@@ -59,7 +59,6 @@ export default defineComponent({
   async beforeMount(): Promise<void> {
     this.$data.possibleCities = CityUtil.sortedCityOptions();
     this.$data.trips = [];
-    console.log(process.env.NODE_ENV);
     const trips = await HTTPReq.genGET("v2/sample_trips");
     for (const trip of trips as Array<unknown>) {
       const newTrip = new TripObj(trip);
@@ -77,8 +76,9 @@ export default defineComponent({
           this.$data.length !== 0
         )
       ) {
-        return;
+        await Routing.genRedirectTo(Routes.trip_Search);
       }
+
       await Routing.genRedirectTo(
         Routes.trip_Search,
         new Map<string, string>(

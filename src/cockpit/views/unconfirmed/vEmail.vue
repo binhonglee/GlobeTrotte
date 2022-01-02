@@ -6,10 +6,10 @@
     br
     | Look for a confirmation email in your inbox that
     | looks like below and click on the link.
-  el-card.emailConfirmationScreenshot
+  n-card.emailConfirmationScreenshot(content-style="padding: 10px")
     h2 Confirm your GlobeTrotte email
-    p
-      | GlobeTrotte &lt;noreply&commat;globetrotte.com&gt;
+    p GlobeTrotte 
+      strong &lt;noreply&commat;globetrotte.com&gt;
       br
       | To: You
     p
@@ -26,6 +26,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { NCard } from "naive-ui";
 import Routing from "@/shared/Routing";
 
 interface Data {
@@ -33,6 +34,7 @@ interface Data {
 }
 
 export default defineComponent({
+  components: { NCard },
   data(): Data {
     return {
       hasNext: false,

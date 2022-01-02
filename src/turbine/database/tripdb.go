@@ -162,11 +162,11 @@ func SearchTripsDB(cities []wings.City, days int, query string) []wings.Trip {
 	}
 
 	if len(query) > 0 {
-		sqlStatement += " AND $" + strconv.Itoa(count) + " ~ name"
-		args = append(args, query)
+		sqlStatement += " AND name LIKE $" + strconv.Itoa(count) + ""
+		args = append(args, "%"+query+"%")
 		count++
 	}
-	sqlStatement += ";"
+	sqlStatement += " ORDER BY time_created DESC;"
 
 	c := getConn()
 	rows, err := c.Query(context.Background(), sqlStatement, args...)
