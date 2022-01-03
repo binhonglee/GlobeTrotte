@@ -206,6 +206,7 @@ export default defineComponent({
         "https://goo.gl/maps/",
         "https://google.com/maps/",
         "https://www.google.com/maps/",
+        "https://maps.google.com/",
         "https://www.openstreetmap.org/way/",
         "https://www.bing.com/maps?",
         "https://www.yelp.com/biz/",

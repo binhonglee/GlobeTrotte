@@ -7,11 +7,9 @@
       v-for="place in places"
       v-bind:key="place.URL.valueOf()"
     )
-      el-link.placeLink(
-        target="_blank"
-        rel="noopener noreferrer"
+      .placeLink(
+        @click="redirect(place.URL.valueOf())"
         :underline="false"
-        :href="place.URL"
         v-if="place.URL !== ''"
       )
         el-card.placeDisplayCard(shadow="hover")
@@ -29,6 +27,8 @@
 </template>
 
 <script lang="ts">
+import Routes from "@/routes";
+import Routing from "@/shared/Routing";
 import Place from "@/wings/Place";
 import { defineComponent, PropType } from "vue";
 
@@ -38,6 +38,22 @@ export default defineComponent({
     places: {
       type: Array as PropType<Array<Place>>,
       required: true,
+    },
+  },
+  methods: {
+    async redirect(link: string): Promise<void> {
+      await Routing.genNewTab(
+        Routes.leaving_Confirm,
+        new Map<string, string>(
+          Object.entries({
+            link: encodeURIComponent(link)
+              .split("%")
+              .join(".pct.")
+              .split(".")
+              .join("&dots&"),
+          }),
+        ),
+      );
     },
   },
 });
@@ -57,6 +73,7 @@ export default defineComponent({
 .placeLink,
 .placeLink .el-link--inner {
   width: 100%;
+  cursor: pointer;
 }
 
 .places .placeDisplayCard {

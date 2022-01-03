@@ -1,4 +1,3 @@
-import { compileScript } from "vue/compiler-sfc";
 import City from "../wings/City";
 
 export class CityObj {

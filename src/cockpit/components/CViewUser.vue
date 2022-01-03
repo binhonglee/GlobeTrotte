@@ -20,6 +20,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import CTripPreviewCard from "./CTripPreviewCard.vue";
+import General from "@/shared/General";
 import UserObj from "@/wings/UserObj";
 import TripBasic from "@/wings/TripBasic";
 import TripObj from "@/wings/TripObj";
@@ -82,13 +83,11 @@ export default defineComponent({
       if (this.compareArray(this.$data.lastPopulated, this.$props.user.trips)) {
         return;
       }
-      this.$data.trips = this.$props.user.trips.map((trip: TripBasic) => {
-        const tripObj = new TripObj();
-        tripObj.ID = trip.ID;
-        tripObj.details = trip;
-        tripObj.user = this.$props.user.details;
-        return tripObj;
-      });
+      this.$data.trips = await Promise.all(
+        this.$props.user.trips.map(async (trip: TripBasic) => {
+          return await General.genTrip(trip.ID.valueOf());
+        }),
+      );
 
       this.$data.lastPopulated = this.$props.user.trips;
     },

@@ -1,6 +1,6 @@
 import vIDUser from "@/views/vIDUser.vue";
 import General from "@/shared/General";
-import { alertSpy, mountingOptions, routerSpy, wait } from "../helper";
+import { alertSpy, mountingOptions, wait } from "../helper";
 import { describe, expect, it } from "@jest/globals";
 import { mount } from "@vue/test-utils";
 import sinon from "sinon";

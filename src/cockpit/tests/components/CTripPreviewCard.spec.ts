@@ -32,7 +32,6 @@ describe("CTripPreviewCard", () => {
         expect(place.text()).toContain(tripPlace.label);
         expect(place.text()).toContain(tripPlace.description);
         expect(place.text()).not.toContain(tripPlace.URL);
-        expect(place.html()).toContain(tripPlace.URL);
       });
     });
   });

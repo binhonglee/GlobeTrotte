@@ -27,7 +27,7 @@ def jest_tests(
 
   for src in srcs:
     test = jest_test(
-      name = src[:-8],
+      name = src[:-8].replace("/", "_"),
       src = src,
       jest_dirs = jest_dirs,
       deps = deps,

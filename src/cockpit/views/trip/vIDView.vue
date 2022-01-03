@@ -33,11 +33,6 @@ export default defineComponent({
       owner: false,
     };
   },
-  watch: {
-    "$route.path": async function (): Promise<void> {
-      await this.init();
-    },
-  },
   async beforeMount(): Promise<void> {
     await this.init();
   },

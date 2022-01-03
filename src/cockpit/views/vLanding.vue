@@ -78,7 +78,6 @@ export default defineComponent({
       ) {
         await Routing.genRedirectTo(Routes.trip_Search);
       }
-
       await Routing.genRedirectTo(
         Routes.trip_Search,
         new Map<string, string>(
@@ -119,9 +118,5 @@ export default defineComponent({
 
 .homePageTripCarousel {
   padding: 0 0 80px 0;
-
-  .viewUserTripInfoCarousel .el-carousel__container {
-    height: 350px;
-  }
 }
 </style>

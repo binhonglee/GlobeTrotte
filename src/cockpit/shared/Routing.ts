@@ -3,6 +3,10 @@ import router from "@/router";
 import Routes from "@/routes";
 
 export default class Routing extends R {
+  protected static siteURI =
+    process.env.NODE_ENV === "production"
+      ? "https://globetrotte.com"
+      : "http://localhost:3000";
   protected static router = router;
   protected static ratelimited = Routes.RateLimited;
   protected static default = Routes.Landing;

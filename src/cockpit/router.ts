@@ -14,7 +14,7 @@ export default createRouter({
     {
       path: "/:pathMatch(.*)",
       name: "404",
-      component: () => import("./views/v404.vue"),
+      component: () => import("./views/vNotFound.vue"),
     },
     {
       path: "/",
@@ -35,6 +35,16 @@ export default createRouter({
       path: "/confirm/email/:id/:params",
       name: "confirm/EmailParams",
       component: () => import("./views/confirm/vIDEmail.vue"),
+    },
+    {
+      path: "/leaving/confirm",
+      name: "leaving/Confirm",
+      component: () => import("./views/leaving/vConfirm.vue"),
+    },
+    {
+      path: "/leaving/confirm/:params",
+      name: "leaving/ConfirmParams",
+      component: () => import("./views/leaving/vConfirm.vue"),
     },
     {
       path: "/password/reset",

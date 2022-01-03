@@ -79,11 +79,16 @@ describe("My Account", () => {
   });
 
   it("My Account - Logout", async () => {
-    const genGET = sinon.stub(HTTPReq, "genGET").resolves();
+    const genGET = sinon
+      .stub(HTTPReq, "genGET")
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      .callsFake(async (s): Promise<unknown> => {
+        return;
+      });
     const wrapper = mount(vMyAccount, mountingOptions());
     wrapper.find(".myAccountLogout").trigger("click");
     await wait(500);
-    expect(genGET.calledOnce).toEqual(true);
+    expect(genGET.args[0][0]).toEqual("logout");
     await genGET.restore();
   });
 

@@ -9,6 +9,7 @@ export default class Routes {
   public static Landing = "/";
   public static NotFound = "/404";
   public static confirm_Email = "/confirm/email";
+  public static leaving_Confirm = "/leaving/confirm";
   public static password_Reset = "/password/reset";
   public static trip_View = "/trip/view";
   public static trip_New = "/trip/new";
