@@ -22,6 +22,7 @@ const email = "ab@test.com";
 const password = "1234";
 
 function verifyUI(wrapper: VueWrapper<Vue>): void {
+  expect(wrapper.html()).toMatchSnapshot();
   expect(wrapper.find(".registrationNameLabel").text()).toEqual("Name:");
   expect(wrapper.find(".registrationEmailLabel").text()).toEqual("Email:");
   expect(wrapper.find(".registrationPasswordLabel").text()).toEqual(
@@ -57,6 +58,7 @@ function fillFormAndReg(wrapper: VueWrapper<Vue>, form: FormReg): void {
     .find(".el-input__inner")
     .setValue(form.confPassword);
   wrapper.find(".registrationSave").trigger("click");
+  expect(wrapper.html()).toMatchSnapshot();
 }
 
 describe("vRegister", () => {
@@ -181,6 +183,7 @@ describe("vRegister", () => {
     const routerBack = new routerSpy(wrapper, "back");
     verifyUI(wrapper);
     wrapper.find(".registrationCancel").trigger("click");
+    expect(wrapper.html()).toMatchSnapshot();
     expect(routerBack.item.calledOnce).toBeTruthy();
     await routerBack.restore();
   });

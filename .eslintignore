@@ -7,5 +7,6 @@ pleasings/*
 src/cockpit/wings/*
 src/cockpit/router.ts
 src/cockpit/tests/_setup.js
+src/cockpit/tests/snapshotResolver.js
 src/cockpit/tests/cypress/**/*.ts
 src/cockpit/tests/puppeteer/**/*.ts

@@ -157,6 +157,8 @@ jest_dir(
     "//src/cockpit/components:components",
     "//src/cockpit/shared:shared",
     "//src/cockpit/tests:helper",
+    "//src/cockpit/tests:jest_snapshots",
+    "//src/cockpit/tests:jest_snapshot_resolver",
     "//src/cockpit/views:views",
     "//src/cockpit/wings:wings",
   ],

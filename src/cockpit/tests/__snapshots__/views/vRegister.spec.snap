@@ -1,0 +1,681 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`vRegister Registration - Cancel 1`] = `
+<div class="new_user narrow_content">
+  <h1 class="title">
+    Create Account
+  </h1>
+  <form class="newUser">
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationNameLabel">
+        Name:
+      </span>
+      <div class="el-input editInput registrationName">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationEmailLabel">
+        Email:
+      </span>
+      <div class="el-input editInput registrationEmail">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationConfPasswordLabel">
+        Confirm Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationConfPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary registrationSave"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default registrationCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+</div>
+`;
+
+exports[`vRegister Registration - Cancel 2`] = `
+<div class="new_user narrow_content">
+  <h1 class="title">
+    Create Account
+  </h1>
+  <form class="newUser">
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationNameLabel">
+        Name:
+      </span>
+      <div class="el-input editInput registrationName">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationEmailLabel">
+        Email:
+      </span>
+      <div class="el-input editInput registrationEmail">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationConfPasswordLabel">
+        Confirm Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationConfPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary registrationSave"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default registrationCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+</div>
+`;
+
+exports[`vRegister Registration - New user (Failure) 1`] = `
+<div class="new_user narrow_content">
+  <h1 class="title">
+    Create Account
+  </h1>
+  <form class="newUser">
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationNameLabel">
+        Name:
+      </span>
+      <div class="el-input editInput registrationName">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationEmailLabel">
+        Email:
+      </span>
+      <div class="el-input editInput registrationEmail">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationConfPasswordLabel">
+        Confirm Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationConfPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary registrationSave"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default registrationCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+</div>
+`;
+
+exports[`vRegister Registration - New user (Failure) 2`] = `
+<div class="new_user narrow_content">
+  <h1 class="title">
+    Create Account
+  </h1>
+  <form class="newUser">
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationNameLabel">
+        Name:
+      </span>
+      <div class="el-input editInput registrationName">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationEmailLabel">
+        Email:
+      </span>
+      <div class="el-input editInput registrationEmail">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationConfPasswordLabel">
+        Confirm Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationConfPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary registrationSave"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default registrationCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+</div>
+`;
+
+exports[`vRegister Registration - New user (Success) 1`] = `
+<div class="new_user narrow_content">
+  <h1 class="title">
+    Create Account
+  </h1>
+  <form class="newUser">
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationNameLabel">
+        Name:
+      </span>
+      <div class="el-input editInput registrationName">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationEmailLabel">
+        Email:
+      </span>
+      <div class="el-input editInput registrationEmail">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationConfPasswordLabel">
+        Confirm Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationConfPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary registrationSave"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default registrationCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+</div>
+`;
+
+exports[`vRegister Registration - New user (Success) 2`] = `
+<div class="new_user narrow_content">
+  <h1 class="title">
+    Create Account
+  </h1>
+  <form class="newUser">
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationNameLabel">
+        Name:
+      </span>
+      <div class="el-input editInput registrationName">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationEmailLabel">
+        Email:
+      </span>
+      <div class="el-input editInput registrationEmail">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationConfPasswordLabel">
+        Confirm Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationConfPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary registrationSave"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default registrationCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+</div>
+`;
+
+exports[`vRegister Registration - Password mismatch 1`] = `
+<div class="new_user narrow_content">
+  <h1 class="title">
+    Create Account
+  </h1>
+  <form class="newUser">
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationNameLabel">
+        Name:
+      </span>
+      <div class="el-input editInput registrationName">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationEmailLabel">
+        Email:
+      </span>
+      <div class="el-input editInput registrationEmail">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationConfPasswordLabel">
+        Confirm Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationConfPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary registrationSave"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default registrationCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+</div>
+`;
+
+exports[`vRegister Registration - Password mismatch 2`] = `
+<div class="new_user narrow_content">
+  <h1 class="title">
+    Create Account
+  </h1>
+  <form class="newUser">
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationNameLabel">
+        Name:
+      </span>
+      <div class="el-input editInput registrationName">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationEmailLabel">
+        Email:
+      </span>
+      <div class="el-input editInput registrationEmail">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel registrationConfPasswordLabel">
+        Confirm Password:
+      </span>
+      <div class="el-input el-input--suffix editInput registrationConfPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary registrationSave"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default registrationCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+</div>
+`;

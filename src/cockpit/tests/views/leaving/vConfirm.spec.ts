@@ -1,5 +1,5 @@
 import Routing from "@/shared/Routing";
-import { mountingOptions, wait } from "@/tests/helper";
+import { mountingOptions } from "@/tests/helper";
 import vConfirm from "@/views/leaving/vConfirm.vue";
 import { describe, expect, it } from "@jest/globals";
 import { mount } from "@vue/test-utils";
@@ -12,7 +12,7 @@ describe("vConfirm", () => {
       .stub(Routing, "getParamMap")
       .returns(new Map<string, string>().set("link", externalURL));
     const wrapper = mount(vConfirm, mountingOptions());
-    await wait(500);
+    expect(wrapper.html()).toMatchSnapshot();
     expect(wrapper.find(".title").text()).toEqual(
       "You are leaving GlobeTrotte...",
     );
@@ -34,8 +34,8 @@ describe("vConfirm", () => {
     const paramMap = sinon
       .stub(Routing, "getParamMap")
       .returns(new Map<string, string>().set("link", internalURL));
-    mount(vConfirm, mountingOptions());
-    await wait(500);
+    const wrapper = mount(vConfirm, mountingOptions());
+    expect(wrapper.html()).toMatchSnapshot();
     // Redirection doesn't work.
     // expect(wrapper.find(".title").text()).toEqual("Search Trip");
     expect(redirection.calledOnce).toBeTruthy();
@@ -50,7 +50,7 @@ describe("vConfirm", () => {
       .stub(Routing, "getParamMap")
       .returns(new Map<string, string>().set("link", brokenURL));
     const wrapper = mount(vConfirm, mountingOptions());
-    await wait(500);
+    expect(wrapper.html()).toMatchSnapshot();
     expect(wrapper.find(".title").text()).toEqual("Broken link");
     expect(wrapper.find(".content").text()).toContain(
       "Seems like this link is broken. 😥",

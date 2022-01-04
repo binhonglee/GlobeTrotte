@@ -1,0 +1,361 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Cancel 1`] = `
+<div class="login narrow_content">
+  <h1 class="title">
+    Login
+  </h1>
+  <form class="loginbox">
+    <div class="edit_item edit_item_small loginUsernameItem">
+      <span class="editLabel loginUsernameLabel">
+        Email:
+      </span>
+      <div class="el-input editInput loginUsername">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel loginPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput loginPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary loginConfirm"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default loginCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+  <p class="forgotPassword">
+    <a href="/password/reset">
+      Forgot Password?
+    </a>
+  </p>
+</div>
+`;
+
+exports[`Login Cancel 2`] = `
+<div class="login narrow_content">
+  <h1 class="title">
+    Login
+  </h1>
+  <form class="loginbox">
+    <div class="edit_item edit_item_small loginUsernameItem">
+      <span class="editLabel loginUsernameLabel">
+        Email:
+      </span>
+      <div class="el-input editInput loginUsername">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel loginPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput loginPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary loginConfirm"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default loginCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+  <p class="forgotPassword">
+    <a href="/password/reset">
+      Forgot Password?
+    </a>
+  </p>
+</div>
+`;
+
+exports[`Login Success 1`] = `
+<div class="login narrow_content">
+  <h1 class="title">
+    Login
+  </h1>
+  <form class="loginbox">
+    <div class="edit_item edit_item_small loginUsernameItem">
+      <span class="editLabel loginUsernameLabel">
+        Email:
+      </span>
+      <div class="el-input editInput loginUsername">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel loginPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput loginPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary loginConfirm"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default loginCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+  <p class="forgotPassword">
+    <a href="/password/reset">
+      Forgot Password?
+    </a>
+  </p>
+</div>
+`;
+
+exports[`Login Success 2`] = `
+<div class="login narrow_content">
+  <h1 class="title">
+    Login
+  </h1>
+  <form class="loginbox">
+    <div class="edit_item edit_item_small loginUsernameItem">
+      <span class="editLabel loginUsernameLabel">
+        Email:
+      </span>
+      <div class="el-input editInput loginUsername">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel loginPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput loginPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary loginConfirm"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default loginCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+  <p class="forgotPassword">
+    <a href="/password/reset">
+      Forgot Password?
+    </a>
+  </p>
+</div>
+`;
+
+exports[`Login Wrong password 1`] = `
+<div class="login narrow_content">
+  <h1 class="title">
+    Login
+  </h1>
+  <form class="loginbox">
+    <div class="edit_item edit_item_small loginUsernameItem">
+      <span class="editLabel loginUsernameLabel">
+        Email:
+      </span>
+      <div class="el-input editInput loginUsername">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel loginPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput loginPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary loginConfirm"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default loginCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+  <p class="forgotPassword">
+    <a href="/password/reset">
+      Forgot Password?
+    </a>
+  </p>
+</div>
+`;
+
+exports[`Login Wrong password 2`] = `
+<div class="login narrow_content">
+  <h1 class="title">
+    Login
+  </h1>
+  <form class="loginbox">
+    <div class="edit_item edit_item_small loginUsernameItem">
+      <span class="editLabel loginUsernameLabel">
+        Email:
+      </span>
+      <div class="el-input editInput loginUsername">
+        <input class="el-input__inner"
+               rows="1"
+               type="text"
+               autocomplete="off"
+        >
+      </div>
+      <br>
+    </div>
+    <div class="edit_item edit_item_small">
+      <span class="editLabel loginPasswordLabel">
+        Password:
+      </span>
+      <div class="el-input el-input--suffix editInput loginPassword">
+        <input class="el-input__inner"
+               rows="1"
+               type="password"
+               autocomplete="off"
+        >
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+          </span>
+        </span>
+      </div>
+      <br>
+    </div>
+    <br>
+    <button class="el-button el-button--primary loginConfirm"
+            type="button"
+    >
+      <span>
+        Confirm
+      </span>
+    </button>
+    <button class="el-button el-button--default loginCancel"
+            type="button"
+    >
+      <span>
+        Cancel
+      </span>
+    </button>
+  </form>
+  <p class="forgotPassword">
+    <a href="/password/reset">
+      Forgot Password?
+    </a>
+  </p>
+</div>
+`;

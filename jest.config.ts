@@ -21,6 +21,8 @@ export default async (): Promise<Config.InitialOptions> => {
         },
       ],
     ],
+    snapshotSerializers: ["jest-serializer-html"],
+    snapshotResolver: "<rootDir>/src/cockpit/tests/snapshotResolver.js",
     collectCoverage: true,
     collectCoverageFrom: [
       "**/*.{ts,vue}",

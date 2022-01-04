@@ -20,6 +20,7 @@ const email = "ab@test.com";
 const password = "1234";
 
 function verifyUI(wrapper: VueWrapper<Vue>): void {
+  expect(wrapper.html()).toMatchSnapshot();
   expect(wrapper.find(".loginUsernameLabel").text()).toEqual("Email:");
   expect(wrapper.find(".loginPasswordLabel").text()).toEqual("Password:");
 }
@@ -36,6 +37,7 @@ function fillFormAndLogin(wrapper: VueWrapper<Vue>, form: FormLogin): void {
     .find(".el-input__inner")
     .setValue(form.password);
   wrapper.find(".loginConfirm").trigger("click");
+  expect(wrapper.html()).toMatchSnapshot();
 }
 
 describe("Login", () => {
@@ -52,6 +54,7 @@ describe("Login", () => {
     verifyUI(wrapper);
     wrapper.find(".loginCancel").trigger("click");
     rNext.restore();
+    expect(wrapper.html()).toMatchSnapshot();
     expect(routerBack.item.calledOnce).toBeTruthy();
     await routerBack.restore();
   });

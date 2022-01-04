@@ -9,6 +9,7 @@ describe("Landing", () => {
   it("Load Page", async () => {
     const genGET = sinon.stub(HTTPReq, "genGET").resolves([]);
     const wrapper = mount(vLanding, mountingOptions());
+    expect(wrapper.html()).toMatchSnapshot();
     expect(wrapper.find(".title").text()).toEqual("GlobeTrotte");
     expect(genGET.calledOnce).toEqual(true);
     expect(genGET.args[0][0]).toEqual("v2/sample_trips");

@@ -60,7 +60,7 @@ export default defineComponent({
         this.setActiveIndex();
       },
       immediate: true,
-      deep: true,
+      deep: false,
     },
   },
   beforeMount(): void {

@@ -30,6 +30,7 @@ describe("vIDUser", () => {
     const redirection = sinon.stub(Routing, "genRedirectTo").resolves();
     const wrapper = mount(vIDUser, mountingOptions());
     await wait(500);
+    expect(wrapper.html()).toMatchSnapshot();
     expect(wrapper.find(".title").text()).toEqual(currentUser.details.name);
     expect(paramID.called).toBeTruthy();
     expect(isSelf.calledOnce).toBeTruthy;
@@ -49,6 +50,7 @@ describe("vIDUser", () => {
     const paramID = sinon.stub(General, "paramID").returns("10");
     const wrapper = mount(vIDUser, mountingOptions());
     await wait(500);
+    expect(wrapper.html()).toMatchSnapshot();
     expect(wrapper.find(".title").text()).toEqual(currentUser.details.name);
     expect(paramID.called).toBeTruthy();
     expect(isSelf.calledOnce).toBeTruthy();
@@ -72,6 +74,7 @@ describe("vIDUser", () => {
     const wrapper = mount(vIDUser, mountingOptions());
     const alert = new alertSpy(wrapper);
     await wait(500);
+    expect(wrapper.html()).toMatchSnapshot();
     expect(paramID.called).toBeTruthy();
     expect(genUser.calledOnce).toBeTruthy();
     expect(alert.item.calledOnce).toBeTruthy();

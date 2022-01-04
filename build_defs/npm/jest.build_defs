@@ -70,6 +70,15 @@ def jest_test(
     data = [src] + jest_dirs + deps,
     test_cmd = " && ".join([
       pre_build,
+      # Remove unrelated snapshots.
+      " || ".join([
+        " | ".join([
+          "find src/cockpit/tests/__snapshots__/ -name '*.spec.snap*'",
+          "grep -v " + name.replace("_", "/"),
+          "xargs rm -- "
+        ]),
+        "echo \"No snapshots to delete\"",
+      ]),
       " ".join([
         "$TOOL",
         "jest",
