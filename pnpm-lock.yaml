@@ -63,7 +63,7 @@ specifiers:
   ts-node: 10.4.0
   typescript: 4.5.4
   vite: 2.7.10
-  vitest: 0.0.132
+  vitest: 0.0.133
   vue: 3.2.26
   vue-jest: 5.0.0-alpha.10
   vue-loader: 17.0.0
@@ -140,7 +140,7 @@ devDependencies:
   ts-node: 10.4.0_c0a8ca172db2ce87bc71f1a1cb132fc8
   typescript: 4.5.4
   vite: 2.7.10_sass@1.45.2
-  vitest: 0.0.132_00e5416e6573ffc3db9e810523021911
+  vitest: 0.0.133_00e5416e6573ffc3db9e810523021911
   vue-jest: 5.0.0-alpha.10_3f144fa2473aca22061ba468c317863c
   vue-loader: 17.0.0
   vue-router: 4.0.12_vue@3.2.26
@@ -13322,8 +13322,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.0.132_00e5416e6573ffc3db9e810523021911:
-    resolution: {integrity: sha512-LxmHT3aAS+7mRJzYQg5tS5IQuDSmEBupaPcHK9PMRiOITZ2dMFo7mcvmvNZ8k0SL7NIIXYJ0BHTLX9ROY3xHmw==}
+  /vitest/0.0.133_00e5416e6573ffc3db9e810523021911:
+    resolution: {integrity: sha512-x83CeRPW1FNTY1pQ8CTPH4dbyvZc67ycqnqYpU/xxg6snnAcB25GRZh39RyOeMVHEczB2SeGcA/fzP1D8eUvzw==}
     engines: {node: '>=14.14.0'}
     hasBin: true
     peerDependencies:
