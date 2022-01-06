@@ -1,5 +1,5 @@
 <template lang="pug">
-.get_view_trip.narrow_content
+.get_view_trip
   h1.title Trip
   CTripInfo(
     v-if="trip.ID !== -1"

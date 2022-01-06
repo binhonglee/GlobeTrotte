@@ -3,22 +3,28 @@
   ul.placesList(
     v-if="places !== undefined"
   )
-    el-row.place(
+    n-space.place(
       v-for="place in places"
       v-bind:key="place.URL.valueOf()"
+      vertical
     )
       .placeLink(
         @click="redirect(place.URL.valueOf())"
         :underline="false"
         v-if="place.URL !== ''"
       )
-        el-card.placeDisplayCard(shadow="hover")
+        n-card.placeDisplayCard(
+          hoverable
+          content-style="padding: 0"
+        )
           .placeDisplayCardContent
             b.link {{ place.label }}
             p.placeDescription(
               v-if="place.description !== ''"
             ) {{ place.description }}
-      el-card.placeLink.placeDisplayCard(v-else shadow="hover")
+      n-card.placeDisplayCard(
+        v-else
+        content-style="padding: 0")
         .placeDisplayCardContent
           b {{ place.label }}
           p.placeDescription(
@@ -30,10 +36,12 @@
 import Routes from "@/routes";
 import Routing from "@/shared/Routing";
 import Place from "@/wings/Place";
+import { NCard, NSpace } from "naive-ui";
 import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "CPlaces",
+  components: { NCard, NSpace },
   props: {
     places: {
       type: Array as PropType<Array<Place>>,

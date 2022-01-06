@@ -1,35 +1,36 @@
 <template lang="pug">
 .edit_trip
   form.edit_form
-    CEditItem(
-      :className="'editTripName'"
-      :label="'Name'"
-      :ref="'name'"
-      :val="trip.details.name.valueOf()"
-    )
-    CEditItem(
-      :className="'editTripDescription'"
-      :label="'Description'"
-      :ref="'description'"
-      :type="'textarea'"
-      :val="trip.details.description.valueOf()"
-      :val-max-count="descriptionMaxCharCount"
-      :row-min-count="descriptionRowMinCount"
-    )
-    .editTripPrivacy
-      span.editLabel Private:
-      el-switch.editInput(v-model="private")
-    .editCity
-      span.editLabel Cities:
-      n-select.editInput(
-        v-model:value="cities"
-        :options="possibleCities"
-        filterable
-        multiple
-        placeholder=""
+    .narrow_content
+      CEditItem(
+        :className="'editTripName'"
+        :label="'Name'"
+        :ref="'name'"
+        :val="trip.details.name.valueOf()"
       )
+      CEditItem(
+        :className="'editTripDescription'"
+        :label="'Description'"
+        :ref="'description'"
+        :type="'textarea'"
+        :val="trip.details.description.valueOf()"
+        :val-max-count="descriptionMaxCharCount"
+        :row-min-count="descriptionRowMinCount"
+      )
+      .editTripPrivacy
+        span.editLabel Private:
+        el-switch.editInput(v-model="private")
+      .editCity
+        span.editLabel Cities:
+        n-select.editInput(
+          v-model:value="cities"
+          :options="possibleCities"
+          filterable
+          multiple
+          placeholder=""
+        )
     CEditDays(ref="days" :givenDays="trip.details.days")
-    div.confirmationButtons
+    div.confirmationButtons.narrow_content
       el-button.saveEditTrip(
         type="primary" v-on:click="save" :loading="saving"
       ) Save

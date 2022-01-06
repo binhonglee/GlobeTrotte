@@ -16,7 +16,7 @@
       multiple
       placeholder="City"
     )
-    el-button(v-on:click="search") Find
+    n-button(v-on:click="search") Find
   .homePageTripCarousel
     CTripPreviewCard(
       v-for="trip in trips"
@@ -33,7 +33,7 @@ import { Options, CityUtil } from "@/shared/CityUtil";
 import Routing from "@/shared/Routing";
 import Routes from "@/routes";
 import City from "@/wings/City";
-import { NSelect, NInput } from "naive-ui";
+import { NButton, NInput, NSelect } from "naive-ui";
 
 interface Data {
   length: number;
@@ -45,6 +45,7 @@ interface Data {
 
 export default defineComponent({
   components: {
+    NButton,
     NInput,
     NSelect,
     CTripPreviewCard,

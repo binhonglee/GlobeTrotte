@@ -1,38 +1,43 @@
 <template lang="pug">
-.view_trip.narrow_content(v-if="trip !== undefined")
-  el-alert.tripPrivateAlertBar(
-    v-if="trip.details.private"
-    title="Trip is private"
-    description="Only you can see this trip."
-    type="info"
-    :closable="false"
-    show-icon
-  )
-  h2.tripName {{ trip.details.name }}
-  p.tripDescription(
-    v-if="trip.details.description !== ''"
-  ) {{ trip.details.description }}
-  p.tripCreatorInfo Author: 
-    a(v-bind:href="'/user/' + trip.user.ID") {{ trip.user.name }}
-  p.tripCreatedDate Created on: {{ trip.timeCreated.toDateString() }}
-  p.tripUpdatedDate Last Updated: {{ trip.lastUpdated.toDateString() }}
-  div.tripCities
-    el-tag.tripCity(v-for="city in cities") {{ city }}
-  el-card.viewDayCard(
-    v-for="day in trip.details.days"
-    :key="day.ID.valueOf()"
-  )
-    .viewDayCardContent
-      h3.dayTitle Day {{ day.dayOf }}
-      CPlaces(:places="day.places")
-  el-button.enableTripEdit(
-    v-if="editable" v-on:click="enableEditMode"
-  ) Edit
+.view_trip(v-if="trip !== undefined")
+  .narrow_content
+    el-alert.tripPrivateAlertBar(
+      v-if="trip.details.private"
+      title="Trip is private"
+      description="Only you can see this trip."
+      type="info"
+      :closable="false"
+      show-icon
+    )
+    h2.tripName {{ trip.details.name }}
+    p.tripDescription(
+      v-if="trip.details.description !== ''"
+    ) {{ trip.details.description }}
+    p.tripCreatorInfo Author: 
+      a(v-bind:href="'/user/' + trip.user.ID") {{ trip.user.name }}
+    p.tripCreatedDate Created on: {{ trip.timeCreated.toDateString() }}
+    p.tripUpdatedDate Last Updated: {{ trip.lastUpdated.toDateString() }}
+    div.tripCities
+      n-tag.tripCity(v-for="city in cities" type="info") {{ city }}
+  .viewDays
+    n-card.viewDayCard(
+      v-for="day in trip.details.days"
+      :key="day.ID.valueOf()"
+      content-style="padding: 0"
+    )
+      .viewDayCardContent
+        h3.dayTitle Day {{ day.dayOf }}
+        CPlaces(:places="day.places")
+  .narrow_content
+    n-button.enableTripEdit(
+      v-if="editable" v-on:click="enableEditMode"
+    ) Edit
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { CityUtil } from "@/shared/CityUtil";
+import { NButton, NCard, NTag } from "naive-ui";
 import CPlaces from "./CPlaces.vue";
 import TripObj from "@/wings/TripObj";
 
@@ -42,7 +47,7 @@ interface Data {
 
 export default defineComponent({
   name: "CViewTrip",
-  components: { CPlaces },
+  components: { CPlaces, NButton, NCard, NTag },
   props: {
     trip: {
       type: TripObj,
@@ -91,8 +96,26 @@ export default defineComponent({
   margin: 0;
 }
 
+.viewDays {
+  padding: 20px;
+  text-align: center;
+}
+
 .viewDayCard {
-  margin-top: 15px;
+  display: inline-block;
+  position: unset;
+  text-align: left;
+  width: 400px;
+  margin: 0 0 20px 10px;
+  vertical-align: top;
+
+  @media screen and (max-width: 760px) {
+    margin: 0 0 20px 0;
+  }
+
+  @media screen and (max-width: 430px) {
+    width: 100%;
+  }
 }
 
 .viewDayCardContent {

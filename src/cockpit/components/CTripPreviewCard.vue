@@ -1,9 +1,10 @@
 <template lang="pug">
-.trip_preview_card
+.trip_preview_card(:class="{ wide_preview_card: wide }")
   a.tripLink(:href="'/trip/view/' + trip.ID")
-    n-card.tripPreviewCard(
+    n-card(
       hoverable
       content-style="padding: 0"
+      :class="{ widePreviewCard: wide, tripPreviewCard: !wide }"
     )
       h3.tripTitleName {{ trip.details.name.valueOf() }}
       n-divider
@@ -47,6 +48,10 @@ export default defineComponent({
       type: TripObj,
       required: true,
     },
+    wide: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: function () {
     return {
@@ -65,17 +70,29 @@ export default defineComponent({
 .trip_preview_card {
   display: inline-block;
   margin: 15px;
-  width: 330px;
   max-width: 88%;
+}
+
+.wide_preview_card {
+  width: 100%;
 }
 
 .tripPreviewCard {
   overflow: auto;
+  width: 330px;
   height: 500px;
 
   @media screen and (max-width: 720px) {
     height: auto;
   }
+}
+
+.widePreviewCard {
+  display: block;
+  height: auto;
+  margin: auto;
+  width: 750px;
+  max-width: 100%;
 }
 
 .tripLink {

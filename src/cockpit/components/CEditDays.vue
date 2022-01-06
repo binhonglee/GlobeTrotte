@@ -1,5 +1,5 @@
 <template>
-  <div class="edit_days">
+  <div class="edit_days narrow_content">
     <el-card
       v-for="(day, index) in days"
       :key="day.dayOf.valueOf()"

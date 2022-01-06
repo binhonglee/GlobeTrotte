@@ -14,12 +14,18 @@
       multiple
       placeholder="City"
     )
-    el-button.tripSearchButton(v-on:click="search") Find
+    n-button.tripSearchButton(v-on:click="search") Find
   .tripSearchResultCarousel(v-if="trips.length > 0")
     CTripPreviewCard(
       v-for="trip in trips"
       :trip="trip"
     )
+  .tripSearchInitialMessage(v-else-if="init")
+    n-alert(title="Search for a trip!" type="default")
+      template(#icon)
+        n-icon
+          search
+      | Try search for "Alaska"
   .tripSearchNoResultFound(v-else-if="!searching && !init")
     el-alert.narrow_content.accountUnconfirmedAlertBar(
       title="No results"
@@ -28,12 +34,6 @@
       :closable="false"
       show-icon
     )
-  .tripSearchInitialMessage(v-else)
-    n-alert(title="Search for a trip!" type="default")
-      template(#icon)
-        n-icon
-          search
-      | Try search for "Alaska"
 </template>
 
 <script lang="ts">
@@ -45,7 +45,7 @@ import TripObj from "@/wings/TripObj";
 import TripsSearchQuery from "@/wings/TripSearchQuery";
 import { WingsStructUtil } from "wings-ts-util";
 import Routing from "@/shared/Routing";
-import { NAlert, NIcon, NInput, NSelect } from "naive-ui";
+import { NAlert, NButton, NIcon, NInput, NSelect } from "naive-ui";
 import { Search } from "@vicons/ionicons5";
 
 interface Data {
@@ -62,6 +62,7 @@ export default defineComponent({
   components: {
     Search,
     NAlert,
+    NButton,
     NIcon,
     NInput,
     NSelect,

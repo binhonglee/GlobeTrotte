@@ -5,20 +5,21 @@
     p.userBio(v-if="user.details.bio !== ''")
       | {{ user.details.bio }}
     .userInfoButtonGroups(v-if="self")
-      el-button.myAccountLogout(
-        type="danger" v-on:click="logout"
+      n-button.myAccountLogout(
+        type="error" v-on:click="logout"
       ) Logout
-      el-button.myAccountEdit(
+      n-button.myAccountEdit(
         tabindex="0" type="default" ref="edit" v-on:click="toggleEdit"
       ) Edit
-  el-divider.viewUserDivider
+  n-divider.viewUserDivider
   div.viewUserTrips(v-if="trips.length > 0")
     h2 Trips
-    CTripPreviewCard(v-for="trip in trips" :trip="trip")
+    CTripPreviewCard(v-for="trip in trips" :trip="trip" :wide="true")
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { NButton, NDivider } from "naive-ui";
 import CTripPreviewCard from "./CTripPreviewCard.vue";
 import General from "@/shared/General";
 import UserObj from "@/wings/UserObj";
@@ -33,6 +34,8 @@ interface Data {
 export default defineComponent({
   components: {
     CTripPreviewCard,
+    NButton,
+    NDivider,
   },
   props: {
     user: {
