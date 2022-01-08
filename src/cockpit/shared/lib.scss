@@ -1,7 +1,11 @@
-$h2-height: 50px;
+$h2-height: 40px;
 $h3-height: 30px;
 $p-height: 20px;
 $edit-width: 250px;
+
+:root {
+  --default-link: #409eff;
+}
 
 @mixin left_col($lh) {
   display: inline;

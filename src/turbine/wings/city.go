@@ -26,4 +26,6 @@ const (
 	LosAngelesCAUS   = iota
 	LasVegasNVUS     = iota
 	SantaCruzCAUS    = iota
+	HonoluluHIUS     = iota
+	MauiHIUS         = iota
 )

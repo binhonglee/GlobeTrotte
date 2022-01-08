@@ -13,14 +13,14 @@ jobs:
     vmImage: $(imageName)
   strategy:
     matrix:
-      ubuntu-node-14-go-1-15-6:
+      ubuntu-node-16-go-1-16-6:
         imageName: "ubuntu-latest"
-        nodeVersion: "14.x"
-        goVersion: "1.15.6"
-      mac-node-14-go-1-15-6:
+        nodeVersion: "16.x"
+        goVersion: "1.16.6"
+      mac-node-16-go-1-16-6:
         imageName: "macos-latest"
-        nodeVersion: "14.x"
-        goVersion: "1.15.6"
+        nodeVersion: "16.x"
+        goVersion: "1.16.6"
 
   steps:
   - task: GoTool@0
@@ -96,14 +96,14 @@ jobs:
     vmImage: $(imageName)
   strategy:
     matrix:
-      ubuntu-node-14-go-1-15-6:
+      ubuntu-node-16-go-1-16-6:
         imageName: "ubuntu-latest"
-        nodeVersion: "14.x"
-        goVersion: "1.15.6"
-      # mac-node-14-go-1-15-6:
+        nodeVersion: "16.x"
+        goVersion: "1.16.6"
+      # mac-node-16-go-1-16-6:
       #   imageName: "macos-latest"
-      #   nodeVersion: "14.x"
-      #   goVersion: "1.15.6"
+      #   nodeVersion: "16.x"
+      #   goVersion: "1.16.6"
 
   steps:
   - task: GoTool@0
@@ -174,14 +174,14 @@ jobs:
     vmImage: $(imageName)
   strategy:
     matrix:
-      ubuntu-node-14-go-1-15-6:
+      ubuntu-node-16-go-1-16-6:
         imageName: "ubuntu-latest"
-        nodeVersion: "14.x"
-        goVersion: "1.15.6"
-      mac-node-14-go-1-15-6:
+        nodeVersion: "16.x"
+        goVersion: "1.16.6"
+      mac-node-16-go-1-16-6:
         imageName: "macos-latest"
-        nodeVersion: "14.x"
-        goVersion: "1.15.6"
+        nodeVersion: "16.x"
+        goVersion: "1.16.6"
 
   steps:
   - task: GoTool@0
@@ -220,14 +220,14 @@ jobs:
     vmImage: $(imageName)
   strategy:
     matrix:
-      ubuntu-node-14-go-1-15-6:
+      ubuntu-node-16-go-1-16-6:
         imageName: "ubuntu-latest"
-        nodeVersion: "14.x"
-        goVersion: "1.15.6"
-      mac-node-14-go-1-15-6:
+        nodeVersion: "16.x"
+        goVersion: "1.16.6"
+      mac-node-16-go-1-16-6:
         imageName: "macos-latest"
-        nodeVersion: "14.x"
-        goVersion: "1.15.6"
+        nodeVersion: "16.x"
+        goVersion: "1.16.6"
 
   steps:
   - task: NodeTool@0

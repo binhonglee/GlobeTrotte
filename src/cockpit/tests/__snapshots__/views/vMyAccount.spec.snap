@@ -18,24 +18,60 @@ exports[`My Account - Delete Account (failure) 1`] = `
           <h2 class="userName">
           </h2>
           <div class="userInfoButtonGroups">
-            <button class="el-button el-button--danger myAccountLogout"
+            <button class="n-button n-button--error-type n-button--medium-type myAccountLogout"
+                    tabindex="0"
                     type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #d03050; --n-color-hover: #de576d; --n-color-pressed: #ab1f3f; --n-color-focus: #de576d; --n-color-disabled: #d03050; --n-ripple-color: #d03050; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #d03050; --n-border-hover: 1px solid #de576d; --n-border-pressed: 1px solid #ab1f3f; --n-border-focus: 1px solid #de576d; --n-border-disabled: 1px solid #d03050; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Logout
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
-            <button class="el-button el-button--default myAccountEdit"
-                    type="button"
+            <button class="n-button n-button--default-type n-button--medium-type myAccountEdit"
                     tabindex="0"
+                    type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Edit
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
           </div>
         </div>
-        <div class="el-divider el-divider--horizontal viewUserDivider">
+        <div role="separator"
+             class="n-divider n-divider--no-title viewUserDivider"
+             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+        >
+          <div class="n-divider__line n-divider__line--left">
+          </div>
         </div>
       </div>
     </div>
@@ -98,17 +134,33 @@ exports[`My Account - Delete Account (failure) 2`] = `
         </div>
         <br>
       </div>
+      <div class="edit_item edit_item_small">
+        <span class="editLabel Label">
+          Link:
+        </span>
+        <div class="el-input editInput">
+          <input class="el-input__inner"
+                 rows="1"
+                 type="text"
+                 autocomplete="off"
+          >
+        </div>
+        <br>
+      </div>
       <div class="edit_item edit_item_large">
         <span class="editLabel Label">
           Bio:
         </span>
         <div class="el-textarea editInput">
           <textarea class="el-textarea__inner"
-                    rows="1"
+                    rows="3"
                     autocomplete="off"
                     style="min-height: -4px;"
           >
           </textarea>
+          <span class="el-input__count">
+            0/1000
+          </span>
         </div>
         <br>
       </div>
@@ -197,17 +249,33 @@ exports[`My Account - Delete Account (failure) 3`] = `
         </div>
         <br>
       </div>
+      <div class="edit_item edit_item_small">
+        <span class="editLabel Label">
+          Link:
+        </span>
+        <div class="el-input editInput">
+          <input class="el-input__inner"
+                 rows="1"
+                 type="text"
+                 autocomplete="off"
+          >
+        </div>
+        <br>
+      </div>
       <div class="edit_item edit_item_large">
         <span class="editLabel Label">
           Bio:
         </span>
         <div class="el-textarea editInput">
           <textarea class="el-textarea__inner"
-                    rows="1"
+                    rows="3"
                     autocomplete="off"
                     style="min-height: -4px;"
           >
           </textarea>
+          <span class="el-input__count">
+            0/1000
+          </span>
         </div>
         <br>
       </div>
@@ -259,24 +327,60 @@ exports[`My Account - Delete Account (success) 1`] = `
           <h2 class="userName">
           </h2>
           <div class="userInfoButtonGroups">
-            <button class="el-button el-button--danger myAccountLogout"
+            <button class="n-button n-button--error-type n-button--medium-type myAccountLogout"
+                    tabindex="0"
                     type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #d03050; --n-color-hover: #de576d; --n-color-pressed: #ab1f3f; --n-color-focus: #de576d; --n-color-disabled: #d03050; --n-ripple-color: #d03050; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #d03050; --n-border-hover: 1px solid #de576d; --n-border-pressed: 1px solid #ab1f3f; --n-border-focus: 1px solid #de576d; --n-border-disabled: 1px solid #d03050; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Logout
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
-            <button class="el-button el-button--default myAccountEdit"
-                    type="button"
+            <button class="n-button n-button--default-type n-button--medium-type myAccountEdit"
                     tabindex="0"
+                    type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Edit
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
           </div>
         </div>
-        <div class="el-divider el-divider--horizontal viewUserDivider">
+        <div role="separator"
+             class="n-divider n-divider--no-title viewUserDivider"
+             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+        >
+          <div class="n-divider__line n-divider__line--left">
+          </div>
         </div>
       </div>
     </div>
@@ -339,17 +443,33 @@ exports[`My Account - Delete Account (success) 2`] = `
         </div>
         <br>
       </div>
+      <div class="edit_item edit_item_small">
+        <span class="editLabel Label">
+          Link:
+        </span>
+        <div class="el-input editInput">
+          <input class="el-input__inner"
+                 rows="1"
+                 type="text"
+                 autocomplete="off"
+          >
+        </div>
+        <br>
+      </div>
       <div class="edit_item edit_item_large">
         <span class="editLabel Label">
           Bio:
         </span>
         <div class="el-textarea editInput">
           <textarea class="el-textarea__inner"
-                    rows="1"
+                    rows="3"
                     autocomplete="off"
                     style="min-height: -4px;"
           >
           </textarea>
+          <span class="el-input__count">
+            0/1000
+          </span>
         </div>
         <br>
       </div>
@@ -438,17 +558,33 @@ exports[`My Account - Delete Account (success) 3`] = `
         </div>
         <br>
       </div>
+      <div class="edit_item edit_item_small">
+        <span class="editLabel Label">
+          Link:
+        </span>
+        <div class="el-input editInput">
+          <input class="el-input__inner"
+                 rows="1"
+                 type="text"
+                 autocomplete="off"
+          >
+        </div>
+        <br>
+      </div>
       <div class="edit_item edit_item_large">
         <span class="editLabel Label">
           Bio:
         </span>
         <div class="el-textarea editInput">
           <textarea class="el-textarea__inner"
-                    rows="1"
+                    rows="3"
                     autocomplete="off"
                     style="min-height: -4px;"
           >
           </textarea>
+          <span class="el-input__count">
+            0/1000
+          </span>
         </div>
         <br>
       </div>
@@ -500,24 +636,60 @@ exports[`My Account - Logout 1`] = `
           <h2 class="userName">
           </h2>
           <div class="userInfoButtonGroups">
-            <button class="el-button el-button--danger myAccountLogout"
+            <button class="n-button n-button--error-type n-button--medium-type myAccountLogout"
+                    tabindex="0"
                     type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #d03050; --n-color-hover: #de576d; --n-color-pressed: #ab1f3f; --n-color-focus: #de576d; --n-color-disabled: #d03050; --n-ripple-color: #d03050; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #d03050; --n-border-hover: 1px solid #de576d; --n-border-pressed: 1px solid #ab1f3f; --n-border-focus: 1px solid #de576d; --n-border-disabled: 1px solid #d03050; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Logout
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
-            <button class="el-button el-button--default myAccountEdit"
-                    type="button"
+            <button class="n-button n-button--default-type n-button--medium-type myAccountEdit"
                     tabindex="0"
+                    type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Edit
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
           </div>
         </div>
-        <div class="el-divider el-divider--horizontal viewUserDivider">
+        <div role="separator"
+             class="n-divider n-divider--no-title viewUserDivider"
+             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+        >
+          <div class="n-divider__line n-divider__line--left">
+          </div>
         </div>
       </div>
     </div>
@@ -560,34 +732,70 @@ exports[`My Account - Logout 2`] = `
             MyAccount Test User
           </h2>
           <div class="userInfoButtonGroups">
-            <button class="el-button el-button--danger myAccountLogout"
+            <button class="n-button n-button--error-type n-button--medium-type myAccountLogout"
+                    tabindex="0"
                     type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #d03050; --n-color-hover: #de576d; --n-color-pressed: #ab1f3f; --n-color-focus: #de576d; --n-color-disabled: #d03050; --n-ripple-color: #d03050; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #d03050; --n-border-hover: 1px solid #de576d; --n-border-pressed: 1px solid #ab1f3f; --n-border-focus: 1px solid #de576d; --n-border-disabled: 1px solid #d03050; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Logout
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave n-base-wave--active"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
-            <button class="el-button el-button--default myAccountEdit"
-                    type="button"
+            <button class="n-button n-button--default-type n-button--medium-type myAccountEdit"
                     tabindex="0"
+                    type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Edit
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
           </div>
         </div>
-        <div class="el-divider el-divider--horizontal viewUserDivider">
+        <div role="separator"
+             class="n-divider n-divider--no-title viewUserDivider"
+             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+        >
+          <div class="n-divider__line n-divider__line--left">
+          </div>
         </div>
         <div class="viewUserTrips">
           <h2>
             Trips
           </h2>
-          <div class="trip_preview_card">
+          <div class="trip_preview_card wide_preview_card">
             <a class="tripLink"
                href="/trip/view/-1"
             >
-              <div class="n-card n-card--bordered n-card--hoverable tripPreviewCard"
+              <div class="n-card n-card--bordered n-card--hoverable widePreviewCard"
                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
               >
                 <div class="n-card__content"
@@ -614,7 +822,7 @@ exports[`My Account - Logout 2`] = `
                     <div class="cityTags">
                     </div>
                     <p>
-                      Last Updated: Mon Jan 03 2022
+                      Last Updated: Fri Jan 07 2022
                     </p>
                   </div>
                   <div class="endOfCardPadding">
@@ -648,24 +856,60 @@ exports[`My Account - Save Edit (failure) 1`] = `
           <h2 class="userName">
           </h2>
           <div class="userInfoButtonGroups">
-            <button class="el-button el-button--danger myAccountLogout"
+            <button class="n-button n-button--error-type n-button--medium-type myAccountLogout"
+                    tabindex="0"
                     type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #d03050; --n-color-hover: #de576d; --n-color-pressed: #ab1f3f; --n-color-focus: #de576d; --n-color-disabled: #d03050; --n-ripple-color: #d03050; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #d03050; --n-border-hover: 1px solid #de576d; --n-border-pressed: 1px solid #ab1f3f; --n-border-focus: 1px solid #de576d; --n-border-disabled: 1px solid #d03050; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Logout
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
-            <button class="el-button el-button--default myAccountEdit"
-                    type="button"
+            <button class="n-button n-button--default-type n-button--medium-type myAccountEdit"
                     tabindex="0"
+                    type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Edit
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
           </div>
         </div>
-        <div class="el-divider el-divider--horizontal viewUserDivider">
+        <div role="separator"
+             class="n-divider n-divider--no-title viewUserDivider"
+             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+        >
+          <div class="n-divider__line n-divider__line--left">
+          </div>
         </div>
       </div>
     </div>
@@ -728,17 +972,33 @@ exports[`My Account - Save Edit (failure) 2`] = `
         </div>
         <br>
       </div>
+      <div class="edit_item edit_item_small">
+        <span class="editLabel Label">
+          Link:
+        </span>
+        <div class="el-input editInput">
+          <input class="el-input__inner"
+                 rows="1"
+                 type="text"
+                 autocomplete="off"
+          >
+        </div>
+        <br>
+      </div>
       <div class="edit_item edit_item_large">
         <span class="editLabel Label">
           Bio:
         </span>
         <div class="el-textarea editInput">
           <textarea class="el-textarea__inner"
-                    rows="1"
+                    rows="3"
                     autocomplete="off"
                     style="min-height: -4px;"
           >
           </textarea>
+          <span class="el-input__count">
+            0/1000
+          </span>
         </div>
         <br>
       </div>
@@ -827,17 +1087,33 @@ exports[`My Account - Save Edit (failure) 3`] = `
         </div>
         <br>
       </div>
+      <div class="edit_item edit_item_small">
+        <span class="editLabel Label">
+          Link:
+        </span>
+        <div class="el-input editInput">
+          <input class="el-input__inner"
+                 rows="1"
+                 type="text"
+                 autocomplete="off"
+          >
+        </div>
+        <br>
+      </div>
       <div class="edit_item edit_item_large">
         <span class="editLabel Label">
           Bio:
         </span>
         <div class="el-textarea editInput">
           <textarea class="el-textarea__inner"
-                    rows="1"
+                    rows="3"
                     autocomplete="off"
                     style="min-height: -4px;"
           >
           </textarea>
+          <span class="el-input__count">
+            0/1000
+          </span>
         </div>
         <br>
       </div>
@@ -889,24 +1165,60 @@ exports[`My Account - Save Edit (success) 1`] = `
           <h2 class="userName">
           </h2>
           <div class="userInfoButtonGroups">
-            <button class="el-button el-button--danger myAccountLogout"
+            <button class="n-button n-button--error-type n-button--medium-type myAccountLogout"
+                    tabindex="0"
                     type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #d03050; --n-color-hover: #de576d; --n-color-pressed: #ab1f3f; --n-color-focus: #de576d; --n-color-disabled: #d03050; --n-ripple-color: #d03050; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #d03050; --n-border-hover: 1px solid #de576d; --n-border-pressed: 1px solid #ab1f3f; --n-border-focus: 1px solid #de576d; --n-border-disabled: 1px solid #d03050; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Logout
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
-            <button class="el-button el-button--default myAccountEdit"
-                    type="button"
+            <button class="n-button n-button--default-type n-button--medium-type myAccountEdit"
                     tabindex="0"
+                    type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Edit
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
           </div>
         </div>
-        <div class="el-divider el-divider--horizontal viewUserDivider">
+        <div role="separator"
+             class="n-divider n-divider--no-title viewUserDivider"
+             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+        >
+          <div class="n-divider__line n-divider__line--left">
+          </div>
         </div>
       </div>
     </div>
@@ -969,17 +1281,33 @@ exports[`My Account - Save Edit (success) 2`] = `
         </div>
         <br>
       </div>
+      <div class="edit_item edit_item_small">
+        <span class="editLabel Label">
+          Link:
+        </span>
+        <div class="el-input editInput">
+          <input class="el-input__inner"
+                 rows="1"
+                 type="text"
+                 autocomplete="off"
+          >
+        </div>
+        <br>
+      </div>
       <div class="edit_item edit_item_large">
         <span class="editLabel Label">
           Bio:
         </span>
         <div class="el-textarea editInput">
           <textarea class="el-textarea__inner"
-                    rows="1"
+                    rows="3"
                     autocomplete="off"
                     style="min-height: -4px;"
           >
           </textarea>
+          <span class="el-input__count">
+            0/1000
+          </span>
         </div>
         <br>
       </div>
@@ -1048,34 +1376,70 @@ exports[`My Account - Save Edit (success) 3`] = `
             MyAccount Test User
           </h2>
           <div class="userInfoButtonGroups">
-            <button class="el-button el-button--danger myAccountLogout"
+            <button class="n-button n-button--error-type n-button--medium-type myAccountLogout"
+                    tabindex="0"
                     type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #d03050; --n-color-hover: #de576d; --n-color-pressed: #ab1f3f; --n-color-focus: #de576d; --n-color-disabled: #d03050; --n-ripple-color: #d03050; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #d03050; --n-border-hover: 1px solid #de576d; --n-border-pressed: 1px solid #ab1f3f; --n-border-focus: 1px solid #de576d; --n-border-disabled: 1px solid #d03050; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Logout
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
-            <button class="el-button el-button--default myAccountEdit"
-                    type="button"
+            <button class="n-button n-button--default-type n-button--medium-type myAccountEdit"
                     tabindex="0"
+                    type="button"
+                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
             >
-              <span>
+              <transition-stub>
+              </transition-stub>
+              <span class="n-button__content">
                 Edit
               </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
             </button>
           </div>
         </div>
-        <div class="el-divider el-divider--horizontal viewUserDivider">
+        <div role="separator"
+             class="n-divider n-divider--no-title viewUserDivider"
+             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+        >
+          <div class="n-divider__line n-divider__line--left">
+          </div>
         </div>
         <div class="viewUserTrips">
           <h2>
             Trips
           </h2>
-          <div class="trip_preview_card">
+          <div class="trip_preview_card wide_preview_card">
             <a class="tripLink"
                href="/trip/view/-1"
             >
-              <div class="n-card n-card--bordered n-card--hoverable tripPreviewCard"
+              <div class="n-card n-card--bordered n-card--hoverable widePreviewCard"
                    style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
               >
                 <div class="n-card__content"
@@ -1102,7 +1466,7 @@ exports[`My Account - Save Edit (success) 3`] = `
                     <div class="cityTags">
                     </div>
                     <p>
-                      Last Updated: Mon Jan 03 2022
+                      Last Updated: Fri Jan 07 2022
                     </p>
                   </div>
                   <div class="endOfCardPadding">

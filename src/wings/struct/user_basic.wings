@@ -12,6 +12,7 @@ struct UserBasic {
   name          str
   email         str
   bio           str
+  link          str
   confirmed     bool
 }
 

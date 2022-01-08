@@ -39,7 +39,7 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '14'
+        node-version: '16.5'
     - name: Use Go
       uses: actions/setup-go@v2
       with:
@@ -96,7 +96,7 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '14'
+        node-version: '16.5'
     - name: Use Go
       uses: actions/setup-go@v2
       with:
@@ -186,7 +186,7 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '14'
+        node-version: '16.5'
 
     - run: sudo npm i -g pnpm
     - run: ./pleasew test --show_all_output //src/cockpit/...

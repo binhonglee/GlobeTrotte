@@ -43,14 +43,19 @@ export default defineComponent({
     if (General.getIsCurrentUser(this.$data.user.ID.valueOf())) {
       await Routing.genRedirectTo(Routes.MyAccount);
     }
+
+    this.$data.user.details.bio = this.$data.user.details.bio.replaceAll(
+      "\\n",
+      "\n",
+    );
   },
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../shared/lib";
 
 .profile_info {
-  @include trip_display();
+  text-align: left;
 }
 </style>

@@ -8,9 +8,9 @@
       v-bind:key="place.URL.valueOf()"
       vertical
     )
-      .placeLink(
-        @click="redirect(place.URL.valueOf())"
-        :underline="false"
+      CExternalLink.placeLink(
+        :url="place.URL.valueOf()"
+        :underline="'never'"
         v-if="place.URL !== ''"
       )
         n-card.placeDisplayCard(
@@ -36,12 +36,13 @@
 import Routes from "@/routes";
 import Routing from "@/shared/Routing";
 import Place from "@/wings/Place";
+import CExternalLink from "./CExternalLink.vue";
 import { NCard, NSpace } from "naive-ui";
 import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "CPlaces",
-  components: { NCard, NSpace },
+  components: { CExternalLink, NCard, NSpace },
   props: {
     places: {
       type: Array as PropType<Array<Place>>,

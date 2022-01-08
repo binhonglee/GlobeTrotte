@@ -10,6 +10,7 @@
     v-model="value"
     v-on:keyup.enter.native="enter"
     :maxlength="valMaxCount"
+    :show-word-limit="type === 'textarea'"
   )
   br
 </template>
@@ -84,11 +85,11 @@ export default defineComponent({
   margin-top: 0px;
 }
 
-.edit_item_large {
-  min-height: 75px;
+.edit_item {
+  padding: 5px 0;
 }
 
-.edit_item_small {
-  height: 50px;
+.edit_item_large {
+  padding-bottom: 45px;
 }
 </style>

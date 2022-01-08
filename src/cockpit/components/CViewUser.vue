@@ -4,6 +4,12 @@
     h2(v-if="showName").userName {{ user.details.name }}
     p.userBio(v-if="user.details.bio !== ''")
       | {{ user.details.bio }}
+    CExternalLink(
+      :underline="'hover'"
+      :url="user.details.link.valueOf()"
+      v-if="user.details.link !== ''"
+    )
+      | {{ user.details.link }}
     .userInfoButtonGroups(v-if="self")
       n-button.myAccountLogout(
         type="error" v-on:click="logout"
@@ -20,6 +26,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { NButton, NDivider } from "naive-ui";
+import CExternalLink from "./CExternalLink.vue";
 import CTripPreviewCard from "./CTripPreviewCard.vue";
 import General from "@/shared/General";
 import UserObj from "@/wings/UserObj";
@@ -33,6 +40,7 @@ interface Data {
 
 export default defineComponent({
   components: {
+    CExternalLink,
     CTripPreviewCard,
     NButton,
     NDivider,
@@ -109,6 +117,11 @@ export default defineComponent({
 
 .userInfo {
   padding: 10px;
+}
+
+.userBio {
+  white-space: pre-wrap;
+  margin: 0;
 }
 
 .viewUserTrips {

@@ -146,7 +146,7 @@ installNode() {
   if [ "$TEST_NODE" != "" ]; then
     echo "Seems like \`node\` is already installed. Skipping..."
   else
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
     nvm install node
   fi
 }

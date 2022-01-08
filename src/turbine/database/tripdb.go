@@ -166,7 +166,7 @@ func SearchTripsDB(cities []wings.City, days int, query string) []wings.Trip {
 		args = append(args, "%"+query+"%")
 		count++
 	}
-	sqlStatement += " ORDER BY time_created DESC;"
+	sqlStatement += " ORDER BY last_updated DESC;"
 
 	c := getConn()
 	rows, err := c.Query(context.Background(), sqlStatement, args...)
@@ -192,7 +192,7 @@ func GetRecentTrips() []wings.Trip {
 		WHERE
 			private = FALSE
 			AND CARDINALITY(days) > 0
-		ORDER BY time_created DESC
+		ORDER BY last_updated DESC
 		LIMIT 10;
 	`
 	c := getConn()

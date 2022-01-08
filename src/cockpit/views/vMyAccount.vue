@@ -23,8 +23,11 @@
     .narrow_content(v-else)
       CEditItem(label="Name" ref="name" :val="user.details.name.valueOf()")
       CEditItem(label="Email" ref="email" :val="user.details.email.valueOf()")
+      CEditItem(label="Link" ref="link" :val="user.details.link.valueOf()")
       CEditItem(
-        label="Bio" type="textarea" ref="bio" :val="user.details.bio.valueOf()"
+        label="Bio" type="textarea" ref="bio"
+        :val="user.details.bio.valueOf()" :row-min-count="3"
+        :val-max-count="1000"
       )
       div.myAccountButtonGroups
         el-button.myAccountSave(type="primary" v-on:click="save") Save
@@ -77,21 +80,26 @@ export default defineComponent({
       loadingBar: General.loadingBar(),
     };
   },
-  async beforeMount(): Promise<void> {
-    this.$data.loading = true;
-    this.$data.user = await General.genCurrentUser();
-    if (this.$data.user.ID === -1) {
-      await Routing.genRedirectTo(Routes.Landing);
-    }
-    this.$data.confirmed = this.$data.user.details.confirmed.valueOf();
-  },
   mounted(): void {
+    this.init();
     if (this.$data.edit) {
       E.get(E.get(this, "name"), "input").focus();
     }
-    this.$data.loading = false;
   },
   methods: {
+    async init(): Promise<void> {
+      this.$data.loading = true;
+      this.$data.user = await General.genCurrentUser();
+      this.$data.user.details.bio = this.$data.user.details.bio.replaceAll(
+        "\\n",
+        "\n",
+      );
+      if (this.$data.user.ID === -1) {
+        await Routing.genRedirectTo(Routes.Landing);
+      }
+      this.$data.confirmed = this.$data.user.details.confirmed.valueOf();
+      this.$data.loading = false;
+    },
     async deleteAccount(): Promise<void> {
       this.$data.loadingBar?.start();
       const deletion = await HTTPReq.genDELETE(
@@ -124,7 +132,12 @@ export default defineComponent({
         id: this.$data.user.ID,
         name: E.getVal(this, "name"),
         email: E.getVal(this, "email"),
-        bio: E.getVal(this, "bio"),
+        bio: E.getVal(this, "bio")
+          .replaceAll("\\t", "\t")
+          .replaceAll("\t", "")
+          .replaceAll("\n", "\\\\n")
+          .replaceAll("\\", "\\\\"),
+        link: E.getVal(this, "link"),
         confirmed: this.$data.user.details.confirmed,
       });
       const success = await HTTPReq.genPOST(
@@ -132,13 +145,14 @@ export default defineComponent({
         WingsStructUtil.stringify(user),
       );
 
-      if (success) {
+      if (success !== false) {
         this.toggleEdit();
         this.$data.loadingBar?.finish();
         this.$message({
           message: "Profile updated successfully!",
           type: "success",
         });
+        this.init();
       } else {
         this.$data.loadingBar?.error();
         this.$alert("Save was unsuccessful. Please try again later.", "Fail", {

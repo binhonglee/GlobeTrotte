@@ -134,6 +134,8 @@ func initializeDB() {
 			logger.Print(logger.Database, element+" table created successfully.")
 		}
 	}
+
+	updateUserTable()
 }
 
 func createUsersTable() {
@@ -144,6 +146,7 @@ func createUsersTable() {
 			password        TEXT           NOT NULL,
 			email           TEXT UNIQUE    NOT NULL,
 			bio             TEXT,
+			link            TEXT,
 			time_created    TIMESTAMPTZ    NOT NULL,
 			trips           INT[],
 			confirmed       BOOLEAN        NOT NULL
@@ -151,6 +154,12 @@ func createUsersTable() {
 	_, err := db.Exec(createTable)
 
 	logger.PanicErr(logger.Database, err, "Failed to create `users` table. ")
+}
+
+func updateUserTable() {
+	db.Exec(`ALTER TABLE users ADD COLUMN IF NOT EXISTS link TEXT;`)
+	db.Exec(`ALTER TABLE users ADD COLUMN IF NOT EXISTS bio TEXT;`)
+	db.Exec(`ALTER TABLE users ADD COLUMN IF NOT EXISTS trips INT[];`)
 }
 
 func createTripsTable() {

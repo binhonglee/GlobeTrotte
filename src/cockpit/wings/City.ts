@@ -22,6 +22,8 @@ enum City {
   LosAngelesCAUS,
   LasVegasNVUS,
   SantaCruzCAUS,
+  HonoluluHIUS,
+  MauiHIUS,
 }
 
 export default City;

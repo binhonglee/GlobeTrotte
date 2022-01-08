@@ -13,6 +13,7 @@ type UserBasic struct {
 	Name      string `json:"name"`
 	Email     string `json:"email"`
 	Bio       string `json:"bio"`
+	Link      string `json:"link"`
 	Confirmed bool   `json:"confirmed"`
 }
 

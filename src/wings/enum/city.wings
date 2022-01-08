@@ -1,3 +1,6 @@
+// WARNING: Only add new cities to the end of the list!
+// (Please also add its corresponding full display name on CityUtil.ts.)
+
 go-filepath src/turbine/wings
 ts-filepath src/cockpit/wings
 
@@ -18,4 +21,6 @@ enum City {
   LosAngelesCAUS
   LasVegasNVUS
   SantaCruzCAUS
+  HonoluluHIUS
+  MauiHIUS
 }

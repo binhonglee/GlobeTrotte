@@ -102,20 +102,30 @@ func GetUserTripsWithID(id int) []int {
 // GetUserBasicDBWithID - Retrieve basic user information from database with ID.
 func GetUserBasicDBWithID(id int) wings.UserBasic {
 	var user wings.UserBasic
+	var bio sql.NullString
+	var link sql.NullString
 	sqlStatement := `
-		SELECT id, name, email, bio, confirmed
+		SELECT id, name, email, bio, confirmed, link
 		FROM users WHERE id=$1;`
 	switch err := db.QueryRow(sqlStatement, id).Scan(
 		&user.ID,
 		&user.Name,
 		&user.Email,
-		&user.Bio,
+		&bio,
 		&user.Confirmed,
+		&link,
 	); err {
 	case sql.ErrNoRows:
 		user.ID = -1
 	default:
 		logger.Err(logger.Database, err, "")
+	}
+
+	if bio.Valid {
+		user.Bio = bio.String
+	}
+	if link.Valid {
+		user.Link = link.String
 	}
 	return user
 }
@@ -170,7 +180,10 @@ func UpdateUserDB(updatedUser structs.IStructs) bool {
 }
 
 func UpdateUserBasicDB(updatedUser wings.UserBasic) bool {
-	return updatingUser(updatedUser.ID, updatedUser.Name, updatedUser.Email, updatedUser.Bio)
+	return updatingUser(
+		updatedUser.ID, updatedUser.Name, updatedUser.Email,
+		updatedUser.Bio, updatedUser.Link,
+	)
 }
 
 func DeleteTripFromUserDB(trip wings.TripBasic, user wings.UserBasic) bool {
@@ -323,7 +336,7 @@ func updateUser(updatedUser wings.User) bool {
 }
 
 func updatingUser(
-	id int, name string, email string, bio string,
+	id int, name string, email string, bio string, link string,
 ) bool {
 	existingUser := getUserWithID(id)
 	if existingUser.GetID() != id {
@@ -340,7 +353,8 @@ func updatingUser(
 		UPDATE users
 		SET name = $2,
 		email = $3,
-		bio = $4
+		bio = $4,
+		link = $5
 		WHERE id = $1;`
 
 	_, err := db.Exec(
@@ -349,6 +363,7 @@ func updatingUser(
 		name,
 		email,
 		bio,
+		link,
 	)
 
 	if err != nil {

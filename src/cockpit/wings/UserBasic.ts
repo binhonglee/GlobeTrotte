@@ -14,6 +14,7 @@ export default class UserBasic implements IWingsStruct {
   public name: String = '';
   public email: String = '';
   public bio: String = '';
+  public link: String = '';
   public confirmed: Boolean = false;
 
   public constructor(obj?: any) {
@@ -22,6 +23,7 @@ export default class UserBasic implements IWingsStruct {
       this.name = obj.name !== undefined && obj.name !== null ? obj.name : '';
       this.email = obj.email !== undefined && obj.email !== null ? obj.email : '';
       this.bio = obj.bio !== undefined && obj.bio !== null ? obj.bio : '';
+      this.link = obj.link !== undefined && obj.link !== null ? obj.link : '';
       this.confirmed = obj.confirmed !== undefined && obj.confirmed !== null ? obj.confirmed : false;
     }
   }
@@ -39,6 +41,9 @@ export default class UserBasic implements IWingsStruct {
       }
       case 'bio': {
         return 'bio';
+      }
+      case 'link': {
+        return 'link';
       }
       case 'confirmed': {
         return 'confirmed';
