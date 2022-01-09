@@ -1,5 +1,5 @@
 <template lang="pug">
-.edit_item(v-bind:class="isDescription() ? 'edit_item_large' : 'edit_item_small'")
+.edit_item(:class="isDescription() ? 'edit_item_large' : 'edit_item_small'")
   span.editLabel(:class="className + 'Label'") {{ label }}:
   el-input.editInput(
     :class="className"
@@ -8,7 +8,7 @@
     :type="type"
     :show-password="type === 'password'"
     v-model="value"
-    v-on:keyup.enter.native="enter"
+    @keyup.enter.native="enter"
     :maxlength="valMaxCount"
     :show-word-limit="type === 'textarea'"
   )

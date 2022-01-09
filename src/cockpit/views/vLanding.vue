@@ -7,7 +7,7 @@
     n-input.tripSearchQueryInput(
       placeholder="Alaska"
       v-model:value="query"
-      v-on:keyup.enter.native="search"
+      @keyup.enter.native="search"
     )
     n-select.tripSearchCityInput(
       v-model:value="selectedCities"
@@ -16,7 +16,7 @@
       multiple
       placeholder="City"
     )
-    n-button(v-on:click="search") Find
+    n-button(@click="search") Find
   .homePageTripCarousel
     CTripPreviewCard(
       v-for="trip in trips"

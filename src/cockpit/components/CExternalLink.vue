@@ -1,6 +1,6 @@
 <template lang="pug">
 .external_link(
-  v-bind:class="underline"
+  :class="underline"
   @click="redirect(url.valueOf())"
 )
   slot

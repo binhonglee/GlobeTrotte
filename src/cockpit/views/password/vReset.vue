@@ -7,17 +7,17 @@
       label="Email"
       ref="email"
       :val="email"
-      v-on:keydown.enter.native="confirmEmail"
+      @keydown.enter.native="confirmEmail"
     )
     br
     el-button.resetPasswordSave(
       type="primary"
-      v-on:click="confirmEmail"
+      @click="confirmEmail"
       v-loading.fullscreen.lock="loading"
     ) Confirm
     el-button.resetPasswordCancel(
       type="default"
-      v-on:click="cancel"
+      @click="cancel"
     ) Cancel
     p.backToLogin
       a(:href="loginLink") Back to Login
@@ -52,12 +52,12 @@
     br
     el-button.resetPasswordSave(
       type="primary"
-      v-on:click="confirmReset"
+      @click="confirmReset"
       v-loading.fullscreen.lock="loading"
     ) Confirm
     el-button.resetPasswordCancel(
       type="default"
-      v-on:click="cancel"
+      @click="cancel"
     ) Cancel
 </template>
 

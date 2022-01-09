@@ -30,15 +30,15 @@
         :val-max-count="1000"
       )
       div.myAccountButtonGroups
-        el-button.myAccountSave(type="primary" v-on:click="save") Save
+        el-button.myAccountSave(type="primary" @click="save") Save
         el-button.myAccountCancel(
           type="default"
           ref="cancel"
-          v-on:click="toggleEdit"
+          @click="toggleEdit"
         ) Cancel
       div.myAccountDeletion
         el-button.myAccountDelete(
-          type="danger" v-on:click="deleteAccount"
+          type="danger" @click="deleteAccount"
         ) Delete Account
 </template>
 

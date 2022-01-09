@@ -19,7 +19,8 @@
       )
       .editTripPrivacy
         span.editLabel Private:
-        el-switch.editInput(v-model="private")
+        .editInput
+          n-switch(v-model:value="private")
       .editCity
         span.editLabel Cities:
         n-select.editInput(
@@ -32,14 +33,14 @@
     CEditDays(ref="days" :givenDays="trip.details.days")
     div.confirmationButtons.narrow_content
       el-button.saveEditTrip(
-        type="primary" v-on:click="save" :loading="saving"
+        type="primary" @click="save" :loading="saving"
       ) Save
       el-button.cancelEditTrip(
-        type="default" v-on:click="cancel"
+        type="default" @click="cancel"
       ) Cancel
       el-button.deleteTrip(
         v-if="!isNew"
-        v-on:click="del"
+        @click="del"
         type="danger"
         :loading="deleting"
       ) Delete
@@ -66,7 +67,7 @@ import {
   NAME_CHAR_MAX_COUNT,
   NAME_CHAR_MIN_COUNT,
 } from "@/shared/constants";
-import { NSelect } from "naive-ui";
+import { NSelect, NSwitch } from "naive-ui";
 
 interface Data {
   cities: Array<string>;
@@ -81,6 +82,7 @@ const DESCRIPTION_ROW_MIN_COUNT = 3;
 export default defineComponent({
   components: {
     NSelect,
+    NSwitch,
     CEditDays,
     CEditItem,
     CEditPlaces,
@@ -310,7 +312,7 @@ export default defineComponent({
 }
 
 .editTripPrivacy .editInput {
-  margin-top: 10px;
+  width: 100%;
 }
 
 .editTripPrivacy {

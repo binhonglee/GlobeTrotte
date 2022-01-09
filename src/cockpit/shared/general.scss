@@ -26,13 +26,13 @@ h3 {
 
 .editInput {
   @include right_col($h2-height);
-  width: $edit-width;
+  max-width: $edit-width;
 }
 
 .narrow_content {
   @include content();
   width: 400px;
-  max-width: 100%;
+  max-width: 92%;
 }
 
 .wide_content {

@@ -28,6 +28,8 @@
 import { defineComponent } from "vue";
 import { NCard } from "naive-ui";
 import Routing from "@/shared/Routing";
+import General from "@/shared/General";
+import Routes from "@/routes";
 
 interface Data {
   hasNext: boolean;
@@ -42,6 +44,13 @@ export default defineComponent({
   },
   beforeMount(): void {
     this.$data.hasNext = Routing.hasNext();
+  },
+  async mounted(): Promise<void> {
+    if (General.confirmed()) {
+      await Routing.genRedirectTo(
+        Routing.hasNext() ? Routing.getNext(this.$route) : Routes.MyAccount,
+      );
+    }
   },
 });
 </script>

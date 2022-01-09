@@ -12,26 +12,36 @@
       | {{ user.details.link }}
     .userInfoButtonGroups(v-if="self")
       n-button.myAccountLogout(
-        type="error" v-on:click="logout"
+        type="error" @click="logout"
       ) Logout
       n-button.myAccountEdit(
-        tabindex="0" type="default" ref="edit" v-on:click="toggleEdit"
+        tabindex="0" type="default" ref="edit" @click="toggleEdit"
       ) Edit
   n-divider.viewUserDivider
-  div.viewUserTrips(v-if="trips.length > 0")
+  div.viewUserTrips
     h2 Trips
     CTripPreviewCard(v-for="trip in trips" :trip="trip" :wide="true")
+    div.createTripAlertDiv(v-if="self && trips.length <= 0")
+      n-alert.createTripAlert(
+        type="default"
+        :show-icon="false"
+      )
+        span.createTripAlertText Seems like you have not shared any of your own trips.
+        n-button.createTripButton(type="info" @click="newTrip" size="large") Create New Trip
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { NButton, NDivider } from "naive-ui";
+import { NAlert, NButton, NDivider, NIcon } from "naive-ui";
+import { CreateOutline } from "@vicons/ionicons5";
 import CExternalLink from "./CExternalLink.vue";
 import CTripPreviewCard from "./CTripPreviewCard.vue";
 import General from "@/shared/General";
 import UserObj from "@/wings/UserObj";
 import TripBasic from "@/wings/TripBasic";
 import TripObj from "@/wings/TripObj";
+import Routing from "@/shared/Routing";
+import Routes from "@/routes";
 
 interface Data {
   trips: Array<TripObj>;
@@ -42,8 +52,11 @@ export default defineComponent({
   components: {
     CExternalLink,
     CTripPreviewCard,
+    NAlert,
     NButton,
     NDivider,
+    NIcon,
+    CreateOutline,
   },
   props: {
     user: {
@@ -108,6 +121,9 @@ export default defineComponent({
     toggleEdit(): void {
       this.$emit("toggleEdit");
     },
+    async newTrip(): Promise<void> {
+      await Routing.genRedirectTo(Routes.trip_New);
+    },
   },
 });
 </script>
@@ -144,5 +160,26 @@ export default defineComponent({
   display: inline-block;
   width: 100%;
   text-align: left;
+}
+
+.createTripAlertDiv {
+  padding: 10px;
+}
+
+.createTripAlert {
+  max-width: 500px;
+  margin: auto;
+}
+
+.createTripAlertText {
+  text-align: left;
+  line-height: 15px;
+  font-size: 15px;
+  padding: 0 10px;
+}
+
+.createTripButton {
+  margin-top: 10px;
+  width: 100%;
 }
 </style>

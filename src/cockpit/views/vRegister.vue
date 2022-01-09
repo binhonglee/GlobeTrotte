@@ -31,12 +31,12 @@
     br
     el-button.registrationSave(
       type="primary"
-      v-on:click="confirm"
+      @click="confirm"
       v-loading.fullscreen.lock="loading"
     ) Confirm
     el-button.registrationCancel(
       type="default"
-      v-on:click="cancel"
+      @click="cancel"
     ) Cancel
 </template>
 

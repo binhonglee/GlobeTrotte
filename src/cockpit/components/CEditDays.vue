@@ -104,7 +104,7 @@ export default defineComponent({
   width: 100%;
 
   .editDayCardContent {
-    padding: 10px;
+    padding: 15px 10px;
   }
 }
 

@@ -25,12 +25,12 @@
     br
     el-button.loginConfirm(
       type="primary"
-      v-on:click="confirm"
+      @click="confirm"
       v-loading.fullscreen.lock="loading"
     ) Confirm
     el-button.loginCancel(
       type="default"
-      v-on:click="cancel"
+      @click="cancel"
     ) Cancel
   p.forgotPassword
     a(:href="resetLink") Forgot Password?

@@ -14,7 +14,7 @@
       v-if="trip.details.description !== ''"
     ) {{ trip.details.description }}
     p.tripCreatorInfo Author: 
-      a(v-bind:href="'/user/' + trip.user.ID") {{ trip.user.name }}
+      a(:href="'/user/' + trip.user.ID") {{ trip.user.name }}
     p.tripCreatedDate Created on: {{ trip.timeCreated.toDateString() }}
     p.tripUpdatedDate Last Updated: {{ trip.lastUpdated.toDateString() }}
     div.tripCities
@@ -30,7 +30,7 @@
         CPlaces(:places="day.places")
   .narrow_content
     n-button.enableTripEdit(
-      v-if="editable" v-on:click="enableEditMode"
+      v-if="editable" @click="enableEditMode"
     ) Edit
 </template>
 

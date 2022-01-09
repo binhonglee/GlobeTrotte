@@ -5,7 +5,7 @@
   )
     n-space.place(
       v-for="place in places"
-      v-bind:key="place.URL.valueOf()"
+      :key="place.URL.valueOf()"
       vertical
     )
       CExternalLink.placeLink(

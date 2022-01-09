@@ -14,7 +14,7 @@
         ) {{ trip.details.description }}
         p
           a.tripPreviewUserProfileLink(
-            v-bind:href="'/user/' + trip.user.ID"
+            :href="'/user/' + trip.user.ID"
             type="primary"
           ) {{ trip.user.name }}
         .cityTags
