@@ -163,6 +163,9 @@ jobs:
     condition: eq(variables['Agent.OS'], 'Darwin')
     displayName: Fix wings.json (MacOS)
 
+  - script: ./pleasew build "//src/turbine:main"
+    displayName: Build turbine
+
   - script: ./pleasew run "//src/turbine:main" &
     displayName: Run turbine on background
   - script: sleep 1

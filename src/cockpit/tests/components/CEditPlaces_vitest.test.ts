@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import CEditPlaces from "@/components/CEditPlaces.vue";
+import CEditPlaces, { DataPlace } from "@/components/CEditPlaces.vue";
 import { mockPlace } from "@/tests/mockData/data";
 import { shallowMount } from "@vue/test-utils";
 
@@ -11,7 +11,7 @@ test("renders empty component", () => {
 });
 
 test("renders one place object", () => {
-  const places = [mockedPlace.place];
+  const places = [new DataPlace(mockedPlace.place)];
   const wrapper = shallowMount(CEditPlaces, {
     propsData: { givenPlaces: places },
   });

@@ -45,9 +45,11 @@ export default defineComponent({
     }
 
     this.$data.user.details.bio = this.$data.user.details.bio.replaceAll(
-      "\\n",
+      "\\\\n",
       "\n",
     );
+
+    console.log(this.$data.user);
   },
 });
 </script>

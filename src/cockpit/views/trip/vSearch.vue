@@ -21,19 +21,18 @@
       :trip="trip"
     )
   .tripSearchInitialMessage(v-else-if="init")
-    n-alert(title="Search for a trip!" type="default")
-      template(#icon)
-        n-icon
-          search
-      | Try search for "Alaska"
+    .narrow_content
+      n-alert(title="Search for a trip!" type="default")
+        template(#icon)
+          n-icon
+            search
+        | Try searching for "Alaska"
   .tripSearchNoResultFound(v-else-if="!searching && !init")
-    el-alert.narrow_content.accountUnconfirmedAlertBar(
-      title="No results"
-      description="We could not find any trips that matches your search parameters. Please try again."
-      type="error"
-      :closable="false"
-      show-icon
-    )
+    .narrow_content.accountUnconfirmedAlertBar
+      n-alert(
+        title="No results"
+        type="error"
+      ) We could not find any trips that matches your search parameters. Please try again.
 </template>
 
 <script lang="ts">
@@ -142,7 +141,7 @@ export default defineComponent({
 }
 
 .tripSearchForm {
-  padding-bottom: 30px;
+  padding: 30px 10px;
   text-align: center;
 }
 
@@ -163,6 +162,7 @@ export default defineComponent({
 
 .tripSearchInitialMessage {
   max-width: 500px;
+  padding: 0 10px;
   margin: auto;
 }
 </style>

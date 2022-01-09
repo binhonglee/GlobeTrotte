@@ -107,6 +107,7 @@ jobs:
     - run: sudo npm i -g pnpm
     - run: cp config/test.kdl config/config.kdl
 
+    - run: ./pleasew build "//src/turbine:main"
     - run: ./pleasew run "//src/turbine:main" -- -toFile=true &
     - run: sleep 3
     - run: ./pleasew test --show_all_output //:cockpit_cypress

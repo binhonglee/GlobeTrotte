@@ -1,14 +1,11 @@
 <template lang="pug">
 .view_trip(v-if="trip !== undefined")
   .narrow_content
-    el-alert.tripPrivateAlertBar(
+    n-alert.tripPrivateAlertBar(
       v-if="trip.details.private"
       title="Trip is private"
-      description="Only you can see this trip."
       type="info"
-      :closable="false"
-      show-icon
-    )
+    ) Only you can see this trip.
     h2.tripName {{ trip.details.name }}
     p.tripDescription(
       v-if="trip.details.description !== ''"
@@ -37,7 +34,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { CityUtil } from "@/shared/CityUtil";
-import { NButton, NCard, NTag } from "naive-ui";
+import { NAlert, NButton, NCard, NTag } from "naive-ui";
 import CPlaces from "./CPlaces.vue";
 import TripObj from "@/wings/TripObj";
 
@@ -47,7 +44,7 @@ interface Data {
 
 export default defineComponent({
   name: "CViewTrip",
-  components: { CPlaces, NButton, NCard, NTag },
+  components: { CPlaces, NAlert, NButton, NCard, NTag },
   props: {
     trip: {
       type: TripObj,

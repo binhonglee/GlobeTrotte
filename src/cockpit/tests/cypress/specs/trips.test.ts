@@ -41,10 +41,10 @@ describe("Trips", () => {
     cy.get(".saveEditTrip").click();
     cy.url().should("include", "/trip/view");
     cy.get(".tripPrivateAlertBar")
-      .find(".el-alert__title")
+      .find(".n-alert-body__title")
       .should("contain.text", "Trip is private");
     cy.get(".tripPrivateAlertBar")
-      .find(".el-alert__description")
+      .find(".n-alert-body__content")
       .should("contain.text", "Only you can see this trip.");
     cy.url().then((url) => {
       newTripURL = url;
@@ -70,7 +70,7 @@ describe("Trips", () => {
       return cy.visit(newTripURL);
     });
     cy.get(".enableTripEdit").click();
-    cy.get(".editTripPrivacy").find(".editInput").click();
+    cy.get(".editTripPrivacy").find(".editPrivacyToggle").click();
     cy.get(".saveEditTrip").click();
     cy.get(".tripPrivateAlertBar").should("not.exist");
     cy.logout();

@@ -138,6 +138,7 @@ func DeleteTripDB(trip wings.Trip) bool {
 }
 
 func SearchTripsDB(cities []wings.City, days int, query string) []wings.Trip {
+	logger.DebugCyan(query)
 	toReturn := make([]wings.Trip, 0)
 	args := make([]interface{}, 0)
 	sqlStatement := "SELECT id FROM trips WHERE CARDINALITY(days) > 0"
@@ -167,6 +168,7 @@ func SearchTripsDB(cities []wings.City, days int, query string) []wings.Trip {
 		count++
 	}
 	sqlStatement += " ORDER BY last_updated DESC;"
+	logger.Debug(sqlStatement)
 
 	c := getConn()
 	rows, err := c.Query(context.Background(), sqlStatement, args...)

@@ -39,12 +39,10 @@ describe("CEditItem", () => {
         valMaxCount: mockNameMaxChar,
       },
     });
-    const editInput = wrapper.find(inputClass);
+    const editInput = wrapper.find(inputClass).find(".n-input__input-el");
     expect(editInput.exists()).toBeTruthy();
-    expect(editInput.attributes("rows")).toBe("1");
-    expect(editInput.attributes("modelvalue")).not.toContain(mockVal);
-    expect(editInput.attributes("modelvalue")).toContain(
-      mockVal.slice(0, mockNameMaxChar),
+    expect(editInput.attributes("maxlength")).toEqual(
+      mockNameMaxChar.toString(),
     );
   });
 
@@ -68,16 +66,16 @@ describe("CEditItem", () => {
       props: {
         label: item.label,
         val: item.value,
+        type: "textarea",
         valMaxCount: mockDescriptionMaxChar,
         rowMinCount: mockDescriptionRowMinCount,
       },
     });
-    const editInput = wrapper.find(inputClass);
+    const editInput = wrapper.find(inputClass).find(".n-input__textarea-el");
     expect(editInput.exists()).toBeTruthy();
     expect(editInput.attributes("rows")).toBe(`${mockDescriptionRowMinCount}`);
-    expect(editInput.attributes("modelvalue")).not.toContain(mockVal);
-    expect(editInput.attributes("modelvalue")).toContain(
-      mockVal.slice(0, mockDescriptionMaxChar),
+    expect(editInput.attributes("maxlength")).toContain(
+      mockDescriptionMaxChar.toString(),
     );
   });
 

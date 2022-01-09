@@ -21,8 +21,10 @@ exports[`vIDUser Get User - Has user (not self) 1`] = `
           Trips
         </h2>
         <div class="trip_preview_card wide_preview_card">
-          <a class="tripLink"
+          <a class="link never tripLink"
              href="/trip/view/-1"
+             rel
+             target
           >
             <div class="n-card n-card--bordered n-card--hoverable widePreviewCard"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
@@ -42,16 +44,17 @@ exports[`vIDUser Get User - Has user (not self) 1`] = `
                 </div>
                 <div class="tripPreviewInfo">
                   <p>
-                    <a class="tripPreviewUserProfileLink"
+                    <a class="link hover tripPreviewUserProfileLink"
                        href="/user/-1"
-                       type="primary"
+                       rel
+                       target
                     >
                     </a>
                   </p>
                   <div class="cityTags">
                   </div>
                   <p>
-                    Last Updated: Fri Jan 07 2022
+                    Last Updated: Sun Jan 09 2022
                   </p>
                 </div>
                 <div class="endOfCardPadding">
@@ -87,8 +90,10 @@ exports[`vIDUser Get User - Has user (self) 1`] = `
           Trips
         </h2>
         <div class="trip_preview_card wide_preview_card">
-          <a class="tripLink"
+          <a class="link never tripLink"
              href="/trip/view/-1"
+             rel
+             target
           >
             <div class="n-card n-card--bordered n-card--hoverable widePreviewCard"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
@@ -108,16 +113,17 @@ exports[`vIDUser Get User - Has user (self) 1`] = `
                 </div>
                 <div class="tripPreviewInfo">
                   <p>
-                    <a class="tripPreviewUserProfileLink"
+                    <a class="link hover tripPreviewUserProfileLink"
                        href="/user/-1"
-                       type="primary"
+                       rel
+                       target
                     >
                     </a>
                   </p>
                   <div class="cityTags">
                   </div>
                   <p>
-                    Last Updated: Fri Jan 07 2022
+                    Last Updated: Sun Jan 09 2022
                   </p>
                 </div>
                 <div class="endOfCardPadding">
@@ -146,6 +152,11 @@ exports[`vIDUser Get User - Not found 1`] = `
       >
         <div class="n-divider__line n-divider__line--left">
         </div>
+      </div>
+      <div class="viewUserTrips">
+        <h2>
+          Trips
+        </h2>
       </div>
     </div>
   </div>

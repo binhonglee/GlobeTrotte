@@ -1,6 +1,6 @@
 <template lang="pug">
 .trip_preview_card(:class="{ wide_preview_card: wide }")
-  a.tripLink(:href="'/trip/view/' + trip.ID")
+  CLink.tripLink(:url="'/trip/view/' + trip.ID" underline="never")
     n-card(
       hoverable
       content-style="padding: 0"
@@ -13,9 +13,9 @@
           v-if="trip.details.description !== ''"
         ) {{ trip.details.description }}
         p
-          a.tripPreviewUserProfileLink(
-            :href="'/user/' + trip.user.ID"
-            type="primary"
+          CLink.tripPreviewUserProfileLink(
+            :url="'/user/' + trip.user.ID"
+            underline="hover"
           ) {{ trip.user.name }}
         .cityTags
           n-tag.cityTag(v-for="city in cities" type="info") {{ city }}
@@ -31,6 +31,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { NCard, NDivider, NTag } from "naive-ui";
+import CLink from "./CLink.vue";
 import CPlaces from "@/components/CPlaces.vue";
 import TripObj from "@/wings/TripObj";
 import { CityUtil } from "@/shared/CityUtil";
@@ -38,6 +39,7 @@ import { CityUtil } from "@/shared/CityUtil";
 export default defineComponent({
   name: "CTripPreviewCard",
   components: {
+    CLink,
     CPlaces,
     NCard,
     NDivider,
@@ -84,6 +86,10 @@ export default defineComponent({
 
   @media screen and (max-width: 720px) {
     height: auto;
+  }
+
+  @media screen and (max-width: 375px) {
+    width: 100%;
   }
 }
 

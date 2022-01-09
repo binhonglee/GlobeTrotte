@@ -10,7 +10,7 @@
     )
       CExternalLink.placeLink(
         :url="place.URL.valueOf()"
-        :underline="'never'"
+        underline="never"
         v-if="place.URL !== ''"
       )
         n-card.placeDisplayCard(

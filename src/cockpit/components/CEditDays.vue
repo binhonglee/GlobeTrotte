@@ -1,23 +1,27 @@
 <template>
   <div class="edit_days narrow_content">
-    <el-card
+    <n-card
       v-for="(day, index) in days"
-      :key="day.dayOf.valueOf()"
+      :key="day.dayOf"
+      hoverable
+      content-style="padding: 0"
       class="editDay"
-      shadow="hover"
       :class="'day' + day.dayOf"
     >
       <div class="editDayCardContent">
-        <div class="editDayTitle"
-          ><b>Day {{ day.dayOf }}</b>
-          <el-button
+        <div class="editDayTitle">
+          <b>Day {{ day.dayOf }}</b>
+          <n-button
+            secondary
             class="removeDay"
-            type="danger"
-            icon="el-icon-close"
-            plain="plain"
+            type="error"
             @click="removeDay(index)"
-            >Delete this day</el-button
           >
+            <n-icon>
+              <close-outline />
+            </n-icon>
+            Delete this day
+          </n-button>
         </div>
         <CEditPlaces
           :ref="'places' + index"
@@ -25,29 +29,70 @@
           :given-places="day.places"
         />
       </div>
-    </el-card>
-    <el-button class="addDay" icon="el-icon-plus" @click="pushDay"
-      >Add another day</el-button
-    >
+    </n-card>
+    <n-button class="addDay" @click="pushDay">
+      <n-icon>
+        <add />
+      </n-icon>
+      Add another day
+    </n-button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import CEditPlaces from "@/components/CEditPlaces.vue";
+import { defineComponent, PropType } from "vue";
+import { NButton, NCard, NIcon } from "naive-ui";
+import { Add, CloseOutline } from "@vicons/ionicons5";
+import CEditPlaces, { DataPlace } from "@/components/CEditPlaces.vue";
 import Day from "@/wings/Day";
+import Place from "@/wings/Place";
 
 interface Data {
-  days: Day[];
+  days: DataDay[];
+}
+
+class DataDay {
+  public ID: number;
+  public tripID: number;
+  public dayOf: number;
+  public places: DataPlace[] = [];
+
+  public constructor(day: Day) {
+    this.ID = day.ID.valueOf();
+    this.tripID = day.tripID.valueOf();
+    this.dayOf = day.dayOf.valueOf();
+    this.places = day.places.map((place) => new DataPlace(place));
+  }
+
+  public toDay(): Day {
+    const ret = new Day();
+    ret.ID = this.ID;
+    ret.tripID = this.tripID;
+    ret.dayOf = this.dayOf;
+    ret.places = this.places.map((place): Place => {
+      const ret = new Place();
+      ret.ID = place.ID;
+      ret.URL = place.URL;
+      ret.description = place.description;
+      ret.label = place.label;
+      return ret;
+    });
+    return ret;
+  }
 }
 
 export default defineComponent({
   components: {
+    Add,
     CEditPlaces,
+    CloseOutline,
+    NButton,
+    NCard,
+    NIcon,
   },
   props: {
     givenDays: {
-      type: Array,
+      type: Array as PropType<Array<Day>>,
       required: true,
     },
   },
@@ -55,27 +100,31 @@ export default defineComponent({
     days: [],
   }),
   beforeMount(): void {
-    this.$data.days = this.$props.givenDays.slice(0) as Day[];
+    this.$data.days = (this.$props.givenDays.slice(0) as Day[]).map(
+      (day) => new DataDay(day),
+    );
   },
   methods: {
     pushDay(): void {
-      let day = new Day({
-        places: [{}],
-      });
+      let day = new DataDay(
+        new Day({
+          places: [{}],
+        }),
+      );
       day.dayOf = this.$data.days.length + 1;
       this.$data.days.push(day);
     },
     removeDay(index: number): void {
       this.$data.days.splice(index, 1);
-      let dayMap: { [key: number]: Day } = {};
+      let dayMap: { [key: number]: DataDay } = {};
       for (let day of this.$data.days) {
-        dayMap[day.dayOf.valueOf()] = day;
+        dayMap[day.dayOf] = day;
       }
       const size = this.$data.days.length;
       this.$data.days = [];
       let offBy = 0;
       for (let i = 0; i < size; i++) {
-        let currentDay: Day = dayMap[i + offBy];
+        let currentDay: DataDay = dayMap[i + offBy];
         while (
           (currentDay === undefined || currentDay === null) &&
           i + offBy < size + 5
@@ -114,7 +163,6 @@ export default defineComponent({
 
 .addDay {
   @include right_button();
-  font-size: 12px;
   min-height: 28px;
   padding: 5px;
   width: 100%;
@@ -125,7 +173,7 @@ export default defineComponent({
   font-size: 12px;
   margin-top: -5px;
   min-height: 28px;
-  padding: 0 5px;
+  padding: 5px 8px 5px 5px;
   line-height: 10px;
 }
 </style>

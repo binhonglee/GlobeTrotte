@@ -1,30 +1,35 @@
 <template lang="pug">
 .edit_item(:class="isDescription() ? 'edit_item_large' : 'edit_item_small'")
   span.editLabel(:class="className + 'Label'") {{ label }}:
-  el-input.editInput(
+  n-input.editInput(
     :class="className"
     :ref="'input'"
     :rows="rowMinCount"
     :type="type"
-    :show-password="type === 'password'"
-    v-model="value"
+    :show-password-on="'click'"
+    v-model:value="value"
     @keyup.enter.native="enter"
     :maxlength="valMaxCount"
-    :show-word-limit="type === 'textarea'"
+    :show-count="type === 'textarea'"
+    :placeholder="placeholder"
   )
   br
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
+import { NInput } from "naive-ui";
 import { NAME_CHAR_MAX_COUNT } from "@/shared/constants";
 
 interface Data {
   value: string;
 }
 
+type inputType = "textarea" | "text" | "password";
+
 export default defineComponent({
   name: "CEditItem",
+  components: { NInput },
   props: {
     label: {
       type: String,
@@ -35,7 +40,7 @@ export default defineComponent({
       default: "",
     },
     type: {
-      type: String,
+      type: String as PropType<inputType>,
       default: "text",
     },
     className: {
@@ -49,6 +54,10 @@ export default defineComponent({
     rowMinCount: {
       type: Number,
       default: 1,
+    },
+    placeholder: {
+      type: String,
+      default: "",
     },
   },
   emits: {

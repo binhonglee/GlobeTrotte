@@ -29,12 +29,12 @@
       @enter="confirm"
     )
     br
-    el-button.registrationSave(
-      type="primary"
+    n-button.registrationSave(
+      type="info"
       @click="confirm"
-      v-loading.fullscreen.lock="loading"
+      :loading="loading"
     ) Confirm
-    el-button.registrationCancel(
+    n-button.registrationCancel(
       type="default"
       @click="cancel"
     ) Cancel
@@ -43,6 +43,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { WingsStructUtil } from "wings-ts-util";
+import { NButton } from "naive-ui";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
@@ -60,6 +61,7 @@ interface Data {
 export default defineComponent({
   components: {
     CEditItem,
+    NButton,
   },
   data(): Data {
     return {

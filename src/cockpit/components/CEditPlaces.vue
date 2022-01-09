@@ -1,72 +1,71 @@
-<template>
-  <div class="edit_places">
-    <ul class="places">
-      <li v-for="(place, index) in places" :key="index" class="place">
-        <div class="editPlace" :class="'place' + index">
-          <el-input
-            v-model="place.label"
-            class="inputPlaceLabel"
-            type="text"
-            :placeholder="
-              'Place Name' + (index !== 0 ? '' : ' (eg. Golden Gate Bridge)')
-            "
-          ></el-input>
-          <el-input
-            v-model="place.URL"
-            class="inputPlaceLink"
-            type="text"
-            :placeholder="
-              'Link' + (index !== 0 ? '' : ' (eg. Google Map link)')
-            "
-          ></el-input
-          ><br />
-          <el-input
-            v-model="place.description"
-            class="inputPlaceDesc"
-            type="textarea"
-            :placeholder="
-              index !== 0
-                ? 'Description'
-                : 'Elaborate more about why you include this place in the trip!'
-            "
-            :rows="3"
-          ></el-input>
-          <el-button
-            class="removePlace"
-            type="danger"
-            icon="el-icon-close"
-            plain="plain"
-            @click="removePlace(index)"
-            >Delete this place</el-button
-          >
-          <el-divider class="editPlaceDivider"></el-divider>
-        </div>
-      </li>
-    </ul>
-
-    <el-button
-      class="addPlace"
-      plain="plain"
-      icon="el-icon-plus"
-      @click="pushPlace"
-      >Add another place</el-button
-    >
-  </div>
+<template lang="pug">
+.edit_places
+  ul.places
+    li.place(v-for="(place, index) in places", :key="index")
+      .editPlace(:class="'place' + index")
+        n-input.inputPlaceLabel(
+          v-model:value="place.label"
+          type="text"
+          :placeholder="'Place Name' + (index !== 0 ? '' : ' (eg. Golden Gate Bridge)')")
+        n-input.inputPlaceLink(
+          v-model:value="place.URL"
+          type="text"
+          :placeholder="'Link' + (index !== 0 ? '' : ' (eg. Google Map link)')"
+        )
+        br
+        n-input.inputPlaceDesc(
+          v-model:value="place.description"
+          type="textarea"
+          :placeholder="index !== 0 ? 'Description' : 'Elaborate more about why you include this place in the trip!'"
+          :rows="3"
+        )
+        n-button.removePlace(
+          type="error"
+          secondary
+          @click="removePlace(index)"
+        )
+          n-icon
+            close-outline
+          | Delete this place
+        n-divider.editPlaceDivider
+  n-button.addPlace(
+    @click="pushPlace"
+  )
+    n-icon
+      add
+    | Add another place
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
+import { NButton, NDivider, NIcon, NInput } from "naive-ui";
+import { Add, CloseOutline } from "@vicons/ionicons5";
 import Place from "@/wings/Place";
 
+export class DataPlace {
+  public ID: number;
+  public label: string;
+  public URL: string;
+  public description: string;
+
+  public constructor(place?: Place) {
+    this.ID = place?.ID.valueOf() ?? -1;
+    this.label = place?.label.valueOf() ?? "";
+    this.URL = place?.URL.valueOf() ?? "";
+    this.description = place?.description.valueOf() ?? "";
+  }
+}
+
 interface Data {
-  places: Place[];
+  places: DataPlace[];
 }
 
 export default defineComponent({
   name: "CEditPlaces",
+  components: { Add, CloseOutline, NButton, NDivider, NIcon, NInput },
   props: {
     givenPlaces: {
-      type: Array,
+      type: Array as PropType<Array<DataPlace>>,
       default: (): Place[] => {
         return [];
       },
@@ -75,7 +74,7 @@ export default defineComponent({
           return false;
         }
         value.forEach((element) => {
-          if (!(element instanceof Place)) {
+          if (!(element instanceof DataPlace)) {
             return false;
           }
         });
@@ -87,11 +86,11 @@ export default defineComponent({
     places: [],
   }),
   beforeMount() {
-    this.$data.places = (this.$props.givenPlaces ?? []).slice(0) as Place[];
+    this.$data.places = (this.$props.givenPlaces ?? []).slice(0) as DataPlace[];
   },
   methods: {
     pushPlace(): void {
-      this.$data.places.push(new Place());
+      this.$data.places.push(new DataPlace());
     },
     removePlace(index: number): void {
       this.$data.places.splice(index, 1);

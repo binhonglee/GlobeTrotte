@@ -10,17 +10,17 @@
       @keydown.enter.native="confirmEmail"
     )
     br
-    el-button.resetPasswordSave(
-      type="primary"
+    n-button.resetPasswordSave(
+      type="info"
       @click="confirmEmail"
-      v-loading.fullscreen.lock="loading"
+      :loading="loading"
     ) Confirm
-    el-button.resetPasswordCancel(
+    n-button.resetPasswordCancel(
       type="default"
       @click="cancel"
     ) Cancel
     p.backToLogin
-      a(:href="loginLink") Back to Login
+      CLink(:url="loginLink") Back to Login
   form.resetPasswordInput(v-else)
     CEditItem(
       className="resetEmail"
@@ -50,12 +50,12 @@
       @enter="confirmReset"
     )
     br
-    el-button.resetPasswordSave(
-      type="primary"
+    n-button.resetPasswordSave(
+      type="info"
       @click="confirmReset"
-      v-loading.fullscreen.lock="loading"
+      :loading="loading"
     ) Confirm
-    el-button.resetPasswordCancel(
+    n-button.resetPasswordCancel(
       type="default"
       @click="cancel"
     ) Cancel
@@ -63,7 +63,9 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { NButton } from "naive-ui";
 import CEditItem from "@/components/CEditItem.vue";
+import CLink from "@/components/CLink.vue";
 import E from "@/shared/E";
 import Routing from "@/shared/Routing";
 import ResetPassword from "@/wings/ResetPassword";
@@ -81,6 +83,8 @@ interface Data {
 export default defineComponent({
   components: {
     CEditItem,
+    CLink,
+    NButton,
   },
   data: (): Data => ({
     email: "",

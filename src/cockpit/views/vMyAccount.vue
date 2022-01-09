@@ -1,19 +1,16 @@
 <template lang="pug">
 .my_account
   h1.title My Account
-  el-link.unconfirmedEmailLink(
-    :href="unconfirmedLink"
-    :underline="false"
-    v-loading.fullscreen.lock="loading"
-  )
-    el-alert.narrow_content.accountUnconfirmedAlertBar(
-      v-if="!confirmed"
-      title="Unconfirmed"
-      description="Please confirm you email address to access the full site."
-      type="error"
-      :closable="false"
-      show-icon
+  .narrow_content.accountUnconfirmedAlertBar
+    CLink.unconfirmedEmailLink(
+      :url="unconfirmedLink"
+      :underline="'never'"
     )
+      n-alert(
+        v-if="!confirmed"
+        title="Unconfirmed"
+        type="error"
+      ) Please confirm you email address to access the full site.
   .profileInfo
     div(v-if="!edit")
       CViewUser(
@@ -30,21 +27,22 @@
         :val-max-count="1000"
       )
       div.myAccountButtonGroups
-        el-button.myAccountSave(type="primary" @click="save") Save
-        el-button.myAccountCancel(
+        n-button.myAccountSave(type="info" @click="save") Save
+        n-button.myAccountCancel(
           type="default"
           ref="cancel"
           @click="toggleEdit"
         ) Cancel
       div.myAccountDeletion
-        el-button.myAccountDelete(
-          type="danger" @click="deleteAccount"
+        n-button.myAccountDelete(
+          type="error" @click="deleteAccount"
         ) Delete Account
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import CEditItem from "@/components/CEditItem.vue";
+import CLink from "@/components/CLink.vue";
 import CViewUser from "@/components/CViewUser.vue";
 import General from "@/shared/General";
 import E from "@/shared/E";
@@ -54,6 +52,7 @@ import UserBasic from "@/wings/UserBasic";
 import UserObj from "@/wings/UserObj";
 import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
+import { NAlert, NButton } from "naive-ui";
 import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
 
 interface Data {
@@ -68,7 +67,10 @@ interface Data {
 export default defineComponent({
   components: {
     CEditItem,
+    CLink,
     CViewUser,
+    NAlert,
+    NButton,
   },
   data(): Data {
     return {
@@ -80,8 +82,10 @@ export default defineComponent({
       loadingBar: General.loadingBar(),
     };
   },
-  mounted(): void {
+  beforeMount(): void {
     this.init();
+  },
+  mounted(): void {
     if (this.$data.edit) {
       E.get(E.get(this, "name"), "input").focus();
     }
@@ -192,6 +196,10 @@ export default defineComponent({
 
 .profileInfo {
   text-align: left;
+}
+
+.myAccountButtonGroups {
+  padding-top: 10px;
 }
 
 .myAccountLogout,

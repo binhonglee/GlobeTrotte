@@ -4,10 +4,6 @@
   src: url("../assets/SourceSansPro/SourceSansPro-Regular.ttf");
 }
 
-a {
-  color: var(--default-link);
-}
-
 div,
 h3 {
   margin: 0;
@@ -20,7 +16,6 @@ h3 {
 }
 
 .editLabel {
-  margin-left: 5px;
   line-height: $h2-height;
 }
 
@@ -42,4 +37,16 @@ h3 {
 
 .content .el-card__body {
   padding: 0;
+}
+
+.n-button__content {
+  font-size: 13px;
+
+  .n-icon {
+    padding-right: 3px;
+  }
+}
+
+.n-divider:not(.n-divider--vertical) {
+  margin: 10px 0;
 }

@@ -95,7 +95,7 @@ export default abstract class R {
     return path + "/" + this.setParamMap(map);
   }
 
-  protected static getSubPath(
+  public static getSubPath(
     path: string,
     map: Map<string, string>,
     id: string,

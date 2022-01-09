@@ -1,12 +1,10 @@
 <template lang="pug">
 .login.narrow_content
   h1.title Login
-  el-alert.tripPrivateAlertBar(
+  n-alert.tripPrivateAlertBar(
     v-if="showError"
     title="Please login to continue."
     type="error"
-    :closable="false"
-    show-icon
   )
   form.loginbox
     CEditItem.loginUsernameItem(
@@ -23,23 +21,25 @@
       @enter="confirm"
     )
     br
-    el-button.loginConfirm(
-      type="primary"
+    n-button.loginConfirm(
+      type="info"
       @click="confirm"
-      v-loading.fullscreen.lock="loading"
+      :loading="loading"
     ) Confirm
-    el-button.loginCancel(
+    n-button.loginCancel(
       type="default"
       @click="cancel"
     ) Cancel
   p.forgotPassword
-    a(:href="resetLink") Forgot Password?
+    CLink(:url="resetLink") Forgot Password?
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { WingsStructUtil } from "wings-ts-util";
+import { NAlert, NButton } from "naive-ui";
 import CEditItem from "@/components/CEditItem.vue";
+import CLink from "@/components/CLink.vue";
 import General from "@/shared/General";
 import E from "@/shared/E";
 import HTTPReq from "@/shared/HTTPReq";
@@ -60,6 +60,9 @@ interface Data {
 export default defineComponent({
   components: {
     CEditItem,
+    CLink,
+    NAlert,
+    NButton,
   },
   data(): Data {
     return {

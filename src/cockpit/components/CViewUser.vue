@@ -11,29 +11,24 @@
     )
       | {{ user.details.link }}
     .userInfoButtonGroups(v-if="self")
-      n-button.myAccountLogout(
-        type="error" @click="logout"
-      ) Logout
-      n-button.myAccountEdit(
-        tabindex="0" type="default" ref="edit" @click="toggleEdit"
-      ) Edit
+      n-button.myAccountLogout(type="error" @click="logout") Logout
+      n-button.myAccountEdit(type="default" ref="edit" @click="toggleEdit") Edit
   n-divider.viewUserDivider
   div.viewUserTrips
     h2 Trips
     CTripPreviewCard(v-for="trip in trips" :trip="trip" :wide="true")
-    div.createTripAlertDiv(v-if="self && trips.length <= 0")
-      n-alert.createTripAlert(
-        type="default"
-        :show-icon="false"
-      )
-        span.createTripAlertText Seems like you have not shared any of your own trips.
-        n-button.createTripButton(type="info" @click="newTrip" size="large") Create New Trip
+    .createTripAlertDiv(v-if="self && tripsEmpty")
+      n-alert.createTripAlert(type="default" :show-icon="false")
+        | Seems like you have not shared any of your own trips.
+        n-button.createTripButton(
+          v-if="confirmed" type="info" @click="newTrip" size="large"
+        )
+          | Create New Trip
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { NAlert, NButton, NDivider, NIcon } from "naive-ui";
-import { CreateOutline } from "@vicons/ionicons5";
+import { NAlert, NButton, NDivider } from "naive-ui";
 import CExternalLink from "./CExternalLink.vue";
 import CTripPreviewCard from "./CTripPreviewCard.vue";
 import General from "@/shared/General";
@@ -44,19 +39,19 @@ import Routing from "@/shared/Routing";
 import Routes from "@/routes";
 
 interface Data {
-  trips: Array<TripObj>;
-  lastPopulated: Array<TripBasic>;
+  trips: TripObj[];
+  lastPopulated: TripBasic[];
+  tripsEmpty: boolean;
 }
 
 export default defineComponent({
+  name: "CViewUser",
   components: {
     CExternalLink,
     CTripPreviewCard,
     NAlert,
     NButton,
     NDivider,
-    NIcon,
-    CreateOutline,
   },
   props: {
     user: {
@@ -68,6 +63,10 @@ export default defineComponent({
       default: true,
     },
     self: {
+      type: Boolean,
+      default: false,
+    },
+    confirmed: {
       type: Boolean,
       default: false,
     },
@@ -83,6 +82,7 @@ export default defineComponent({
   data: (): Data => ({
     trips: [],
     lastPopulated: [],
+    tripsEmpty: true,
   }),
   async beforeMount(): Promise<void> {
     await this.genPopulateTrips();
@@ -112,7 +112,7 @@ export default defineComponent({
           return await General.genTrip(trip.ID.valueOf());
         }),
       );
-
+      this.$data.tripsEmpty = this.$data.trips.length <= 0;
       this.$data.lastPopulated = this.$props.user.trips;
     },
     logout(): void {
@@ -168,14 +168,10 @@ export default defineComponent({
 
 .createTripAlert {
   max-width: 500px;
+  text-align: center;
   margin: auto;
-}
-
-.createTripAlertText {
-  text-align: left;
   line-height: 15px;
   font-size: 15px;
-  padding: 0 10px;
 }
 
 .createTripButton {

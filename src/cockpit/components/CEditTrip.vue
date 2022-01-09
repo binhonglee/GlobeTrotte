@@ -20,7 +20,7 @@
       .editTripPrivacy
         span.editLabel Private:
         .editInput
-          n-switch(v-model:value="private")
+          n-switch.editPrivacyToggle(v-model:value="private")
       .editCity
         span.editLabel Cities:
         n-select.editInput(
@@ -32,16 +32,16 @@
         )
     CEditDays(ref="days" :givenDays="trip.details.days")
     div.confirmationButtons.narrow_content
-      el-button.saveEditTrip(
-        type="primary" @click="save" :loading="saving"
+      n-button.saveEditTrip(
+        type="info" @click="save" :loading="saving"
       ) Save
-      el-button.cancelEditTrip(
+      n-button.cancelEditTrip(
         type="default" @click="cancel"
       ) Cancel
-      el-button.deleteTrip(
+      n-button.deleteTrip(
         v-if="!isNew"
         @click="del"
-        type="danger"
+        type="error"
         :loading="deleting"
       ) Delete
 </template>
@@ -67,7 +67,7 @@ import {
   NAME_CHAR_MAX_COUNT,
   NAME_CHAR_MIN_COUNT,
 } from "@/shared/constants";
-import { NSelect, NSwitch } from "naive-ui";
+import { NButton, NSelect, NSwitch } from "naive-ui";
 
 interface Data {
   cities: Array<string>;
@@ -81,6 +81,7 @@ const DESCRIPTION_ROW_MIN_COUNT = 3;
 
 export default defineComponent({
   components: {
+    NButton,
     NSelect,
     NSwitch,
     CEditDays,
@@ -159,7 +160,7 @@ export default defineComponent({
       const days = E.get(this, "days");
       let offBy = 0;
       for (const day in days.days) {
-        const currentDay = days.days[day];
+        const currentDay = days.days[day].toDay();
         const places = this.filterPlaces(currentDay.places);
         if (places === null) {
           this.$alert(
@@ -295,12 +296,6 @@ export default defineComponent({
   flex-direction: column;
 }
 
-.confirmationButtons {
-  margin-top: 20px;
-  display: inline-block;
-  width: 100%;
-}
-
 .editCity {
   overflow: hidden;
   line-height: 40px;
@@ -320,6 +315,10 @@ export default defineComponent({
   .editInput {
     line-height: 40px;
   }
+}
+
+.deleteTrip {
+  margin-right: 10px;
 }
 
 .deleteTrip,

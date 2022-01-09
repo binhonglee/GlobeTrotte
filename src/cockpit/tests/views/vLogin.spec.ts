@@ -31,10 +31,13 @@ interface FormLogin {
 }
 
 function fillFormAndLogin(wrapper: VueWrapper<Vue>, form: FormLogin): void {
-  wrapper.find(".loginUsername").find(".el-input__inner").setValue(form.email);
+  wrapper
+    .find(".loginUsername")
+    .find(".n-input__input-el")
+    .setValue(form.email);
   wrapper
     .find(".loginPassword")
-    .find(".el-input__inner")
+    .find(".n-input__input-el")
     .setValue(form.password);
   wrapper.find(".loginConfirm").trigger("click");
   expect(wrapper.html()).toMatchSnapshot();

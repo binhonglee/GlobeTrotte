@@ -43,19 +43,19 @@ interface FormReg {
 function fillFormAndReg(wrapper: VueWrapper<Vue>, form: FormReg): void {
   wrapper
     .find(".registrationName")
-    .find(".el-input__inner")
+    .find(".n-input__input-el")
     .setValue(form.name);
   wrapper
     .find(".registrationEmail")
-    .find(".el-input__inner")
+    .find(".n-input__input-el")
     .setValue(form.email);
   wrapper
     .find(".registrationPassword")
-    .find(".el-input__inner")
+    .find(".n-input__input-el")
     .setValue(form.password);
   wrapper
     .find(".registrationConfPassword")
-    .find(".el-input__inner")
+    .find(".n-input__input-el")
     .setValue(form.confPassword);
   wrapper.find(".registrationSave").trigger("click");
   expect(wrapper.html()).toMatchSnapshot();
