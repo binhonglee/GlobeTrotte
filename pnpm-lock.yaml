@@ -30,7 +30,7 @@ specifiers:
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16
   c8: 7.11.0
-  cypress: 9.2.0
+  cypress: 9.2.1
   element-plus: 1.0.2-beta.71
   esbuild: 0.14.11
   esbuild-jest: 0.5.0
@@ -86,9 +86,9 @@ devDependencies:
   '@babel/plugin-transform-typescript': 7.16.8_@babel+core@7.16.7
   '@babel/preset-env': 7.16.8_@babel+core@7.16.7
   '@babel/preset-typescript': 7.16.7_@babel+core@7.16.7
-  '@cypress/code-coverage': 3.9.12_cypress@9.2.0
+  '@cypress/code-coverage': 3.9.12_cypress@9.2.1
   '@cypress/vite-dev-server': 2.2.2_vite@2.7.10
-  '@cypress/vue': 3.1.0_430ef9e08118614a3504e50afc56efba
+  '@cypress/vue': 3.1.0_d3bd6fb4555196d2e901a477ff19509a
   '@delagen/eslint-plugin-deprecation': 1.3.2_eslint@8.6.0+typescript@4.5.4
   '@types/jest': 27.4.0
   '@types/node': 16.11.19
@@ -108,7 +108,7 @@ devDependencies:
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16_@babel+core@7.16.7
   c8: 7.11.0
-  cypress: 9.2.0
+  cypress: 9.2.1
   esbuild: 0.14.11
   esbuild-jest: 0.5.0_esbuild@0.14.11
   eslint: 8.6.0
@@ -2590,14 +2590,14 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/code-coverage/3.9.12_cypress@9.2.0:
+  /@cypress/code-coverage/3.9.12_cypress@9.2.1:
     resolution: {integrity: sha512-2QuDSQ2ovz2ZsbQImM917q+9JmEq4afC4kpgHe2o3rTQxUrs7CdHM84rT8XKl0gJIXmbMcNq2rZqe40/eFmCFw==}
     peerDependencies:
       cypress: '*'
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.2
       chalk: 4.1.2
-      cypress: 9.2.0
+      cypress: 9.2.1
       dayjs: 1.10.7
       debug: 4.3.3
       execa: 4.1.0
@@ -2649,7 +2649,7 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/vue/3.1.0_430ef9e08118614a3504e50afc56efba:
+  /@cypress/vue/3.1.0_d3bd6fb4555196d2e901a477ff19509a:
     resolution: {integrity: sha512-E2aFQtPvLLW9yKZz7t94VN1SuO53Jx9wN12gi7pvpHId5E6p+8Z+v2zlzzREpA8Gbi2QGNMwK8ciSYcwZG2bXg==}
     engines: {node: '>=8'}
     peerDependencies:
@@ -2666,7 +2666,7 @@ packages:
       '@cypress/mount-utils': 1.0.2
       '@vue/test-utils': 2.0.0-rc.18_vue@3.2.26
       babel-loader: 8.2.3_@babel+core@7.16.7
-      cypress: 9.2.0
+      cypress: 9.2.1
       vue: 3.2.26
     dev: true
 
@@ -4486,7 +4486,7 @@ packages:
       camelcase: 6.2.0
       chalk: 4.1.2
       cli-boxes: 2.2.1
-      string-width: 4.2.2
+      string-width: 4.2.3
       type-fest: 0.20.2
       widest-line: 3.1.0
       wrap-ansi: 7.0.0
@@ -5132,12 +5132,11 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /cli-table3/0.6.0:
-    resolution: {integrity: sha512-gnB85c3MGC7Nm9I/FkiasNBOKjOiO1RNuXXarQms37q4QMpWdlbBgD/VnOStA2faG1dpXMv31RFApjX1/QdgWQ==}
+  /cli-table3/0.6.1:
+    resolution: {integrity: sha512-w0q/enDHhPLq44ovMGdQeeDLvwxwavsJX7oQGYt/LrBlYsyaxyDnp6z3QzFut/6kLLKnlcUVJLrpB7KBfgG/RA==}
     engines: {node: 10.* || >= 12.*}
     dependencies:
-      object-assign: 4.1.1
-      string-width: 4.2.2
+      string-width: 4.2.3
     optionalDependencies:
       colors: 1.4.0
     dev: true
@@ -5147,7 +5146,7 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       slice-ansi: 3.0.0
-      string-width: 4.2.2
+      string-width: 4.2.3
     dev: true
 
   /cliff/0.1.10:
@@ -5171,7 +5170,7 @@ packages:
   /cliui/6.0.0:
     resolution: {integrity: sha512-t6wbgtoCXvAzst7QgXxJYqPt0usEfbgQdftEPbLL/cvv6HPE5VgvqCuAIDR0NgU52ds6rFwqrgakNLrHEjCbrQ==}
     dependencies:
-      string-width: 4.2.2
+      string-width: 4.2.3
       strip-ansi: 6.0.1
       wrap-ansi: 6.2.0
     dev: true
@@ -5591,8 +5590,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /cypress/9.2.0:
-    resolution: {integrity: sha512-Jn26Tprhfzh/a66Sdj9SoaYlnNX6Mjfmj5PHu2a7l3YHXhrgmavM368wjCmgrxC6KHTOv9SpMQGhAJn+upDViA==}
+  /cypress/9.2.1:
+    resolution: {integrity: sha512-LVEe4yWCo4xO0Vd8iYjFHRyd5ulRvM56XqMgAdn05Qb9kJ6iJdO/MmjKD8gNd768698cp1FDuSmFQZHVZGk+Og==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
@@ -5609,7 +5608,7 @@ packages:
       chalk: 4.1.2
       check-more-types: 2.24.0
       cli-cursor: 3.1.0
-      cli-table3: 0.6.0
+      cli-table3: 0.6.1
       commander: 5.1.0
       common-tags: 1.8.0
       dayjs: 1.10.7
@@ -12088,15 +12087,6 @@ packages:
       strip-ansi: 5.2.0
     dev: true
 
-  /string-width/4.2.2:
-    resolution: {integrity: sha512-XBJbT3N4JhVumXE0eoLU9DCjcaF92KLNqTmFCnG1pf8duUxFGwtP6AD6nkjw9a3IdiRtL3E2w3JDiE/xi3vOeA==}
-    engines: {node: '>=8'}
-    dependencies:
-      emoji-regex: 8.0.0
-      is-fullwidth-code-point: 3.0.0
-      strip-ansi: 6.0.1
-    dev: true
-
   /string-width/4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
     engines: {node: '>=8'}
@@ -13534,7 +13524,7 @@ packages:
     resolution: {integrity: sha512-NsmoXalsWVDMGupxZ5R08ka9flZjjiLvHVAWYOKtiKM8ujtZWr9cRffak+uSE48+Ob8ObalXpwyeUiyDD6QFgg==}
     engines: {node: '>=8'}
     dependencies:
-      string-width: 4.2.2
+      string-width: 4.2.3
     dev: true
 
   /wings-ts-util/0.0.8:
@@ -13591,7 +13581,7 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       ansi-styles: 4.3.0
-      string-width: 4.2.2
+      string-width: 4.2.3
       strip-ansi: 6.0.1
     dev: true
 
@@ -13736,7 +13726,7 @@ packages:
       require-directory: 2.1.1
       require-main-filename: 2.0.0
       set-blocking: 2.0.0
-      string-width: 4.2.2
+      string-width: 4.2.3
       which-module: 2.0.0
       y18n: 4.0.3
       yargs-parser: 18.1.3
@@ -13750,7 +13740,7 @@ packages:
       escalade: 3.1.1
       get-caller-file: 2.0.5
       require-directory: 2.1.1
-      string-width: 4.2.2
+      string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 20.2.7
     dev: true
