@@ -37,7 +37,7 @@ specifiers:
   eslint: 8.6.0
   eslint-plugin-prettier: 4.0.0
   eslint-plugin-vue: 8.2.0
-  forever: 4.0.1
+  forever: 4.0.2
   happy-dom: '*'
   jest: 26.6.3
   jest-junit: 13.0.0
@@ -114,7 +114,7 @@ devDependencies:
   eslint: 8.6.0
   eslint-plugin-prettier: 4.0.0_eslint@8.6.0+prettier@2.5.1
   eslint-plugin-vue: 8.2.0_eslint@8.6.0
-  forever: 4.0.1
+  forever: 4.0.2
   happy-dom: 2.25.1
   jest: 26.6.3_ts-node@10.4.0
   jest-junit: 13.0.0
@@ -7566,8 +7566,8 @@ packages:
       ps-tree: 1.2.0
     dev: true
 
-  /forever/4.0.1:
-    resolution: {integrity: sha512-NRY5hvmjqfsWXpdGZONsfQg0GpzTHOP3xWTnOc1U3bY92m6TJr2mWDsXzv+3bMk2LftSne72keaMcX891JL2pQ==}
+  /forever/4.0.2:
+    resolution: {integrity: sha512-4m31xy8+Rszy1Dq6grPF1dDoEXW5su94JLT3cH0RJcgt+htu9NKVdeNMUeNtUbJ9iSYfuAL3ZpKW8/WTFXu2Sg==}
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
@@ -7582,7 +7582,7 @@ packages:
       mkdirp: 0.5.5
       nssocket: 0.6.0
       object-assign: 4.1.1
-      prettyjson: 1.2.1
+      prettyjson: 1.2.4
       shush: 1.0.0
       winston: 0.8.3
     dev: true
@@ -11087,8 +11087,8 @@ packages:
       parse-ms: 2.1.0
     dev: true
 
-  /prettyjson/1.2.1:
-    resolution: {integrity: sha1-/P+rQdGcq0365eV15kJGYZsS0ok=}
+  /prettyjson/1.2.4:
+    resolution: {integrity: sha512-w5IwaFqR3qFgl2WT7FE5zRh23TCWMM7nXwPrZaW2UdJKjumsriVrmaCOJ9EUd/nDt/LG2cCcVOIvwL4FzWRzFw==}
     hasBin: true
     dependencies:
       colors: 1.4.0
