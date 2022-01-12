@@ -36,7 +36,7 @@ specifiers:
   esbuild-jest: 0.5.0
   eslint: 8.6.0
   eslint-plugin-prettier: 4.0.0
-  eslint-plugin-vue: 8.2.0
+  eslint-plugin-vue: 8.3.0
   forever: 4.0.2
   happy-dom: '*'
   jest: 26.6.3
@@ -100,7 +100,7 @@ devDependencies:
   '@vitejs/plugin-vue': 2.0.1_vite@2.7.10+vue@3.2.26
   '@vue/compiler-sfc': 3.2.26
   '@vue/eslint-config-prettier': 7.0.0_eslint@8.6.0+prettier@2.5.1
-  '@vue/eslint-config-typescript': 10.0.0_57f850728139557a3a27f1248f77f964
+  '@vue/eslint-config-typescript': 10.0.0_e5275a3381928a55897f97722d1207a6
   '@vue/test-utils': 2.0.0-rc.18_vue@3.2.26
   ava: 3.15.0
   babel-loader: 8.2.3_@babel+core@7.16.7
@@ -113,7 +113,7 @@ devDependencies:
   esbuild-jest: 0.5.0_esbuild@0.14.11
   eslint: 8.6.0
   eslint-plugin-prettier: 4.0.0_eslint@8.6.0+prettier@2.5.1
-  eslint-plugin-vue: 8.2.0_eslint@8.6.0
+  eslint-plugin-vue: 8.3.0_eslint@8.6.0
   forever: 4.0.2
   happy-dom: 2.25.1
   jest: 26.6.3_ts-node@10.4.0
@@ -3617,7 +3617,7 @@ packages:
       prettier: 2.5.1
     dev: true
 
-  /@vue/eslint-config-typescript/10.0.0_57f850728139557a3a27f1248f77f964:
+  /@vue/eslint-config-typescript/10.0.0_e5275a3381928a55897f97722d1207a6:
     resolution: {integrity: sha512-F94cL8ug3FaYXlCfU5/wiGjk1qeadmoBpRGAOBq+qre3Smdupa59dd6ZJrsfRODpsMPyTG7330juMDsUvpZ3Rw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -3627,7 +3627,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 5.9.0_bd2fd93dbcc607ad2f21b784bccfe0c8
       '@typescript-eslint/parser': 5.9.0_eslint@8.6.0+typescript@4.5.4
       eslint: 8.6.0
-      eslint-plugin-vue: 8.2.0_eslint@8.6.0
+      eslint-plugin-vue: 8.3.0_eslint@8.6.0
       vue-eslint-parser: 8.0.1_eslint@8.6.0
     transitivePeerDependencies:
       - supports-color
@@ -3705,14 +3705,6 @@ packages:
     dependencies:
       acorn: 7.4.1
       acorn-walk: 7.2.0
-    dev: true
-
-  /acorn-jsx/5.3.1_acorn@8.6.0:
-    resolution: {integrity: sha512-K0Ptm/47OKfQRpNQ2J/oIN/3QYiK6FwW+eJbILhsdxh2WTLdl+30o8aGdTbm5JbffpFFAg/g+zi1E+jvJha5ng==}
-    peerDependencies:
-      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
-    dependencies:
-      acorn: 8.6.0
     dev: true
 
   /acorn-jsx/5.3.1_acorn@8.7.0:
@@ -6735,8 +6727,8 @@ packages:
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-vue/8.2.0_eslint@8.6.0:
-    resolution: {integrity: sha512-cLIdTuOAMXyHeQ4drYKcZfoyzdwdBpH279X8/N0DgmotEI9yFKb5O/cAgoie/CkQZCH/MOmh0xw/KEfS90zY2A==}
+  /eslint-plugin-vue/8.3.0_eslint@8.6.0:
+    resolution: {integrity: sha512-IIuLHw4vQxGlHcoP2dG6t/2OVdQf2qoyAzEGAxreU1afZOHGA7y3TWq8I+r3ZA6Wjs6xpeUWGHlT31QGr9Rb5g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
@@ -6848,15 +6840,6 @@ packages:
       path-is-absolute: 1.0.1
       source-map: 0.5.7
       xtend: 4.0.2
-    dev: true
-
-  /espree/9.2.0:
-    resolution: {integrity: sha512-oP3utRkynpZWF/F2x/HZJ+AGtnIclaR7z1pYPxy7NYM2fSO6LgK/Rkny8anRSPK/VwEA1eqm2squui0T7ZMOBg==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dependencies:
-      acorn: 8.6.0
-      acorn-jsx: 5.3.1_acorn@8.6.0
-      eslint-visitor-keys: 3.1.0
     dev: true
 
   /espree/9.3.0:
@@ -13228,7 +13211,7 @@ packages:
       eslint: 8.6.0
       eslint-scope: 6.0.0
       eslint-visitor-keys: 3.1.0
-      espree: 9.2.0
+      espree: 9.3.0
       esquery: 1.4.0
       lodash: 4.17.21
       semver: 7.3.5
