@@ -1,6 +1,9 @@
 name: Update Go Module
 
-on: pull_request
+on:
+  push:
+    branches:
+    - test
 
 jobs:
   no_go_mod:
