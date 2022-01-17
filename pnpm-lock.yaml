@@ -50,7 +50,7 @@ specifiers:
   prettier: 2.5.1
   pug: 3.0.2
   pug-plain-loader: 1.1.0
-  puppeteer: 13.0.1
+  puppeteer: 13.1.0
   puppeteer-to-istanbul: 1.4.0
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0
@@ -127,7 +127,7 @@ devDependencies:
   prettier: 2.5.1
   pug: 3.0.2
   pug-plain-loader: 1.1.0_pug@3.0.2
-  puppeteer: 13.0.1
+  puppeteer: 13.1.0
   puppeteer-to-istanbul: 1.4.0
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0_require-extension-hooks@0.3.3
@@ -5942,8 +5942,8 @@ packages:
       minimist: 1.2.5
     dev: true
 
-  /devtools-protocol/0.0.937139:
-    resolution: {integrity: sha512-daj+rzR3QSxsPRy5vjjthn58axO8c11j58uY0lG5vvlJk/EiOdCWOptGdkXDjtuRHr78emKq0udHCXM4trhoDQ==}
+  /devtools-protocol/0.0.948846:
+    resolution: {integrity: sha512-5fGyt9xmMqUl2VI7+rnUkKCiAQIpLns8sfQtTENy5L70ktbNw0Z3TFJ1JoFNYdx/jffz4YXU45VF75wKZD7sZQ==}
     dev: true
 
   /diff-sequences/26.6.2:
@@ -11029,13 +11029,13 @@ packages:
       yargs: 15.4.1
     dev: true
 
-  /puppeteer/13.0.1:
-    resolution: {integrity: sha512-wqGIx59LzYqWhYcJQphMT+ux0sgatEUbjKG0lbjJxNVqVIT3ZC5m4Bvmq2gHE3qhb63EwS+rNkql08bm4BvO0A==}
+  /puppeteer/13.1.0:
+    resolution: {integrity: sha512-6rf16giGGLFMh1VrB89zwaTeA90E+tbpq5o1R1Z+a1z9Hrhrj1MlT8Pe0kaecUV3kjpLRaukCRVXw1dp/gbYEw==}
     engines: {node: '>=10.18.1'}
     requiresBuild: true
     dependencies:
       debug: 4.3.2
-      devtools-protocol: 0.0.937139
+      devtools-protocol: 0.0.948846
       extract-zip: 2.0.1
       https-proxy-agent: 5.0.0
       node-fetch: 2.6.5
