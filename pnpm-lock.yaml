@@ -50,7 +50,7 @@ specifiers:
   prettier: 2.5.1
   pug: 3.0.2
   pug-plain-loader: 1.1.0
-  puppeteer: 13.1.0
+  puppeteer: 13.1.1
   puppeteer-to-istanbul: 1.4.0
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0
@@ -127,7 +127,7 @@ devDependencies:
   prettier: 2.5.1
   pug: 3.0.2
   pug-plain-loader: 1.1.0_pug@3.0.2
-  puppeteer: 13.1.0
+  puppeteer: 13.1.1
   puppeteer-to-istanbul: 1.4.0
   require-extension-hooks: 0.3.3
   require-extension-hooks-babel: 1.0.0_require-extension-hooks@0.3.3
@@ -3166,7 +3166,7 @@ packages:
     engines: {node: '>= 10.14.2'}
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
       chalk: 4.1.2
       jest-message-util: 26.6.2
       jest-util: 26.6.2
@@ -3219,7 +3219,7 @@ packages:
     dependencies:
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
       jest-mock: 26.6.2
     dev: true
 
@@ -3229,7 +3229,7 @@ packages:
     dependencies:
       '@jest/types': 26.6.2
       '@sinonjs/fake-timers': 6.0.1
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
       jest-message-util: 26.6.2
       jest-mock: 26.6.2
       jest-util: 26.6.2
@@ -3343,7 +3343,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.3
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
       '@types/yargs': 15.0.13
       chalk: 4.1.2
     dev: true
@@ -3530,19 +3530,19 @@ packages:
   /@types/concat-stream/1.6.1:
     resolution: {integrity: sha512-eHE4cQPoj6ngxBZMvVf6Hw7Mh4jMW4U9lpGmS5GBPB9RYxlFg+CHaVN7ErNY4W9XfLIEn20b4VDYaIrbq0q4uA==}
     dependencies:
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
     dev: true
 
   /@types/form-data/0.0.33:
     resolution: {integrity: sha1-yayFsqX9GENbjIXZ7LUObWyJP/g=}
     dependencies:
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
     dev: true
 
   /@types/graceful-fs/4.1.5:
     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
     dependencies:
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
     dev: true
 
   /@types/istanbul-lib-coverage/2.0.3:
@@ -9311,7 +9311,7 @@ packages:
       '@jest/environment': 26.6.2
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
       jest-mock: 26.6.2
       jest-util: 26.6.2
       jsdom: 16.6.0
@@ -9329,7 +9329,7 @@ packages:
       '@jest/environment': 26.6.2
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
       jest-mock: 26.6.2
       jest-util: 26.6.2
     dev: true
@@ -9350,7 +9350,7 @@ packages:
     dependencies:
       '@jest/types': 26.6.2
       '@types/graceful-fs': 4.1.5
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
       anymatch: 3.1.2
       fb-watchman: 2.0.1
       graceful-fs: 4.2.6
@@ -9374,7 +9374,7 @@ packages:
       '@jest/source-map': 26.6.2
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
       chalk: 4.1.2
       co: 4.6.0
       expect: 26.6.2
@@ -9443,7 +9443,7 @@ packages:
     engines: {node: '>= 10.14.2'}
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
     dev: true
 
   /jest-pnp-resolver/1.2.2_jest-resolve@26.6.2:
@@ -9494,7 +9494,7 @@ packages:
       '@jest/environment': 26.6.2
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
       chalk: 4.1.2
       emittery: 0.7.2
       exit: 0.1.2
@@ -9568,7 +9568,7 @@ packages:
     resolution: {integrity: sha512-S5wqyz0DXnNJPd/xfIzZ5Xnp1HrJWBczg8mMfMpN78OJ5eDxXyf+Ygld9wX1DnUWbIbhM1YDY95NjR4CBXkb2g==}
     engines: {node: '>= 10.14.2'}
     dependencies:
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
       graceful-fs: 4.2.6
     dev: true
 
@@ -9624,7 +9624,7 @@ packages:
     dependencies:
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       jest-util: 26.6.2
@@ -9635,7 +9635,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 16.11.19
+      '@types/node': 16.11.20
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
@@ -11684,8 +11684,8 @@ packages:
       yargs: 15.4.1
     dev: true
 
-  /puppeteer/13.1.0:
-    resolution: {integrity: sha512-6rf16giGGLFMh1VrB89zwaTeA90E+tbpq5o1R1Z+a1z9Hrhrj1MlT8Pe0kaecUV3kjpLRaukCRVXw1dp/gbYEw==}
+  /puppeteer/13.1.1:
+    resolution: {integrity: sha512-GwdFy1JQ43Hhxj6MraXme+XfCX2CKe18MuwToXTMEAk0txg6vUEgwqBnzErTTqDVZ7sWYrDtDaRCfD2y7ZwgGw==}
     engines: {node: '>=10.18.1'}
     requiresBuild: true
     dependencies:
