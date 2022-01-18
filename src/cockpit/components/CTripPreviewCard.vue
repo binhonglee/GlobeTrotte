@@ -20,11 +20,11 @@
         .cityTags
           n-tag.cityTag(v-for="city in cities" type="info") {{ city }}
         p Last Updated: {{ trip.lastUpdated.toDateString() }}
-      .daysInTrip(v-for="day in trip.details.days")
+      .daysInTrip(v-for="day in days")
         n-divider
         .tripDayPreview
           h3.tripDayLabel Day {{ day.dayOf }}
-          CPlaces(:places="day.places")
+          CPlaces(:propPlaces="day.propPlaces")
       .endOfCardPadding
 </template>
 
@@ -35,6 +35,13 @@ import CLink from "./CLink.vue";
 import CPlaces from "@/components/CPlaces.vue";
 import TripObj from "@/wings/TripObj";
 import { CityUtil } from "@/shared/CityUtil";
+import { DataDay } from "@/shared/DataProps";
+import Day from "@/wings/Day";
+
+interface Data {
+  cities: string[];
+  days: DataDay[];
+}
 
 export default defineComponent({
   name: "CTripPreviewCard",
@@ -55,15 +62,17 @@ export default defineComponent({
       default: false,
     },
   },
-  data: function () {
-    return {
-      cities: [""],
-    };
-  },
+  data: (): Data => ({
+    cities: [""],
+    days: [],
+  }),
   mounted(): void {
     this.$data.cities = this.$props.trip.details.cities.map((city) => {
       return CityUtil.toString(city);
     });
+    this.$data.days = (this.$props.trip.details.days.slice(0) as Day[]).map(
+      (day) => new DataDay(day),
+    );
   },
 });
 </script>
@@ -81,14 +90,14 @@ export default defineComponent({
 
 .tripPreviewCard {
   overflow: auto;
-  width: 330px;
+  width: 500px;
   height: 500px;
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: 1060px) {
     height: auto;
   }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 550px) {
     width: 100%;
   }
 }

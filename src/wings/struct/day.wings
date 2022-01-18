@@ -2,6 +2,7 @@ go-filepath src/turbine/wings
 ts-filepath src/cockpit/wings
 
 import src/wings/struct/place.wings
+import src/wings/struct/travel_time.wings
 ts-import { IWingsStruct }:wings-ts-util
 
 ts-implement IWingsStruct
@@ -9,10 +10,11 @@ ts-implement IWingsStruct
 # A day of a trip.
 
 struct Day {
-  id       int      -1
-  trip_id  int
-  day_of   int
-  places   []Place
+  id          int           -1
+  trip_id     int
+  day_of      int
+  places      []Place
+  travel_time []TravelTime
 }
 
 go-func(

@@ -48,8 +48,6 @@ export default defineComponent({
       "\\\\n",
       "\n",
     );
-
-    console.log(this.$data.user);
   },
 });
 </script>

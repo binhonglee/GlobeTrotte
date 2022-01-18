@@ -22,7 +22,7 @@ exports[`vIDUser Get User - Has user (not self) 1`] = `
         </h2>
         <div class="trip_preview_card wide_preview_card">
           <a class="link never tripLink"
-             href="/trip/view/-1"
+             href="/trip/view/5"
              rel
              target
           >
@@ -34,6 +34,7 @@ exports[`vIDUser Get User - Has user (not self) 1`] = `
                    role="none"
               >
                 <h3 class="tripTitleName">
+                  some title
                 </h3>
                 <div role="separator"
                      class="n-divider n-divider--no-title"
@@ -45,16 +46,17 @@ exports[`vIDUser Get User - Has user (not self) 1`] = `
                 <div class="tripPreviewInfo">
                   <p>
                     <a class="link hover tripPreviewUserProfileLink"
-                       href="/user/-1"
+                       href="/user/10"
                        rel
                        target
                     >
+                      MyAccount Test User
                     </a>
                   </p>
                   <div class="cityTags">
                   </div>
                   <p>
-                    Last Updated: Sun Jan 09 2022
+                    Last Updated: Thu Dec 31 2020
                   </p>
                 </div>
                 <div class="endOfCardPadding">
@@ -91,7 +93,7 @@ exports[`vIDUser Get User - Has user (self) 1`] = `
         </h2>
         <div class="trip_preview_card wide_preview_card">
           <a class="link never tripLink"
-             href="/trip/view/-1"
+             href="/trip/view/5"
              rel
              target
           >
@@ -103,6 +105,7 @@ exports[`vIDUser Get User - Has user (self) 1`] = `
                    role="none"
               >
                 <h3 class="tripTitleName">
+                  some title
                 </h3>
                 <div role="separator"
                      class="n-divider n-divider--no-title"
@@ -114,16 +117,17 @@ exports[`vIDUser Get User - Has user (self) 1`] = `
                 <div class="tripPreviewInfo">
                   <p>
                     <a class="link hover tripPreviewUserProfileLink"
-                       href="/user/-1"
+                       href="/user/10"
                        rel
                        target
                     >
+                      MyAccount Test User
                     </a>
                   </p>
                   <div class="cityTags">
                   </div>
                   <p>
-                    Last Updated: Sun Jan 09 2022
+                    Last Updated: Thu Dec 31 2020
                   </p>
                 </div>
                 <div class="endOfCardPadding">

@@ -1,84 +1,39 @@
-<template>
-  <div class="edit_days narrow_content">
-    <n-card
-      v-for="(day, index) in days"
-      :key="day.dayOf"
-      hoverable
-      content-style="padding: 0"
-      class="editDay"
-      :class="'day' + day.dayOf"
-    >
-      <div class="editDayCardContent">
-        <div class="editDayTitle">
-          <b>Day {{ day.dayOf }}</b>
-          <n-button
-            secondary
-            class="removeDay"
-            type="error"
-            @click="removeDay(index)"
-          >
-            <n-icon>
-              <close-outline />
-            </n-icon>
-            Delete this day
-          </n-button>
-        </div>
-        <CEditPlaces
-          :ref="'places' + index"
-          class="editPlaces"
-          :given-places="day.places"
-        />
-      </div>
-    </n-card>
-    <n-button class="addDay" @click="pushDay">
-      <n-icon>
-        <add />
-      </n-icon>
-      Add another day
-    </n-button>
-  </div>
+<template lang="pug">
+.edit_days.narrow_content
+  n-card.editDay(
+    v-for="(day, index) in days"
+    :key="day.dayOf"
+    hoverable
+    content-style="padding: 0"
+    :class="'day' + day.dayOf"
+  )
+    .editDayCardContent
+      .editDayTitle
+        b Day {{ day.dayOf }}
+        n-button.removeDay(secondary type="error" @click="removeDay(index)")
+          n-icon
+            close-outline
+          | Delete this day
+      CEditPlaces.editPlaces(
+        :ref="'places' + index"
+        v-model:propPlaces="day.propPlaces"
+      )
+  n-button.addDay(@click="pushDay()")
+    n-icon
+      add
+    | Add another day
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { NButton, NCard, NIcon } from "naive-ui";
 import { Add, CloseOutline } from "@vicons/ionicons5";
-import CEditPlaces, { DataPlace } from "@/components/CEditPlaces.vue";
+import CEditPlaces from "@/components/CEditPlaces.vue";
+import { DataDay } from "@/shared/DataProps";
 import Day from "@/wings/Day";
-import Place from "@/wings/Place";
 
 interface Data {
   days: DataDay[];
-}
-
-class DataDay {
-  public ID: number;
-  public tripID: number;
-  public dayOf: number;
-  public places: DataPlace[] = [];
-
-  public constructor(day: Day) {
-    this.ID = day.ID.valueOf();
-    this.tripID = day.tripID.valueOf();
-    this.dayOf = day.dayOf.valueOf();
-    this.places = day.places.map((place) => new DataPlace(place));
-  }
-
-  public toDay(): Day {
-    const ret = new Day();
-    ret.ID = this.ID;
-    ret.tripID = this.tripID;
-    ret.dayOf = this.dayOf;
-    ret.places = this.places.map((place): Place => {
-      const ret = new Place();
-      ret.ID = place.ID;
-      ret.URL = place.URL;
-      ret.description = place.description;
-      ret.label = place.label;
-      return ret;
-    });
-    return ret;
-  }
 }
 
 export default defineComponent({

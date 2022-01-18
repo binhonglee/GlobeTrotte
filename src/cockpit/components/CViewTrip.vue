@@ -11,20 +11,20 @@
       v-if="trip.details.description !== ''"
     ) {{ trip.details.description }}
     p.tripCreatorInfo Author: 
-      a(:href="'/user/' + trip.user.ID") {{ trip.user.name }}
+      CLink(:url="'/user/' + trip.user.ID") {{ trip.user.name }}
     p.tripCreatedDate Created on: {{ trip.timeCreated.toDateString() }}
     p.tripUpdatedDate Last Updated: {{ trip.lastUpdated.toDateString() }}
     div.tripCities
       n-tag.tripCity(v-for="city in cities" type="info") {{ city }}
   .viewDays
     n-card.viewDayCard(
-      v-for="day in trip.details.days"
+      v-for="day in days"
       :key="day.ID.valueOf()"
       content-style="padding: 0"
     )
       .viewDayCardContent
         h3.dayTitle Day {{ day.dayOf }}
-        CPlaces(:places="day.places")
+        CPlaces(:propPlaces="day.propPlaces")
   .narrow_content
     n-button.enableTripEdit(
       v-if="editable" @click="enableEditMode"
@@ -33,18 +33,22 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { CityUtil } from "@/shared/CityUtil";
-import { NAlert, NButton, NCard, NTag } from "naive-ui";
 import CPlaces from "./CPlaces.vue";
+import CLink from "./CLink.vue";
+import { CityUtil } from "@/shared/CityUtil";
+import { DataDay } from "@/shared/DataProps";
+import Day from "@/wings/Day";
+import { NAlert, NButton, NCard, NTag } from "naive-ui";
 import TripObj from "@/wings/TripObj";
 
 interface Data {
+  days: DataDay[];
   cities: string[];
 }
 
 export default defineComponent({
   name: "CViewTrip",
-  components: { CPlaces, NAlert, NButton, NCard, NTag },
+  components: { CLink, CPlaces, NAlert, NButton, NCard, NTag },
   props: {
     trip: {
       type: TripObj,
@@ -57,13 +61,16 @@ export default defineComponent({
       return true;
     },
   },
-  data: (): Data => ({ cities: [] }),
-  async beforeMount(): Promise<void> {
+  data: (): Data => ({ days: [], cities: [] }),
+  beforeMount(): void {
     this.$data.cities = [];
     if (this.$props.trip !== undefined) {
       for (let city of this.$props.trip.details.cities) {
         this.$data.cities.push(CityUtil.toString(city));
       }
+      this.$data.days = (this.$props.trip.details.days.slice(0) as Day[]).map(
+        (day) => new DataDay(day),
+      );
     }
   },
   methods: {

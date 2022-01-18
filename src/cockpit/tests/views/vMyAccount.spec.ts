@@ -2,6 +2,7 @@ import vMyAccount from "@/views/vMyAccount.vue";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import UserObj from "@/wings/UserObj";
+import TripObj from "@/wings/TripObj";
 import {
   alertSpy,
   messageSpy,
@@ -28,16 +29,36 @@ const currentUser = new UserObj({
 });
 let genCurrentUser: sinon.SinonStub;
 
+const trip5 = new TripObj({
+  id: 5,
+  details: {
+    id: 5,
+    name: "some title",
+    description: "",
+    private: false,
+  },
+  time_created: "2020-12-31T00:00:00.888-08:00",
+  last_updated: "2020-12-31T00:00:00.888-08:00",
+  user: {
+    id: 10,
+    name: "MyAccount Test User",
+    email: "testmyaccount@globetrotte.com",
+  },
+});
+let genTrip: sinon.SinonStub;
+
 beforeAll(() => {
   jest.spyOn(Routing, "genRedirectTo").mockImplementation(async () => {
     return;
   });
 
   genCurrentUser = sinon.stub(General, "genCurrentUser").resolves(currentUser);
+  genTrip = sinon.stub(General, "genTrip").resolves(trip5);
 });
 
 afterAll(() => {
   genCurrentUser.restore();
+  genTrip.restore();
 });
 
 it("My Account - Delete Account (success)", async () => {

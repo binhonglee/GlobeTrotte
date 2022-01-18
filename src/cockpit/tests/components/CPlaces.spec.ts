@@ -1,4 +1,5 @@
 import CPlaces from "@/components/CPlaces.vue";
+import { PropPlace } from "@/shared/DataProps";
 import { mockPlace } from "@/tests/mockData/data";
 import { describe, expect, it } from "@jest/globals";
 import { mount } from "@vue/test-utils";
@@ -11,7 +12,7 @@ describe("CPlaces", () => {
     const wrapper = mount(CPlaces, {
       global: globalMountingOptions(),
       propsData: {
-        places: [mockedPlace.place],
+        propPlaces: [new PropPlace(mockedPlace.place)],
       },
     });
 

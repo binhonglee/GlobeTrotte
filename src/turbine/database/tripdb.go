@@ -138,7 +138,6 @@ func DeleteTripDB(trip wings.Trip) bool {
 }
 
 func SearchTripsDB(cities []wings.City, days int, query string) []wings.Trip {
-	logger.DebugCyan(query)
 	toReturn := make([]wings.Trip, 0)
 	args := make([]interface{}, 0)
 	sqlStatement := "SELECT id FROM trips WHERE CARDINALITY(days) > 0"
@@ -168,7 +167,6 @@ func SearchTripsDB(cities []wings.City, days int, query string) []wings.Trip {
 		count++
 	}
 	sqlStatement += " ORDER BY last_updated DESC;"
-	logger.Debug(sqlStatement)
 
 	c := getConn()
 	rows, err := c.Query(context.Background(), sqlStatement, args...)
@@ -254,9 +252,15 @@ func addDay(newDay wings.Day) int {
 		placeID := addPlace(place)
 		newDay.Places[index].ID = placeID
 	}
+	newDay = processTravelTimeMapping(newDay)
+	for index, travelTime := range newDay.TravelTime {
+		travelTimeID := addTravelTime(travelTime)
+		newDay.TravelTime[index].ID = travelTimeID
+	}
+
 	sqlStatement := `
-		INSERT INTO days (trip_id, day_of, places)
-		VALUES($1, $2, $3)
+		INSERT INTO days (trip_id, day_of, places, travel_times)
+		VALUES($1, $2, $3, $4)
 		RETURNING id;`
 	id := 0
 	c := getConn()
@@ -266,6 +270,7 @@ func addDay(newDay wings.Day) int {
 		newDay.TripID,
 		newDay.DayOf,
 		placesToIDArray(newDay.Places),
+		travelTimesToIDArray(newDay.TravelTime),
 	).Scan(&id)
 	defer c.Close()
 
@@ -276,33 +281,6 @@ func addDay(newDay wings.Day) int {
 	logger.Print(
 		logger.Database,
 		"New day ID is: "+strconv.Itoa(id),
-	)
-	return id
-}
-
-func addPlace(newPlace wings.Place) int {
-	sqlStatement := `
-		INSERT INTO places (label, url, description)
-		VALUES($1, $2, $3)
-		RETURNING id;`
-	id := 0
-	c := getConn()
-	err := c.QueryRow(
-		context.Background(),
-		sqlStatement,
-		newPlace.Label,
-		newPlace.URL,
-		newPlace.Description,
-	).Scan(&id)
-	defer c.Close()
-
-	if err != nil {
-		logger.Failure(logger.Database, "Failed to add new day.")
-		return -1
-	}
-	logger.Print(
-		logger.Database,
-		"New place ID is: "+strconv.Itoa(id),
 	)
 	return id
 }
@@ -356,8 +334,9 @@ func fetchDays(ids []int64) wings.Days {
 func fetchDay(id int64) wings.Day {
 	var day wings.Day
 	var places pgtype.Int4Array
+	var travelTimes pgtype.Int4Array
 	sqlStatement := `
-		SELECT id, trip_id, day_of, places
+		SELECT id, trip_id, day_of, places, travel_times
 		FROM days WHERE id=$1;`
 	c := getConn()
 	row := c.QueryRow(
@@ -371,6 +350,7 @@ func fetchDay(id int64) wings.Day {
 		&day.TripID,
 		&day.DayOf,
 		&places,
+		&travelTimes,
 	); err {
 	case pgx.ErrNoRows:
 		logger.Print(
@@ -382,41 +362,8 @@ func fetchDay(id int64) wings.Day {
 		logger.Err(logger.Database, err, "")
 	}
 	day.Places = fetchPlaces(int64V(places))
+	day.TravelTime = fetchTravelTimes(int64V(travelTimes))
 	return day
-}
-
-func fetchPlaces(ids []int64) wings.Places {
-	var places wings.Places = make([]wings.Place, len(ids))
-	for index, id := range ids {
-		places[index] = fetchPlace(id)
-	}
-	return places
-}
-
-func fetchPlace(id int64) wings.Place {
-	var place wings.Place
-	sqlStatement := `
-		SELECT id, label, url, description
-		FROM places WHERE id=$1;`
-	c := getConn()
-	row := c.QueryRow(context.Background(), sqlStatement, id)
-	switch err := row.Scan(
-		&place.ID,
-		&place.Label,
-		&place.URL,
-		&place.Description,
-	); err {
-	case pgx.ErrNoRows:
-		logger.Print(
-			logger.Database,
-			"Place "+strconv.FormatInt(id, 10)+" not found.",
-		)
-		place.ID = -1
-	default:
-		logger.Err(logger.Database, err, "")
-	}
-	defer c.Close()
-	return place
 }
 
 func updateTrip(updatedTrip wings.Trip) bool {
@@ -521,11 +468,29 @@ func updateDay(
 		}
 	}
 
+	*updatedDay = processTravelTimeMapping(*updatedDay)
+
+	for _, travelTimeID := range NotExists(
+		travelTimesToIDArray(existingDay.TravelTime),
+		travelTimesToIDArray(updatedDay.TravelTime),
+	) {
+		deleteTravelTimeWithID(travelTimeID)
+	}
+
+	for index, travelTime := range updatedDay.TravelTime {
+		if updateTravelTime(&travelTime) {
+			updatedDay.TravelTime[index] = travelTime
+		} else {
+			return false
+		}
+	}
+
 	sqlStatement := `
 		UPDATE days
 		SET trip_id = $2,
 		day_of = $3,
-		places = $4
+		places = $4,
+		travel_times = $5
 		WHERE id = $1;`
 
 	c := getConn()
@@ -536,6 +501,7 @@ func updateDay(
 		updatedDay.TripID,
 		updatedDay.DayOf,
 		placesToIDArray(updatedDay.Places),
+		travelTimesToIDArray(updatedDay.TravelTime),
 	)
 	defer c.Close()
 
@@ -543,46 +509,6 @@ func updateDay(
 		logger.Err(
 			logger.Database, err,
 			"Failed to update day "+strconv.Itoa(updatedDay.ID),
-		)
-		return false
-	}
-
-	return true
-}
-
-func updatePlace(updatedPlace *wings.Place) bool {
-	if updatedPlace.ID == -1 ||
-		fetchPlace(int64(updatedPlace.ID)).ID != updatedPlace.ID {
-		logger.Print(
-			logger.Database,
-			"Existing Place not found. Creating...",
-		)
-		updatedPlace.ID = addPlace(*updatedPlace)
-		return updatedPlace.ID != -1
-	}
-
-	sqlStatement := `
-		UPDATE places
-		SET label = $2,
-		url = $3,
-		description = $4
-		WHERE id = $1;`
-
-	c := getConn()
-	_, err := c.Exec(
-		context.Background(),
-		sqlStatement,
-		updatedPlace.ID,
-		updatedPlace.Label,
-		updatedPlace.URL,
-		updatedPlace.Description,
-	)
-	defer c.Close()
-
-	if err != nil {
-		logger.Err(
-			logger.Database, err,
-			"Failed to update place"+strconv.Itoa(updatedPlace.ID),
 		)
 		return false
 	}
@@ -613,11 +539,12 @@ func deleteDayWithID(id int) bool {
 			return false
 		}
 	}
+	for _, travelTime := range existingDay.TravelTime {
+		if !deleteTravelTimeWithID(travelTime.ID) {
+			return false
+		}
+	}
 	return deleteFromTableWithID(id, "days")
-}
-
-func deletePlaceWithID(id int) bool {
-	return deleteFromTableWithID(id, "places")
 }
 
 func deleteFromTableWithID(id int, table string) bool {

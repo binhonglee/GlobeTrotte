@@ -29,6 +29,7 @@ wings_lib(
   },
   deps = [
     ":place",
+    ":travel_time",
   ],
 )
 
@@ -47,6 +48,15 @@ wings_lib(
   outs = {
     "src/cockpit/wings": "Place.ts",
     "src/turbine/wings": "place.go",
+  },
+)
+
+wings_lib(
+  name = "travel_time",
+  src = "travel_time.wings",
+  outs = {
+    "src/cockpit/wings": "TravelTime.ts",
+    "src/turbine/wings": "traveltime.go",
   },
 )
 

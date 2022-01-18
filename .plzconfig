@@ -34,8 +34,14 @@ cmd = run "//:serve"
 [Alias "work"]
 cmd = watch --run "//src/turbine:main"
 
+[Alias "turbine"]
+cmd = run "//src/turbine:main"
+
 [Alias "lint"]
 cmd = run "//:lint_all"
+
+[Alias "wings"]
+cmd = build "//src/wings/..."
 
 [Go]
 ImportPath = github.com/binhonglee/GlobeTrotte

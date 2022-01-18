@@ -5,6 +5,8 @@ go_library(
     "helper.go",
     "structsutil.go",
     "emaildb.go",
+    "placedb.go",
+    "traveltimedb.go",
     "tripdb.go",
     "userdb.go",
   ],

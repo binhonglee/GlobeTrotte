@@ -4,6 +4,7 @@ go_library(
     "//src/wings/enum:city",
     "//src/wings/enum:access_level",
     "//src/wings/struct:day",
+    "//src/wings/struct:travel_time",
     "//src/wings/struct:trip",
     "//src/wings/struct:user",
     "//src/wings/struct:place",

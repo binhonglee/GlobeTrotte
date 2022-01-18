@@ -5,6 +5,7 @@ import { describe, expect, it } from "@jest/globals";
 import { mount } from "@vue/test-utils";
 import sinon from "sinon";
 import UserObj from "@/wings/UserObj";
+import TripObj from "@/wings/TripObj";
 import Routing from "@/shared/Routing";
 import Routes from "@/routes";
 
@@ -22,9 +23,27 @@ const currentUser = new UserObj({
   ],
 });
 
+const trip5 = new TripObj({
+  id: 5,
+  details: {
+    id: 5,
+    name: "some title",
+    description: "",
+    private: false,
+  },
+  time_created: "2020-12-31T00:00:00.888-08:00",
+  last_updated: "2020-12-31T00:00:00.888-08:00",
+  user: {
+    id: 10,
+    name: "MyAccount Test User",
+    email: "testmyaccount@globetrotte.com",
+  },
+});
+
 describe("vIDUser", () => {
   it("Get User - Has user (self)", async () => {
     const genUser = sinon.stub(General, "genUser").resolves(currentUser);
+    const genTrip = sinon.stub(General, "genTrip").resolves(trip5);
     const isSelf = sinon.stub(General, "getIsCurrentUser").returns(true);
     const paramID = sinon.stub(General, "paramID").returns("10");
     const redirection = sinon.stub(Routing, "genRedirectTo").resolves();
@@ -38,7 +57,9 @@ describe("vIDUser", () => {
     expect(redirection.calledOnce).toBeTruthy();
     expect(redirection.args[0][0]).toEqual(Routes.MyAccount);
     expect(genUser.calledOnce).toBeTruthy();
+    expect(genTrip.calledOnce).toBeTruthy();
     await genUser.restore();
+    await genTrip.restore();
     await isSelf.restore();
     await redirection.restore();
     await paramID.restore();
@@ -46,6 +67,7 @@ describe("vIDUser", () => {
 
   it("Get User - Has user (not self)", async () => {
     const genUser = sinon.stub(General, "genUser").resolves(currentUser);
+    const genTrip = sinon.stub(General, "genTrip").resolves(trip5);
     const isSelf = sinon.stub(General, "getIsCurrentUser").returns(false);
     const paramID = sinon.stub(General, "paramID").returns("10");
     const wrapper = mount(vIDUser, mountingOptions());
@@ -56,7 +78,9 @@ describe("vIDUser", () => {
     expect(isSelf.calledOnce).toBeTruthy();
     expect(isSelf.args[0][0]).toEqual(10);
     expect(genUser.calledOnce).toBeTruthy();
+    expect(genTrip.calledOnce).toBeTruthy();
     await genUser.restore();
+    await genTrip.restore();
     await isSelf.restore();
     await paramID.restore();
   });

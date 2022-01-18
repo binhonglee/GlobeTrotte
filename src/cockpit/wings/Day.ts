@@ -6,6 +6,7 @@
 // plz build //src/wings/...
 
 import { parseArray } from 'wings-ts-util';
+import TravelTime from './TravelTime';
 import Place from './Place';
 import { IWingsStruct } from 'wings-ts-util';
 
@@ -16,6 +17,7 @@ export default class Day implements IWingsStruct {
   public tripID: Number = 0;
   public dayOf: Number = 0;
   public places: Place[] = [];
+  public travelTime: TravelTime[] = [];
 
   public constructor(obj?: any) {
     if (obj) {
@@ -23,6 +25,7 @@ export default class Day implements IWingsStruct {
       this.tripID = obj.trip_id !== undefined && obj.trip_id !== null ? obj.trip_id : 0;
       this.dayOf = obj.day_of !== undefined && obj.day_of !== null ? obj.day_of : 0;
       this.places = obj.places !== undefined && obj.places !== null ? parseArray<Place>(Place, obj.places) : [];
+      this.travelTime = obj.travel_time !== undefined && obj.travel_time !== null ? parseArray<TravelTime>(TravelTime, obj.travel_time) : [];
     }
   }
 
@@ -39,6 +42,9 @@ export default class Day implements IWingsStruct {
       }
       case 'places': {
         return 'places';
+      }
+      case 'travelTime': {
+        return 'travel_time';
       }
       default: {
         return key;

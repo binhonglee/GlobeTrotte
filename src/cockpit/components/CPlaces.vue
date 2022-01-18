@@ -1,51 +1,60 @@
 <template lang="pug">
 .places
   ul.placesList(
-    v-if="places !== undefined"
+    v-if="propPlaces !== undefined"
   )
-    n-space.place(
-      v-for="place in places"
-      :key="place.URL.valueOf()"
+    .place(
+      v-for="propPlace in propPlaces"
+      :key="propPlace.place.URL.valueOf()"
       vertical
     )
-      CExternalLink.placeLink(
-        :url="place.URL.valueOf()"
-        underline="never"
-        v-if="place.URL !== ''"
+      n-divider.travelTime(
+        v-if="propPlace.travelTime !== undefined && propPlace.travelTime.timeInMinutes > 1"
       )
-        n-card.placeDisplayCard(
+        | {{ propPlace.travelTime.timeInMinutes }} mins
+      n-divider.travelTime(
+        v-else-if="propPlace.travelTime !== undefined"
+      )
+        | {{ propPlace.travelTime.timeInMinutes }} min
+      n-divider(v-else)
+      CExternalLink.placeLink(
+        :url="propPlace.place.URL.valueOf()"
+        underline="never"
+        v-if="propPlace.place.URL !== ''"
+      )
+        .placeDisplayCard(
           hoverable
           content-style="padding: 0"
         )
           .placeDisplayCardContent
-            b.link {{ place.label }}
+            b.link {{ propPlace.place.label }}
             p.placeDescription(
-              v-if="place.description !== ''"
-            ) {{ place.description }}
-      n-card.placeDisplayCard(
+              v-if="propPlace.place.description !== ''"
+            ) {{ propPlace.place.description }}
+      .placeDisplayCard(
         v-else
         content-style="padding: 0")
         .placeDisplayCardContent
-          b {{ place.label }}
+          b {{ propPlace.place.label }}
           p.placeDescription(
-            v-if="place.description !== ''"
-          ) {{ place.description }}
+            v-if="propPlace.place.description !== ''"
+          ) {{ propPlace.place.description }}
 </template>
 
 <script lang="ts">
 import Routes from "@/routes";
 import Routing from "@/shared/Routing";
-import Place from "@/wings/Place";
+import { PropPlace } from "@/shared/DataProps";
 import CExternalLink from "./CExternalLink.vue";
-import { NCard, NSpace } from "naive-ui";
+import { NCard, NDivider, NSpace } from "naive-ui";
 import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "CPlaces",
-  components: { CExternalLink, NCard, NSpace },
+  components: { CExternalLink, NCard, NDivider, NSpace },
   props: {
-    places: {
-      type: Array as PropType<Array<Place>>,
+    propPlaces: {
+      type: Array as PropType<Array<PropPlace>>,
       required: true,
     },
   },
@@ -77,6 +86,10 @@ export default defineComponent({
 .placesList {
   margin-top: 10px;
   padding: 0;
+}
+
+.place .n-divider:not(.n-divider--vertical) {
+  margin: 5px 0;
 }
 
 .placeLink,

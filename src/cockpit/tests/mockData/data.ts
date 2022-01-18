@@ -1,6 +1,7 @@
 import City from "@/wings/City";
 import Day from "@/wings/Day";
 import Place from "@/wings/Place";
+import TravelTime from "@/wings/TravelTime";
 import TripBasic from "@/wings/TripBasic";
 import TripObj from "@/wings/TripObj";
 import UserBasic from "@/wings/UserBasic";
@@ -59,7 +60,7 @@ export class mockPlace {
   public readonly place: Place;
 
   constructor() {
-    this.ID = 9999;
+    this.ID = 9998;
     this.label = "LabelString";
     this.URL = "PlaceURL";
     this.description = "some words";
@@ -73,11 +74,61 @@ export class mockPlace {
   }
 }
 
+export class mockPlace2 {
+  public readonly ID: number;
+  public readonly label: string;
+  public readonly URL: string;
+  public readonly description: string;
+  public readonly raw: Record<string, unknown>;
+  public readonly place: Place;
+
+  constructor() {
+    this.ID = 9999;
+    this.label = "LabelString2";
+    this.URL = "PlaceURL2";
+    this.description = "some words2";
+    this.raw = {
+      id: this.ID,
+      label: this.label,
+      url: this.URL,
+      description: this.description,
+    };
+    this.place = new Place(this.raw);
+  }
+}
+
+export class mockTravelTime {
+  public readonly ID: number;
+  public readonly fromPlaceID: number;
+  public readonly toPlaceID: number;
+  public readonly toPlaceIndex: number;
+  public readonly timeInMinutes: number;
+  public readonly raw: Record<string, unknown>;
+  public readonly travelTime: TravelTime;
+
+  constructor() {
+    this.ID = 213123;
+    this.fromPlaceID = 9998;
+    this.toPlaceID = 9999;
+    this.toPlaceIndex = 1;
+    this.timeInMinutes = 10;
+    this.raw = {
+      id: this.ID,
+      from_place_id: this.fromPlaceID,
+      to_place_id: this.toPlaceID,
+      to_place_index: this.toPlaceIndex,
+      time_in_minutes: this.timeInMinutes,
+    };
+    this.travelTime = new TravelTime(this.raw);
+  }
+}
+
 export class mockDay {
   public readonly ID: number;
   public readonly tripID: number;
   public readonly dayOf: number;
   public readonly places: Place[];
+  public readonly travelTime: TravelTime[];
   public readonly raw: Record<string, unknown>;
   public readonly day: Day;
 
@@ -85,7 +136,8 @@ export class mockDay {
     this.ID = 23489723;
     this.tripID = 845357023;
     this.dayOf = 1;
-    this.places = [new mockPlace().place];
+    this.places = [new mockPlace().place, new mockPlace2().place];
+    this.travelTime = [new mockTravelTime().travelTime];
     this.raw = {
       id: this.ID,
       trip_id: this.tripID,

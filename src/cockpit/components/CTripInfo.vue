@@ -2,13 +2,13 @@
 .trip_info
   div.view_trip_info(v-if="!editMode")
     CViewTrip(
-      :trip="trip"
+      :trip="dtrip"
       :editable="editable"
       @enableEditMode="enableEditMode"
     )
   div.edit_trip_info(v-else)
     CEditTrip(
-      :trip="trip"
+      :trip="dtrip"
       :isNew="false"
       @save="save"
       @cancel="cancel"
@@ -26,6 +26,7 @@ import TripBasic from "@/wings/TripBasic";
 
 interface Data {
   editMode: boolean;
+  dtrip: TripObj;
 }
 
 export default defineComponent({
@@ -45,9 +46,11 @@ export default defineComponent({
   },
   data: (): Data => ({
     editMode: false,
+    dtrip: new TripObj(),
   }),
   beforeMount(): void {
     this.$data.editMode = false;
+    this.$data.dtrip = this.$props.trip;
   },
   methods: {
     async save(trip: TripBasic): Promise<void> {
@@ -58,6 +61,7 @@ export default defineComponent({
         WingsStructUtil.stringify(tripObj),
       );
       if (success) {
+        this.$data.dtrip = new TripObj(success);
         this.$data.editMode = false;
       } else {
         this.$alert("Save was unsuccessful. Please try again later.", "Fail", {

@@ -18,7 +18,7 @@ import (
 
 var db *sql.DB
 var pgxConnString string
-var tableNames = [6]string{"users", "trips", "cities", "days", "places", "emails"}
+var tableNames = [7]string{"users", "trips", "cities", "days", "places", "travel_time", "emails"}
 
 func init() {
 	config := config.GetConfigStringMap("psql")
@@ -94,6 +94,8 @@ func initializeDB() {
 				createDaysTable()
 			case "places":
 				createPlacesTable()
+			case "travel_time":
+				createTravelTimeTable()
 			case "emails":
 				createEmailsTable()
 			default:
@@ -122,6 +124,8 @@ func initializeDB() {
 				createDaysTable()
 			case "places":
 				createPlacesTable()
+			case "travel_time":
+				createTravelTimeTable()
 			case "emails":
 				createEmailsTable()
 			default:
@@ -136,6 +140,7 @@ func initializeDB() {
 	}
 
 	updateUserTable()
+	updateDaysTable()
 }
 
 func createUsersTable() {
@@ -162,6 +167,10 @@ func updateUserTable() {
 	db.Exec(`ALTER TABLE users ADD COLUMN IF NOT EXISTS trips INT[];`)
 }
 
+func updateDaysTable() {
+	db.Exec(`ALTER TABLE days ADD COLUMN IF NOT EXISTS travel_times INT[];`)
+}
+
 func createTripsTable() {
 	createTable := `
 		CREATE TABLE trips (
@@ -183,10 +192,11 @@ func createTripsTable() {
 func createDaysTable() {
 	createTable := `
 		CREATE TABLE days (
-			id         SERIAL PRIMARY KEY,
-			trip_id    INT     NOT NULL,
-			day_of     INT     NOT NULL,
-			places     INT[]
+			id             SERIAL PRIMARY KEY,
+			trip_id        INT     NOT NULL,
+			day_of         INT     NOT NULL,
+			places         INT[],
+			travel_times   INT[]
 		);`
 	_, err := db.Exec(createTable)
 
@@ -204,6 +214,19 @@ func createPlacesTable() {
 	_, err := db.Exec(createTable)
 
 	logger.PanicErr(logger.Database, err, "Failed to create `places` table.")
+}
+
+func createTravelTimeTable() {
+	createTable := `
+		CREATE TABLE travel_time (
+			id                SERIAL PRIMARY KEY,
+			from_place_id     INT,
+			to_place_id       INT,
+			time_in_minutes   INT
+		);`
+	_, err := db.Exec(createTable)
+
+	logger.PanicErr(logger.Database, err, "Failed to create `travel_time` table.")
 }
 
 func createCitiesTable() {

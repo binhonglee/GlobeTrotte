@@ -71,6 +71,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import url("@/shared/lib.scss");
+
+.externalURL {
+  color: var(--default-link);
+}
+
 .proceedButton {
   margin-right: 10px;
 }

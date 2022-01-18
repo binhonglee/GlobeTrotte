@@ -4,7 +4,6 @@ import (
 	"time"
 
 	"github.com/binhonglee/GlobeTrotte/src/turbine/database"
-	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 )
 
@@ -75,7 +74,6 @@ func DeleteTripObj(toDelete TripObj, self wings.UserBasic) bool {
 
 func SearchTrips(query TripsSearchQuery, self wings.UserBasic) TripObjs {
 	tripObjs := parseTripsToTripObjs(database.SearchTripsDB(query.Cities, query.Length, query.Query))
-	logger.Debug(tripObjs)
 	var ret TripObjs
 
 	for _, tripObj := range tripObjs {
@@ -91,7 +89,6 @@ func SearchTrips(query TripsSearchQuery, self wings.UserBasic) TripObjs {
 			ret = append(ret, tripObj)
 		}
 	}
-	logger.DebugPink(ret)
 	return ret
 }
 

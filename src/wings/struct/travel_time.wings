@@ -1,0 +1,16 @@
+go-filepath src/turbine/wings
+ts-filepath src/cockpit/wings
+
+ts-import { IWingsStruct }:wings-ts-util
+
+ts-implement IWingsStruct
+
+# Time take to travel from one place to another.
+
+struct TravelTime {
+  id              int -1
+  from_place_id   int
+  to_place_id     int
+  to_place_index  int
+  time_in_minutes int
+}

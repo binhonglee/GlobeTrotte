@@ -124,6 +124,20 @@ func TestAddTripDB(t *testing.T) {
 						URL:         "https://globetrotte.com",
 						Description: "example place",
 					},
+					{
+						Label:       "Location 2",
+						URL:         "https://globetrotte.app",
+						Description: "example place 2",
+					},
+				},
+				TravelTime: []wings.TravelTime{
+					{
+						ID:            -1,
+						FromPlaceID:   0,
+						ToPlaceID:     0,
+						ToPlaceIndex:  1,
+						TimeInMinutes: 10,
+					},
 				},
 			},
 		},

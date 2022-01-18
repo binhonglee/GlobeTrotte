@@ -23,6 +23,14 @@ func placesToIDArray(places wings.Places) []int {
 	return idArray
 }
 
+func travelTimesToIDArray(travelTimes wings.TravelTimes) []int {
+	var idArray []int = make([]int, len(travelTimes))
+	for index := range travelTimes {
+		idArray[index] = travelTimes[index].ID
+	}
+	return idArray
+}
+
 func cityEnumArrayToIDs(cities []wings.City) []int {
 	var idArray []int = make([]int, len(cities))
 	for index := range cities {
