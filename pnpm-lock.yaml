@@ -30,7 +30,7 @@ specifiers:
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16
   c8: 7.11.0
-  cypress: 9.3.0
+  cypress: 9.3.1
   element-plus: 1.0.2-beta.71
   esbuild: 0.14.11
   esbuild-jest: 0.5.0
@@ -86,9 +86,9 @@ devDependencies:
   '@babel/plugin-transform-typescript': 7.16.8_@babel+core@7.16.7
   '@babel/preset-env': 7.16.8_@babel+core@7.16.7
   '@babel/preset-typescript': 7.16.7_@babel+core@7.16.7
-  '@cypress/code-coverage': 3.9.12_cypress@9.3.0
+  '@cypress/code-coverage': 3.9.12_cypress@9.3.1
   '@cypress/vite-dev-server': 2.2.2_vite@2.7.13
-  '@cypress/vue': 3.1.0_7c8626efe1c47177eab47fb5bcac9e8f
+  '@cypress/vue': 3.1.0_4ddcdf24784ce631ebd46f1492cce537
   '@delagen/eslint-plugin-deprecation': 1.3.2_eslint@8.7.0+typescript@4.5.4
   '@types/jest': 27.4.0
   '@types/node': 16.11.21
@@ -108,7 +108,7 @@ devDependencies:
   babel-plugin-module-resolver: 4.1.0
   babel-preset-typescript-vue3: 2.0.16_@babel+core@7.16.7
   c8: 7.11.0
-  cypress: 9.3.0
+  cypress: 9.3.1
   esbuild: 0.14.11
   esbuild-jest: 0.5.0_esbuild@0.14.11
   eslint: 8.7.0
@@ -2973,14 +2973,14 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/code-coverage/3.9.12_cypress@9.3.0:
+  /@cypress/code-coverage/3.9.12_cypress@9.3.1:
     resolution: {integrity: sha512-2QuDSQ2ovz2ZsbQImM917q+9JmEq4afC4kpgHe2o3rTQxUrs7CdHM84rT8XKl0gJIXmbMcNq2rZqe40/eFmCFw==}
     peerDependencies:
       cypress: '*'
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.2
       chalk: 4.1.2
-      cypress: 9.3.0
+      cypress: 9.3.1
       dayjs: 1.10.7
       debug: 4.3.3
       execa: 4.1.0
@@ -3032,7 +3032,7 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/vue/3.1.0_7c8626efe1c47177eab47fb5bcac9e8f:
+  /@cypress/vue/3.1.0_4ddcdf24784ce631ebd46f1492cce537:
     resolution: {integrity: sha512-E2aFQtPvLLW9yKZz7t94VN1SuO53Jx9wN12gi7pvpHId5E6p+8Z+v2zlzzREpA8Gbi2QGNMwK8ciSYcwZG2bXg==}
     engines: {node: '>=8'}
     peerDependencies:
@@ -3049,7 +3049,7 @@ packages:
       '@cypress/mount-utils': 1.0.2
       '@vue/test-utils': 2.0.0-rc.18_vue@3.2.27
       babel-loader: 8.2.3_@babel+core@7.16.7
-      cypress: 9.3.0
+      cypress: 9.3.1
       vue: 3.2.27
     dev: true
 
@@ -6201,8 +6201,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /cypress/9.3.0:
-    resolution: {integrity: sha512-Hnqp1hoiBuiWYM+r3/RZKZCMzQ+1kiJqJejsgX8+cT9nwZXjEcCW8xQjNIT0GibiCemeK4y4ZNQbn+Jp1Tg7uw==}
+  /cypress/9.3.1:
+    resolution: {integrity: sha512-BODdPesxX6bkVUnH8BVsV8I/jn57zQtO1FEOUTiuG2us3kslW7g0tcuwiny7CKCmJUZz8S/D587ppC+s58a+5Q==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
