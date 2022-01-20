@@ -14,7 +14,7 @@ specifiers:
   '@types/jest': 27.4.0
   '@types/node': 16.11.21
   '@types/puppeteer': 5.4.4
-  '@types/sinon': 10.0.6
+  '@types/sinon': 10.0.8
   '@typescript-eslint/eslint-plugin': 5.10.0
   '@typescript-eslint/parser': 5.10.0
   '@vicons/ionicons5': 0.11.0
@@ -93,7 +93,7 @@ devDependencies:
   '@types/jest': 27.4.0
   '@types/node': 16.11.21
   '@types/puppeteer': 5.4.4
-  '@types/sinon': 10.0.6
+  '@types/sinon': 10.0.8
   '@typescript-eslint/eslint-plugin': 5.10.0_3b6b276e93ead7cf6063f183a5e18d1f
   '@typescript-eslint/parser': 5.10.0_eslint@8.7.0+typescript@4.5.4
   '@vicons/ionicons5': 0.11.0
@@ -2468,8 +2468,8 @@ packages:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
     dev: true
 
-  /@types/sinon/10.0.6:
-    resolution: {integrity: sha512-6EF+wzMWvBNeGrfP3Nx60hhx+FfwSg1JJBLAAP/IdIUq0EYkqCYf70VT3PhuhPX9eLD+Dp+lNdpb/ZeHG8Yezg==}
+  /@types/sinon/10.0.8:
+    resolution: {integrity: sha512-XZbSLlox2KM7VaEJPZ5G/fMZXJNuAtYiFOax7UT51quZMAJRWKvugPMqNA0mV3jC9HIYpQSg6qbV+ilQMwLqyA==}
     dependencies:
       '@sinonjs/fake-timers': 7.1.2
     dev: true
