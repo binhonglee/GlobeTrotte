@@ -9,22 +9,28 @@
       text-color="white"
       active-text-color="#42b983"
     )
-      el-menu-item.main_menu_item(index="") Home
+      el-menu-item.main_menu_item(index="")
+        router-link(to="/") Home
       el-submenu.main_menu_item(index="/trip")
         template.main_menu_item(#title) Trips
-        el-menu-item.main_menu_item(index="/trip/search") Search
+        el-menu-item.main_menu_item(index="/trip/search")
+          router-link(to="/trip/search")  Search
         el-menu-item.main_menu_item(
           v-if="confirmed" index="/trip/new"
-        ) New
+        )
+          router-link(to="/trip/new") New
       el-menu-item.main_menu_item.login_button(
         v-if="!authed" index="/login"
-      ) Login
+      )
+        router-link(to="/login") Login
       el-menu-item.main_menu_item.register_button(
         v-if="!authed" index="/register"
-      ) Register
+      )
+        router-link(to="/register") Register
       el-menu-item.main_menu_item.myaccount_button(
         v-if="authed" index="/myaccount"
-      ) My Account
+      )
+        router-link(to="/myaccount") My Account
     router-view#content.content
     #footerMargin
       #footer

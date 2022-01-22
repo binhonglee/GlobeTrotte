@@ -2,6 +2,8 @@ import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarP
 import { useLoadingBar } from "naive-ui";
 import H from "./H";
 import router from "@/router";
+import Redirect from "./redirect";
+import Routing from "./Routing";
 
 export default class HTTPReq extends H {
   protected static host =
@@ -14,6 +16,16 @@ export default class HTTPReq extends H {
   protected static router = router;
   private static loadingBar: LoadingBarApiInjection | undefined = undefined;
   private static failed = false;
+
+  protected async onRateLimited(): Promise<void> {
+    // eslint-disable-next-line @delagen/deprecation/deprecation
+    await Redirect.genRedirect(
+      router,
+      Routing.addParamNext(this.rateLimited, router.currentRoute.value.path),
+      false,
+      this.rateLimited,
+    );
+  }
 
   protected static beforeSendRequest(): void {
     try {

@@ -1,7 +1,5 @@
 import Axios, { AxiosRequestConfig, Method } from "axios";
 import { Router } from "vue-router";
-import R from "./R";
-import Redirect from "./redirect";
 
 enum AxMethod {
   POST = "POST",
@@ -17,6 +15,10 @@ export default abstract class H {
   protected static delPrefix: string;
   protected static rateLimited: string;
   protected static router: Router;
+
+  protected static async onRateLimited(): Promise<void> {
+    return;
+  }
 
   protected static beforeSendRequest(): void {
     return;
@@ -80,13 +82,7 @@ export default abstract class H {
         toRet === this.rateLimited
       ) {
         this.sendRequestSuccess();
-        // eslint-disable-next-line @delagen/deprecation/deprecation
-        await Redirect.genRedirect(
-          router,
-          R.addParamNext(this.rateLimited, router.currentRoute.value.path),
-          false,
-          this.rateLimited,
-        );
+        await this.onRateLimited();
         return "";
       }
       this.sendRequestSuccess();

@@ -11,6 +11,14 @@ export default class Routing extends R {
   protected static ratelimited = Routes.RateLimited;
   protected static default = Routes.Landing;
 
+  public static getRouter(): Router {
+    return this.router;
+  }
+
+  public static setRouter(r: Router) {
+    this.router = r;
+  }
+
   // Unlike genRedirectTo, this is for when you are redirecting back to the same
   // page with different params.The page needs to be refreshed to have the new
   // params dealt with (remounted).

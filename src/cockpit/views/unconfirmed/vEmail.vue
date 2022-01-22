@@ -67,10 +67,6 @@ export default defineComponent({
   -ms-user-select: none;
   user-select: none;
 
-  .el-card__body {
-    padding: 15px 20px;
-  }
-
   a {
     pointer-events: none;
   }

@@ -1,6 +1,6 @@
 <template lang="pug">
 .trip_preview_card(:class="{ wide_preview_card: wide }")
-  CLink.tripLink(:url="'/trip/view/' + trip.ID" underline="never")
+  router-link.tripLink(:to="{ path:'/trip/view/' + trip.ID.toString() }")
     n-card(
       hoverable
       content-style="padding: 0"

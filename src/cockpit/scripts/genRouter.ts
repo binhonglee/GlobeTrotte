@@ -37,25 +37,26 @@ const prefix = `/*
 const before =
   prefix +
   `
-import Vue from "vue";
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createMemoryHistory, RouteRecordRaw } from "vue-router";
 
-export default createRouter({
-  history: createWebHistory(),
-  routes: [
-    {
-      path: "/:pathMatch(.*)",
-      name: "404",
-      component: () => import("./views/vNotFound.vue"),
-    },
-    {
-      path: "/",
-      name: "landing",
-      component: () => import("./views/vLanding.vue"),
-    },`;
+export const routes: RouteRecordRaw[] = [
+  {
+    path: "/:pathMatch(.*)",
+    name: "404",
+    component: () => import("./views/vNotFound.vue"),
+  },
+  {
+    path: "/",
+    name: "landing",
+    component: () => import("./views/vLanding.vue"),
+  },`;
 
 const after = `
-  ],
+];
+
+export default createRouter({
+  history: createMemoryHistory(),
+  routes: routes,
 });
 `;
 
@@ -161,7 +162,7 @@ class GenRouter {
       ) {
         metaTxt +=
           `
-        ` +
+      ` +
           key +
           `: true,`;
       }
@@ -170,27 +171,27 @@ class GenRouter {
     if (metaTxt.length > 0) {
       metaTxt =
         `
-      meta: {` +
+    meta: {` +
         metaTxt +
         `
-      },`;
+    },`;
     }
 
     return (
       `
-    {
-      path: "/` +
+  {
+    path: "/` +
       path +
       `",
-      name: "` +
+    name: "` +
       name +
       `",` +
       metaTxt +
       `
-      component: () => import("./views/` +
+    component: () => import("./views/` +
       component +
       `"),
-    },`
+  },`
     );
   }
 

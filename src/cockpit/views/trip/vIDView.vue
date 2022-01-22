@@ -68,8 +68,4 @@ export default defineComponent({
   margin-left: 5px;
   display: inline;
 }
-
-.tripSearchInput .el-input__inner {
-  width: 100px;
-}
 </style>

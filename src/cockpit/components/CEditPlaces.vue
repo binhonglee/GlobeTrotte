@@ -144,11 +144,6 @@ export default defineComponent({
   margin: 10px 0;
 }
 
-el-input {
-  width: auto;
-  height: auto;
-}
-
 .setTravelTime {
   width: 100%;
 }

@@ -3,15 +3,15 @@ import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "@/shared/HTTPReq";
 import TripObj from "@/wings/TripObj";
 import UserObj from "@/wings/UserObj";
-import router from "@/router";
 import { useLoadingBar } from "naive-ui";
 import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
+import Routing from "./Routing";
 
 export default class General {
   public static paramID(): string | undefined {
     /* istanbul ignore next: $route is a pain to mock, using this as a workaround for testing */
     try {
-      return router.currentRoute.value.params["id"] as string;
+      return Routing.getRouter().currentRoute.value.params["id"] as string;
     } catch {
       return undefined;
     }

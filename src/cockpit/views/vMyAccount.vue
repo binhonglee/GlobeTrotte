@@ -184,8 +184,7 @@ export default defineComponent({
   padding: 10px;
 }
 
-.unconfirmedEmailLink,
-.unconfirmedEmailLink .el-link--inner {
+.unconfirmedEmailLink {
   width: 100%;
 }
 

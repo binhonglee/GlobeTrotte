@@ -92,8 +92,7 @@ export default defineComponent({
   margin: 5px 0;
 }
 
-.placeLink,
-.placeLink .el-link--inner {
+.placeLink {
   width: 100%;
   cursor: pointer;
 }
