@@ -42,8 +42,6 @@
 </template>
 
 <script lang="ts">
-import Routes from "@/routes";
-import Routing from "@/shared/Routing";
 import { PropPlace } from "@/shared/DataProps";
 import CExternalLink from "./CExternalLink.vue";
 import { NCard, NDivider, NSpace } from "naive-ui";
@@ -56,22 +54,6 @@ export default defineComponent({
     propPlaces: {
       type: Array as PropType<Array<PropPlace>>,
       required: true,
-    },
-  },
-  methods: {
-    async redirect(link: string): Promise<void> {
-      await Routing.genNewTab(
-        Routes.leaving_Confirm,
-        new Map<string, string>(
-          Object.entries({
-            link: encodeURIComponent(link)
-              .split("%")
-              .join(".pct.")
-              .split(".")
-              .join("&dots&"),
-          }),
-        ),
-      );
     },
   },
 });

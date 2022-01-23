@@ -77,7 +77,7 @@ export default defineComponent({
       this.$data.confirmed = General.confirmed();
     },
     setActiveIndex(): void {
-      let path = window.location.pathname;
+      let path = this.$route.path;
       if (path.length < 2) {
         this.$data.activeIndex = "";
         return;

@@ -12,17 +12,6 @@ export default abstract class R {
   protected static ratelimited: string;
   protected static default: string;
 
-  public static async genNewTab(
-    path: string,
-    map: Map<string, string> = new Map<string, string>(),
-    id = "",
-  ): Promise<void> {
-    if (path !== "/") {
-      path = this.getSubPath(path, map, id);
-    }
-    window.open(this.siteURI + path);
-  }
-
   public static async genRedirectTo(
     path: string,
     map: Map<string, string> = new Map<string, string>(),

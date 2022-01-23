@@ -6,10 +6,10 @@
  */
 
 import Vue from "vue";
-import { createRouter, createWebHistory } from "vue-router";
+import { createMemoryHistory, createRouter, createWebHistory } from "vue-router";
 
 export default createRouter({
-  history: createWebHistory(),
+  history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
   routes: [
     {
       path: "/:pathMatch(.*)",

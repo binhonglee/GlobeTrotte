@@ -31,4 +31,10 @@
     "src/cockpit/tests/puppeteer/**/*",
     "plz-out/"
   ],
+  "ts-node": {
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
 }

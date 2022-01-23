@@ -5,11 +5,13 @@
     p.content Make sure you want to proceed to 
       a.externalURL(:href="link") {{ link }}
     n-button.proceedButton(type="primary" tag="a" :href="link") Proceed
-    n-button(@click="close") Back to GlobeTrotte
+    n-button
+      a(href="javascript:close_window();") Back to GlobeTrotte
   .brokenLink(v-else)
     h1.title Broken link
     p.content Seems like this link is broken. 😥
-    n-button(@click="close") Back to GlobeTrotte
+    n-button
+      a(href="javascript:close_window();") Back to GlobeTrotte
 </template>
 
 <script lang="ts">
@@ -61,11 +63,6 @@ export default defineComponent({
     } else if (temp.startsWith("www.globetrotte.com")) {
       await Routing.genRedirectTo(temp.substring(19));
     }
-  },
-  methods: {
-    close(): void {
-      window.close();
-    },
   },
 });
 </script>

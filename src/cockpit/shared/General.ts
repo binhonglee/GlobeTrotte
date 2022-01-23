@@ -53,19 +53,23 @@ export default class General {
 
   public static async genCurrentUser(): Promise<UserObj> {
     const user = new UserObj(await HTTPReq.genGET("v2/whoami"));
-    if (user.ID === -1) {
-      localStorage.clear();
-    } else {
-      localStorage.setItem("userobj", WingsStructUtil.stringify(user));
+    if (typeof localStorage !== "undefined") {
+      if (user.ID === -1) {
+        localStorage.clear();
+      } else {
+        localStorage.setItem("userobj", WingsStructUtil.stringify(user));
+      }
     }
 
     return this.getCurrentUser();
   }
 
   private static getCurrentUser(): UserObj {
-    const user = localStorage.getItem("userobj");
-    if (user !== null) {
-      return new UserObj(JSON.parse(user));
+    if (typeof localStorage !== "undefined") {
+      const user = localStorage.getItem("userobj");
+      if (user !== null) {
+        return new UserObj(JSON.parse(user));
+      }
     }
 
     return new UserObj();
