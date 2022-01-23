@@ -19,7 +19,7 @@ filegroup(
 filegroup(
   name = "jest_config",
   srcs = [
-    "jest.config.ts",
+    "jest.config.js",
   ],
 )
 

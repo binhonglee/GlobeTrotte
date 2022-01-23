@@ -46,6 +46,7 @@ import { WingsStructUtil } from "wings-ts-util";
 import Routing from "@/shared/Routing";
 import { NAlert, NButton, NIcon, NInput, NSelect } from "naive-ui";
 import { Search } from "@vicons/ionicons5";
+import TripUtil from "@/shared/TripUtil";
 
 interface Data {
   length: number;
@@ -127,6 +128,7 @@ export default defineComponent({
           this.$data.trips.push(new TripObj(trip));
         }
       }
+      TripUtil.sortTripsMostRecentlyUpdated(this.$data.trips);
       this.$data.searching = false;
     },
   },

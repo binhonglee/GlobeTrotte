@@ -1,6 +1,6 @@
-import type { Config } from "@jest/types";
-
-export default async (): Promise<Config.InitialOptions> => {
+// Sync object
+/** @type {import('@jest/types').Config.InitialOptions} */
+module.exports = async () => {
   const coverageDir = "jest_coverage";
   return {
     moduleFileExtensions: ["js", "ts", "json", "vue"],
@@ -21,6 +21,7 @@ export default async (): Promise<Config.InitialOptions> => {
         },
       ],
     ],
+    rootDir: ".",
     snapshotSerializers: ["jest-serializer-html"],
     snapshotResolver: "<rootDir>/src/cockpit/tests/snapshotResolver.js",
     collectCoverage: true,

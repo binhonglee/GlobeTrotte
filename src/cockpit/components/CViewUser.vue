@@ -32,6 +32,7 @@ import { NAlert, NButton, NDivider } from "naive-ui";
 import CExternalLink from "./CExternalLink.vue";
 import CTripPreviewCard from "./CTripPreviewCard.vue";
 import General from "@/shared/General";
+import TripUtil from "@/shared/TripUtil";
 import UserObj from "@/wings/UserObj";
 import TripBasic from "@/wings/TripBasic";
 import TripObj from "@/wings/TripObj";
@@ -112,6 +113,7 @@ export default defineComponent({
           return await General.genTrip(trip.ID.valueOf());
         }),
       );
+      TripUtil.sortTripsMostRecentlyUpdated(this.$data.trips);
       this.$data.tripsEmpty = this.$data.trips.length <= 0;
       this.$data.lastPopulated = this.$props.user.trips;
     },
