@@ -1,0 +1,1 @@
+import{_ as o}from"./index.bdcf6c50.js";import{o as t,d as s,m as _,n as c,i as a}from"./vendor.ea1d7ba9.js";const n={},d=e=>(_("data-v-7b59ec76"),e=e(),c(),e),r={class:"_404 narrow_content"},p=d(()=>a("h3",null,"Uhh, there's nothing to see here...",-1)),i=[p];function h(e,u){return t(),s("div",r,i)}var f=o(n,[["render",h],["__scopeId","data-v-7b59ec76"]]);export{f as default};
