@@ -801,6 +801,7 @@ ${t}
  line-height: var(--n-line-height-textarea);
  margin: 0;
  resize: none;
+ white-space: pre-wrap;
  `),fe("textarea-mirror",`
  pointer-events: none;
  overflow: hidden;
