@@ -11,7 +11,6 @@ BUILD           text eol=lf linguist-language=Starlark
 # Config files
 _setup.js       text eol=lf linguist-detectable=false
 .ackrc          text eol=lf linguist-detectable=false
-.babelrc        text eol=lf linguist-detectable=false
 .eslintignore   text eol=lf linguist-detectable=false
 .eslintrc.js    text eol=lf linguist-detectable=false
 .mergify.yml    text eol=lf linguist-detectable=false

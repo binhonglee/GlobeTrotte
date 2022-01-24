@@ -18,6 +18,7 @@ export default defineConfig({
   test: {
     global: true,
     environment: "jsdom",
+    threads: false,
     include: ["src/cockpit/**/*_vitest.{test,spec}.ts"],
     exclude: ["src/cockpit/tests/cypress/**/*"],
     reporters: "junit",

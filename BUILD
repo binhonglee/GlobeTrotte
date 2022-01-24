@@ -4,11 +4,6 @@ subinclude("//build_defs/npm:vitest")
 subinclude("//build_defs/sh")
 
 filegroup(
-  name = "babel_config",
-  srcs = [".babelrc"],
-)
-
-filegroup(
   name = "jest_config",
   srcs = [
     "jest.config.js",
@@ -168,7 +163,6 @@ npm_test(
     ":pnpm_install",
     ":pnpm_config",
     ":index_html",
-    ":babel_config",
     ":eslint_config",
     "//src/assets:assets",
     "//src/cockpit:core_files",
