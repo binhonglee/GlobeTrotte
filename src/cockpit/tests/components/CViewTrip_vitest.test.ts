@@ -1,7 +1,7 @@
 import CViewTrip from "@/components/CViewTrip.vue";
 import { CityUtil } from "@/shared/CityUtil";
 import { mockTripObj } from "@/tests/mockData/data";
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it } from "vitest";
 import { mount } from "@vue/test-utils";
 import { globalMountingOptions } from "../helper";
 

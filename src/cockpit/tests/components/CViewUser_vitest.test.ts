@@ -1,6 +1,6 @@
 import CViewUser from "@/components/CViewUser.vue";
 import { mockUserObj } from "@/tests/mockData/data";
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it } from "vitest";
 import { mount } from "@vue/test-utils";
 import { globalMountingOptions } from "../helper";
 

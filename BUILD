@@ -1,5 +1,4 @@
 subinclude("//build_defs/npm")
-subinclude("//build_defs/npm:ava")
 subinclude("//build_defs/npm:jest")
 subinclude("//build_defs/npm:vitest")
 subinclude("//build_defs/sh")
@@ -7,13 +6,6 @@ subinclude("//build_defs/sh")
 filegroup(
   name = "babel_config",
   srcs = [".babelrc"],
-)
-
-filegroup(
-  name = "ava_config",
-  srcs = [
-    "ava.config.js",
-  ],
 )
 
 filegroup(
@@ -126,27 +118,6 @@ npm_run(
   ],
 )
 
-ava_dir(
-  name = "ava_test_deps",
-  srcs = [
-    ":ava_config",
-    ":babel_config",
-    ":pnpm_config",
-    ":nycrc",
-    ":tsconfig",
-    "//src/cockpit:core_files",
-    "//src/cockpit/components:components",
-    "//src/cockpit/shared:shared",
-    "//src/cockpit/tests:ava_setup",
-    "//src/cockpit/tests:helper",
-    "//src/cockpit/views:views",
-    "//src/cockpit/wings:wings",
-  ],
-  visibility = [
-    "//src/cockpit/tests/..."
-  ],
-)
-
 jest_dir(
   name = "jest_test_deps",
   srcs = [
@@ -169,12 +140,14 @@ jest_dir(
 
 vitest_dir(
   name = "vitest_test_deps",
+  config = "vitest.plz.config.ts",
   srcs = [
     ":pnpm_config",
     ":tsconfig",
     "//src/cockpit:core_files",
     "//src/cockpit/components:components",
     "//src/cockpit/shared:shared",
+    "//src/cockpit/tests:helper",
     "//src/cockpit/views:views",
     "//src/cockpit/wings:wings",
   ],

@@ -1,4 +1,4 @@
-import test from "ava";
+import { expect, test } from "vitest";
 import City from "@/wings/City";
 import { CityObj, CityUtil } from "@/shared/CityUtil";
 
@@ -9,20 +9,20 @@ for (const cityString in City) {
       test(
         cityString +
           " - Every city should have conversion in CityUtil.toString().",
-        (t) => {
-          t.true(CityUtil.toString(city) !== "unrecognized city");
+        () => {
+          expect(CityUtil.toString(city) !== "unrecognized city").toBeTruthy();
         },
       );
     }
   }
 }
 
-test("Non existent city (including UNKNOWN) should return 'unrecognized city", (t) => {
+test("Non existent city (including UNKNOWN) should return 'unrecognized city", () => {
   const unsupported = 999999;
-  t.is(CityUtil.toString(unsupported), "unrecognized city");
+  expect(CityUtil.toString(unsupported)).toEqual("unrecognized city");
 });
 
-test("There should be the same amount of cities.", (t) => {
+test("There should be the same amount of cities.", () => {
   const allCities: CityObj[] = CityUtil.sortedCityList();
   const cities: Set<number> = new Set<number>();
 
@@ -34,5 +34,5 @@ test("There should be the same amount of cities.", (t) => {
       }
     }
   }
-  t.is(allCities.length, cities.size);
+  expect(allCities.length).toEqual(cities.size);
 });

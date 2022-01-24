@@ -1,7 +1,7 @@
 import CPlaces from "@/components/CPlaces.vue";
 import { PropPlace } from "@/shared/DataProps";
 import { mockPlace } from "@/tests/mockData/data";
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it } from "vitest";
 import { mount } from "@vue/test-utils";
 import { globalMountingOptions } from "../helper";
 

@@ -1,7 +1,7 @@
 import Place from "@/wings/Place";
 
 import { WingsStructUtil } from "wings-ts-util";
-import test from "ava";
+import { expect, test } from "vitest";
 
 const place = new Place({
   id: 1,
@@ -11,16 +11,14 @@ const place = new Place({
 });
 let reversedObj = new Place();
 
-test("proper init()", (t) => {
-  t.notThrows(() => {
-    reversedObj = new Place(JSON.parse(WingsStructUtil.stringify(place)));
-  });
+test("proper init()", () => {
+  reversedObj = new Place(JSON.parse(WingsStructUtil.stringify(place)));
 });
 
 for (const key in place) {
   if (typeof key === "string") {
-    test(key, (t) => {
-      t.is(reversedObj[key], place[key]);
+    test(key, () => {
+      expect(reversedObj[key]).toEqual(place[key]);
     });
   }
 }

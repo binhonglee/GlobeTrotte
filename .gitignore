@@ -3,6 +3,8 @@
 coverage/
 config.kdl
 jest_coverage/
+vitest_coverage/
+vitest_junit
 /cypress/
 email.config
 dist/

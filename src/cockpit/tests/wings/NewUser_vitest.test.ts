@@ -1,7 +1,7 @@
 import NewUser from "@/wings/NewUser";
 
 import { WingsStructUtil } from "wings-ts-util";
-import test from "ava";
+import { expect, test } from "vitest";
 
 const newUser = new NewUser({
   id: 10000,
@@ -10,16 +10,14 @@ const newUser = new NewUser({
   password: "S0methingSom3th1ngSecr3tW0rd5",
 });
 let reversedObj = new NewUser();
-test("proper init()", (t) => {
-  t.notThrows(() => {
-    reversedObj = new NewUser(JSON.parse(WingsStructUtil.stringify(newUser)));
-  });
+test("proper init()", () => {
+  reversedObj = new NewUser(JSON.parse(WingsStructUtil.stringify(newUser)));
 });
 
 for (const key in newUser) {
   if (typeof key === "string") {
-    test(key + " from init", (t) => {
-      t.is(reversedObj[key], newUser[key]);
+    test(key + " from init", () => {
+      expect(reversedObj[key]).toEqual(newUser[key]);
     });
   }
 }
@@ -36,8 +34,8 @@ const reversedReg = new NewUser(
 
 for (const key in newRegistration) {
   if (typeof key === "string") {
-    test(key + " from register()", (t) => {
-      t.is(reversedReg[key], newRegistration[key]);
+    test(key + " from register()", () => {
+      expect(reversedReg[key]).toEqual(newRegistration[key]);
     });
   }
 }

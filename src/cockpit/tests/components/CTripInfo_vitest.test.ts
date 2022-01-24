@@ -1,6 +1,6 @@
 import CTripInfo from "@/components/CTripInfo.vue";
 import { mockTripObj } from "@/tests/mockData/data";
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it } from "vitest";
 import { mount } from "@vue/test-utils";
 import { globalMountingOptions } from "../helper";
 

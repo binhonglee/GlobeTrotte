@@ -1,6 +1,6 @@
 import CEditItem from "@/components/CEditItem.vue";
 import Item from "@/shared/TripEditable";
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it } from "vitest";
 import { mount } from "@vue/test-utils";
 import { globalMountingOptions } from "../helper";
 

@@ -46,6 +46,9 @@ cmd = build "//src/wings/..."
 [Go]
 ImportPath = github.com/binhonglee/GlobeTrotte
 
+[Display]
+SystemStats = True
+
 [Buildconfig]
 
 # npm

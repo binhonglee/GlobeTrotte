@@ -2,7 +2,7 @@ import Day from "@/wings/Day";
 import Place from "@/wings/Place";
 
 import { WingsStructUtil } from "wings-ts-util";
-import test from "ava";
+import { expect, test } from "vitest";
 
 const day = new Day({
   id: 1,
@@ -12,24 +12,21 @@ const day = new Day({
 });
 let reversedObj = new Day();
 
-test("proper init()", (t) => {
-  t.notThrows(() => {
-    reversedObj = new Day(JSON.parse(WingsStructUtil.stringify(day)));
-  });
+test("proper init()", () => {
+  reversedObj = new Day(JSON.parse(WingsStructUtil.stringify(day)));
 });
 
 for (const key in day) {
   if (typeof key === "string") {
-    test(key, (t) => {
+    test(key, () => {
       if (day[key] instanceof Array) {
-        t.true(reversedObj[key] instanceof Array);
-        t.is(
+        expect(reversedObj[key] instanceof Array).toBeTruthy();
+        expect(
           day[key].filter((item: Place) => reversedObj[key].indexOf(item) < 0)
             .length,
-          0,
-        );
+        ).toEqual(0);
       } else {
-        t.is(reversedObj[key], day[key]);
+        expect(reversedObj[key]).toEqual(day[key]);
       }
     });
   }

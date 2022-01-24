@@ -1,7 +1,7 @@
-subinclude("//build_defs/npm:ava")
+subinclude("//build_defs/npm:vitest")
 
-ava_tests(
-  name = "wings",
-  srcs = glob(["**/*_ava.test.ts"]),
-  ava_dirs = ["//:ava_test_deps"],
+vitest_tests(
+  name = "vitest_wings",
+  srcs = glob(["**/*_vitest.test.ts"]),
+  vitest_dirs = ["//:vitest_test_deps"],
 )

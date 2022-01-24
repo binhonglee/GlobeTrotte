@@ -24,6 +24,7 @@
     "src/cockpit/**/*.d.ts",
     "src/cockpit/**/*.vue",
     "vite.config.ts",
+    "vitest.plz.config.ts",
     "jest.config.js"
   ],
   "exclude": [

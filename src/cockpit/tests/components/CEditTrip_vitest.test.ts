@@ -2,7 +2,7 @@ import CEditTrip from "@/components/CEditTrip.vue";
 import { mockTripObj } from "@/tests/mockData/data";
 
 import { mount } from "@vue/test-utils";
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it } from "vitest";
 import { globalMountingOptions } from "../helper";
 
 const mockedTrip = new mockTripObj();

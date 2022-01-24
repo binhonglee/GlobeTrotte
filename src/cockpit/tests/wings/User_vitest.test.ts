@@ -1,7 +1,7 @@
 import User from "@/wings/User";
 
 import { WingsStructUtil } from "wings-ts-util";
-import test from "ava";
+import { expect, test } from "vitest";
 
 const user = new User({
   id: 10000,
@@ -15,19 +15,18 @@ const reversedObj = new User(JSON.parse(WingsStructUtil.stringify(user)));
 
 for (const key in user) {
   if (typeof key === "string") {
-    test(key, (t) => {
+    test(key, () => {
       if (user[key] instanceof Date) {
-        t.is(reversedObj[key].getTime(), user[key].getTime());
+        expect(reversedObj[key].getTime()).toEqual(user[key].getTime());
       } else if (user[key] instanceof Array) {
-        // t.true(JSON.parse(WingsStructUtil.stringify(user)).trips);
-        t.true(reversedObj[key] instanceof Array);
-        t.is(
+        // expect(JSON.parse(WingsStructUtil.stringify(user)).trips).toBeTruthy();
+        expect(reversedObj[key] instanceof Array).toBeTruthy();
+        expect(
           user[key].filter((item: number) => reversedObj[key].indexOf(item) < 0)
             .length,
-          0,
-        );
+        ).toEqual(0);
       } else {
-        t.is(reversedObj[key], user[key]);
+        expect(reversedObj[key]).toEqual(user[key]);
       }
     });
   }

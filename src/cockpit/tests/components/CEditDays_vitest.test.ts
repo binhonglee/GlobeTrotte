@@ -1,19 +1,20 @@
 import { expect, describe, test } from "vitest";
-import { shallowMount } from "@vue/test-utils";
+import { mockDay } from "@/tests/mockData/data";
+import { mount } from "@vue/test-utils";
 import CEditDay from "@/components/CEditDays.vue";
+import { globalMountingOptions } from "../helper";
 
 describe("CEditDays", () => {
-  test("mount component", async () => {
-    expect(CEditDay).toBeTruthy();
-
-    const wrapper = shallowMount(CEditDay, {
-      propsData: { givenDays: [] },
+  test("renders one component", () => {
+    const day = new mockDay().day;
+    const wrapper = mount(CEditDay, {
+      global: globalMountingOptions(),
+      propsData: { givenDays: [day] },
     });
-
-    expect(wrapper.text()).toContain("Add another day");
-    // expect(wrapper.html()).toMatchSnapshot();
-    expect(wrapper.find(".editDayTitle").exists()).toBeFalsy();
-    expect(wrapper.find(".removeDay").exists()).toBeFalsy();
+    expect(wrapper.find(".editDayTitle").text()).toMatch(
+      new RegExp("Day " + day.dayOf),
+    );
+    expect(wrapper.find(".removeDay").exists()).toBeTruthy();
     expect(wrapper.find(".addDay").exists()).toBeTruthy();
   });
 });

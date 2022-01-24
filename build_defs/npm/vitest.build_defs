@@ -3,17 +3,54 @@ subinclude("//build_defs/npm")
 def vitest_dir(
   name:str,
   srcs:list=[],
+  config:str=None,
   deps:list=[],
   visibility:list=[],
 ):
+  cmd = "zip -r " + name + ".vitest_dir ./"
+  if config is not None:
+    cmd = " && ".join([
+      "rm vite.config.ts",
+      "mv " + config + " vite.config.ts",
+      cmd,
+    ])
+
   return build_rule(
     name = name,
-    srcs = srcs,
-    cmd = "zip -r " + name + ".vitest_dir ./",
+    srcs = srcs + [config],
+    cmd = cmd,
     outs = [name + ".vitest_dir"],
     deps = deps,
     test_only = True,
     visibility = visibility
+  )
+
+def vitest_tests(
+  name:str,
+  srcs:list=[],
+  vitest_dirs:list=[],
+  deps:list=[],
+  visibility:list=[],
+):
+  test_rules = []
+
+  for src in srcs:
+    test = vitest_test(
+      name = src[:-8].replace("/", "_"),
+      src = src,
+      vitest_dirs = vitest_dirs,
+      deps = deps,
+      visibility = visibility,
+    )
+    test_rules += [test]
+
+  return build_rule(
+    name = name,
+    data = test_rules + srcs,
+    test_cmd = "echo 'test'",
+    test_only = True,
+    visibility = visibility,
+    requires = ["npm-test"],
   )
 
 def vitest_test(
@@ -46,12 +83,15 @@ def vitest_test(
         _get_npx_tool(),
         "vitest",
         "--coverage",
+        "--threads=false",
+        "--reporter=junit",
+        "--run",
         "$PKG_DIR/" + src,
       ]),
-      "cp jest_coverage/test_results.xml test.results",
-      "cp jest_coverage/cobertura-coverage.xml test.coverage",
+      "cp vitest_junit test.results",
+      "cp vitest_coverage/coverage-final.json test.coverage",
       "mkdir -p " + out_dir,
-      "mv jest_coverage/* " + out_dir,
+      "mv vitest_coverage/* " + out_dir,
     ]),
     test_outputs = [out_dir],
     test = True,
