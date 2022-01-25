@@ -41,7 +41,7 @@ specifiers:
   jest-serializer-html: 7.1.0
   jsdom: 19.0.0
   jsdom-global: 3.0.2
-  naive-ui: 2.24.5
+  naive-ui: 2.24.6
   node-sass: 7.0.1
   nyc: 15.1.0
   prettier: 2.5.1
@@ -112,7 +112,7 @@ devDependencies:
   jest-serializer-html: 7.1.0
   jsdom: 19.0.0
   jsdom-global: 3.0.2_jsdom@19.0.0
-  naive-ui: 2.24.5_vue@3.2.29
+  naive-ui: 2.24.6_vue@3.2.29
   node-sass: 7.0.1
   nyc: 15.1.0
   prettier: 2.5.1
@@ -9817,8 +9817,8 @@ packages:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
     dev: true
 
-  /naive-ui/2.24.5_vue@3.2.29:
-    resolution: {integrity: sha512-scOMed4NtgpbRH87jBk1i1NQfm65fUAe3oPMkog7ufV+CIct29pYRdPiLcme7nHbsl0/CbLat/lYoovB9aZZxg==}
+  /naive-ui/2.24.6_vue@3.2.29:
+    resolution: {integrity: sha512-8eK9os7gruxBfhzvbXoUn8ok/jBc1T+PWhoW1Je0Ou446XsyHsZ9B5vZMQQ4w29C3dVc7OBfeIm/vTq5rLnVBw==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
