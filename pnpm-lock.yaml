@@ -33,7 +33,7 @@ specifiers:
   esbuild-jest: 0.5.0
   eslint: 8.7.0
   eslint-plugin-prettier: 4.0.0
-  eslint-plugin-vue: 8.3.0
+  eslint-plugin-vue: 8.4.0
   forever: 4.0.2
   happy-dom: '*'
   jest: 26.6.3
@@ -92,7 +92,7 @@ devDependencies:
   '@vitejs/plugin-vue': 2.1.0_vite@2.7.13+vue@3.2.29
   '@vue/compiler-sfc': 3.2.29
   '@vue/eslint-config-prettier': 7.0.0_eslint@8.7.0+prettier@2.5.1
-  '@vue/eslint-config-typescript': 10.0.0_b5007341d5f2a2e7b479ac173dfc16cf
+  '@vue/eslint-config-typescript': 10.0.0_6c4ab0302c92894b478ab978a79a481b
   '@vue/test-utils': 2.0.0-rc.18_vue@3.2.29
   babel-loader: 8.2.3_@babel+core@7.16.12
   babel-plugin-istanbul: 6.1.1
@@ -104,7 +104,7 @@ devDependencies:
   esbuild-jest: 0.5.0_esbuild@0.14.13
   eslint: 8.7.0
   eslint-plugin-prettier: 4.0.0_eslint@8.7.0+prettier@2.5.1
-  eslint-plugin-vue: 8.3.0_eslint@8.7.0
+  eslint-plugin-vue: 8.4.0_eslint@8.7.0
   forever: 4.0.2
   happy-dom: 2.25.1
   jest: 26.6.3
@@ -3864,7 +3864,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       '@typescript-eslint/types': 5.3.1
-      eslint-visitor-keys: 3.1.0
+      eslint-visitor-keys: 3.2.0
     dev: true
 
   /@vicons/ionicons5/0.11.0:
@@ -4062,7 +4062,7 @@ packages:
       prettier: 2.5.1
     dev: true
 
-  /@vue/eslint-config-typescript/10.0.0_b5007341d5f2a2e7b479ac173dfc16cf:
+  /@vue/eslint-config-typescript/10.0.0_6c4ab0302c92894b478ab978a79a481b:
     resolution: {integrity: sha512-F94cL8ug3FaYXlCfU5/wiGjk1qeadmoBpRGAOBq+qre3Smdupa59dd6ZJrsfRODpsMPyTG7330juMDsUvpZ3Rw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -4072,7 +4072,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 5.10.1_0f442f6b60390429061d5d9b6bcaaba6
       '@typescript-eslint/parser': 5.10.1_eslint@8.7.0+typescript@4.5.5
       eslint: 8.7.0
-      eslint-plugin-vue: 8.3.0_eslint@8.7.0
+      eslint-plugin-vue: 8.4.0_eslint@8.7.0
       vue-eslint-parser: 8.0.1_eslint@8.7.0
     transitivePeerDependencies:
       - supports-color
@@ -6837,8 +6837,8 @@ packages:
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-vue/8.3.0_eslint@8.7.0:
-    resolution: {integrity: sha512-IIuLHw4vQxGlHcoP2dG6t/2OVdQf2qoyAzEGAxreU1afZOHGA7y3TWq8I+r3ZA6Wjs6xpeUWGHlT31QGr9Rb5g==}
+  /eslint-plugin-vue/8.4.0_eslint@8.7.0:
+    resolution: {integrity: sha512-Ga96QRG8GA9AyzKtEDxqYRCMt/VJM4SLkcNmm4FvUiFBE4jpaBr25unRBi9iVmHLYhA9EZ/4I+jD8n1vfWzyAA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
@@ -6889,11 +6889,6 @@ packages:
   /eslint-visitor-keys/2.1.0:
     resolution: {integrity: sha512-0rSmRBzXgDzIsD6mGdJgevzgezI534Cer5L/vyMX0kHzT/jiB43jRhd9YUlMGYLQy2zprNmoT8qasCGtY+QaKw==}
     engines: {node: '>=10'}
-    dev: true
-
-  /eslint-visitor-keys/3.1.0:
-    resolution: {integrity: sha512-yWJFpu4DtjsWKkt5GeNBBuZMlNcYVs6vRCLoCVEJrTjaSB6LC98gFipNK/erM2Heg/E8mIK+hXG/pJMLK+eRZA==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
   /eslint-visitor-keys/3.2.0:
