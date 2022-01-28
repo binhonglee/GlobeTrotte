@@ -41,7 +41,7 @@ specifiers:
   jest-serializer-html: 7.1.0
   jsdom: 19.0.0
   jsdom-global: 3.0.2
-  naive-ui: 2.24.6
+  naive-ui: 2.24.7
   node-sass: 7.0.1
   nyc: 15.1.0
   prettier: 2.5.1
@@ -112,7 +112,7 @@ devDependencies:
   jest-serializer-html: 7.1.0
   jsdom: 19.0.0
   jsdom-global: 3.0.2_jsdom@19.0.0
-  naive-ui: 2.24.6_vue@3.2.29
+  naive-ui: 2.24.7_vue@3.2.29
   node-sass: 7.0.1
   nyc: 15.1.0
   prettier: 2.5.1
@@ -3219,7 +3219,7 @@ packages:
       '@jest/test-result': 26.6.2
       '@jest/transform': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 16.11.19
+      '@types/node': 16.11.21
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       exit: 0.1.2
@@ -3605,10 +3605,6 @@ packages:
 
   /@types/node/14.17.32:
     resolution: {integrity: sha512-JcII3D5/OapPGx+eJ+Ik1SQGyt6WvuqdRfh9jUwL6/iHGjmyOriBDciBUu7lEIBTL2ijxwrR70WUnw5AEDmFvQ==}
-    dev: true
-
-  /@types/node/16.11.19:
-    resolution: {integrity: sha512-BPAcfDPoHlRQNKktbsbnpACGdypPFBuX4xQlsWDE7B8XXcfII+SpOLay3/qZmCLb39kV5S1RTYwXdkx2lwLYng==}
     dev: true
 
   /@types/node/16.11.21:
@@ -9819,8 +9815,8 @@ packages:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
     dev: true
 
-  /naive-ui/2.24.6_vue@3.2.29:
-    resolution: {integrity: sha512-8eK9os7gruxBfhzvbXoUn8ok/jBc1T+PWhoW1Je0Ou446XsyHsZ9B5vZMQQ4w29C3dVc7OBfeIm/vTq5rLnVBw==}
+  /naive-ui/2.24.7_vue@3.2.29:
+    resolution: {integrity: sha512-Kt3PxQ85c+5VO6SSaszSWfMwCzjs+pRo/GFK5fLMn5H9YRqnEXuxBSb2UI3Wt72OAisDAebCS4uAfFmyv7u5fQ==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
