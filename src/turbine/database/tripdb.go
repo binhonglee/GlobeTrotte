@@ -137,6 +137,33 @@ func DeleteTripDB(trip wings.Trip) bool {
 	)
 }
 
+func DeleteTripWithOwnerIDDB(id int) bool {
+	tripIDs := make([]int, 0)
+	sqlStatement := `SELECT id FROM trips WHERE user=$1`
+	c := getConn()
+	rows, err := c.Query(context.Background(), sqlStatement, id)
+	defer c.Close()
+	logger.Err(logger.Database, err, "")
+
+	defer rows.Close()
+	for rows.Next() {
+		var id int
+		err = rows.Scan(&id)
+		logger.Err(logger.Database, err, "")
+		tripIDs = append(tripIDs, id)
+	}
+
+	succeed := true
+
+	for _, id := range tripIDs {
+		if !deleteTripWithID(id) {
+			succeed = false
+		}
+	}
+
+	return succeed
+}
+
 func SearchTripsDB(cities []wings.City, days int, query string) []wings.Trip {
 	toReturn := make([]wings.Trip, 0)
 	args := make([]interface{}, 0)

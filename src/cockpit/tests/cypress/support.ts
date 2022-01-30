@@ -56,6 +56,7 @@ Cypress.Commands.add("deleteAccount", () => {
   cy.visit("/myaccount");
   cy.contains("button", "Edit").click();
   cy.contains("button", "Delete Account").click();
+  cy.contains("button", "Confirm").click();
   cy.isLoggedOut();
 });
 

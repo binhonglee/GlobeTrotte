@@ -56,27 +56,17 @@
     "jest-junit": "13.0.0",
     "jest-serializer-html": "7.1.0",
     "jsdom": "19.0.0",
-    "node-sass": "7.0.1",
     "nyc": "15.1.0",
     "prettier": "2.5.1",
     "pug": "3.0.2",
-    "pug-plain-loader": "1.1.0",
-    "require-extension-hooks": "0.3.3",
-    "require-extension-hooks-vue": "3.0.0",
-    "sass": "1.49.0",
-    "sass-loader": "12.4.0",
     "sinon": "13.0.0",
-    "tap-xunit": "2.4.1",
     "ts-jest": "26.5.6",
     "typescript": "4.5.5",
     "vite": "2.7.13",
     "vitest": "0.2.5",
     "vue-jest": "5.0.0-alpha.10",
-    "vue-loader": "17.0.0",
     "vue-router": "4.0.12",
-    "vue-template-compiler": "2.6.14",
-    "vue-tsc": "0.31.1",
-    "wait-on": "6.0.0"
+    "vue-tsc": "0.31.1"
   },
   "license": "AGPL 3.0"
 }

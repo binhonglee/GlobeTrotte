@@ -77,7 +77,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style>
 .places {
   padding: 0;
   margin: 0;
@@ -98,22 +98,18 @@ export default defineComponent({
   cursor: pointer;
 }
 
-.places .placeDisplayCard {
-  .placeDisplayCardContent {
-    font-size: 14px;
-    padding: 5px;
-
-    .link {
-      color: #409eff;
-    }
-  }
+.places .placeDisplayCard .placeDisplayCardContent {
+  font-size: 14px;
+  padding: 5px;
 }
 
-.placeDisplayCard:hover {
-  .link {
-    text-decoration: underline;
-    text-decoration-color: #409eff;
-  }
+.places .placeDisplayCard .placeDisplayCardContent .link {
+  color: #409eff;
+}
+
+.placeDisplayCard:hover .link {
+  text-decoration: underline;
+  text-decoration-color: #409eff;
 }
 
 .placeDescription {

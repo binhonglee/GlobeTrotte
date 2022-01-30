@@ -55,7 +55,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .confirm_email .emailConfirmationScreenshot {
   margin: auto;
   max-width: 500px;
@@ -66,21 +66,21 @@ export default defineComponent({
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
 
-  .el-card__body {
-    padding: 15px 20px;
-  }
+.confirm_email .emailConfirmationScreenshot .el-card__body {
+  padding: 15px 20px;
+}
 
-  a {
-    pointer-events: none;
-  }
+.confirm_email .emailConfirmationScreenshot a {
+  pointer-events: none;
+}
 
-  h2 {
-    margin: 0;
-  }
+.confirm_email .emailConfirmationScreenshot h2 {
+  margin: 0;
+}
 
-  p {
-    margin: 10px 0 0 0;
-  }
+.confirm_email .emailConfirmationScreenshot p {
+  margin: 10px 0 0 0;
 }
 </style>

@@ -6,7 +6,7 @@
     title="Please login to continue."
     type="error"
   )
-  form.loginbox
+  form.narrow_display_window
     CEditItem.loginUsernameItem(
       label="Email"
       ref="email"
@@ -21,12 +21,12 @@
       @enter="confirm"
     )
     br
-    n-button.loginConfirm(
+    n-button.loginConfirm.left_col(
       type="info"
       @click="confirm"
       :loading="loading"
     ) Confirm
-    n-button.loginCancel(
+    n-button.loginCancel.right_col(
       type="default"
       @click="cancel"
     ) Cancel
@@ -120,21 +120,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-@import "../shared/lib";
-
-.loginbox {
-  @include trip_display();
-}
-
-.loginCancel {
-  @include right_col($p-height);
-}
-
-.loginConfirm {
-  @include left_col($p-height);
-}
-
+<style scoped>
 .forgotPassword {
   text-align: right;
 }

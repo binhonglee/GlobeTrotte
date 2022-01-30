@@ -1,5 +1,5 @@
 <template lang="pug">
-.trip_info
+.trip_info.narrow_display_window
   div.view_trip_info(v-if="!editMode")
     CViewTrip(
       :trip="dtrip"
@@ -78,11 +78,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-@import "../shared/lib";
-
-.trip_info {
-  @include trip_display();
-}
-</style>

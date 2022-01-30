@@ -10,7 +10,10 @@
     .editDayCardContent
       .editDayTitle
         b Day {{ day.dayOf }}
-        n-button.removeDay(secondary type="error" @click="removeDay(index)")
+        n-button.removeDay.right_button(
+          secondary type="error"
+          @click="removeDay(index)"
+        )
           n-icon
             close-outline
           | Delete this day
@@ -18,7 +21,7 @@
         :ref="'places' + index"
         v-model:propPlaces="day.propPlaces"
       )
-  n-button.addDay(@click="pushDay()")
+  n-button.addDay.right_button(@click="pushDay()")
     n-icon
       add
     | Add another day
@@ -95,9 +98,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-@import "../shared/lib";
-
+<style scoped>
 .editPlaces {
   margin: 15px 0 0 0;
 }
@@ -106,10 +107,10 @@ export default defineComponent({
   margin: 10px 0 10px 0;
   padding: 0;
   width: 100%;
+}
 
-  .editDayCardContent {
-    padding: 15px 10px;
-  }
+.editDay .editDayCardContent {
+  padding: 15px 10px;
 }
 
 .editDayTitle {
@@ -117,14 +118,12 @@ export default defineComponent({
 }
 
 .addDay {
-  @include right_button();
   min-height: 28px;
   padding: 5px;
   width: 100%;
 }
 
 .removeDay {
-  @include right_button();
   font-size: 12px;
   margin-top: -5px;
   min-height: 28px;

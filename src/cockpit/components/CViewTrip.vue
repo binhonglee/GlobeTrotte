@@ -6,7 +6,7 @@
       title="Trip is private"
       type="info"
     ) Only you can see this trip.
-    h2.tripName {{ trip.details.name }}
+    h2.tripName.left_col {{ trip.details.name }}
     p.tripDescription(
       v-if="trip.details.description !== ''"
     ) {{ trip.details.description }}
@@ -26,7 +26,7 @@
         h3.dayTitle Day {{ day.dayOf }}
         CPlaces(:propPlaces="day.propPlaces")
   .narrow_content
-    n-button.enableTripEdit(
+    n-button.enableTripEdit.right_col(
       v-if="editable" @click="enableEditMode"
     ) Edit
 </template>
@@ -81,9 +81,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-@import "../shared/lib";
-
+<style scoped>
 .tripPrivateAlertBar {
   margin: 0 0 20px 0;
 }
@@ -128,10 +126,5 @@ export default defineComponent({
 
 .enableTripEdit {
   margin-top: 20px;
-  @include right_col($p-height);
-}
-
-.tripName {
-  @include left_col($p-height);
 }
 </style>

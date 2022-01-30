@@ -1,7 +1,7 @@
 <template lang="pug">
 .view_user
   div.userInfo.narrow_content
-    h2(v-if="showName").userName {{ user.details.name }}
+    h2(v-if="showName").userName.left_col {{ user.details.name }}
     p.userBio(v-if="user.details.bio !== ''")
       | {{ user.details.bio }}
     CExternalLink(
@@ -11,8 +11,10 @@
     )
       | {{ user.details.link }}
     .userInfoButtonGroups(v-if="self")
-      n-button.myAccountLogout(type="error" @click="logout") Logout
-      n-button.myAccountEdit(type="default" ref="edit" @click="toggleEdit") Edit
+      n-button.myAccountLogout.left_col(type="error" @click="logout") Logout
+      n-button.myAccountEdit.right_col(
+        type="default" ref="edit" @click="toggleEdit"
+      ) Edit
   n-divider.viewUserDivider
   div.viewUserTrips
     h2 Trips
@@ -130,9 +132,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-@import "../shared/lib";
-
+<style scoped>
 .userInfo {
   padding: 10px;
 }
@@ -144,17 +144,14 @@ export default defineComponent({
 
 .viewUserTrips {
   text-align: center;
-  h2 {
-    margin: 20px 0 0 0;
-  }
+}
+
+.viewUserTrips h2 {
+  margin: 20px 0 0 0;
 }
 
 .viewUserDivider {
   width: 100%;
-}
-
-.userName {
-  @include left_col($p-height);
 }
 
 .userInfoButtonGroups {

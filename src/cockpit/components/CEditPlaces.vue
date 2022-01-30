@@ -33,7 +33,7 @@
           :placeholder="index !== 0 ? 'Description' : 'Elaborate more about why you include this place in the trip!'"
           :rows="3"
         )
-        n-button.removePlace(
+        n-button.removePlace.wide_button(
           type="error"
           secondary
           @click="removePlace(index)"
@@ -42,7 +42,7 @@
             close-outline
           | Delete this place
   n-divider.editPlaceDivider
-  n-button.addPlace(
+  n-button.addPlace.wide_button(
     @click="pushPlace"
   )
     n-icon
@@ -106,11 +106,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-@import "../shared/lib";
-
+<style>
 .addPlace {
-  @include wide_button();
   margin: 0;
 }
 
@@ -136,7 +133,6 @@ export default defineComponent({
 }
 
 .removePlace {
-  @include wide_button();
   margin: 10px 0 0 0;
 }
 

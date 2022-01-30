@@ -27,15 +27,15 @@
         :val-max-count="1000"
       )
       div.myAccountButtonGroups
-        n-button.myAccountSave(type="info" @click="save") Save
-        n-button.myAccountCancel(
+        n-button.myAccountSave.left_col(type="info" @click="save") Save
+        n-button.myAccountCancel.right_col(
           type="default"
           ref="cancel"
           @click="toggleEdit"
         ) Cancel
       div.myAccountDeletion
         n-button.myAccountDelete(
-          type="error" @click="deleteAccount"
+          type="error" @click="confirmDelete"
         ) Delete Account
 </template>
 
@@ -52,8 +52,9 @@ import UserBasic from "@/wings/UserBasic";
 import UserObj from "@/wings/UserObj";
 import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
-import { NAlert, NButton } from "naive-ui";
+import { NAlert, NButton, useDialog } from "naive-ui";
 import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
+import NaiveUtils from "@/shared/NaiveUtils";
 
 interface Data {
   user: UserObj;
@@ -93,6 +94,7 @@ export default defineComponent({
   methods: {
     async init(): Promise<void> {
       this.$data.loading = true;
+      NaiveUtils.init();
       this.$data.user = await General.genCurrentUser();
       this.$data.user.details.bio = this.$data.user.details.bio.replaceAll(
         "\\n",
@@ -103,6 +105,18 @@ export default defineComponent({
       }
       this.$data.confirmed = this.$data.user.details.confirmed.valueOf();
       this.$data.loading = false;
+    },
+    confirmDelete(): void {
+      NaiveUtils.dialogWarning({
+        title: "Delete account",
+        content:
+          "Are you sure you want to delete this account? All trips owned by this account will also be deleted. THIS PROCESS IS IRREVERSIBLE.",
+        positiveText: "Confirm",
+        negativeText: "Cancel",
+        onPositiveClick: async () => {
+          await this.deleteAccount();
+        },
+      });
     },
     async deleteAccount(): Promise<void> {
       this.$data.loadingBar?.start();
@@ -176,9 +190,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-@import "../shared/lib";
-
+<style scoped>
 .accountUnconfirmedAlertBar {
   text-align: left;
   padding: 10px;
@@ -200,17 +212,6 @@ export default defineComponent({
 
 .myAccountButtonGroups {
   padding-top: 10px;
-}
-
-.myAccountLogout,
-.myAccountSave {
-  @include left_col($p-height);
-}
-
-.myAccountCancel,
-.myAccountDeleteUser,
-.myAccountEdit {
-  @include right_col($p-height);
 }
 
 .myAccountDelete {

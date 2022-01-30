@@ -1,7 +1,7 @@
 <template lang="pug">
 .password_reset.narrow_content
   h1.title Reset Password
-  form.resetPasswordStart(v-if="step < 2")
+  form.resetPasswordStart.narrow_display_window(v-if="step < 2")
     CEditItem(
       className="emailInput"
       label="Email"
@@ -10,18 +10,18 @@
       @keydown.enter.native="confirmEmail"
     )
     br
-    n-button.resetPasswordSave(
+    n-button.resetPasswordSave.left_col(
       type="info"
       @click="confirmEmail"
       :loading="loading"
     ) Confirm
-    n-button.resetPasswordCancel(
+    n-button.resetPasswordCancel.right_col(
       type="default"
       @click="cancel"
     ) Cancel
     p.backToLogin
       CLink(:url="loginLink") Back to Login
-  form.resetPasswordInput(v-else)
+  form.resetPasswordInput.narrow_display_window(v-else)
     CEditItem(
       className="resetEmail"
       label="Email"
@@ -50,12 +50,12 @@
       @enter="confirmReset"
     )
     br
-    n-button.resetPasswordSave(
+    n-button.resetPasswordSave.left_col(
       type="info"
       @click="confirmReset"
       :loading="loading"
     ) Confirm
-    n-button.resetPasswordCancel(
+    n-button.resetPasswordCancel.right_col(
       type="default"
       @click="cancel"
     ) Cancel
@@ -174,22 +174,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-@import "../../shared/lib";
-
-.resetPasswordStart,
-.resetPasswordInput {
-  @include trip_display();
-}
-
-.resetPasswordSave {
-  @include left_col($p-height);
-}
-
-.resetPasswordCancel {
-  @include right_col($p-height);
-}
-
+<style scoped>
 .backToLogin {
   text-align: right;
 }

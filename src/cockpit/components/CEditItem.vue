@@ -87,9 +87,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-@import "../shared/lib";
-
+<style>
 .editLabel {
   margin-top: 0px;
 }

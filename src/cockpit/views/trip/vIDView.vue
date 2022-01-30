@@ -61,9 +61,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-@import "../../shared/lib";
-
+<style>
 .tripSearchInput {
   margin-left: 5px;
   display: inline;

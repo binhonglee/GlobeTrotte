@@ -1,6 +1,6 @@
 filegroup(
   name = "shared",
-  srcs = glob(["**/*.ts"]) + glob(["**/*.scss"]) ,
+  srcs = glob(["**/*.ts"]) + glob(["**/*.css"]) ,
   visibility = [
     "//:ava_test_deps",
     "//:jest_test_deps",

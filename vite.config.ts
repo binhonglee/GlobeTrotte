@@ -25,7 +25,7 @@ export default defineConfig({
     coverage: {
       enabled: true,
       clean: true,
-      reporter: "text",
+      reporter: "text-summary",
     },
   },
 });

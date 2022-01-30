@@ -107,6 +107,7 @@ describe("Trips", () => {
     });
     cy.get(".enableTripEdit").click();
     cy.get(".deleteTrip").click();
+    cy.contains("button", "Confirm").click();
     cy.get(".el-notification__content").contains(
       "p",
       "Trip is successfully deleted!",

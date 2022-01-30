@@ -77,7 +77,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .trip_preview_card {
   display: inline-block;
   margin: 15px;
@@ -92,12 +92,16 @@ export default defineComponent({
   overflow: auto;
   width: 500px;
   height: 500px;
+}
 
-  @media screen and (max-width: 1060px) {
+@media screen and (max-width: 1060px) {
+  .tripPreviewCard {
     height: auto;
   }
+}
 
-  @media screen and (max-width: 550px) {
+@media screen and (max-width: 550px) {
+  .tripPreviewCard {
     width: 100%;
   }
 }

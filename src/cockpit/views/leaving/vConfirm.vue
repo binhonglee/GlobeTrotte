@@ -70,9 +70,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-@import url("@/shared/lib.scss");
-
+<style scoped>
 .externalURL {
   color: var(--default-link);
 }

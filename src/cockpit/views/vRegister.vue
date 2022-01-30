@@ -1,7 +1,7 @@
 <template lang="pug">
 .new_user.narrow_content
   h1.title Create Account
-  form.newUser
+  form.newUser.narrow_display_window
     CEditItem(
       className="registrationName"
       label="Name"
@@ -29,12 +29,12 @@
       @enter="confirm"
     )
     br
-    n-button.registrationSave(
+    n-button.registrationSave.left_col(
       type="info"
       @click="confirm"
       :loading="loading"
     ) Confirm
-    n-button.registrationCancel(
+    n-button.registrationCancel.right_col(
       type="default"
       @click="cancel"
     ) Cancel
@@ -145,19 +145,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-@import "../shared/lib";
-
-.newUser {
-  @include trip_display();
-}
-
-.registrationCancel {
-  @include right_col($p-height);
-}
-
-.registrationSave {
-  @include left_col($p-height);
-}
-</style>

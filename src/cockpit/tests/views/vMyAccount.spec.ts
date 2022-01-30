@@ -12,11 +12,9 @@ import {
 } from "@/tests/helper";
 
 import { mount } from "@vue/test-utils";
-import { WingsStructUtil } from "wings-ts-util";
 import sinon from "sinon";
 import { expect } from "@jest/globals";
 import Routing from "@/shared/Routing";
-import { compileScript } from "vue/compiler-sfc";
 
 const currentUser = new UserObj({
   id: 10,
@@ -72,6 +70,7 @@ it("My Account - Delete Account (success)", async () => {
   const genDELETE = sinon.stub(HTTPReq, "genDELETE").resolves(true);
   wrapper.find(".myAccountDelete").trigger("click");
   await wait(500);
+  expect(wrapper.html()).toMatchSnapshot();
   expect(wrapper.html()).toMatchSnapshot();
   expect(genDELETE.calledOnce).toEqual(true);
   expect(notify.item.calledOnce).toEqual(true);

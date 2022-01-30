@@ -1,7 +1,7 @@
 <template lang="pug">
 .new_trip.narrow_content
   h1.title New Trip
-  CEditTrip.newTrip(
+  CEditTrip.newTrip.narrow_display_window(
     :trip="trip"
     :isNew="true"
     @save="save"
@@ -62,11 +62,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-@import "../../shared/lib";
-
-.newTrip {
-  @include trip_display();
-}
-</style>

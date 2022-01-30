@@ -1,40 +1,46 @@
 <template lang="pug">
 #app
   n-loading-bar-provider
-    el-menu.main_menu(
-      :default-active="activeIndex"
-      mode="horizontal"
-      @select="handleSelect"
-      background-color="#333"
-      text-color="white"
-      active-text-color="#42b983"
-    )
-      el-menu-item.main_menu_item(index="") Home
-      el-submenu.main_menu_item(index="/trip")
-        template.main_menu_item(#title) Trips
-        el-menu-item.main_menu_item(index="/trip/search") Search
-        el-menu-item.main_menu_item(
-          v-if="confirmed" index="/trip/new"
-        ) New
-      el-menu-item.main_menu_item.login_button(
-        v-if="!authed" index="/login"
-      ) Login
-      el-menu-item.main_menu_item.register_button(
-        v-if="!authed" index="/register"
-      ) Register
-      el-menu-item.main_menu_item.myaccount_button(
-        v-if="authed" index="/myaccount"
-      ) My Account
-    router-view#content.content
-    #footerMargin
-      #footer
+    n-dialog-provider
+      n-message-provider
+        el-menu.main_menu(
+          :default-active="activeIndex"
+          mode="horizontal"
+          @select="handleSelect"
+          background-color="#333"
+          text-color="white"
+          active-text-color="#42b983"
+        )
+          el-menu-item.main_menu_item(index="") Home
+          el-submenu.main_menu_item(index="/trip")
+            template.main_menu_item(#title) Trips
+            el-menu-item.main_menu_item(index="/trip/search") Search
+            el-menu-item.main_menu_item(
+              v-if="confirmed" index="/trip/new"
+            ) New
+          el-menu-item.main_menu_item.login_button(
+            v-if="!authed" index="/login"
+          ) Login
+          el-menu-item.main_menu_item.register_button(
+            v-if="!authed" index="/register"
+          ) Register
+          el-menu-item.main_menu_item.myaccount_button(
+            v-if="authed" index="/myaccount"
+          ) My Account
+        router-view#content.content
+        #footerMargin
+          #footer
 </template>
 
 <script lang="ts">
 import General from "./shared/General";
 import Routing from "./shared/Routing";
 import { defineComponent } from "vue";
-import { NLoadingBarProvider } from "naive-ui";
+import {
+  NDialogProvider,
+  NLoadingBarProvider,
+  NMessageProvider,
+} from "naive-ui";
 
 interface Data {
   activeIndex: string;
@@ -44,7 +50,9 @@ interface Data {
 
 export default defineComponent({
   components: {
+    NDialogProvider,
     NLoadingBarProvider,
+    NMessageProvider,
   },
   data(): Data {
     return {
@@ -103,19 +111,19 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-@import "./shared/general";
+<style>
+@import "./shared/general.css";
 
 #app {
   position: relative;
   min-height: 100vh;
   text-align: center;
+}
 
-  .login_button,
-  .myaccount_button,
-  .register_button {
-    float: right;
-  }
+#app .login_button,
+#app .myaccount_button,
+#app .register_button {
+  float: right;
 }
 
 #footer {
@@ -126,7 +134,7 @@ export default defineComponent({
   height: 40px;
   width: 100%;
   background-color: #333;
-  // color: white;
+  /* color: white; */
 }
 
 #footerMargin {
@@ -136,14 +144,14 @@ export default defineComponent({
 #footerMessage {
   margin: 0px;
   margin-top: 10px;
+}
 
-  a {
-    color: #42b983;
-    text-decoration: none;
-  }
+#footerMessage a {
+  color: #42b983;
+  text-decoration: none;
+}
 
-  a:hover {
-    text-decoration: underline;
-  }
+#footerMessage a:hover {
+  text-decoration: underline;
 }
 </style>

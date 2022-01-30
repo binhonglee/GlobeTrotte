@@ -70,8 +70,12 @@ func DeleteUserObj(toDelete wings.UserBasic, self int) bool {
 		)
 		return false
 	}
-	database.DeleteEmailsDB(toDelete.ID)
-	return database.DeleteUserDBWithID(toDelete.ID)
+
+	// Writing it this way to make sure all deletion process is always ran
+	// regardless of any failure status.
+	success := database.DeleteEmailsDB(toDelete.ID)
+	success = database.DeleteTripWithOwnerIDDB(toDelete.ID) && success
+	return database.DeleteUserDBWithID(toDelete.ID) && success
 }
 
 // Deprecated: This bypasses proper privacy checks.

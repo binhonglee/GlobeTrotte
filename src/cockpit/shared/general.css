@@ -1,0 +1,102 @@
+@font-face {
+  font-family: SourceSansPro;
+  src: url("../../assets/SourceSansPro/SourceSansPro-Regular.ttf");
+}
+
+:root {
+  --default-link: #409eff;
+  --h2-height: 40px;
+  --h3-height: 30px;
+  --p-height: 20px;
+  --edit-width: 250px;
+}
+
+div,
+h3 {
+  margin: 0;
+}
+
+.left_col {
+  display: inline;
+  line-height: var(--p-height);
+}
+
+.right_col {
+  float: right;
+  line-height: var(--p-height);
+}
+
+.trip_display {
+  padding-top: 20px;
+  text-align: left;
+}
+
+.right_button {
+  float: right;
+  font-size: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  vertical-align: middle;
+}
+
+.wide_button {
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  min-height: 28px;
+  padding: 5px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.narrow_display_window {
+  padding-top: 20px;
+  text-align: left;
+}
+
+.title {
+  font-size: 30px;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.editLabel {
+  line-height: var(--h2-height);
+}
+
+.editInput {
+  float: right;
+  line-height: var(--h2-height);
+  max-width: var(--edit-width);
+}
+
+.narrow_content {
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 400px;
+  max-width: 92%;
+}
+
+.wide_content {
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 700px;
+}
+
+.content .el-card__body {
+  padding: 0;
+}
+
+.n-button__content {
+  font-size: 13px;
+}
+
+.n-button__content .n-icon {
+  padding-right: 3px;
+}
+
+.n-divider:not(.n-divider--vertical) {
+  margin: 10px 0;
+}

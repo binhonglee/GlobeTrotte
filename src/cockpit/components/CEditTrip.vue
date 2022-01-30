@@ -32,15 +32,15 @@
         )
     CEditDays(ref="days" :givenDays="trip.details.days")
     div.confirmationButtons.narrow_content
-      n-button.saveEditTrip(
+      n-button.saveEditTrip.left_col(
         type="info" @click="save" :loading="saving"
       ) Save
-      n-button.cancelEditTrip(
+      n-button.cancelEditTrip.right_col(
         type="default" @click="cancel"
       ) Cancel
-      n-button.deleteTrip(
+      n-button.deleteTrip.right_col(
         v-if="!isNew"
-        @click="del"
+        @click="confirmDelete"
         type="error"
         :loading="deleting"
       ) Delete
@@ -68,6 +68,7 @@ import {
   NAME_CHAR_MIN_COUNT,
 } from "@/shared/constants";
 import { NButton, NSelect, NSwitch } from "naive-ui";
+import NaiveUtils from "@/shared/NaiveUtils";
 
 interface Data {
   cities: Array<string>;
@@ -122,6 +123,7 @@ export default defineComponent({
     },
   },
   beforeMount(): void {
+    NaiveUtils.init();
     this.update();
   },
   mounted(): void {
@@ -223,6 +225,20 @@ export default defineComponent({
       }
       return false;
     },
+    confirmDelete(): void {
+      NaiveUtils.dialogWarning({
+        title: "Delete trip",
+        content:
+          "Are you sure you want to delete this trip? THIS PROCESS IS IRREVERSIBLE.",
+        positiveText: "Confirm",
+        negativeText: "Cancel",
+        onPositiveClick: async () => {
+          await this.del();
+        },
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        onNegativeClick: async () => {},
+      });
+    },
     async del(): Promise<void> {
       this.$data.deleting = true;
       let success = Boolean(
@@ -289,8 +305,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-@import "../shared/lib";
+<style>
 .edit_form {
   display: flex;
   flex-direction: column;
@@ -300,33 +315,23 @@ export default defineComponent({
   overflow: hidden;
   line-height: 40px;
   margin-bottom: 5px;
-  .editLabel,
-  .editInput {
-    line-height: 40px;
-  }
+}
+
+.editCity .editLabel,
+.editCity .editInput {
+  line-height: 40px;
 }
 
 .editTripPrivacy .editInput {
   width: 100%;
 }
 
-.editTripPrivacy {
-  .editLabel,
-  .editInput {
-    line-height: 40px;
-  }
+.editTripPrivacy .editLabel,
+.editTripPrivacy .editInput {
+  line-height: 40px;
 }
 
 .deleteTrip {
   margin-right: 10px;
-}
-
-.deleteTrip,
-.cancelEditTrip {
-  @include right_col($p-height);
-}
-
-.saveEditTrip {
-  @include left_col($p-height);
 }
 </style>

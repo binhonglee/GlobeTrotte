@@ -86,9 +86,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-@import "../../shared/lib";
-
+<style scoped>
 .emailConfirmationLoadingBox {
   max-width: 200px;
   height: 80px;

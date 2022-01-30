@@ -94,9 +94,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-@import "../shared/lib";
-
+<style scoped>
 .tripSearchQueryInput {
   max-width: 300px;
 }

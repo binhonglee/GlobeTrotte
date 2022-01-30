@@ -52,9 +52,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-@import "../shared/lib";
-
+<style scoped>
 .profile_info {
   text-align: left;
 }

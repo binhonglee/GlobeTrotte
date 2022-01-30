@@ -65,6 +65,7 @@ describe("User account", () => {
     cy.contains("li", "My Account").click();
     cy.contains("button", "Edit").click();
     cy.contains("button", "Delete Account").click();
+    cy.contains("button", "Confirm").click();
     cy.isLoggedOut();
   });
 });

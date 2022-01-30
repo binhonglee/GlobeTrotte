@@ -17,19 +17,18 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-@import "../shared/lib";
+<style scoped>
 </style>
 `;
 
 const componentTestFolder = "src/cockpit/tests/components/";
 const testFileTemplate = `import COMPONENT_NAME from "components/COMPONENT_NAME.vue";
 
-import { shallowMount } from "@vue/test-utils";
-import test from "ava";
+import { mount } from "@vue/test-utils";
+import { expect, test } from "ava";
 
-test("renders empty component", (t) => {
-  const wrapper = shallowMount(COMPONENT_NAME, {});
+test("renders empty component", () => {
+  const wrapper = mount(COMPONENT_NAME, {});
 });
 `;
 
