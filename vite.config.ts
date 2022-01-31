@@ -27,5 +27,6 @@ export default defineConfig({
       clean: true,
       reporter: "text-summary",
     },
+    setupFiles: ["src/cockpit/tests/vitest_setup.ts"],
   },
 });

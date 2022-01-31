@@ -2,8 +2,6 @@ filegroup(
   name = "views",
   srcs = glob(["**/*.vue"]),
   visibility = [
-    "//:ava_test_deps",
-    "//:jest_test_deps",
     "//:vitest_test_deps",
     "//:cockpit",
     "//src/cockpit:core_files",

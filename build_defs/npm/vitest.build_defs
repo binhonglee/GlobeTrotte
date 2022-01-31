@@ -61,14 +61,15 @@ def vitest_test(
   visibility:list=[],
 ):
   pre_build = _set_node_modules()
-  for vitest_dir in vitest_dirs:
-    vitest_dir_name = vitest_dir.split(":")
-    if len(name) < 2:
-      temp = vitest_dir.split("/")
-      vitest_dir_name = temp[len(temp) - 1]
-    else:
-      vitest_dir_name = vitest_dir_name[1]
-    pre_build += " && unzip -o " + vitest_dir_name + ".vitest_dir"
+  if len(vitest_dirs) > 0:
+    pre_build = " && ".join([
+      pre_build,
+      "; ".join([
+        "for z in $(find . -name '*.vitest_dir' -type f)",
+        "do unzip -o $z",
+        "done",
+      ]),
+    ])
 
   out_dir = _vitest_out_dir(name)
   if CONFIG.CORE_FILES != "":

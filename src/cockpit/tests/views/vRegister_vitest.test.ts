@@ -2,19 +2,11 @@ import vRegister from "@/views/vRegister.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import UserObj from "@/wings/UserObj";
-import {
-  alertSpy,
-  messageSpy,
-  mountingOptions,
-  notifySpy,
-  routerSpy,
-  Vue,
-  wait,
-} from "../helper";
-import { describe, expect, it } from "@jest/globals";
+import { mountingOptions, Vue, wait } from "../helper";
+import { alertSpy, messageSpy, notifySpy, routerSpy, stub } from "../vitestSpy";
+import { describe, expect, spyOn, test } from "vitest";
 import { mount, VueWrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
-import sinon from "sinon";
 import Routing from "@/shared/Routing";
 
 const name = "Ab Cd";
@@ -62,7 +54,7 @@ function fillFormAndReg(wrapper: VueWrapper<Vue>, form: FormReg): void {
 }
 
 describe("vRegister", () => {
-  it("Registration - Password mismatch", async () => {
+  test("Registration - Password mismatch", async () => {
     const wrapper = mount(vRegister, mountingOptions());
     const alert = new alertSpy(wrapper);
     verifyUI(wrapper);
@@ -72,14 +64,14 @@ describe("vRegister", () => {
       password: password,
       confPassword: password + "a",
     });
-    expect(alert.item.calledOnce).toBeTruthy();
+    expect(alert.called(1)).toBeTruthy();
     expect(alert.getTitle()).toEqual("Fail");
     expect(alert.getMessage()).toEqual("Password does not match.");
     expect(alert.getOptions("confirmButtonText")).toEqual("OK");
     await alert.restore();
   });
 
-  it("Registration - New user (Failure)", async () => {
+  test("Registration - New user (Failure)", async () => {
     const returnedUser = WingsStructUtil.stringify(
       new UserObj({
         id: -1,
@@ -90,9 +82,9 @@ describe("vRegister", () => {
         },
       }),
     );
-    const genPOST = sinon
-      .stub(HTTPReq, "genPOST")
-      .resolves(JSON.parse(returnedUser));
+    const genPOST = stub(spyOn(HTTPReq, "genPOST")).resolves(
+      JSON.parse(returnedUser),
+    );
     const wrapper = mount(vRegister, mountingOptions());
     const message = new messageSpy(wrapper);
     verifyUI(wrapper);
@@ -102,9 +94,9 @@ describe("vRegister", () => {
       password: password,
       confPassword: password,
     });
-    expect(genPOST.calledOnce).toBeTruthy();
-    expect(genPOST.args[0][0]).toEqual("v2/user");
-    expect(genPOST.args[0][1]).toEqual(
+    expect(genPOST.calledOnce()).toBeTruthy();
+    expect(genPOST.args()[0][0]).toEqual("v2/user");
+    expect(genPOST.args()[0][1]).toEqual(
       WingsStructUtil.stringify(
         new NewUser({
           id: -1,
@@ -114,15 +106,15 @@ describe("vRegister", () => {
         }),
       ),
     );
-    await wait(500);
-    expect(message.item.calledOnce).toBeTruthy();
+    await wait(0);
+    expect(message.called(1)).toBeTruthy();
     expect(message.getMessage()).toEqual("Invalid email. Please try again.");
     expect(message.getType()).toEqual("error");
     await genPOST.restore();
     await message.restore();
   });
 
-  it("Registration - New user (Success)", async () => {
+  test("Registration - New user (Success)", async () => {
     const returnedUser = WingsStructUtil.stringify(
       new UserObj({
         id: 10,
@@ -133,15 +125,19 @@ describe("vRegister", () => {
         },
       }),
     );
-    const genPOST = sinon
-      .stub(HTTPReq, "genPOST")
-      .resolves(JSON.parse(returnedUser));
+    const genPOST = stub(spyOn(HTTPReq, "genPOST")).resolves(
+      JSON.parse(returnedUser),
+    );
     const wrapper = mount(vRegister, mountingOptions());
     const notify = new notifySpy(wrapper);
-    const redirection = sinon.stub(Routing, "genRedirectTo").resolves();
-    const getNext = sinon.stub(Routing, "getNext").callsFake((r, m) => {
-      return Routing.fakeGetNext(m);
-    });
+    const redirection = stub(
+      spyOn(Routing, "genRedirectTo").mockResolvedValue(),
+    );
+    const getNext = stub(
+      spyOn(Routing, "getNext").mockImplementation((r, m) => {
+        return Routing.fakeGetNext(m);
+      }),
+    );
     verifyUI(wrapper);
     fillFormAndReg(wrapper, {
       name: name,
@@ -149,9 +145,9 @@ describe("vRegister", () => {
       password: password,
       confPassword: password,
     });
-    expect(genPOST.calledOnce).toBeTruthy();
-    expect(genPOST.args[0][0]).toEqual("v2/user");
-    expect(genPOST.args[0][1]).toEqual(
+    expect(genPOST.calledOnce()).toBeTruthy();
+    expect(genPOST.args()[0][0]).toEqual("v2/user");
+    expect(genPOST.args()[0][1]).toEqual(
       WingsStructUtil.stringify(
         new NewUser({
           id: -1,
@@ -161,15 +157,15 @@ describe("vRegister", () => {
         }),
       ),
     );
-    await wait(500);
-    expect(notify.item.calledOnce).toBeTruthy();
+    await wait(0);
+    expect(notify.called(1)).toBeTruthy();
     expect(notify.getTitle()).toEqual("Success");
     expect(notify.getMessage()).toEqual(
       "Your account is created successfully!",
     );
     expect(notify.getType()).toEqual("success");
-    expect(redirection.calledOnce).toBeTruthy();
-    expect(redirection.args[0][0]).toEqual(
+    expect(redirection.calledOnce()).toBeTruthy();
+    expect(redirection.args()[0][0]).toEqual(
       "/unconfirmed/email/:next=myaccount",
     );
     await genPOST.restore();
@@ -178,13 +174,13 @@ describe("vRegister", () => {
     await getNext.restore();
   });
 
-  it("Registration - Cancel", async () => {
+  test("Registration - Cancel", async () => {
     const wrapper = mount(vRegister, mountingOptions());
     const routerBack = new routerSpy(wrapper, "back");
     verifyUI(wrapper);
     wrapper.find(".registrationCancel").trigger("click");
     expect(wrapper.html()).toMatchSnapshot();
-    expect(routerBack.item.calledOnce).toBeTruthy();
+    expect(routerBack.called(1)).toBeTruthy();
     await routerBack.restore();
   });
 });

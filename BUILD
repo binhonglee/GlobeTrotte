@@ -1,14 +1,6 @@
 subinclude("//build_defs/npm")
-subinclude("//build_defs/npm:jest")
 subinclude("//build_defs/npm:vitest")
 subinclude("//build_defs/sh")
-
-filegroup(
-  name = "jest_config",
-  srcs = [
-    "jest.config.js",
-  ],
-)
 
 filegroup(
   name = "index_html",
@@ -113,26 +105,6 @@ npm_run(
   ],
 )
 
-jest_dir(
-  name = "jest_test_deps",
-  srcs = [
-    ":jest_config",
-    ":pnpm_config",
-    ":tsconfig",
-    "//src/cockpit:core_files",
-    "//src/cockpit/components:components",
-    "//src/cockpit/shared:shared",
-    "//src/cockpit/tests:helper",
-    "//src/cockpit/tests:jest_snapshots",
-    "//src/cockpit/tests:jest_snapshot_resolver",
-    "//src/cockpit/views:views",
-    "//src/cockpit/wings:wings",
-  ],
-  visibility = [
-    "//src/cockpit/tests/..."
-  ],
-)
-
 vitest_dir(
   name = "vitest_test_deps",
   config = "vitest.plz.config.ts",
@@ -143,6 +115,7 @@ vitest_dir(
     "//src/cockpit/components:components",
     "//src/cockpit/shared:shared",
     "//src/cockpit/tests:helper",
+    "//src/cockpit/tests:vitest_helper",
     "//src/cockpit/views:views",
     "//src/cockpit/wings:wings",
   ],

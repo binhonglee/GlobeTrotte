@@ -30,5 +30,6 @@ export default defineConfig({
       reportsDirectory: "vitest_coverage",
       reporter: "json",
     },
+    setupFiles: ["src/cockpit/tests/vitest_setup.ts"],
   },
 });

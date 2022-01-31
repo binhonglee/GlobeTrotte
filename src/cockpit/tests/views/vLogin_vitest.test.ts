@@ -2,17 +2,11 @@ import vLogin from "@/views/vLogin.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import UserObj from "@/wings/UserObj";
 import Routing from "@/shared/Routing";
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, spyOn, test } from "vitest";
 import { mount, VueWrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
-import {
-  messageSpy,
-  notifySpy,
-  mountingOptions,
-  routerSpy,
-  Vue,
-} from "../helper";
-import sinon from "sinon";
+import { mountingOptions, Vue, wait } from "../helper";
+import { messageSpy, notifySpy, routerSpy, stub } from "../vitestSpy";
 import R from "@/shared/R";
 import LoginCredential from "@/wings/LoginCredential";
 
@@ -45,44 +39,40 @@ function fillFormAndLogin(wrapper: VueWrapper<Vue>, form: FormLogin): void {
 
 describe("Login", () => {
   beforeAll(() => {
-    jest.spyOn(Routing, "genRedirectTo").mockImplementation(async () => {
+    spyOn(Routing, "genRedirectTo").mockImplementation(async () => {
       return;
     });
   });
 
-  it("Cancel", async () => {
+  test("Cancel", async () => {
     const wrapper = mount(vLogin, mountingOptions());
     const routerBack = new routerSpy(wrapper, "back");
-    const rNext = sinon.stub(R, "hasNext").returns(false);
+    const rNext = stub(spyOn(R, "hasNext")).returns(false);
     verifyUI(wrapper);
     wrapper.find(".loginCancel").trigger("click");
     rNext.restore();
     expect(wrapper.html()).toMatchSnapshot();
-    expect(routerBack.item.calledOnce).toBeTruthy();
+    expect(routerBack.called(1)).toBeTruthy();
     await routerBack.restore();
   });
 
-  it("Wrong password", async () => {
-    const returnedUser = WingsStructUtil.stringify(
-      new UserObj({
-        id: -1,
-      }),
+  test("Wrong password", async () => {
+    const returnedUser = WingsStructUtil.stringify(new UserObj());
+    const genPOST = stub(spyOn(HTTPReq, "genPOST")).resolves(
+      JSON.parse(returnedUser),
     );
-    const genPOST = sinon
-      .stub(HTTPReq, "genPOST")
-      .resolves(JSON.parse(returnedUser));
     const wrapper = mount(vLogin, mountingOptions());
     const message = new messageSpy(wrapper);
-    const rNext = sinon.stub(R, "hasNext").returns(false);
+    const rNext = stub(spyOn(R, "hasNext")).returns(false);
     verifyUI(wrapper);
     fillFormAndLogin(wrapper, {
       email: email,
       password: password,
     });
     rNext.restore();
-    expect(genPOST.calledOnce).toBeTruthy();
-    expect(genPOST.args[0][0]).toEqual("login");
-    expect(genPOST.args[0][1]).toEqual(
+    expect(genPOST.calledOnce()).toBeTruthy();
+    expect(genPOST.args()[0][0]).toEqual("login");
+    expect(genPOST.args()[0][1]).toEqual(
       WingsStructUtil.stringify(
         new LoginCredential({
           email: email,
@@ -91,7 +81,8 @@ describe("Login", () => {
       ),
     );
     await genPOST.restore();
-    expect(message.item.calledOnce).toBeTruthy();
+    await wait(0);
+    expect(message.called(1)).toBeTruthy();
     expect(message.getMessage()).toEqual(
       "Wrong email or password. Please try again.",
     );
@@ -99,16 +90,16 @@ describe("Login", () => {
     await message.restore();
   });
 
-  it("Success", async () => {
-    const rNext = sinon.stub(R, "hasNext").returns(false);
+  test("Success", async () => {
+    const rNext = stub(spyOn(R, "hasNext")).returns(false);
     const returnedUser = WingsStructUtil.stringify(
       new UserObj({
         id: 10,
       }),
     );
-    const genPOST = sinon
-      .stub(HTTPReq, "genPOST")
-      .resolves(JSON.parse(returnedUser));
+    const genPOST = stub(spyOn(HTTPReq, "genPOST")).resolves(
+      JSON.parse(returnedUser),
+    );
     const wrapper = mount(vLogin, mountingOptions());
     // const routerPush = new routerSpy(wrapper, "push");
     const notify = new notifySpy(wrapper);
@@ -118,9 +109,9 @@ describe("Login", () => {
       password: password,
     });
     await rNext.restore();
-    expect(genPOST.calledOnce).toBeTruthy();
-    expect(genPOST.args[0][0]).toEqual("login");
-    expect(genPOST.args[0][1]).toEqual(
+    expect(genPOST.calledOnce()).toBeTruthy();
+    expect(genPOST.args()[0][0]).toEqual("login");
+    expect(genPOST.args()[0][1]).toEqual(
       WingsStructUtil.stringify(
         new LoginCredential({
           email: email,
@@ -132,7 +123,8 @@ describe("Login", () => {
     // expect(routerPush.item.calledOnce).toBeTruthy();
     // expect(routerPush.getArg()).toEqual("/");
     // await routerPush.restore();
-    expect(notify.item.calledOnce).toBeTruthy();
+    await wait(0);
+    expect(notify.called(1)).toBeTruthy();
     expect(notify.getTitle()).toEqual("Success");
     expect(notify.getMessage()).toEqual("You are now logged in.");
     expect(notify.getType()).toEqual("success");

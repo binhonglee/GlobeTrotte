@@ -25,7 +25,8 @@
     "src/cockpit/**/*.vue",
     "vite.config.ts",
     "vitest.plz.config.ts",
-    "jest.config.js"
+    "jest.config.js",
+    "src/cockpit/tests/vitest_setup.ts"
   ],
   "exclude": [
     "src/cockpit/tests/cypress/**/*",

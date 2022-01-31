@@ -1,12 +1,19 @@
-subinclude("//build_defs/npm:ava")
-subinclude("//build_defs/npm:jest")
+subinclude("//build_defs/npm:vitest")
 
-jest_tests(
-  name = "jest_views",
-  srcs = glob(["**/*.spec.ts"]),
-  jest_dirs = ["//:jest_test_deps"],
+vitest_tests(
+  name = "vitest_views",
+  srcs = glob(["**/*_vitest.test.ts"]),
+  vitest_dirs = [
+    ":vitest_snapshots",
+    "//:vitest_test_deps",
+  ],
   deps = [
     "//src/cockpit/views:views",
     "//src/cockpit/components:components",
-  ],
+  ]
+)
+
+vitest_dir(
+  name = "vitest_snapshots",
+  srcs = glob(["**/__snapshots__/*_vitest.test.ts.snap"]),
 )

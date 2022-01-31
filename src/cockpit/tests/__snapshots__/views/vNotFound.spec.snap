@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`vNotFound 404 Page not found 1`] = `
-<div class="_404 narrow_content">
-  <h3>
-    Uhh, there's nothing to see here...
-  </h3>
-</div>
-`;

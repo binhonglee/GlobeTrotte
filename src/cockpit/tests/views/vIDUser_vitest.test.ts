@@ -1,9 +1,9 @@
 import vIDUser from "@/views/vIDUser.vue";
 import General from "@/shared/General";
-import { alertSpy, mountingOptions, wait } from "../helper";
-import { describe, expect, it } from "@jest/globals";
+import { mountingOptions, wait } from "../helper";
+import { alertSpy, stub } from "../vitestSpy";
+import { describe, expect, spyOn, test } from "vitest";
 import { mount } from "@vue/test-utils";
-import sinon from "sinon";
 import UserObj from "@/wings/UserObj";
 import TripObj from "@/wings/TripObj";
 import Routing from "@/shared/Routing";
@@ -41,23 +41,25 @@ const trip5 = new TripObj({
 });
 
 describe("vIDUser", () => {
-  it("Get User - Has user (self)", async () => {
-    const genUser = sinon.stub(General, "genUser").resolves(currentUser);
-    const genTrip = sinon.stub(General, "genTrip").resolves(trip5);
-    const isSelf = sinon.stub(General, "getIsCurrentUser").returns(true);
-    const paramID = sinon.stub(General, "paramID").returns("10");
-    const redirection = sinon.stub(Routing, "genRedirectTo").resolves();
+  test("Get User - Has user (self)", async () => {
+    const genUser = stub(spyOn(General, "genUser")).resolves(currentUser);
+    const genTrip = stub(spyOn(General, "genTrip")).resolves(trip5);
+    const isSelf = stub(spyOn(General, "getIsCurrentUser")).returns(true);
+    const paramID = stub(spyOn(General, "paramID")).returns("10");
+    const redirection = stub(
+      spyOn(Routing, "genRedirectTo").mockResolvedValue(),
+    );
     const wrapper = mount(vIDUser, mountingOptions());
-    await wait(500);
+    await wait(0);
     expect(wrapper.html()).toMatchSnapshot();
     expect(wrapper.find(".title").text()).toEqual(currentUser.details.name);
-    expect(paramID.called).toBeTruthy();
-    expect(isSelf.calledOnce).toBeTruthy;
-    expect(isSelf.args[0][0]).toEqual(10);
-    expect(redirection.calledOnce).toBeTruthy();
-    expect(redirection.args[0][0]).toEqual(Routes.MyAccount);
-    expect(genUser.calledOnce).toBeTruthy();
-    expect(genTrip.calledOnce).toBeTruthy();
+    expect(paramID.called()).toBeTruthy();
+    expect(isSelf.calledOnce()).toBeTruthy;
+    expect(isSelf.args()[0][0]).toEqual(10);
+    expect(redirection.calledOnce()).toBeTruthy();
+    expect(redirection.args()[0][0]).toEqual(Routes.MyAccount);
+    expect(genUser.calledOnce()).toBeTruthy();
+    expect(genTrip.calledOnce()).toBeTruthy();
     await genUser.restore();
     await genTrip.restore();
     await isSelf.restore();
@@ -65,43 +67,43 @@ describe("vIDUser", () => {
     await paramID.restore();
   });
 
-  it("Get User - Has user (not self)", async () => {
-    const genUser = sinon.stub(General, "genUser").resolves(currentUser);
-    const genTrip = sinon.stub(General, "genTrip").resolves(trip5);
-    const isSelf = sinon.stub(General, "getIsCurrentUser").returns(false);
-    const paramID = sinon.stub(General, "paramID").returns("10");
+  test("Get User - Has user (not self)", async () => {
+    const genUser = stub(spyOn(General, "genUser")).resolves(currentUser);
+    const genTrip = stub(spyOn(General, "genTrip")).resolves(trip5);
+    const isSelf = stub(spyOn(General, "getIsCurrentUser")).returns(false);
+    const paramID = stub(spyOn(General, "paramID")).returns("10");
     const wrapper = mount(vIDUser, mountingOptions());
-    await wait(500);
+    await wait(0);
     expect(wrapper.html()).toMatchSnapshot();
     expect(wrapper.find(".title").text()).toEqual(currentUser.details.name);
-    expect(paramID.called).toBeTruthy();
-    expect(isSelf.calledOnce).toBeTruthy();
-    expect(isSelf.args[0][0]).toEqual(10);
-    expect(genUser.calledOnce).toBeTruthy();
-    expect(genTrip.calledOnce).toBeTruthy();
+    expect(paramID.called()).toBeTruthy();
+    expect(isSelf.calledOnce()).toBeTruthy();
+    expect(isSelf.args()[0][0]).toEqual(10);
+    expect(genUser.calledOnce()).toBeTruthy();
+    expect(genTrip.calledOnce()).toBeTruthy();
     await genUser.restore();
     await genTrip.restore();
     await isSelf.restore();
     await paramID.restore();
   });
 
-  it("Get User - Not found", async () => {
-    const genUser = sinon.stub(General, "genUser").callsFake(async () => {
+  test("Get User - Not found", async () => {
+    const genUser = stub(spyOn(General, "genUser")).callsFake(async () => {
       // This is so there is enough time for alertSpy to be
       // created before it reaches the alert code
-      await wait(500);
+      await wait(0);
       return new UserObj({
         id: -1,
       });
     });
-    const paramID = sinon.stub(General, "paramID").returns("10");
+    const paramID = stub(spyOn(General, "paramID")).returns("10");
     const wrapper = mount(vIDUser, mountingOptions());
     const alert = new alertSpy(wrapper);
-    await wait(500);
+    await wait(0);
     expect(wrapper.html()).toMatchSnapshot();
-    expect(paramID.called).toBeTruthy();
-    expect(genUser.calledOnce).toBeTruthy();
-    expect(alert.item.calledOnce).toBeTruthy();
+    expect(paramID.called()).toBeTruthy();
+    expect(genUser.calledOnce()).toBeTruthy();
+    expect(alert.calledOnce()).toBeTruthy();
     expect(alert.getTitle()).toEqual("Error");
     expect(alert.getMessage()).toEqual("User not found.");
     expect(alert.getOptions("confirmButtonText")).toEqual("OK");
@@ -111,11 +113,11 @@ describe("vIDUser", () => {
   });
 
   // Somehow this doesn't work. Not sure why.
-  // it("Get User - No Param", async () => {
-  //   const paramID = sinon.stub(General, "paramID").returns(undefined);
+  // test("Get User - No Param", async () => {
+  //   const paramID = stub(spyOn(General, "paramID")).returns(undefined);
   //   mount(vIDUser, mountingOptions());
-  //   await wait(500);
-  //   expect(paramID.calledOnce).toBeTruthy();
+  //   await wait(0);
+  //   expect(paramID.calledOnce()).toBeTruthy();
   //   await paramID.restore();
   // });
 });
