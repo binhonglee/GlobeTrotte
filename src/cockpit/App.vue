@@ -1,35 +1,36 @@
 <template lang="pug">
 #app
-  n-loading-bar-provider
-    n-dialog-provider
-      n-message-provider
-        el-menu.main_menu(
-          :default-active="activeIndex"
-          mode="horizontal"
-          @select="handleSelect"
-          background-color="#333"
-          text-color="white"
-          active-text-color="#42b983"
-        )
-          el-menu-item.main_menu_item(index="") Home
-          el-submenu.main_menu_item(index="/trip")
-            template.main_menu_item(#title) Trips
-            el-menu-item.main_menu_item(index="/trip/search") Search
-            el-menu-item.main_menu_item(
-              v-if="confirmed" index="/trip/new"
-            ) New
-          el-menu-item.main_menu_item.login_button(
-            v-if="!authed" index="/login"
-          ) Login
-          el-menu-item.main_menu_item.register_button(
-            v-if="!authed" index="/register"
-          ) Register
-          el-menu-item.main_menu_item.myaccount_button(
-            v-if="authed" index="/myaccount"
-          ) My Account
-        router-view#content.content
-        #footerMargin
-          #footer
+  n-config-provider(:theme="theme")
+    n-loading-bar-provider
+      n-dialog-provider
+        n-message-provider
+          el-menu.main_menu(
+            :default-active="activeIndex"
+            mode="horizontal"
+            @select="handleSelect"
+            background-color="#333"
+            text-color="white"
+            active-text-color="#42b983"
+          )
+            el-menu-item.main_menu_item(index="") Home
+            el-submenu.main_menu_item(index="/trip")
+              template.main_menu_item(#title) Trips
+              el-menu-item.main_menu_item(index="/trip/search") Search
+              el-menu-item.main_menu_item(
+                v-if="confirmed" index="/trip/new"
+              ) New
+            el-menu-item.main_menu_item.login_button(
+              v-if="!authed" index="/login"
+            ) Login
+            el-menu-item.main_menu_item.register_button(
+              v-if="!authed" index="/register"
+            ) Register
+            el-menu-item.main_menu_item.myaccount_button(
+              v-if="authed" index="/myaccount"
+            ) My Account
+          router-view#content.content
+          #footerMargin
+            #footer
 </template>
 
 <script lang="ts">
@@ -37,19 +38,25 @@ import General from "./shared/General";
 import Routing from "./shared/Routing";
 import { defineComponent } from "vue";
 import {
+  lightTheme,
+  // darkTheme,
+  NConfigProvider,
   NDialogProvider,
   NLoadingBarProvider,
   NMessageProvider,
 } from "naive-ui";
+import { BuiltInGlobalTheme } from "naive-ui/lib/themes/interface";
 
 interface Data {
   activeIndex: string;
   authed: boolean;
   confirmed: boolean;
+  theme: BuiltInGlobalTheme;
 }
 
 export default defineComponent({
   components: {
+    NConfigProvider,
     NDialogProvider,
     NLoadingBarProvider,
     NMessageProvider,
@@ -59,6 +66,7 @@ export default defineComponent({
       activeIndex: "",
       authed: false,
       confirmed: false,
+      theme: lightTheme,
     };
   },
   watch: {

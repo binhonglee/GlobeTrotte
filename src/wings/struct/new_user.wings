@@ -9,6 +9,7 @@ ts-implement IWingsStruct
 
 struct NewUser {
   id        int   -1
+  username  str
   name      str
   email     str
   bio       str
@@ -30,6 +31,7 @@ go-func(
 ts-func(
     public register(data: any): void {
         this.name = data.name;
+        this.username = data.username;
         this.email = data.email;
         this.password = data.password;
     }

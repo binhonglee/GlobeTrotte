@@ -9,6 +9,12 @@
       @enter="confirm"
     )
     CEditItem(
+      className="registrationUsername"
+      label="Username"
+      ref="username"
+      @enter="confirm"
+    )
+    CEditItem(
       className="registrationEmail"
       label="Email"
       ref="email"
@@ -47,12 +53,14 @@ import { NButton } from "naive-ui";
 import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
-import UserObj from "@/wings/UserObj";
+import RegistrationResponse from "@/wings/RegistrationResponse";
+import RegistrationError from "@/wings/RegistrationError";
 import CEditItem from "@/components/CEditItem.vue";
 import Routes from "@/routes";
 import E from "@/shared/E";
 import Routing from "@/shared/Routing";
 import router from "@/router";
+import NaiveUtils from "@/shared/NaiveUtils";
 
 interface Data {
   loading: boolean;
@@ -69,6 +77,7 @@ export default defineComponent({
     };
   },
   mounted(): void {
+    NaiveUtils.init();
     E.get(E.get(this, "name"), "input").focus();
   },
   methods: {
@@ -85,21 +94,25 @@ export default defineComponent({
       }
 
       const name = E.getVal(this, "name").trim();
+      const username = E.getVal(this, "username").trim();
       const email = E.getVal(this, "email").trim();
       const password = E.getVal(this, "password").trim();
 
       if (name.length < 1 || email.length < 1 || password.length < 1) {
         this.$data.loading = false;
-        this.$message({
-          message: "Missing input. Please try again.",
-          type: "error",
-        });
+        NaiveUtils.messageError("Missing input. Please try again.");
         return;
       }
 
-      const newUser = new NewUser();
-      newUser.register({
+      if (username.length < 3) {
+        this.$data.loading = false;
+        NaiveUtils.messageError("Username should be at least 3 letters.");
+        return;
+      }
+
+      const newUser = new NewUser({
         name: name,
+        username: username,
         email: email,
         password: password,
       });
@@ -109,13 +122,42 @@ export default defineComponent({
         WingsStructUtil.stringify(newUser),
       );
 
-      const user = new UserObj(res);
+      const regRes = new RegistrationResponse(res);
+      if (regRes.error !== RegistrationError.Success) {
+        this.$data.loading = false;
+        switch (regRes.error) {
+          case RegistrationError.EmailAlreadyExists:
+            NaiveUtils.messageError("Email already has an account registered.");
+            break;
+          case RegistrationError.EmailInvalid:
+            NaiveUtils.messageError(
+              "This is an invalid email. Please try a proper email instead.",
+            );
+            break;
+          case RegistrationError.InvalidType:
+            NaiveUtils.messageError("Unknown error. Please try again later.");
+            break;
+          case RegistrationError.UsernameInvalid:
+            NaiveUtils.messageError(
+              "The provided username is invalid please try a different username.",
+            );
+            break;
+          case RegistrationError.UsernameTaken:
+            NaiveUtils.messageError(
+              "Username is already taken. Please try a different username.",
+            );
+            break;
+          case RegistrationError.UsernameTooShort:
+            NaiveUtils.messageError("Username should be at least 3 letters.");
+            break;
+        }
+        return;
+      }
+
+      const user = regRes.user;
       if (user.ID === -1) {
         this.$data.loading = false;
-        this.$message({
-          message: "Invalid email. Please try again.",
-          type: "error",
-        });
+        NaiveUtils.messageError("Unknown error. Please try again later.");
         return;
       }
 

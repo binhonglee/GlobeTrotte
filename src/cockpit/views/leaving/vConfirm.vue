@@ -1,11 +1,12 @@
 <template lang="pug">
-.leaving_confirm
+.leaving_confirm.narrow_content
   .nonBrokenLink(v-if="!broken")
     h1.title You are leaving GlobeTrotte...
-    p.content Make sure you want to proceed to 
+    p.content
+      | Make sure you want to proceed to
       a.externalURL(:href="link") {{ link }}
-    n-button.proceedButton(type="primary" tag="a" :href="link") Proceed
-    n-button(@click="close") Back to GlobeTrotte
+    n-button.backButton(@click="close") Back to GlobeTrotte
+    n-button(type="primary" tag="a" :href="link") Proceed
   .brokenLink(v-else)
     h1.title Broken link
     p.content Seems like this link is broken. 😥
@@ -73,9 +74,10 @@ export default defineComponent({
 <style scoped>
 .externalURL {
   color: var(--default-link);
+  word-break: break-all;
 }
 
-.proceedButton {
+.backButton {
   margin-right: 10px;
 }
 </style>

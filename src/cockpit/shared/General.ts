@@ -38,6 +38,11 @@ export default class General {
     return new UserObj(user);
   }
 
+  public static async genFromUsername(username: string): Promise<UserObj> {
+    const user = await HTTPReq.genGET("username/" + username);
+    return new UserObj(user);
+  }
+
   public static async genTrip(id: number): Promise<TripObj> {
     const trip = await HTTPReq.genGET("v2/trip/" + id);
     return new TripObj(trip);

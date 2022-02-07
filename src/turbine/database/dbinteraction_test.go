@@ -19,7 +19,7 @@ func TestAddNewUserDB(t *testing.T) {
 		Email:    "dbinteraction_test@dummyuser.com",
 		Password: "shouldReplaceThisWithRand",
 	}
-	if actual := NewUserDB(&newNewUser); actual == failCondition {
+	if actual, _ := NewUserDB(&newNewUser); actual == failCondition {
 		t.Errorf("NewUserDB(), unable to add new user.")
 	} else {
 		newNewUser.ID = actual

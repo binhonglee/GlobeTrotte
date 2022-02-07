@@ -1,0 +1,14 @@
+go-filepath src/turbine/wings
+ts-filepath src/cockpit/wings
+
+# Error types on registration
+
+enum RegistrationError {
+  InvalidType
+  EmailAlreadyExists
+  EmailInvalid
+  UsernameInvalid
+  UsernameTaken
+  UsernameTooShort
+  Success
+}

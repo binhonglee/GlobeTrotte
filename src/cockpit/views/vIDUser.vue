@@ -25,12 +25,20 @@ export default defineComponent({
     user: new UserObj(),
   }),
   async beforeMount(): Promise<void> {
-    if (General.paramID() === undefined) {
+    const paramID = General.paramID();
+    if (paramID === undefined) {
       await Routing.genRedirectTo(Routes.NotFound);
       return;
     }
-
-    this.$data.user = await General.genUser(Number(General.paramID()));
+    if (isNaN(Number(paramID))) {
+      this.$data.user = await General.genFromUsername(paramID);
+    } else {
+      const user = await General.genUser(Number(paramID));
+      this.$data.user = user;
+      if (user.details.username !== "") {
+        await Routing.genRedirectTo(Routes.User + "/" + user.details.username);
+      }
+    }
 
     if (this.$data.user.ID === -1) {
       await this.$alert("User not found.", "Error", {

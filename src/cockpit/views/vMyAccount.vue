@@ -19,6 +19,10 @@
       )
     .narrow_content(v-else)
       CEditItem(label="Name" ref="name" :val="user.details.name.valueOf()")
+      CEditItem(
+        label="Username" ref="username"
+        :val="user.details.username.valueOf()" placeholder="Set a username"
+      )
       CEditItem(label="Email" ref="email" :val="user.details.email.valueOf()")
       CEditItem(label="Link" ref="link" :val="user.details.link.valueOf()")
       CEditItem(
@@ -156,6 +160,7 @@ export default defineComponent({
           .replaceAll("\n", "\\\\n")
           .replaceAll("\\", "\\\\"),
         link: E.getVal(this, "link"),
+        username: E.getVal(this, "username"),
         confirmed: this.$data.user.details.confirmed,
       });
       const success = await HTTPReq.genPOST(

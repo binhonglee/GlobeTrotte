@@ -3,6 +3,7 @@ filegroup(
   srcs = [
     "//src/wings/enum:city",
     "//src/wings/enum:access_level",
+    "//src/wings/enum:registration_error",
     "//src/wings/struct:day",
     "//src/wings/struct:new_user",
     "//src/wings/struct:place",
@@ -18,6 +19,7 @@ filegroup(
     "//src/wings/struct:user_basic",
     "//src/wings/struct:reset_password",
     "//src/wings/struct:login_credential",
+    "//src/wings/struct:registration_response",
   ],
   requires = ["ts"],
   visibility = [

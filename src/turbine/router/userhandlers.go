@@ -8,6 +8,7 @@ import (
 	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/user"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
+	"github.com/gorilla/mux"
 )
 
 func addUserObj(res http.ResponseWriter, req *http.Request) {
@@ -15,13 +16,26 @@ func addUserObj(res http.ResponseWriter, req *http.Request) {
 	var ok bool
 	unpackJSON(&res, req, &item)
 	if &item == nil {
-		respond(res, user.DummyUserObj())
+		respond(res, user.RegistrationResponse{
+			User:  user.DummyUserObj(),
+			Error: wings.InvalidType,
+		})
 		return
 	}
+
 	item.Email, ok = handleEmails(item.Email)
+	if !ok {
+		logger.DebugGreen(item.Email)
+		respond(res, user.RegistrationResponse{
+			User:  user.DummyUserObj(),
+			Error: wings.EmailInvalid,
+		})
+		return
+	}
+
 	hash, err :=
 		bcrypt.GenerateFromPassword([]byte(item.Password), 14)
-	if err != nil || !ok {
+	if err != nil {
 		logger.Err(
 			logger.Router, err,
 			"Password hashing failed or wrong email format",
@@ -29,12 +43,26 @@ func addUserObj(res http.ResponseWriter, req *http.Request) {
 		respond(res, user.DummyUserObj())
 		return
 	}
+
 	item.Password = string(hash)
 	newUser := user.NewUser(item)
-	if newUser.ID > 0 {
-		newCookie(res, req, newUser.ID)
+	if newUser.User.ID > 0 {
+		newCookie(res, req, newUser.User.ID)
 	}
 	respond(res, newUser)
+}
+
+func getUserObjWithUsername(res http.ResponseWriter, req *http.Request) {
+	vars := mux.Vars(req)
+	username := vars["username"]
+	if username == "" {
+		logger.Failure(logger.Router, "Missing username argument")
+		respond(res, user.DummyUserObj())
+		return
+	}
+
+	item := user.GetUserObjWithUsername(username, getUserID(req))
+	respond(res, item)
 }
 
 func getUserObj(res http.ResponseWriter, req *http.Request) {

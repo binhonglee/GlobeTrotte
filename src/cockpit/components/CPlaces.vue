@@ -17,20 +17,20 @@
       )
         | {{ propPlace.travelTime.timeInMinutes }} min
       n-divider(v-else)
-      CExternalLink.placeLink(
-        :url="propPlace.place.URL.valueOf()"
-        underline="never"
+      .placeDisplayCard(
+        hoverable
+        content-style="padding: 0"
         v-if="propPlace.place.URL !== ''"
       )
-        .placeDisplayCard(
-          hoverable
-          content-style="padding: 0"
-        )
-          .placeDisplayCardContent
+        .placeDisplayCardContent
+          CExternalLink.placeLink(
+            :url="propPlace.place.URL.valueOf()"
+            underline="hover"
+          )
             b.link {{ propPlace.place.label }}
-            p.placeDescription(
-              v-if="propPlace.place.description !== ''"
-            ) {{ propPlace.place.description }}
+          p.placeDescription(
+            v-if="propPlace.place.description !== ''"
+          ) {{ propPlace.place.description }}
       .placeDisplayCard(
         v-else
         content-style="padding: 0")
@@ -101,15 +101,6 @@ export default defineComponent({
 .places .placeDisplayCard .placeDisplayCardContent {
   font-size: 14px;
   padding: 5px;
-}
-
-.places .placeDisplayCard .placeDisplayCardContent .link {
-  color: #409eff;
-}
-
-.placeDisplayCard:hover .link {
-  text-decoration: underline;
-  text-decoration-color: #409eff;
 }
 
 .placeDescription {

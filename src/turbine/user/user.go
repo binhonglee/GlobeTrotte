@@ -1,6 +1,7 @@
 package user
 
 import (
+	"regexp"
 	"strconv"
 
 	"github.com/binhonglee/GlobeTrotte/src/turbine/database"
@@ -15,14 +16,39 @@ func DummyUserObj() UserObj {
 	return user
 }
 
-func NewUser(newUser wings.NewUser) UserObj {
+func NewUser(newUser wings.NewUser) RegistrationResponse {
 	user := UserObj{}
-	user.ID = database.NewUserDB(&newUser)
-	if user.ID < 1 {
-		return DummyUserObj()
+	if len(newUser.Username) < 3 {
+		return RegistrationResponse{
+			User:  DummyUserObj(),
+			Error: wings.UsernameTooShort,
+		}
 	}
+	if !regexp.MustCompile(`^[a-zA-Z]+[a-zA-Z0-9]*$`).MatchString(newUser.Username) {
+		return RegistrationResponse{
+			User:  DummyUserObj(),
+			Error: wings.UsernameInvalid,
+		}
+	}
+	id, err := database.NewUserDB(&newUser)
+	if id < 1 {
+		return RegistrationResponse{
+			User:  DummyUserObj(),
+			Error: err,
+		}
+	}
+
+	user.ID = id
+	// TODO: Gracefully fail email creation / sending. Its just ignored for now.
 	email.NewEmail(user.ID, newUser.Email)
-	return GetUserObj(user.ID, user.ID)
+	return RegistrationResponse{
+		User:  GetUserObj(user.ID, user.ID),
+		Error: wings.Success,
+	}
+}
+
+func GetUserObjWithUsername(username string, self int) UserObj {
+	return GetUserObj(database.GetUserIDWithUsername(username), self)
 }
 
 func GetUserObj(id int, self int) UserObj {

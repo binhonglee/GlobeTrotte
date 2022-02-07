@@ -16,7 +16,7 @@ test("vConfirm - Working external link", async () => {
     "You are leaving GlobeTrotte...",
   );
   expect(wrapper.find(".content").text()).toContain(
-    "Make sure you want to proceed to ",
+    "Make sure you want to proceed to",
   );
   expect(wrapper.find(".externalURL").text()).toEqual(externalURL);
   await paramMap.restore();

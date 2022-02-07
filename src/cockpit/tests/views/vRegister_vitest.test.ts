@@ -8,14 +8,21 @@ import { describe, expect, spyOn, test } from "vitest";
 import { mount, VueWrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
 import Routing from "@/shared/Routing";
+import RegistrationResponse from "@/wings/RegistrationResponse";
+import NaiveUtils from "@/shared/NaiveUtils";
+import RegistrationError from "@/wings/RegistrationError";
 
 const name = "Ab Cd";
+const username = "mocked_testuser";
 const email = "ab@test.com";
 const password = "1234";
 
 function verifyUI(wrapper: VueWrapper<Vue>): void {
   expect(wrapper.html()).toMatchSnapshot();
   expect(wrapper.find(".registrationNameLabel").text()).toEqual("Name:");
+  expect(wrapper.find(".registrationUsernameLabel").text()).toEqual(
+    "Username:",
+  );
   expect(wrapper.find(".registrationEmailLabel").text()).toEqual("Email:");
   expect(wrapper.find(".registrationPasswordLabel").text()).toEqual(
     "Password:",
@@ -27,6 +34,7 @@ function verifyUI(wrapper: VueWrapper<Vue>): void {
 
 interface FormReg {
   name: string;
+  username: string;
   email: string;
   password: string;
   confPassword: string;
@@ -37,6 +45,10 @@ function fillFormAndReg(wrapper: VueWrapper<Vue>, form: FormReg): void {
     .find(".registrationName")
     .find(".n-input__input-el")
     .setValue(form.name);
+  wrapper
+    .find(".registrationUsername")
+    .find(".n-input__input-el")
+    .setValue(form.username);
   wrapper
     .find(".registrationEmail")
     .find(".n-input__input-el")
@@ -60,6 +72,7 @@ describe("vRegister", () => {
     verifyUI(wrapper);
     fillFormAndReg(wrapper, {
       name: name,
+      username: username,
       email: email,
       password: password,
       confPassword: password + "a",
@@ -73,12 +86,15 @@ describe("vRegister", () => {
 
   test("Registration - New user (Failure)", async () => {
     const returnedUser = WingsStructUtil.stringify(
-      new UserObj({
-        id: -1,
-        details: {
+      new RegistrationResponse({
+        error: RegistrationError.EmailInvalid,
+        user: {
           id: -1,
-          name: name,
-          email: email,
+          details: {
+            id: -1,
+            name: name,
+            email: email,
+          },
         },
       }),
     );
@@ -86,10 +102,11 @@ describe("vRegister", () => {
       JSON.parse(returnedUser),
     );
     const wrapper = mount(vRegister, mountingOptions());
-    const message = new messageSpy(wrapper);
+    const message = stub(spyOn(NaiveUtils, "messageError"));
     verifyUI(wrapper);
     fillFormAndReg(wrapper, {
       name: name,
+      username: username,
       email: email,
       password: password,
       confPassword: password,
@@ -101,6 +118,7 @@ describe("vRegister", () => {
         new NewUser({
           id: -1,
           name: name,
+          username: username,
           email: email,
           password: password,
         }),
@@ -108,20 +126,25 @@ describe("vRegister", () => {
     );
     await wait(0);
     expect(message.called(1)).toBeTruthy();
-    expect(message.getMessage()).toEqual("Invalid email. Please try again.");
-    expect(message.getType()).toEqual("error");
+    expect(message.args()[0][0]).toEqual(
+      "This is an invalid email. Please try a proper email instead.",
+    );
     await genPOST.restore();
     await message.restore();
   });
 
   test("Registration - New user (Success)", async () => {
     const returnedUser = WingsStructUtil.stringify(
-      new UserObj({
-        id: 10,
-        details: {
+      new RegistrationResponse({
+        error: RegistrationError.Success,
+        user: {
           id: 10,
-          name: name,
-          email: email,
+          details: {
+            id: 10,
+            name: name,
+            username: username,
+            email: email,
+          },
         },
       }),
     );
@@ -141,6 +164,7 @@ describe("vRegister", () => {
     verifyUI(wrapper);
     fillFormAndReg(wrapper, {
       name: name,
+      username: username,
       email: email,
       password: password,
       confPassword: password,
@@ -152,6 +176,7 @@ describe("vRegister", () => {
         new NewUser({
           id: -1,
           name: name,
+          username: username,
           email: email,
           password: password,
         }),

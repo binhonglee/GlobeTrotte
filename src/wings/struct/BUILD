@@ -9,6 +9,7 @@ filegroup(
     ":login_credential",
     ":new_user",
     ":place",
+    ":registration_response",
     ":trip",
     ":trip_basic",
     ":trip_obj",
@@ -182,4 +183,17 @@ wings_lib(
     "src/cockpit/wings": "LoginCredential.ts",
     "src/turbine/access": "logincredential.go",
   }
+)
+
+wings_lib(
+  name = "registration_response",
+  src = "registration_response.wings",
+  outs = {
+    "src/cockpit/wings": "RegistrationResponse.ts",
+    "src/turbine/user": "registrationresponse.go",
+  },
+  deps = [
+    ":user_obj",
+    "//src/wings/enum:registration_error",
+  ],
 )

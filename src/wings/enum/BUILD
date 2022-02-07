@@ -5,6 +5,7 @@ filegroup(
   deps = [
     ":city",
     ":access_level",
+    ":registration_error",
   ],
   visibility = ["PUBLIC"],
 )
@@ -25,6 +26,16 @@ wings_lib(
   outs = {
     "src/cockpit/wings": "AccessLevel.ts",
     "src/turbine/wings": "accesslevel.go",
+  },
+  visibility = ["PUBLIC"],
+)
+
+wings_lib(
+  name = "registration_error",
+  src = "registration_error.wings",
+  outs = {
+    "src/cockpit/wings": "RegistrationError.ts",
+    "src/turbine/wings": "registrationerror.go",
   },
   visibility = ["PUBLIC"],
 )

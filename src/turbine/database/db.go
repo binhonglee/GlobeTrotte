@@ -147,6 +147,7 @@ func createUsersTable() {
 	createTable := `
 		CREATE TABLE users (
 			id              SERIAL PRIMARY KEY,
+			username        TEXT UNIQUE,
 			name            TEXT           NOT NULL,
 			password        TEXT           NOT NULL,
 			email           TEXT UNIQUE    NOT NULL,
@@ -165,6 +166,7 @@ func updateUserTable() {
 	db.Exec(`ALTER TABLE users ADD COLUMN IF NOT EXISTS link TEXT;`)
 	db.Exec(`ALTER TABLE users ADD COLUMN IF NOT EXISTS bio TEXT;`)
 	db.Exec(`ALTER TABLE users ADD COLUMN IF NOT EXISTS trips INT[];`)
+	db.Exec(`ALTER TABLE users ADD COLUMN IF NOT EXISTS username TEXT UNIQUE;`)
 }
 
 func updateDaysTable() {

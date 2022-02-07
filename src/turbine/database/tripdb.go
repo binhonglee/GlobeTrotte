@@ -139,7 +139,7 @@ func DeleteTripDB(trip wings.Trip) bool {
 
 func DeleteTripWithOwnerIDDB(id int) bool {
 	tripIDs := make([]int, 0)
-	sqlStatement := `SELECT id FROM trips WHERE user=$1`
+	sqlStatement := `SELECT id FROM trips WHERE userid=$1`
 	c := getConn()
 	rows, err := c.Query(context.Background(), sqlStatement, id)
 	defer c.Close()

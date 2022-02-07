@@ -5,6 +5,7 @@ import { expect, test } from "vitest";
 
 const newUser = new NewUser({
   id: 10000,
+  username: "someusername",
   name: "Test NewUser Name",
   email: "newtestemail@email.com",
   password: "S0methingSom3th1ngSecr3tW0rd5",
@@ -22,9 +23,9 @@ for (const key in newUser) {
   }
 }
 
-const newRegistration = new NewUser();
-newRegistration.register({
+const newRegistration = new NewUser({
   name: "New name",
+  username: "someusername",
   email: "newtestemail@email.com",
   password: "S0methingSom3th1ngSecr3tW0rd5",
 });

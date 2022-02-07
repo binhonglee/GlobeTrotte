@@ -3,6 +3,7 @@ go_library(
   srcs = [
     "//src/wings/enum:city",
     "//src/wings/enum:access_level",
+    "//src/wings/enum:registration_error",
     "//src/wings/struct:day",
     "//src/wings/struct:travel_time",
     "//src/wings/struct:trip",

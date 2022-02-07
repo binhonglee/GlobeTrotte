@@ -4,6 +4,7 @@ go_library(
     "user.go",
     "comparators.go",
     "//src/wings/struct:user_obj",
+    "//src/wings/struct:registration_response",
   ],
   deps = [
     "//src/turbine/database",

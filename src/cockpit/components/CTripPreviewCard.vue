@@ -33,10 +33,10 @@ import { defineComponent } from "vue";
 import { NCard, NDivider, NTag } from "naive-ui";
 import CLink from "./CLink.vue";
 import CPlaces from "@/components/CPlaces.vue";
-import TripObj from "@/wings/TripObj";
 import { CityUtil } from "@/shared/CityUtil";
 import { DataDay } from "@/shared/DataProps";
 import Day from "@/wings/Day";
+import TripObj from "@/wings/TripObj";
 
 interface Data {
   cities: string[];
@@ -101,6 +101,10 @@ export default defineComponent({
 }
 
 @media screen and (max-width: 550px) {
+  .trip_preview_card {
+    width: 88%;
+  }
+
   .tripPreviewCard {
     width: 100%;
   }

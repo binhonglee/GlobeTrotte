@@ -12,16 +12,22 @@ func TestNewUser(t *testing.T) {
 	failCondition := -1
 	newUser := wings.NewUser{
 		Name:     "DummyUser",
+		Username: "usertestdummyuser",
 		Email:    "user_test@testuser.globetrotte.com",
 		Password: "shouldReplaceThisWithRand",
 	}
-	user = NewUser(newUser)
+	res := NewUser(newUser)
+	user = res.User
 
 	if user.ID == failCondition {
 		t.Errorf("NewUser(), unable to add new user. ")
 	}
 
-	duplicateEmail := NewUser(newUser)
+	res = NewUser(newUser)
+	duplicateEmail := res.User
+	if res.Error != wings.EmailAlreadyExists {
+		t.Errorf("NewUser(), when attempting to add new acount with email that already exist should throw EmailAlreadyExists error.")
+	}
 	if !same(duplicateEmail.Details, DummyUserObj().Details) {
 		t.Errorf("NewUser(), when attempting to add new acount with email that already exist, it should fail.")
 	}

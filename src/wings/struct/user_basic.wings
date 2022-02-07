@@ -9,6 +9,7 @@ ts-implement IWingsStruct
 
 struct UserBasic {
   id            int   -1
+  username      str
   name          str
   email         str
   bio           str

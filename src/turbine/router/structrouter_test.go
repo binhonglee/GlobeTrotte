@@ -6,6 +6,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/trip"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/user"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
@@ -17,39 +18,43 @@ var cookies *http.Cookie
 
 func TestAddInvalidEmailUser(t *testing.T) {
 	var newUser = wings.NewUser{
+		Username: "structroutertestdummyuser",
 		Email:    "wronglyformattedstring",
 		Password: "shouldReplaceThisWithRand",
 	}
 
-	var returned *user.UserObj
+	var returned *user.RegistrationResponse
 	addTest("/v2/user", t, &newUser, &returned, true)
-	if returned.ID != -1 {
+	if returned.User.ID != -1 {
 		t.Errorf(
 			"Returned ID is expected to be -1 (indicating failure) but was %v.",
-			returned.ID,
+			returned.User.ID,
 		)
 	}
 }
 
 func TestAddUser(t *testing.T) {
 	var newUser = wings.NewUser{
+		Username: "structroutertestdummyuser",
 		Email:    "routertest@test.com",
 		Password: "shouldReplaceThisWithRand",
 	}
 
-	var returned *user.UserObj
+	var returned *user.RegistrationResponse
 	addTest("/v2/user", t, &newUser, &returned, true)
-	addedUser = *returned
+	addedUser = *&returned.User
 
-	if returned.GetID() == -1 {
+	logger.DebugPink(returned.Error)
+	if returned.User.GetID() == -1 {
 		t.Errorf("User failed to add.")
 	}
 
-	if returned.Details.Email != newUser.Email {
+	logger.DebugCyan(returned.User)
+	if returned.User.Details.Email != newUser.Email {
 		t.Errorf(
 			"Sent Email is %v but returned Email is %v.",
 			newUser.Email,
-			returned.Details.Email,
+			returned.User.Details.Email,
 		)
 	}
 }

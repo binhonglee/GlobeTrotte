@@ -1,4 +1,9 @@
-import { useDialog, useMessage, DialogOptions } from "naive-ui";
+import {
+  useDialog,
+  useMessage,
+  DialogOptions,
+  MessageReactive,
+} from "naive-ui";
 import { DialogApiInjection } from "naive-ui/lib/dialog/src/DialogProvider";
 import { MessageApiInjection } from "naive-ui/lib/message/src/MessageProvider";
 export default class NaiveUtils {
@@ -31,7 +36,9 @@ export default class NaiveUtils {
     }
   }
 
-  public static getMessage(): MessageApiInjection {
-    return this.message;
+  public static messageError(message: string): MessageReactive | undefined {
+    if (this.shouldRun()) {
+      return this.message.error(message);
+    }
   }
 }

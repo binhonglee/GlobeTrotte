@@ -11,6 +11,7 @@ import { IWingsStruct } from 'wings-ts-util';
 export default class NewUser implements IWingsStruct {
   [key: string]: any;
   public ID: Number = -1;
+  public username: String = '';
   public name: String = '';
   public email: String = '';
   public bio: String = '';
@@ -19,6 +20,7 @@ export default class NewUser implements IWingsStruct {
   public constructor(obj?: any) {
     if (obj) {
       this.ID = obj.id !== undefined && obj.id !== null ? obj.id : -1;
+      this.username = obj.username !== undefined && obj.username !== null ? obj.username : '';
       this.name = obj.name !== undefined && obj.name !== null ? obj.name : '';
       this.email = obj.email !== undefined && obj.email !== null ? obj.email : '';
       this.bio = obj.bio !== undefined && obj.bio !== null ? obj.bio : '';
@@ -30,6 +32,9 @@ export default class NewUser implements IWingsStruct {
     switch (key) {
       case 'ID': {
         return 'id';
+      }
+      case 'username': {
+        return 'username';
       }
       case 'name': {
         return 'name';
@@ -51,6 +56,7 @@ export default class NewUser implements IWingsStruct {
 
   public register(data: any): void {
     this.name = data.name;
+    this.username = data.username;
     this.email = data.email;
     this.password = data.password;
   }

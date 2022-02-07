@@ -13,6 +13,7 @@ const currentUser = new UserObj({
   id: 10,
   details: {
     id: 10,
+    username: "testmockuseraccount",
     name: "MyAccount Test User",
     email: "testmyaccount@globetrotte.com",
   },
@@ -35,6 +36,7 @@ const trip5 = new TripObj({
   last_updated: "2020-12-31T00:00:00.888-08:00",
   user: {
     id: 10,
+    username: "testmockuseraccount",
     name: "MyAccount Test User",
     email: "testmyaccount@globetrotte.com",
   },
@@ -42,10 +44,14 @@ const trip5 = new TripObj({
 
 describe("vIDUser", () => {
   test("Get User - Has user (self)", async () => {
-    const genUser = stub(spyOn(General, "genUser")).resolves(currentUser);
+    const genUser = stub(spyOn(General, "genFromUsername")).resolves(
+      currentUser,
+    );
     const genTrip = stub(spyOn(General, "genTrip")).resolves(trip5);
     const isSelf = stub(spyOn(General, "getIsCurrentUser")).returns(true);
-    const paramID = stub(spyOn(General, "paramID")).returns("10");
+    const paramID = stub(spyOn(General, "paramID")).returns(
+      currentUser.details.username,
+    );
     const redirection = stub(
       spyOn(Routing, "genRedirectTo").mockResolvedValue(),
     );
@@ -68,10 +74,14 @@ describe("vIDUser", () => {
   });
 
   test("Get User - Has user (not self)", async () => {
-    const genUser = stub(spyOn(General, "genUser")).resolves(currentUser);
+    const genUser = stub(spyOn(General, "genFromUsername")).resolves(
+      currentUser,
+    );
     const genTrip = stub(spyOn(General, "genTrip")).resolves(trip5);
     const isSelf = stub(spyOn(General, "getIsCurrentUser")).returns(false);
-    const paramID = stub(spyOn(General, "paramID")).returns("10");
+    const paramID = stub(spyOn(General, "paramID")).returns(
+      currentUser.details.username,
+    );
     const wrapper = mount(vIDUser, mountingOptions());
     await wait(0);
     expect(wrapper.html()).toMatchSnapshot();
@@ -88,15 +98,19 @@ describe("vIDUser", () => {
   });
 
   test("Get User - Not found", async () => {
-    const genUser = stub(spyOn(General, "genUser")).callsFake(async () => {
-      // This is so there is enough time for alertSpy to be
-      // created before it reaches the alert code
-      await wait(0);
-      return new UserObj({
-        id: -1,
-      });
-    });
-    const paramID = stub(spyOn(General, "paramID")).returns("10");
+    const genUser = stub(spyOn(General, "genFromUsername")).callsFake(
+      async () => {
+        // This is so there is enough time for alertSpy to be
+        // created before it reaches the alert code
+        await wait(0);
+        return new UserObj({
+          id: -1,
+        });
+      },
+    );
+    const paramID = stub(spyOn(General, "paramID")).returns(
+      currentUser.details.username,
+    );
     const wrapper = mount(vIDUser, mountingOptions());
     const alert = new alertSpy(wrapper);
     await wait(0);

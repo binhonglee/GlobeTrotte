@@ -1,0 +1,15 @@
+go-filepath src/turbine/user
+ts-filepath src/cockpit/wings
+
+import src/wings/enum/registration_error.wings
+import src/wings/struct/user_obj.wings
+ts-import { IWingsStruct }:wings-ts-util
+
+ts-implement IWingsStruct
+
+# Response for registration attempt
+
+struct RegistrationResponse {
+  error RegistrationError RegistrationError.InvalidType
+  user  UserObj
+}

@@ -15,6 +15,7 @@ import (
 type User struct {
 	ID          int       `json:"id"`
 	Name        string    `json:"name"`
+	Username    string    `json:"username"`
 	Email       string    `json:"email"`
 	Bio         string    `json:"bio"`
 	TimeCreated time.Time `json:"time_created"`

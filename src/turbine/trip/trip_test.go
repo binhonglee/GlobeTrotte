@@ -15,10 +15,12 @@ func TestNewTrip(t *testing.T) {
 	failCondition := -1
 	newNewUser := wings.NewUser{
 		Name:     "DummyUser",
+		Username: "triptestdummyuser",
 		Email:    "trip_test@testuser.globetrotte.com",
 		Password: "shouldReplaceThisWithRand",
 	}
-	user = database.GetUserBasicDBWithID(database.NewUserDB(&newNewUser))
+	id, _ := database.NewUserDB(&newNewUser)
+	user = database.GetUserBasicDBWithID(id)
 
 	newTrip := wings.TripBasic{
 		Name:   "DummyTrip",

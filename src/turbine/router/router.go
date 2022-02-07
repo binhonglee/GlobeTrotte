@@ -59,6 +59,12 @@ var actualRoutes = routes{
 		addUserObj,
 	},
 	route{
+		"GetUserObjWithUsername",
+		"GET",
+		"/username/{username}",
+		getUserObjWithUsername,
+	},
+	route{
 		"GetUserObj",
 		"GET",
 		"/v2/user/{id}",

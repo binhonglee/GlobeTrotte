@@ -103,6 +103,12 @@ export default defineComponent({
   text-align: center;
 }
 
+@media screen and (max-width: 450px) {
+  .viewDays {
+    padding: 10px;
+  }
+}
+
 .viewDayCard {
   display: inline-block;
   position: unset;
@@ -110,12 +116,16 @@ export default defineComponent({
   width: 400px;
   margin: 0 0 20px 10px;
   vertical-align: top;
+}
 
-  @media screen and (max-width: 760px) {
+@media screen and (max-width: 760px) {
+  .viewDayCard {
     margin: 0 0 20px 0;
   }
+}
 
-  @media screen and (max-width: 430px) {
+@media screen and (max-width: 450px) {
+  .viewDayCard {
     width: 100%;
   }
 }

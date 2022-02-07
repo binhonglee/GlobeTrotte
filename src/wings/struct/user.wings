@@ -10,6 +10,7 @@ ts-implement IWingsStruct
 struct User {
   id            int   -1
   name          str
+  username      str
   email         str
   bio           str
   time_created  date
