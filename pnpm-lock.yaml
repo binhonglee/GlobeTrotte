@@ -3,7 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@cypress/code-coverage': 3.9.12
   '@cypress/vite-dev-server': 2.2.2
-  '@cypress/vue': 3.1.0
+  '@cypress/vue': 3.1.1
   '@delagen/eslint-plugin-deprecation': 1.3.2
   '@types/node': 16.11.24
   '@typescript-eslint/eslint-plugin': 5.11.0
@@ -46,7 +46,7 @@ dependencies:
 devDependencies:
   '@cypress/code-coverage': 3.9.12_cypress@9.4.1
   '@cypress/vite-dev-server': 2.2.2_vite@2.8.0
-  '@cypress/vue': 3.1.0_cypress@9.4.1+vue@3.2.30
+  '@cypress/vue': 3.1.1_cypress@9.4.1+vue@3.2.30
   '@delagen/eslint-plugin-deprecation': 1.3.2_eslint@8.8.0+typescript@4.5.5
   '@types/node': 16.11.24
   '@typescript-eslint/eslint-plugin': 5.11.0_de5a1ddccd75ca1e499b8b8491d3dcba
@@ -1691,8 +1691,8 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/vue/3.1.0_cypress@9.4.1+vue@3.2.30:
-    resolution: {integrity: sha512-E2aFQtPvLLW9yKZz7t94VN1SuO53Jx9wN12gi7pvpHId5E6p+8Z+v2zlzzREpA8Gbi2QGNMwK8ciSYcwZG2bXg==}
+  /@cypress/vue/3.1.1_cypress@9.4.1+vue@3.2.30:
+    resolution: {integrity: sha512-wD1vunuPFPLC8FZtgwdq+mcSEOs27qquuJJdGcY8aAN0y38rqYuuaj+N4UxKoAjhkSwthaOeZehjBtvDvv9C6w==}
     engines: {node: '>=8'}
     peerDependencies:
       '@cypress/webpack-dev-server': '*'
