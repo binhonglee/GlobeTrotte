@@ -25,7 +25,6 @@ func addUserObj(res http.ResponseWriter, req *http.Request) {
 
 	item.Email, ok = handleEmails(item.Email)
 	if !ok {
-		logger.DebugGreen(item.Email)
 		respond(res, user.RegistrationResponse{
 			User:  user.DummyUserObj(),
 			Error: wings.EmailInvalid,

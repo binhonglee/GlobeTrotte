@@ -4,12 +4,13 @@
     h2(v-if="showName").userName.left_col {{ user.details.name }}
     p.userBio(v-if="user.details.bio !== ''")
       | {{ user.details.bio }}
-    CExternalLink.externalLink(
-      :underline="'hover'"
-      :url="user.details.link.valueOf()"
-      v-if="user.details.link !== ''"
-    ) {{ user.details.link }}
-    CShare(:shareURL="shareURL")
+    .externalLink
+      CExternalLink(
+        :underline="'hover'"
+        :url="user.details.link.valueOf()"
+        v-if="user.details.link !== ''"
+      ) {{ user.details.link }}
+    CShare(v-if="self" :shareURL="shareURL" :onClick="onShare")
     .userInfoButtonGroups(v-if="self")
       n-button.myAccountLogout.left_col(type="error" @click="logout") Logout
       n-button.myAccountEdit.right_col(
@@ -94,11 +95,6 @@ export default defineComponent({
   }),
   async beforeMount(): Promise<void> {
     await this.genPopulateTrips();
-    let value = this.$props.user.details.username.valueOf();
-    if (value === "") {
-      value = this.$props.user.ID.toString();
-    }
-    this.$data.shareURL = HTTPReq.getAbsoluteURL(Routes.User, value);
   },
   async beforeUpdate(): Promise<void> {
     await this.genPopulateTrips();
@@ -138,6 +134,13 @@ export default defineComponent({
     async newTrip(): Promise<void> {
       await Routing.genRedirectTo(Routes.trip_New);
     },
+    onShare(): void {
+      let value = this.$props.user.details.username.valueOf();
+      if (value === "") {
+        value = this.$props.user.details.ID.toString();
+      }
+      this.$data.shareURL = HTTPReq.getAbsoluteURL(Routes.User, value);
+    },
   },
 });
 </script>
@@ -155,6 +158,10 @@ export default defineComponent({
 .userBio,
 .externalLink {
   padding-bottom: 10px;
+}
+
+.externalLink {
+  width: 100%;
 }
 
 .viewUserTrips {

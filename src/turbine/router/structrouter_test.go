@@ -6,7 +6,6 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/trip"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/user"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
@@ -44,12 +43,10 @@ func TestAddUser(t *testing.T) {
 	addTest("/v2/user", t, &newUser, &returned, true)
 	addedUser = *&returned.User
 
-	logger.DebugPink(returned.Error)
 	if returned.User.GetID() == -1 {
 		t.Errorf("User failed to add.")
 	}
 
-	logger.DebugCyan(returned.User)
 	if returned.User.Details.Email != newUser.Email {
 		t.Errorf(
 			"Sent Email is %v but returned Email is %v.",

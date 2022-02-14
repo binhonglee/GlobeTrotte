@@ -42,6 +42,12 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    onClick: {
+      type: Function,
+      default: () => {
+        return;
+      },
+    },
   },
   data: (): Data => ({
     showShareURL: false,
@@ -51,6 +57,7 @@ export default defineComponent({
   },
   methods: {
     share(): void {
+      this.$props.onClick();
       if (this.$data.showShareURL) {
         this.$data.showShareURL = false;
         return;

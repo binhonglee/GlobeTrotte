@@ -36,6 +36,10 @@ exports[`My Account - Delete Account (failure) 1`] = `
               data-v-311c04db
           >
           </h2>
+          <div class="externalLink"
+               data-v-311c04db
+          >
+          </div>
           <div class="share_component"
                data-v-311c04db
           >
@@ -853,6 +857,10 @@ exports[`My Account - Delete Account (success) 1`] = `
               data-v-311c04db
           >
           </h2>
+          <div class="externalLink"
+               data-v-311c04db
+          >
+          </div>
           <div class="share_component"
                data-v-311c04db
           >
@@ -1985,6 +1993,10 @@ exports[`My Account - Logout 1`] = `
               data-v-311c04db
           >
           </h2>
+          <div class="externalLink"
+               data-v-311c04db
+          >
+          </div>
           <div class="share_component"
                data-v-311c04db
           >
@@ -2208,6 +2220,10 @@ exports[`My Account - Logout 2`] = `
           >
             MyAccount Test User
           </h2>
+          <div class="externalLink"
+               data-v-311c04db
+          >
+          </div>
           <div class="share_component"
                data-v-311c04db
           >
@@ -2441,6 +2457,10 @@ exports[`My Account - Save Edit (failure) 1`] = `
               data-v-311c04db
           >
           </h2>
+          <div class="externalLink"
+               data-v-311c04db
+          >
+          </div>
           <div class="share_component"
                data-v-311c04db
           >
@@ -3258,6 +3278,10 @@ exports[`My Account - Save Edit (success) 1`] = `
               data-v-311c04db
           >
           </h2>
+          <div class="externalLink"
+               data-v-311c04db
+          >
+          </div>
           <div class="share_component"
                data-v-311c04db
           >
@@ -3796,6 +3820,10 @@ exports[`My Account - Save Edit (success) 3`] = `
           >
             MyAccount Test User
           </h2>
+          <div class="externalLink"
+               data-v-311c04db
+          >
+          </div>
           <div class="share_component"
                data-v-311c04db
           >
