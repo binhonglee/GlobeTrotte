@@ -5,7 +5,7 @@ specifiers:
   '@cypress/vite-dev-server': 2.2.2
   '@cypress/vue': 3.1.1
   '@delagen/eslint-plugin-deprecation': 1.3.2
-  '@types/node': 16.11.24
+  '@types/node': 16.11.25
   '@typescript-eslint/eslint-plugin': 5.12.0
   '@typescript-eslint/parser': 5.12.0
   '@vicons/ionicons5': 0.12.0
@@ -48,7 +48,7 @@ devDependencies:
   '@cypress/vite-dev-server': 2.2.2_vite@2.8.2
   '@cypress/vue': 3.1.1_cypress@9.4.1+vue@3.2.31
   '@delagen/eslint-plugin-deprecation': 1.3.2_eslint@8.9.0+typescript@4.5.5
-  '@types/node': 16.11.24
+  '@types/node': 16.11.25
   '@typescript-eslint/eslint-plugin': 5.12.0_c467cf9bb49b295941e83ce479a578b7
   '@typescript-eslint/parser': 5.12.0_eslint@8.9.0+typescript@4.5.5
   '@vicons/ionicons5': 0.12.0
@@ -1819,7 +1819,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.3
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 16.11.24
+      '@types/node': 16.11.25
       '@types/yargs': 16.0.4
       chalk: 4.1.2
     dev: false
@@ -1908,8 +1908,8 @@ packages:
     resolution: {integrity: sha512-JcII3D5/OapPGx+eJ+Ik1SQGyt6WvuqdRfh9jUwL6/iHGjmyOriBDciBUu7lEIBTL2ijxwrR70WUnw5AEDmFvQ==}
     dev: true
 
-  /@types/node/16.11.24:
-    resolution: {integrity: sha512-Ezv33Rl4mIi6YdSHfIRNBd4Q9kUe5okiaw/ikvJiJDmuQZNW5kfdg7+oQPF8NO6sTcr3woIpj3jANzTXdvEZXA==}
+  /@types/node/16.11.25:
+    resolution: {integrity: sha512-NrTwfD7L1RTc2qrHQD4RTTy4p0CO2LatKBEKEds3CaVuhoM/+DJzmWZl5f+ikR8cm8F5mfJxK+9rQq07gRiSjQ==}
 
   /@types/sinonjs__fake-timers/8.1.1:
     resolution: {integrity: sha512-0kSuKjAS0TrGLJ0M/+8MaFkGsQhZpB6pxOmvS3K8FYI72K//YmdfoW9X2qPsAKh1mkwxGD5zib9s1FIFed6E8g==}
@@ -1933,7 +1933,7 @@ packages:
     resolution: {integrity: sha512-A1b8SU4D10uoPjwb0lnHmmu8wZhR9d+9o2PKBQT2jU5YPTKsxac6M2qGAdY7VcL+dHHhARVUDmeg0rOrcd9EjA==}
     requiresBuild: true
     dependencies:
-      '@types/node': 16.11.24
+      '@types/node': 16.11.25
     dev: true
     optional: true
 
