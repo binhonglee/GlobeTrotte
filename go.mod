@@ -11,7 +11,7 @@ require (
 	github.com/jackc/pgx/v4 v4.15.0
 	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
 	github.com/lib/pq v1.10.4
-	golang.org/x/crypto v0.0.0-20220213190939-1e6e3497d506
+	golang.org/x/crypto v0.0.0-20220214200702-86341886e292
 	golang.org/x/time v0.0.0-20220210224613-90d013bbcef8
 	zgo.at/zcache v1.0.0
 )
