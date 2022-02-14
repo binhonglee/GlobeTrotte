@@ -10,16 +10,16 @@ for (const cityString in City) {
         cityString +
           " - Every city should have conversion in CityUtil.toString().",
         () => {
-          expect(CityUtil.toString(city) !== "unrecognized city").toBeTruthy();
+          expect(CityUtil.toString(city) !== "Others").toBeTruthy();
         },
       );
     }
   }
 }
 
-test("Non existent city (including UNKNOWN) should return 'unrecognized city", () => {
+test("Non existent city (including UNKNOWN) should return 'Others", () => {
   const unsupported = 999999;
-  expect(CityUtil.toString(unsupported)).toEqual("unrecognized city");
+  expect(CityUtil.toString(unsupported)).toEqual("Others");
 });
 
 test("There should be the same amount of cities.", () => {
@@ -29,7 +29,7 @@ test("There should be the same amount of cities.", () => {
   for (const cityString in City) {
     if (Object.prototype.hasOwnProperty.call(City, cityString)) {
       const city = Number(cityString);
-      if (!isNaN(city) && city !== City.UNKNOWN) {
+      if (!isNaN(city)) {
         cities.add(city);
       }
     }

@@ -4,6 +4,7 @@
     h1.title You are leaving GlobeTrotte...
     p.content
       | Make sure you want to proceed to
+      br
       a.externalURL(:href="link") {{ link }}
     n-button.backButton(@click="close") Back to GlobeTrotte
     n-button(type="primary" tag="a" :href="link") Proceed

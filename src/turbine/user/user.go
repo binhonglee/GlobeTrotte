@@ -3,6 +3,7 @@ package user
 import (
 	"regexp"
 	"strconv"
+	"strings"
 
 	"github.com/binhonglee/GlobeTrotte/src/turbine/database"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/email"
@@ -30,6 +31,7 @@ func NewUser(newUser wings.NewUser) RegistrationResponse {
 			Error: wings.UsernameInvalid,
 		}
 	}
+	newUser.Username = strings.ToLower(newUser.Username)
 	id, err := database.NewUserDB(&newUser)
 	if id < 1 {
 		return RegistrationResponse{

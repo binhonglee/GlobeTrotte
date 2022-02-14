@@ -1,4 +1,4 @@
-import { mount, MountingOptions, VueWrapper } from "@vue/test-utils";
+import { mount, MountingOptions } from "@vue/test-utils";
 import App from "@/App.vue";
 import router from "@/router";
 import ElementPlus, {

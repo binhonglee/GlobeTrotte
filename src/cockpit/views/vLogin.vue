@@ -49,6 +49,7 @@ import LoginCredential from "@/wings/LoginCredential";
 import router from "@/router";
 import Routes from "@/routes";
 import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
+import NaiveUtils from "@/shared/NaiveUtils";
 
 interface Data {
   loading: boolean;
@@ -76,6 +77,7 @@ export default defineComponent({
     if (Routing.hasNext()) {
       this.$data.showError = true;
     }
+    NaiveUtils.init();
   },
   mounted(): void {
     E.get(E.get(this, "email"), "input").focus();
@@ -98,18 +100,13 @@ export default defineComponent({
       if (user.ID === -1) {
         this.$data.loadingBar?.error();
         this.$data.loading = false;
-        this.$message({
-          type: "error",
-          message: "Wrong email or password. Please try again.",
-        });
+        NaiveUtils.messageError("Wrong email or password. Please try again.");
         return;
       }
       this.$data.loadingBar?.finish();
       localStorage.setItem("userobj", WingsStructUtil.stringify(user));
       this.$data.loading = false;
-      this.$notify(
-        General.notifConfig("Success", "You are now logged in.", "success"),
-      );
+      NaiveUtils.messageSuccess("You are now logged in.");
 
       await Routing.paramToNext(new Map<string, string>(), true);
     },

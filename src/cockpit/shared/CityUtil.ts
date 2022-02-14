@@ -18,6 +18,7 @@ export interface Options {
 export class CityUtil {
   public static sortedCityList(): CityObj[] {
     return [
+      new CityObj(City.UNKNOWN),
       new CityObj(City.AnchorageAKUS),
       new CityObj(City.BostonMAUS),
       new CityObj(City.GeorgeTownPGMY),
@@ -45,9 +46,9 @@ export class CityUtil {
   }
 
   public static toString(city: City): string {
-    const unrecognized = "unrecognized city";
+    const unrecognized = "Others";
     const cityName = {
-      [City.UNKNOWN]: unrecognized,
+      [City.UNKNOWN]: "Others",
       [City.AnchorageAKUS]: "Anchorage, Alaska, US",
       [City.BostonMAUS]: "Boston, Massachusetts, US",
       [City.GeorgeTownPGMY]: "George Town, Penang, MY",

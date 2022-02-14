@@ -12,10 +12,11 @@
     ) {{ trip.details.description }}
     p.tripCreatorInfo Author: 
       CLink(:url="'/user/' + trip.user.ID") {{ trip.user.name }}
-    p.tripCreatedDate Created on: {{ trip.timeCreated.toDateString() }}
-    p.tripUpdatedDate Last Updated: {{ trip.lastUpdated.toDateString() }}
+    p.tripUpdatedDate Last Updated: {{ lastUpdated }}
+    p.tripCreatedDate Created on: {{ created }}
     div.tripCities
       n-tag.tripCity(v-for="city in cities" type="info") {{ city }}
+    CShare(:shareURL="shareURL")
   .viewDays
     n-card.viewDayCard(
       v-for="day in days"
@@ -35,20 +36,35 @@
 import { defineComponent } from "vue";
 import CPlaces from "./CPlaces.vue";
 import CLink from "./CLink.vue";
+import CShare from "./CShare.vue";
 import { CityUtil } from "@/shared/CityUtil";
 import { DataDay } from "@/shared/DataProps";
 import Day from "@/wings/Day";
-import { NAlert, NButton, NCard, NTag } from "naive-ui";
 import TripObj from "@/wings/TripObj";
+import { NAlert, NButton, NCard, NTag } from "naive-ui";
+import HTTPReq from "@/shared/HTTPReq";
+import Routes from "@/routes";
+import General from "@/shared/General";
 
 interface Data {
   days: DataDay[];
   cities: string[];
+  shareURL: string;
+  created: string;
+  lastUpdated: string;
 }
 
 export default defineComponent({
   name: "CViewTrip",
-  components: { CLink, CPlaces, NAlert, NButton, NCard, NTag },
+  components: {
+    CLink,
+    CPlaces,
+    CShare,
+    NAlert,
+    NButton,
+    NCard,
+    NTag,
+  },
   props: {
     trip: {
       type: TripObj,
@@ -61,17 +77,29 @@ export default defineComponent({
       return true;
     },
   },
-  data: (): Data => ({ days: [], cities: [] }),
+  data: (): Data => ({
+    days: [],
+    cities: [],
+    shareURL: "",
+    created: "",
+    lastUpdated: "",
+  }),
   beforeMount(): void {
     this.$data.cities = [];
-    if (this.$props.trip !== undefined) {
-      for (let city of this.$props.trip.details.cities) {
-        this.$data.cities.push(CityUtil.toString(city));
-      }
-      this.$data.days = (this.$props.trip.details.days.slice(0) as Day[]).map(
-        (day) => new DataDay(day),
-      );
+    for (let city of this.$props.trip.details.cities) {
+      this.$data.cities.push(CityUtil.toString(city));
     }
+    this.$data.days = (this.$props.trip.details.days.slice(0) as Day[]).map(
+      (day) => new DataDay(day),
+    );
+    this.$data.shareURL = HTTPReq.getAbsoluteURL(
+      Routes.trip_View,
+      this.$props.trip.ID.toString(),
+    );
+    this.$data.created = General.getDisplayDate(this.$props.trip.timeCreated);
+    this.$data.lastUpdated = General.getDisplayDate(
+      this.$props.trip.lastUpdated,
+    );
   },
   methods: {
     enableEditMode(): void {
@@ -88,6 +116,7 @@ export default defineComponent({
 
 .tripCities {
   margin: 10px 0 0 0;
+  padding-bottom: 10px;
 }
 
 .tripCity {

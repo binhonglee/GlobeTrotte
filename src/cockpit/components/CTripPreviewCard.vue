@@ -1,10 +1,14 @@
 <template lang="pug">
 .trip_preview_card(:class="{ wide_preview_card: wide }")
-  CLink.tripLink(:url="'/trip/view/' + trip.ID" underline="never")
-    n-card(
-      hoverable
-      content-style="padding: 0"
-      :class="{ widePreviewCard: wide, tripPreviewCard: !wide }"
+  n-card(
+    hoverable
+    content-style="padding: 0"
+    :class="{ widePreviewCard: wide, tripPreviewCard: !wide, limitHeight: limitHeight }"
+  )
+    CLink.tripLink(
+      :url="'/trip/view/' + trip.ID"
+      underline="never"
+      color="never"
     )
       h3.tripTitleName {{ trip.details.name.valueOf() }}
       n-divider
@@ -19,7 +23,7 @@
           ) {{ trip.user.name }}
         .cityTags
           n-tag.cityTag(v-for="city in cities" type="info") {{ city }}
-        p Last Updated: {{ trip.lastUpdated.toDateString() }}
+        p Last Updated: {{ lastUpdated }}
       .daysInTrip(v-for="day in days")
         n-divider
         .tripDayPreview
@@ -37,10 +41,12 @@ import { CityUtil } from "@/shared/CityUtil";
 import { DataDay } from "@/shared/DataProps";
 import Day from "@/wings/Day";
 import TripObj from "@/wings/TripObj";
+import General from "@/shared/General";
 
 interface Data {
   cities: string[];
   days: DataDay[];
+  lastUpdated: string;
 }
 
 export default defineComponent({
@@ -61,10 +67,15 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    limitHeight: {
+      type: Boolean,
+      default: true,
+    },
   },
   data: (): Data => ({
     cities: [""],
     days: [],
+    lastUpdated: "",
   }),
   mounted(): void {
     this.$data.cities = this.$props.trip.details.cities.map((city) => {
@@ -72,6 +83,9 @@ export default defineComponent({
     });
     this.$data.days = (this.$props.trip.details.days.slice(0) as Day[]).map(
       (day) => new DataDay(day),
+    );
+    this.$data.lastUpdated = General.getDisplayDate(
+      this.$props.trip.lastUpdated,
     );
   },
 });
@@ -91,6 +105,9 @@ export default defineComponent({
 .tripPreviewCard {
   overflow: auto;
   width: 500px;
+}
+
+.limitHeight {
   height: 500px;
 }
 

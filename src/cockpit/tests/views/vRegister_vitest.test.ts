@@ -1,9 +1,8 @@
 import vRegister from "@/views/vRegister.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
-import UserObj from "@/wings/UserObj";
 import { mountingOptions, Vue, wait } from "../helper";
-import { alertSpy, messageSpy, notifySpy, routerSpy, stub } from "../vitestSpy";
+import { alertSpy, routerSpy, stub } from "../vitestSpy";
 import { describe, expect, spyOn, test } from "vitest";
 import { mount, VueWrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
@@ -152,7 +151,7 @@ describe("vRegister", () => {
       JSON.parse(returnedUser),
     );
     const wrapper = mount(vRegister, mountingOptions());
-    const notify = new notifySpy(wrapper);
+    const notify = stub(spyOn(NaiveUtils, "messageSuccess"));
     const redirection = stub(
       spyOn(Routing, "genRedirectTo").mockResolvedValue(),
     );
@@ -184,11 +183,9 @@ describe("vRegister", () => {
     );
     await wait(0);
     expect(notify.called(1)).toBeTruthy();
-    expect(notify.getTitle()).toEqual("Success");
-    expect(notify.getMessage()).toEqual(
+    expect(notify.args()[0][0]).toEqual(
       "Your account is created successfully!",
     );
-    expect(notify.getType()).toEqual("success");
     expect(redirection.calledOnce()).toBeTruthy();
     expect(redirection.args()[0][0]).toEqual(
       "/unconfirmed/email/:next=myaccount",

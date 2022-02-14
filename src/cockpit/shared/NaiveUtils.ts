@@ -41,4 +41,22 @@ export default class NaiveUtils {
       return this.message.error(message);
     }
   }
+
+  public static messageInfo(message: string): MessageReactive | undefined {
+    if (this.shouldRun()) {
+      return this.message.info(message);
+    }
+  }
+
+  public static messageLoading(message: string): MessageReactive | undefined {
+    if (this.shouldRun()) {
+      return this.message.loading(message);
+    }
+  }
+
+  public static messageSuccess(message: string): MessageReactive | undefined {
+    if (this.shouldRun()) {
+      return this.message.success(message);
+    }
+  }
 }

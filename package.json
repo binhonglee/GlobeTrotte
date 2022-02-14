@@ -24,7 +24,7 @@
   "dependencies": {
     "axios": "0.26.0",
     "element-plus": "1.0.2-beta.71",
-    "naive-ui": "2.24.7",
+    "naive-ui": "2.25.2",
     "vue": "3.2.31",
     "wings-ts-util": "0.0.8"
   },

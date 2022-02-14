@@ -3,7 +3,7 @@
   h1.title Search Trip
   form.tripSearchForm
     n-input.tripSearchQueryInput(
-      placeholder="Alaska"
+      placeholder="weekend"
       v-model:value="query"
       @keyup.enter.native="search"
     )
@@ -19,6 +19,8 @@
     CTripPreviewCard(
       v-for="trip in trips"
       :trip="trip"
+      :limit-height="trips.length !== 1"
+      :wide="trips.length === 1"
     )
   .tripSearchInitialMessage(v-else-if="init")
     .narrow_content

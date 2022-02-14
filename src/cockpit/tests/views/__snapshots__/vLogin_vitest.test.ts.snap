@@ -149,7 +149,7 @@ exports[`Login > Cancel 1`] = `
   <p class="forgotPassword"
      data-v-275e5b16
   >
-    <a class="link always"
+    <a class="underline_always color_always"
        href="/password/reset"
        rel
        target
@@ -311,7 +311,7 @@ exports[`Login > Cancel 2`] = `
   <p class="forgotPassword"
      data-v-275e5b16
   >
-    <a class="link always"
+    <a class="underline_always color_always"
        href="/password/reset"
        rel
        target
@@ -473,7 +473,7 @@ exports[`Login > Success 1`] = `
   <p class="forgotPassword"
      data-v-275e5b16
   >
-    <a class="link always"
+    <a class="underline_always color_always"
        href="/password/reset"
        rel
        target
@@ -635,7 +635,7 @@ exports[`Login > Success 2`] = `
   <p class="forgotPassword"
      data-v-275e5b16
   >
-    <a class="link always"
+    <a class="underline_always color_always"
        href="/password/reset"
        rel
        target
@@ -797,7 +797,7 @@ exports[`Login > Wrong password 1`] = `
   <p class="forgotPassword"
      data-v-275e5b16
   >
-    <a class="link always"
+    <a class="underline_always color_always"
        href="/password/reset"
        rel
        target
@@ -959,7 +959,7 @@ exports[`Login > Wrong password 2`] = `
   <p class="forgotPassword"
      data-v-275e5b16
   >
-    <a class="link always"
+    <a class="underline_always color_always"
        href="/password/reset"
        rel
        target

@@ -56,7 +56,7 @@ import UserBasic from "@/wings/UserBasic";
 import UserObj from "@/wings/UserObj";
 import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
-import { NAlert, NButton, useDialog } from "naive-ui";
+import { NAlert, NButton } from "naive-ui";
 import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
 import NaiveUtils from "@/shared/NaiveUtils";
 
@@ -186,6 +186,7 @@ export default defineComponent({
     async logout(): Promise<void> {
       await HTTPReq.genGET("logout");
       localStorage.clear();
+      NaiveUtils.messageSuccess("You are now logged out.");
       await Routing.genRedirectTo(Routes.Landing);
     },
     toggleEdit(): void {

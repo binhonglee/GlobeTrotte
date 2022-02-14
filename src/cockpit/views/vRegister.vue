@@ -50,7 +50,6 @@
 import { defineComponent } from "vue";
 import { WingsStructUtil } from "wings-ts-util";
 import { NButton } from "naive-ui";
-import General from "@/shared/General";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import RegistrationResponse from "@/wings/RegistrationResponse";
@@ -162,15 +161,8 @@ export default defineComponent({
       }
 
       localStorage.setItem("userobj", WingsStructUtil.stringify(user));
-
       this.$data.loading = false;
-      this.$notify(
-        General.notifConfig(
-          "Success",
-          "Your account is created successfully!",
-          "success",
-        ),
-      );
+      NaiveUtils.messageSuccess("Your account is created successfully!");
 
       let next = Routing.getNext(this.$route);
       if (next === Routes.Landing) {

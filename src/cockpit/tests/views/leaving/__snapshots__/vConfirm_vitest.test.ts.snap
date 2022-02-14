@@ -61,6 +61,7 @@ exports[`vConfirm - Working external link 1`] = `
        data-v-5824ebc7
     >
       Make sure you want to proceed to
+      <br data-v-5824ebc7>
       <a class="externalURL"
          href="https://youtu.be/dQw4w9WgXcQ"
          data-v-5824ebc7
@@ -138,6 +139,7 @@ exports[`vConfirm - Working internal link 1`] = `
        data-v-5824ebc7
     >
       Make sure you want to proceed to
+      <br data-v-5824ebc7>
       <a class="externalURL"
          href="https://globetrotte.com/trip/search"
          data-v-5824ebc7

@@ -6,9 +6,10 @@ import { describe, expect, spyOn, test } from "vitest";
 import { mount, VueWrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
 import { mountingOptions, Vue, wait } from "../helper";
-import { messageSpy, notifySpy, routerSpy, stub } from "../vitestSpy";
+import { routerSpy, stub } from "../vitestSpy";
 import R from "@/shared/R";
 import LoginCredential from "@/wings/LoginCredential";
+import NaiveUtils from "@/shared/NaiveUtils";
 
 const email = "ab@test.com";
 const password = "1234";
@@ -62,7 +63,7 @@ describe("Login", () => {
       JSON.parse(returnedUser),
     );
     const wrapper = mount(vLogin, mountingOptions());
-    const message = new messageSpy(wrapper);
+    const message = stub(spyOn(NaiveUtils, "messageError"));
     const rNext = stub(spyOn(R, "hasNext")).returns(false);
     verifyUI(wrapper);
     fillFormAndLogin(wrapper, {
@@ -83,10 +84,9 @@ describe("Login", () => {
     await genPOST.restore();
     await wait(0);
     expect(message.called(1)).toBeTruthy();
-    expect(message.getMessage()).toEqual(
+    expect(message.args()[0][0]).toEqual(
       "Wrong email or password. Please try again.",
     );
-    expect(message.getType()).toEqual("error");
     await message.restore();
   });
 
@@ -102,7 +102,7 @@ describe("Login", () => {
     );
     const wrapper = mount(vLogin, mountingOptions());
     // const routerPush = new routerSpy(wrapper, "push");
-    const notify = new notifySpy(wrapper);
+    const notify = stub(spyOn(NaiveUtils, "messageSuccess"));
     verifyUI(wrapper);
     fillFormAndLogin(wrapper, {
       email: email,
@@ -125,9 +125,7 @@ describe("Login", () => {
     // await routerPush.restore();
     await wait(0);
     expect(notify.called(1)).toBeTruthy();
-    expect(notify.getTitle()).toEqual("Success");
-    expect(notify.getMessage()).toEqual("You are now logged in.");
-    expect(notify.getType()).toEqual("success");
+    expect(notify.args()[0][0]).toEqual("You are now logged in.");
     await notify.restore();
   });
 });

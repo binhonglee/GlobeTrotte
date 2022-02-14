@@ -4,12 +4,12 @@
     h2(v-if="showName").userName.left_col {{ user.details.name }}
     p.userBio(v-if="user.details.bio !== ''")
       | {{ user.details.bio }}
-    CExternalLink(
+    CExternalLink.externalLink(
       :underline="'hover'"
       :url="user.details.link.valueOf()"
       v-if="user.details.link !== ''"
-    )
-      | {{ user.details.link }}
+    ) {{ user.details.link }}
+    CShare(:shareURL="shareURL")
     .userInfoButtonGroups(v-if="self")
       n-button.myAccountLogout.left_col(type="error" @click="logout") Logout
       n-button.myAccountEdit.right_col(
@@ -18,7 +18,7 @@
   n-divider.viewUserDivider
   div.viewUserTrips
     h2 Trips
-    CTripPreviewCard(v-for="trip in trips" :trip="trip" :wide="true")
+    CTripPreviewCard(v-for="trip in trips" :trip="trip" :wide="true" :limit-height="false")
     .createTripAlertDiv(v-if="self && tripsEmpty")
       n-alert.createTripAlert(type="default" :show-icon="false")
         | Seems like you have not shared any of your own trips.
@@ -32,6 +32,7 @@
 import { defineComponent } from "vue";
 import { NAlert, NButton, NDivider } from "naive-ui";
 import CExternalLink from "./CExternalLink.vue";
+import CShare from "./CShare.vue";
 import CTripPreviewCard from "./CTripPreviewCard.vue";
 import General from "@/shared/General";
 import TripUtil from "@/shared/TripUtil";
@@ -40,17 +41,20 @@ import TripBasic from "@/wings/TripBasic";
 import TripObj from "@/wings/TripObj";
 import Routing from "@/shared/Routing";
 import Routes from "@/routes";
+import HTTPReq from "@/shared/HTTPReq";
 
 interface Data {
   trips: TripObj[];
   lastPopulated: TripBasic[];
   tripsEmpty: boolean;
+  shareURL: string;
 }
 
 export default defineComponent({
   name: "CViewUser",
   components: {
     CExternalLink,
+    CShare,
     CTripPreviewCard,
     NAlert,
     NButton,
@@ -86,9 +90,15 @@ export default defineComponent({
     trips: [],
     lastPopulated: [],
     tripsEmpty: true,
+    shareURL: "",
   }),
   async beforeMount(): Promise<void> {
     await this.genPopulateTrips();
+    let value = this.$props.user.details.username.valueOf();
+    if (value === "") {
+      value = this.$props.user.ID.toString();
+    }
+    this.$data.shareURL = HTTPReq.getAbsoluteURL(Routes.User, value);
   },
   async beforeUpdate(): Promise<void> {
     await this.genPopulateTrips();
@@ -140,6 +150,11 @@ export default defineComponent({
 .userBio {
   white-space: pre-wrap;
   margin: 0;
+}
+
+.userBio,
+.externalLink {
+  padding-bottom: 10px;
 }
 
 .viewUserTrips {

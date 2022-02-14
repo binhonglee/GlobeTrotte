@@ -19,6 +19,67 @@ exports[`vIDUser > Get User - Has user (not self) 1`] = `
       <div class="userInfo narrow_content"
            data-v-311c04db
       >
+        <div class="share_component"
+             data-v-311c04db
+        >
+          <button class="n-button n-button--default-type n-button--medium-type"
+                  tabindex="0"
+                  type="button"
+                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
+          >
+            <transition-stub>
+            </transition-stub>
+            <span class="n-button__content">
+              <i role="img"
+                 class="n-icon"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1);"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                     viewbox="0 0 512 512"
+                >
+                  <path d="M336 192h40a40 40 0 0 1 40 40v192a40 40 0 0 1-40 40H136a40 40 0 0 1-40-40V232a40 40 0 0 1 40-40h40"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                  >
+                  </path>
+                  <path fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M336 128l-80-80l-80 80"
+                  >
+                  </path>
+                  <path fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M256 321V48"
+                  >
+                  </path>
+                </svg>
+              </i>
+              Share
+            </span>
+            <div aria-hidden="true"
+                 class="n-base-wave"
+            >
+            </div>
+            <div aria-hidden="true"
+                 class="n-button__border"
+            >
+            </div>
+            <div aria-hidden="true"
+                 class="n-button__state-border"
+            >
+            </div>
+          </button>
+        </div>
       </div>
       <div role="separator"
            class="n-divider n-divider--no-title viewUserDivider"
@@ -38,20 +99,20 @@ exports[`vIDUser > Get User - Has user (not self) 1`] = `
              data-v-22a19118
              data-v-311c04db
         >
-          <a class="link never tripLink"
-             href="/trip/view/5"
-             rel
-             target
-             data-v-018c0145
-             data-v-22a19118
+          <div class="n-card n-card--bordered n-card--hoverable widePreviewCard"
+               style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
+               data-v-22a19118
           >
-            <div class="n-card n-card--bordered n-card--hoverable widePreviewCard"
-                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-                 data-v-22a19118
+            <div class="n-card__content"
+                 style="padding: 0px;"
+                 role="none"
             >
-              <div class="n-card__content"
-                   style="padding: 0px;"
-                   role="none"
+              <a class="underline_never color_never tripLink"
+                 href="/trip/view/5"
+                 rel
+                 target
+                 data-v-018c0145
+                 data-v-22a19118
               >
                 <h3 class="tripTitleName"
                     data-v-22a19118
@@ -70,7 +131,7 @@ exports[`vIDUser > Get User - Has user (not self) 1`] = `
                      data-v-22a19118
                 >
                   <p data-v-22a19118>
-                    <a class="link hover tripPreviewUserProfileLink"
+                    <a class="underline_hover color_always tripPreviewUserProfileLink"
                        href="/user/10"
                        rel
                        target
@@ -85,16 +146,16 @@ exports[`vIDUser > Get User - Has user (not self) 1`] = `
                   >
                   </div>
                   <p data-v-22a19118>
-                    Last Updated: Thu Dec 31 2020
+                    Last Updated: Dec 31 2020
                   </p>
                 </div>
                 <div class="endOfCardPadding"
                      data-v-22a19118
                 >
                 </div>
-              </div>
+              </a>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </div>
@@ -121,6 +182,67 @@ exports[`vIDUser > Get User - Has user (self) 1`] = `
       <div class="userInfo narrow_content"
            data-v-311c04db
       >
+        <div class="share_component"
+             data-v-311c04db
+        >
+          <button class="n-button n-button--default-type n-button--medium-type"
+                  tabindex="0"
+                  type="button"
+                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
+          >
+            <transition-stub>
+            </transition-stub>
+            <span class="n-button__content">
+              <i role="img"
+                 class="n-icon"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1);"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                     viewbox="0 0 512 512"
+                >
+                  <path d="M336 192h40a40 40 0 0 1 40 40v192a40 40 0 0 1-40 40H136a40 40 0 0 1-40-40V232a40 40 0 0 1 40-40h40"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                  >
+                  </path>
+                  <path fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M336 128l-80-80l-80 80"
+                  >
+                  </path>
+                  <path fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M256 321V48"
+                  >
+                  </path>
+                </svg>
+              </i>
+              Share
+            </span>
+            <div aria-hidden="true"
+                 class="n-base-wave"
+            >
+            </div>
+            <div aria-hidden="true"
+                 class="n-button__border"
+            >
+            </div>
+            <div aria-hidden="true"
+                 class="n-button__state-border"
+            >
+            </div>
+          </button>
+        </div>
       </div>
       <div role="separator"
            class="n-divider n-divider--no-title viewUserDivider"
@@ -140,20 +262,20 @@ exports[`vIDUser > Get User - Has user (self) 1`] = `
              data-v-22a19118
              data-v-311c04db
         >
-          <a class="link never tripLink"
-             href="/trip/view/5"
-             rel
-             target
-             data-v-018c0145
-             data-v-22a19118
+          <div class="n-card n-card--bordered n-card--hoverable widePreviewCard"
+               style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
+               data-v-22a19118
           >
-            <div class="n-card n-card--bordered n-card--hoverable widePreviewCard"
-                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-                 data-v-22a19118
+            <div class="n-card__content"
+                 style="padding: 0px;"
+                 role="none"
             >
-              <div class="n-card__content"
-                   style="padding: 0px;"
-                   role="none"
+              <a class="underline_never color_never tripLink"
+                 href="/trip/view/5"
+                 rel
+                 target
+                 data-v-018c0145
+                 data-v-22a19118
               >
                 <h3 class="tripTitleName"
                     data-v-22a19118
@@ -172,7 +294,7 @@ exports[`vIDUser > Get User - Has user (self) 1`] = `
                      data-v-22a19118
                 >
                   <p data-v-22a19118>
-                    <a class="link hover tripPreviewUserProfileLink"
+                    <a class="underline_hover color_always tripPreviewUserProfileLink"
                        href="/user/10"
                        rel
                        target
@@ -187,16 +309,16 @@ exports[`vIDUser > Get User - Has user (self) 1`] = `
                   >
                   </div>
                   <p data-v-22a19118>
-                    Last Updated: Thu Dec 31 2020
+                    Last Updated: Dec 31 2020
                   </p>
                 </div>
                 <div class="endOfCardPadding"
                      data-v-22a19118
                 >
                 </div>
-              </div>
+              </a>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </div>
@@ -222,6 +344,67 @@ exports[`vIDUser > Get User - Not found 1`] = `
       <div class="userInfo narrow_content"
            data-v-311c04db
       >
+        <div class="share_component"
+             data-v-311c04db
+        >
+          <button class="n-button n-button--default-type n-button--medium-type"
+                  tabindex="0"
+                  type="button"
+                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
+          >
+            <transition-stub>
+            </transition-stub>
+            <span class="n-button__content">
+              <i role="img"
+                 class="n-icon"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1);"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                     viewbox="0 0 512 512"
+                >
+                  <path d="M336 192h40a40 40 0 0 1 40 40v192a40 40 0 0 1-40 40H136a40 40 0 0 1-40-40V232a40 40 0 0 1 40-40h40"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                  >
+                  </path>
+                  <path fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M336 128l-80-80l-80 80"
+                  >
+                  </path>
+                  <path fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M256 321V48"
+                  >
+                  </path>
+                </svg>
+              </i>
+              Share
+            </span>
+            <div aria-hidden="true"
+                 class="n-base-wave"
+            >
+            </div>
+            <div aria-hidden="true"
+                 class="n-button__border"
+            >
+            </div>
+            <div aria-hidden="true"
+                 class="n-button__state-border"
+            >
+            </div>
+          </button>
+        </div>
       </div>
       <div role="separator"
            class="n-divider n-divider--no-title viewUserDivider"

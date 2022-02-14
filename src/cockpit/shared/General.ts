@@ -91,4 +91,8 @@ export default class General {
       return null;
     }
   }
+
+  public static getDisplayDate(date: Date): string {
+    return date.toDateString().substring(4);
+  }
 }

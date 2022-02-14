@@ -1,6 +1,6 @@
 <template lang="pug">
-a.link(
-  :class="underline"
+a(
+  :class="'underline_' + underline + ' ' + 'color_' + color"
   :href="url"
   :rel="external ? 'noopener noreferrer' : ''"
   :target="external ? '_blank': ''"
@@ -12,6 +12,7 @@ a.link(
 import { defineComponent, PropType } from "vue";
 
 export type LinkUnderline = "never" | "always" | "hover";
+export type LinkColor = "never" | "always";
 
 export default defineComponent({
   name: "CLink",
@@ -24,6 +25,10 @@ export default defineComponent({
       type: String as PropType<LinkUnderline>,
       default: "always",
     },
+    color: {
+      type: String as PropType<LinkUnderline>,
+      default: "always",
+    },
     external: {
       type: Boolean,
       default: false,
@@ -33,23 +38,24 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.link {
+.underline_always {
+  text-decoration: underline;
+}
+
+.underline_never,
+.underline_hover {
+  text-decoration: none;
+}
+
+.underline_hover:hover {
+  text-decoration: underline;
+}
+
+.color_always {
   color: var(--default-link);
 }
 
-.always {
-  text-decoration: underline;
-}
-
-.hover {
-  text-decoration: none;
-}
-
-.hover:hover {
-  text-decoration: underline;
-}
-
-.never {
-  text-decoration: none;
+.color_never {
+  color: unset;
 }
 </style>
