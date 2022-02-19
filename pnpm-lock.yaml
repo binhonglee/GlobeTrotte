@@ -30,7 +30,7 @@ specifiers:
   pug: 3.0.2
   typescript: 4.5.5
   vite: 2.8.4
-  vitest: 0.4.1
+  vitest: 0.4.2
   vue: 3.2.31
   vue-router: 4.0.12
   vue-tsc: 0.31.4
@@ -70,7 +70,7 @@ devDependencies:
   pug: 3.0.2
   typescript: 4.5.5
   vite: 2.8.4
-  vitest: 0.4.1_c8@7.11.0+jsdom@19.0.0
+  vitest: 0.4.2_c8@7.11.0+jsdom@19.0.0
   vue-router: 4.0.12_vue@3.2.31
   vue-tsc: 0.31.4_typescript@4.5.5
 
@@ -8112,8 +8112,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.4.1_c8@7.11.0+jsdom@19.0.0:
-    resolution: {integrity: sha512-zDqUYOUoyBiC0DgWw9RyQqhUktaFA+hJmrZskYrnVslSuZiuzI7SYj2GmXGwHvSx1FfdWI5lRFN9IWB7Ug5cYg==}
+  /vitest/0.4.2_c8@7.11.0+jsdom@19.0.0:
+    resolution: {integrity: sha512-f5kclFhkCuIKQ96lsAveESeyfTf9ihT79ZQcLDNCoJbMDNTHQdSMnU7aq9KAeOmZVh4la3NANKWECWM7HfP1ng==}
     engines: {node: '>=14.14.0'}
     hasBin: true
     peerDependencies:
