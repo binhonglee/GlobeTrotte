@@ -24,7 +24,7 @@ specifiers:
   forever: 4.0.3
   jest-serializer-html: 7.1.0
   jsdom: 19.0.0
-  naive-ui: 2.25.2
+  naive-ui: 2.25.3
   nyc: 15.1.0
   prettier: 2.5.1
   pug: 3.0.2
@@ -39,7 +39,7 @@ specifiers:
 dependencies:
   axios: 0.26.0
   element-plus: 1.0.2-beta.71_vue@3.2.31
-  naive-ui: 2.25.2_vue@3.2.31
+  naive-ui: 2.25.3_vue@3.2.31
   vue: 3.2.31
   wings-ts-util: 0.0.8
 
@@ -6200,8 +6200,8 @@ packages:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
     dev: true
 
-  /naive-ui/2.25.2_vue@3.2.31:
-    resolution: {integrity: sha512-Jv/hMVHECh1Q7lPtIkGIa+eQVwFpQs6qEAn3r+eaEGmSuTAFJOrIKRL4ob10O5jQ1BxjLyWb+kzSxuwoi/VHWg==}
+  /naive-ui/2.25.3_vue@3.2.31:
+    resolution: {integrity: sha512-gSMJbA7MZMxlewRffkGRhlC2aMcGo2YaXZl+EyNAlPlD3oa3thqNnWEq8Dr8BtxUwd1wJskft56nfV+H11e/dw==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
@@ -6223,7 +6223,7 @@ packages:
       vfonts: 0.0.3
       vooks: 0.2.12_vue@3.2.31
       vue: 3.2.31
-      vueuc: 0.4.25_vue@3.2.31
+      vueuc: 0.4.26_vue@3.2.31
     dev: false
 
   /nan/2.14.2:
@@ -8308,8 +8308,8 @@ packages:
       '@vue/shared': 3.2.31
     dev: false
 
-  /vueuc/0.4.25_vue@3.2.31:
-    resolution: {integrity: sha512-SkQCtJ0N+O24gCgDwc+TYNAptgoOb/+lCTlZ7s9I+eTLo7DiLvfHp0mWI04cGkP1elhH26xdkCN+TCQ0vwaL5g==}
+  /vueuc/0.4.26_vue@3.2.31:
+    resolution: {integrity: sha512-IK6TV4468k7Hpj1SXXPYelT/aYqmfa/SYTLFospwJ/uMebRExS1fh5tx6ZT3fSA0OkmCOHmmi2OGke+eSseAgw==}
     peerDependencies:
       vue: ^3.0.11
     dependencies:
