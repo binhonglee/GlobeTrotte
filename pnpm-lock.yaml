@@ -24,7 +24,7 @@ specifiers:
   forever: 4.0.3
   jest-serializer-html: 7.1.0
   jsdom: 19.0.0
-  naive-ui: 2.25.3
+  naive-ui: 2.25.5
   nyc: 15.1.0
   prettier: 2.5.1
   pug: 3.0.2
@@ -39,7 +39,7 @@ specifiers:
 dependencies:
   axios: 0.26.0
   element-plus: 1.0.2-beta.71_vue@3.2.31
-  naive-ui: 2.25.3_vue@3.2.31
+  naive-ui: 2.25.5_vue@3.2.31
   vue: 3.2.31
   wings-ts-util: 0.0.8
 
@@ -6200,8 +6200,8 @@ packages:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
     dev: true
 
-  /naive-ui/2.25.3_vue@3.2.31:
-    resolution: {integrity: sha512-gSMJbA7MZMxlewRffkGRhlC2aMcGo2YaXZl+EyNAlPlD3oa3thqNnWEq8Dr8BtxUwd1wJskft56nfV+H11e/dw==}
+  /naive-ui/2.25.5_vue@3.2.31:
+    resolution: {integrity: sha512-COT+8+xgYIliHWLl3vwtqmnoXGp3tbobUiRHC0KBOBOvqnLHw5gZKYDQhShbbblL6/gXqQR2L7LDorgSucE6Jg==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
