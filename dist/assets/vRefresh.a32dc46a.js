@@ -1,1 +1,0 @@
-import{_ as t,R as r,a as n}from"./index.4a453efe.js";import{j as o}from"./vendor.bef68fa6.js";function s(a,e,p,c,i,f){return null}const l=o({async beforeMount(){var e;const a=r.getParamMap();await r.genRedirectTo(((e=a.get("next"))!=null?e:n.Landing).replaceAll(".slash.","/").replaceAll(".colon.",":").replaceAll(".equal.","="))}});var d=t(l,[["render",s]]);export{d as default};
