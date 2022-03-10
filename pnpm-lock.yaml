@@ -13,7 +13,7 @@ specifiers:
   '@vue/eslint-config-prettier': 7.0.0
   '@vue/eslint-config-typescript': 10.0.0
   '@vue/test-utils': 2.0.0-rc.18
-  axios: 0.26.0
+  axios: 0.26.1
   c8: 7.11.0
   cypress: 9.5.1
   element-plus: 1.0.2-beta.71
@@ -37,7 +37,7 @@ specifiers:
   wings-ts-util: 0.0.8
 
 dependencies:
-  axios: 0.26.0
+  axios: 0.26.1
   element-plus: 1.0.2-beta.71_vue@3.2.31
   naive-ui: 2.25.5_vue@3.2.31
   vue: 3.2.31
@@ -2608,8 +2608,8 @@ packages:
     resolution: {integrity: sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==}
     dev: true
 
-  /axios/0.26.0:
-    resolution: {integrity: sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og==}
+  /axios/0.26.1:
+    resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
     dependencies:
       follow-redirects: 1.14.8
     transitivePeerDependencies:
