@@ -15,7 +15,7 @@ specifiers:
   '@vue/test-utils': 2.0.0-rc.18
   axios: 0.26.1
   c8: 7.11.0
-  cypress: 9.5.1
+  cypress: 9.5.2
   element-plus: 1.0.2-beta.71
   esbuild: 0.14.26
   eslint: 8.11.0
@@ -44,9 +44,9 @@ dependencies:
   wings-ts-util: 0.0.8
 
 devDependencies:
-  '@cypress/code-coverage': 3.9.12_cypress@9.5.1
+  '@cypress/code-coverage': 3.9.12_cypress@9.5.2
   '@cypress/vite-dev-server': 2.2.2_vite@2.8.6
-  '@cypress/vue': 3.1.1_cypress@9.5.1+vue@3.2.31
+  '@cypress/vue': 3.1.1_cypress@9.5.2+vue@3.2.31
   '@delagen/eslint-plugin-deprecation': 1.3.2_eslint@8.11.0+typescript@4.6.2
   '@types/node': 16.11.26
   '@typescript-eslint/eslint-plugin': 5.15.0_f2c49ce7d0e93ebcfdb4b7d25b131b28
@@ -57,7 +57,7 @@ devDependencies:
   '@vue/eslint-config-typescript': 10.0.0_5e58415d4c9ab0c3da8935a9b8bb8c26
   '@vue/test-utils': 2.0.0-rc.18_vue@3.2.31
   c8: 7.11.0
-  cypress: 9.5.1
+  cypress: 9.5.2
   esbuild: 0.14.26
   eslint: 8.11.0
   eslint-plugin-prettier: 4.0.0_eslint@8.11.0+prettier@2.5.1
@@ -1632,14 +1632,14 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/code-coverage/3.9.12_cypress@9.5.1:
+  /@cypress/code-coverage/3.9.12_cypress@9.5.2:
     resolution: {integrity: sha512-2QuDSQ2ovz2ZsbQImM917q+9JmEq4afC4kpgHe2o3rTQxUrs7CdHM84rT8XKl0gJIXmbMcNq2rZqe40/eFmCFw==}
     peerDependencies:
       cypress: '*'
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.2
       chalk: 4.1.2
-      cypress: 9.5.1
+      cypress: 9.5.2
       dayjs: 1.10.7
       debug: 4.3.3
       execa: 4.1.0
@@ -1691,7 +1691,7 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/vue/3.1.1_cypress@9.5.1+vue@3.2.31:
+  /@cypress/vue/3.1.1_cypress@9.5.2+vue@3.2.31:
     resolution: {integrity: sha512-wD1vunuPFPLC8FZtgwdq+mcSEOs27qquuJJdGcY8aAN0y38rqYuuaj+N4UxKoAjhkSwthaOeZehjBtvDvv9C6w==}
     engines: {node: '>=8'}
     peerDependencies:
@@ -1707,7 +1707,7 @@ packages:
     dependencies:
       '@cypress/mount-utils': 1.0.2
       '@vue/test-utils': 2.0.0-rc.18_vue@3.2.31
-      cypress: 9.5.1
+      cypress: 9.5.2
       vue: 3.2.31
     dev: true
 
@@ -3570,8 +3570,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /cypress/9.5.1:
-    resolution: {integrity: sha512-H7lUWB3Svr44gz1rNnj941xmdsCljXoJa2cDneAltjI9leKLMQLm30x6jLlpQ730tiVtIbW5HdUmBzPzwzfUQg==}
+  /cypress/9.5.2:
+    resolution: {integrity: sha512-gYiQYvJozMzDOriUV1rCt6CeRM/pRK4nhwGJj3nJQyX2BoUdTCVwp30xDMKc771HiNVhBtgj5o5/iBdVDVXQUg==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
