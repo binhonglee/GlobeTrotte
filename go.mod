@@ -13,5 +13,5 @@ require (
 	github.com/lib/pq v1.10.4
 	golang.org/x/crypto v0.0.0-20220321153916-2c7772ba3064
 	golang.org/x/time v0.0.0-20220224211638-0e9765cccd65
-	zgo.at/zcache v1.0.0
+	zgo.at/zcache v1.1.0
 )
