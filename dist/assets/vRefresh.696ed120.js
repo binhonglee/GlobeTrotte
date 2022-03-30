@@ -1,0 +1,1 @@
+import{_ as t,i as r,R as n,j as o}from"./index.aaf24c90.js";function s(a,e,c,p,i,u){return null}const l=r({async beforeMount(){var e;const a=n.getParamMap();await n.genRedirectTo(((e=a.get("next"))!=null?e:o.Landing).replaceAll(".slash.","/").replaceAll(".colon.",":").replaceAll(".equal.","="))}});var d=t(l,[["render",s]]);export{d as default};
