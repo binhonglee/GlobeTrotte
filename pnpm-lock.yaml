@@ -29,7 +29,7 @@ specifiers:
   prettier: 2.6.1
   pug: 3.0.2
   typescript: 4.6.3
-  vite: 2.8.6
+  vite: 2.9.0
   vitest: 0.7.12
   vue: 3.2.31
   vue-router: 4.0.14
@@ -45,14 +45,14 @@ dependencies:
 
 devDependencies:
   '@cypress/code-coverage': 3.9.12_cypress@9.5.3
-  '@cypress/vite-dev-server': 2.2.2_vite@2.8.6
+  '@cypress/vite-dev-server': 2.2.2_vite@2.9.0
   '@cypress/vue': 3.1.1_cypress@9.5.3+vue@3.2.31
   '@delagen/eslint-plugin-deprecation': 1.3.2_eslint@8.12.0+typescript@4.6.3
   '@types/node': 16.11.26
   '@typescript-eslint/eslint-plugin': 5.17.0_689ff565753ecf7c3328c07fad067df5
   '@typescript-eslint/parser': 5.17.0_eslint@8.12.0+typescript@4.6.3
   '@vicons/ionicons5': 0.12.0
-  '@vitejs/plugin-vue': 2.3.0_vite@2.8.6+vue@3.2.31
+  '@vitejs/plugin-vue': 2.3.0_vite@2.9.0+vue@3.2.31
   '@vue/eslint-config-prettier': 7.0.0_eslint@8.12.0+prettier@2.6.1
   '@vue/eslint-config-typescript': 10.0.0_472ac59a1665d7276ffa7649fe6f1d6e
   '@vue/test-utils': 2.0.0-rc.18_vue@3.2.31
@@ -69,7 +69,7 @@ devDependencies:
   prettier: 2.6.1
   pug: 3.0.2
   typescript: 4.6.3
-  vite: 2.8.6
+  vite: 2.9.0
   vitest: 0.7.12_c8@7.11.0+jsdom@19.0.0
   vue-router: 4.0.14_vue@3.2.31
   vue-tsc: 0.33.7_typescript@4.6.3
@@ -1679,14 +1679,14 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@cypress/vite-dev-server/2.2.2_vite@2.8.6:
+  /@cypress/vite-dev-server/2.2.2_vite@2.9.0:
     resolution: {integrity: sha512-02y/Fm0N+CQjKbSjjRtktPgPbp91kOvtc8+WW2l2odIYQkKlG6IOCpmgc898muW0lBAcCszdEIHR/ItdZDiYPw==}
     peerDependencies:
       vite: '>= 2.1.3'
     dependencies:
       debug: 4.3.3
       get-port: 5.1.1
-      vite: 2.8.6
+      vite: 2.9.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2111,14 +2111,14 @@ packages:
     resolution: {integrity: sha512-Iy1EUVRpX0WWxeu1VIReR1zsZLMc4fqpt223czR+Rpnrwu7pt46nbnC2ycO7ItI/uqDLJxnbcMC7FujKs9IfFA==}
     dev: true
 
-  /@vitejs/plugin-vue/2.3.0_vite@2.8.6+vue@3.2.31:
+  /@vitejs/plugin-vue/2.3.0_vite@2.9.0+vue@3.2.31:
     resolution: {integrity: sha512-3j4lppvOMAYyX5mpmwm8GN1ZuqGzmkOCDGDzwwQKU5aJ3pTodaWhprZatuDB2cAtAcNe+IiGBCllBkJSLUDFYw==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       vite: ^2.9.0
       vue: ^3.2.25
     dependencies:
-      vite: 2.8.6
+      vite: 2.9.0
       vue: 3.2.31
     dev: true
 
@@ -2206,7 +2206,7 @@ packages:
       '@vue/shared': 3.2.31
       estree-walker: 2.0.2
       magic-string: 0.25.7
-      postcss: 8.4.6
+      postcss: 8.4.12
       source-map: 0.6.1
 
   /@vue/compiler-ssr/3.2.31:
@@ -6166,8 +6166,8 @@ packages:
     dev: true
     optional: true
 
-  /nanoid/3.2.0:
-    resolution: {integrity: sha512-fmsZYa9lpn69Ad5eDn7FMcnnSR+8R34W9qJEijxYhTbfOWzr22n1QxCMzXLK+ODyW2973V3Fux959iQoUxzUIA==}
+  /nanoid/3.3.2:
+    resolution: {integrity: sha512-CuHBogktKwpm5g2sRgv83jEy2ijFzBwMoYA60orPDR7ynsLijJDqgsi4RDGj3OJpy3Ieb+LYwiRmIOGyytgITA==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -6610,11 +6610,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /postcss/8.4.6:
-    resolution: {integrity: sha512-OovjwIzs9Te46vlEx7+uXB0PLijpwjXGKXjVGGPIGubGpq7uh5Xgf6D6FiJ/SzJMBosHDp6a2hiXOS97iBXcaA==}
+  /postcss/8.4.12:
+    resolution: {integrity: sha512-lg6eITwYe9v6Hr5CncVbK70SoioNQIq81nsaG86ev5hAidQvmOeETBqs7jm43K2F5/Ley3ytDtriImV6TpNiSg==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
-      nanoid: 3.2.0
+      nanoid: 3.3.2
       picocolors: 1.0.0
       source-map-js: 1.0.2
 
@@ -8007,8 +8007,8 @@ packages:
     resolution: {integrity: sha512-nguyw8L6Un8eelg1vQ31vIU2ESxqid7EYmy8V+MDeMaHBqaRSkg3dTBToC1PR00D89UzS/SLkfYPnx0Wf23IQQ==}
     dev: false
 
-  /vite/2.8.6:
-    resolution: {integrity: sha512-e4H0QpludOVKkmOsRyqQ7LTcMUDF3mcgyNU4lmi0B5JUbe0ZxeBBl8VoZ8Y6Rfn9eFKYtdXNPcYK97ZwH+K2ug==}
+  /vite/2.9.0:
+    resolution: {integrity: sha512-5NAnNqzPmZzJvrswZGeTS2JHrBGIzIWJA2hBTTMYuoBVEMh0xwE0b5yyIXFxf7F07hrK4ugX2LJ7q6t7iIbd4Q==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
@@ -8024,7 +8024,7 @@ packages:
         optional: true
     dependencies:
       esbuild: 0.14.29
-      postcss: 8.4.6
+      postcss: 8.4.12
       resolve: 1.22.0
       rollup: 2.60.2
     optionalDependencies:
@@ -8058,7 +8058,7 @@ packages:
       local-pkg: 0.4.1
       tinypool: 0.1.2
       tinyspy: 0.3.0
-      vite: 2.8.6
+      vite: 2.9.0
     transitivePeerDependencies:
       - less
       - sass
