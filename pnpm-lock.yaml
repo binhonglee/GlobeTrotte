@@ -20,7 +20,7 @@ specifiers:
   esbuild: 0.14.32
   eslint: 8.12.0
   eslint-plugin-prettier: 4.0.0
-  eslint-plugin-vue: 8.5.0
+  eslint-plugin-vue: 8.6.0
   forever: 4.0.3
   jest-serializer-html: 7.1.0
   jsdom: 19.0.0
@@ -54,14 +54,14 @@ devDependencies:
   '@vicons/ionicons5': 0.12.0
   '@vitejs/plugin-vue': 2.3.1_vite@2.9.1+vue@3.2.31
   '@vue/eslint-config-prettier': 7.0.0_eslint@8.12.0+prettier@2.6.2
-  '@vue/eslint-config-typescript': 10.0.0_472ac59a1665d7276ffa7649fe6f1d6e
+  '@vue/eslint-config-typescript': 10.0.0_324c71289bd52a05964d00266adebb09
   '@vue/test-utils': 2.0.0-rc.19_vue@3.2.31
   c8: 7.11.0
   cypress: 9.5.3
   esbuild: 0.14.32
   eslint: 8.12.0
   eslint-plugin-prettier: 4.0.0_eslint@8.12.0+prettier@2.6.2
-  eslint-plugin-vue: 8.5.0_eslint@8.12.0
+  eslint-plugin-vue: 8.6.0_eslint@8.12.0
   forever: 4.0.3
   jest-serializer-html: 7.1.0
   jsdom: 19.0.0
@@ -2231,7 +2231,7 @@ packages:
       prettier: 2.6.2
     dev: true
 
-  /@vue/eslint-config-typescript/10.0.0_472ac59a1665d7276ffa7649fe6f1d6e:
+  /@vue/eslint-config-typescript/10.0.0_324c71289bd52a05964d00266adebb09:
     resolution: {integrity: sha512-F94cL8ug3FaYXlCfU5/wiGjk1qeadmoBpRGAOBq+qre3Smdupa59dd6ZJrsfRODpsMPyTG7330juMDsUvpZ3Rw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -2241,7 +2241,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 5.17.0_689ff565753ecf7c3328c07fad067df5
       '@typescript-eslint/parser': 5.17.0_eslint@8.12.0+typescript@4.6.3
       eslint: 8.12.0
-      eslint-plugin-vue: 8.5.0_eslint@8.12.0
+      eslint-plugin-vue: 8.6.0_eslint@8.12.0
       vue-eslint-parser: 8.0.1_eslint@8.12.0
     transitivePeerDependencies:
       - supports-color
@@ -4292,8 +4292,8 @@ packages:
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-vue/8.5.0_eslint@8.12.0:
-    resolution: {integrity: sha512-i1uHCTAKOoEj12RDvdtONWrGzjFm/djkzqfhmQ0d6M/W8KM81mhswd/z+iTZ0jCpdUedW3YRgcVfQ37/J4zoYQ==}
+  /eslint-plugin-vue/8.6.0_eslint@8.12.0:
+    resolution: {integrity: sha512-abXiF2J18n/7ZPy9foSlJyouKf54IqpKlNvNmzhM93N0zs3QUxZG/oBd3tVPOJTKg7SlhBUtPxugpqzNbgGpQQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
