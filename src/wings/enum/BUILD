@@ -1,4 +1,5 @@
 subinclude("//build_defs/wings")
+package(default_visibility = ["PUBLIC"])
 
 filegroup(
   name = "enum",
@@ -7,7 +8,6 @@ filegroup(
     ":access_level",
     ":registration_error",
   ],
-  visibility = ["PUBLIC"],
 )
 
 wings_lib(
@@ -17,7 +17,6 @@ wings_lib(
     "src/cockpit/wings": "City.ts",
     "src/turbine/wings": "city.go",
   },
-  visibility = ["PUBLIC"],
 )
 
 wings_lib(
@@ -27,7 +26,6 @@ wings_lib(
     "src/cockpit/wings": "AccessLevel.ts",
     "src/turbine/wings": "accesslevel.go",
   },
-  visibility = ["PUBLIC"],
 )
 
 wings_lib(
@@ -37,5 +35,4 @@ wings_lib(
     "src/cockpit/wings": "RegistrationError.ts",
     "src/turbine/wings": "registrationerror.go",
   },
-  visibility = ["PUBLIC"],
 )

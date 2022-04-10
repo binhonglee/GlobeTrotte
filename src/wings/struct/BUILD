@@ -10,7 +10,6 @@ filegroup(
     ":new_user",
     ":place",
     ":registration_response",
-    ":trip",
     ":trip_basic",
     ":trip_obj",
     ":trip_search_query",
@@ -59,20 +58,6 @@ wings_lib(
     "src/cockpit/wings": "TravelTime.ts",
     "src/turbine/wings": "traveltime.go",
   },
-)
-
-wings_lib(
-  name = "trip",
-  src = "trip.wings",
-  outs = {
-    "src/cockpit/wings": "Trip.ts",
-    "src/turbine/wings": "trip.go",
-  },
-  deps = [
-    ":day",
-    ":user_access_level",
-    "//src/wings/enum:city",
-  ],
 )
 
 wings_lib(

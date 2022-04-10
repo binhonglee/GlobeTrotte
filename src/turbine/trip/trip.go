@@ -1,9 +1,8 @@
 package trip
 
 import (
-	"time"
-
 	"github.com/binhonglee/GlobeTrotte/src/turbine/database"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 )
 
@@ -14,21 +13,16 @@ func DummyTripObj() TripObj {
 }
 
 func NewTrip(newTrip wings.TripBasic, self wings.UserBasic) TripObj {
-	tripObj := TripObj{}
-	tripObj.Details = newTrip
-	tripObj.User = self
-	tripObj.LastUpdated = time.Now()
-	tripObj.TimeCreated = time.Now()
-	tripObj.ID = database.AddTripDB(parseTripObjToTrip(tripObj))
-	if tripObj.ID == -1 {
+	id := database.AddTripDB(newTrip, self.ID)
+	if id == -1 {
 		return DummyTripObj()
 	}
-	return GetTripObj(tripObj.ID, self)
+	return GetTripObj(id, self)
 }
 
 func GetTripObj(id int, self wings.UserBasic) TripObj {
-	trip := database.GetTripDBWithID(id)
-	tripObj := parseTripToTripObj(trip)
+	trip, extra := database.GetTripBasicWithID(id)
+	tripObj := toTripObj(trip, extra)
 	if tripObj.ID == -1 || tripObj.User.ID == -1 {
 		return DummyTripObj()
 	}
@@ -54,8 +48,7 @@ func UpdateTripObj(toUpdate TripObj, self wings.UserBasic) TripObj {
 		return DummyTripObj()
 	}
 
-	toUpdate.LastUpdated = time.Now()
-	if database.UpdateTripDB(parseTripObjToTrip(toUpdate)) {
+	if database.UpdateTripDB(toUpdate.Details, self.ID) {
 		return GetTripObj(toUpdate.ID, self)
 	}
 
@@ -67,13 +60,12 @@ func DeleteTripObj(toDelete TripObj, self wings.UserBasic) bool {
 		return false
 	}
 
-	trip := parseTripObjToTrip(toDelete)
-	return database.DeleteTripDB(trip) &&
+	return database.DeleteTripDB(toDelete.Details) &&
 		database.DeleteTripFromUserDB(toDelete.Details, self)
 }
 
 func SearchTrips(query TripsSearchQuery, self wings.UserBasic) TripObjs {
-	tripObjs := parseTripsToTripObjs(database.SearchTripsDB(query.Cities, query.Length, query.Query))
+	tripObjs := toTripObjs(database.SearchTripsDB(query.Cities, query.Length, query.Query))
 	var ret TripObjs
 
 	for _, tripObj := range tripObjs {
@@ -92,8 +84,8 @@ func SearchTrips(query TripsSearchQuery, self wings.UserBasic) TripObjs {
 	return ret
 }
 
-func GetRecentTrips() TripObjs {
-	return parseTripsToTripObjs(database.GetRecentTrips())
+func GetLatestTrips() TripObjs {
+	return toTripObjs(database.GetRecentTripsDB())
 }
 
 func checkTripPrivacy(
@@ -109,50 +101,23 @@ func checkTripPrivacy(
 	return false
 }
 
-func parseTripObjToTrip(tripObj TripObj) wings.Trip {
-	trip := wings.Trip{}
-	trip.ID = tripObj.ID
-	trip.Name = tripObj.Details.Name
-	trip.Cities = tripObj.Details.Cities
-	trip.Days = tripObj.Details.Days
-	trip.Description = tripObj.Details.Description
-	trip.Private = tripObj.Details.Private
-	trip.SharedWith = tripObj.Details.SharedWith
-	trip.UserID = tripObj.User.ID
-	trip.LastUpdated = tripObj.LastUpdated
-	trip.TimeCreated = tripObj.TimeCreated
-	return trip
-}
-
-func parseTripToTripObj(trip wings.Trip) TripObj {
-	tripObj := TripObj{}
-	tripObj.ID = trip.ID
-	tripObj.Details = parseTripToTripBasic(trip)
-	tripObj.User = database.GetUserBasicDBWithID(trip.UserID)
-	tripObj.LastUpdated = trip.LastUpdated
-	tripObj.TimeCreated = trip.TimeCreated
-	tripObj.User = database.GetUserBasicDBWithID(trip.UserID)
-	return tripObj
-}
-
-func parseTripsToTripObjs(trips wings.Trips) TripObjs {
-	ret := make([]TripObj, len(trips))
-
-	for index, trip := range trips {
-		ret[index] = parseTripToTripObj(trip)
+func toTripObjs(trips []wings.TripBasic, extras []database.TripExtra) []TripObj {
+	tripObjs := make([]TripObj, len(trips))
+	for index := range trips {
+		tripObjs[index] = toTripObj(trips[index], extras[index])
 	}
-
-	return ret
+	return tripObjs
 }
 
-func parseTripToTripBasic(trip wings.Trip) wings.TripBasic {
-	tripBasic := new(wings.TripBasic)
-	tripBasic.ID = trip.ID
-	tripBasic.Name = trip.Name
-	tripBasic.Cities = trip.Cities
-	tripBasic.Days = trip.Days
-	tripBasic.Description = trip.Description
-	tripBasic.Private = trip.Private
-	tripBasic.SharedWith = trip.SharedWith
-	return *tripBasic
+func toTripObj(trip wings.TripBasic, extra database.TripExtra) TripObj {
+	tripObj := TripObj{}
+	tripObj.Details = trip
+	tripObj.ID = trip.ID
+	if trip.ID != extra.ID {
+		logger.Failure(logger.Trip, "TripExtra ID is different from TripBasic ID.")
+		return tripObj
+	}
+	tripObj.LastUpdated = extra.LastUpdated
+	tripObj.TimeCreated = extra.TimeCreated
+	return tripObj
 }

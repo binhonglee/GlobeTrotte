@@ -17,6 +17,7 @@ const (
 	Access   = "access"
 	Config   = "config"
 	NonProd  = "nonprod"
+	Trip     = "trip"
 
 	// These are kept private since they should only be used
 	// in this package anyway

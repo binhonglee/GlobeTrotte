@@ -18,76 +18,6 @@ import (
 	"github.com/jackc/pgx/v4"
 )
 
-// DummyTrip -- Self explanatory, trip that's empty / placeholder
-func DummyTrip() wings.Trip {
-	trip := new(wings.Trip)
-	trip.ID = -1
-	return *trip
-}
-
-// AddTripDB - Adding new trip into the database.
-func AddTripDB(trip wings.Trip) int {
-	newTripID := addTrip(trip)
-	user := getUserWithID(trip.UserID)
-	if user.ID == -1 {
-		logger.Print(
-			logger.Database,
-			"User adding the new trip is not found.",
-		)
-		return failAddingTripToUser(newTripID)
-	}
-
-	user.Trips = append(user.Trips, newTripID)
-	if ok := updateUser(user); !ok {
-		logger.Print(
-			logger.Database,
-			"Fail to add trip id to new user.",
-		)
-		return failAddingTripToUser(newTripID)
-	}
-
-	return newTripID
-}
-
-// GetTripDBWithID - Retrieve trip information from database with ID.
-func GetTripDBWithID(id int) wings.Trip {
-	return fetchTrip(id)
-}
-
-func GetTripBasicWithID(id int) wings.TripBasic {
-	var trip wings.TripBasic
-	var cities pgtype.Int4Array
-	var days pgtype.Int4Array
-
-	sqlStatement := `
-		SELECT id, name, cities, days, description, private
-		FROM trips WHERE id=$1;`
-	c := getConn()
-	row := c.QueryRow(context.Background(), sqlStatement, id)
-	err := row.Scan(
-		&trip.ID,
-		&trip.Name,
-		&cities,
-		&days,
-		&trip.Description,
-		&trip.Private,
-	)
-	defer c.Close()
-
-	if err != nil {
-		if err == pgx.ErrNoRows {
-			logger.Print(logger.Database, "Trip "+strconv.Itoa(id)+" not found.")
-		} else {
-			logger.Err(logger.Database, err, "")
-		}
-		trip.ID = -1
-	}
-
-	trip.Cities = cityIDsToEnumArray(int64V(cities))
-	trip.Days = fetchDays(int64V(days))
-	return trip
-}
-
 // TODO: Update to trip permission instead when we begin to allow trip sharing
 func GetTripOwnerWithID(id int) int {
 	var user int
@@ -106,35 +36,6 @@ func GetTripOwnerWithID(id int) int {
 	}
 
 	return user
-}
-
-// UpdateTripDB - Update trip information back into the database.
-func UpdateTripDB(trip wings.Trip) bool {
-	existingTrip := fetchTrip(trip.ID)
-	if existingTrip.UserID != trip.UserID {
-		logger.Print(
-			logger.Database,
-			"Update request comes from a different user than the original trip owner",
-		)
-		return false
-	}
-
-	return updateTrip(trip)
-}
-
-// DeleteTripDB - Delete trip from the database.
-func DeleteTripDB(trip wings.Trip) bool {
-	t := GetTripDBWithID(trip.GetID())
-	if t.ID == -1 {
-		return false
-	}
-
-	return deleteTripWithID(
-		trip.GetID(),
-	) && deleteTripFromUserDB(
-		trip.GetID(),
-		trip.UserID,
-	)
 }
 
 func DeleteTripWithOwnerIDDB(id int) bool {
@@ -162,116 +63,6 @@ func DeleteTripWithOwnerIDDB(id int) bool {
 	}
 
 	return succeed
-}
-
-func SearchTripsDB(cities []wings.City, days int, query string) []wings.Trip {
-	toReturn := make([]wings.Trip, 0)
-	args := make([]interface{}, 0)
-	sqlStatement := "SELECT id FROM trips WHERE CARDINALITY(days) > 0"
-	count := 1
-	if days > 0 {
-		sqlStatement += " AND CARDINALITY(days) = $" + strconv.Itoa(count)
-		args = append(args, days)
-		count++
-	}
-
-	if len(cities) > 0 {
-		sqlStatement += " AND ("
-		for i, city := range cities {
-			if i > 0 {
-				sqlStatement += " OR "
-			}
-			sqlStatement += "$" + strconv.Itoa(count) + " = ANY(cities)"
-			args = append(args, int(city))
-			count++
-		}
-		sqlStatement += ")"
-	}
-
-	if len(query) > 0 {
-		sqlStatement += " AND name LIKE $" + strconv.Itoa(count) + ""
-		args = append(args, "%"+query+"%")
-		count++
-	}
-	sqlStatement += " ORDER BY last_updated DESC;"
-
-	c := getConn()
-	rows, err := c.Query(context.Background(), sqlStatement, args...)
-	defer c.Close()
-	logger.Err(logger.Database, err, "")
-
-	defer rows.Close()
-	for rows.Next() {
-		var id int
-		err = rows.Scan(&id)
-		logger.Err(logger.Database, err, "")
-		toReturn = append(toReturn, fetchTrip(int(id)))
-	}
-
-	return toReturn
-}
-
-func GetRecentTrips() []wings.Trip {
-	toReturn := make([]wings.Trip, 0)
-	sqlStatement := `
-		SELECT id
-		FROM trips
-		WHERE
-			private = FALSE
-			AND CARDINALITY(days) > 0
-		ORDER BY last_updated DESC
-		LIMIT 10;
-	`
-	c := getConn()
-	rows, err := c.Query(context.Background(), sqlStatement)
-	defer c.Close()
-	logger.Err(logger.Database, err, "")
-
-	defer rows.Close()
-	for rows.Next() {
-		var id int
-		err = rows.Scan(&id)
-		logger.Err(logger.Database, err, "")
-		toReturn = append(toReturn, fetchTrip(int(id)))
-	}
-
-	return toReturn
-}
-
-func addTrip(newTrip wings.Trip) int {
-	for index, day := range newTrip.Days {
-		dayID := addDay(day)
-		newTrip.Days[index].ID = dayID
-	}
-	sqlStatement := `
-		INSERT INTO trips (userid, name, private, cities, description, days, time_created, last_updated)
-		VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-		RETURNING id;`
-	id := 0
-	c := getConn()
-	err := c.QueryRow(
-		context.Background(),
-		sqlStatement,
-		newTrip.UserID,
-		newTrip.Name,
-		newTrip.Private,
-		cityEnumArrayToIDs(newTrip.Cities),
-		newTrip.Description,
-		daysToIDArray(newTrip.Days),
-		newTrip.TimeCreated,
-		newTrip.LastUpdated,
-	).Scan(&id)
-	defer c.Close()
-
-	if err != nil {
-		logger.Err(logger.Database, err, "")
-		return -1
-	}
-	logger.Print(
-		logger.Database,
-		"New trip ID is: "+strconv.Itoa(id),
-	)
-	return id
 }
 
 func addDay(newDay wings.Day) int {
@@ -310,44 +101,6 @@ func addDay(newDay wings.Day) int {
 		"New day ID is: "+strconv.Itoa(id),
 	)
 	return id
-}
-
-func fetchTrip(id int) wings.Trip {
-	var trip wings.Trip
-	var days pgtype.Int4Array
-	var cities pgtype.Int4Array
-	sqlStatement := `
-		SELECT id, userid, name, private, cities, description, days, time_created, last_updated
-		FROM trips WHERE id=$1;`
-	c := getConn()
-	row := c.QueryRow(
-		context.Background(),
-		sqlStatement,
-		id,
-	)
-	switch err := row.Scan(
-		&trip.ID,
-		&trip.UserID,
-		&trip.Name,
-		&trip.Private,
-		&cities,
-		&trip.Description,
-		&days,
-		&trip.TimeCreated,
-		&trip.LastUpdated,
-	); err {
-	case pgx.ErrNoRows:
-		logger.Print(logger.Database, "Trip not found.")
-		trip.ID = -1
-	default:
-		logger.Err(logger.Database, err, "")
-	}
-
-	defer c.Close()
-
-	trip.Cities = cityIDsToEnumArray(int64V(cities))
-	trip.Days = fetchDays(int64V(days))
-	return trip
 }
 
 func fetchDays(ids []int64) wings.Days {
@@ -391,78 +144,6 @@ func fetchDay(id int64) wings.Day {
 	day.Places = fetchPlaces(int64V(places))
 	day.TravelTime = fetchTravelTimes(int64V(travelTimes))
 	return day
-}
-
-func updateTrip(updatedTrip wings.Trip) bool {
-	existingTrip := fetchTrip(updatedTrip.GetID())
-	if existingTrip.GetID() != updatedTrip.GetID() {
-		logger.Print(
-			logger.Database,
-			"Existing Trip is not found. Aborting update.",
-		)
-		logger.Print(
-			logger.Database,
-			"Given ID is "+strconv.Itoa(updatedTrip.GetID())+
-				" but found ID is "+strconv.Itoa(existingTrip.GetID())+
-				" instead.")
-		return false
-	}
-
-	for index, day := range updatedTrip.Days {
-		if updateDay(&day, true) {
-			updatedTrip.Days[index] = day
-		} else {
-			logger.Failure(
-				logger.Database,
-				"Failed to update a day in trip "+strconv.Itoa(updatedTrip.ID),
-			)
-			return false
-		}
-	}
-
-	for _, dayID := range NotExists(
-		daysToIDArray(existingTrip.Days),
-		daysToIDArray(updatedTrip.Days),
-	) {
-		deleteDayWithID(dayID)
-	}
-
-	// TODO: Cleanup days and places that are no longer attached to the day
-
-	sqlStatement := `
-		UPDATE trips
-		SET name = $2,
-		private = $3,
-		description = $4,
-		cities = $5,
-		days = $6,
-		last_updated = $7
-		WHERE id = $1;`
-
-	c := getConn()
-	_, err := c.Exec(
-		context.Background(),
-		sqlStatement,
-		updatedTrip.ID,
-		updatedTrip.Name,
-		updatedTrip.Private,
-		updatedTrip.Description,
-		cityEnumArrayToIDs(updatedTrip.Cities),
-		daysToIDArray(updatedTrip.Days),
-		updatedTrip.LastUpdated,
-	)
-	defer c.Close()
-
-	if err != nil {
-		logger.Err(
-			logger.Database,
-			err,
-			"Failed to update trip "+strconv.Itoa(updatedTrip.ID),
-		)
-		return false
-	}
-
-	return true
 }
 
 func updateDay(
@@ -544,14 +225,14 @@ func updateDay(
 }
 
 func deleteTripWithID(id int) bool {
-	existingTrip := fetchTrip(id)
+	existingTrip, _ := fetchTripBasic(id)
 	for _, day := range existingTrip.Days {
 		if !deleteDayWithID(day.ID) {
 			logger.Failure(
 				logger.Database,
 				"Failed deleting trip ID: "+strconv.Itoa(existingTrip.ID),
 			)
-			updateTrip(existingTrip)
+			updateTripBasic(existingTrip)
 			return false
 		}
 	}

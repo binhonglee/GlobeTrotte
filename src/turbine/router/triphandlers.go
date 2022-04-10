@@ -63,7 +63,7 @@ func deleteTripObj(res http.ResponseWriter, req *http.Request) {
 }
 
 func getRecentTripObjs(res http.ResponseWriter, req *http.Request) {
-	respond(res, trip.GetRecentTrips())
+	respond(res, trip.GetLatestTrips())
 }
 
 func searchTripObjs(res http.ResponseWriter, req *http.Request) {

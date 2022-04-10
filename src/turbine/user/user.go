@@ -59,7 +59,7 @@ func GetUserObj(id int, self int) UserObj {
 
 	tripIDs := database.GetUserTripsWithID(id)
 	for _, tripID := range tripIDs {
-		trip := database.GetTripBasicWithID(tripID)
+		trip, _ := database.GetTripBasicWithID(tripID)
 		if !trip.Private || database.GetTripOwnerWithID(tripID) == self {
 			user.Trips = append(user.Trips, trip)
 		}

@@ -3,14 +3,14 @@ package database
 import (
 	"strconv"
 	"testing"
-	"time"
 
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 )
 
 var newNewUser wings.NewUser
 var newUser wings.User
-var newTrip wings.Trip
+var newTrip wings.TripBasic
+var newTripExtra TripExtra
 
 func TestAddNewUserDB(t *testing.T) {
 	failCondition := -1
@@ -110,9 +110,8 @@ func TestUpdatedUserDB(t *testing.T) {
 
 func TestAddTripDB(t *testing.T) {
 	failCondition := -1
-	newTrip = wings.Trip{
+	newTrip = wings.TripBasic{
 		Name:        "DummyTrip",
-		UserID:      newUser.ID,
 		Description: "dummytrip.com",
 		Cities:      []wings.City{wings.SanFranciscoCAUS},
 		Days: []wings.Day{
@@ -141,11 +140,9 @@ func TestAddTripDB(t *testing.T) {
 				},
 			},
 		},
-		TimeCreated: time.Now(),
-		LastUpdated: time.Now(),
 	}
 
-	if actual := AddTripDB(newTrip); actual == failCondition {
+	if actual := AddTripDB(newTrip, newUser.ID); actual == failCondition {
 		t.Errorf("AddTripDB(), unable to add new trip. " + strconv.Itoa(actual))
 	} else {
 		newTrip.ID = actual
@@ -153,7 +150,7 @@ func TestAddTripDB(t *testing.T) {
 }
 
 func TestGetTripDB(t *testing.T) {
-	retrievedTrip := GetTripDBWithID(newTrip.ID)
+	retrievedTrip, retrievedExtra := GetTripBasicWithID(newTrip.ID)
 	if retrievedTrip.ID != newTrip.ID {
 		t.Errorf(
 			"GetTripDB(), given ID is %v but expected ID is %v.",
@@ -161,11 +158,11 @@ func TestGetTripDB(t *testing.T) {
 			strconv.Itoa(newTrip.ID),
 		)
 	}
-	if retrievedTrip.UserID != newTrip.UserID {
+	if retrievedExtra.UserID != newUser.ID {
 		t.Errorf(
 			"GetTripDB(), given UserID is %v but expected UserID is %v.",
-			strconv.Itoa(retrievedTrip.UserID),
-			strconv.Itoa(newTrip.UserID),
+			strconv.Itoa(retrievedExtra.UserID),
+			strconv.Itoa(newUser.ID),
 		)
 	}
 	if retrievedTrip.Name != newTrip.Name {
@@ -193,14 +190,13 @@ func TestGetTripDB(t *testing.T) {
 func TestUpdateTripDB(t *testing.T) {
 	newTrip.Name = "new Name for DummyTrip"
 	newTrip.Description = "new description for dummytrip.com"
-	newTrip.LastUpdated = time.Now()
 
-	if update := UpdateTripDB(newTrip); !update {
+	if update := UpdateTripDB(newTrip, newUser.ID); !update {
 		t.Errorf("UpdateTripDB(), failed to update trip.")
 		return
 	}
 
-	updatedTrip := GetTripDBWithID(newTrip.ID)
+	updatedTrip, _ := GetTripBasicWithID(newTrip.ID)
 	if updatedTrip.Name != newTrip.Name {
 		t.Errorf(
 			"UpdateTripDB(), given Name is %v but expected Name is %v.",
@@ -230,8 +226,8 @@ func TestDeleteTripDB(t *testing.T) {
 	if !DeleteTripDB(newTrip) {
 		t.Errorf("DeleteTripDB(), unable to delete trip.")
 	}
-	id := GetTripDBWithID(newTrip.ID).ID
-	if id > 0 {
+	trip, _ := GetTripBasicWithID(newTrip.ID)
+	if trip.ID > 0 {
 		t.Errorf("DeleteTripDB(), deleted Trip still exist in database.")
 	}
 }

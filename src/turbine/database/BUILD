@@ -8,6 +8,7 @@ go_library(
     "placedb.go",
     "traveltimedb.go",
     "tripdb.go",
+    "tripbasicdb.go",
     "userdb.go",
   ],
   deps = [

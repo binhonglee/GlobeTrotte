@@ -92,7 +92,8 @@ func GetUserDB(id int, viewer int) structs.IStructs {
 	if viewer != id {
 		tripsCopy := newUser.Trips
 		for i := len(tripsCopy) - 1; i >= 0; i-- {
-			if tripsCopy[i] == -1 || fetchTrip(tripsCopy[i]).Private {
+			t, _ := fetchTripBasic(tripsCopy[i])
+			if tripsCopy[i] == -1 || t.Private {
 				tripsCopy = append(tripsCopy[:i], tripsCopy[i+1:]...)
 			}
 		}
