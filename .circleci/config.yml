@@ -45,13 +45,15 @@ jobs:
       - run: ./pleasew build --show_all_output
       - run: ./pleasew lint
       - run: ./pleasew cover --show_all_output //src/turbine/...
-      - run: ./pleasew test --show_all_output //src/cockpit/tests/components/...
-      - run: ./pleasew test --show_all_output //src/cockpit/tests/views/...
+      # - run: ./pleasew test --show_all_output //src/cockpit/tests/components/...
+      # - run: ./pleasew test --show_all_output //src/cockpit/tests/views/...
+      - run: pnpx vitest
       - run:
           command: ./pleasew run "//src/turbine:main"
           background: true
       - run: sleep 1
-      - run: ./pleasew test --show_all_output
+      # - run: ./pleasew test --show_all_output
+      - run: ./pleasew test --show_all_output //:cockpit_cypress
       - run: ./pleasew report
       - run: ./scripts/leftover.sh
       - save_cache:

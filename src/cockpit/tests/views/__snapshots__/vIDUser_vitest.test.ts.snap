@@ -4,6 +4,10 @@ exports[`vIDUser > Get User - Has user (not self) 1`] = `
 <div class="get_user"
      data-v-de4cceec
 >
+  <div class="head"
+       data-v-de4cceec
+  >
+  </div>
   <h1 class="title"
       data-v-de4cceec
   >
@@ -110,6 +114,10 @@ exports[`vIDUser > Get User - Has user (self) 1`] = `
 <div class="get_user"
      data-v-de4cceec
 >
+  <div class="head"
+       data-v-de4cceec
+  >
+  </div>
   <h1 class="title"
       data-v-de4cceec
   >
@@ -216,6 +224,10 @@ exports[`vIDUser > Get User - Not found 1`] = `
 <div class="get_user"
      data-v-de4cceec
 >
+  <div class="head"
+       data-v-de4cceec
+  >
+  </div>
   <h1 class="title"
       data-v-de4cceec
   >

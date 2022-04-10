@@ -1,5 +1,10 @@
 <template lang="pug">
 .my_account
+  CHead(
+    title="My Accout"
+    description="Update your account settings."
+    type="profile"
+  )
   h1.title My Account
   .narrow_content.accountUnconfirmedAlertBar
     CLink.unconfirmedEmailLink(
@@ -59,6 +64,7 @@ import { WingsStructUtil } from "wings-ts-util";
 import { NAlert, NButton } from "naive-ui";
 import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
 import NaiveUtils from "@/shared/NaiveUtils";
+import CHead from "@/components/CHead.vue";
 
 interface Data {
   user: UserObj;
@@ -76,6 +82,7 @@ export default defineComponent({
     CViewUser,
     NAlert,
     NButton,
+    CHead,
   },
   data(): Data {
     return {

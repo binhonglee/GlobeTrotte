@@ -10,6 +10,7 @@ Cypress.Commands.add("registration", (email, password, confPassword) => {
   cy.get(".registrationSave").click();
   cy.url().should("include", "/unconfirmed/email");
   cy.visit("/confirm/email/force-confirm");
+  cy.url().should("not.include", "/confirm/email");
 });
 
 Cypress.Commands.add("loginAction", (email, password) => {

@@ -4,6 +4,10 @@ exports[`Landing - Load Page 1`] = `
 <div class="landing"
      data-v-299ea923
 >
+  <div class="head"
+       data-v-299ea923
+  >
+  </div>
   <h1 class="title"
       data-v-299ea923
   >

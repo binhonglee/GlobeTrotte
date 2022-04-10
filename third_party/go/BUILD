@@ -181,7 +181,7 @@ go_module(
 go_module(
   name = "lib_pq",
   module = "github.com/lib/pq",
-  version = "v1.10.4",
+  version = "v1.10.5",
   install = [
     ".",
     "oid",
@@ -192,7 +192,7 @@ go_module(
 go_module(
   name = "x_crypto",
   module = "golang.org/x/crypto",
-  version = "v0.0.0-20220213190939-1e6e3497d506",
+  version = "v0.0.0-20220408190544-5352b0902921",
   install = [
     "bcrypt",
     "blowfish",
@@ -224,7 +224,7 @@ go_module(
 go_module(
   name = "x_time",
   module = "golang.org/x/time",
-  version = "v0.0.0-20220210224613-90d013bbcef8",
+  version = "v0.0.0-20220224211638-0e9765cccd65",
   install = [
     "rate",
   ],
@@ -233,7 +233,7 @@ go_module(
 go_module(
   name = "zcache",
   module = "zgo.at/zcache",
-  version = "v1.0.0",
+  version = "v1.1.0",
   install = [
     ".",
   ],

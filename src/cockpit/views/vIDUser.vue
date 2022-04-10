@@ -1,5 +1,10 @@
 <template lang="pug">
 .get_user
+  CHead(
+    :title="user.details.name.valueOf()"
+    :description="user.details.bio.valueOf()"
+    type="profile"
+  )
   h1.title {{ user.details.name }}
   .profile_info
     CViewUser(:user="user" :showName="false")
@@ -12,6 +17,7 @@ import General from "@/shared/General";
 import UserObj from "@/wings/UserObj";
 import Routes from "@/routes";
 import Routing from "@/shared/Routing";
+import CHead from "@/components/CHead.vue";
 
 interface Data {
   user: UserObj;
@@ -20,6 +26,7 @@ interface Data {
 export default defineComponent({
   components: {
     CViewUser,
+    CHead,
   },
   data: (): Data => ({
     user: new UserObj(),

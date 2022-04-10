@@ -1,5 +1,6 @@
 <template lang="pug">
 .search_trip
+  CHead(title="Search Trip" description="Search for a trip")
   h1.title Search Trip
   form.tripSearchForm
     n-input.tripSearchQueryInput(
@@ -49,6 +50,7 @@ import Routing from "@/shared/Routing";
 import { NAlert, NButton, NIcon, NInput, NSelect } from "naive-ui";
 import { Search } from "@vicons/ionicons5";
 import TripUtil from "@/shared/TripUtil";
+import CHead from "@/components/CHead.vue";
 
 interface Data {
   length: number;
@@ -69,6 +71,7 @@ export default defineComponent({
     NInput,
     NSelect,
     CTripPreviewCard,
+    CHead,
   },
   data: (): Data => ({
     length: 0,

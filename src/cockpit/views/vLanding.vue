@@ -1,5 +1,9 @@
 <template lang="pug">
 .landing
+  CHead(
+    description="Welcome to GlobeTrotte - A travel itinerary crowdsourcing platform"
+    type="homepage"
+  )
   h1.title GlobeTrotte
   h3.subtitle Look for your next travel plan here!
   br
@@ -34,6 +38,7 @@ import Routing from "@/shared/Routing";
 import Routes from "@/routes";
 import City from "@/wings/City";
 import { NButton, NInput, NSelect } from "naive-ui";
+import CHead from "@/components/CHead.vue";
 
 interface Data {
   length: number;
@@ -49,6 +54,7 @@ export default defineComponent({
     NInput,
     NSelect,
     CTripPreviewCard,
+    CHead,
   },
   data: (): Data => ({
     length: 0,

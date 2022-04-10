@@ -110,7 +110,9 @@ jobs:
     - run: ./pleasew build "//src/turbine:main"
     - run: ./pleasew run "//src/turbine:main" -- -toFile=true &
     - run: sleep 3
-    - run: ./pleasew test --show_all_output //:cockpit_cypress
+    - run: pnpm run serve &
+    - run: sleep 3
+    - run: pnpm run test:cypress:plz
 
     - uses: actions/upload-artifact@v2
       with:
@@ -191,7 +193,7 @@ jobs:
 
     - run: sudo npm i -g pnpm
     - run: ./pleasew test --show_all_output //src/cockpit/...
-    - run: ./pleasew test --show_all_output //:tsc
+    # - run: ./pleasew test --show_all_output //:tsc
 
     - uses: actions/upload-artifact@v2
       with:

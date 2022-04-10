@@ -1,5 +1,10 @@
 <template lang="pug">
 .get_view_trip
+  CHead(
+    :title="trip.details.name.valueOf()"
+    :description="trip.details.description.valueOf()"
+    type="article"
+  )
   h1.title Trip
   CTripInfo(
     v-if="trip.ID !== -1"
@@ -10,6 +15,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import CHead from "@/components/CHead.vue";
 import CTripInfo from "@/components/CTripInfo.vue";
 import General from "@/shared/General";
 import TripObj from "@/wings/TripObj";
@@ -24,6 +30,7 @@ interface Data {
 
 export default defineComponent({
   components: {
+    CHead,
     CTripInfo,
   },
   data(): Data {

@@ -4,6 +4,10 @@ exports[`My Account - Delete Account (failure) 1`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -195,6 +199,10 @@ exports[`My Account - Delete Account (failure) 2`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -509,6 +517,10 @@ exports[`My Account - Delete Account (failure) 3`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -823,6 +835,10 @@ exports[`My Account - Delete Account (success) 1`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -1014,6 +1030,10 @@ exports[`My Account - Delete Account (success) 2`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -1328,6 +1348,10 @@ exports[`My Account - Delete Account (success) 3`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -1642,6 +1666,10 @@ exports[`My Account - Delete Account (success) 4`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -1956,6 +1984,10 @@ exports[`My Account - Logout 1`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -2147,6 +2179,10 @@ exports[`My Account - Logout 2`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -2420,6 +2456,10 @@ exports[`My Account - Save Edit (failure) 1`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -2611,6 +2651,10 @@ exports[`My Account - Save Edit (failure) 2`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -2925,6 +2969,10 @@ exports[`My Account - Save Edit (failure) 3`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -3239,6 +3287,10 @@ exports[`My Account - Save Edit (success) 1`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -3430,6 +3482,10 @@ exports[`My Account - Save Edit (success) 2`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >
@@ -3744,6 +3800,10 @@ exports[`My Account - Save Edit (success) 3`] = `
 <div class="my_account"
      data-v-031e67ed
 >
+  <div class="head"
+       data-v-031e67ed
+  >
+  </div>
   <h1 class="title"
       data-v-031e67ed
   >

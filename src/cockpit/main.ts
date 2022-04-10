@@ -1,5 +1,6 @@
 import Axios from "axios";
 import ElementPlus from "element-plus";
+import { createHead } from "@vueuse/head";
 import { createApp } from "vue";
 import { RouteLocationNormalized, NavigationGuardNext } from "vue-router";
 import "element-plus/lib/theme-chalk/index.css";
@@ -57,7 +58,9 @@ router.beforeEach(
     }
   },
 );
+const head = createHead();
 
 app.config.globalProperties.$router = router;
 app.use(router);
+app.use(head);
 app.mount("#app");

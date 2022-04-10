@@ -1,5 +1,6 @@
 <template lang="pug">
 .new_trip.narrow_content
+  CHead(title="New Trip" description="Create new trip")
   h1.title New Trip
   CEditTrip.newTrip.narrow_display_window(
     :trip="trip"
@@ -20,6 +21,7 @@ import TripBasic from "@/wings/TripBasic";
 import Routes from "@/routes";
 import router from "@/router";
 import Routing from "@/shared/Routing";
+import CHead from "@/components/CHead.vue";
 
 interface Data {
   trip: TripObj;
@@ -28,6 +30,7 @@ interface Data {
 export default defineComponent({
   components: {
     CEditTrip,
+    CHead,
   },
   data(): Data {
     return {

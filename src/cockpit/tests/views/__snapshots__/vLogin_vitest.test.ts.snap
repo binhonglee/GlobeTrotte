@@ -4,6 +4,10 @@ exports[`Login > Cancel 1`] = `
 <div class="login narrow_content"
      data-v-275e5b16
 >
+  <div class="head"
+       data-v-275e5b16
+  >
+  </div>
   <h1 class="title"
       data-v-275e5b16
   >
@@ -166,6 +170,10 @@ exports[`Login > Cancel 2`] = `
 <div class="login narrow_content"
      data-v-275e5b16
 >
+  <div class="head"
+       data-v-275e5b16
+  >
+  </div>
   <h1 class="title"
       data-v-275e5b16
   >
@@ -328,6 +336,10 @@ exports[`Login > Success 1`] = `
 <div class="login narrow_content"
      data-v-275e5b16
 >
+  <div class="head"
+       data-v-275e5b16
+  >
+  </div>
   <h1 class="title"
       data-v-275e5b16
   >
@@ -490,6 +502,10 @@ exports[`Login > Success 2`] = `
 <div class="login narrow_content"
      data-v-275e5b16
 >
+  <div class="head"
+       data-v-275e5b16
+  >
+  </div>
   <h1 class="title"
       data-v-275e5b16
   >
@@ -652,6 +668,10 @@ exports[`Login > Wrong password 1`] = `
 <div class="login narrow_content"
      data-v-275e5b16
 >
+  <div class="head"
+       data-v-275e5b16
+  >
+  </div>
   <h1 class="title"
       data-v-275e5b16
   >
@@ -814,6 +834,10 @@ exports[`Login > Wrong password 2`] = `
 <div class="login narrow_content"
      data-v-275e5b16
 >
+  <div class="head"
+       data-v-275e5b16
+  >
+  </div>
   <h1 class="title"
       data-v-275e5b16
   >

@@ -1,5 +1,10 @@
 <template lang="pug">
 .new_user.narrow_content
+  CHead(
+    title="Create Account"
+    description="Create your GlobeTrotte account!"
+    type="signup"
+  )
   h1.title Create Account
   form.newUser.narrow_display_window
     CEditItem(
@@ -60,6 +65,7 @@ import E from "@/shared/E";
 import Routing from "@/shared/Routing";
 import router from "@/router";
 import NaiveUtils from "@/shared/NaiveUtils";
+import CHead from "@/components/CHead.vue";
 
 interface Data {
   loading: boolean;
@@ -69,6 +75,7 @@ export default defineComponent({
   components: {
     CEditItem,
     NButton,
+    CHead,
   },
   data(): Data {
     return {

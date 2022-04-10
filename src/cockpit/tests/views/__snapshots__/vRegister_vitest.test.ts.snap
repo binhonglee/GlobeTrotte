@@ -2,6 +2,8 @@
 
 exports[`vRegister > Registration - Cancel 1`] = `
 <div class="new_user narrow_content">
+  <div class="head">
+  </div>
   <h1 class="title">
     Create Account
   </h1>
@@ -246,6 +248,8 @@ exports[`vRegister > Registration - Cancel 1`] = `
 
 exports[`vRegister > Registration - Cancel 2`] = `
 <div class="new_user narrow_content">
+  <div class="head">
+  </div>
   <h1 class="title">
     Create Account
   </h1>
@@ -490,6 +494,8 @@ exports[`vRegister > Registration - Cancel 2`] = `
 
 exports[`vRegister > Registration - New user (Failure) 1`] = `
 <div class="new_user narrow_content">
+  <div class="head">
+  </div>
   <h1 class="title">
     Create Account
   </h1>
@@ -734,6 +740,8 @@ exports[`vRegister > Registration - New user (Failure) 1`] = `
 
 exports[`vRegister > Registration - New user (Failure) 2`] = `
 <div class="new_user narrow_content">
+  <div class="head">
+  </div>
   <h1 class="title">
     Create Account
   </h1>
@@ -978,6 +986,8 @@ exports[`vRegister > Registration - New user (Failure) 2`] = `
 
 exports[`vRegister > Registration - New user (Success) 1`] = `
 <div class="new_user narrow_content">
+  <div class="head">
+  </div>
   <h1 class="title">
     Create Account
   </h1>
@@ -1222,6 +1232,8 @@ exports[`vRegister > Registration - New user (Success) 1`] = `
 
 exports[`vRegister > Registration - New user (Success) 2`] = `
 <div class="new_user narrow_content">
+  <div class="head">
+  </div>
   <h1 class="title">
     Create Account
   </h1>
@@ -1466,6 +1478,8 @@ exports[`vRegister > Registration - New user (Success) 2`] = `
 
 exports[`vRegister > Registration - Password mismatch 1`] = `
 <div class="new_user narrow_content">
+  <div class="head">
+  </div>
   <h1 class="title">
     Create Account
   </h1>
@@ -1710,6 +1724,8 @@ exports[`vRegister > Registration - Password mismatch 1`] = `
 
 exports[`vRegister > Registration - Password mismatch 2`] = `
 <div class="new_user narrow_content">
+  <div class="head">
+  </div>
   <h1 class="title">
     Create Account
   </h1>

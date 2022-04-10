@@ -169,7 +169,10 @@ jobs:
   - script: ./pleasew run "//src/turbine:main" &
     displayName: Run turbine on background
   - script: sleep 1
-  - script: ./pleasew test --show_all_output //:cockpit_cypress
+  - script: pnpm run serve &
+    displayName: Run cockpit on background
+  - script: sleep 1
+  - script: pnpm run test:cypress:plz
     displayName: Run e2e tests
 
 - job: turbine
@@ -289,5 +292,5 @@ jobs:
 
   - script: ./pleasew test --show_all_output //src/cockpit/...
     displayName: Test cockpit
-  - script: ./pleasew test --show_all_output //:tsc
-    displayName: Cockpit typecheck
+  # - script: ./pleasew test --show_all_output //:tsc
+  #   displayName: Cockpit typecheck

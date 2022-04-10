@@ -1,5 +1,6 @@
 <template lang="pug">
 .login.narrow_content
+  CHead(title="Login" description="Login to your GlobeTrotte account.")
   h1.title Login
   n-alert.tripPrivateAlertBar(
     v-if="showError"
@@ -50,6 +51,7 @@ import router from "@/router";
 import Routes from "@/routes";
 import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
 import NaiveUtils from "@/shared/NaiveUtils";
+import CHead from "@/components/CHead.vue";
 
 interface Data {
   loading: boolean;
@@ -64,6 +66,7 @@ export default defineComponent({
     CLink,
     NAlert,
     NButton,
+    CHead,
   },
   data(): Data {
     return {

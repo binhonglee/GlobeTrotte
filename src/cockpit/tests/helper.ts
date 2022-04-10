@@ -7,6 +7,7 @@ import ElementPlus, {
   ElNotification,
 } from "element-plus";
 import naive from "naive-ui";
+import { createHead } from "@vueuse/head";
 import { GlobalMountOptions } from "@vue/test-utils/dist/types";
 
 export type routerFunctions =
@@ -64,7 +65,7 @@ export function mountingOptions(): MountingOptions<Vue, Vue> {
 
 export function globalMountingOptions(): GlobalMountOptions {
   return {
-    plugins: [ElementPlus, naive],
+    plugins: [ElementPlus, naive, createHead()],
     mocks: {
       $router: router,
       $message: ElMessage,
