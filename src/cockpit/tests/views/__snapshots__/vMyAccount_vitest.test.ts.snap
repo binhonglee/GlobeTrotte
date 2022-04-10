@@ -392,7 +392,6 @@ exports[`My Account - Delete Account (failure) 2`] = `
                         rows="3"
                         placeholder
                         maxlength="1000"
-                        style
               >
               </textarea>
               <div class="n-scrollbar-rail n-scrollbar-rail--vertical n-scrollbar-rail--disabled"
@@ -707,7 +706,6 @@ exports[`My Account - Delete Account (failure) 3`] = `
                         rows="3"
                         placeholder
                         maxlength="1000"
-                        style
               >
               </textarea>
               <div class="n-scrollbar-rail n-scrollbar-rail--vertical n-scrollbar-rail--disabled"
@@ -1213,7 +1211,6 @@ exports[`My Account - Delete Account (success) 2`] = `
                         rows="3"
                         placeholder
                         maxlength="1000"
-                        style
               >
               </textarea>
               <div class="n-scrollbar-rail n-scrollbar-rail--vertical n-scrollbar-rail--disabled"
@@ -1528,7 +1525,6 @@ exports[`My Account - Delete Account (success) 3`] = `
                         rows="3"
                         placeholder
                         maxlength="1000"
-                        style
               >
               </textarea>
               <div class="n-scrollbar-rail n-scrollbar-rail--vertical n-scrollbar-rail--disabled"
@@ -1843,7 +1839,6 @@ exports[`My Account - Delete Account (success) 4`] = `
                         rows="3"
                         placeholder
                         maxlength="1000"
-                        style
               >
               </textarea>
               <div class="n-scrollbar-rail n-scrollbar-rail--vertical n-scrollbar-rail--disabled"
@@ -2813,7 +2808,6 @@ exports[`My Account - Save Edit (failure) 2`] = `
                         rows="3"
                         placeholder
                         maxlength="1000"
-                        style
               >
               </textarea>
               <div class="n-scrollbar-rail n-scrollbar-rail--vertical n-scrollbar-rail--disabled"
@@ -3128,7 +3122,6 @@ exports[`My Account - Save Edit (failure) 3`] = `
                         rows="3"
                         placeholder
                         maxlength="1000"
-                        style
               >
               </textarea>
               <div class="n-scrollbar-rail n-scrollbar-rail--vertical n-scrollbar-rail--disabled"
@@ -3634,7 +3627,6 @@ exports[`My Account - Save Edit (success) 2`] = `
                         rows="3"
                         placeholder
                         maxlength="1000"
-                        style
               >
               </textarea>
               <div class="n-scrollbar-rail n-scrollbar-rail--vertical n-scrollbar-rail--disabled"

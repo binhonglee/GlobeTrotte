@@ -3,10 +3,11 @@ describe("Menubar", () => {
     it("menubar:" + url, () => {
       cy.visit(url);
       cy.get(".main_menu")
-        .contains("ul", "Home")
-        .contains("ul", "Trips")
+        .contains("a", "Home");
+      cy.get(".main_menu")
+        .contains("div", "Trip")
         .trigger("mouseenter");
-      cy.contains("ul", "Search");
+      cy.contains("a", "Search");
     });
   });
 });
@@ -22,18 +23,18 @@ describe("Homepage", () => {
   });
   it("navigate to register", () => {
     cy.visit("/");
-    cy.contains("li", "Register").click();
+    cy.contains("a", "Register").click();
     cy.url().should("include", "/register");
   });
   it("navigate to login", () => {
     cy.visit("/");
-    cy.contains("li", "Login").click();
+    cy.contains("a", "Login").click();
     cy.url().should("include", "/login");
   });
   it("navigate to search trip", () => {
     cy.visit("/");
-    cy.contains("li", "Trip").trigger("mouseenter");
-    cy.contains("li", "Search").click();
+    cy.contains("div", "Trip").trigger("mouseenter");
+    cy.contains("a", "Search").click();
     cy.url().should("include", "/trip/search");
   });
 });

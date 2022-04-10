@@ -15,8 +15,8 @@ let newTripURL: string;
 describe("Trips", () => {
   it("create new trip", () => {
     cy.register(email1, password1);
-    cy.contains("li", "Trip").trigger("mouseenter");
-    cy.contains("li", "New").click();
+    cy.get(".n-menu-item-content").contains("div", "Trip").trigger("mouseenter");
+    cy.contains("a", "New").click();
     cy.url().should("include", "/trip/new");
     cy.get(".editTripName").type(tripName);
     cy.get(".editTripDescription").type(tripDescription);

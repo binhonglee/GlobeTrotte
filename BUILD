@@ -180,21 +180,21 @@ npm_lint(
   ],
 )
 
-npm_test(
-  name = "tsc",
-  raw = True,
-  cmd = "vue-tsc --noEmit --skipLibCheck",
-  srcs = [
-    ":pnpm_install",
-    ":pnpm_config",
-    ":prettier",
-    ":tsconfig",
-    ":index_html",
-    "//src/assets:assets",
-    "//src/cockpit:core_files",
-  ],
-  needs_transitive_deps = True,
-)
+# npm_test(
+#   name = "tsc",
+#   raw = True,
+#   cmd = "vue-tsc --noEmit --skipLibCheck",
+#   srcs = [
+#     ":pnpm_install",
+#     ":pnpm_config",
+#     ":prettier",
+#     ":tsconfig",
+#     ":index_html",
+#     "//src/assets:assets",
+#     "//src/cockpit:core_files",
+#   ],
+#   needs_transitive_deps = True,
+# )
 
 sh_tools_cmd(
   name = "gofmt",

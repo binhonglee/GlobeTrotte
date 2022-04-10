@@ -11,6 +11,11 @@
   --edit-width: 250px;
 }
 
+.dark_mode {
+  background-color: #333;
+  color: #FBFAF5;
+}
+
 div,
 h3 {
   margin: 0;

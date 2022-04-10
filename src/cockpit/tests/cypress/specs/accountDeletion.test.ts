@@ -7,7 +7,7 @@ describe("User account", () => {
   it("register", () => {
     cy.visit("/");
     cy.isLoggedOut();
-    cy.contains("li", "Register").click();
+    cy.contains("a", "Register").click();
     cy.registration(email, password, password);
     cy.isLoggedIn();
     cy.logout();
@@ -16,7 +16,7 @@ describe("User account", () => {
   it("login", () => {
     cy.visit("/");
     cy.isLoggedOut();
-    cy.contains("li", "Login").click();
+    cy.contains("a", "Login").click();
     cy.login(email, password);
     cy.isLoggedIn();
     cy.logout();
@@ -60,7 +60,7 @@ describe("User account", () => {
     cy.isLoggedOut();
     cy.loginAction(email, password);
     cy.isLoggedIn();
-    cy.contains("li", "My Account").click();
+    cy.contains("a", "My Account").click();
     cy.contains("button", "Logout").click();
     cy.isLoggedOut();
     cy.contains("h1", "GlobeTrotte");
@@ -71,7 +71,7 @@ describe("User account", () => {
     cy.isLoggedOut();
     cy.loginAction(email, password);
     cy.isLoggedIn();
-    cy.contains("li", "My Account").click();
+    cy.contains("a", "My Account").click();
     cy.contains("button", "Edit").click();
     cy.contains("button", "Delete Account").click();
     cy.contains("button", "Confirm").click();

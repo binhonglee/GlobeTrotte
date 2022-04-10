@@ -1,33 +1,22 @@
 <template lang="pug">
-#app
-  n-config-provider(:theme="theme")
+#app(:class="darkMode ? 'dark_mode' : ''")
+  n-config-provider(:theme="darkTheme")
+    .main_menu.dark_mode()
+      n-menu.navBarLeftMenu(
+        mode="horizontal"
+        v-model:value="activeIndex"
+        :options="leftMenuOptions"
+      )
+      n-menu.navBarRightMenu(
+        mode="horizontal"
+        v-model:value="activeIndex"
+        :options="rightMenuOptions"
+      )
+  n-config-provider(:theme="darkMode ? darkTheme : lightTheme")
+    n-divider(class="navBarBorder")
     n-loading-bar-provider
       n-dialog-provider
         n-message-provider
-          el-menu.main_menu(
-            :default-active="activeIndex"
-            mode="horizontal"
-            @select="handleSelect"
-            background-color="#333"
-            text-color="white"
-            active-text-color="#42b983"
-          )
-            el-menu-item.main_menu_item(index="") Home
-            el-submenu.main_menu_item(index="/trip")
-              template.main_menu_item(#title) Trips
-              el-menu-item.main_menu_item(index="/trip/search") Search
-              el-menu-item.main_menu_item(
-                v-if="confirmed" index="/trip/new"
-              ) New
-            el-menu-item.main_menu_item.login_button(
-              v-if="!authed" index="/login"
-            ) Login
-            el-menu-item.main_menu_item.register_button(
-              v-if="!authed" index="/register"
-            ) Register
-            el-menu-item.main_menu_item.myaccount_button(
-              v-if="authed" index="/myaccount"
-            ) My Account
           router-view#content.content
           #footerMargin
             #footer
@@ -36,13 +25,17 @@
 <script lang="ts">
 import General from "./shared/General";
 import Routing from "./shared/Routing";
-import { defineComponent } from "vue";
+import { defineComponent, h } from "vue";
 import {
   lightTheme,
-  // darkTheme,
+  darkTheme,
+  MenuInst,
+  MenuOption,
   NConfigProvider,
   NDialogProvider,
+  NDivider,
   NLoadingBarProvider,
+  NMenu,
   NMessageProvider,
 } from "naive-ui";
 import { BuiltInGlobalTheme } from "naive-ui/lib/themes/interface";
@@ -51,42 +44,83 @@ interface Data {
   activeIndex: string;
   authed: boolean;
   confirmed: boolean;
-  theme: BuiltInGlobalTheme;
+  darkTheme: BuiltInGlobalTheme;
+  lightTheme: BuiltInGlobalTheme;
+  darkMode: boolean;
+  menuRef: MenuInst | null;
+  leftMenuOptions: MenuOption[];
+  rightMenuOptions: MenuOption[];
+}
+
+const options: MenuOption[] = [
+  menuItem("Home", "/"),
+  {
+    label: "Trip",
+    children: [
+      menuItem("Search", "/trip/search"),
+      menuItem("New", "/trip/new"),
+    ],
+  },
+];
+
+const loggedOutOptions: MenuOption[] = [
+  menuItem("Login", "/login"),
+  menuItem("Register", "/register"),
+];
+
+const loggedInOptions: MenuOption[] = [menuItem("My Account", "/myaccount")];
+
+function menuItem(label: string, url: string): MenuOption {
+  return {
+    label: () => h("a", { href: url }, label),
+    key: url,
+    props: { class: "some_class" },
+  };
 }
 
 export default defineComponent({
   components: {
     NConfigProvider,
     NDialogProvider,
+    NDivider,
     NLoadingBarProvider,
+    NMenu,
     NMessageProvider,
   },
   data(): Data {
     return {
-      activeIndex: "",
+      activeIndex: "/",
       authed: false,
       confirmed: false,
-      theme: lightTheme,
+      darkTheme: darkTheme,
+      lightTheme: lightTheme,
+      darkMode: false,
+      menuRef: null,
+      leftMenuOptions: options,
+      rightMenuOptions: [],
     };
   },
   watch: {
     $route: {
       handler: function (): void {
-        this.setAuthed();
-        this.setActiveIndex();
+        this.onLoad();
       },
       immediate: true,
       deep: false,
     },
   },
   beforeMount(): void {
-    this.setAuthed();
-    this.setActiveIndex();
+    this.onLoad();
   },
   methods: {
-    beforeMount(): void {
+    onLoad(): void {
+      const paramMap = Routing.getParamMap();
+      console.log(paramMap);
       this.setAuthed();
       this.setActiveIndex();
+      this.$data.rightMenuOptions = this.$data.authed
+        ? loggedInOptions
+        : loggedOutOptions;
     },
     setAuthed(): void {
       this.$data.authed = General.authSession();
@@ -95,7 +129,7 @@ export default defineComponent({
     setActiveIndex(): void {
       let path = window.location.pathname;
       if (path.length < 2) {
-        this.$data.activeIndex = "";
+        this.$data.activeIndex = "/";
         return;
       }
 
@@ -126,6 +160,19 @@ export default defineComponent({
   position: relative;
   min-height: 100vh;
   text-align: center;
+}
+
+.main_menu {
+  width: 100%;
+  text-align: left;
+}
+
+#app .navBarBorder {
+  margin: 0;
+}
+
+.navBarRightMenu {
+  float: right;
 }
 
 #app .login_button,

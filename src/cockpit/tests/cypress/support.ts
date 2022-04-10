@@ -21,14 +21,14 @@ Cypress.Commands.add("loginAction", (email, password) => {
 
 Cypress.Commands.add("isLoggedOut", () => {
   cy.get(".main_menu").should("not.contain", "My Account");
-  cy.contains("li", "Register");
-  cy.contains("li", "Login");
+  cy.contains("a", "Register");
+  cy.contains("a", "Login");
 });
 
 Cypress.Commands.add("isLoggedIn", () => {
   cy.get(".main_menu").should("not.contain", "Register");
   cy.get(".main_menu").should("not.contain", "Login");
-  cy.contains("li", "My Account");
+  cy.contains("a", "My Account");
 });
 
 Cypress.Commands.add("register", (email, password) => {
@@ -63,7 +63,7 @@ Cypress.Commands.add("deleteAccount", () => {
 
 Cypress.Commands.add("tripSearch", () => {
   cy.visit("/");
-  cy.contains("li", "Trip").trigger("mouseenter");
-  cy.contains("li", "Search").click();
+  cy.get(".n-menu-item-content").contains("div", "Trip").trigger("mouseenter");
+  cy.contains("a", "Search").click();
   cy.url().should("include", "/trip/search");
 })
