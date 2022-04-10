@@ -105,6 +105,7 @@ jobs:
     - run: ./scripts/setup.sh -g -s
     - run: ./pleasew go_mod
     - run: sudo npm i -g pnpm
+    - run: pnpm i
     - run: cp config/test.kdl config/config.kdl
 
     - run: ./pleasew build "//src/turbine:main"
