@@ -46,17 +46,6 @@ export async function wait(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export function newLocalVueAndRouter(): MountingOptions<Vue, Vue> {
-  return mount(App, {
-    global: {
-      plugins: [ElementPlus],
-      mocks: {
-        $router: router,
-      },
-    },
-  });
-}
-
 export function mountingOptions(): MountingOptions<Vue, Vue> {
   return {
     global: globalMountingOptions(),

@@ -3,7 +3,7 @@ import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import { mountingOptions, Vue, wait } from "../helper";
 import { alertSpy, routerSpy, stub } from "../vitestSpy";
-import { describe, expect, spyOn, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import { mount, VueWrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
 import Routing from "@/shared/Routing";
@@ -97,11 +97,11 @@ describe("vRegister", () => {
         },
       }),
     );
-    const genPOST = stub(spyOn(HTTPReq, "genPOST")).resolves(
+    const genPOST = stub(vi.spyOn(HTTPReq, "genPOST")).resolves(
       JSON.parse(returnedUser),
     );
     const wrapper = mount(vRegister, mountingOptions());
-    const message = stub(spyOn(NaiveUtils, "messageError"));
+    const message = stub(vi.spyOn(NaiveUtils, "messageError"));
     verifyUI(wrapper);
     fillFormAndReg(wrapper, {
       name: name,
@@ -147,16 +147,16 @@ describe("vRegister", () => {
         },
       }),
     );
-    const genPOST = stub(spyOn(HTTPReq, "genPOST")).resolves(
+    const genPOST = stub(vi.spyOn(HTTPReq, "genPOST")).resolves(
       JSON.parse(returnedUser),
     );
     const wrapper = mount(vRegister, mountingOptions());
-    const notify = stub(spyOn(NaiveUtils, "messageSuccess"));
+    const notify = stub(vi.spyOn(NaiveUtils, "messageSuccess"));
     const redirection = stub(
-      spyOn(Routing, "genRedirectTo").mockResolvedValue(),
+      vi.spyOn(Routing, "genRedirectTo").mockResolvedValue(),
     );
     const getNext = stub(
-      spyOn(Routing, "getNext").mockImplementation((r, m) => {
+      vi.spyOn(Routing, "getNext").mockImplementation((r, m) => {
         return Routing.fakeGetNext(m);
       }),
     );

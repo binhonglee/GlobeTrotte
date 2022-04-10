@@ -1,12 +1,12 @@
 import HTTPReq from "@/shared/HTTPReq";
 import vLanding from "@/views/vLanding.vue";
-import { expect, spyOn, test } from "vitest";
+import { expect, vi, test } from "vitest";
 import { mount } from "@vue/test-utils";
 import { mountingOptions } from "../helper";
 import { stub } from "../vitestSpy";
 
 test("Landing - Load Page", async () => {
-  const genGET = stub(spyOn(HTTPReq, "genGET")).resolves([]);
+  const genGET = stub(vi.spyOn(HTTPReq, "genGET")).resolves([]);
   const wrapper = mount(vLanding, mountingOptions());
   expect(wrapper.html()).toMatchSnapshot();
   expect(wrapper.find(".title").text()).toEqual("GlobeTrotte");

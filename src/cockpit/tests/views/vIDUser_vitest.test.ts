@@ -2,7 +2,7 @@ import vIDUser from "@/views/vIDUser.vue";
 import General from "@/shared/General";
 import { mountingOptions, wait } from "../helper";
 import { alertSpy, stub } from "../vitestSpy";
-import { describe, expect, spyOn, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import { mount } from "@vue/test-utils";
 import UserObj from "@/wings/UserObj";
 import TripObj from "@/wings/TripObj";
@@ -44,16 +44,16 @@ const trip5 = new TripObj({
 
 describe("vIDUser", () => {
   test("Get User - Has user (self)", async () => {
-    const genUser = stub(spyOn(General, "genFromUsername")).resolves(
+    const genUser = stub(vi.spyOn(General, "genFromUsername")).resolves(
       currentUser,
     );
-    const genTrip = stub(spyOn(General, "genTrip")).resolves(trip5);
-    const isSelf = stub(spyOn(General, "getIsCurrentUser")).returns(true);
-    const paramID = stub(spyOn(General, "paramID")).returns(
+    const genTrip = stub(vi.spyOn(General, "genTrip")).resolves(trip5);
+    const isSelf = stub(vi.spyOn(General, "getIsCurrentUser")).returns(true);
+    const paramID = stub(vi.spyOn(General, "paramID")).returns(
       currentUser.details.username,
     );
     const redirection = stub(
-      spyOn(Routing, "genRedirectTo").mockResolvedValue(),
+      vi.spyOn(Routing, "genRedirectTo").mockResolvedValue(),
     );
     const wrapper = mount(vIDUser, mountingOptions());
     await wait(0);
@@ -74,12 +74,12 @@ describe("vIDUser", () => {
   });
 
   test("Get User - Has user (not self)", async () => {
-    const genUser = stub(spyOn(General, "genFromUsername")).resolves(
+    const genUser = stub(vi.spyOn(General, "genFromUsername")).resolves(
       currentUser,
     );
-    const genTrip = stub(spyOn(General, "genTrip")).resolves(trip5);
-    const isSelf = stub(spyOn(General, "getIsCurrentUser")).returns(false);
-    const paramID = stub(spyOn(General, "paramID")).returns(
+    const genTrip = stub(vi.spyOn(General, "genTrip")).resolves(trip5);
+    const isSelf = stub(vi.spyOn(General, "getIsCurrentUser")).returns(false);
+    const paramID = stub(vi.spyOn(General, "paramID")).returns(
       currentUser.details.username,
     );
     const wrapper = mount(vIDUser, mountingOptions());
@@ -98,7 +98,7 @@ describe("vIDUser", () => {
   });
 
   test("Get User - Not found", async () => {
-    const genUser = stub(spyOn(General, "genFromUsername")).callsFake(
+    const genUser = stub(vi.spyOn(General, "genFromUsername")).callsFake(
       async () => {
         // This is so there is enough time for alertSpy to be
         // created before it reaches the alert code
@@ -108,7 +108,7 @@ describe("vIDUser", () => {
         });
       },
     );
-    const paramID = stub(spyOn(General, "paramID")).returns(
+    const paramID = stub(vi.spyOn(General, "paramID")).returns(
       currentUser.details.username,
     );
     const wrapper = mount(vIDUser, mountingOptions());
@@ -128,7 +128,7 @@ describe("vIDUser", () => {
 
   // Somehow this doesn't work. Not sure why.
   // test("Get User - No Param", async () => {
-  //   const paramID = stub(spyOn(General, "paramID")).returns(undefined);
+  //   const paramID = stub(vi.spyOn(General, "paramID")).returns(undefined);
   //   mount(vIDUser, mountingOptions());
   //   await wait(0);
   //   expect(paramID.calledOnce()).toBeTruthy();

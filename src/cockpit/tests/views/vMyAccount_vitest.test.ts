@@ -7,7 +7,7 @@ import { mountingOptions, wait } from "@/tests/helper";
 import { alertSpy, messageSpy, notifySpy, stub } from "@/tests/vitestSpy";
 
 import { mount } from "@vue/test-utils";
-import { expect, SpyInstance, spyOn, test } from "vitest";
+import { afterAll, beforeAll, expect, SpyInstance, test, vi } from "vitest";
 import Routing from "@/shared/Routing";
 
 const currentUser = new UserObj({
@@ -40,13 +40,13 @@ const trip5 = new TripObj({
 let genTrip: SpyInstance;
 
 beforeAll(() => {
-  spyOn(Routing, "genRedirectTo").mockImplementation(async () => {
+  vi.spyOn(Routing, "genRedirectTo").mockImplementation(async () => {
     return;
   });
-  genCurrentUser = spyOn(General, "genCurrentUser").mockResolvedValue(
-    currentUser,
-  );
-  genTrip = spyOn(General, "genTrip").mockResolvedValue(trip5);
+  genCurrentUser = vi
+    .spyOn(General, "genCurrentUser")
+    .mockResolvedValue(currentUser);
+  genTrip = vi.spyOn(General, "genTrip").mockResolvedValue(trip5);
 });
 
 afterAll(() => {
@@ -62,7 +62,7 @@ test("My Account - Delete Account (success)", async () => {
   expect(wrapper.vm.$data.edit).toEqual(true);
   await wait(0);
   expect(wrapper.html()).toMatchSnapshot();
-  const genDELETE = stub(spyOn(HTTPReq, "genDELETE")).resolves(true);
+  const genDELETE = stub(vi.spyOn(HTTPReq, "genDELETE")).resolves(true);
   wrapper.find(".myAccountDelete").trigger("click");
   await wait(0);
   expect(wrapper.html()).toMatchSnapshot();
@@ -78,7 +78,7 @@ test("My Account - Delete Account (success)", async () => {
 });
 
 test("My Account - Delete Account (failure)", async () => {
-  const genDELETE = stub(spyOn(HTTPReq, "genDELETE")).resolves(false);
+  const genDELETE = stub(vi.spyOn(HTTPReq, "genDELETE")).resolves(false);
   const wrapper = mount(vMyAccount, mountingOptions());
   const message = new messageSpy(wrapper);
   expect(wrapper.html()).toMatchSnapshot();
@@ -98,7 +98,7 @@ test("My Account - Delete Account (failure)", async () => {
 });
 
 test("My Account - Logout", async () => {
-  const genGET = stub(spyOn(HTTPReq, "genGET"))
+  const genGET = stub(vi.spyOn(HTTPReq, "genGET"))
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     .callsFake(async (s): Promise<unknown> => {
       return;
@@ -113,7 +113,7 @@ test("My Account - Logout", async () => {
 });
 
 test("My Account - Save Edit (success)", async () => {
-  const genPOST = stub(spyOn(HTTPReq, "genPOST")).resolves(currentUser);
+  const genPOST = stub(vi.spyOn(HTTPReq, "genPOST")).resolves(currentUser);
   const wrapper = mount(vMyAccount, mountingOptions());
   const message = new messageSpy(wrapper);
 
@@ -142,7 +142,7 @@ test("My Account - Save Edit (success)", async () => {
 });
 
 test("My Account - Save Edit (failure)", async () => {
-  const genPOST = stub(spyOn(HTTPReq, "genPOST")).resolves(false);
+  const genPOST = stub(vi.spyOn(HTTPReq, "genPOST")).resolves(false);
   const wrapper = mount(vMyAccount, mountingOptions());
   const alert = new alertSpy(wrapper);
 

@@ -2,7 +2,7 @@ import vLogin from "@/views/vLogin.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import UserObj from "@/wings/UserObj";
 import Routing from "@/shared/Routing";
-import { describe, expect, spyOn, test } from "vitest";
+import { beforeAll, describe, expect, test, vi } from "vitest";
 import { mount, VueWrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
 import { mountingOptions, Vue, wait } from "../helper";
@@ -40,7 +40,7 @@ function fillFormAndLogin(wrapper: VueWrapper<Vue>, form: FormLogin): void {
 
 describe("Login", () => {
   beforeAll(() => {
-    spyOn(Routing, "genRedirectTo").mockImplementation(async () => {
+    vi.spyOn(Routing, "genRedirectTo").mockImplementation(async () => {
       return;
     });
   });
@@ -48,7 +48,7 @@ describe("Login", () => {
   test("Cancel", async () => {
     const wrapper = mount(vLogin, mountingOptions());
     const routerBack = new routerSpy(wrapper, "back");
-    const rNext = stub(spyOn(R, "hasNext")).returns(false);
+    const rNext = stub(vi.spyOn(R, "hasNext")).returns(false);
     verifyUI(wrapper);
     wrapper.find(".loginCancel").trigger("click");
     rNext.restore();
@@ -59,12 +59,12 @@ describe("Login", () => {
 
   test("Wrong password", async () => {
     const returnedUser = WingsStructUtil.stringify(new UserObj());
-    const genPOST = stub(spyOn(HTTPReq, "genPOST")).resolves(
+    const genPOST = stub(vi.spyOn(HTTPReq, "genPOST")).resolves(
       JSON.parse(returnedUser),
     );
     const wrapper = mount(vLogin, mountingOptions());
-    const message = stub(spyOn(NaiveUtils, "messageError"));
-    const rNext = stub(spyOn(R, "hasNext")).returns(false);
+    const message = stub(vi.spyOn(NaiveUtils, "messageError"));
+    const rNext = stub(vi.spyOn(R, "hasNext")).returns(false);
     verifyUI(wrapper);
     fillFormAndLogin(wrapper, {
       email: email,
@@ -91,18 +91,18 @@ describe("Login", () => {
   });
 
   test("Success", async () => {
-    const rNext = stub(spyOn(R, "hasNext")).returns(false);
+    const rNext = stub(vi.spyOn(R, "hasNext")).returns(false);
     const returnedUser = WingsStructUtil.stringify(
       new UserObj({
         id: 10,
       }),
     );
-    const genPOST = stub(spyOn(HTTPReq, "genPOST")).resolves(
+    const genPOST = stub(vi.spyOn(HTTPReq, "genPOST")).resolves(
       JSON.parse(returnedUser),
     );
     const wrapper = mount(vLogin, mountingOptions());
     // const routerPush = new routerSpy(wrapper, "push");
-    const notify = stub(spyOn(NaiveUtils, "messageSuccess"));
+    const notify = stub(vi.spyOn(NaiveUtils, "messageSuccess"));
     verifyUI(wrapper);
     fillFormAndLogin(wrapper, {
       email: email,

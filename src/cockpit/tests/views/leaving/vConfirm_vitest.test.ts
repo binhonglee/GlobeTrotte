@@ -1,13 +1,13 @@
 import Routing from "@/shared/Routing";
 import { mountingOptions } from "@/tests/helper";
 import vConfirm from "@/views/leaving/vConfirm.vue";
-import { expect, spyOn, test } from "vitest";
+import { expect, test, vi } from "vitest";
 import { mount } from "@vue/test-utils";
 import { stub } from "@/tests/vitestSpy";
 
 test("vConfirm - Working external link", async () => {
   const externalURL = "https://youtu.be/dQw4w9WgXcQ";
-  const paramMap = stub(spyOn(Routing, "getParamMap")).returns(
+  const paramMap = stub(vi.spyOn(Routing, "getParamMap")).returns(
     new Map<string, string>().set("link", externalURL),
   );
   const wrapper = mount(vConfirm, mountingOptions());
@@ -24,12 +24,12 @@ test("vConfirm - Working external link", async () => {
 
 test("vConfirm - Working internal link", async () => {
   const internalURL = "https://globetrotte.com/trip/search";
-  const redirection = stub(spyOn(Routing, "genRedirectTo"))
+  const redirection = stub(vi.spyOn(Routing, "genRedirectTo"))
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     .callsFake(async (s, m, o): Promise<void> => {
       return;
     });
-  const paramMap = stub(spyOn(Routing, "getParamMap")).returns(
+  const paramMap = stub(vi.spyOn(Routing, "getParamMap")).returns(
     new Map<string, string>().set("link", internalURL),
   );
   const wrapper = mount(vConfirm, mountingOptions());
@@ -44,7 +44,7 @@ test("vConfirm - Working internal link", async () => {
 
 test("vConfirm - Not a link", async () => {
   const brokenURL = "this_is_not_a_url";
-  const paramMap = stub(spyOn(Routing, "getParamMap")).returns(
+  const paramMap = stub(vi.spyOn(Routing, "getParamMap")).returns(
     new Map<string, string>().set("link", brokenURL),
   );
   const wrapper = mount(vConfirm, mountingOptions());

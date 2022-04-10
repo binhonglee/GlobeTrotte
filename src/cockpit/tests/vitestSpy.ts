@@ -1,5 +1,5 @@
 import { VueWrapper } from "@vue/test-utils";
-import { JestMockCompatContext, SpyInstance, spyOn } from "vitest";
+import { JestMockCompatContext, SpyInstance, vi } from "vitest";
 import { routerFunctions, Vue } from "./helper";
 
 abstract class spyInterface {
@@ -38,7 +38,7 @@ export class notifySpy extends spyInterface {
   protected item: SpyInstance;
   public constructor(wrapper: VueWrapper<Vue>) {
     super();
-    this.item = spyOn(wrapper.vm, "$notify");
+    this.item = vi.spyOn(wrapper.vm, "$notify");
   }
 
   public getTitle(call = 0): string | undefined {
@@ -56,7 +56,7 @@ export class alertSpy extends spyInterface {
   protected item: SpyInstance;
   public constructor(wrapper: VueWrapper<Vue>) {
     super();
-    this.item = spyOn(wrapper.vm, "$alert");
+    this.item = vi.spyOn(wrapper.vm, "$alert");
   }
 
   public getTitle(call = 0): string | undefined {
@@ -74,7 +74,7 @@ export class messageSpy extends spyInterface {
   protected item: SpyInstance;
   public constructor(wrapper: VueWrapper<Vue>) {
     super();
-    this.item = spyOn(wrapper.vm, "$message");
+    this.item = vi.spyOn(wrapper.vm, "$message");
   }
 
   public getMessage(call = 0): string | undefined {
@@ -89,7 +89,7 @@ export class routerSpy extends spyInterface {
   protected item: SpyInstance;
   public constructor(wrapper: VueWrapper<Vue>, name: routerFunctions) {
     super();
-    this.item = spyOn(wrapper.vm.$router, name);
+    this.item = vi.spyOn(wrapper.vm.$router, name);
   }
 
   public getArg(call = 0): unknown {
