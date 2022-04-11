@@ -15,8 +15,8 @@ let newTripURL: string;
 describe("Trips", () => {
   it("create new trip", () => {
     cy.register(email1, password1);
-    cy.get(".n-menu-item-content").contains("div", "Trip").trigger("mouseenter");
-    cy.contains("a", "New").click();
+    cy.get(".main_menu").contains("div", "Trip").trigger("mouseenter");
+    cy.get(".n-dropdown-option").contains("a", "New").click();
     cy.url().should("include", "/trip/new");
     cy.get(".editTripName").type(tripName);
     cy.get(".editTripDescription").type(tripDescription);
@@ -69,7 +69,7 @@ describe("Trips", () => {
     cy.then(() => {
       return cy.visit(newTripURL);
     });
-    cy.get(".enableTripEdit").click();
+    cy.get(".editTripButton").click();
     cy.get(".editTripPrivacy").find(".editPrivacyToggle").click();
     cy.get(".saveEditTrip").click();
     cy.get(".tripPrivateAlertBar").should("not.exist");
@@ -83,7 +83,7 @@ describe("Trips", () => {
     });
     cy.get(".view_trip").contains("h2", tripName);
     cy.get(".view_trip").contains(".tripDescription", tripDescription);
-    cy.get(".enableTripEdit").should("not.exist");
+    cy.get(".editTripButton").should("not.exist");
     cy.logout();
   });
 
@@ -105,7 +105,7 @@ describe("Trips", () => {
     cy.then(() => {
       return cy.visit(newTripURL);
     });
-    cy.get(".enableTripEdit").click();
+    cy.get(".editTripButton").click();
     cy.get(".deleteTrip").click();
     cy.contains("button", "Confirm").click();
     cy.get(".el-notification__content").contains(

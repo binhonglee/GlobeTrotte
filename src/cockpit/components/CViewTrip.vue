@@ -26,8 +26,8 @@
       .viewDayCardContent
         h3.dayTitle Day {{ day.dayOf }}
         CPlaces(:propPlaces="day.propPlaces")
-  .narrow_content
-    n-button.enableTripEdit.right_col(
+  .narrow_content.enableTripEdit
+    n-button.editTripButton.right_col(
       v-if="editable" @click="enableEditMode"
     ) Edit
 </template>
@@ -164,6 +164,6 @@ export default defineComponent({
 }
 
 .enableTripEdit {
-  margin-top: 20px;
+  height: 50px;
 }
 </style>

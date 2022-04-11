@@ -11,7 +11,7 @@
   --edit-width: 250px;
 }
 
-.dark_mode {
+.dark_mode, .navBarLeftMenu, .navBarRightMenu {
   background-color: #333;
   color: #FBFAF5;
 }

@@ -122,6 +122,6 @@ export default defineComponent({
 }
 
 .homePageTripCarousel {
-  padding: 0 0 80px 0;
+  padding: 0 0 50px 0;
 }
 </style>

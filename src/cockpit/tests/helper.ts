@@ -1,5 +1,4 @@
-import { mount, MountingOptions } from "@vue/test-utils";
-import App from "@/App.vue";
+import { MountingOptions } from "@vue/test-utils";
 import router from "@/router";
 import ElementPlus, {
   ElMessageBox,

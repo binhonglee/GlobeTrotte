@@ -59,7 +59,7 @@ export default class General {
   public static async genCurrentUser(): Promise<UserObj> {
     const user = new UserObj(await HTTPReq.genGET("v2/whoami"));
     if (user.ID === -1) {
-      localStorage.clear();
+      localStorage.removeItem("userobj");
     } else {
       localStorage.setItem("userobj", WingsStructUtil.stringify(user));
     }

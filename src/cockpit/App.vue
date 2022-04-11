@@ -7,6 +7,7 @@
         v-model:value="activeIndex"
         :options="leftMenuOptions"
       )
+      br.navBarNewLine
       n-menu.navBarRightMenu(
         mode="horizontal"
         v-model:value="activeIndex"
@@ -37,7 +38,10 @@ import {
   NLoadingBarProvider,
   NMenu,
   NMessageProvider,
+  NSwitch,
+  NIcon,
 } from "naive-ui";
+import { MoonOutline, SunnyOutline } from "@vicons/ionicons5";
 import { BuiltInGlobalTheme } from "naive-ui/lib/themes/interface";
 
 interface Data {
@@ -56,6 +60,7 @@ const options: MenuOption[] = [
   menuItem("Home", "/"),
   {
     label: "Trip",
+    key: "trip",
     children: [
       menuItem("Search", "/trip/search"),
       menuItem("New", "/trip/new"),
@@ -86,6 +91,7 @@ export default defineComponent({
     NLoadingBarProvider,
     NMenu,
     NMessageProvider,
+    NSwitch,
   },
   data(): Data {
     return {
@@ -116,9 +122,7 @@ export default defineComponent({
     onLoad(): void {
       this.setAuthed();
       this.setActiveIndex();
-      this.$data.rightMenuOptions = this.$data.authed
-        ? loggedInOptions
-        : loggedOutOptions;
+      this.setTheme();
     },
     setAuthed(): void {
       this.$data.authed = General.authSession();
@@ -140,6 +144,42 @@ export default defineComponent({
       }
       this.$data.activeIndex = path;
     },
+    setTheme(): void {
+      this.$data.darkMode = localStorage.getItem("theme") === "dark";
+      const themeSwtich: MenuOption[] = [
+        {
+          label: () =>
+            h(
+              NSwitch,
+              {
+                "onUpdate:value": (value: boolean) => {
+                  localStorage.setItem("theme", value ? "dark" : "light");
+                  // Text in CTripPreviewCard color is broken if update in place.
+                  // this.$data.darkMode = value;
+                  this.$router.go(0);
+                },
+                defaultValue: this.$data.darkMode,
+              },
+              {
+                "checked-icon": () =>
+                  h(NIcon, null, {
+                    default: () => h(MoonOutline),
+                  }),
+                checked: () => "Dark mode",
+                "unchecked-icon": () =>
+                  h(NIcon, null, {
+                    default: () => h(SunnyOutline),
+                  }),
+                unchecked: () => "Light mode",
+              },
+            ),
+          key: "theme_toggle",
+        },
+      ];
+      this.$data.rightMenuOptions = themeSwtich.concat(
+        this.$data.authed ? loggedInOptions : loggedOutOptions,
+      );
+    },
     handleSelect(key: string): void {
       let path = key;
       if (path === this.$data.activeIndex || path === null) {
@@ -160,6 +200,10 @@ export default defineComponent({
   text-align: center;
 }
 
+.navBarNewLine {
+  display: none;
+}
+
 .main_menu {
   width: 100%;
   text-align: left;
@@ -171,6 +215,30 @@ export default defineComponent({
 
 .navBarRightMenu {
   float: right;
+}
+
+@media screen and (max-width: 450px) {
+  .main_menu {
+    height: 85px;
+    text-align: center;
+  }
+
+  .navBarNewLine {
+    display: unset;
+  }
+
+  .navBarRightMenu {
+    float: unset;
+    width: unset;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .navBarRightMenu .n-switch__unchecked,
+  .navBarRightMenu .n-switch__checked,
+  .navBarRightMenu .n-switch__rail-placeholder {
+    display: none;
+  }
 }
 
 #app .login_button,
@@ -191,7 +259,7 @@ export default defineComponent({
 }
 
 #footerMargin {
-  height: 120px;
+  height: 50px;
 }
 
 #footerMessage {
