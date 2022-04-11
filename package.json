@@ -58,7 +58,7 @@
     "vite": "2.9.1",
     "vitest": "0.9.3",
     "vue-router": "4.0.14",
-    "vue-tsc": "0.34.3"
+    "vue-tsc": "0.34.5"
   },
   "license": "AGPL 3.0"
 }
