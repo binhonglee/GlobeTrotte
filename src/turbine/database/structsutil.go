@@ -62,3 +62,9 @@ func int64V(arr pgtype.Int4Array) []int64 {
 	arr.AssignTo(&ret)
 	return ret
 }
+
+func intV(arr pgtype.Int4Array) []int {
+	var ret []int
+	arr.AssignTo(&ret)
+	return ret
+}

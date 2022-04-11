@@ -32,7 +32,7 @@ func NewUser(newUser wings.NewUser) RegistrationResponse {
 		}
 	}
 	newUser.Username = strings.ToLower(newUser.Username)
-	id, err := database.NewUserDB(&newUser)
+	id, err := database.NewUserDB(newUser)
 	if id < 1 {
 		return RegistrationResponse{
 			User:  DummyUserObj(),
@@ -55,7 +55,7 @@ func GetUserObjWithUsername(username string, self int) UserObj {
 
 func GetUserObj(id int, self int) UserObj {
 	user := UserObj{}
-	user.Details = database.GetUserBasicDBWithID(id)
+	user.Details, _ = database.GetUserBasicDBWithID(id)
 
 	tripIDs := database.GetUserTripsWithID(id)
 	for _, tripID := range tripIDs {
@@ -88,8 +88,9 @@ func UpdateUserObj(toUpdate wings.UserBasic, self int) UserObj {
 }
 
 func DeleteUserObj(toDelete wings.UserBasic, self int) bool {
+	u, _ := database.GetUserBasicDBWithID(self)
 	if self != toDelete.ID ||
-		!same(toDelete, database.GetUserBasicDBWithID(self)) {
+		!same(toDelete, u) {
 		logger.Print(
 			logger.User,
 			"User "+strconv.Itoa(self)+

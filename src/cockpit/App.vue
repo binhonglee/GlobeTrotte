@@ -114,8 +114,6 @@ export default defineComponent({
   },
   methods: {
     onLoad(): void {
-      const paramMap = Routing.getParamMap();
-      console.log(paramMap);
       this.setAuthed();
       this.setActiveIndex();
       this.$data.rightMenuOptions = this.$data.authed

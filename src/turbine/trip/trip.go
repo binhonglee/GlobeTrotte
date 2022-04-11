@@ -23,7 +23,7 @@ func NewTrip(newTrip wings.TripBasic, self wings.UserBasic) TripObj {
 func GetTripObj(id int, self wings.UserBasic) TripObj {
 	trip, extra := database.GetTripBasicWithID(id)
 	tripObj := toTripObj(trip, extra)
-	if tripObj.ID == -1 || tripObj.User.ID == -1 {
+	if tripObj.ID == -1 || tripObj.User.ID == -1 || tripObj.User.ID == 0 {
 		return DummyTripObj()
 	}
 	if tripObj.Details.Private && tripObj.User.ID != self.ID {
@@ -117,6 +117,8 @@ func toTripObj(trip wings.TripBasic, extra database.TripExtra) TripObj {
 		logger.Failure(logger.Trip, "TripExtra ID is different from TripBasic ID.")
 		return tripObj
 	}
+	user, _ := database.GetUserBasicDBWithID(extra.UserID)
+	tripObj.User = user
 	tripObj.LastUpdated = extra.LastUpdated
 	tripObj.TimeCreated = extra.TimeCreated
 	return tripObj

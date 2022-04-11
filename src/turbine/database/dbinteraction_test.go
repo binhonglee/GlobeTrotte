@@ -8,9 +8,10 @@ import (
 )
 
 var newNewUser wings.NewUser
-var newUser wings.User
+var newUser wings.UserBasic
 var newTrip wings.TripBasic
 var newTripExtra TripExtra
+var newUserExtra UserExtra
 
 func TestAddNewUserDB(t *testing.T) {
 	failCondition := -1
@@ -19,7 +20,7 @@ func TestAddNewUserDB(t *testing.T) {
 		Email:    "dbinteraction_test@dummyuser.com",
 		Password: "shouldReplaceThisWithRand",
 	}
-	if actual, _ := NewUserDB(&newNewUser); actual == failCondition {
+	if actual, _ := NewUserDB(newNewUser); actual == failCondition {
 		t.Errorf("NewUserDB(), unable to add new user.")
 	} else {
 		newNewUser.ID = actual
@@ -27,12 +28,7 @@ func TestAddNewUserDB(t *testing.T) {
 }
 
 func TestGetUserDB(t *testing.T) {
-	retrievedUser, ok := GetUserDB(newNewUser.ID, newNewUser.ID).(*wings.User)
-	if !ok {
-		t.Errorf("GetUserDB(), somehow does not return 'User' object.")
-		return
-	}
-
+	retrievedUser, extra := GetUserBasicDBWithID(newNewUser.ID)
 	if retrievedUser.ID != newNewUser.ID {
 		t.Errorf(
 			"GetUserDB(), given ID is %v but expected ID is %v.",
@@ -69,25 +65,25 @@ func TestGetUserDB(t *testing.T) {
 	// if retrievedUser.TimeCreated != newNewUser.TimeCreated {
 	//     t.Errorf("GetUserDB(), retrieved user time created is different from the added")
 	// }
-	newUser = *retrievedUser
+	newUser = retrievedUser
+	newUserExtra = extra
 }
 
 func TestUpdatedUserDB(t *testing.T) {
 	newUser.Name = "NewDummyUser"
-	newUser.Trips = append(newUser.Trips, 1)
+	newUserExtra.TripIDs = append(newUserExtra.TripIDs, 1)
 
-	if update := UpdateUserDB(&newUser); !update {
-		t.Errorf("UpdateUserDB(), failed to update user.")
+	if update := UpdateUserBasicDB(newUser); !update {
+		t.Errorf("UpdateUserBasicDB(), failed to update user.")
 		return
 	}
 
-	updatedUser, ok := GetUserDB(newUser.ID, newUser.ID).(*wings.User)
-	if !ok {
-		t.Errorf("GetUserDB(), somehow does not return 'User' object.")
-		// t.Errorf(strconv.Itoa(updatedUser.GetID()))
+	if update := AddTripToUserDB(1, newUser); !update {
+		t.Errorf("AddTripToUserDB(), failed to add trip onto user.")
 		return
 	}
 
+	updatedUser, extra := GetUserBasicDBWithID(newUser.ID)
 	if updatedUser.Name != newUser.Name {
 		t.Errorf(
 			"UpdateUserDB(), given Name is %v but expected Name is %v.",
@@ -96,8 +92,8 @@ func TestUpdatedUserDB(t *testing.T) {
 		)
 	}
 
-	var given = tripsToString(updatedUser.Trips)
-	var expected = tripsToString(newUser.Trips)
+	var given = tripsToString(extra.TripIDs)
+	var expected = tripsToString(newUserExtra.TripIDs)
 
 	if given != expected {
 		t.Errorf(
@@ -232,12 +228,12 @@ func TestDeleteTripDB(t *testing.T) {
 	}
 }
 
-func TestDeleteUserDB(t *testing.T) {
-	if !DeleteUserDB(&newUser) {
-		t.Errorf("DeleteUserDB(), unable to delete user.")
+func TestDeleteUserDBWithID(t *testing.T) {
+	if !DeleteUserDBWithID(newUser.ID) {
+		t.Errorf("DeleteUserDBWithID(), unable to delete user.")
 	}
-	id := GetUserDB(newUser.ID, newUser.ID).GetID()
-	if id > 0 {
-		t.Errorf("DeleteUserDB(), deleted User still exist in database.")
+	u, _ := GetUserBasicDBWithID(newUser.ID)
+	if u.ID > 0 {
+		t.Errorf("DeleteUserDBWithID(), deleted User still exist in database.")
 	}
 }

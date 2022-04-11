@@ -151,7 +151,7 @@ func ConfirmEmail(confirmation EmailObj) bool {
 		return false
 	}
 
-	user := db.GetUserBasicDBWithID(email.userID)
+	user, _ := db.GetUserBasicDBWithID(email.userID)
 	if user.ID == -1 || user.Email != confirmation.Email {
 		return false
 	}

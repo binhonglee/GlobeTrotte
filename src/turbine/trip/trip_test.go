@@ -19,8 +19,8 @@ func TestNewTrip(t *testing.T) {
 		Email:    "trip_test@testuser.globetrotte.com",
 		Password: "shouldReplaceThisWithRand",
 	}
-	id, _ := database.NewUserDB(&newNewUser)
-	user = database.GetUserBasicDBWithID(id)
+	id, _ := database.NewUserDB(newNewUser)
+	user, _ = database.GetUserBasicDBWithID(id)
 
 	newTrip := wings.TripBasic{
 		Name:   "DummyTrip",
@@ -140,15 +140,11 @@ func TestDeleteTrip(t *testing.T) {
 }
 
 func TestCleanup(t *testing.T) {
-	newUser := wings.User{
-		ID:    user.ID,
-		Email: user.Email,
-	}
-	if !database.DeleteUserDB(&newUser) {
+	if !database.DeleteUserDBWithID(user.ID) {
 		t.Errorf("DeleteUserDB(), unable to delete user.")
 	}
-	id := database.GetUserDB(newUser.ID, newUser.ID).GetID()
-	if id > 0 {
+	u, _ := database.GetUserBasicDBWithID(user.ID)
+	if u.ID > 0 {
 		t.Errorf("DeleteUserDB(), deleted User still exist in database.")
 	}
 }

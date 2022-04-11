@@ -8,7 +8,6 @@ filegroup(
     "//src/wings/struct:new_user",
     "//src/wings/struct:place",
     "//src/wings/struct:travel_time",
-    "//src/wings/struct:user",
     "//src/wings/struct:user_access_level",
     "//src/wings/struct:email_obj",
     "//src/wings/struct:trip_basic",

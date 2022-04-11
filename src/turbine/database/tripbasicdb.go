@@ -20,7 +20,7 @@ type TripExtra struct {
 
 // AddTripDB - Adding new trip into the database.
 func AddTripDB(trip wings.TripBasic, userID int) int {
-	user := getUserWithID(userID)
+	user, _ := GetUserBasicDBWithID(userID)
 	if user.ID == -1 {
 		logger.Print(
 			logger.Database,
@@ -30,16 +30,10 @@ func AddTripDB(trip wings.TripBasic, userID int) int {
 	}
 
 	newTripID := addTripBasic(trip, userID)
-	user.Trips = append(user.Trips, newTripID)
-	if ok := updateUser(user); !ok {
-		logger.Print(
-			logger.Database,
-			"Fail to add trip id to new user.",
-		)
-		return failAddingTripToUser(newTripID)
+	if AddTripToUserDB(newTripID, user) {
+		return newTripID
 	}
-
-	return newTripID
+	return failAddingTripToUser(newTripID)
 }
 
 func GetTripBasicWithID(id int) (wings.TripBasic, TripExtra) {

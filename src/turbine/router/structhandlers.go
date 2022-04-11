@@ -69,7 +69,8 @@ func getUserID(req *http.Request) int {
 }
 
 func getCaller(req *http.Request) wings.UserBasic {
-	return db.GetUserBasicDBWithID(getUserID(req))
+	u, _ := db.GetUserBasicDBWithID(getUserID(req))
+	return u
 }
 
 func getRequestID(req *http.Request) int {
