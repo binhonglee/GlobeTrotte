@@ -18,9 +18,10 @@
     n-loading-bar-provider
       n-dialog-provider
         n-message-provider
-          router-view#content.content
-          #footerMargin
-            #footer
+          n-notification-provider
+            router-view#content.content
+            #footerMargin
+              #footer
 </template>
 
 <script lang="ts">
@@ -38,6 +39,7 @@ import {
   NLoadingBarProvider,
   NMenu,
   NMessageProvider,
+  NNotificationProvider,
   NSwitch,
   NIcon,
 } from "naive-ui";
@@ -91,6 +93,7 @@ export default defineComponent({
     NLoadingBarProvider,
     NMenu,
     NMessageProvider,
+    NNotificationProvider,
     NSwitch,
   },
   data(): Data {

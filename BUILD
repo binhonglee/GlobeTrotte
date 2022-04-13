@@ -4,7 +4,7 @@ subinclude("//build_defs/sh")
 
 filegroup(
   name = "index_html",
-  srcs = ["index.html"],
+  srcs = ["index.html", "public/"],
 )
 
 filegroup(

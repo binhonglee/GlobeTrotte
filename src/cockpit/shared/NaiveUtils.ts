@@ -3,12 +3,15 @@ import {
   useMessage,
   DialogOptions,
   MessageReactive,
+  useNotification,
 } from "naive-ui";
 import { DialogApiInjection } from "naive-ui/lib/dialog/src/DialogProvider";
 import { MessageApiInjection } from "naive-ui/lib/message/src/MessageProvider";
+import { NotificationApiInjection } from "naive-ui/lib/notification/src/NotificationProvider";
 export default class NaiveUtils {
   private static dialog: DialogApiInjection;
   private static message: MessageApiInjection;
+  private static notify: NotificationApiInjection;
 
   private static shouldRun(): boolean {
     return (
@@ -21,6 +24,7 @@ export default class NaiveUtils {
     if (this.shouldRun()) {
       this.dialog = useDialog();
       this.message = useMessage();
+      this.notify = useNotification();
     }
   }
 
@@ -57,6 +61,14 @@ export default class NaiveUtils {
   public static messageSuccess(message: string): MessageReactive | undefined {
     if (this.shouldRun()) {
       return this.message.success(message);
+    }
+  }
+
+  public static notification(
+    message: string,
+  ): NotificationReactive | undefined {
+    if (this.shouldRun()) {
+      return this.notify.info(message);
     }
   }
 }

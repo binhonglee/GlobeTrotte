@@ -192,7 +192,7 @@ go_module(
 go_module(
   name = "x_crypto",
   module = "golang.org/x/crypto",
-  version = "v0.0.0-20220408190544-5352b0902921",
+  version = "v0.0.0-20220411220226-7b82a4e95df4",
   install = [
     "bcrypt",
     "blowfish",
@@ -224,7 +224,7 @@ go_module(
 go_module(
   name = "x_time",
   module = "golang.org/x/time",
-  version = "v0.0.0-20220224211638-0e9765cccd65",
+  version = "v0.0.0-20220411224347-583f2d630306",
   install = [
     "rate",
   ],
