@@ -22,7 +22,7 @@
     "xvfb:run": "if [[ \"$OSTYPE\" == \"darwin\"* ]]; then xvfb=\"\"; elif [[ \"$OSTYPE\" == \"linux-gnu\"* ]]; then xvfb=\"xvfb-run -a \"; fi"
   },
   "dependencies": {
-    "@vueuse/head": "0.7.5",
+    "@vueuse/head": "0.7.6",
     "axios": "0.26.1",
     "element-plus": "1.0.2-beta.71",
     "naive-ui": "2.27.0",
