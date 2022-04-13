@@ -30,7 +30,7 @@ specifiers:
   prettier: 2.6.2
   pug: 3.0.2
   typescript: 4.6.3
-  vite: 2.9.1
+  vite: 2.9.2
   vite-plugin-pwa: 0.11.13
   vitest: 0.9.3
   vue: 3.2.32
@@ -48,14 +48,14 @@ dependencies:
 
 devDependencies:
   '@cypress/code-coverage': 3.9.12_cypress@9.5.4
-  '@cypress/vite-dev-server': 2.2.2_vite@2.9.1
+  '@cypress/vite-dev-server': 2.2.2_vite@2.9.2
   '@cypress/vue': 3.1.1_cypress@9.5.4+vue@3.2.32
   '@delagen/eslint-plugin-deprecation': 1.3.2_eslint@8.13.0+typescript@4.6.3
   '@types/node': 16.11.26
   '@typescript-eslint/eslint-plugin': 5.19.0_f34adc8488d2e4f014fe61432d70cbf2
   '@typescript-eslint/parser': 5.19.0_eslint@8.13.0+typescript@4.6.3
   '@vicons/ionicons5': 0.12.0
-  '@vitejs/plugin-vue': 2.3.1_vite@2.9.1+vue@3.2.32
+  '@vitejs/plugin-vue': 2.3.1_vite@2.9.2+vue@3.2.32
   '@vue/eslint-config-prettier': 7.0.0_eslint@8.13.0+prettier@2.6.2
   '@vue/eslint-config-typescript': 10.0.0_a62cbc2f4797496d74696b1f6538012a
   '@vue/test-utils': 2.0.0-rc.20_vue@3.2.32
@@ -72,8 +72,8 @@ devDependencies:
   prettier: 2.6.2
   pug: 3.0.2
   typescript: 4.6.3
-  vite: 2.9.1
-  vite-plugin-pwa: 0.11.13_vite@2.9.1
+  vite: 2.9.2
+  vite-plugin-pwa: 0.11.13_vite@2.9.2
   vitest: 0.9.3_c8@7.11.0+jsdom@19.0.0
   vue-router: 4.0.14_vue@3.2.32
   vue-tsc: 0.34.6_typescript@4.6.3
@@ -2269,14 +2269,14 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@cypress/vite-dev-server/2.2.2_vite@2.9.1:
+  /@cypress/vite-dev-server/2.2.2_vite@2.9.2:
     resolution: {integrity: sha512-02y/Fm0N+CQjKbSjjRtktPgPbp91kOvtc8+WW2l2odIYQkKlG6IOCpmgc898muW0lBAcCszdEIHR/ItdZDiYPw==}
     peerDependencies:
       vite: '>= 2.1.3'
     dependencies:
       debug: 4.3.3
       get-port: 5.1.1
-      vite: 2.9.1
+      vite: 2.9.2
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2778,14 +2778,14 @@ packages:
     resolution: {integrity: sha512-Iy1EUVRpX0WWxeu1VIReR1zsZLMc4fqpt223czR+Rpnrwu7pt46nbnC2ycO7ItI/uqDLJxnbcMC7FujKs9IfFA==}
     dev: true
 
-  /@vitejs/plugin-vue/2.3.1_vite@2.9.1+vue@3.2.32:
+  /@vitejs/plugin-vue/2.3.1_vite@2.9.2+vue@3.2.32:
     resolution: {integrity: sha512-YNzBt8+jt6bSwpt7LP890U1UcTOIZZxfpE5WOJ638PNxSEKOqAi0+FSKS0nVeukfdZ0Ai/H7AFd6k3hayfGZqQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       vite: ^2.5.10
       vue: ^3.2.25
     dependencies:
-      vite: 2.9.1
+      vite: 2.9.2
       vue: 3.2.32
     dev: true
 
@@ -8923,7 +8923,7 @@ packages:
     resolution: {integrity: sha512-nguyw8L6Un8eelg1vQ31vIU2ESxqid7EYmy8V+MDeMaHBqaRSkg3dTBToC1PR00D89UzS/SLkfYPnx0Wf23IQQ==}
     dev: false
 
-  /vite-plugin-pwa/0.11.13_vite@2.9.1:
+  /vite-plugin-pwa/0.11.13_vite@2.9.2:
     resolution: {integrity: sha512-Ssj14m3TRVLfkFEAWSMcFE2d1cSdEZyrVTzfY2lSL+umHYvcIFHVDAY143sygtBCb44OPczsAOmWwBTxwOvh7g==}
     peerDependencies:
       vite: ^2.0.0
@@ -8932,7 +8932,7 @@ packages:
       fast-glob: 3.2.11
       pretty-bytes: 5.6.0
       rollup: 2.60.2
-      vite: 2.9.1
+      vite: 2.9.2
       workbox-build: 6.5.3
       workbox-window: 6.5.3
     transitivePeerDependencies:
@@ -8940,8 +8940,8 @@ packages:
       - supports-color
     dev: true
 
-  /vite/2.9.1:
-    resolution: {integrity: sha512-vSlsSdOYGcYEJfkQ/NeLXgnRv5zZfpAsdztkIrs7AZHV8RCMZQkwjo4DS5BnrYTqoWqLoUe1Cah4aVO4oNNqCQ==}
+  /vite/2.9.2:
+    resolution: {integrity: sha512-ScbfYsiG1N/xE2TnZWYWJ8aOFBQovEl4VLU+0dktxqXvqdAvcTOEUM5YqwaBkmNHSHUGHLPd92tuXFQ35wDkVw==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
@@ -8991,7 +8991,7 @@ packages:
       local-pkg: 0.4.1
       tinypool: 0.1.2
       tinyspy: 0.3.2
-      vite: 2.9.1
+      vite: 2.9.2
     transitivePeerDependencies:
       - less
       - sass
