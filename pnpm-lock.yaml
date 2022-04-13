@@ -13,7 +13,7 @@ specifiers:
   '@vue/eslint-config-prettier': 7.0.0
   '@vue/eslint-config-typescript': 10.0.0
   '@vue/test-utils': 2.0.0-rc.20
-  '@vueuse/head': 0.7.5
+  '@vueuse/head': 0.7.6
   axios: 0.26.1
   c8: 7.11.0
   cypress: 9.5.4
@@ -39,7 +39,7 @@ specifiers:
   wings-ts-util: 0.0.8
 
 dependencies:
-  '@vueuse/head': 0.7.5_vue@3.2.32
+  '@vueuse/head': 0.7.6_vue@3.2.32
   axios: 0.26.1
   element-plus: 1.0.2-beta.71_vue@3.2.32
   naive-ui: 2.27.0_vue@3.2.32
@@ -2936,8 +2936,8 @@ packages:
       vue: 3.2.32
     dev: true
 
-  /@vueuse/head/0.7.5_vue@3.2.32:
-    resolution: {integrity: sha512-L+XQ5Act0nT/ZyO8Qo10J4FyM1qPOyQb6MT4MMn6+AITzrStpmKs/nUDDLJKD/rCcNWl/65XbdQm4T2vKp3VOQ==}
+  /@vueuse/head/0.7.6_vue@3.2.32:
+    resolution: {integrity: sha512-cOWqCkT3WiF5oEpw+VVEWUJd9RLD5rc7DmnFp3cePsejp+t7686uKD9Z9ZU7Twb7R/BI8iexKTmXo9D/F3v6UA==}
     peerDependencies:
       vue: '>=3'
     dependencies:
