@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
+      registerType: "prompt",
       includeAssets: [
         "favicon.svg",
         "favicon.ico",
@@ -19,25 +20,28 @@ export default defineConfig({
         short_name: "GT",
         description: "Travel itinerary crowdsourcing platform",
         theme_color: "#2A947D",
+        start_url: "/",
+        display: "standalone",
+        background_color: "#ffffff",
+        icons: [
+          {
+            src: "pwa-192x192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "pwa-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+          {
+            src: "pwa-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any maskable",
+          },
+        ],
       },
-      icons: [
-        {
-          src: "pwa-192x192.png",
-          sizes: "192x192",
-          type: "image/png",
-        },
-        {
-          src: "pwa-512x512.png",
-          sizes: "512x512",
-          type: "image/png",
-        },
-        {
-          src: "pwa-512x512.png",
-          sizes: "512x512",
-          type: "image/png",
-          purpose: "any maskable",
-        },
-      ],
     }),
   ],
   resolve: {

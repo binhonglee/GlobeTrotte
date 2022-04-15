@@ -26,7 +26,7 @@ func main() {
 	logger.Print(logger.Main, "Listening on port "+port+"...")
 	logger.PanicErr(
 		logger.Main,
-		http.ListenAndServe(":"+port, r),
+		http.ListenAndServe("127.0.0.1:"+port, r),
 		"",
 	)
 }

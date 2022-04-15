@@ -1,5 +1,6 @@
 <template lang="pug">
 #app(:class="darkMode ? 'dark_mode' : ''")
+  CPWA
   n-config-provider(:theme="darkTheme")
     .main_menu.dark_mode()
       n-menu.navBarLeftMenu(
@@ -27,6 +28,7 @@
 <script lang="ts">
 import General from "./shared/General";
 import Routing from "./shared/Routing";
+import CPWA from "./components/CPWA.vue";
 import { defineComponent, h } from "vue";
 import {
   lightTheme,
@@ -87,6 +89,7 @@ function menuItem(label: string, url: string): MenuOption {
 
 export default defineComponent({
   components: {
+    CPWA,
     NConfigProvider,
     NDialogProvider,
     NDivider,

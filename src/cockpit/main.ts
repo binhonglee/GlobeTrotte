@@ -3,7 +3,6 @@ import ElementPlus from "element-plus";
 import { createHead } from "@vueuse/head";
 import { createApp } from "vue";
 import { RouteLocationNormalized, NavigationGuardNext } from "vue-router";
-import { registerSW } from "virtual:pwa-register";
 import "element-plus/lib/theme-chalk/index.css";
 import App from "./App.vue";
 import General from "./shared/General";
@@ -12,7 +11,6 @@ import routes from "./routes";
 import R from "./shared/R";
 
 Axios.defaults.withCredentials = true;
-registerSW({ immediate: true })(true);
 
 const app = createApp(App);
 app.use(ElementPlus);
