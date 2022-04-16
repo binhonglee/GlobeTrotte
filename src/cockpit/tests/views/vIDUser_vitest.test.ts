@@ -6,8 +6,22 @@ import { describe, expect, test, vi } from "vitest";
 import { mount } from "@vue/test-utils";
 import UserObj from "@/wings/UserObj";
 import TripObj from "@/wings/TripObj";
-import Routing from "@/shared/Routing";
-import Routes from "@/routes";
+
+const unconfirmedUser = new UserObj({
+  id: 10,
+  details: {
+    id: 10,
+    username: "testmockuseraccount",
+    name: "MyAccount Test User",
+    email: "testmyaccount@globetrotte.com",
+    confirmed: false,
+  },
+  trips: [
+    {
+      id: 5,
+    },
+  ],
+});
 
 const currentUser = new UserObj({
   id: 10,
@@ -16,6 +30,7 @@ const currentUser = new UserObj({
     username: "testmockuseraccount",
     name: "MyAccount Test User",
     email: "testmyaccount@globetrotte.com",
+    confirmed: true,
   },
   trips: [
     {
@@ -43,7 +58,31 @@ const trip5 = new TripObj({
 });
 
 describe("vIDUser", () => {
-  test("Get User - Has user (self)", async () => {
+  test("Get User - Has user (self, confirmed)", async () => {
+    const genUser = stub(vi.spyOn(General, "genFromUsername")).resolves(
+      unconfirmedUser,
+    );
+    const genTrip = stub(vi.spyOn(General, "genTrip")).resolves(trip5);
+    const isSelf = stub(vi.spyOn(General, "getIsCurrentUser")).returns(true);
+    const paramID = stub(vi.spyOn(General, "paramID")).returns(
+      unconfirmedUser.details.username,
+    );
+    const wrapper = mount(vIDUser, mountingOptions());
+    await wait(0);
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(wrapper.find(".title").text()).toEqual(unconfirmedUser.details.name);
+    expect(paramID.called()).toBeTruthy();
+    expect(isSelf.calledOnce()).toBeTruthy;
+    expect(isSelf.args()[0][0]).toEqual(10);
+    expect(genUser.calledOnce()).toBeTruthy();
+    expect(genTrip.calledOnce()).toBeTruthy();
+    await genUser.restore();
+    await genTrip.restore();
+    await isSelf.restore();
+    await paramID.restore();
+  });
+
+  test("Get User - Has user (self, unconfirmed)", async () => {
     const genUser = stub(vi.spyOn(General, "genFromUsername")).resolves(
       currentUser,
     );
@@ -52,9 +91,6 @@ describe("vIDUser", () => {
     const paramID = stub(vi.spyOn(General, "paramID")).returns(
       currentUser.details.username,
     );
-    const redirection = stub(
-      vi.spyOn(Routing, "genRedirectTo").mockResolvedValue(),
-    );
     const wrapper = mount(vIDUser, mountingOptions());
     await wait(0);
     expect(wrapper.html()).toMatchSnapshot();
@@ -62,14 +98,11 @@ describe("vIDUser", () => {
     expect(paramID.called()).toBeTruthy();
     expect(isSelf.calledOnce()).toBeTruthy;
     expect(isSelf.args()[0][0]).toEqual(10);
-    expect(redirection.calledOnce()).toBeTruthy();
-    expect(redirection.args()[0][0]).toEqual(Routes.MyAccount);
     expect(genUser.calledOnce()).toBeTruthy();
     expect(genTrip.calledOnce()).toBeTruthy();
     await genUser.restore();
     await genTrip.restore();
     await isSelf.restore();
-    await redirection.restore();
     await paramID.restore();
   });
 

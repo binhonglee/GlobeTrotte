@@ -47,6 +47,7 @@ import {
 } from "naive-ui";
 import { MoonOutline, SunnyOutline } from "@vicons/ionicons5";
 import { BuiltInGlobalTheme } from "naive-ui/lib/themes/interface";
+import Routes from "./routes";
 
 interface Data {
   activeIndex: string;
@@ -66,18 +67,16 @@ const options: MenuOption[] = [
     label: "Trip",
     key: "trip",
     children: [
-      menuItem("Search", "/trip/search"),
-      menuItem("New", "/trip/new"),
+      menuItem("Search", Routes.trip_Search),
+      menuItem("New", Routes.trip_New),
     ],
   },
 ];
 
 const loggedOutOptions: MenuOption[] = [
-  menuItem("Login", "/login"),
-  menuItem("Register", "/register"),
+  menuItem("Login", Routes.Login),
+  menuItem("Register", Routes.Register),
 ];
-
-const loggedInOptions: MenuOption[] = [menuItem("My Account", "/myaccount")];
 
 function menuItem(label: string, url: string): MenuOption {
   return {
@@ -150,7 +149,7 @@ export default defineComponent({
       }
       this.$data.activeIndex = path;
     },
-    setTheme(): void {
+    async setTheme(): Promise<void> {
       this.$data.darkMode = localStorage.getItem("theme") === "dark";
       const themeSwtich: MenuOption[] = [
         {
@@ -182,9 +181,18 @@ export default defineComponent({
           key: "theme_toggle",
         },
       ];
-      this.$data.rightMenuOptions = themeSwtich.concat(
-        this.$data.authed ? loggedInOptions : loggedOutOptions,
-      );
+      let options: MenuOption[];
+      if (this.$data.authed) {
+        options = [
+          menuItem(
+            "My Account",
+            Routes.User + "/" + General.getCurrentUsername(),
+          ),
+        ];
+      } else {
+        options = loggedOutOptions;
+      }
+      this.$data.rightMenuOptions = themeSwtich.concat(options);
     },
     handleSelect(key: string): void {
       let path = key;

@@ -48,7 +48,9 @@ export default defineComponent({
   async mounted(): Promise<void> {
     if (General.confirmed()) {
       await Routing.genRedirectTo(
-        Routing.hasNext() ? Routing.getNext(this.$route) : Routes.MyAccount,
+        Routing.hasNext()
+          ? Routing.getNext(this.$route)
+          : Routes.User + "/" + General.getCurrentUsername(),
       );
     }
   },

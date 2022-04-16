@@ -188,7 +188,7 @@ describe("vRegister", () => {
     );
     expect(redirection.calledOnce()).toBeTruthy();
     expect(redirection.args()[0][0]).toEqual(
-      "/unconfirmed/email/:next=myaccount",
+      "/unconfirmed/email/:next=user.mocked_testuser",
     );
     await genPOST.restore();
     await notify.restore();

@@ -52,6 +52,14 @@ export default class General {
     return this.getCurrentUser().ID === id;
   }
 
+  public static getCurrentUsername(): string {
+    const username = this.getCurrentUser().details.username;
+    if (username.length > 0) {
+      return username;
+    }
+    return this.getCurrentUser().ID.toString();
+  }
+
   public static async genUpdateCurrentUser(): Promise<void> {
     await this.genCurrentUser();
   }

@@ -173,7 +173,7 @@ export default defineComponent({
 
       let next = Routing.getNext(this.$route);
       if (next === Routes.Landing) {
-        next = Routes.MyAccount;
+        next = Routes.User + "/" + user.details.username;
       }
 
       await Routing.genRedirectTo(
