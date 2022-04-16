@@ -17,9 +17,16 @@
         type="default" ref="edit" @click="toggleEdit"
       ) Edit
   n-divider.viewUserDivider
-  div.viewUserTrips
+  div.viewUserTrips(v-if="loading || self || !tripsEmpty")
     h2 Trips
-    CTripPreviewCard(v-for="trip in trips" :trip="trip" :wide="true" :limit-height="false")
+    CLoadingTripPreviewCard(
+      v-if="loading"
+      v-for="count in 5" :key="count" :wide="true" :limit-height="false"
+    )
+    CTripPreviewCard(
+      v-else
+      v-for="trip in trips" :trip="trip" :wide="true" :limit-height="false"
+    )
     .createTripAlertDiv(v-if="self && tripsEmpty")
       n-alert.createTripAlert(type="default" :show-icon="false")
         | Seems like you have not shared any of your own trips.
@@ -43,11 +50,13 @@ import TripObj from "@/wings/TripObj";
 import Routing from "@/shared/Routing";
 import Routes from "@/routes";
 import HTTPReq from "@/shared/HTTPReq";
+import CLoadingTripPreviewCard from "./loading/CLoadingTripPreviewCard.vue";
 
 interface Data {
   trips: TripObj[];
   lastPopulated: TripBasic[];
   tripsEmpty: boolean;
+  loading: boolean;
   shareURL: string;
 }
 
@@ -60,6 +69,7 @@ export default defineComponent({
     NAlert,
     NButton,
     NDivider,
+    CLoadingTripPreviewCard,
   },
   props: {
     user: {
@@ -91,6 +101,7 @@ export default defineComponent({
     trips: [],
     lastPopulated: [],
     tripsEmpty: true,
+    loading: true,
     shareURL: "",
   }),
   async beforeMount(): Promise<void> {
@@ -113,7 +124,9 @@ export default defineComponent({
       return true;
     },
     async genPopulateTrips(): Promise<void> {
+      this.$data.loading = true;
       if (this.compareArray(this.$data.lastPopulated, this.$props.user.trips)) {
+        this.$data.loading = false;
         return;
       }
       this.$data.trips = await Promise.all(
@@ -124,6 +137,7 @@ export default defineComponent({
       TripUtil.sortTripsMostRecentlyUpdated(this.$data.trips);
       this.$data.tripsEmpty = this.$data.trips.length <= 0;
       this.$data.lastPopulated = this.$props.user.trips;
+      this.$data.loading = false;
     },
     logout(): void {
       this.$emit("logout");

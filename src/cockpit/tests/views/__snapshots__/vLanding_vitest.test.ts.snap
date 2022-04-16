@@ -31,12 +31,12 @@ exports[`Landing - Load Page 1`] = `
           <input type="text"
                  class="n-input__input-el"
                  style
-                 placeholder="Alaska"
+                 placeholder="weekend"
                  size="20"
           >
           <div class="n-input__placeholder">
             <span>
-              Alaska
+              weekend
             </span>
           </div>
         </div>
@@ -126,6 +126,1446 @@ exports[`Landing - Load Page 1`] = `
   <div class="homePageTripCarousel"
        data-v-299ea923
   >
+    <div class="loading_trip_preview_card"
+         data-v-0a318322
+         data-v-299ea923
+    >
+      <div class="n-card n-card--bordered tripPreviewCard limitHeight"
+           style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
+           data-v-0a318322
+      >
+        <div class="n-card__content"
+             style="padding: 0px;"
+             role="none"
+        >
+          <div class="n-skeleton skeletonTitle"
+               style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+               data-v-0a318322
+          >
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="endOfCardPadding"
+               data-v-0a318322
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loading_trip_preview_card"
+         data-v-0a318322
+         data-v-299ea923
+    >
+      <div class="n-card n-card--bordered tripPreviewCard limitHeight"
+           style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
+           data-v-0a318322
+      >
+        <div class="n-card__content"
+             style="padding: 0px;"
+             role="none"
+        >
+          <div class="n-skeleton skeletonTitle"
+               style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+               data-v-0a318322
+          >
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="endOfCardPadding"
+               data-v-0a318322
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loading_trip_preview_card"
+         data-v-0a318322
+         data-v-299ea923
+    >
+      <div class="n-card n-card--bordered tripPreviewCard limitHeight"
+           style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
+           data-v-0a318322
+      >
+        <div class="n-card__content"
+             style="padding: 0px;"
+             role="none"
+        >
+          <div class="n-skeleton skeletonTitle"
+               style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+               data-v-0a318322
+          >
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="endOfCardPadding"
+               data-v-0a318322
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loading_trip_preview_card"
+         data-v-0a318322
+         data-v-299ea923
+    >
+      <div class="n-card n-card--bordered tripPreviewCard limitHeight"
+           style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
+           data-v-0a318322
+      >
+        <div class="n-card__content"
+             style="padding: 0px;"
+             role="none"
+        >
+          <div class="n-skeleton skeletonTitle"
+               style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+               data-v-0a318322
+          >
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="endOfCardPadding"
+               data-v-0a318322
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loading_trip_preview_card"
+         data-v-0a318322
+         data-v-299ea923
+    >
+      <div class="n-card n-card--bordered tripPreviewCard limitHeight"
+           style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
+           data-v-0a318322
+      >
+        <div class="n-card__content"
+             style="padding: 0px;"
+             role="none"
+        >
+          <div class="n-skeleton skeletonTitle"
+               style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+               data-v-0a318322
+          >
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="endOfCardPadding"
+               data-v-0a318322
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loading_trip_preview_card"
+         data-v-0a318322
+         data-v-299ea923
+    >
+      <div class="n-card n-card--bordered tripPreviewCard limitHeight"
+           style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
+           data-v-0a318322
+      >
+        <div class="n-card__content"
+             style="padding: 0px;"
+             role="none"
+        >
+          <div class="n-skeleton skeletonTitle"
+               style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+               data-v-0a318322
+          >
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="endOfCardPadding"
+               data-v-0a318322
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loading_trip_preview_card"
+         data-v-0a318322
+         data-v-299ea923
+    >
+      <div class="n-card n-card--bordered tripPreviewCard limitHeight"
+           style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
+           data-v-0a318322
+      >
+        <div class="n-card__content"
+             style="padding: 0px;"
+             role="none"
+        >
+          <div class="n-skeleton skeletonTitle"
+               style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+               data-v-0a318322
+          >
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="endOfCardPadding"
+               data-v-0a318322
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loading_trip_preview_card"
+         data-v-0a318322
+         data-v-299ea923
+    >
+      <div class="n-card n-card--bordered tripPreviewCard limitHeight"
+           style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
+           data-v-0a318322
+      >
+        <div class="n-card__content"
+             style="padding: 0px;"
+             role="none"
+        >
+          <div class="n-skeleton skeletonTitle"
+               style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+               data-v-0a318322
+          >
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="endOfCardPadding"
+               data-v-0a318322
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loading_trip_preview_card"
+         data-v-0a318322
+         data-v-299ea923
+    >
+      <div class="n-card n-card--bordered tripPreviewCard limitHeight"
+           style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
+           data-v-0a318322
+      >
+        <div class="n-card__content"
+             style="padding: 0px;"
+             role="none"
+        >
+          <div class="n-skeleton skeletonTitle"
+               style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+               data-v-0a318322
+          >
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="endOfCardPadding"
+               data-v-0a318322
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loading_trip_preview_card"
+         data-v-0a318322
+         data-v-299ea923
+    >
+      <div class="n-card n-card--bordered tripPreviewCard limitHeight"
+           style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
+           data-v-0a318322
+      >
+        <div class="n-card__content"
+             style="padding: 0px;"
+             role="none"
+        >
+          <div class="n-skeleton skeletonTitle"
+               style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+               data-v-0a318322
+          >
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="tripDayPreview"
+               data-v-0a318322
+          >
+            <div role="separator"
+                 class="n-divider n-divider--no-title"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
+                 data-v-0a318322
+            >
+              <div class="n-divider__line n-divider__line--left">
+              </div>
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+            <div class="n-skeleton daysInTrip"
+                 style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
+            >
+            </div>
+          </div>
+          <div class="endOfCardPadding"
+               data-v-0a318322
+          >
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;

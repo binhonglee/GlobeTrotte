@@ -126,12 +126,12 @@ describe("vIDUser", () => {
     await alert.restore();
   });
 
-  // Somehow this doesn't work. Not sure why.
-  // test("Get User - No Param", async () => {
-  //   const paramID = stub(vi.spyOn(General, "paramID")).returns(undefined);
-  //   mount(vIDUser, mountingOptions());
-  //   await wait(0);
-  //   expect(paramID.calledOnce()).toBeTruthy();
-  //   await paramID.restore();
-  // });
+  test("Get User - No Param", async () => {
+    const paramID = stub(vi.spyOn(General, "paramID")).returns(undefined);
+    const wrapper = mount(vIDUser, mountingOptions());
+    await wait(0);
+    expect(wrapper.html()).toMatchSnapshot();
+    expect(paramID.calledOnce()).toBeTruthy();
+    await paramID.restore();
+  });
 });

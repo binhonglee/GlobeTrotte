@@ -6,8 +6,9 @@
     type="article"
   )
   h1.title Trip
+  CLoadingTripInfo(v-if="trip.ID === -1")
   CTripInfo(
-    v-if="trip.ID !== -1"
+    v-else
     :trip="trip"
     :editable="owner"
   )
@@ -16,6 +17,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import CHead from "@/components/CHead.vue";
+import CLoadingTripInfo from "@/components/loading/CLoadingTripInfo.vue";
 import CTripInfo from "@/components/CTripInfo.vue";
 import General from "@/shared/General";
 import TripObj from "@/wings/TripObj";
@@ -31,6 +33,7 @@ interface Data {
 export default defineComponent({
   components: {
     CHead,
+    CLoadingTripInfo,
     CTripInfo,
   },
   data(): Data {
@@ -40,7 +43,7 @@ export default defineComponent({
       owner: false,
     };
   },
-  async beforeMount(): Promise<void> {
+  async created(): Promise<void> {
     await this.init();
   },
   methods: {
@@ -67,14 +70,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style>
-.tripSearchInput {
-  margin-left: 5px;
-  display: inline;
-}
-
-.tripSearchInput .el-input__inner {
-  width: 100px;
-}
-</style>

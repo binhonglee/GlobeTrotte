@@ -23,13 +23,15 @@
       :limit-height="trips.length !== 1"
       :wide="trips.length === 1"
     )
+  .tripSearching(v-else-if="searching")
+    CLoadingTripPreviewCard(:limit-height="false" :wide="true")
   .tripSearchInitialMessage(v-else-if="init")
     .narrow_content
       n-alert(title="Search for a trip!" type="default")
         template(#icon)
           n-icon
             search
-        | Try searching for "Alaska"
+        | Try searching for "weekend"
   .tripSearchNoResultFound(v-else-if="!searching && !init")
     .narrow_content.accountUnconfirmedAlertBar
       n-alert(
@@ -40,17 +42,19 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { NAlert, NButton, NIcon, NInput, NSelect } from "naive-ui";
+import { Search } from "@vicons/ionicons5";
+import { WingsStructUtil } from "wings-ts-util";
+
+import CHead from "@/components/CHead.vue";
+import CLoadingTripPreviewCard from "@/components/loading/CLoadingTripPreviewCard.vue";
 import CTripPreviewCard from "@/components/CTripPreviewCard.vue";
 import { Options, CityUtil } from "@/shared/CityUtil";
 import HTTPReq from "@/shared/HTTPReq";
+import Routing from "@/shared/Routing";
+import TripUtil from "@/shared/TripUtil";
 import TripObj from "@/wings/TripObj";
 import TripsSearchQuery from "@/wings/TripSearchQuery";
-import { WingsStructUtil } from "wings-ts-util";
-import Routing from "@/shared/Routing";
-import { NAlert, NButton, NIcon, NInput, NSelect } from "naive-ui";
-import { Search } from "@vicons/ionicons5";
-import TripUtil from "@/shared/TripUtil";
-import CHead from "@/components/CHead.vue";
 
 interface Data {
   length: number;
@@ -72,6 +76,7 @@ export default defineComponent({
     NSelect,
     CTripPreviewCard,
     CHead,
+    CLoadingTripPreviewCard,
   },
   data: (): Data => ({
     length: 0,

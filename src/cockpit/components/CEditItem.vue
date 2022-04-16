@@ -92,6 +92,20 @@ export default defineComponent({
   margin-top: 0px;
 }
 
+@media screen and (max-width: 400px) {
+  .edit_item {
+    height: 80px;
+  }
+  .editLabel {
+    display: block;
+  }
+
+  .editInput {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
 .edit_item {
   padding: 5px 0;
 }

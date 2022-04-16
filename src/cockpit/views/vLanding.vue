@@ -9,7 +9,7 @@
   br
   form.tripSearchForm
     n-input.tripSearchQueryInput(
-      placeholder="Alaska"
+      placeholder="weekend"
       v-model:value="query"
       @keyup.enter.native="search"
     )
@@ -22,7 +22,13 @@
     )
     n-button(@click="search") Find
   .homePageTripCarousel
+    CLoadingTripPreviewCard(
+      v-if="trips.length === 0"
+      v-for="count in 10"
+      :key="count"
+    )
     CTripPreviewCard(
+      v-else
       v-for="trip in trips"
       :trip="trip"
     )
@@ -39,6 +45,7 @@ import Routes from "@/routes";
 import City from "@/wings/City";
 import { NButton, NInput, NSelect } from "naive-ui";
 import CHead from "@/components/CHead.vue";
+import CLoadingTripPreviewCard from "@/components/loading/CLoadingTripPreviewCard.vue";
 
 interface Data {
   length: number;
@@ -55,6 +62,7 @@ export default defineComponent({
     NSelect,
     CTripPreviewCard,
     CHead,
+    CLoadingTripPreviewCard,
   },
   data: (): Data => ({
     length: 0,

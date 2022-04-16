@@ -312,7 +312,6 @@ export default defineComponent({
 }
 
 .editCity {
-  overflow: hidden;
   line-height: 40px;
   margin-bottom: 5px;
 }

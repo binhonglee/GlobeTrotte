@@ -5,9 +5,11 @@
     :description="user.details.bio.valueOf()"
     type="profile"
   )
-  h1.title {{ user.details.name }}
-  .profile_info
-    CViewUser(:user="user" :showName="false")
+  CLoadingViewUser(v-if="user.ID === -1")
+  .userinfo(v-else)
+    h1.title {{ user.details.name }}
+    .profile_info
+      CViewUser(:user="user" :showName="false")
 </template>
 
 <script lang="ts">
@@ -18,6 +20,7 @@ import UserObj from "@/wings/UserObj";
 import Routes from "@/routes";
 import Routing from "@/shared/Routing";
 import CHead from "@/components/CHead.vue";
+import CLoadingViewUser from "@/components/loading/CLoadingViewUser.vue";
 
 interface Data {
   user: UserObj;
@@ -27,6 +30,7 @@ export default defineComponent({
   components: {
     CViewUser,
     CHead,
+    CLoadingViewUser,
   },
   data: (): Data => ({
     user: new UserObj(),

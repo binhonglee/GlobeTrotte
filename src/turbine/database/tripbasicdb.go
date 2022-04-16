@@ -95,7 +95,7 @@ func SearchTripsDB(
 	}
 
 	if len(query) > 0 {
-		sqlStatement += " AND name LIKE $" + strconv.Itoa(count) + ""
+		sqlStatement += " AND name ILIKE $" + strconv.Itoa(count) + ""
 		args = append(args, "%"+query+"%")
 		count++
 	}
