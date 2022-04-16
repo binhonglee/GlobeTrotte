@@ -2,7 +2,6 @@ package router
 
 import (
 	"net/http"
-	"time"
 
 	"github.com/binhonglee/GlobeTrotte/src/turbine/trip"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
@@ -26,7 +25,6 @@ func getTripObj(res http.ResponseWriter, req *http.Request) {
 	}
 
 	item := trip.GetTripObj(id, getCaller(req))
-	time.Sleep(2 * time.Second)
 	respond(res, item)
 }
 

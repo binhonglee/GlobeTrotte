@@ -67,7 +67,7 @@ export default defineComponent({
 }
 
 @media screen and (max-width: 550px) {
-  .trip_preview_card {
+  .loading_trip_preview_card {
     width: 88%;
   }
 
@@ -84,26 +84,12 @@ export default defineComponent({
   max-width: 100%;
 }
 
-.tripLink {
-  text-decoration: none;
-}
-
-.tripPreviewInfo,
 .tripDayPreview {
   margin: 0 20px;
   text-align: left;
 }
 
-.tripDayLabel {
-  margin: 0 5px;
-}
-
-.tripTitleName,
 .endOfCardPadding {
   margin-top: 12px;
-}
-
-.cityTag {
-  margin-right: 5px;
 }
 </style>
