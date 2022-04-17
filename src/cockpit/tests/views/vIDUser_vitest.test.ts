@@ -1,11 +1,13 @@
 import vIDUser from "@/views/vIDUser.vue";
 import General from "@/shared/General";
-import { mountingOptions, wait } from "../helper";
-import { alertSpy, stub } from "../vitestSpy";
+import { getFetchedUserObj, mountingOptions, wait } from "../helper";
+import { stub } from "../vitestSpy";
 import { describe, expect, test, vi } from "vitest";
 import { mount } from "@vue/test-utils";
 import UserObj from "@/wings/UserObj";
 import TripObj from "@/wings/TripObj";
+import PWAUtils from "@/shared/PWAUtils";
+import NaiveUtils from "@/shared/NaiveUtils";
 
 const unconfirmedUser = new UserObj({
   id: 10,
@@ -59,8 +61,8 @@ const trip5 = new TripObj({
 
 describe("vIDUser", () => {
   test("Get User - Has user (self, confirmed)", async () => {
-    const genUser = stub(vi.spyOn(General, "genFromUsername")).resolves(
-      unconfirmedUser,
+    const genUser = stub(vi.spyOn(PWAUtils, "genUserFromUsername")).resolves(
+      getFetchedUserObj(unconfirmedUser),
     );
     const genTrip = stub(vi.spyOn(General, "genTrip")).resolves(trip5);
     const isSelf = stub(vi.spyOn(General, "getIsCurrentUser")).returns(true);
@@ -83,8 +85,8 @@ describe("vIDUser", () => {
   });
 
   test("Get User - Has user (self, unconfirmed)", async () => {
-    const genUser = stub(vi.spyOn(General, "genFromUsername")).resolves(
-      currentUser,
+    const genUser = stub(vi.spyOn(PWAUtils, "genUserFromUsername")).resolves(
+      getFetchedUserObj(currentUser),
     );
     const genTrip = stub(vi.spyOn(General, "genTrip")).resolves(trip5);
     const isSelf = stub(vi.spyOn(General, "getIsCurrentUser")).returns(true);
@@ -107,8 +109,8 @@ describe("vIDUser", () => {
   });
 
   test("Get User - Has user (not self)", async () => {
-    const genUser = stub(vi.spyOn(General, "genFromUsername")).resolves(
-      currentUser,
+    const genUser = stub(vi.spyOn(PWAUtils, "genUserFromUsername")).resolves(
+      getFetchedUserObj(currentUser),
     );
     const genTrip = stub(vi.spyOn(General, "genTrip")).resolves(trip5);
     const isSelf = stub(vi.spyOn(General, "getIsCurrentUser")).returns(false);
@@ -116,7 +118,7 @@ describe("vIDUser", () => {
       currentUser.details.username,
     );
     const wrapper = mount(vIDUser, mountingOptions());
-    await wait(0);
+    await wait(10);
     expect(wrapper.html()).toMatchSnapshot();
     expect(wrapper.find(".title").text()).toEqual(currentUser.details.name);
     expect(paramID.called()).toBeTruthy();
@@ -131,29 +133,33 @@ describe("vIDUser", () => {
   });
 
   test("Get User - Not found", async () => {
-    const genUser = stub(vi.spyOn(General, "genFromUsername")).callsFake(
+    const genUser = stub(vi.spyOn(PWAUtils, "genUserFromUsername")).callsFake(
       async () => {
         // This is so there is enough time for alertSpy to be
         // created before it reaches the alert code
         await wait(0);
-        return new UserObj({
-          id: -1,
-        });
+        return getFetchedUserObj(
+          new UserObj({
+            id: -1,
+          }),
+        );
       },
     );
     const paramID = stub(vi.spyOn(General, "paramID")).returns(
       currentUser.details.username,
     );
     const wrapper = mount(vIDUser, mountingOptions());
-    const alert = new alertSpy(wrapper);
+    const alert = stub(vi.spyOn(NaiveUtils, "dialogError"));
     await wait(0);
     expect(wrapper.html()).toMatchSnapshot();
     expect(paramID.called()).toBeTruthy();
     expect(genUser.calledOnce()).toBeTruthy();
     expect(alert.calledOnce()).toBeTruthy();
-    expect(alert.getTitle()).toEqual("Error");
-    expect(alert.getMessage()).toEqual("User not found.");
-    expect(alert.getOptions("confirmButtonText")).toEqual("OK");
+    expect(alert.args()[0][0]["title"]).toEqual("User not found");
+    expect(alert.args()[0][0]["content"]).toEqual(
+      "The user you are looking for does not exist.",
+    );
+    expect(alert.args()[0][0]["positiveText"]).toEqual("OK");
     await genUser.restore();
     await paramID.restore();
     await alert.restore();

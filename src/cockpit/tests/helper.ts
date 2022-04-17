@@ -8,6 +8,8 @@ import ElementPlus, {
 import naive from "naive-ui";
 import { createHead } from "@vueuse/head";
 import { GlobalMountOptions } from "@vue/test-utils/dist/types";
+import UserObj from "@/wings/UserObj";
+import { FetchedUserObj } from "@/shared/PWAUtils";
 
 export type routerFunctions =
   | "replace"
@@ -61,4 +63,12 @@ export function globalMountingOptions(): GlobalMountOptions {
       $alert: ElMessageBox.alert,
     },
   };
+}
+
+export function getFetchedUserObj(userObj: UserObj): FetchedUserObj {
+  const toRet = new FetchedUserObj();
+  toRet.completed = userObj;
+  toRet.fromStorage = false;
+  toRet.promise = null;
+  return toRet;
 }

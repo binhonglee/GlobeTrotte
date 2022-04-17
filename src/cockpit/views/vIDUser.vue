@@ -69,6 +69,7 @@ import { WingsStructUtil } from "wings-ts-util";
 import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
 import E from "@/shared/E";
 import UserBasic from "@/wings/UserBasic";
+import PWAUtils, { FetchedUserObj } from "@/shared/PWAUtils";
 
 interface Data {
   user: UserObj;
@@ -106,11 +107,15 @@ export default defineComponent({
         await Routing.genRedirectTo(Routes.NotFound);
         return;
       }
+
+      let res: FetchedUserObj;
       if (isNaN(Number(paramID))) {
-        this.$data.user = await General.genFromUsername(paramID);
+        res = await PWAUtils.genUserFromUsername(paramID);
+        // this.$data.user = await General.genFromUsername(paramID);
       } else {
-        const user = await General.genUser(Number(paramID));
-        this.$data.user = user;
+        res = await PWAUtils.genUser(Number(paramID));
+        // const user = await General.genUser(Number(paramID));
+        const user = res.completed;
         if (user.details.username !== "") {
           await Routing.genRedirectTo(
             Routes.User + "/" + user.details.username,
@@ -118,23 +123,41 @@ export default defineComponent({
         }
       }
 
-      if (this.$data.user.ID === -1) {
-        await this.$alert("User not found.", "Error", {
-          confirmButtonText: "OK",
-        });
-        await Routing.genRedirectTo(Routes.Landing);
-        return;
+      this.$data.user = res.completed;
+      this.dataProcessing(res.fromStorage);
+      if (res.promise !== null) {
+        this.$data.user = await res.promise;
+        this.dataProcessing(false);
       }
 
-      this.$data.self = General.getIsCurrentUser(this.$data.user.ID.valueOf());
-      // if (General.getIsCurrentUser(this.$data.user.ID.valueOf())) {
-      //   await Routing.genRedirectTo(Routes.MyAccount);
-      // }
-
-      this.$data.user.details.bio = this.$data.user.details.bio.replaceAll(
-        "\\\\n",
-        "\n",
-      );
+      if (this.$data.user.ID === -1) {
+        NaiveUtils.dialogError({
+          title: "User not found",
+          content: "The user you are looking for does not exist.",
+          positiveText: "OK",
+          onPositiveClick: async () => {
+            await Routing.genRedirectTo(Routes.Landing);
+          },
+        });
+      }
+    },
+    dataProcessing(fromStorage: boolean): void {
+      if (this.$data.user.ID !== -1) {
+        this.$data.self = General.getIsCurrentUser(
+          this.$data.user.ID.valueOf(),
+        );
+        if (fromStorage) {
+          this.$data.user.details.bio = this.$data.user.details.bio.replaceAll(
+            "\\n",
+            "\n",
+          );
+        } else {
+          this.$data.user.details.bio = this.$data.user.details.bio.replaceAll(
+            "\\\\n",
+            "\n",
+          );
+        }
+      }
     },
     confirmDelete(): void {
       NaiveUtils.dialogWarning({
@@ -157,21 +180,12 @@ export default defineComponent({
 
       if (deletion) {
         localStorage.clear();
-        this.$notify(
-          General.notifConfig(
-            "Deleted",
-            "Your account is now deleted.",
-            "info",
-          ),
-        );
         this.$data.loadingBar?.finish();
+        NaiveUtils.messageInfo("Your account is now deleted.");
         await Routing.genRedirectTo(Routes.Landing);
       } else {
         this.$data.loadingBar?.error();
-        this.$message({
-          type: "error",
-          message: "Account deletion attempt failed.",
-        });
+        NaiveUtils.messageError("Account deletion attempt failed.");
       }
     },
     async save(): Promise<void> {
@@ -197,21 +211,20 @@ export default defineComponent({
       if (success !== false) {
         this.toggleEdit();
         this.$data.loadingBar?.finish();
-        this.$message({
-          message: "Profile updated successfully!",
-          type: "success",
-        });
+        NaiveUtils.messageSuccess("Profile updated successfully!");
         await this.init();
       } else {
         this.$data.loadingBar?.error();
-        this.$alert("Save was unsuccessful. Please try again later.", "Fail", {
-          confirmButtonText: "OK",
+        NaiveUtils.dialogError({
+          title: "Fail",
+          content: "Save was unsuccessful. Please try again later.",
+          positiveText: "OK",
         });
       }
     },
     async logout(): Promise<void> {
       await HTTPReq.genGET("logout");
-      localStorage.clear();
+      localStorage.removeItem("userobj");
       NaiveUtils.messageSuccess("You are now logged out.");
       await Routing.genRedirectTo(Routes.Landing);
     },

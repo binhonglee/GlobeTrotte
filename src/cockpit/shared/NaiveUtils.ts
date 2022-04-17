@@ -40,6 +40,18 @@ export default class NaiveUtils {
     }
   }
 
+  public static dialogError(options: DialogOptions) {
+    if (this.shouldRun()) {
+      this.dialog.error(options);
+    } else {
+      // If we aren't showing the warning dialog, we should just trigger the
+      // positive click action directly.
+      if (options.onPositiveClick !== undefined) {
+        options.onPositiveClick(new MouseEvent("click"));
+      }
+    }
+  }
+
   public static messageError(message: string): MessageReactive | undefined {
     if (this.shouldRun()) {
       return this.message.error(message);
@@ -64,9 +76,7 @@ export default class NaiveUtils {
     }
   }
 
-  public static notification(
-    message: string,
-  ): NotificationReactive | undefined {
+  public static notifyInfo(message: string): NotificationReactive | undefined {
     if (this.shouldRun()) {
       return this.notify.info(message);
     }
