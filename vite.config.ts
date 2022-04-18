@@ -55,7 +55,7 @@ export default defineConfig({
     },
   },
   test: {
-    global: true,
+    globals: true,
     environment: "jsdom",
     include: ["src/cockpit/**/*_vitest.{test,spec}.ts"],
     exclude: ["src/cockpit/tests/cypress/**/*"],

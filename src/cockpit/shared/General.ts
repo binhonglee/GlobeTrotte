@@ -55,7 +55,7 @@ export default class General {
   public static getCurrentUsername(): string {
     const username = this.getCurrentUser().details.username;
     if (username.length > 0) {
-      return username;
+      return username.valueOf();
     }
     return this.getCurrentUser().ID.toString();
   }

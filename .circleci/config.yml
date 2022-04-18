@@ -48,6 +48,7 @@ jobs:
       # - run: ./pleasew test --show_all_output //src/cockpit/tests/components/...
       # - run: ./pleasew test --show_all_output //src/cockpit/tests/views/...
       - run: pnpx vitest
+      - run: pnpm run check:tsc
       - run:
           command: ./pleasew run "//src/turbine:main"
           background: true

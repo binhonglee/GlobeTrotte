@@ -3,6 +3,7 @@ import {
   useMessage,
   DialogOptions,
   MessageReactive,
+  NotificationReactive,
   useNotification,
 } from "naive-ui";
 import { DialogApiInjection } from "naive-ui/lib/dialog/src/DialogProvider";
@@ -73,12 +74,6 @@ export default class NaiveUtils {
   public static messageSuccess(message: string): MessageReactive | undefined {
     if (this.shouldRun()) {
       return this.message.success(message);
-    }
-  }
-
-  public static notifyInfo(message: string): NotificationReactive | undefined {
-    if (this.shouldRun()) {
-      return this.notify.info(message);
     }
   }
 }

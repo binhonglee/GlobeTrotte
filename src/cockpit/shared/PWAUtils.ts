@@ -3,16 +3,16 @@ import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "./HTTPReq";
 
 class UserStorage {
-  public order: number;
-  public key: number;
-  public username: string;
-  public obj: string;
+  public order = -1;
+  public key = -1;
+  public username = "";
+  public obj = "";
 
   public static create(order: number, obj: UserObj): UserStorage {
     const toReturn = new UserStorage();
     toReturn.order = order;
-    toReturn.key = obj.ID;
-    toReturn.username = obj.details.username;
+    toReturn.key = obj.ID.valueOf();
+    toReturn.username = obj.details.username.valueOf();
     toReturn.obj = WingsStructUtil.stringify(obj);
     return toReturn;
   }
@@ -22,20 +22,24 @@ class UserStorage {
       return null;
     }
 
-    const objs = JSON.parse(storage);
-    const toReturn: UserStorage[] = [];
-    for (const obj of objs) {
-      toReturn.push(this.fromJSON(obj));
+    try {
+      const objs = JSON.parse(storage as string);
+      const toReturn: UserStorage[] = [];
+      for (const obj of objs) {
+        toReturn.push(this.fromJSON(obj));
+      }
+      return toReturn;
+    } catch (_) {
+      return null;
     }
-    return toReturn;
   }
 
   public static fromJSON(obj: Record<string, unknown>): UserStorage {
     const toReturn = new UserStorage();
-    toReturn.order = obj.order;
-    toReturn.key = obj.key;
-    toReturn.username = obj.username;
-    toReturn.obj = obj.obj;
+    toReturn.order = obj.order as number;
+    toReturn.key = obj.key as number;
+    toReturn.username = obj.username as string;
+    toReturn.obj = obj.obj as string;
     return toReturn;
   }
 
@@ -46,8 +50,8 @@ class UserStorage {
 
 export class FetchedUserObj {
   public fromStorage = false;
-  public completed: UserObj;
-  public promise: Promise<UserObj> | null;
+  public completed: UserObj | undefined = undefined;
+  public promise: Promise<UserObj> | null = null;
 }
 
 export default class PWAUtils {
@@ -62,14 +66,15 @@ export default class PWAUtils {
   public static async genUser(id: number): Promise<FetchedUserObj> {
     const toReturn = new FetchedUserObj();
     if (this.isPWA()) {
-      const users: UserStorage[] = UserStorage.fromStorage(
-        localStorage.getItem("users"),
-      );
-      for (const userStored of users) {
-        if (userStored.key === id) {
-          toReturn.completed = userStored.getObj();
-          toReturn.promise = this.genFetchUser(id);
-          toReturn.fromStorage = true;
+      const users = UserStorage.fromStorage(localStorage.getItem("users"));
+
+      if (users !== null) {
+        for (const userStored of users) {
+          if (userStored.key === id) {
+            toReturn.completed = userStored.getObj();
+            toReturn.promise = this.genFetchUser(id);
+            toReturn.fromStorage = true;
+          }
         }
       }
     } else {

@@ -194,7 +194,7 @@ jobs:
 
     - run: sudo npm i -g pnpm
     - run: ./pleasew test --show_all_output //src/cockpit/...
-    # - run: ./pleasew test --show_all_output //:tsc
+    - run: ./pleasew test --show_all_output //:tsc
 
     - uses: actions/upload-artifact@v2
       with:

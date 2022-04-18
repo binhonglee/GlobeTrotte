@@ -155,11 +155,12 @@ describe("vIDUser", () => {
     expect(paramID.called()).toBeTruthy();
     expect(genUser.calledOnce()).toBeTruthy();
     expect(alert.calledOnce()).toBeTruthy();
-    expect(alert.args()[0][0]["title"]).toEqual("User not found");
-    expect(alert.args()[0][0]["content"]).toEqual(
+    const alertArgs = alert.args()[0][0] as Record<string, unknown>;
+    expect(alertArgs["title"]).toEqual("User not found");
+    expect(alertArgs["content"]).toEqual(
       "The user you are looking for does not exist.",
     );
-    expect(alert.args()[0][0]["positiveText"]).toEqual("OK");
+    expect(alertArgs["positiveText"]).toEqual("OK");
     await genUser.restore();
     await paramID.restore();
     await alert.restore();

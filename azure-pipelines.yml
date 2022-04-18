@@ -295,5 +295,5 @@ jobs:
 
   - script: ./pleasew test --show_all_output //src/cockpit/...
     displayName: Test cockpit
-  # - script: ./pleasew test --show_all_output //:tsc
-  #   displayName: Cockpit typecheck
+  - script: ./pleasew test --show_all_output //:tsc
+    displayName: Cockpit typecheck

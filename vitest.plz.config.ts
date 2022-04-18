@@ -55,7 +55,7 @@ export default defineConfig({
     },
   },
   test: {
-    global: true,
+    globals: true,
     environment: "jsdom",
     maxThreads: 1,
     include: ["src/cockpit/**/*_vitest.{test,spec}.ts"],

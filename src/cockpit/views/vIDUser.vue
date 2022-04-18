@@ -116,15 +116,18 @@ export default defineComponent({
         res = await PWAUtils.genUser(Number(paramID));
         // const user = await General.genUser(Number(paramID));
         const user = res.completed;
-        if (user.details.username !== "") {
+        if (user !== undefined && user.details.username !== "") {
           await Routing.genRedirectTo(
             Routes.User + "/" + user.details.username,
           );
         }
       }
 
-      this.$data.user = res.completed;
-      this.dataProcessing(res.fromStorage);
+      if (res.completed !== undefined) {
+        this.$data.user = res.completed;
+        this.dataProcessing(res.fromStorage);
+      }
+
       if (res.promise !== null) {
         this.$data.user = await res.promise;
         this.dataProcessing(false);
