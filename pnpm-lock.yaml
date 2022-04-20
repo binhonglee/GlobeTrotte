@@ -15,7 +15,7 @@ specifiers:
   '@vue/test-utils': 2.0.0-rc.20
   '@vueuse/head': 0.7.6
   axios: 0.26.1
-  c8: 7.11.0
+  c8: 7.11.2
   cypress: 9.5.4
   element-plus: 1.0.2-beta.71
   esbuild: 0.14.36
@@ -59,7 +59,7 @@ devDependencies:
   '@vue/eslint-config-prettier': 7.0.0_eslint@8.13.0+prettier@2.6.2
   '@vue/eslint-config-typescript': 10.0.0_a62cbc2f4797496d74696b1f6538012a
   '@vue/test-utils': 2.0.0-rc.20_vue@3.2.33
-  c8: 7.11.0
+  c8: 7.11.2
   cypress: 9.5.4
   esbuild: 0.14.36
   eslint: 8.13.0
@@ -74,7 +74,7 @@ devDependencies:
   typescript: 4.6.3
   vite: 2.9.5
   vite-plugin-pwa: 0.12.0_vite@2.9.5
-  vitest: 0.9.3_c8@7.11.0+jsdom@19.0.0
+  vitest: 0.9.3_c8@7.11.2+jsdom@19.0.0
   vue-router: 4.0.14_vue@3.2.33
   vue-tsc: 0.34.7_typescript@4.6.3
 
@@ -1524,6 +1524,22 @@ packages:
       chalk: 4.1.2
     dev: false
 
+  /@jridgewell/resolve-uri/3.0.5:
+    resolution: {integrity: sha512-VPeQ7+wH0itvQxnG+lIzWgkysKIr3L9sslimFW55rHMdGu/qCQ5z5h9zq4gI8uBtqkpHhsF4Z/OwExufUCThew==}
+    engines: {node: '>=6.0.0'}
+    dev: true
+
+  /@jridgewell/sourcemap-codec/1.4.11:
+    resolution: {integrity: sha512-Fg32GrJo61m+VqYSdRSjRXMjQ06j8YIYfcTqndLYVAaHmroZHLJZCydsWBOTDqXS2v+mjxohBWEMfg97GXmYQg==}
+    dev: true
+
+  /@jridgewell/trace-mapping/0.3.8:
+    resolution: {integrity: sha512-zdpaWDz5IEyHlu1EO+B+qRHmJkSxMVV6SXngDry9n1ZqslLXFH9Dw6lRqDidm/sOJAWdRltJsmZ1SK28/uZKsw==}
+    dependencies:
+      '@jridgewell/resolve-uri': 3.0.5
+      '@jridgewell/sourcemap-codec': 1.4.11
+    dev: true
+
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -2787,8 +2803,8 @@ packages:
     resolution: {integrity: sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=}
     dev: true
 
-  /c8/7.11.0:
-    resolution: {integrity: sha512-XqPyj1uvlHMr+Y1IeRndC2X5P7iJzJlEJwBpCdBbq2JocXOgJfr+JVfJkyNMGROke5LfKrhSFXGFXnwnRJAUJw==}
+  /c8/7.11.2:
+    resolution: {integrity: sha512-6ahJSrhS6TqSghHm+HnWt/8Y2+z0hM/FQyB1ybKhAR30+NYL9CTQ1uwHxuWw6U7BHlHv6wvhgOrH81I+lfCkxg==}
     engines: {node: '>=10.12.0'}
     hasBin: true
     dependencies:
@@ -2798,12 +2814,12 @@ packages:
       foreground-child: 2.0.0
       istanbul-lib-coverage: 3.2.0
       istanbul-lib-report: 3.0.0
-      istanbul-reports: 3.0.2
+      istanbul-reports: 3.1.4
       rimraf: 3.0.2
       test-exclude: 6.0.0
-      v8-to-istanbul: 8.1.0
+      v8-to-istanbul: 9.0.0
       yargs: 16.2.0
-      yargs-parser: 20.2.7
+      yargs-parser: 20.2.9
     dev: true
 
   /cache-base/1.0.1:
@@ -5488,6 +5504,14 @@ packages:
       istanbul-lib-report: 3.0.0
     dev: true
 
+  /istanbul-reports/3.1.4:
+    resolution: {integrity: sha512-r1/DshN4KSE7xWEknZLLLLDn5CJybV3nw01VTkp6D5jzLuELlcbudfj/eSQFvrKsJuTVCGnePO7ho82Nw9zzfw==}
+    engines: {node: '>=8'}
+    dependencies:
+      html-escaper: 2.0.2
+      istanbul-lib-report: 3.0.0
+    dev: true
+
   /jake/10.8.4:
     resolution: {integrity: sha512-MtWeTkl1qGsWUtbl/Jsca/8xSoK3x0UmS82sNbjqxxG/de/M/3b1DntdjHgPMC50enlTNwXOCRqPXLLt5cCfZA==}
     engines: {node: '>=10'}
@@ -8004,13 +8028,13 @@ packages:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
     dev: true
 
-  /v8-to-istanbul/8.1.0:
-    resolution: {integrity: sha512-/PRhfd8aTNp9Ggr62HPzXg2XasNFGy5PBt0Rp04du7/8GNNSgxFL6WBTkgMKSL9bFjH+8kKEG3f37FmxiTqUUA==}
+  /v8-to-istanbul/9.0.0:
+    resolution: {integrity: sha512-HcvgY/xaRm7isYmyx+lFKA4uQmfUbN0J4M0nNItvzTvH/iQ9kW5j/t4YSR+Ge323/lrgDAWJoF46tzGQHwBHFw==}
     engines: {node: '>=10.12.0'}
     dependencies:
+      '@jridgewell/trace-mapping': 0.3.8
       '@types/istanbul-lib-coverage': 2.0.3
       convert-source-map: 1.8.0
-      source-map: 0.7.3
     dev: true
 
   /vdirs/0.1.7_vue@3.2.33:
@@ -8076,7 +8100,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.9.3_c8@7.11.0+jsdom@19.0.0:
+  /vitest/0.9.3_c8@7.11.2+jsdom@19.0.0:
     resolution: {integrity: sha512-hKjqdBI732cV5giNLERyAsaJBebstrX5mvTbZr+jUDYUHnX1O4DpAJcHtqBOutuBi7lVIGQ5IF8eWvHHqbCHBA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -8097,7 +8121,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.0
       '@types/chai-subset': 1.3.3
-      c8: 7.11.0
+      c8: 7.11.2
       chai: 4.3.6
       jsdom: 19.0.0
       local-pkg: 0.4.1
@@ -8610,8 +8634,8 @@ packages:
       decamelize: 1.2.0
     dev: true
 
-  /yargs-parser/20.2.7:
-    resolution: {integrity: sha512-FiNkvbeHzB/syOjIUxFDCnhSfzAL8R5vs40MgLFBorXACCOAEaWu0gRZl14vG8MR9AOJIZbmkjhusqBYZ3HTHw==}
+  /yargs-parser/20.2.9:
+    resolution: {integrity: sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==}
     engines: {node: '>=10'}
     dev: true
 
@@ -8642,7 +8666,7 @@ packages:
       require-directory: 2.1.1
       string-width: 4.2.3
       y18n: 5.0.8
-      yargs-parser: 20.2.7
+      yargs-parser: 20.2.9
     dev: true
 
   /yauzl/2.10.0:

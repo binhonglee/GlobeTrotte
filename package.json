@@ -42,7 +42,7 @@
     "@vue/eslint-config-prettier": "7.0.0",
     "@vue/eslint-config-typescript": "10.0.0",
     "@vue/test-utils": "2.0.0-rc.20",
-    "c8": "7.11.0",
+    "c8": "7.11.2",
     "cypress": "9.5.4",
     "esbuild": "0.14.36",
     "eslint": "8.13.0",
