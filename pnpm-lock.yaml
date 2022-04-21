@@ -12,7 +12,7 @@ specifiers:
   '@vitejs/plugin-vue': 2.3.1
   '@vue/eslint-config-prettier': 7.0.0
   '@vue/eslint-config-typescript': 10.0.0
-  '@vue/test-utils': 2.0.0-rc.20
+  '@vue/test-utils': 2.0.0-rc.21
   '@vueuse/head': 0.7.6
   axios: 0.26.1
   c8: 7.11.2
@@ -58,7 +58,7 @@ devDependencies:
   '@vitejs/plugin-vue': 2.3.1_vite@2.9.5+vue@3.2.33
   '@vue/eslint-config-prettier': 7.0.0_eslint@8.13.0+prettier@2.6.2
   '@vue/eslint-config-typescript': 10.0.0_a62cbc2f4797496d74696b1f6538012a
-  '@vue/test-utils': 2.0.0-rc.20_vue@3.2.33
+  '@vue/test-utils': 2.0.0-rc.21_vue@3.2.33
   c8: 7.11.2
   cypress: 9.5.4
   esbuild: 0.14.36
@@ -1422,7 +1422,7 @@ packages:
         optional: true
     dependencies:
       '@cypress/mount-utils': 1.0.2
-      '@vue/test-utils': 2.0.0-rc.20_vue@3.2.33
+      '@vue/test-utils': 2.0.0-rc.21_vue@3.2.33
       cypress: 9.5.4
       vue: 3.2.33
     dev: true
@@ -2070,8 +2070,8 @@ packages:
   /@vue/shared/3.2.33:
     resolution: {integrity: sha512-UBc1Pg1T3yZ97vsA2ueER0F6GbJebLHYlEi4ou1H5YL4KWvMOOWwpYo9/QpWq93wxKG6Wo13IY74Hcn/f7c7Bg==}
 
-  /@vue/test-utils/2.0.0-rc.20_vue@3.2.33:
-    resolution: {integrity: sha512-aSkOAzM/ZlIyYgN7yj661FTjhFZZy5i9+FUbbDNoMGYA4F1WKwDdcDCPj9B/qzt3wGFkuCP5PO6SBtdSTMEhIA==}
+  /@vue/test-utils/2.0.0-rc.21_vue@3.2.33:
+    resolution: {integrity: sha512-wIJR4e/jISBKVKfiod3DV32BlDsoD744WVCuCaGtaSKvhvTL9gI5vl2AYSy00V51YaM8dCOFi3zcpCON8G1WqA==}
     peerDependencies:
       vue: ^3.0.1
     dependencies:
