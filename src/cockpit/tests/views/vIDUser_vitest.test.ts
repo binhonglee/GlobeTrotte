@@ -6,42 +6,10 @@ import { describe, expect, test, vi } from "vitest";
 import { mount } from "@vue/test-utils";
 import UserObj from "@/wings/UserObj";
 import TripObj from "@/wings/TripObj";
-import PWAUtils from "@/shared/PWAUtils";
 import NaiveUtils from "@/shared/NaiveUtils";
+import { UserCache } from "@/cache/UserCache";
 
-const unconfirmedUser = new UserObj({
-  id: 10,
-  details: {
-    id: 10,
-    username: "testmockuseraccount",
-    name: "MyAccount Test User",
-    email: "testmyaccount@globetrotte.com",
-    confirmed: false,
-  },
-  trips: [
-    {
-      id: 5,
-    },
-  ],
-});
-
-const currentUser = new UserObj({
-  id: 10,
-  details: {
-    id: 10,
-    username: "testmockuseraccount",
-    name: "MyAccount Test User",
-    email: "testmyaccount@globetrotte.com",
-    confirmed: true,
-  },
-  trips: [
-    {
-      id: 5,
-    },
-  ],
-});
-
-const trip5 = new TripObj({
+const rawTrip5 = {
   id: 5,
   details: {
     id: 5,
@@ -57,14 +25,37 @@ const trip5 = new TripObj({
     name: "MyAccount Test User",
     email: "testmyaccount@globetrotte.com",
   },
+};
+
+const unconfirmedUser = new UserObj({
+  id: 10,
+  details: {
+    id: 10,
+    username: "testmockuseraccount",
+    name: "MyAccount Test User",
+    email: "testmyaccount@globetrotte.com",
+    confirmed: false,
+  },
+  trips: [rawTrip5],
+});
+
+const currentUser = new UserObj({
+  id: 10,
+  details: {
+    id: 10,
+    username: "testmockuseraccount",
+    name: "MyAccount Test User",
+    email: "testmyaccount@globetrotte.com",
+    confirmed: true,
+  },
+  trips: [rawTrip5],
 });
 
 describe("vIDUser", () => {
   test("Get User - Has user (self, confirmed)", async () => {
-    const genUser = stub(vi.spyOn(PWAUtils, "genUserFromUsername")).resolves(
+    const genUser = stub(vi.spyOn(UserCache, "genUserFromUsername")).resolves(
       getFetchedUserObj(unconfirmedUser),
     );
-    const genTrip = stub(vi.spyOn(General, "genTrip")).resolves(trip5);
     const isSelf = stub(vi.spyOn(General, "getIsCurrentUser")).returns(true);
     const paramID = stub(vi.spyOn(General, "paramID")).returns(
       unconfirmedUser.details.username,
@@ -77,18 +68,15 @@ describe("vIDUser", () => {
     expect(isSelf.calledOnce()).toBeTruthy;
     expect(isSelf.args()[0][0]).toEqual(10);
     expect(genUser.calledOnce()).toBeTruthy();
-    expect(genTrip.calledOnce()).toBeTruthy();
     await genUser.restore();
-    await genTrip.restore();
     await isSelf.restore();
     await paramID.restore();
   });
 
   test("Get User - Has user (self, unconfirmed)", async () => {
-    const genUser = stub(vi.spyOn(PWAUtils, "genUserFromUsername")).resolves(
+    const genUser = stub(vi.spyOn(UserCache, "genUserFromUsername")).resolves(
       getFetchedUserObj(currentUser),
     );
-    const genTrip = stub(vi.spyOn(General, "genTrip")).resolves(trip5);
     const isSelf = stub(vi.spyOn(General, "getIsCurrentUser")).returns(true);
     const paramID = stub(vi.spyOn(General, "paramID")).returns(
       currentUser.details.username,
@@ -101,18 +89,15 @@ describe("vIDUser", () => {
     expect(isSelf.calledOnce()).toBeTruthy;
     expect(isSelf.args()[0][0]).toEqual(10);
     expect(genUser.calledOnce()).toBeTruthy();
-    expect(genTrip.calledOnce()).toBeTruthy();
     await genUser.restore();
-    await genTrip.restore();
     await isSelf.restore();
     await paramID.restore();
   });
 
   test("Get User - Has user (not self)", async () => {
-    const genUser = stub(vi.spyOn(PWAUtils, "genUserFromUsername")).resolves(
+    const genUser = stub(vi.spyOn(UserCache, "genUserFromUsername")).resolves(
       getFetchedUserObj(currentUser),
     );
-    const genTrip = stub(vi.spyOn(General, "genTrip")).resolves(trip5);
     const isSelf = stub(vi.spyOn(General, "getIsCurrentUser")).returns(false);
     const paramID = stub(vi.spyOn(General, "paramID")).returns(
       currentUser.details.username,
@@ -125,15 +110,13 @@ describe("vIDUser", () => {
     expect(isSelf.calledOnce()).toBeTruthy();
     expect(isSelf.args()[0][0]).toEqual(10);
     expect(genUser.calledOnce()).toBeTruthy();
-    expect(genTrip.calledOnce()).toBeTruthy();
     await genUser.restore();
-    await genTrip.restore();
     await isSelf.restore();
     await paramID.restore();
   });
 
   test("Get User - Not found", async () => {
-    const genUser = stub(vi.spyOn(PWAUtils, "genUserFromUsername")).callsFake(
+    const genUser = stub(vi.spyOn(UserCache, "genUserFromUsername")).callsFake(
       async () => {
         // This is so there is enough time for alertSpy to be
         // created before it reaches the alert code

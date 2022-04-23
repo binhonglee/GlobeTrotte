@@ -8,16 +8,17 @@
 package user
 
 import (
+	trip "github.com/binhonglee/GlobeTrotte/src/turbine/trip"
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 	"time"
 )
 
 // UserObj - All information of a single user.
 type UserObj struct {
-	ID          int               `json:"id"`
-	Details     wings.UserBasic   `json:"details"`
-	Trips       []wings.TripBasic `json:"trips"`
-	TimeCreated time.Time         `json:"time_created"`
+	ID          int             `json:"id"`
+	Details     wings.UserBasic `json:"details"`
+	Trips       []trip.TripObj  `json:"trips"`
+	TimeCreated time.Time       `json:"time_created"`
 }
 
 // GetID (istruct) - Returns the user ID.

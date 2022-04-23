@@ -7,6 +7,7 @@ filegroup(
     "//src/cockpit/scripts:gen_router",
   ],
   exported_deps = [
+    "//src/cockpit/cache",
     "//src/cockpit/components",
     "//src/cockpit/shared",
     "//src/cockpit/views",

@@ -10,6 +10,7 @@ filegroup(
   ],
   deps = [
     "//src/cockpit/wings:wings",
+    "//src/cockpit/cache:cache",
     "//src/cockpit/shared:shared",
     "//src/cockpit/components:components",
   ],

@@ -5,8 +5,8 @@
 // and run the following command:
 // plz build //src/wings/...
 
-import TripBasic from './TripBasic';
 import { parseArray } from 'wings-ts-util';
+import TripObj from './TripObj';
 import UserBasic from './UserBasic';
 import { IWingsStruct } from 'wings-ts-util';
 
@@ -15,14 +15,14 @@ export default class UserObj implements IWingsStruct {
   [key: string]: any;
   public ID: Number = -1;
   public details: UserBasic = new UserBasic();
-  public trips: TripBasic[] = [];
+  public trips: TripObj[] = [];
   public timeCreated: Date = new Date();
 
   public constructor(obj?: any) {
     if (obj) {
       this.ID = obj.id !== undefined && obj.id !== null ? obj.id : -1;
       this.details = obj.details !== undefined && obj.details !== null ? new UserBasic(obj.details) : new UserBasic();
-      this.trips = obj.trips !== undefined && obj.trips !== null ? parseArray<TripBasic>(TripBasic, obj.trips) : [];
+      this.trips = obj.trips !== undefined && obj.trips !== null ? parseArray<TripObj>(TripObj, obj.trips) : [];
       this.timeCreated = obj.time_created !== undefined && obj.time_created !== null ? new Date(obj.time_created) : new Date();
     }
   }

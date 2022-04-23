@@ -10,6 +10,7 @@ go_library(
     "//src/turbine/database",
     "//src/turbine/email",
     "//src/turbine/logger",
+    "//src/turbine/trip",
     "//src/turbine/wings",
   ],
   visibility = ["//src/turbine/..."],

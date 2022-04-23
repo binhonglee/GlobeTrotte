@@ -149,9 +149,8 @@ export default defineComponent({
   padding: 0 5px;
 }
 
-.tripTitleName,
-.endOfCardPadding {
-  margin-top: 24px;
+.tripTitleName {
+  padding-top: 15px;
 }
 
 .cityTag {

@@ -112,6 +112,7 @@ vitest_dir(
     ":pnpm_config",
     ":tsconfig",
     "//src/cockpit:core_files",
+    "//src/cockpit/cache:cache",
     "//src/cockpit/components:components",
     "//src/cockpit/shared:shared",
     "//src/cockpit/tests:helper",

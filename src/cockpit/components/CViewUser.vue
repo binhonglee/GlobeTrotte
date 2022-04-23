@@ -42,7 +42,6 @@ import { NAlert, NButton, NDivider } from "naive-ui";
 import CExternalLink from "./CExternalLink.vue";
 import CShare from "./CShare.vue";
 import CTripPreviewCard from "./CTripPreviewCard.vue";
-import General from "@/shared/General";
 import TripUtil from "@/shared/TripUtil";
 import UserObj from "@/wings/UserObj";
 import TripBasic from "@/wings/TripBasic";
@@ -54,7 +53,6 @@ import CLoadingTripPreviewCard from "./loading/CLoadingTripPreviewCard.vue";
 
 interface Data {
   trips: TripObj[];
-  lastPopulated: TripBasic[];
   tripsEmpty: boolean;
   loading: boolean;
   shareURL: string;
@@ -99,7 +97,6 @@ export default defineComponent({
   },
   data: (): Data => ({
     trips: [],
-    lastPopulated: [],
     tripsEmpty: true,
     loading: true,
     shareURL: "",
@@ -125,18 +122,9 @@ export default defineComponent({
     },
     async genPopulateTrips(): Promise<void> {
       this.$data.loading = true;
-      if (this.compareArray(this.$data.lastPopulated, this.$props.user.trips)) {
-        this.$data.loading = false;
-        return;
-      }
-      this.$data.trips = await Promise.all(
-        this.$props.user.trips.map(async (trip: TripBasic) => {
-          return await General.genTrip(trip.ID.valueOf());
-        }),
-      );
+      this.$data.trips = this.$props.user.trips;
       TripUtil.sortTripsMostRecentlyUpdated(this.$data.trips);
       this.$data.tripsEmpty = this.$data.trips.length <= 0;
-      this.$data.lastPopulated = this.$props.user.trips;
       this.$data.loading = false;
     },
     logout(): void {

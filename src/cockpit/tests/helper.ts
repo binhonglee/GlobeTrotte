@@ -9,7 +9,7 @@ import naive from "naive-ui";
 import { createHead } from "@vueuse/head";
 import { GlobalMountOptions } from "@vue/test-utils/dist/types";
 import UserObj from "@/wings/UserObj";
-import { FetchedUserObj } from "@/shared/PWAUtils";
+import { FetchedUserObj } from "@/cache/UserCache";
 
 export type routerFunctions =
   | "replace"

@@ -8,6 +8,7 @@ import (
 	"github.com/binhonglee/GlobeTrotte/src/turbine/database"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/email"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/trip"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 )
 
@@ -56,11 +57,12 @@ func GetUserObjWithUsername(username string, self int) UserObj {
 func GetUserObj(id int, self int) UserObj {
 	user := UserObj{}
 	user.Details, _ = database.GetUserBasicDBWithID(id)
+	selfBasic, _ := database.GetUserBasicDBWithID(self)
 
 	tripIDs := database.GetUserTripsWithID(id)
 	for _, tripID := range tripIDs {
-		trip, _ := database.GetTripBasicWithID(tripID)
-		if !trip.Private || database.GetTripOwnerWithID(tripID) == self {
+		trip := trip.GetTripObj(tripID, selfBasic)
+		if trip.ID != -1 && (!trip.Details.Private || database.GetTripOwnerWithID(tripID) == self) {
 			user.Trips = append(user.Trips, trip)
 		}
 	}

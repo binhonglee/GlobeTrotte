@@ -2,7 +2,7 @@ go-filepath src/turbine/user
 ts-filepath src/cockpit/wings
 
 ts-import { IWingsStruct }:wings-ts-util
-import src/wings/struct/trip_basic.wings
+import src/wings/struct/trip_obj.wings
 import src/wings/struct/user_basic.wings
 
 ts-implement IWingsStruct
@@ -12,7 +12,7 @@ ts-implement IWingsStruct
 struct UserObj {
   id            int     -1
   details       UserBasic
-  trips          []TripBasic
+  trips          []TripObj
   time_created  date
 }
 

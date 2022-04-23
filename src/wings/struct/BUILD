@@ -117,7 +117,7 @@ wings_lib(
   },
   deps = [
     ":user_basic",
-    ":trip_basic",
+    ":trip_obj",
   ],
 )
 

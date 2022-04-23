@@ -15,6 +15,11 @@
       n-alert(
         title="Unconfirmed" type="error"
       ) Please confirm you email address to access the full site.
+  .narrow_content.tapToUpdate(
+    v-if="updated !== null"
+  )
+    n-alert(title="There's an update!" type="warning" v-on:click="update")
+      | Press here to view latest version of this profile.
   CLoadingViewUser(v-if="user.ID === -1")
   .userinfo(v-else)
     h1.title {{ user.details.name }}
@@ -69,13 +74,21 @@ import { WingsStructUtil } from "wings-ts-util";
 import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
 import E from "@/shared/E";
 import UserBasic from "@/wings/UserBasic";
-import PWAUtils, { FetchedUserObj } from "@/shared/PWAUtils";
+import {
+  processBioFromStorage,
+  processBioFromServer,
+  processBioToServer,
+  sameUser,
+  UserSource,
+} from "@/shared/UserUtil";
+import { UserCache, FetchedUserObj } from "@/cache/UserCache";
 
 interface Data {
   user: UserObj;
   edit: boolean;
   self: boolean;
   unconfirmedLink: string;
+  updated: UserObj | null;
   loadingBar: LoadingBarApiInjection | null;
 }
 
@@ -94,6 +107,7 @@ export default defineComponent({
     edit: false,
     self: false,
     unconfirmedLink: Routes.unconfirmed_Email,
+    updated: null,
     loadingBar: General.loadingBar(),
   }),
   async beforeMount(): Promise<void> {
@@ -110,11 +124,9 @@ export default defineComponent({
 
       let res: FetchedUserObj;
       if (isNaN(Number(paramID))) {
-        res = await PWAUtils.genUserFromUsername(paramID);
-        // this.$data.user = await General.genFromUsername(paramID);
+        res = await UserCache.genUserFromUsername(paramID);
       } else {
-        res = await PWAUtils.genUser(Number(paramID));
-        // const user = await General.genUser(Number(paramID));
+        res = await UserCache.genUser(Number(paramID));
         const user = res.completed;
         if (user !== undefined && user.details.username !== "") {
           await Routing.genRedirectTo(
@@ -129,11 +141,24 @@ export default defineComponent({
       }
 
       if (res.promise !== null) {
-        this.$data.user = await res.promise;
-        this.dataProcessing(false);
+        const promise = await res.promise;
+        if (
+          !sameUser(
+            promise,
+            this.$data.user,
+            UserSource.Server,
+            UserSource.Storage,
+          )
+        ) {
+          this.$data.updated = promise;
+        }
       }
 
       if (this.$data.user.ID === -1) {
+        if (General.paramID() === General.getCurrentUsername()) {
+          await this.logout();
+        }
+
         NaiveUtils.dialogError({
           title: "User not found",
           content: "The user you are looking for does not exist.",
@@ -150,16 +175,21 @@ export default defineComponent({
           this.$data.user.ID.valueOf(),
         );
         if (fromStorage) {
-          this.$data.user.details.bio = this.$data.user.details.bio.replaceAll(
-            "\\n",
-            "\n",
+          this.$data.user.details.bio = processBioFromStorage(
+            this.$data.user.details.bio.valueOf(),
           );
         } else {
-          this.$data.user.details.bio = this.$data.user.details.bio.replaceAll(
-            "\\\\n",
-            "\n",
+          this.$data.user.details.bio = processBioFromServer(
+            this.$data.user.details.bio.valueOf(),
           );
         }
+      }
+    },
+    update(): void {
+      if (this.$data.updated !== null) {
+        this.$data.user = this.$data.updated;
+        this.dataProcessing(false);
+        this.$data.updated = null;
       }
     },
     confirmDelete(): void {
@@ -197,11 +227,7 @@ export default defineComponent({
         id: this.$data.user.ID,
         name: E.getVal(this, "name"),
         email: E.getVal(this, "email"),
-        bio: E.getVal(this, "bio")
-          .replaceAll("\\t", "\t")
-          .replaceAll("\t", "")
-          .replaceAll("\n", "\\\\n")
-          .replaceAll("\\", "\\\\"),
+        bio: processBioToServer(E.getVal(this, "bio")),
         link: E.getVal(this, "link"),
         username: E.getVal(this, "username"),
         confirmed: this.$data.user.details.confirmed,
@@ -243,9 +269,14 @@ export default defineComponent({
   text-align: left;
 }
 
-.accountUnconfirmedAlertBar {
+.accountUnconfirmedAlertBar,
+.tapToUpdate {
   text-align: left;
   padding: 10px;
+}
+
+.tapToUpdate {
+  cursor: pointer;
 }
 
 .myAccountDeletion {
