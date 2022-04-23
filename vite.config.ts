@@ -59,13 +59,16 @@ export default defineConfig({
     environment: "jsdom",
     include: ["src/cockpit/**/*_vitest.{test,spec}.ts"],
     exclude: ["src/cockpit/tests/cypress/**/*"],
-    reporters: "default",
+    reporters: ["default", "junit"],
+    outputFile: "vitest_junit",
     watch: false,
     coverage: {
       enabled: true,
       clean: true,
-      reporter: "text-summary",
+      reportsDirectory: "vitest_coverage",
+      reporter: ["text-summary", "json"],
     },
     setupFiles: ["src/cockpit/tests/vitest_setup.ts"],
+    testTimeout: 10000,
   },
 });

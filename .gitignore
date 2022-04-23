@@ -17,3 +17,4 @@ pnpm-debug.log
 /*.log
 deploy/dist
 deploy/main
+/playwright/

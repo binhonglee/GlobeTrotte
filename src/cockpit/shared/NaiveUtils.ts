@@ -3,7 +3,6 @@ import {
   useMessage,
   DialogOptions,
   MessageReactive,
-  NotificationReactive,
   useNotification,
 } from "naive-ui";
 import { DialogApiInjection } from "naive-ui/lib/dialog/src/DialogProvider";

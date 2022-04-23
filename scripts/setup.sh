@@ -178,6 +178,7 @@ installPNPM() {
   else
     pnpm install
   fi
+  pnpx playwright install
 }
 
 installPostgreSQL() {

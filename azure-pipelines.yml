@@ -177,6 +177,8 @@ jobs:
   - script: sleep 1
   - script: pnpm run test:cypress:plz
     displayName: Run e2e tests
+  - script: pnpx vitest playwright
+    displayName: Run playwright e2e tests
 
 - job: turbine
   pool:

@@ -62,10 +62,11 @@ const after = `
 const routesBefore =
   prefix +
   `
-export default class Routes {
+enum Routes {
 `;
 
 const routesAfter = `}
+export default Routes;
 `;
 
 class Params {
@@ -207,7 +208,7 @@ class GenRouter {
   private pathsToString(): string {
     let toRet = routesBefore;
     for (const path of paths) {
-      toRet += "  public static " + path.name + ' = "/' + path.path + '";\n';
+      toRet += "  " + path.name + ' = "/' + path.path + '",\n';
     }
     return toRet + routesAfter;
   }

@@ -192,7 +192,7 @@ go_module(
 go_module(
   name = "x_crypto",
   module = "golang.org/x/crypto",
-  version = "v0.0.0-20220411220226-7b82a4e95df4",
+  version = "v0.0.0-20220427172511-eb4f295cb31f",
   install = [
     "bcrypt",
     "blowfish",

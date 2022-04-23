@@ -102,10 +102,8 @@ jobs:
       with:
         go-version: 1.15.x
 
-    - run: ./scripts/setup.sh -g -s
+    - run: ./scripts/setup.sh -g -s -n
     - run: ./pleasew go_mod
-    - run: sudo npm i -g pnpm
-    - run: pnpm i
     - run: cp config/test.kdl config/config.kdl
 
     - run: ./pleasew build "//src/turbine:main"
@@ -114,12 +112,21 @@ jobs:
     - run: pnpm run serve &
     - run: sleep 3
     - run: pnpm run test:cypress:plz
+    - run: pnpx vitest playwright
 
     - uses: actions/upload-artifact@v2
       with:
         name: logs
         path: logs
       if: ${{ always() }}
+    - uses: actions/upload-artifact@v2
+      with:
+        name: playwright
+        path: 'playwright/'
+    - uses: actions/upload-artifact@v2
+      with:
+        name: playwright-coverage
+        path: 'vitest_coverage/'
     # - uses: actions/upload-artifact@v2
     #   with:
     #     name: e2e-nyc-output
@@ -212,6 +219,9 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: unit-test-nyc-output
+    - uses: actions/download-artifact@v2
+      with:
+        name: playwright-coverage
     # - uses: actions/download-artifact@v2
     #   with:
     #     name: e2e-nyc-output
