@@ -59,7 +59,7 @@
     "vite-plugin-pwa": "0.12.0",
     "vitest": "0.9.4",
     "vue-router": "4.0.14",
-    "vue-tsc": "0.34.9"
+    "vue-tsc": "0.34.10"
   },
   "license": "AGPL 3.0"
 }
