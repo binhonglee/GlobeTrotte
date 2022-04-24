@@ -1,49 +1,42 @@
 <template>
-  <div v-if="offlineReady || needRefresh" class="pwa-toast" role="alert">
-    <div class="message">
-      <span v-if="offlineReady"> App ready to work offline </span>
-      <span v-else>
-        New content available, click on reload button to update.
-      </span>
-    </div>
-    <button v-if="needRefresh" @click="updateServiceWorker()"> Reload </button>
-    <button @click="close"> Close </button>
-  </div>
+  <n-alert
+    v-if="needRefresh"
+    class="pwa-toast"
+    title="Update"
+    type="info"
+    closable
+  >
+    New content available, click on reload button to update.
+    <br />
+    <n-button @click="updateServiceWorker()"> Reload </n-button>
+  </n-alert>
 </template>
 
 <script setup lang="ts">
+import { NAlert, NButton } from "naive-ui";
 import { useRegisterSW } from "virtual:pwa-register/vue";
 
-const { offlineReady, needRefresh, updateServiceWorker } = useRegisterSW();
-
-const close = async () => {
-  offlineReady.value = false;
-  needRefresh.value = false;
-};
+const { needRefresh, updateServiceWorker } = useRegisterSW();
 </script>
 
 <style>
-.pwa-toast {
+#app .pwa-toast {
   position: fixed;
   right: 0;
   bottom: 0;
-  margin: 16px;
-  padding: 12px;
-  border: 1px solid #8885;
-  border-radius: 4px;
+  margin: 10px;
   z-index: 1;
   text-align: left;
-  box-shadow: 3px 4px 5px 0 #8885;
-  background-color: white;
+  background-color: #15344a;
 }
-.pwa-toast .message {
-  margin-bottom: 8px;
+
+.pwa-toast .n-alert-body {
+  padding-bottom: 55px;
 }
-.pwa-toast button {
-  border: 1px solid #8885;
-  outline: none;
-  margin-right: 5px;
-  border-radius: 2px;
-  padding: 3px 10px;
+
+.pwa-toast .n-button {
+  float: right;
+  padding: 8px;
+  margin-top: 10px;
 }
 </style>

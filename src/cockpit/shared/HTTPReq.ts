@@ -7,14 +7,17 @@ import Routes from "@/routes";
 export default class HTTPReq extends H {
   protected static host =
     process.env.NODE_ENV === "production" ? "globetrotte.com" : "localhost";
-  protected static selfPort =
-    process.env.NODE_ENV === "production" ? undefined : 3000;
   protected static port =
     process.env.NODE_ENV === "production" ? undefined : 4000;
+  protected static protocol =
+    process.env.NODE_ENV === "production" ? "https://" : "http://";
   protected static pathPrefix = "/api/";
   protected static delPrefix = "del/";
   protected static rateLimited = "ratelimited";
   protected static router = router;
+
+  protected static selfPort =
+    process.env.NODE_ENV === "production" ? undefined : 3000;
   private static loadingBar: LoadingBarApiInjection | undefined = undefined;
   private static failed = false;
 
@@ -30,7 +33,7 @@ export default class HTTPReq extends H {
 
   public static getAbsoluteURL(routes: Routes, args = ""): string {
     return (
-      (process.env.NODE_ENV === "production" ? "https://" : "http://") +
+      this.protocol +
       this.host +
       (this.selfPort === undefined ? "" : ":" + this.selfPort) +
       routes +

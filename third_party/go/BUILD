@@ -68,7 +68,7 @@ go_module(
 go_module(
   name = "jackc_pgconn",
   module = "github.com/jackc/pgconn",
-  version = "v1.11.0",
+  version = "v1.12.0",
   install = [
     ".",
     "internal/ctxwatch",
@@ -106,7 +106,7 @@ go_module(
 go_module(
   name = "jackc_pgproto3_v2",
   module = "github.com/jackc/pgproto3/v2",
-  version = "v2.2.0",
+  version = "v2.3.0",
   install = [
     ".",
   ],
@@ -128,7 +128,7 @@ go_module(
 go_module(
   name = "jackc_pgtype",
   module = "github.com/jackc/pgtype",
-  version = "v1.10.0",
+  version = "v1.11.0",
   install = [
     ".",
   ],
@@ -140,7 +140,7 @@ go_module(
 go_module(
   name = "jackc_pgx_v4",
   module = "github.com/jackc/pgx/v4",
-  version = "v4.15.0",
+  version = "v4.16.0",
   install = [
     ".",
     "internal/sanitize",
@@ -203,7 +203,7 @@ go_module(
 go_module(
   name = "x_text",
   module = "golang.org/x/text",
-  version = "v0.3.6",
+  version = "v0.3.7",
   install = [
     "cases",
     "internal",

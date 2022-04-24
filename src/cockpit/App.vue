@@ -1,6 +1,5 @@
 <template lang="pug">
 #app(:class="darkMode ? 'dark_mode' : ''")
-  CPWA
   n-config-provider(:theme="darkTheme")
     .main_menu.dark_mode()
       n-menu.navBarLeftMenu(
@@ -15,6 +14,7 @@
         :options="rightMenuOptions"
       )
   n-config-provider(:theme="darkMode ? darkTheme : lightTheme")
+    CPWA
     n-divider(class="navBarBorder")
     n-loading-bar-provider
       n-dialog-provider

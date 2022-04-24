@@ -13,6 +13,7 @@ enum AxMethod {
 export default abstract class H {
   protected static host: string;
   protected static port?: number;
+  protected static protocol: string;
   protected static pathPrefix: string;
   protected static delPrefix: string;
   protected static rateLimited: string;
@@ -49,7 +50,7 @@ export default abstract class H {
 
   public static getURI(path: string): string {
     return (
-      (process.env.NODE_ENV === "production" ? "https://" : "http://") +
+      this.protocol +
       this.host +
       (this.port === undefined ? "" : ":" + this.port) +
       this.pathPrefix +
