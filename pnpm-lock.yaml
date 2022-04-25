@@ -16,7 +16,7 @@ specifiers:
   '@vueuse/head': 0.7.6
   axios: 0.27.0
   c8: 7.11.2
-  cypress: 9.5.4
+  cypress: 9.6.0
   element-plus: 1.0.2-beta.71
   esbuild: 0.14.38
   eslint: 8.14.0
@@ -47,9 +47,9 @@ dependencies:
   wings-ts-util: 0.0.8
 
 devDependencies:
-  '@cypress/code-coverage': 3.9.12_cypress@9.5.4
+  '@cypress/code-coverage': 3.9.12_cypress@9.6.0
   '@cypress/vite-dev-server': 2.2.2_vite@2.9.5
-  '@cypress/vue': 3.1.1_cypress@9.5.4+vue@3.2.33
+  '@cypress/vue': 3.1.1_cypress@9.6.0+vue@3.2.33
   '@delagen/eslint-plugin-deprecation': 1.3.2_eslint@8.14.0+typescript@4.6.3
   '@types/node': 16.11.29
   '@typescript-eslint/eslint-plugin': 5.21.0_829e74f28e9c9eb05edda582d47d45b8
@@ -60,7 +60,7 @@ devDependencies:
   '@vue/eslint-config-typescript': 10.0.0_f5d04023b0e9c1203fb3ac493367e3ca
   '@vue/test-utils': 2.0.0-rc.21_vue@3.2.33
   c8: 7.11.2
-  cypress: 9.5.4
+  cypress: 9.6.0
   esbuild: 0.14.38
   eslint: 8.14.0
   eslint-plugin-prettier: 4.0.0_eslint@8.14.0+prettier@2.6.2
@@ -1348,14 +1348,14 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/code-coverage/3.9.12_cypress@9.5.4:
+  /@cypress/code-coverage/3.9.12_cypress@9.6.0:
     resolution: {integrity: sha512-2QuDSQ2ovz2ZsbQImM917q+9JmEq4afC4kpgHe2o3rTQxUrs7CdHM84rT8XKl0gJIXmbMcNq2rZqe40/eFmCFw==}
     peerDependencies:
       cypress: '*'
     dependencies:
       '@cypress/browserify-preprocessor': 3.0.2
       chalk: 4.1.2
-      cypress: 9.5.4
+      cypress: 9.6.0
       dayjs: 1.10.7
       debug: 4.3.3
       execa: 4.1.0
@@ -1407,7 +1407,7 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/vue/3.1.1_cypress@9.5.4+vue@3.2.33:
+  /@cypress/vue/3.1.1_cypress@9.6.0+vue@3.2.33:
     resolution: {integrity: sha512-wD1vunuPFPLC8FZtgwdq+mcSEOs27qquuJJdGcY8aAN0y38rqYuuaj+N4UxKoAjhkSwthaOeZehjBtvDvv9C6w==}
     engines: {node: '>=8'}
     peerDependencies:
@@ -1423,7 +1423,7 @@ packages:
     dependencies:
       '@cypress/mount-utils': 1.0.2
       '@vue/test-utils': 2.0.0-rc.21_vue@3.2.33
-      cypress: 9.5.4
+      cypress: 9.6.0
       vue: 3.2.33
     dev: true
 
@@ -3350,8 +3350,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /cypress/9.5.4:
-    resolution: {integrity: sha512-6AyJAD8phe7IMvOL4oBsI9puRNOWxZjl8z1lgixJMcgJ85JJmyKeP6uqNA0dI1z14lmJ7Qklf2MOgP/xdAqJ/Q==}
+  /cypress/9.6.0:
+    resolution: {integrity: sha512-nNwt9eBQmSENamwa8LxvggXksfyzpyYaQ7lNBLgks3XZ6dPE/6BCQFBzeAyAPt/bNXfH3tKPkAyhiAZPYkWoEg==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
@@ -3373,7 +3373,7 @@ packages:
       commander: 5.1.0
       common-tags: 1.8.0
       dayjs: 1.10.7
-      debug: 4.3.3_supports-color@8.1.1
+      debug: 4.3.4_supports-color@8.1.1
       enquirer: 2.3.6
       eventemitter2: 6.4.4
       execa: 4.1.0
@@ -3463,19 +3463,6 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
-    dev: true
-
-  /debug/4.3.3_supports-color@8.1.1:
-    resolution: {integrity: sha512-/zxw5+vh1Tfv+4Qn7a5nsbcJKPaSvCDhojn6FEl9vupwK2VCSDtEiEtqr8DFtzYFOdz63LBkxec7DYuc2jon6Q==}
-    engines: {node: '>=6.0'}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
-    dependencies:
-      ms: 2.1.2
-      supports-color: 8.1.1
     dev: true
 
   /debug/4.3.4:
