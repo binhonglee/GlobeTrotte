@@ -5,7 +5,7 @@ specifiers:
   '@cypress/vite-dev-server': 2.2.2
   '@cypress/vue': 3.1.1
   '@delagen/eslint-plugin-deprecation': 1.3.2
-  '@types/node': 16.11.29
+  '@types/node': 16.11.30
   '@typescript-eslint/eslint-plugin': 5.21.0
   '@typescript-eslint/parser': 5.21.0
   '@vicons/ionicons5': 0.12.0
@@ -51,7 +51,7 @@ devDependencies:
   '@cypress/vite-dev-server': 2.2.2_vite@2.9.6
   '@cypress/vue': 3.1.1_cypress@9.6.0+vue@3.2.33
   '@delagen/eslint-plugin-deprecation': 1.3.2_eslint@8.14.0+typescript@4.6.3
-  '@types/node': 16.11.29
+  '@types/node': 16.11.30
   '@typescript-eslint/eslint-plugin': 5.21.0_829e74f28e9c9eb05edda582d47d45b8
   '@typescript-eslint/parser': 5.21.0_eslint@8.14.0+typescript@4.6.3
   '@vicons/ionicons5': 0.12.0
@@ -1519,7 +1519,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.3
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 16.11.29
+      '@types/node': 16.11.30
       '@types/yargs': 16.0.4
       chalk: 4.1.2
     dev: false
@@ -1691,13 +1691,13 @@ packages:
     resolution: {integrity: sha512-JcII3D5/OapPGx+eJ+Ik1SQGyt6WvuqdRfh9jUwL6/iHGjmyOriBDciBUu7lEIBTL2ijxwrR70WUnw5AEDmFvQ==}
     dev: true
 
-  /@types/node/16.11.29:
-    resolution: {integrity: sha512-9dDdonLyPJQJ/kdOlDxAah+bTI+u2ccF3k62FErhquDuggoCX6piWez7j7o6yNE+rP2IRcZVQ6Tw4N0P38+rWA==}
+  /@types/node/16.11.30:
+    resolution: {integrity: sha512-cw8NVA2xHXysO4dmSxePZybEoMWhnrimf5+b1vOh5SV7QB8ZnGm2yTvGllXuwwMQNYpYwGB4HCrVJkZD3o9Oew==}
 
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 16.11.29
+      '@types/node': 16.11.30
     dev: true
 
   /@types/sinonjs__fake-timers/8.1.1:
@@ -1726,7 +1726,7 @@ packages:
     resolution: {integrity: sha512-A1b8SU4D10uoPjwb0lnHmmu8wZhR9d+9o2PKBQT2jU5YPTKsxac6M2qGAdY7VcL+dHHhARVUDmeg0rOrcd9EjA==}
     requiresBuild: true
     dependencies:
-      '@types/node': 16.11.29
+      '@types/node': 16.11.30
     dev: true
     optional: true
 
@@ -5544,7 +5544,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 16.11.29
+      '@types/node': 16.11.30
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
