@@ -14,7 +14,7 @@ specifiers:
   '@vue/eslint-config-typescript': 10.0.0
   '@vue/test-utils': 2.0.0-rc.21
   '@vueuse/head': 0.7.6
-  axios: 0.27.1
+  axios: 0.27.2
   c8: 7.11.2
   cypress: 9.6.0
   element-plus: 1.0.2-beta.71
@@ -40,7 +40,7 @@ specifiers:
 
 dependencies:
   '@vueuse/head': 0.7.6_vue@3.2.33
-  axios: 0.27.1
+  axios: 0.27.2
   element-plus: 1.0.2-beta.71_vue@3.2.33
   naive-ui: 2.27.0_vue@3.2.33
   vue: 3.2.33
@@ -2386,8 +2386,8 @@ packages:
     resolution: {integrity: sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==}
     dev: true
 
-  /axios/0.27.1:
-    resolution: {integrity: sha512-ePNMai55xo5GsXajb/k756AqZqpqeDaGwGcdvbZLSSELbbYwsIn2jNmGfUPEwd8j/yu4OoMstLLIVa4t0MneEA==}
+  /axios/0.27.2:
+    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
     dependencies:
       follow-redirects: 1.14.9
       form-data: 4.0.0
