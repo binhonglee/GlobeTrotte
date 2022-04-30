@@ -43,10 +43,12 @@ class UserStorage extends CacheStorage {
   }
 }
 
+export type NullableUserObj = UserObj | null;
+
 export class FetchedUserObj {
   public fromStorage = false;
-  public completed: UserObj | undefined = undefined;
-  public promise: Promise<UserObj> | null = null;
+  public completed: NullableUserObj = null;
+  public promise: Promise<NullableUserObj> | null = null;
 }
 
 export class UserCache {
@@ -72,7 +74,7 @@ export class UserCache {
     return toReturn;
   }
 
-  private static async genFetchUser(id: number): Promise<UserObj> {
+  private static async genFetchUser(id: number): Promise<NullableUserObj> {
     const user = await HTTPReq.genGET("v2/user/" + id);
     const userObj = new UserObj(user);
 
@@ -82,9 +84,10 @@ export class UserCache {
 
     if (user !== "") {
       this.storeUser(userObj);
+      return userObj;
     }
 
-    return userObj;
+    return null;
   }
 
   public static async genUserFromUsername(
@@ -116,7 +119,9 @@ export class UserCache {
     return toReturn;
   }
 
-  private static async genFetchUsername(username: string): Promise<UserObj> {
+  private static async genFetchUsername(
+    username: string,
+  ): Promise<NullableUserObj> {
     const user = await HTTPReq.genGET("username/" + username);
     const userObj = new UserObj(user);
 
@@ -126,9 +131,10 @@ export class UserCache {
 
     if (user !== "") {
       this.storeUser(userObj);
+      return userObj;
     }
 
-    return userObj;
+    return null;
   }
 
   private static storeUser(user: UserObj): void {

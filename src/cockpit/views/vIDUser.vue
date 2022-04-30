@@ -128,14 +128,14 @@ export default defineComponent({
       } else {
         res = await UserCache.genUser(Number(paramID));
         const user = res.completed;
-        if (user !== undefined && user.details.username !== "") {
+        if (user !== null && user.details.username !== "") {
           await Routing.genRedirectTo(
             Routes.User + "/" + user.details.username,
           );
         }
       }
 
-      if (res.completed !== undefined) {
+      if (res.completed !== null) {
         this.$data.user = res.completed;
         this.dataProcessing(res.fromStorage);
       }
@@ -143,6 +143,7 @@ export default defineComponent({
       if (res.promise !== null) {
         const promise = await res.promise;
         if (
+          promise !== null &&
           !sameUser(
             promise,
             this.$data.user,
