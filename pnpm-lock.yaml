@@ -17,7 +17,6 @@ specifiers:
   axios: 0.27.2
   c8: 7.11.2
   cypress: 9.6.0
-  element-plus: 1.0.2-beta.71
   esbuild: 0.14.38
   eslint: 8.14.0
   eslint-plugin-prettier: 4.0.0
@@ -42,7 +41,6 @@ specifiers:
 dependencies:
   '@vueuse/head': 0.7.6_vue@3.2.33
   axios: 0.27.2
-  element-plus: 1.0.2-beta.71_vue@3.2.33
   naive-ui: 2.27.0_vue@3.2.33
   vue: 3.2.33
   wings-ts-util: 0.0.8
@@ -1459,10 +1457,6 @@ packages:
       - supports-color
     dev: true
 
-  /@element-plus/icons/0.0.11:
-    resolution: {integrity: sha512-iKQXSxXu131Ai+I9Ymtcof9WId7kaXvB1+WRfAfpQCW7UiAMYgdNDqb/u0hgTo2Yq3MwC4MWJnNuTBEpG8r7+A==}
-    dev: false
-
   /@emotion/hash/0.8.0:
     resolution: {integrity: sha512-kBJtf7PH6aWwZ6fka3zQ0p6SBYzx4fl1LoZXE2RrnYST9Xljm7WfKJrU4g/Xr3Beg72MLrp1AWNUmuYJTL7Cow==}
     dev: false
@@ -1562,10 +1556,6 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.11.0
     dev: true
-
-  /@popperjs/core/2.9.2:
-    resolution: {integrity: sha512-VZMYa7+fXHdwIq1TDhSXoVmSPEGM/aa+6Aiq3nVVJ9bXr24zScr+NlKFKC3iPljA7ho/GAZr+d2jOf5GIRC30Q==}
-    dev: false
 
   /@rollup/plugin-babel/5.3.1_@babel+core@7.16.7+rollup@2.70.2:
     resolution: {integrity: sha512-WFfdLWU/xVWKeRQnKmIAQULUI7Il0gZnBIH/ZFO069wYIfPu+8zrfp/KMW0atmELoRDq8FbiP3VCss9MhCut7Q==}
@@ -2458,10 +2448,6 @@ packages:
   /async-each/1.0.3:
     resolution: {integrity: sha512-z/WhQ5FPySLdvREByI2vZiTWwCnF0moMJ1hK9YQwDTHKh6I7/uSckMetoRGb5UBZPC1z0jlw+n/XCgjeH7y1AQ==}
     dev: true
-
-  /async-validator/3.5.2:
-    resolution: {integrity: sha512-8eLCg00W9pIRZSB781UUX/H6Oskmm8xloZfr09lz5bikRpBVDlJ3hRVuxxP1SxcwsEYfJ4IU8Q19Y8/893r3rQ==}
-    dev: false
 
   /async-validator/4.0.7:
     resolution: {integrity: sha512-Pj2IR7u8hmUEDOwB++su6baaRi+QvsgajuFB9j95foM1N2gy5HM4z60hfusIO0fBPG5uLAEl6yCJr1jNSVugEQ==}
@@ -3566,10 +3552,6 @@ packages:
     engines: {node: '>=0.11'}
     dev: false
 
-  /dayjs/1.10.6:
-    resolution: {integrity: sha512-AztC/IOW4L1Q41A86phW5Thhcrco3xuAA+YX/BLpLWWjRcTj5TOt/QImBLmCKlrF7u7k47arTnOyL6GnbG8Hvw==}
-    dev: false
-
   /dayjs/1.10.7:
     resolution: {integrity: sha512-P6twpd70BcPK34K26uJ1KT3wlhpuOAPoMwJzpsIWUxHZ7wpmbdZL/hQqBDfz7hGurYSa5PhzdhDHtt319hL3ig==}
     dev: true
@@ -3869,22 +3851,6 @@ packages:
   /electron-to-chromium/1.4.47:
     resolution: {integrity: sha512-ZHc8i3/cgeCRK/vC7W2htAG6JqUmOUgDNn/f9yY9J8UjfLjwzwOVEt4MWmgJAdvmxyrsR5KIFA/6+kUHGY0eUA==}
     dev: true
-
-  /element-plus/1.0.2-beta.71_vue@3.2.33:
-    resolution: {integrity: sha512-tlfbRORIav8gJcIpjZI5F6aJIVHIaDuGO6/vKu43lgYq4JS2JPNRTjvrSE2p4f5xLfaFNfOWjCS3sybXLfMg8g==}
-    peerDependencies:
-      vue: 3.1.x
-    dependencies:
-      '@element-plus/icons': 0.0.11
-      '@popperjs/core': 2.9.2
-      async-validator: 3.5.2
-      dayjs: 1.10.6
-      lodash: 4.17.21
-      mitt: 2.1.0
-      normalize-wheel: 1.0.1
-      resize-observer-polyfill: 1.5.1
-      vue: 3.2.33
-    dev: false
 
   /elliptic/6.5.4:
     resolution: {integrity: sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ==}
@@ -6169,10 +6135,6 @@ packages:
     resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
     dev: true
 
-  /mitt/2.1.0:
-    resolution: {integrity: sha512-ILj2TpLiysu2wkBbWjAmww7TkZb65aiQO+DkVdUTBpBXq+MHYiETENkKFMtsJZX1Lf4pe4QOrTSjIfUwN5lRdg==}
-    dev: false
-
   /mixin-deep/1.3.2:
     resolution: {integrity: sha512-WRoDn//mXBiJ1H40rqa3vH0toePwSsGb45iInWlTySa+Uu4k3tYUSxa2v1KqAiLtvlrSzaExqS1gtk96A9zvEA==}
     engines: {node: '>=0.10.0'}
@@ -6324,10 +6286,6 @@ packages:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
     dev: true
-
-  /normalize-wheel/1.0.1:
-    resolution: {integrity: sha1-rsiGr/2wRQcNhWRH32Ls+GFG7EU=}
-    dev: false
 
   /npm-run-path/4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}

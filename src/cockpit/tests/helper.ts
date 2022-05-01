@@ -1,10 +1,5 @@
 import { MountingOptions } from "@vue/test-utils";
 import router from "@/router";
-import ElementPlus, {
-  ElMessageBox,
-  ElMessage,
-  ElNotification,
-} from "element-plus";
 import naive from "naive-ui";
 import { createHead } from "@vueuse/head";
 import { GlobalMountOptions } from "@vue/test-utils/dist/types";
@@ -31,9 +26,6 @@ export type routerFunctions =
   | "resolve";
 
 interface ElPlus {
-  $notify(args: unknown): typeof ElNotification;
-  $alert(args: unknown): typeof ElMessageBox.alert;
-  $message(args: unknown): typeof ElMessage;
   $router(args: unknown): typeof router;
 }
 
@@ -55,12 +47,9 @@ export function mountingOptions(): MountingOptions<Vue, Vue> {
 
 export function globalMountingOptions(): GlobalMountOptions {
   return {
-    plugins: [ElementPlus, naive, createHead()],
+    plugins: [naive, createHead()],
     mocks: {
       $router: router,
-      $message: ElMessage,
-      $notify: ElNotification,
-      $alert: ElMessageBox.alert,
     },
   };
 }

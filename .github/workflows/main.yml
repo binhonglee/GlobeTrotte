@@ -112,7 +112,8 @@ jobs:
     - run: pnpm run serve &
     - run: sleep 3
     - run: pnpm run test:cypress:plz
-    - run: pnpx vitest playwright
+    - run: pnpx vitest -c vitest_playwright.config.ts
+    - run: mv vitest_coverage playwright_coverage
 
     - uses: actions/upload-artifact@v2
       with:
@@ -126,7 +127,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: playwright-coverage
-        path: 'vitest_coverage/'
+        path: 'playwright_coverage/'
     # - uses: actions/upload-artifact@v2
     #   with:
     #     name: e2e-nyc-output
@@ -182,31 +183,32 @@ jobs:
       with:
         path: ~/.please
         key: ${{ runner.os }}-please
-    - name: Cache pnpm-store
-      id: cache-pnpm-store
-      uses: actions/cache@v1
-      with:
-        path: ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-store
-    - name: Cache node_modules
-      id: cache-node-modules
-      uses: actions/cache@v1
-      with:
-        path: node_modules
-        key: ${{ hashFiles('**/package.json') }}-pnpm
+    # - name: Cache pnpm-store
+    #   id: cache-pnpm-store
+    #   uses: actions/cache@v1
+    #   with:
+    #     path: ~/.pnpm-store
+    #     key: ${{ runner.os }}-pnpm-store
+    # - name: Cache node_modules
+    #   id: cache-node-modules
+    #   uses: actions/cache@v1
+    #   with:
+    #     path: node_modules
+    #     key: ${{ hashFiles('**/package.json') }}-pnpm
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
         node-version: '16.5'
 
     - run: sudo npm i -g pnpm
-    - run: ./pleasew test --show_all_output //src/cockpit/...
+    - run: pnpm i
+    - run: pnpx vitest
     - run: ./pleasew test --show_all_output //:tsc
 
     - uses: actions/upload-artifact@v2
       with:
-        name: unit-test-nyc-output
-        path: 'plz-out/gen/src/cockpit/'
+        name: vitest-coverage
+        path: 'vitest_coverage/'
       if: ${{ always() }}
     - run: ./pleasew report --show_all_output
 
@@ -218,7 +220,7 @@ jobs:
     - run: sudo npm i -g pnpm
     - uses: actions/download-artifact@v2
       with:
-        name: unit-test-nyc-output
+        name: vitest-coverage
     - uses: actions/download-artifact@v2
       with:
         name: playwright-coverage

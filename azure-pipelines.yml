@@ -177,7 +177,7 @@ jobs:
   - script: sleep 1
   - script: pnpm run test:cypress:plz
     displayName: Run e2e tests
-  - script: pnpx vitest playwright
+  - script: pnpx vitest -c vitest_playwright.config.ts --coverage=false
     displayName: Run playwright e2e tests
 
 - job: turbine
@@ -295,7 +295,10 @@ jobs:
     condition: eq(variables['Agent.OS'], 'Darwin')
     displayName: Fix wings.json (MacOS)
 
-  - script: ./pleasew test --show_all_output //src/cockpit/...
+  - script: pnpm i
+    displayName: Install pnpm packages
+
+  - script: pnpx vitest --coverage=false
     displayName: Test cockpit
   - script: ./pleasew test --show_all_output //:tsc
     displayName: Cockpit typecheck

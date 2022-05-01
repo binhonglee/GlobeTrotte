@@ -23,6 +23,7 @@ import General from "@/shared/General";
 import TripObj from "@/wings/TripObj";
 import Routes from "@/routes";
 import Routing from "@/shared/Routing";
+import NaiveUtils, { NotifyType } from "@/shared/NaiveUtils";
 
 interface Data {
   inputID: string;
@@ -43,7 +44,10 @@ export default defineComponent({
       owner: false,
     };
   },
-  async created(): Promise<void> {
+  beforeMount(): void {
+    NaiveUtils.init();
+  },
+  async mounted(): Promise<void> {
     await this.init();
   },
   methods: {
@@ -64,7 +68,7 @@ export default defineComponent({
         return;
       }
 
-      this.$notify(General.notifConfig("Error", "Trip not found.", "error"));
+      NaiveUtils.notifyTrigger("Error", "Trip not found.", NotifyType.ERROR);
       await Routing.genRedirectTo(Routes.trip_Search);
     },
   },

@@ -23,6 +23,7 @@ import CViewTrip from "./CViewTrip.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import TripObj from "@/wings/TripObj";
 import TripBasic from "@/wings/TripBasic";
+import NaiveUtils from "@/shared/NaiveUtils";
 
 interface Data {
   editMode: boolean;
@@ -51,6 +52,7 @@ export default defineComponent({
   beforeMount(): void {
     this.$data.editMode = false;
     this.$data.dtrip = this.$props.trip;
+    NaiveUtils.init();
   },
   methods: {
     async save(trip: TripBasic): Promise<void> {
@@ -64,8 +66,10 @@ export default defineComponent({
         this.$data.dtrip = new TripObj(success);
         this.$data.editMode = false;
       } else {
-        this.$alert("Save was unsuccessful. Please try again later.", "Fail", {
-          confirmButtonText: "OK",
+        NaiveUtils.dialogError({
+          title: "Error",
+          content: "Save was unsuccessful. Please try again later.",
+          positiveText: "OK",
         });
       }
     },

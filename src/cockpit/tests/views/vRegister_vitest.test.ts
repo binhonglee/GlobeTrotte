@@ -2,7 +2,7 @@ import vRegister from "@/views/vRegister.vue";
 import HTTPReq from "@/shared/HTTPReq";
 import NewUser from "@/wings/NewUser";
 import { mountingOptions, Vue, wait } from "../helper";
-import { alertSpy, routerSpy, stub } from "../vitestSpy";
+import { routerSpy, stub } from "../vitestSpy";
 import { describe, expect, test, vi } from "vitest";
 import { mount, VueWrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
@@ -67,7 +67,7 @@ function fillFormAndReg(wrapper: VueWrapper<Vue>, form: FormReg): void {
 describe("vRegister", () => {
   test("Registration - Password mismatch", async () => {
     const wrapper = mount(vRegister, mountingOptions());
-    const alert = new alertSpy(wrapper);
+    const notify = stub(vi.spyOn(NaiveUtils, "dialogError"));
     verifyUI(wrapper);
     fillFormAndReg(wrapper, {
       name: name,
@@ -76,11 +76,12 @@ describe("vRegister", () => {
       password: password,
       confPassword: password + "a",
     });
-    expect(alert.called(1)).toBeTruthy();
-    expect(alert.getTitle()).toEqual("Fail");
-    expect(alert.getMessage()).toEqual("Password does not match.");
-    expect(alert.getOptions("confirmButtonText")).toEqual("OK");
-    await alert.restore();
+    expect(notify.called(1)).toBeTruthy();
+    const notifyArgs = notify.args()[0][0] as Record<string, string>;
+    expect(notifyArgs["title"]).toEqual("Fail");
+    expect(notifyArgs["content"]).toEqual("Password does not match.");
+    expect(notifyArgs["positiveText"]).toEqual("OK");
+    await notify.restore();
   });
 
   test("Registration - New user (Failure)", async () => {

@@ -57,11 +57,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    include: ["src/cockpit/**/*_vitest.{test,spec}.ts"],
-    exclude: [
-      "src/cockpit/tests/cypress/**/*",
-      "src/cockpit/tests/playwright/**/*",
-    ],
+    include: ["src/cockpit/tests/playwright/**/*_vitest.{test,spec}.ts"],
     reporters: ["default", "junit"],
     outputFile: "vitest_junit",
     watch: false,
@@ -72,5 +68,6 @@ export default defineConfig({
       reporter: ["text-summary", "json"],
     },
     setupFiles: ["src/cockpit/tests/vitest_setup.ts"],
+    testTimeout: 10000,
   },
 });

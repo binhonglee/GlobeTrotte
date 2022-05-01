@@ -57,7 +57,7 @@ describe("Trips", () => {
     cy.then(() => {
       return cy.visit(newTripURL);
     });
-    cy.get(".el-notification__content").should(
+    cy.get(".n-notification-main-footer__meta").should(
       "contain.text",
       "Trip not found.",
     );
@@ -108,11 +108,11 @@ describe("Trips", () => {
     cy.get(".editTripButton").click();
     cy.get(".deleteTrip").click();
     cy.contains("button", "Confirm").click();
-    cy.get(".el-notification__content").contains(
-      "p",
+    cy.get(".n-notification-main").contains(
+      ".n-notification-main-footer__meta",
       "Trip is successfully deleted!",
     );
-    cy.get(".el-notification__title").contains("h2", "Trip Deletion");
+    cy.get(".n-notification-main").contains(".n-notification-main__content", "Trip Deletion");
     cy.url().should("include", "/");
     cy.logout();
   });

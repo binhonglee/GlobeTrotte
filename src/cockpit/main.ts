@@ -1,9 +1,7 @@
 import Axios from "axios";
-import ElementPlus from "element-plus";
 import { createHead } from "@vueuse/head";
 import { createApp } from "vue";
 import { RouteLocationNormalized, NavigationGuardNext } from "vue-router";
-import "element-plus/lib/theme-chalk/index.css";
 import App from "./App.vue";
 import General from "./shared/General";
 import router from "./router";
@@ -13,8 +11,6 @@ import R from "./shared/R";
 Axios.defaults.withCredentials = true;
 
 const app = createApp(App);
-app.use(ElementPlus);
-
 router.beforeEach(
   async (
     to: RouteLocationNormalized,

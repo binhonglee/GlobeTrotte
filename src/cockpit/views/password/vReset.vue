@@ -72,6 +72,7 @@ import ResetPassword from "@/wings/ResetPassword";
 import HTTPReq from "@/shared/HTTPReq";
 import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
+import NaiveUtils from "@/shared/NaiveUtils";
 
 interface Data {
   email: string;
@@ -103,6 +104,7 @@ export default defineComponent({
     const paramMap = Routing.getParamMap();
     this.$data.email = paramMap.get("email") ?? "";
     this.$data.step = +(paramMap.get("step") ?? "") ?? 1;
+    NaiveUtils.init();
   },
   methods: {
     async confirmEmail(): Promise<void> {
@@ -112,11 +114,7 @@ export default defineComponent({
       );
 
       if (success) {
-        this.$message({
-          type: "success",
-          message: "Password reset code sent!",
-        });
-
+        NaiveUtils.messageSuccess("Password reset code sent!");
         await Routing.genRefreshRedirect(
           Routes.password_Reset,
           new Map<string, string>(
@@ -127,18 +125,17 @@ export default defineComponent({
           ),
         );
       } else {
-        this.$message({
-          type: "error",
-          message: "Account not found with email.",
-        });
+        NaiveUtils.messageError("Account not found with email.");
       }
     },
     async confirmReset(): Promise<void> {
       if (
         E.getVal(this, "password").localeCompare(E.getVal(this, "confPassword"))
       ) {
-        this.$alert("Password does not match.", "Fail", {
-          confirmButtonText: "OK",
+        NaiveUtils.dialogError({
+          title: "Fail",
+          content: "Password does not match.",
+          positiveText: "OK",
         });
         this.$data.loading = false;
         return;
@@ -155,16 +152,10 @@ export default defineComponent({
       );
 
       if (success) {
-        this.$message({
-          type: "success",
-          message: "Password reset is successful.",
-        });
+        NaiveUtils.messageSuccess("Password reset is successful.");
         await Routing.genRedirectTo(Routes.Login);
       } else {
-        this.$message({
-          type: "error",
-          message: "Password reset attempt failed.",
-        });
+        NaiveUtils.messageError("Password reset attempt failed.");
       }
     },
     async cancel(): Promise<void> {

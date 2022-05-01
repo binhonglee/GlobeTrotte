@@ -92,8 +92,10 @@ export default defineComponent({
       if (
         E.getVal(this, "password").localeCompare(E.getVal(this, "confPassword"))
       ) {
-        this.$alert("Password does not match.", "Fail", {
-          confirmButtonText: "OK",
+        NaiveUtils.dialogError({
+          title: "Fail",
+          content: "Password does not match.",
+          positiveText: "OK",
         });
         this.$data.loading = false;
         return;

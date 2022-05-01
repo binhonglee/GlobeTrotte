@@ -22,6 +22,7 @@ import Routes from "@/routes";
 import router from "@/router";
 import Routing from "@/shared/Routing";
 import CHead from "@/components/CHead.vue";
+import NaiveUtils from "@/shared/NaiveUtils";
 
 interface Data {
   trip: TripObj;
@@ -38,6 +39,9 @@ export default defineComponent({
         details: { days: [{ day_of: 1, places: [{}] }] },
       }),
     };
+  },
+  beforeMount(): void {
+    NaiveUtils.init();
   },
   methods: {
     cancel(): void {
@@ -58,8 +62,10 @@ export default defineComponent({
         }
         // eslint-disable-next-line no-empty
       } catch (_) {}
-      this.$alert("Save was unsuccessful. Please try again later.", "Fail", {
-        confirmButtonText: "OK",
+      NaiveUtils.dialogError({
+        title: "Fail",
+        content: "Save was unsuccessful. Please try again later.",
+        positiveText: "OK",
       });
     },
   },

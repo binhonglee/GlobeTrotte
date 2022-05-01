@@ -1,4 +1,3 @@
-import { ElNotificationOptions, MessageType } from "element-plus-option-types";
 import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "@/shared/HTTPReq";
 import TripObj from "@/wings/TripObj";
@@ -15,22 +14,6 @@ export default class General {
     } catch {
       return undefined;
     }
-  }
-
-  public static notifConfig(
-    title: string,
-    message: string,
-    type: MessageType,
-    duration = 2000,
-    offset = 50,
-  ): ElNotificationOptions {
-    return {
-      message: message,
-      title: title,
-      type: type,
-      duration: duration,
-      offset: offset,
-    };
   }
 
   public static async genTrip(id: number): Promise<TripObj> {

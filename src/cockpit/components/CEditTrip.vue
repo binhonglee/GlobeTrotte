@@ -68,7 +68,7 @@ import {
   NAME_CHAR_MIN_COUNT,
 } from "@/shared/constants";
 import { NButton, NSelect, NSwitch } from "naive-ui";
-import NaiveUtils from "@/shared/NaiveUtils";
+import NaiveUtils, { NotifyType } from "@/shared/NaiveUtils";
 
 interface Data {
   cities: Array<string>;
@@ -165,15 +165,14 @@ export default defineComponent({
         const currentDay = days.days[day].toDay();
         const places = this.filterPlaces(currentDay.places);
         if (places === null) {
-          this.$alert(
-            "We currently only support links to limited " +
+          NaiveUtils.dialogError({
+            title: "Invalid Link",
+            content:
+              "We currently only support links to limited " +
               "websites including OpenStreetMap, Google " +
               "Map, Bing Maps and Yelp.",
-            "Invalid Link",
-            {
-              confirmButtonText: "OK",
-            },
-          );
+            positiveText: "OK",
+          });
           this.$data.saving = false;
           return;
         }
@@ -253,14 +252,12 @@ export default defineComponent({
       }
 
       this.$data.deleting = false;
-      this.$notify(
-        General.notifConfig(
-          "Trip Deletion",
-          success
-            ? "Trip is successfully deleted!"
-            : "Trip deletion attempt failed.",
-          success ? "success" : "error",
-        ),
+      NaiveUtils.notifyTrigger(
+        "Trip Deletion",
+        success
+          ? "Trip is successfully deleted!"
+          : "Trip deletion attempt failed.",
+        success ? NotifyType.SUCCESS : NotifyType.ERROR,
       );
 
       if (success) {
@@ -297,8 +294,10 @@ export default defineComponent({
       return true;
     },
     showAlert(message: string): void {
-      this.$alert(message, "", {
-        confirmButtonText: "OK",
+      NaiveUtils.dialogError({
+        title: "Error",
+        content: message,
+        positiveText: "OK",
       });
     },
   },

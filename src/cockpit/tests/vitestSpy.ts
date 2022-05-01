@@ -34,57 +34,6 @@ abstract class spyInterface {
   }
 }
 
-export class notifySpy extends spyInterface {
-  protected item: SpyInstance;
-  public constructor(wrapper: VueWrapper<Vue>) {
-    super();
-    this.item = vi.spyOn(wrapper.vm, "$notify");
-  }
-
-  public getTitle(call = 0): string | undefined {
-    return this.item.mock.calls[call][0]["title"];
-  }
-  public getMessage(call = 0): string | undefined {
-    return this.item.mock.calls[call][0]["message"];
-  }
-  public getType(call = 0): string | undefined {
-    return this.item.mock.calls[call][0]["type"];
-  }
-}
-
-export class alertSpy extends spyInterface {
-  protected item: SpyInstance;
-  public constructor(wrapper: VueWrapper<Vue>) {
-    super();
-    this.item = vi.spyOn(wrapper.vm, "$alert");
-  }
-
-  public getTitle(call = 0): string | undefined {
-    return this.item.mock.calls[call][1];
-  }
-  public getMessage(call = 0): string | undefined {
-    return this.item.mock.calls[call][0];
-  }
-  public getOptions(key: string, call = 0): string | undefined {
-    return this.item.mock.calls[call][2][key];
-  }
-}
-
-export class messageSpy extends spyInterface {
-  protected item: SpyInstance;
-  public constructor(wrapper: VueWrapper<Vue>) {
-    super();
-    this.item = vi.spyOn(wrapper.vm, "$message");
-  }
-
-  public getMessage(call = 0): string | undefined {
-    return this.item.mock.calls[call][0]["message"];
-  }
-  public getType(call = 0): string | undefined {
-    return this.item.mock.calls[call][0]["type"];
-  }
-}
-
 export class routerSpy extends spyInterface {
   protected item: SpyInstance;
   public constructor(wrapper: VueWrapper<Vue>, name: routerFunctions) {
