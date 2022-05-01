@@ -53,7 +53,7 @@ const currentUser = new UserObj({
 
 describe("vIDUser", () => {
   test("Get User - Has user (self, confirmed)", async () => {
-    const genUser = stub(vi.spyOn(UserCache, "genUserFromUsername")).resolves(
+    const genUser = stub(vi.spyOn(UserCache, "genObj")).resolves(
       getFetchedUserObj(unconfirmedUser),
     );
     const isSelf = stub(vi.spyOn(General, "getIsCurrentUser")).returns(true);
@@ -74,7 +74,7 @@ describe("vIDUser", () => {
   });
 
   test("Get User - Has user (self, unconfirmed)", async () => {
-    const genUser = stub(vi.spyOn(UserCache, "genUserFromUsername")).resolves(
+    const genUser = stub(vi.spyOn(UserCache, "genObj")).resolves(
       getFetchedUserObj(currentUser),
     );
     const isSelf = stub(vi.spyOn(General, "getIsCurrentUser")).returns(true);
@@ -95,7 +95,7 @@ describe("vIDUser", () => {
   });
 
   test("Get User - Has user (not self)", async () => {
-    const genUser = stub(vi.spyOn(UserCache, "genUserFromUsername")).resolves(
+    const genUser = stub(vi.spyOn(UserCache, "genObj")).resolves(
       getFetchedUserObj(currentUser),
     );
     const isSelf = stub(vi.spyOn(General, "getIsCurrentUser")).returns(false);
@@ -116,18 +116,16 @@ describe("vIDUser", () => {
   });
 
   test("Get User - Not found", async () => {
-    const genUser = stub(vi.spyOn(UserCache, "genUserFromUsername")).callsFake(
-      async () => {
-        // This is so there is enough time for alertSpy to be
-        // created before it reaches the alert code
-        await wait(0);
-        return getFetchedUserObj(
-          new UserObj({
-            id: -1,
-          }),
-        );
-      },
-    );
+    const genUser = stub(vi.spyOn(UserCache, "genObj")).callsFake(async () => {
+      // This is so there is enough time for alertSpy to be
+      // created before it reaches the alert code
+      await wait(0);
+      return getFetchedUserObj(
+        new UserObj({
+          id: -1,
+        }),
+      );
+    });
     const paramID = stub(vi.spyOn(General, "paramID")).returns(
       currentUser.details.username,
     );

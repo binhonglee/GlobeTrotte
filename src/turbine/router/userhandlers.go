@@ -75,6 +75,16 @@ func getUserObj(res http.ResponseWriter, req *http.Request) {
 	respond(res, item)
 }
 
+func getUsernameWithID(res http.ResponseWriter, req *http.Request) {
+	var id int
+	if id = getRequestID(req); id == -1 {
+		respond(res, "")
+		return
+	}
+
+	respond(res, user.GetUsernameWithID(id))
+}
+
 func updateUserObj(res http.ResponseWriter, req *http.Request) {
 	var id int
 	if id = getRequestID(req); id == -1 {

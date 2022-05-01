@@ -54,6 +54,10 @@ func GetUserObjWithUsername(username string, self int) UserObj {
 	return GetUserObj(database.GetUserIDWithUsername(username), self)
 }
 
+func GetUsernameWithID(id int) string {
+	return database.GetUsernameWithID(id)
+}
+
 func GetUserObj(id int, self int) UserObj {
 	user := UserObj{}
 	user.Details, _ = database.GetUserBasicDBWithID(id)

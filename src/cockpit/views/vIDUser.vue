@@ -81,7 +81,8 @@ import {
   sameUser,
   UserSource,
 } from "@/shared/UserUtil";
-import { UserCache, FetchedUserObj } from "@/cache/UserCache";
+import { UserCache } from "@/cache/UserCache";
+import { UsernameCache } from "@/cache/UsernameCache";
 
 interface Data {
   user: UserObj;
@@ -122,36 +123,33 @@ export default defineComponent({
         return;
       }
 
-      let res: FetchedUserObj;
       if (isNaN(Number(paramID))) {
-        res = await UserCache.genUserFromUsername(paramID);
-      } else {
-        res = await UserCache.genUser(Number(paramID));
-        const user = res.completed;
-        if (user !== null && user.details.username !== "") {
-          await Routing.genRedirectTo(
-            Routes.User + "/" + user.details.username,
-          );
+        const res = await UserCache.genObj(paramID);
+        if (res.completed !== null) {
+          this.$data.user = res.completed;
+          this.dataProcessing(res.fromStorage);
         }
-      }
 
-      if (res.completed !== null) {
-        this.$data.user = res.completed;
-        this.dataProcessing(res.fromStorage);
-      }
-
-      if (res.promise !== null) {
-        const promise = await res.promise;
-        if (
-          promise !== null &&
-          !sameUser(
-            promise,
-            this.$data.user,
-            UserSource.Server,
-            UserSource.Storage,
-          )
-        ) {
-          this.$data.updated = promise;
+        if (res.promise !== null) {
+          const promise = await res.promise;
+          if (
+            promise !== null &&
+            !sameUser(
+              promise,
+              this.$data.user,
+              UserSource.Server,
+              UserSource.Storage,
+            )
+          ) {
+            this.$data.updated = promise;
+          }
+        }
+      } else {
+        const res = await UsernameCache.genObj(paramID);
+        const username = res.completed;
+        if (username !== null && username !== "") {
+          await Routing.genRedirectTo(Routes.User + "/" + username);
+          return await this.init();
         }
       }
 

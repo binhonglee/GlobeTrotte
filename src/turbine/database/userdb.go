@@ -7,6 +7,7 @@
 package database
 
 import (
+	"context"
 	"database/sql"
 	"strconv"
 	"time"
@@ -111,6 +112,20 @@ func GetUserIDWithUsername(username string) int {
 	}
 
 	return id
+}
+
+func GetUsernameWithID(id int) string {
+	username := ""
+	sqlStatement := `SELECT username FROM users WHERE id=$1;`
+	c := getConn()
+	err := c.QueryRow(context.Background(), sqlStatement, id).Scan(&username)
+	defer c.Close()
+
+	if err != nil {
+		logger.Debug(err)
+		logger.Failure(logger.Database, "Username not found for "+strconv.Itoa(id)+".")
+	}
+	return username
 }
 
 // GetUserBasicDBWithID - Retrieve basic user information from database with ID.
