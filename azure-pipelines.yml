@@ -177,7 +177,7 @@ jobs:
   - script: sleep 1
   - script: pnpm run test:cypress:plz
     displayName: Run e2e tests
-  - script: pnpx vitest -c vitest_playwright.config.ts --coverage=false
+  - script: pnpm run test:vitest -c vitest_playwright.config.ts --coverage=false
     displayName: Run playwright e2e tests
 
 - job: turbine
@@ -298,7 +298,7 @@ jobs:
   - script: pnpm i
     displayName: Install pnpm packages
 
-  - script: pnpx vitest --coverage=false
+  - script: pnpm run test:vitest --coverage=false
     displayName: Test cockpit
   - script: ./pleasew test --show_all_output //:tsc
     displayName: Cockpit typecheck

@@ -24,9 +24,10 @@
     "src/cockpit/**/*.d.ts",
     "src/cockpit/**/*.vue",
     "vite.config.ts",
-    "vitest.plz.config.ts",
+    "vite_base_config.ts",
     "vitest_circleci.config.ts",
     "vitest_playwright.config.ts",
+    "vitest_plz.config.ts",
     "jest.config.js",
     "src/cockpit/tests/vitest_setup.ts"
   ],

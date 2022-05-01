@@ -18,3 +18,4 @@ pnpm-debug.log
 deploy/dist
 deploy/main
 /playwright/
+/playwright_coverage/

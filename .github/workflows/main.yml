@@ -112,8 +112,7 @@ jobs:
     - run: pnpm run serve &
     - run: sleep 3
     - run: pnpm run test:cypress:plz
-    - run: pnpx vitest -c vitest_playwright.config.ts
-    - run: mv vitest_coverage playwright_coverage
+    - run: pnpm run test:vitest -c vitest_playwright.config.ts
 
     - uses: actions/upload-artifact@v2
       with:
@@ -183,18 +182,18 @@ jobs:
       with:
         path: ~/.please
         key: ${{ runner.os }}-please
-    # - name: Cache pnpm-store
-    #   id: cache-pnpm-store
-    #   uses: actions/cache@v1
-    #   with:
-    #     path: ~/.pnpm-store
-    #     key: ${{ runner.os }}-pnpm-store
-    # - name: Cache node_modules
-    #   id: cache-node-modules
-    #   uses: actions/cache@v1
-    #   with:
-    #     path: node_modules
-    #     key: ${{ hashFiles('**/package.json') }}-pnpm
+    - name: Cache pnpm-store
+      id: cache-pnpm-store
+      uses: actions/cache@v1
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-store
+    - name: Cache node_modules
+      id: cache-node-modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ hashFiles('**/package.json') }}-pnpm
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
@@ -202,7 +201,7 @@ jobs:
 
     - run: sudo npm i -g pnpm
     - run: pnpm i
-    - run: pnpx vitest
+    - run: pnpm run test:vitest
     - run: ./pleasew test --show_all_output //:tsc
 
     - uses: actions/upload-artifact@v2

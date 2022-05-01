@@ -1,76 +1,11 @@
 import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import { VitePWA } from "vite-plugin-pwa";
-import path from "path";
+import baseConfig from "./vite_base_config";
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    vue(),
-    VitePWA({
-      registerType: "prompt",
-      includeAssets: [
-        "favicon.svg",
-        "favicon.ico",
-        "robots.txt",
-        "apple-touch-icon.png",
-      ],
-      manifest: {
-        name: "GlobeTrotte",
-        short_name: "GT",
-        description: "Travel itinerary crowdsourcing platform",
-        theme_color: "#2A947D",
-        start_url: "/",
-        display: "standalone",
-        background_color: "#ffffff",
-        icons: [
-          {
-            src: "pwa-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "pwa-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-          },
-          {
-            src: "pwa-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any maskable",
-          },
-        ],
-      },
-    }),
-  ],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "/src/cockpit"),
-    },
-  },
-  server: {
-    fs: {
-      allow: [".."],
-    },
-  },
-  test: {
-    globals: true,
-    environment: "jsdom",
-    include: ["src/cockpit/**/*_vitest.{test,spec}.ts"],
-    exclude: [
-      "src/cockpit/tests/cypress/**/*",
-      "src/cockpit/tests/playwright/**/*",
-    ],
-    reporters: ["default", "junit"],
-    outputFile: "vitest_junit",
-    watch: false,
-    coverage: {
-      enabled: true,
-      clean: true,
-      reportsDirectory: "vitest_coverage",
-      reporter: ["text-summary", "json"],
-    },
-    setupFiles: ["src/cockpit/tests/vitest_setup.ts"],
-  },
-});
+const config = baseConfig(true);
+if (config.test.exclude !== undefined) {
+  config.test.exclude.push("src/cockpit/tests/playwright/**/*");
+} else {
+  config.test.exclude = ["src/cockpit/tests/playwright/**/*"];
+}
+
+export default defineConfig(config);

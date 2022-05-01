@@ -54,7 +54,7 @@ jobs:
       - run: ./pleasew test --show_all_output //:cockpit_cypress
       # - run: ./pleasew test --show_all_output //src/cockpit/tests/components/...
       # - run: ./pleasew test --show_all_output //src/cockpit/tests/views/...
-      - run: pnpx vitest -c vitest_circleci.config.ts
+      - run: pnpm run test:vitest -- -c vitest_circleci.config.ts
       - run: ./pleasew report
       - run: ./scripts/leftover.sh
       - save_cache:

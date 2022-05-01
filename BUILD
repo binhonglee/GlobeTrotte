@@ -11,6 +11,7 @@ filegroup(
   name = "pnpm_config",
   srcs = [
     ".npmrc",
+    "vite_base_config.ts",
     "vite.config.ts",
     "package.json",
     "pnpm-lock.yaml",
@@ -107,7 +108,7 @@ npm_run(
 
 vitest_dir(
   name = "vitest_test_deps",
-  config = "vitest.plz.config.ts",
+  config = "vitest_plz.config.ts",
   srcs = [
     ":pnpm_config",
     ":tsconfig",

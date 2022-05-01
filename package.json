@@ -5,6 +5,7 @@
   "author": "BinHong Lee <binhong@binhong.me>",
   "scripts": {
     "serve": "pnpm run checkBackend && vite",
+    "vite": "vite",
     "build": "vite build",
     "lint": "eslint \"src/**/*.{vue,ts}\"",
     "check:tsc": "vue-tsc --noEmit --skipLibCheck",
