@@ -27,7 +27,7 @@ describe("User account", async () => {
     await genIsLoggedOut(page);
     await genRegister(page, username, email, password);
     await genIsLoggedIn(page);
-  });
+  }, 20000);
 
   test("Logout", async () => {
     await genIsLoggedIn(page);

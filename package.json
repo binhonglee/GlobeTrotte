@@ -19,6 +19,7 @@
     "test:cypress:ct": "cypress run-ct --config-file cypress-ct.json",
     "test:cypress:plz": "pnpm run xvfb:run && $xvfb pnpm run test:cypress",
     "test:vitest": "vitest",
+    "test:playwright": "vitest -c vitest_playwright.config.ts",
     "report": "nyc merge plz-out/gen/src/cockpit/scripts/.nyc_output .nyc_output/coverage.json && nyc report",
     "xvfb:run": "if [[ \"$OSTYPE\" == \"darwin\"* ]]; then xvfb=\"\"; elif [[ \"$OSTYPE\" == \"linux-gnu\"* ]]; then xvfb=\"xvfb-run -a \"; fi"
   },

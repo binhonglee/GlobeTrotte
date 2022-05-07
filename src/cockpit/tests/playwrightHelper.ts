@@ -2,13 +2,14 @@
 import { Browser, BrowserContext, chromium, Page } from "playwright-core";
 import { expect } from "vitest";
 
-const BASE_URL = "http://localhost:3000/";
+export const BASE_URL = "http://localhost:3000/";
 const PLAYWRIGHT_DIR = "playwright/";
 const VIDEOS_DIR = "videos/";
-const SCREEN_WIDTH = 1920;
-const SCREEN_HEIGHT = 1080;
-export const LONG_DELAY = 2000;
-export const SHORT_DELAY = 300;
+
+const DESKTOP_SCREEN_WIDTH = 1920;
+const DESKTOP_SCREEN_HEIGHT = 1080;
+const MOBILE_SCREEN_WIDTH = 280;
+const MOBILE_SCREEN_HEIGHT = 653;
 
 class Chromium {
   // @ts-ignore: Initialized on genContext()
@@ -19,19 +20,26 @@ class Chromium {
     // Do nothing 🤷‍♀️
   }
 
-  public static async genContext(name: string): Promise<BrowserContext> {
+  public static async genContext(
+    name: string,
+    isMobile = false,
+  ): Promise<BrowserContext> {
     if (!this.launched) {
       this.browser = await chromium.launch();
       this.launched = true;
     }
 
+    const width = isMobile ? MOBILE_SCREEN_WIDTH : DESKTOP_SCREEN_WIDTH;
+    const height = isMobile ? MOBILE_SCREEN_HEIGHT : DESKTOP_SCREEN_HEIGHT;
+
     return await this.browser.newContext({
       baseURL: BASE_URL,
       recordVideo: {
         dir: PLAYWRIGHT_DIR + VIDEOS_DIR + name + "/",
-        size: { width: SCREEN_WIDTH, height: SCREEN_HEIGHT },
+        size: { width: width, height: height },
       },
-      screen: { width: SCREEN_WIDTH, height: SCREEN_HEIGHT },
+      screen: { width: width, height: height },
+      isMobile: isMobile,
     });
   }
 }
@@ -69,9 +77,30 @@ export class PlaywrightEnv {
   }
 }
 
+export async function expectNotification(
+  page: Page,
+  title: string,
+  content: string,
+) {
+  await page.waitForSelector(".n-notification-main");
+  const displayTitle = await page
+    .locator(".n-notification-main__content")
+    .allInnerTexts();
+  expect(displayTitle).toContain(title);
+  const displayContent = await page
+    .locator(".n-notification-main-footer__meta")
+    .allInnerTexts();
+  expect(displayContent).toContain(content);
+}
+
 export async function type(page: Page, selector: string, content: string) {
   await page.click(selector);
   await page.type(selector, content);
+}
+
+export async function goTo(page: Page, url: string) {
+  await page.goto(url);
+  await page.waitForLoadState("networkidle");
 }
 
 export async function genRegister(

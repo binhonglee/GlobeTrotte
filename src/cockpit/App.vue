@@ -64,7 +64,7 @@ interface Data {
 const options: MenuOption[] = [
   menuItem("Home", "/"),
   {
-    label: "Trip",
+    label: "Trip \u25BE",
     key: "trip",
     children: [
       menuItem("Search", Routes.trip_Search),

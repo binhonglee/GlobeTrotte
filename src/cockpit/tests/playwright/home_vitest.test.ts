@@ -22,7 +22,7 @@ describe("Menubar", async () => {
         .locator(".n-submenu")
         .locator(".n-menu-item-content")
         .allInnerTexts();
-      expect(tripMenu[0]).toEqual("Trip");
+      expect(tripMenu[0]).toEqual("Trip \u25BE");
       await page
         .locator(".main_menu")
         .locator(".n-submenu")
