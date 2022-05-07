@@ -45,7 +45,7 @@
     "c8": "7.11.2",
     "cypress": "9.6.0",
     "esbuild": "0.14.38",
-    "eslint": "8.14.0",
+    "eslint": "8.15.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-vue": "8.7.1",
     "forever": "4.0.3",
