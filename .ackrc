@@ -1,12 +1,17 @@
 --ignore-dir=.cache
 --ignore-dir=coverage
+--ignore-dir=cypress
 --ignore-dir=dist
 --ignore-dir=logs
 --ignore-dir=node_modules
 --ignore-dir=plz-out
 --ignore-dir=.nyc_output
+--ignore-dir=playwright
+--ignore-dir=playwright_coverage
+--ignore-dir=vitest_coverage
 --ignore-dir=.vscode
 --ignore-file=is:LICENSE
 --ignore-file=is:pleasew
 --ignore-file=is:pnpm-lock.yaml
+--ignore-file=is:vitest_junit
 -i

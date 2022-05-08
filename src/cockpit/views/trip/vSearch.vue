@@ -52,7 +52,7 @@ import CTripPreviewCard from "@/components/CTripPreviewCard.vue";
 import { Options, CityUtil } from "@/shared/CityUtil";
 import HTTPReq from "@/shared/HTTPReq";
 import Routing from "@/shared/Routing";
-import TripUtil from "@/shared/TripUtil";
+import { sortTripsMostRecentlyUpdated } from "@/shared/TripUtil";
 import TripObj from "@/wings/TripObj";
 import TripsSearchQuery from "@/wings/TripSearchQuery";
 
@@ -138,7 +138,7 @@ export default defineComponent({
           this.$data.trips.push(new TripObj(trip));
         }
       }
-      TripUtil.sortTripsMostRecentlyUpdated(this.$data.trips);
+      sortTripsMostRecentlyUpdated(this.$data.trips);
       this.$data.searching = false;
     },
   },

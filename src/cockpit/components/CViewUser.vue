@@ -42,7 +42,7 @@ import { NAlert, NButton, NDivider } from "naive-ui";
 import CExternalLink from "./CExternalLink.vue";
 import CShare from "./CShare.vue";
 import CTripPreviewCard from "./CTripPreviewCard.vue";
-import TripUtil from "@/shared/TripUtil";
+import { sortTripsMostRecentlyUpdated } from "@/shared/TripUtil";
 import UserObj from "@/wings/UserObj";
 import TripBasic from "@/wings/TripBasic";
 import TripObj from "@/wings/TripObj";
@@ -108,22 +108,10 @@ export default defineComponent({
     await this.genPopulateTrips();
   },
   methods: {
-    /* istanbul ignore next: will move this to some generic file / lib and test there instead */
-    compareArray(a: TripBasic[], b: TripBasic[]): boolean {
-      if (a.length !== b.length) {
-        return false;
-      }
-      for (let i in a) {
-        if (a[i] !== b[i]) {
-          return false;
-        }
-      }
-      return true;
-    },
     async genPopulateTrips(): Promise<void> {
       this.$data.loading = true;
       this.$data.trips = this.$props.user.trips;
-      TripUtil.sortTripsMostRecentlyUpdated(this.$data.trips);
+      sortTripsMostRecentlyUpdated(this.$data.trips);
       this.$data.tripsEmpty = this.$data.trips.length <= 0;
       this.$data.loading = false;
     },

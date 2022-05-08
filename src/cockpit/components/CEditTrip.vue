@@ -54,7 +54,6 @@ import CEditPlaces from "./CEditPlaces.vue";
 import { CityUtil, Options } from "@/shared/CityUtil";
 import TripEditable from "@/shared/TripEditable";
 import HTTPReq from "@/shared/HTTPReq";
-import General from "@/shared/General";
 import TripBasic from "@/wings/TripBasic";
 import TripObj from "@/wings/TripObj";
 import Place from "@/wings/Place";
@@ -69,6 +68,7 @@ import {
 } from "@/shared/constants";
 import { NButton, NSelect, NSwitch } from "naive-ui";
 import NaiveUtils, { NotifyType } from "@/shared/NaiveUtils";
+import { genFetchServerTrip } from "@/cache/TripCache";
 
 interface Data {
   cities: Array<string>;
@@ -248,7 +248,7 @@ export default defineComponent({
       );
       if (!success) {
         success =
-          (await General.genTrip(this.$props.trip.ID.valueOf())).ID === -1;
+          (await genFetchServerTrip(this.$props.trip.ID.toString())).ID === -1;
       }
 
       this.$data.deleting = false;

@@ -16,11 +16,6 @@ export default class General {
     }
   }
 
-  public static async genTrip(id: number): Promise<TripObj> {
-    const trip = await HTTPReq.genGET("v2/trip/" + id);
-    return new TripObj(trip);
-  }
-
   public static getIsCurrentUser(id: number): boolean {
     return this.getCurrentUser().ID === id;
   }

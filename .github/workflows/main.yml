@@ -123,6 +123,7 @@ jobs:
       with:
         name: playwright
         path: 'playwright/'
+      if: ${{ always() }}
     - uses: actions/upload-artifact@v2
       with:
         name: playwright-coverage

@@ -188,8 +188,8 @@ export default defineComponent({
       if (this.$data.updated !== null) {
         this.$data.user = this.$data.updated;
         this.dataProcessing(false);
-        this.$data.updated = null;
       }
+      this.$data.updated = null;
     },
     confirmDelete(): void {
       NaiveUtils.dialogWarning({
@@ -252,7 +252,9 @@ export default defineComponent({
     },
     async logout(): Promise<void> {
       await HTTPReq.genGET("logout");
-      localStorage.removeItem("userobj");
+      // Clear all the cache on logout because current cache is based on this
+      // user's privacy settings.
+      localStorage.clear();
       NaiveUtils.messageSuccess("You are now logged out.");
       await Routing.genRedirectTo(Routes.Landing);
     },

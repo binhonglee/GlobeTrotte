@@ -162,6 +162,7 @@ export abstract class Cache<
 }
 
 export enum CacheStorageName {
+  TRIP = "trip",
   USER = "user",
   USERNAME = "username",
 }

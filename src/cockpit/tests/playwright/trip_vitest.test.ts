@@ -164,6 +164,6 @@ describe("Trips", async () => {
       "Trip Deletion",
       "Trip is successfully deleted!",
     );
-    expect(page.url()).toEqual(BASE_URL);
-  });
+    await page.waitForURL(BASE_URL);
+  }, 20000);
 });

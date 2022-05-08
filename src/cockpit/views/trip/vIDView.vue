@@ -5,6 +5,11 @@
     :description="trip.details.description.valueOf()"
     type="article"
   )
+  .narrow_content.tapToUpdate(
+    v-if="updated !== null"
+  )
+    n-alert(title="There's an update!" type="warning" v-on:click="update")
+      | Press here to view latest version of this profile.
   h1.title Trip
   CLoadingTripInfo(v-if="trip.ID === -1")
   CTripInfo(
@@ -15,6 +20,7 @@
 </template>
 
 <script lang="ts">
+import { NAlert } from "naive-ui";
 import { defineComponent } from "vue";
 import CHead from "@/components/CHead.vue";
 import CLoadingTripInfo from "@/components/loading/CLoadingTripInfo.vue";
@@ -24,10 +30,13 @@ import TripObj from "@/wings/TripObj";
 import Routes from "@/routes";
 import Routing from "@/shared/Routing";
 import NaiveUtils, { NotifyType } from "@/shared/NaiveUtils";
+import { TripCache } from "@/cache/TripCache";
+import { sameTrip } from "@/shared/TripUtil";
 
 interface Data {
   inputID: string;
   trip: TripObj;
+  updated: TripObj | null;
   owner: boolean;
 }
 
@@ -36,11 +45,13 @@ export default defineComponent({
     CHead,
     CLoadingTripInfo,
     CTripInfo,
+    NAlert,
   },
   data(): Data {
     return {
       inputID: "",
       trip: new TripObj(),
+      updated: null,
       owner: false,
     };
   },
@@ -60,7 +71,17 @@ export default defineComponent({
       }
 
       this.$data.inputID = id;
-      this.$data.trip = await General.genTrip(Number(id));
+      const res = await TripCache.genObj(id);
+      if (res.completed !== null) {
+        this.$data.trip = res.completed;
+      }
+
+      if (res.promise !== null) {
+        const promise = await res.promise;
+        if (promise !== null && !sameTrip(promise, this.$data.trip)) {
+          this.$data.updated = promise;
+        }
+      }
       if (this.$data.trip.ID !== -1) {
         this.$data.owner = General.getIsCurrentUser(
           this.$data.trip.user.ID.valueOf(),
@@ -71,6 +92,23 @@ export default defineComponent({
       NaiveUtils.notifyTrigger("Error", "Trip not found.", NotifyType.ERROR);
       await Routing.genRedirectTo(Routes.trip_Search);
     },
+    update(): void {
+      if (this.$data.updated !== null) {
+        this.$data.trip = this.$data.updated;
+      }
+      this.$data.updated = null;
+    },
   },
 });
 </script>
+
+<style scoped>
+.tapToUpdate {
+  text-align: left;
+  padding: 10px;
+}
+
+.tapToUpdate {
+  cursor: pointer;
+}
+</style>
