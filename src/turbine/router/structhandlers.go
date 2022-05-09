@@ -7,26 +7,26 @@ import (
 	db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
 	email "github.com/binhonglee/GlobeTrotte/src/turbine/email"
 	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/user"
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
 	mux "github.com/gorilla/mux"
 )
 
-func whoami(
+func getSessionUser(
 	res http.ResponseWriter, req *http.Request) {
 	session, _ := store.Get(req, "logged-in")
 
-	val := "{ \"id\": "
-
+	var currentUser user.UserObj
 	if auth, ok := session.Values["authenticated"].(bool); !ok || !auth {
-		val += "-1"
+		currentUser = user.DummyUserObj()
 	} else if id, ok := session.Values["userid"].(int); ok {
-		val += strconv.Itoa(id)
+		currentUser = user.GetUserObj(id, id)
 	} else {
-		val += "-1"
+		currentUser = user.DummyUserObj()
 	}
-	val += " }"
-	respond(res, val)
+
+	respond(res, currentUser)
 }
 
 func confirmEmail(res http.ResponseWriter, req *http.Request) {

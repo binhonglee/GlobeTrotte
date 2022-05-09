@@ -166,6 +166,12 @@ var actualRoutes = routes{
 		"/confirm/email",
 		confirmEmail,
 	},
+	route{
+		"GetSessionUser",
+		"GET",
+		"/session",
+		getSessionUser,
+	},
 	// PROD: Used for testing only. To remove on prod.
 	route{
 		"ForceConfirmEmail",

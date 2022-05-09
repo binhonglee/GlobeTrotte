@@ -11,7 +11,7 @@
     "check:tsc": "vue-tsc --noEmit --skipLibCheck",
     "checkBackend": "esbuild --bundle src/cockpit/scripts/checkBackend.ts --platform=node --outdir=./plz-out && node ./plz-out/checkBackend.js",
     "endServer": "forever stop node_modules/vite/bin/vite.js",
-    "format": "pnpm run lint -- --fix",
+    "format": "pnpm run lint --fix",
     "preflight": "pnpm i && pnpm run genRouter && mv router.ts src/cockpit/",
     "postinstall": "touch node_modules/go.mod",
     "startServer": "forever start node_modules/vite/bin/vite.js",

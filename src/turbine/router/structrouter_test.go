@@ -41,7 +41,7 @@ func TestAddUser(t *testing.T) {
 
 	var returned *user.RegistrationResponse
 	addTest("/v2/user", t, &newUser, &returned, true)
-	addedUser = *&returned.User
+	addedUser = returned.User
 
 	if returned.User.GetID() == -1 {
 		t.Errorf("User failed to add.")

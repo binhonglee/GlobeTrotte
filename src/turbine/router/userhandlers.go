@@ -15,13 +15,6 @@ func addUserObj(res http.ResponseWriter, req *http.Request) {
 	var item wings.NewUser
 	var ok bool
 	unpackJSON(&res, req, &item)
-	if &item == nil {
-		respond(res, user.RegistrationResponse{
-			User:  user.DummyUserObj(),
-			Error: wings.InvalidType,
-		})
-		return
-	}
 
 	item.Email, ok = handleEmails(item.Email)
 	if !ok {
@@ -94,7 +87,7 @@ func updateUserObj(res http.ResponseWriter, req *http.Request) {
 
 	var item wings.UserBasic
 	unpackJSON(&res, req, &item)
-	if &item == nil || id != item.ID {
+	if id != item.ID {
 		respond(res, user.DummyUserObj())
 		return
 	}
@@ -111,7 +104,7 @@ func deleteUserObj(res http.ResponseWriter, req *http.Request) {
 
 	var item wings.UserBasic
 	unpackJSON(&res, req, &item)
-	if &item == nil || id != item.ID {
+	if id != item.ID {
 		respond(res, false)
 		return
 	}

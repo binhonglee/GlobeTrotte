@@ -65,16 +65,6 @@ func ifExists(field_name string, value interface{}) (bool, error) {
 	return true, nil
 }
 
-func getIDFromUsername(username string) int {
-	sqlStatement := `SELECT id FROM users WHERE username=$1;`
-	id := -1
-	err := db.QueryRow(sqlStatement, username).Scan(&id)
-	if err != nil {
-		return -1
-	}
-	return id
-}
-
 func GetUserTripsWithID(id int) []int {
 	var trips []sql.NullInt64
 	tripsIDs := []int{}

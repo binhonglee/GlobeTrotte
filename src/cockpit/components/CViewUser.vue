@@ -44,7 +44,6 @@ import CShare from "./CShare.vue";
 import CTripPreviewCard from "./CTripPreviewCard.vue";
 import { sortTripsMostRecentlyUpdated } from "@/shared/TripUtil";
 import UserObj from "@/wings/UserObj";
-import TripBasic from "@/wings/TripBasic";
 import TripObj from "@/wings/TripObj";
 import Routing from "@/shared/Routing";
 import Routes from "@/routes";

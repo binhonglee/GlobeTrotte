@@ -5,7 +5,6 @@ import { stub } from "../vitestSpy";
 import { describe, expect, test, vi } from "vitest";
 import { mount } from "@vue/test-utils";
 import UserObj from "@/wings/UserObj";
-import TripObj from "@/wings/TripObj";
 import NaiveUtils from "@/shared/NaiveUtils";
 import { UserCache } from "@/cache/UserCache";
 

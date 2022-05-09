@@ -28,6 +28,7 @@ func randSeq(n int) string {
 }
 
 func SendPasswordResetEmail(emailAddress string) bool {
+	//lint:ignore SA1019 We only have user email on password reset
 	u := user.GetUserObjWithEmail(emailAddress)
 	if u.ID < 1 {
 		return false
@@ -41,7 +42,7 @@ func SendPasswordResetEmail(emailAddress string) bool {
 		`<br/><br/>` +
 		`If you did not request for password reset, please ignore this email.`
 
-	if email.SendEmail("Reset GlobeTrotte Password", html, u.Details.Email) {
+	if email.SendEmail("Reset GlobeTrotte Password", html, emailAddress) {
 		resetCodeCache.Set(strconv.Itoa(u.ID), resetCode, zcache.DefaultExpiration)
 		return true
 	}
@@ -59,6 +60,7 @@ func verifyCode(u user.UserObj, resetCode string) bool {
 }
 
 func TriggerResetPassword(rp ResetPassword) bool {
+	//lint:ignore SA1019 We only have user email when it comes to reset password
 	u := user.GetUserObjWithEmail(rp.Email)
 	// verifyCode would also check if the returned user id is valid.
 	if !verifyCode(u, rp.Code) {
@@ -95,5 +97,6 @@ func Login(u LoginCredential) (user.UserObj, bool) {
 		logger.Access,
 		"Authentication successful for "+u.Email,
 	)
+	//lint:ignore SA1019 We only have user email on login
 	return user.GetUserObjWithEmail(u.Email), true
 }

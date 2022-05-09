@@ -11,10 +11,6 @@ import (
 	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 )
 
-const (
-	configsFile = "configs/email.configs"
-)
-
 var hasConfig bool = true
 var address string
 var username string

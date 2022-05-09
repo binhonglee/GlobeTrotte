@@ -10,7 +10,8 @@ import (
 var newNewUser wings.NewUser
 var newUser wings.UserBasic
 var newTrip wings.TripBasic
-var newTripExtra TripExtra
+
+// var newTripExtra TripExtra
 var newUserExtra UserExtra
 
 func TestAddNewUserDB(t *testing.T) {

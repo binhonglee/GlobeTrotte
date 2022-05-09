@@ -10,10 +10,6 @@ import (
 func addTripObj(res http.ResponseWriter, req *http.Request) {
 	var item wings.TripBasic
 	unpackJSON(&res, req, &item)
-	if &item == nil {
-		respond(res, trip.DummyTripObj())
-		return
-	}
 	respond(res, trip.NewTrip(item, getCaller(req)))
 }
 
@@ -37,7 +33,7 @@ func updateTripObj(res http.ResponseWriter, req *http.Request) {
 
 	var item trip.TripObj
 	unpackJSON(&res, req, &item)
-	if &item == nil || id != item.ID {
+	if id != item.ID {
 		respond(res, trip.DummyTripObj())
 		return
 	}
@@ -54,7 +50,7 @@ func deleteTripObj(res http.ResponseWriter, req *http.Request) {
 
 	var item trip.TripObj
 	unpackJSON(&res, req, &item)
-	if &item == nil || id != item.ID {
+	if id != item.ID {
 		respond(res, false)
 		return
 	}

@@ -153,6 +153,7 @@ sh_tools_cmd(
   cmd = " && ".join([
     "./pleasew run //:eslint",
     "./pleasew run //:gofmt",
+    "./pleasew run //:staticcheck",
     "echo 'All lints completed!'",
   ]),
   deps = [
@@ -196,6 +197,17 @@ npm_test(
     "//src/cockpit:core_files",
   ],
   needs_transitive_deps = True,
+)
+
+sh_tools_cmd(
+  name = "staticcheck",
+  cmd = " && ".join([
+    "cd $(pwd | awk -F'plz-out' '{print $1}')",
+    "for DIR in \\\\$(ls -d src/turbine/*/); do staticcheck \\\\$DIR*.go; done",
+  ]),
+  deps = [
+    "//src/turbine:main",
+  ],
 )
 
 sh_tools_cmd(
