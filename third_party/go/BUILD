@@ -179,17 +179,6 @@ go_module(
 )
 
 go_module(
-  name = "lib_pq",
-  module = "github.com/lib/pq",
-  version = "v1.10.5",
-  install = [
-    ".",
-    "oid",
-    "scram",
-  ],
-)
-
-go_module(
   name = "x_crypto",
   module = "golang.org/x/crypto",
   version = "v0.0.0-20220507011949-2cf3adece122",

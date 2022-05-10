@@ -47,6 +47,7 @@ describe("Trips", async () => {
     await page.locator("text=New").click();
     await page.waitForURL("**/trip/new");
 
+    expect(await page.innerHTML("#app")).toMatchSnapshot();
     await type(page, ".editTripName", tripName);
     await type(page, ".editTripDescription", tripDescription);
     await page.locator(".editCity").locator(".editInput").click();
@@ -70,7 +71,9 @@ describe("Trips", async () => {
       .locator(".inputPlaceDesc")
       .click();
     await page.type(".day1", "San Francisco International Airport");
+    expect(await page.innerHTML("#app")).toMatchSnapshot();
     await page.locator(".saveEditTrip").click();
+
     await page.waitForSelector(".view_trip_info");
     await page.waitForURL("**/trip/view/**");
     newTripURL = page.url();
@@ -91,12 +94,16 @@ describe("Trips", async () => {
     await genRegister(page, username2, email2, password2);
     await goTo(page, newTripURL);
     await expectNotification(page, "Error", "Trip not found.");
-  });
+    expect(await page.innerHTML("#app")).toMatchSnapshot();
+  }, 20000);
 
   test("set trip to public", async () => {
     await genLogin(page, email1, password1);
     await goTo(page, newTripURL);
+
     await page.locator(".editTripButton").click();
+
+    expect(await page.innerHTML("#app")).toMatchSnapshot();
     await page
       .locator(".editTripPrivacy")
       .locator(".editPrivacyToggle")
@@ -107,6 +114,7 @@ describe("Trips", async () => {
   test("user 2 can see public trip", async () => {
     await genLogin(page, email2, password2);
     await goTo(page, newTripURL);
+
     const title = await page
       .locator(".view_trip")
       .locator("h2")
@@ -125,9 +133,11 @@ describe("Trips", async () => {
     await page.locator("text=Search").click();
     await page.waitForURL("**/trip/search");
 
+    expect(await page.innerHTML("#app")).toMatchSnapshot();
     await type(page, ".tripSearchQueryInput", tripName);
     await page.locator(".tripSearchButton").click();
     await page.waitForSelector(".trip_preview_card");
+
     const title = await page
       .locator(".tripSearchResultCarousel")
       .locator("h3")
@@ -156,9 +166,11 @@ describe("Trips", async () => {
   test("deletes trip", async () => {
     await genLogin(page, email1, password1);
     await goTo(page, newTripURL);
+
     await page.locator(".editTripButton").click();
     await page.locator(".deleteTrip").click();
     await page.locator("text=Confirm").click();
+
     await expectNotification(
       page,
       "Trip Deletion",

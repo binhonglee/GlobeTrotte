@@ -8,15 +8,13 @@ package database
 
 import (
 	"context"
-	"database/sql"
 	"strconv"
 	"time"
 
 	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 	"github.com/jackc/pgtype"
-
-	"github.com/lib/pq"
+	"github.com/jackc/pgx/v4"
 )
 
 type UserExtra struct {
@@ -51,12 +49,15 @@ func NewUserDB(user wings.NewUser) (int, wings.RegistrationError) {
 func ifExists(field_name string, value interface{}) (bool, error) {
 	sqlStatement := `SELECT id FROM users WHERE ` + field_name + ` = $1;`
 	id := -1
-	err := db.QueryRow(
+	c := getConn()
+	err := c.QueryRow(
+		context.Background(),
 		sqlStatement,
 		value,
 	).Scan(&id)
+	defer c.Close()
 	if err != nil {
-		if err != sql.ErrNoRows {
+		if err != pgx.ErrNoRows {
 			logger.Err(logger.Database, err, "")
 			return false, err
 		}
@@ -66,36 +67,32 @@ func ifExists(field_name string, value interface{}) (bool, error) {
 }
 
 func GetUserTripsWithID(id int) []int {
-	var trips []sql.NullInt64
-	tripsIDs := []int{}
+	var trips pgtype.Int4Array
 	sqlStatement := `
 		SELECT trips
 		FROM users WHERE id=$1;`
-	err := db.QueryRow(sqlStatement, id).Scan(
-		pq.Array(&trips),
-	)
+	c := getConn()
+	err := c.QueryRow(context.Background(), sqlStatement, id).Scan(&trips)
+	defer c.Close()
 	if err != nil {
-		if err == sql.ErrNoRows {
+		if err == pgx.ErrNoRows {
 			logger.Print(logger.Database, "User "+strconv.Itoa(id)+" not found.")
 		} else {
 			logger.Err(logger.Database, err, "")
 		}
-		return tripsIDs
+		return []int{}
 	}
-
-	for _, trip := range trips {
-		if trip.Valid {
-			tripsIDs = append(tripsIDs, int(trip.Int64))
-		}
-	}
-	return tripsIDs
+	return intV(trips)
 }
 
 func GetUserIDWithUsername(username string) int {
 	id := -1
 	sqlStatement := `SELECT id FROM users WHERE username=$1;`
-	switch err := db.QueryRow(sqlStatement, username).Scan(&id); err {
-	case sql.ErrNoRows:
+	c := getConn()
+	switch err := c.QueryRow(
+		context.Background(), sqlStatement, username,
+	).Scan(&id); err {
+	case pgx.ErrNoRows:
 		return -1
 	default:
 		logger.Err(logger.Database, err, "")
@@ -122,14 +119,15 @@ func GetUsernameWithID(id int) string {
 func GetUserBasicDBWithID(id int) (wings.UserBasic, UserExtra) {
 	var user wings.UserBasic
 	var extra UserExtra
-	var bio sql.NullString
-	var link sql.NullString
-	var username sql.NullString
+	var bio pgtype.Text
+	var link pgtype.Text
+	var username pgtype.Text
 	var trips pgtype.Int4Array
 	sqlStatement := `
 		SELECT id, username, name, email, bio, confirmed, link, trips, time_created
 		FROM users WHERE id=$1;`
-	switch err := db.QueryRow(sqlStatement, id).Scan(
+	c := getConn()
+	switch err := c.QueryRow(context.Background(), sqlStatement, id).Scan(
 		&user.ID,
 		&username,
 		&user.Name,
@@ -140,19 +138,20 @@ func GetUserBasicDBWithID(id int) (wings.UserBasic, UserExtra) {
 		&trips,
 		&extra.TimeCreated,
 	); err {
-	case sql.ErrNoRows:
+	case pgx.ErrNoRows:
 		user.ID = -1
 	default:
 		logger.Err(logger.Database, err, "")
 	}
+	defer c.Close()
 
-	if bio.Valid {
+	if bio.Status == pgtype.Present {
 		user.Bio = bio.String
 	}
-	if link.Valid {
+	if link.Status == pgtype.Present {
 		user.Link = link.String
 	}
-	if username.Valid {
+	if username.Status == pgtype.Present {
 		user.Username = username.String
 	}
 	extra.TripIDs = intV(trips)
@@ -164,11 +163,13 @@ func GetTimeInfoDBWithID(id int) (bool, time.Time) {
 	sqlStatement := `
 		SELECT time_created
 		FROM users WHERE id=$1;`
-	err := db.QueryRow(sqlStatement, id).Scan(
+	c := getConn()
+	err := c.QueryRow(context.Background(), sqlStatement, id).Scan(
 		&timeCreated,
 	)
+	defer c.Close()
 	if err != nil {
-		if err == sql.ErrNoRows {
+		if err == pgx.ErrNoRows {
 			logger.Print(logger.Database, "User "+strconv.Itoa(id)+" not found.")
 		} else {
 			logger.Err(logger.Database, err, "")
@@ -219,11 +220,14 @@ func updateTripsInUserDB(userID int, tripIDs []int) bool {
 		SET trips = $2
 		WHERE id = $1;`
 
-	_, err := db.Exec(
+	c := getConn()
+	_, err := c.Exec(
+		context.Background(),
 		sqlStatement,
 		userID,
-		pq.Array(tripIDs),
+		tripIDs,
 	)
+	defer c.Close()
 
 	if err != nil {
 		logger.Err(logger.Database, err, "Failed to update user.")
@@ -239,7 +243,9 @@ func addNewUser(newUser wings.NewUser) (int, wings.RegistrationError) {
 		VALUES ($1, $2, $3, $4, $5, $6, $7)
 		RETURNING id`
 	id := -1
-	err := db.QueryRow(
+	c := getConn()
+	err := c.QueryRow(
+		context.Background(),
 		sqlStatement,
 		newUser.Name,
 		newUser.Username,
@@ -249,6 +255,8 @@ func addNewUser(newUser wings.NewUser) (int, wings.RegistrationError) {
 		time.Now(),
 		false,
 	).Scan(&id)
+	defer c.Close()
+
 	if err != nil {
 		logger.Err(logger.Database, err, "")
 		return -1, wings.InvalidType
@@ -262,16 +270,18 @@ func getUserWithEmail(email string) wings.NewUser {
 	sqlStatement := `
 		SELECT id, password
 		FROM users WHERE email=$1;`
-	switch err := db.QueryRow(sqlStatement, email).Scan(
+	c := getConn()
+	switch err := c.QueryRow(context.Background(), sqlStatement, email).Scan(
 		&user.ID,
 		&user.Password,
 	); err {
-	case sql.ErrNoRows:
+	case pgx.ErrNoRows:
 		logger.Print(logger.Database, "User "+email+" not found.")
 		user.ID = -1
 	default:
 		logger.Err(logger.Database, err, "")
 	}
+	defer c.Close()
 
 	return user
 }
@@ -298,7 +308,9 @@ func updatingUser(updatedUser wings.UserBasic) bool {
 		confirmed = $7
 		WHERE id = $1;`
 
-	_, err := db.Exec(
+	c := getConn()
+	_, err := c.Exec(
+		context.Background(),
 		sqlStatement,
 		updatedUser.ID,
 		updatedUser.Name,
@@ -308,6 +320,7 @@ func updatingUser(updatedUser wings.UserBasic) bool {
 		updatedUser.Link,
 		updatedUser.Confirmed,
 	)
+	defer c.Close()
 
 	if err != nil {
 		logger.Err(logger.Database, err, "Failed to update user.")
@@ -323,7 +336,9 @@ func confirmUser(id int) bool {
 		SET confirmed = $2
 		WHERE id = $1;`
 
-	_, err := db.Exec(sqlStatement, id, true)
+	c := getConn()
+	_, err := c.Exec(context.Background(), sqlStatement, id, true)
+	defer c.Close()
 
 	logger.Err(
 		logger.Database, err,
@@ -337,10 +352,13 @@ func DeleteUserDBWithID(id int) bool {
 	sqlStatement := `
 		DELETE FROM users
 		WHERE id = $1;`
-	if _, err := db.Exec(sqlStatement, id); err != nil {
+
+	c := getConn()
+	if _, err := c.Exec(context.Background(), sqlStatement, id); err != nil {
 		logger.Err(logger.Database, err, "")
 		return false
 	}
+	defer c.Close()
 	logger.Print(logger.Database, "User ID "+strconv.Itoa(id)+" deleted")
 	return true
 }
@@ -350,10 +368,13 @@ func UpdatePassword(id int, email string, newPasswordHash string) bool {
 		UPDATE users
 		SET password = $3
 		WHERE id = $1 AND email = $2;`
-	if _, err := db.Exec(sqlStatement, id, email, newPasswordHash); err != nil {
+
+	c := getConn()
+	if _, err := c.Exec(context.Background(), sqlStatement, id, email, newPasswordHash); err != nil {
 		logger.Err(logger.Database, err, "")
 		return false
 	}
+	defer c.Close()
 	logger.Print(logger.Database, "Password for "+email+" is updated")
 	return true
 }

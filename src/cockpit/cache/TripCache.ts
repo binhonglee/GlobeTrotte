@@ -23,6 +23,7 @@ export class FetchedTripObj extends FetchedObj<TripObj> {}
 
 export class TripCache extends Cache<TripObj, FetchedTripObj, TripStorage> {
   protected storage = CacheStorageName.TRIP;
+  protected storeCount = 10;
 
   protected async genFetch(id: string): Promise<TripObj | null> {
     const tripObj = await genFetchServerTrip(id);

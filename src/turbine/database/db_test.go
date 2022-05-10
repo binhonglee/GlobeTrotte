@@ -1,6 +1,7 @@
 package database
 
 import (
+	"context"
 	"fmt"
 	"testing"
 )
@@ -13,7 +14,11 @@ func TestInit(t *testing.T) {
 		);`
 
 	for _, element := range tableNames {
-		if _, err := db.Exec(fmt.Sprintf(checkTable, element)); err != nil {
+		c := getConn()
+		if _, err := c.Exec(
+			context.Background(),
+			fmt.Sprintf(checkTable, element),
+		); err != nil {
 			t.Log(err)
 			t.Errorf("initializeDB(), " + element + " was not initialized.")
 		}

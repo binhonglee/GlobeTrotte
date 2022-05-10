@@ -25,6 +25,7 @@ export class UsernameCache extends Cache<
   UsernameStorage
 > {
   protected storage = CacheStorageName.USERNAME;
+  protected storeCount = 20;
 
   protected async genFetch(id: string): Promise<string | null> {
     const username = (await HTTPReq.genGET("v2/username/" + id)) as string;

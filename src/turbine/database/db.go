@@ -2,7 +2,6 @@ package database
 
 import (
 	"context"
-	"database/sql"
 	"fmt"
 	"strconv"
 	"strings"
@@ -11,14 +10,12 @@ import (
 	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 
 	"github.com/jackc/pgx/v4/pgxpool"
-
-	// This is needed for PostgreSQL to work properly
-	_ "github.com/lib/pq"
 )
 
-var db *sql.DB
 var pgxConnString string
-var tableNames = [7]string{"users", "trips", "cities", "days", "places", "travel_time", "emails"}
+var tableNames = [7]string{
+	"users", "trips", "cities", "days", "places", "travel_time", "emails",
+}
 
 func init() {
 	config := config.GetConfigStringMap("psql")
@@ -35,16 +32,6 @@ func init() {
 		)
 	}
 
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
-		"password=%s dbname=%s sslmode=disable",
-		config["host"], port, config["user"], config["password"], config["dbname"])
-
-	if getDB, err := sql.Open("postgres", psqlInfo); err == nil {
-		db = getDB
-	} else {
-		logger.Panic(logger.Database, "Invalid DB config")
-	}
-
 	pgxConnString = fmt.Sprintf(
 		"postgres://%s:%s@%s:%d//%s",
 		config["user"],
@@ -53,9 +40,24 @@ func init() {
 		config["dbname"],
 	)
 
+	conn, err := pgxpool.Connect(
+		context.Background(),
+		pgxConnString,
+	)
+	logger.PanicErr(logger.Database, err, "Unable to connect to database.\n")
+	logger.PanicErr(
+		logger.Database,
+		conn.Ping(context.Background()),
+		"Unable to connect to database",
+	)
+
 	initializeDB()
 
-	logger.PanicErr(logger.Database, db.Ping(), "Unable to connect to database")
+	logger.PanicErr(
+		logger.Database,
+		conn.Ping(context.Background()),
+		"Unable to connect to database",
+	)
 	logger.Success(logger.Database, "DB initialization is complete!")
 }
 
@@ -82,7 +84,9 @@ func initializeDB() {
 	for _, element := range tableNames {
 		var t bool
 		c := getConn()
-		if err := c.QueryRow(context.Background(), fmt.Sprintf(ifTableExists, element)).Scan(&t); err != nil {
+		if err := c.QueryRow(
+			context.Background(), fmt.Sprintf(ifTableExists, element),
+		).Scan(&t); err != nil {
 			switch element {
 			case "users":
 				createUsersTable()
@@ -107,8 +111,8 @@ func initializeDB() {
 
 			logger.Print(logger.Database, element+" table created successfully.")
 		}
+		_, err := c.Exec(context.Background(), fmt.Sprintf(ifTableExists, element))
 		defer c.Close()
-		_, err := db.Exec(fmt.Sprintf(ifTableExists, element))
 
 		if err != nil {
 			logger.Print(logger.Database, element+" table not found. Creating it...")
@@ -157,20 +161,26 @@ func createUsersTable() {
 			trips           INT[],
 			confirmed       BOOLEAN        NOT NULL
 		);`
-	_, err := db.Exec(createTable)
+	c := getConn()
+	_, err := c.Exec(context.Background(), createTable)
+	defer c.Close()
 
 	logger.PanicErr(logger.Database, err, "Failed to create `users` table. ")
 }
 
 func updateUserTable() {
-	db.Exec(`ALTER TABLE users ADD COLUMN IF NOT EXISTS link TEXT;`)
-	db.Exec(`ALTER TABLE users ADD COLUMN IF NOT EXISTS bio TEXT;`)
-	db.Exec(`ALTER TABLE users ADD COLUMN IF NOT EXISTS trips INT[];`)
-	db.Exec(`ALTER TABLE users ADD COLUMN IF NOT EXISTS username TEXT UNIQUE;`)
+	c := getConn()
+	c.Exec(context.Background(), `ALTER TABLE users ADD COLUMN IF NOT EXISTS link TEXT;`)
+	c.Exec(context.Background(), `ALTER TABLE users ADD COLUMN IF NOT EXISTS bio TEXT;`)
+	c.Exec(context.Background(), `ALTER TABLE users ADD COLUMN IF NOT EXISTS trips INT[];`)
+	c.Exec(context.Background(), `ALTER TABLE users ADD COLUMN IF NOT EXISTS username TEXT UNIQUE;`)
+	defer c.Close()
 }
 
 func updateDaysTable() {
-	db.Exec(`ALTER TABLE days ADD COLUMN IF NOT EXISTS travel_times INT[];`)
+	c := getConn()
+	c.Exec(context.Background(), `ALTER TABLE days ADD COLUMN IF NOT EXISTS travel_times INT[];`)
+	defer c.Close()
 }
 
 func createTripsTable() {
@@ -186,7 +196,9 @@ func createTripsTable() {
 			time_created    TIMESTAMPTZ    NOT NULL,
 			last_updated    TIMESTAMPTZ    NOT NULL
 		);`
-	_, err := db.Exec(createTable)
+	c := getConn()
+	_, err := c.Exec(context.Background(), createTable)
+	defer c.Close()
 
 	logger.PanicErr(logger.Database, err, "Failed to create `trips` table.")
 }
@@ -200,7 +212,9 @@ func createDaysTable() {
 			places         INT[],
 			travel_times   INT[]
 		);`
-	_, err := db.Exec(createTable)
+	c := getConn()
+	_, err := c.Exec(context.Background(), createTable)
+	defer c.Close()
 
 	logger.PanicErr(logger.Database, err, "Failed to create `days` table.")
 }
@@ -213,7 +227,9 @@ func createPlacesTable() {
 			url            TEXT,
 			description    TEXT
 		);`
-	_, err := db.Exec(createTable)
+	c := getConn()
+	_, err := c.Exec(context.Background(), createTable)
+	defer c.Close()
 
 	logger.PanicErr(logger.Database, err, "Failed to create `places` table.")
 }
@@ -226,7 +242,9 @@ func createTravelTimeTable() {
 			to_place_id       INT,
 			time_in_minutes   INT
 		);`
-	_, err := db.Exec(createTable)
+	c := getConn()
+	_, err := c.Exec(context.Background(), createTable)
+	defer c.Close()
 
 	logger.PanicErr(logger.Database, err, "Failed to create `travel_time` table.")
 }
@@ -239,7 +257,9 @@ func createCitiesTable() {
 			country     TEXT    NOT NULL,
 			trips       INT[]
 		);`
-	_, err := db.Exec(createTable)
+	c := getConn()
+	_, err := c.Exec(context.Background(), createTable)
+	defer c.Close()
 
 	logger.PanicErr(logger.Database, err, "Failed to create `cities` table.")
 }
@@ -253,7 +273,9 @@ func createEmailsTable() {
 			emailAddress    TEXT           NOT NULL,
 			confirmed       BOOLEAN        NOT NULL
 		);`
-	_, err := db.Exec(createTable)
+	c := getConn()
+	_, err := c.Exec(context.Background(), createTable)
+	defer c.Close()
 
 	logger.PanicErr(logger.Database, err, "Failed to create `emails` table.")
 }

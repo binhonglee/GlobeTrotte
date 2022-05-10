@@ -4,10 +4,11 @@
 package database
 
 import (
-	"database/sql"
+	"context"
 	"strconv"
 
 	"github.com/google/uuid"
+	"github.com/jackc/pgx/v4"
 
 	flags "github.com/binhonglee/GlobeTrotte/src/turbine/flags"
 	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
@@ -22,13 +23,16 @@ func AddEmailDB(userid int, emailAddress string) string {
 	id := -1
 	uuid := newUniqueUUIDString()
 
-	err := db.QueryRow(
+	c := getConn()
+	err := c.QueryRow(
+		context.Background(),
 		sqlStatement,
 		userid,
 		uuid,
 		emailAddress,
 		false,
 	).Scan(&id)
+	defer c.Close()
 
 	if err != nil || id == -1 {
 		logger.Err(logger.Database, err, "Adding new email failed.")
@@ -60,8 +64,10 @@ func newUniqueUUIDString() string {
 func verifyUUIDIsUnused(uuid string) bool {
 	sqlStatement := `
 		SELECT * FROM emails WHERE code=$1;`
-	err := db.QueryRow(sqlStatement, uuid).Scan()
-	return err == sql.ErrNoRows
+	c := getConn()
+	err := c.QueryRow(context.Background(), sqlStatement, uuid).Scan()
+	defer c.Close()
+	return err == pgx.ErrNoRows
 }
 
 func GetEmailDB(code string) (int, int, string, bool) {
@@ -72,9 +78,12 @@ func GetEmailDB(code string) (int, int, string, bool) {
 	sqlStatement := `
 		SELECT id, userid, emailAddress, confirmed
 		FROM emails WHERE code=$1;`
-	err := db.QueryRow(
+	c := getConn()
+	err := c.QueryRow(
+		context.Background(),
 		sqlStatement, code,
 	).Scan(&id, &userid, &emailAddress, &confirmed)
+	defer c.Close()
 	if err != nil {
 		id = -1
 		logger.Err(
@@ -90,7 +99,9 @@ func GetEmailWithIDDB(userid int) string {
 	sqlStatement := `
 		SELECT emailAddress
 		FROM emails WHERE userid=$1;`
-	err := db.QueryRow(sqlStatement, userid).Scan(&emailAddress)
+	c := getConn()
+	err := c.QueryRow(context.Background(), sqlStatement, userid).Scan(&emailAddress)
+	defer c.Close()
 	logger.Err(logger.Database, err, "Failed to fetch email with user id "+strconv.Itoa(userid))
 	return emailAddress
 }
@@ -106,9 +117,12 @@ func ConfirmEmailDB(
 		AND userid = $3
 		AND emailAddress = $4
 		AND code = $5;`
-	_, err := db.Exec(
-		sqlStatement, true, id, userid, emailAddress, code,
+
+	c := getConn()
+	_, err := c.Exec(
+		context.Background(), sqlStatement, true, id, userid, emailAddress, code,
 	)
+	defer c.Close()
 
 	if err != nil {
 		logger.Err(
@@ -126,8 +140,16 @@ func GetEmailConfirmCodeDB(emailAddress string, userid int) string {
 		SELECT code
 		FROM emails WHERE emailAddress = $1 AND userid = $2;
 	`
-	err := db.QueryRow(sqlStatement, emailAddress, userid).Scan(&code)
-	logger.Err(logger.Database, err, "Failed to fetch code with user id "+strconv.Itoa(userid))
+
+	c := getConn()
+	err := c.QueryRow(
+		context.Background(), sqlStatement, emailAddress, userid,
+	).Scan(&code)
+	defer c.Close()
+	logger.Err(
+		logger.Database, err,
+		"Failed to fetch code with user id "+strconv.Itoa(userid),
+	)
 	return emailAddress
 }
 
@@ -140,7 +162,9 @@ func ForceConfirm(uid int) bool {
 		UPDATE emails
 		SET confirmed = $1
 		WHERE userid = $2;`
-	_, err := db.Exec(sqlStatement, true, uid)
+	c := getConn()
+	_, err := c.Exec(context.Background(), sqlStatement, true, uid)
+	defer c.Close()
 
 	if err != nil {
 		logger.Err(
@@ -157,15 +181,20 @@ func DeleteEmailDB(userid int, emailAddress string) bool {
 		DELETE FROM emails
 		WHERE userid = $1
 		AND emailAddress = $2;`
-	if _, err := db.Exec(
-		sqlStatement, userid, emailAddress,
+
+	c := getConn()
+	if _, err := c.Exec(
+		context.Background(), sqlStatement, userid, emailAddress,
 	); err != nil {
 		logger.Err(
 			logger.Database, err, "Failed deleting email "+
 				emailAddress+" for "+strconv.Itoa(userid),
 		)
+		defer c.Close()
 		return false
 	}
+
+	defer c.Close()
 	return true
 }
 
@@ -173,12 +202,17 @@ func DeleteEmailsDB(userid int) bool {
 	sqlStatement := `
 		DELETE FROM emails
 		WHERE userid = $1;`
-	if _, err := db.Exec(sqlStatement, userid); err != nil {
+
+	c := getConn()
+	if _, err := c.Exec(context.Background(), sqlStatement, userid); err != nil {
 		logger.Err(
 			logger.Database, err,
 			"Failed deleting email for "+strconv.Itoa(userid),
 		)
+		defer c.Close()
 		return false
 	}
+
+	defer c.Close()
 	return true
 }

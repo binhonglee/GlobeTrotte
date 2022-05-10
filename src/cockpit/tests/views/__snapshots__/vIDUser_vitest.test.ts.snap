@@ -82,7 +82,7 @@ exports[`vIDUser > Get User - Has user (not self) 1`] = `
                   >
                     <p data-v-22a19118>
                       <a class="underline_hover color_always tripPreviewUserProfileLink"
-                         href="/user/10"
+                         href="/user/testmockuseraccount"
                          rel
                          target
                          data-v-018c0145
@@ -356,7 +356,7 @@ exports[`vIDUser > Get User - Has user (self, confirmed) 1`] = `
                   >
                     <p data-v-22a19118>
                       <a class="underline_hover color_always tripPreviewUserProfileLink"
-                         href="/user/10"
+                         href="/user/testmockuseraccount"
                          rel
                          target
                          data-v-018c0145
@@ -583,7 +583,7 @@ exports[`vIDUser > Get User - Has user (self, unconfirmed) 1`] = `
                   >
                     <p data-v-22a19118>
                       <a class="underline_hover color_always tripPreviewUserProfileLink"
-                         href="/user/10"
+                         href="/user/testmockuseraccount"
                          rel
                          target
                          data-v-018c0145

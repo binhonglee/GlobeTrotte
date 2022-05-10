@@ -79,6 +79,7 @@ export abstract class Cache<
   CS extends CacheStorage<T>,
 > {
   protected abstract storage: CacheStorageName;
+  protected abstract storeCount: number;
   protected abstract genFetch(key: string): Promise<T | null>;
 
   protected getStorage(): string | null {
@@ -147,7 +148,7 @@ export abstract class Cache<
         obj.incrementOrder();
       }
 
-      if (objs.length > 10 || removeSelf) {
+      if (objs.length > this.storeCount || removeSelf) {
         objs.splice(toRemove, 1);
       }
     } else {

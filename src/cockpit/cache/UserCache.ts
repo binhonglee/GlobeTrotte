@@ -23,6 +23,7 @@ export class FetchedUserObj extends FetchedObj<UserObj> {}
 
 export class UserCache extends Cache<UserObj, FetchedUserObj, UserStorage> {
   protected storage = CacheStorageName.USER;
+  protected storeCount = 10;
 
   protected async genFetch(username: string): Promise<UserObj | null> {
     const user = await HTTPReq.genGET("username/" + username);
