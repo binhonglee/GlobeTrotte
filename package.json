@@ -39,7 +39,7 @@
     "@typescript-eslint/eslint-plugin": "5.23.0",
     "@typescript-eslint/parser": "5.23.0",
     "@vicons/ionicons5": "0.12.0",
-    "@vitejs/plugin-vue": "2.3.2",
+    "@vitejs/plugin-vue": "2.3.3",
     "@vue/eslint-config-prettier": "7.0.0",
     "@vue/eslint-config-typescript": "10.0.0",
     "@vue/test-utils": "2.0.0-rc.21",
