@@ -166,6 +166,17 @@ export async function genLogout(page: Page) {
   await page.waitForURL(BASE_URL);
 }
 
+export async function genTryLogout(page: Page) {
+  await page.waitForSelector(".navBarRightMenu");
+  const menubar = await page
+    .locator(".main_menu")
+    .locator(".n-menu-item")
+    .allInnerTexts();
+  if (menubar.includes("My Account")) {
+    await genLogout(page);
+  }
+}
+
 export async function genDeleteAccount(page: Page) {
   await page.goto("/myaccount");
   await page.locator(".myAccountEdit").click();

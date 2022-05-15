@@ -14,13 +14,18 @@ def wings_lib(
     test_only = test_only,
   )
 
-  config = []
+  tools = {
+    "wings": CONFIG.WINGS_TOOL,
+  }
+
+  config_param = ""
   if CONFIG.WINGS_CONFIG_RULE != "":
-    config = [CONFIG.WINGS_CONFIG_RULE]
+    tools["config"] = CONFIG.WINGS_CONFIG_RULE
+    config_param = "-c:$TOOLS_CONFIG "
 
   cmd = " && ".join([
     _home_path(),
-    "$TOOL -c:" + CONFIG.WINGS_CONFIG_FILENAME + " $SRC",
+    "$TOOLS_WINGS " + config_param + "$SRC",
     "echo " + CONFIG.get("WINGS_CONFIG_RULE")
   ])
 
@@ -37,10 +42,10 @@ def wings_lib(
   gen_files = build_rule(
     name = f"_{name}#genFiles",
     srcs = [src],
-    tools = [CONFIG.WINGS_TOOL],
+    tools = tools,
     cmd = cmd,
     outs = all_out_files,
-    deps = [src_file] + config,
+    deps = [src_file],
     test_only = test_only,
     binary = False,
     visibility = visibility,
@@ -82,6 +87,5 @@ def wings_lib(
 
 CONFIG.setdefault("WINGS_TOOL", "wings")
 CONFIG.setdefault("WINGS_CONFIG_RULE", "")
-CONFIG.setdefault("WINGS_CONFIG_FILENAME", "wings.json")
 CONFIG.setdefault("WINGS_FORMATTER_GO", "")
 CONFIG.setdefault("WINGS_FORMATTER_TS", "")

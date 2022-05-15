@@ -4,7 +4,7 @@ sh_copy_file(
   name = "deploy",
   srcs = [
     "//src/turbine:main",
-    "//:cockpit",
+    "//src/cockpit:cockpit",
   ],
   out = "main",
 )

@@ -1,10 +1,10 @@
 import vue from "@vitejs/plugin-vue";
 import { VitePWA } from "vite-plugin-pwa";
 import path from "path";
-import { UserConfigExport } from "vite";
+import { UserConfig } from "vite";
 import { InlineConfig } from "vitest";
 
-type ViteConfig = UserConfigExport & { test: InlineConfig };
+type ViteConfig = UserConfig & { test: InlineConfig };
 
 export default function baseConfig(coverage = true): ViteConfig {
   const config = {
@@ -49,7 +49,7 @@ export default function baseConfig(coverage = true): ViteConfig {
     ],
     resolve: {
       alias: {
-        "@": path.resolve(__dirname, "/src/cockpit"),
+        "@": path.resolve(__dirname + "/.."),
       },
     },
     server: {
@@ -60,12 +60,12 @@ export default function baseConfig(coverage = true): ViteConfig {
     test: {
       globals: true,
       environment: "jsdom",
-      include: ["src/cockpit/tests/**/*_vitest.{test,spec}.ts"],
-      exclude: ["src/cockpit/tests/cypress/**/*"],
+      include: ["tests/**/*_vitest.{test,spec}.ts"],
+      exclude: ["tests/cypress/**/*"],
       reporters: ["default", "junit"],
       outputFile: "vitest_junit",
       watch: false,
-      setupFiles: ["src/cockpit/tests/vitest_setup.ts"],
+      setupFiles: ["tests/vitest_setup.ts"],
     },
   } as ViteConfig;
 

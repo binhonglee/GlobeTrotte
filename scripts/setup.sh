@@ -170,14 +170,11 @@ installPNPM() {
   if [ "$TEST_PNPM" != "" ]; then
     echo "Seems like \`pnpm\` is already installed. Skipping..."
   else
-    curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm
+    corepack enable
+    corepack prepare pnpm@7.1.0 --activate
   fi
 
-  if [ -d "node_modules" ]; then
-    echo "Seems like \`node_modules\` already exists. Skipping..."
-  else
-    pnpm install
-  fi
+  pnpm install
   pnpx playwright install
 }
 

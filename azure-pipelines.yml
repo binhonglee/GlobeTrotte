@@ -15,11 +15,11 @@ jobs:
     matrix:
       ubuntu-node-16-go-1-16-6:
         imageName: "ubuntu-latest"
-        nodeVersion: "16.x"
+        nodeVersion: "16.13.1"
         goVersion: "1.16.6"
       mac-node-16-go-1-16-6:
         imageName: "macos-latest"
-        nodeVersion: "16.x"
+        nodeVersion: "16.13.1"
         goVersion: "1.16.6"
 
   steps:
@@ -63,22 +63,22 @@ jobs:
 
   - script: |
       DIR=$(basename $CURRENT_DIR)
-      sed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" wings.json
-      cat wings.json
+      sed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" src/wings/wings.json
+      cat src/wings/wings.json
     env:
       CURRENT_DIR: $(Pipeline.Workspace)
     condition: eq(variables['Agent.OS'], 'Linux')
-    displayName: Fix wings.json (Ubuntu)
+    displayName: Fix src/wings/wings.json (Ubuntu)
 
   - script: |
       brew install gnu-sed
       DIR=$(basename $CURRENT_DIR)
-      gsed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" wings.json
-      cat wings.json
+      gsed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" src/wings/wings.json
+      cat src/wings/wings.json
     env:
       CURRENT_DIR: $(Pipeline.Workspace)
     condition: eq(variables['Agent.OS'], 'Darwin')
-    displayName: Fix wings.json (MacOS)
+    displayName: Fix src/wings/wings.json (MacOS)
 
   - script: ./pleasew build --show_all_output //...
     displayName: Build all
@@ -87,7 +87,7 @@ jobs:
     displayName: Lint changes
 
   - script: |
-      git checkout wings.json
+      git checkout src/wings/wings.json
       ./scripts/leftover.sh
     displayName: Check for leftover
 
@@ -98,11 +98,11 @@ jobs:
     matrix:
       ubuntu-node-16-go-1-16-6:
         imageName: "ubuntu-latest"
-        nodeVersion: "16.x"
+        nodeVersion: "16.13.1"
         goVersion: "1.16.6"
       # mac-node-16-go-1-16-6:
       #   imageName: "macos-latest"
-      #   nodeVersion: "16.x"
+      #   nodeVersion: "16.13.1"
       #   goVersion: "1.16.6"
 
   steps:
@@ -144,40 +144,42 @@ jobs:
   - script: ./scripts/setup.sh
     displayName: Run install script
 
+  - script: pnpm i --no-frozen-lockfile
+    displayName: Install pnpm
+
   - script: |
       DIR=$(basename $CURRENT_DIR)
-      sed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" wings.json
-      cat wings.json
+      sed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" src/wings/wings.json
+      cat src/wings/wings.json
     env:
       CURRENT_DIR: $(Pipeline.Workspace)
     condition: eq(variables['Agent.OS'], 'Linux')
-    displayName: Fix wings.json (Ubuntu)
+    displayName: Fix src/wings/wings.json (Ubuntu)
 
   - script: |
       brew install gnu-sed
       DIR=$(basename $CURRENT_DIR)
-      gsed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" wings.json
-      cat wings.json
+      gsed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" src/wings/wings.json
+      cat src/wings/wings.json
     env:
       CURRENT_DIR: $(Pipeline.Workspace)
     condition: eq(variables['Agent.OS'], 'Darwin')
-    displayName: Fix wings.json (MacOS)
+    displayName: Fix src/wings/wings.json (MacOS)
 
   - script: ./pleasew build "//src/turbine:main"
     displayName: Build turbine
 
-  - script: pnpm i
-    displayName: Install pnpm packages
-
   - script: ./pleasew run "//src/turbine:main" &
     displayName: Run turbine on background
   - script: sleep 1
-  - script: pnpm run serve &
+  - script: pnpm run -r serve &
     displayName: Run cockpit on background
   - script: sleep 1
-  - script: pnpm run test:cypress:plz
+  - script: pnpm run -r test:cypress:plz
     displayName: Run e2e tests
-  - script: pnpm run test:vitest -c vitest_playwright.config.ts --coverage=false
+  - script: pnpm run install_playwright --no-frozen-lockfile
+    displayName: Install playwright
+  - script: pnpm run -r test:playwright --coverage=false
     displayName: Run playwright e2e tests
 
 - job: turbine
@@ -187,11 +189,11 @@ jobs:
     matrix:
       ubuntu-node-16-go-1-16-6:
         imageName: "ubuntu-latest"
-        nodeVersion: "16.x"
+        nodeVersion: "16.13.1"
         goVersion: "1.16.6"
       mac-node-16-go-1-16-6:
         imageName: "macos-latest"
-        nodeVersion: "16.x"
+        nodeVersion: "16.13.1"
         goVersion: "1.16.6"
 
   steps:
@@ -204,22 +206,22 @@ jobs:
 
   - script: |
       DIR=$(basename $CURRENT_DIR)
-      sed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" wings.json
-      cat wings.json
+      sed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" src/wings/wings.json
+      cat src/wings/wings.json
     env:
       CURRENT_DIR: $(Pipeline.Workspace)
     condition: eq(variables['Agent.OS'], 'Linux')
-    displayName: Fix wings.json (Ubuntu)
+    displayName: Fix src/wings/wings.json (Ubuntu)
 
   - script: |
       brew install gnu-sed
       DIR=$(basename $CURRENT_DIR)
-      gsed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" wings.json
-      cat wings.json
+      gsed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" src/wings/wings.json
+      cat src/wings/wings.json
     env:
       CURRENT_DIR: $(Pipeline.Workspace)
     condition: eq(variables['Agent.OS'], 'Darwin')
-    displayName: Fix wings.json (MacOS)
+    displayName: Fix src/wings/wings.json (MacOS)
 
   - script: ./pleasew go_mod
     displayName: Regenerate third_party/go/BUILD file
@@ -233,11 +235,11 @@ jobs:
     matrix:
       ubuntu-node-16-go-1-16-6:
         imageName: "ubuntu-latest"
-        nodeVersion: "16.x"
+        nodeVersion: "16.13.1"
         goVersion: "1.16.6"
       mac-node-16-go-1-16-6:
         imageName: "macos-latest"
-        nodeVersion: "16.x"
+        nodeVersion: "16.13.1"
         goVersion: "1.16.6"
 
   steps:
@@ -273,32 +275,32 @@ jobs:
     condition: eq(variables['Agent.OS'], 'Darwin')
     displayName: Cache Cypress (MacOS)
 
-  - script: ./scripts/setup.sh -n
-    displayName: Run install script
+  # - script: ./scripts/setup.sh -n
+  #   displayName: Run install script
+
+  - script: npm i -g pnpm@7.1.0 && pnpm i
+    displayName: Install pnpm
 
   - script: |
       DIR=$(basename $CURRENT_DIR)
-      sed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" wings.json
-      cat wings.json
+      sed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" src/wings/wings.json
+      cat src/wings/wings.json
     env:
       CURRENT_DIR: $(Pipeline.Workspace)
     condition: eq(variables['Agent.OS'], 'Linux')
-    displayName: Fix wings.json (Ubuntu)
+    displayName: Fix src/wings/wings.json (Ubuntu)
 
   - script: |
       brew install gnu-sed
       DIR=$(basename $CURRENT_DIR)
-      gsed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" wings.json
-      cat wings.json
+      gsed -i "s/\"GlobeTrotte\"/\"$DIR\"/g" src/wings/wings.json
+      cat src/wings/wings.json
     env:
       CURRENT_DIR: $(Pipeline.Workspace)
     condition: eq(variables['Agent.OS'], 'Darwin')
-    displayName: Fix wings.json (MacOS)
+    displayName: Fix src/wings/wings.json (MacOS)
 
-  - script: pnpm i
-    displayName: Install pnpm packages
-
-  - script: pnpm run test:vitest --coverage=false
+  - script: pnpm run -r test:vitest --coverage=false
     displayName: Test cockpit
-  - script: ./pleasew test --show_all_output //:tsc
+  - script: pnpm run -r check:tsc
     displayName: Cockpit typecheck

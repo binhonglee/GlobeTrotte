@@ -4,6 +4,13 @@ def _go_to_top_level():
 def _top_level_dir():
   return "$(pwd | awk -F'plz-out' '{print $1}')"
 
+def _check_port_running(port:int, server_cmd:str=None):
+  return " ".join([
+    "if [ ! \\\$(lsof -i:" + str(port) + " | grep -v \"CLOSE_WAIT\") ];",
+    "then echo \"Please make sure server is started at " + str(port) + "\" && exit 1;" if server_cmd is None else "then " + server_cmd + ";",
+    "fi",
+  ])
+
 def _assert_boolean(string:str, default:bool = None):
   switcher = {
     "True": True,
@@ -33,3 +40,9 @@ def _home_path():
     "fi",
   ])
 
+def _for_loop(looped: str, cmd: str):
+  return "; ".join([
+    "for ITEM in " + looped,
+    "do " + cmd,
+    "done",
+  ])

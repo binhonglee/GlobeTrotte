@@ -9,4 +9,5 @@ fi
 git fetch https://github.com/binhonglee/GlobeTrotte main
 git rebase FETCH_HEAD
 pnpm i
-./pleasew build //src/wings/...
+./pleasew wings
+./pleasew go_mod

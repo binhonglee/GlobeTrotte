@@ -2,22 +2,22 @@
 
 exports[`Login > Cancel 1`] = `
 <div class="login narrow_content"
-     data-v-275e5b16
+     data-v-98cb203c
 >
   <div class="head"
-       data-v-275e5b16
+       data-v-98cb203c
   >
   </div>
   <h1 class="title"
-      data-v-275e5b16
+      data-v-98cb203c
   >
     Login
   </h1>
   <form class="narrow_display_window"
-        data-v-275e5b16
+        data-v-98cb203c
   >
     <div class="edit_item edit_item_small loginUsernameItem"
-         data-v-275e5b16
+         data-v-98cb203c
     >
       <span class="editLabel loginUsernameLabel">
         Email:
@@ -46,7 +46,7 @@ exports[`Login > Cancel 1`] = `
       <br>
     </div>
     <div class="edit_item edit_item_small"
-         data-v-275e5b16
+         data-v-98cb203c
     >
       <span class="editLabel loginPasswordLabel">
         Password:
@@ -100,12 +100,12 @@ exports[`Login > Cancel 1`] = `
       </div>
       <br>
     </div>
-    <br data-v-275e5b16>
+    <br data-v-98cb203c>
     <button class="n-button n-button--info-type n-button--medium-type loginConfirm left_col"
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #2080f0; --n-color-hover: #4098fc; --n-color-pressed: #1060c9; --n-color-focus: #4098fc; --n-color-disabled: #2080f0; --n-ripple-color: #2080f0; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #2080f0; --n-border-hover: 1px solid #4098fc; --n-border-pressed: 1px solid #1060c9; --n-border-focus: 1px solid #4098fc; --n-border-disabled: 1px solid #2080f0; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-275e5b16
+            data-v-98cb203c
     >
       <transition-stub>
       </transition-stub>
@@ -129,7 +129,7 @@ exports[`Login > Cancel 1`] = `
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-275e5b16
+            data-v-98cb203c
     >
       <transition-stub>
       </transition-stub>
@@ -151,14 +151,14 @@ exports[`Login > Cancel 1`] = `
     </button>
   </form>
   <p class="forgotPassword"
-     data-v-275e5b16
+     data-v-98cb203c
   >
     <a class="underline_always color_always"
        href="/password/reset"
        rel
        target
-       data-v-018c0145
-       data-v-275e5b16
+       data-v-b281bf9c
+       data-v-98cb203c
     >
       Forgot Password?
     </a>
@@ -168,22 +168,22 @@ exports[`Login > Cancel 1`] = `
 
 exports[`Login > Cancel 2`] = `
 <div class="login narrow_content"
-     data-v-275e5b16
+     data-v-98cb203c
 >
   <div class="head"
-       data-v-275e5b16
+       data-v-98cb203c
   >
   </div>
   <h1 class="title"
-      data-v-275e5b16
+      data-v-98cb203c
   >
     Login
   </h1>
   <form class="narrow_display_window"
-        data-v-275e5b16
+        data-v-98cb203c
   >
     <div class="edit_item edit_item_small loginUsernameItem"
-         data-v-275e5b16
+         data-v-98cb203c
     >
       <span class="editLabel loginUsernameLabel">
         Email:
@@ -212,7 +212,7 @@ exports[`Login > Cancel 2`] = `
       <br>
     </div>
     <div class="edit_item edit_item_small"
-         data-v-275e5b16
+         data-v-98cb203c
     >
       <span class="editLabel loginPasswordLabel">
         Password:
@@ -266,12 +266,12 @@ exports[`Login > Cancel 2`] = `
       </div>
       <br>
     </div>
-    <br data-v-275e5b16>
+    <br data-v-98cb203c>
     <button class="n-button n-button--info-type n-button--medium-type loginConfirm left_col"
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #2080f0; --n-color-hover: #4098fc; --n-color-pressed: #1060c9; --n-color-focus: #4098fc; --n-color-disabled: #2080f0; --n-ripple-color: #2080f0; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #2080f0; --n-border-hover: 1px solid #4098fc; --n-border-pressed: 1px solid #1060c9; --n-border-focus: 1px solid #4098fc; --n-border-disabled: 1px solid #2080f0; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-275e5b16
+            data-v-98cb203c
     >
       <transition-stub>
       </transition-stub>
@@ -295,7 +295,7 @@ exports[`Login > Cancel 2`] = `
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-275e5b16
+            data-v-98cb203c
     >
       <transition-stub>
       </transition-stub>
@@ -317,14 +317,14 @@ exports[`Login > Cancel 2`] = `
     </button>
   </form>
   <p class="forgotPassword"
-     data-v-275e5b16
+     data-v-98cb203c
   >
     <a class="underline_always color_always"
        href="/password/reset"
        rel
        target
-       data-v-018c0145
-       data-v-275e5b16
+       data-v-b281bf9c
+       data-v-98cb203c
     >
       Forgot Password?
     </a>
@@ -334,22 +334,22 @@ exports[`Login > Cancel 2`] = `
 
 exports[`Login > Success 1`] = `
 <div class="login narrow_content"
-     data-v-275e5b16
+     data-v-98cb203c
 >
   <div class="head"
-       data-v-275e5b16
+       data-v-98cb203c
   >
   </div>
   <h1 class="title"
-      data-v-275e5b16
+      data-v-98cb203c
   >
     Login
   </h1>
   <form class="narrow_display_window"
-        data-v-275e5b16
+        data-v-98cb203c
   >
     <div class="edit_item edit_item_small loginUsernameItem"
-         data-v-275e5b16
+         data-v-98cb203c
     >
       <span class="editLabel loginUsernameLabel">
         Email:
@@ -378,7 +378,7 @@ exports[`Login > Success 1`] = `
       <br>
     </div>
     <div class="edit_item edit_item_small"
-         data-v-275e5b16
+         data-v-98cb203c
     >
       <span class="editLabel loginPasswordLabel">
         Password:
@@ -432,12 +432,12 @@ exports[`Login > Success 1`] = `
       </div>
       <br>
     </div>
-    <br data-v-275e5b16>
+    <br data-v-98cb203c>
     <button class="n-button n-button--info-type n-button--medium-type loginConfirm left_col"
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #2080f0; --n-color-hover: #4098fc; --n-color-pressed: #1060c9; --n-color-focus: #4098fc; --n-color-disabled: #2080f0; --n-ripple-color: #2080f0; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #2080f0; --n-border-hover: 1px solid #4098fc; --n-border-pressed: 1px solid #1060c9; --n-border-focus: 1px solid #4098fc; --n-border-disabled: 1px solid #2080f0; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-275e5b16
+            data-v-98cb203c
     >
       <transition-stub>
       </transition-stub>
@@ -461,7 +461,7 @@ exports[`Login > Success 1`] = `
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-275e5b16
+            data-v-98cb203c
     >
       <transition-stub>
       </transition-stub>
@@ -483,14 +483,14 @@ exports[`Login > Success 1`] = `
     </button>
   </form>
   <p class="forgotPassword"
-     data-v-275e5b16
+     data-v-98cb203c
   >
     <a class="underline_always color_always"
        href="/password/reset"
        rel
        target
-       data-v-018c0145
-       data-v-275e5b16
+       data-v-b281bf9c
+       data-v-98cb203c
     >
       Forgot Password?
     </a>
@@ -500,22 +500,22 @@ exports[`Login > Success 1`] = `
 
 exports[`Login > Success 2`] = `
 <div class="login narrow_content"
-     data-v-275e5b16
+     data-v-98cb203c
 >
   <div class="head"
-       data-v-275e5b16
+       data-v-98cb203c
   >
   </div>
   <h1 class="title"
-      data-v-275e5b16
+      data-v-98cb203c
   >
     Login
   </h1>
   <form class="narrow_display_window"
-        data-v-275e5b16
+        data-v-98cb203c
   >
     <div class="edit_item edit_item_small loginUsernameItem"
-         data-v-275e5b16
+         data-v-98cb203c
     >
       <span class="editLabel loginUsernameLabel">
         Email:
@@ -544,7 +544,7 @@ exports[`Login > Success 2`] = `
       <br>
     </div>
     <div class="edit_item edit_item_small"
-         data-v-275e5b16
+         data-v-98cb203c
     >
       <span class="editLabel loginPasswordLabel">
         Password:
@@ -598,12 +598,12 @@ exports[`Login > Success 2`] = `
       </div>
       <br>
     </div>
-    <br data-v-275e5b16>
+    <br data-v-98cb203c>
     <button class="n-button n-button--info-type n-button--medium-type loginConfirm left_col"
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #2080f0; --n-color-hover: #4098fc; --n-color-pressed: #1060c9; --n-color-focus: #4098fc; --n-color-disabled: #2080f0; --n-ripple-color: #2080f0; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #2080f0; --n-border-hover: 1px solid #4098fc; --n-border-pressed: 1px solid #1060c9; --n-border-focus: 1px solid #4098fc; --n-border-disabled: 1px solid #2080f0; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-275e5b16
+            data-v-98cb203c
     >
       <transition-stub>
       </transition-stub>
@@ -627,7 +627,7 @@ exports[`Login > Success 2`] = `
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-275e5b16
+            data-v-98cb203c
     >
       <transition-stub>
       </transition-stub>
@@ -649,14 +649,14 @@ exports[`Login > Success 2`] = `
     </button>
   </form>
   <p class="forgotPassword"
-     data-v-275e5b16
+     data-v-98cb203c
   >
     <a class="underline_always color_always"
        href="/password/reset"
        rel
        target
-       data-v-018c0145
-       data-v-275e5b16
+       data-v-b281bf9c
+       data-v-98cb203c
     >
       Forgot Password?
     </a>
@@ -666,22 +666,22 @@ exports[`Login > Success 2`] = `
 
 exports[`Login > Wrong password 1`] = `
 <div class="login narrow_content"
-     data-v-275e5b16
+     data-v-98cb203c
 >
   <div class="head"
-       data-v-275e5b16
+       data-v-98cb203c
   >
   </div>
   <h1 class="title"
-      data-v-275e5b16
+      data-v-98cb203c
   >
     Login
   </h1>
   <form class="narrow_display_window"
-        data-v-275e5b16
+        data-v-98cb203c
   >
     <div class="edit_item edit_item_small loginUsernameItem"
-         data-v-275e5b16
+         data-v-98cb203c
     >
       <span class="editLabel loginUsernameLabel">
         Email:
@@ -710,7 +710,7 @@ exports[`Login > Wrong password 1`] = `
       <br>
     </div>
     <div class="edit_item edit_item_small"
-         data-v-275e5b16
+         data-v-98cb203c
     >
       <span class="editLabel loginPasswordLabel">
         Password:
@@ -764,12 +764,12 @@ exports[`Login > Wrong password 1`] = `
       </div>
       <br>
     </div>
-    <br data-v-275e5b16>
+    <br data-v-98cb203c>
     <button class="n-button n-button--info-type n-button--medium-type loginConfirm left_col"
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #2080f0; --n-color-hover: #4098fc; --n-color-pressed: #1060c9; --n-color-focus: #4098fc; --n-color-disabled: #2080f0; --n-ripple-color: #2080f0; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #2080f0; --n-border-hover: 1px solid #4098fc; --n-border-pressed: 1px solid #1060c9; --n-border-focus: 1px solid #4098fc; --n-border-disabled: 1px solid #2080f0; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-275e5b16
+            data-v-98cb203c
     >
       <transition-stub>
       </transition-stub>
@@ -793,7 +793,7 @@ exports[`Login > Wrong password 1`] = `
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-275e5b16
+            data-v-98cb203c
     >
       <transition-stub>
       </transition-stub>
@@ -815,14 +815,14 @@ exports[`Login > Wrong password 1`] = `
     </button>
   </form>
   <p class="forgotPassword"
-     data-v-275e5b16
+     data-v-98cb203c
   >
     <a class="underline_always color_always"
        href="/password/reset"
        rel
        target
-       data-v-018c0145
-       data-v-275e5b16
+       data-v-b281bf9c
+       data-v-98cb203c
     >
       Forgot Password?
     </a>
@@ -832,22 +832,22 @@ exports[`Login > Wrong password 1`] = `
 
 exports[`Login > Wrong password 2`] = `
 <div class="login narrow_content"
-     data-v-275e5b16
+     data-v-98cb203c
 >
   <div class="head"
-       data-v-275e5b16
+       data-v-98cb203c
   >
   </div>
   <h1 class="title"
-      data-v-275e5b16
+      data-v-98cb203c
   >
     Login
   </h1>
   <form class="narrow_display_window"
-        data-v-275e5b16
+        data-v-98cb203c
   >
     <div class="edit_item edit_item_small loginUsernameItem"
-         data-v-275e5b16
+         data-v-98cb203c
     >
       <span class="editLabel loginUsernameLabel">
         Email:
@@ -876,7 +876,7 @@ exports[`Login > Wrong password 2`] = `
       <br>
     </div>
     <div class="edit_item edit_item_small"
-         data-v-275e5b16
+         data-v-98cb203c
     >
       <span class="editLabel loginPasswordLabel">
         Password:
@@ -930,12 +930,12 @@ exports[`Login > Wrong password 2`] = `
       </div>
       <br>
     </div>
-    <br data-v-275e5b16>
+    <br data-v-98cb203c>
     <button class="n-button n-button--info-type n-button--medium-type loginConfirm left_col"
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #2080f0; --n-color-hover: #4098fc; --n-color-pressed: #1060c9; --n-color-focus: #4098fc; --n-color-disabled: #2080f0; --n-ripple-color: #2080f0; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #2080f0; --n-border-hover: 1px solid #4098fc; --n-border-pressed: 1px solid #1060c9; --n-border-focus: 1px solid #4098fc; --n-border-disabled: 1px solid #2080f0; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-275e5b16
+            data-v-98cb203c
     >
       <transition-stub>
       </transition-stub>
@@ -959,7 +959,7 @@ exports[`Login > Wrong password 2`] = `
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-275e5b16
+            data-v-98cb203c
     >
       <transition-stub>
       </transition-stub>
@@ -981,14 +981,14 @@ exports[`Login > Wrong password 2`] = `
     </button>
   </form>
   <p class="forgotPassword"
-     data-v-275e5b16
+     data-v-98cb203c
   >
     <a class="underline_always color_always"
        href="/password/reset"
        rel
        target
-       data-v-018c0145
-       data-v-275e5b16
+       data-v-b281bf9c
+       data-v-98cb203c
     >
       Forgot Password?
     </a>

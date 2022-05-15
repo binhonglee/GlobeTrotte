@@ -10,17 +10,32 @@ def npm_run_build(
   copy_path:str="",
   deps:list=[],
   test_only:bool=False,
+  # pnpm doesn't like it when you move / link node_modules around
+  at_source:bool=False,
   visibility:list=[],
 ):
-  cmd = _set_node_modules() + " && $TOOL run " + cmd
+  this_cmd = " && ".join([
+    _home_path(),
+    _set_node_modules(),
+    "$TOOL run " + cmd
+  ])
 
-  if make_copy:
-    cmd += " && cp $OUTS " + _top_level_dir() + copy_path
+  if at_source:
+    this_cmd = " && ".join([
+      _home_path(),
+      _go_to_top_level(),
+      "cd $PKG_DIR",
+      "$TOOL run " + cmd,
+      _for_loop("$OUTS", "cp -r $ITEM $TMP_DIR"),
+    ])
+  elif make_copy:
+    this_cmd += " && cp $OUTS " + _top_level_dir() + copy_path
+
   return build_rule(
     name = name,
     srcs = srcs,
     outs = outs,
-    cmd = cmd,
+    cmd = this_cmd,
     deps = deps,
     test_only = test_only,
     visibility = visibility,
@@ -38,16 +53,34 @@ def ts_run_build(
   deps:list=[],
   test_only:bool=False,
   visibility:list=[],
+  # pnpm complains about  ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  without first running install
+  run_install:bool=False,
+  root:str=".",
 ):
-  cmd = _set_node_modules() + " && " + _gen_run_typescript(script)
+  cmd = " && ".join([
+    _set_node_modules(),
+    _home_path(),
+    "cd " + root,
+  ])
+
+  if run_install:
+    cmd += " && $TOOLS_NPM i"
+
+  cmd = " && ".join([
+    cmd,
+    _gen_run_typescript(script),
+    _for_loop("$OUTS", "cp -r $ITEM $TMP_DIR"),
+  ])
+
   if make_copy:
-      cmd += " && cp $OUTS " + _top_level_dir() + copy_path
+      cmd += " && " +  _for_loop("$OUTS", "cp -r $ITEM " + _top_level_dir() + copy_path)
   
   return build_rule(
     name = name,
     srcs = srcs +  [script],
     tools = {
       "npx": _get_npx_tool(),
+      "npm": _get_npm_tool(),
       "node": _get_node_tool(),
     },
     cmd = cmd,
@@ -98,7 +131,7 @@ def npm_run(
   return sh_tools_cmd(
     name = name,
     srcs = srcs,
-    cmd = "$TOOL run " + cmd,
+    cmd = "cd $PKG_DIR && $TOOL run " + cmd,
     deps = deps,
     visibility = visibility,
     test_only = test_only,
@@ -136,7 +169,6 @@ def npm_test(
   outs:list=[],
   deps:list=[],
   raw:bool=False,
-  link:bool=False,
   set_home:bool=False,
   result_dir:str=None,
   result_file:str=None,
@@ -161,7 +193,10 @@ def npm_test(
 
   if requires_server is not None:
     cmd = " && ".join([
-      _check_port_running(requires_server, "$TOOLS_NPM run " + server_start_cmd),
+      _check_port_running(
+        requires_server,
+        "$TOOLS_NPM run " + server_start_cmd if server_start_cmd is not None else None,
+      ),
       cmd,
     ])
 
@@ -182,6 +217,7 @@ def npm_test(
 
   cmd = " && ".join([
     _go_to_top_level(),
+    "cd $PKG_DIR",
     cmd,
   ])
 
@@ -375,7 +411,7 @@ def _gen_run_typescript(script_name:str):
     return " ".join([
       "$TOOLS_NPX",
       CONFIG.TYPESCRIPT_TOOL,
-      "./$PKG_DIR/" + script_name,
+      "$TMP_DIR/$PKG_DIR/" + script_name,
     ])
 
   out_name = script_name[:-3] + ".js"
@@ -385,7 +421,7 @@ def _gen_run_typescript(script_name:str):
       "$TOOLS_NPX",
       CONFIG.TYPESCRIPT_TOOL,
       "--bundle",
-      "./$PKG_DIR/" + script_name,
+      "$TMP_DIR/$PKG_DIR/" + script_name,
       "--platform=node",
       "--outdir=" + CONFIG.TYPESCRIPT_OUT_DIR,
       "&&",
@@ -398,7 +434,7 @@ def _gen_run_typescript(script_name:str):
     return " ".join([
       "$TOOLS_NPX",
       CONFIG.TYPESCRIPT_TOOL,
-      "./$PKG_DIR/" + script_name,
+      "$TMP_DIR/$PKG_DIR/" + script_name,
       "--outDir",
       CONFIG.TYPESCRIPT_OUT_DIR,
       "&&",
@@ -409,17 +445,10 @@ def _gen_run_typescript(script_name:str):
   
   fail()
 
-def _check_port_running(port:int, server_cmd:str=None):
-  return " ".join([
-    "if [ ! \\\$(lsof -i:" + str(port) + " | grep -v \"CLOSE_WAIT\") ];",
-    "then echo \"Please make sure server is started at " + str(port) + "\" && exit 1;" if server_cmd is None else "then " + server_cmd + ";",
-    "fi",
-  ])
-
 def _set_node_modules():
   return " &&  ".join([
     "rm -rf node_modules || echo \"Existing 'node_modules' not found.\"",
-    "ln -s " + _top_level_dir() + "node_modules ./",
+    "cp -r " + _top_level_dir() + "node_modules ./",
   ])
 
 def _get_fnm_dir():

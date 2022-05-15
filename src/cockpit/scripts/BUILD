@@ -11,7 +11,8 @@ ts_run_build(
   script = "genRouter.ts",
   srcs = [
     "//:pnpm_config",
-    "//:tsconfig",
+    "//src/cockpit:package_json",
+    "//src/cockpit:tsconfig",
     "//src/cockpit/views:views",
   ],
   outs = ["router.ts", "routes.ts"],
@@ -21,21 +22,8 @@ ts_run_build(
   visibility = [
     "//src/cockpit:core_files",
   ],
-)
-
-ts_binary(
-  name = "gen_report",
-  script = "genReport.ts",
-  srcs = [
-    "//:nycrc",
-    "//:pnpm_config",
-    "//:tsconfig",
-  ],
-  post_run = [
-    "pnpx nyc report",
-  ],
-  test_only = True,
-  deps = ["//:pnpm_install"],
+  run_install = True,
+  root = "src/cockpit",
 )
 
 ts_binary(

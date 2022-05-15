@@ -202,6 +202,502 @@ exports[`Trips > create new trip 1`] = `
       <div class="n-divider__line n-divider__line--left">
       </div>
     </div>
+    <div class="new_trip narrow_content content"
+         id="content"
+    >
+      <div class="head">
+      </div>
+      <h1 class="title">
+        New Trip
+      </h1>
+      <div class="edit_trip newTrip narrow_display_window">
+        <form class="edit_form">
+          <div class="narrow_content">
+            <div class="edit_item edit_item_small">
+              <span class="editLabel editTripNameLabel">
+                Name:
+              </span>
+              <div class="n-input n-input--resizable n-input--focus n-input--stateful editInput editTripName"
+                   style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-count-text-color:rgb(118, 124, 130); --n-color:rgba(255, 255, 255, 1); --n-font-size:14px; --n-border-radius:3px; --n-height:34px; --n-padding-left:12px; --n-padding-right:12px; --n-text-color:rgb(51, 54, 57); --n-caret-color:#18a058; --n-text-decoration-color:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-disabled:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-focus:1px solid #36ad6a; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-icon-size:16px; --n-line-height-textarea:1.6; --n-color-disabled:rgb(250, 250, 252); --n-color-focus:rgba(255, 255, 255, 1); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color:#18a058; --n-caret-color-warning:#f0a020; --n-color-focus-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-loading-color-warning:#f0a020; --n-caret-color-error:#d03050; --n-color-focus-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-loading-color-error:#d03050; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-size:16px; --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-icon-color:rgba(194, 194, 194, 1); --n-icon-color-hover:rgba(146, 146, 146, 1); --n-icon-color-pressed:rgba(175, 175, 175, 1); --n-icon-color-disabled:rgba(209, 209, 209, 1); --n-suffix-text-color:rgb(51, 54, 57);"
+              >
+                <div class="n-input-wrapper">
+                  <div class="n-input__input">
+                    <input type="text"
+                           class="n-input__input-el"
+                           placeholder
+                           maxlength="50"
+                           size="20"
+                           style
+                    >
+                  </div>
+                  <div class="n-input__suffix">
+                  </div>
+                </div>
+                <div class="n-input__border">
+                </div>
+                <div class="n-input__state-border">
+                </div>
+              </div>
+              <br>
+            </div>
+            <div class="edit_item edit_item_large">
+              <span class="editLabel editTripDescriptionLabel">
+                Description:
+              </span>
+              <div class="n-input n-input--textarea n-input--resizable n-input--stateful editInput editTripDescription"
+                   style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-count-text-color:rgb(118, 124, 130); --n-color:rgba(255, 255, 255, 1); --n-font-size:14px; --n-border-radius:3px; --n-height:34px; --n-padding-left:12px; --n-padding-right:12px; --n-text-color:rgb(51, 54, 57); --n-caret-color:#18a058; --n-text-decoration-color:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-disabled:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-focus:1px solid #36ad6a; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-icon-size:16px; --n-line-height-textarea:1.6; --n-color-disabled:rgb(250, 250, 252); --n-color-focus:rgba(255, 255, 255, 1); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color:#18a058; --n-caret-color-warning:#f0a020; --n-color-focus-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-loading-color-warning:#f0a020; --n-caret-color-error:#d03050; --n-color-focus-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-loading-color-error:#d03050; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-size:16px; --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-icon-color:rgba(194, 194, 194, 1); --n-icon-color-hover:rgba(146, 146, 146, 1); --n-icon-color-pressed:rgba(175, 175, 175, 1); --n-icon-color-disabled:rgba(209, 209, 209, 1); --n-suffix-text-color:rgb(51, 54, 57);"
+              >
+                <div class="n-input-wrapper">
+                  <div class="n-input__textarea n-scrollbar"
+                       role="none"
+                       style="--n-scrollbar-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-scrollbar-color:rgba(0, 0, 0, 0.25); --n-scrollbar-color-hover:rgba(0, 0, 0, 0.4); --n-scrollbar-border-radius:5px; --n-scrollbar-width:5px; --n-scrollbar-height:5px;"
+                  >
+                    <textarea class="n-input__textarea-el"
+                              rows="3"
+                              placeholder
+                              maxlength="500"
+                    >
+                    </textarea>
+                    <div class="n-scrollbar-rail n-scrollbar-rail--vertical n-scrollbar-rail--disabled"
+                         aria-hidden="true"
+                    >
+                    </div>
+                    <div class="n-scrollbar-rail n-scrollbar-rail--horizontal n-scrollbar-rail--disabled"
+                         aria-hidden="true"
+                    >
+                    </div>
+                  </div>
+                  <div class="n-input__suffix">
+                  </div>
+                </div>
+                <div class="n-input__border">
+                </div>
+                <div class="n-input__state-border">
+                </div>
+                <span class="n-input-word-count">
+                  0 / 500
+                </span>
+              </div>
+              <br>
+            </div>
+            <div class="editTripPrivacy">
+              <span class="editLabel">
+                Private:
+              </span>
+              <div class="editInput">
+                <div role="switch"
+                     aria-checked="true"
+                     class="n-switch n-switch--active n-switch--round editPrivacyToggle"
+                     tabindex="0"
+                     style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-button-border-radius:3px; --n-button-box-shadow:0 1px 4px 0 rgba(0, 0, 0, 0.3), inset 0 0 1px 0 rgba(0, 0, 0, 0.05); --n-button-color:#FFF; --n-button-width:18px; --n-button-width-pressed:24px; --n-button-height:18px; --n-height:22px; --n-offset:2px; --n-opacity-disabled:0.5; --n-rail-border-radius:3px; --n-rail-color:rgba(0, 0, 0, 0.14); --n-rail-color-active:#18a058; --n-rail-height:22px; --n-rail-width:40px; --n-width:40px; --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color:#18a058; --n-text-color:white; --n-icon-color:rgb(118, 124, 130);"
+                >
+                  <div class="n-switch__rail"
+                       aria-hidden="true"
+                  >
+                    <div class="n-switch__button">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="editCity">
+              <span class="editLabel">
+                Cities:
+              </span>
+              <div class="n-select editInput">
+                <div class="n-base-selection n-base-selection--multiple"
+                     style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-border:1px solid rgb(224, 224, 230); --n-border-active:1px solid #18a058; --n-border-focus:1px solid #36ad6a; --n-border-hover:1px solid #36ad6a; --n-border-radius:3px; --n-box-shadow-active:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-hover:none; --n-caret-color:#18a058; --n-color:rgba(255, 255, 255, 1); --n-color-active:rgba(255, 255, 255, 1); --n-color-disabled:rgb(250, 250, 252); --n-font-size:14px; --n-height:34px; --n-padding-single:0 26px 0 12px; --n-padding-multiple:3px 26px 0 12px; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-text-color:rgb(51, 54, 57); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-arrow-color:rgba(194, 194, 194, 1); --n-arrow-color-disabled:rgba(209, 209, 209, 1); --n-loading-color:#18a058; --n-color-active-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-active-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-hover-warning:none; --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-border-active-warning:1px solid #f0a020; --n-color-active-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-active-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-hover-error:none; --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-border-active-error:1px solid #d03050; --n-clear-size:16px; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-arrow-size:16px;"
+                >
+                  <div class="n-base-selection-tags"
+                       tabindex="0"
+                  >
+                    <div class="n-base-selection-input-tag">
+                      <input tabindex="-1"
+                             class="n-base-selection-input-tag__input"
+                      >
+                      <span class="n-base-selection-input-tag__mirror">
+                      </span>
+                    </div>
+                    <div class="n-base-loading n-base-suffix"
+                         role="img"
+                         aria-label="loading"
+                    >
+                      <div class="n-base-loading__placeholder">
+                        <div class="n-base-clear">
+                          <div class="n-base-clear__placeholder">
+                            <i class="n-base-icon n-base-suffix__arrow">
+                              <svg viewbox="0 0 16 16"
+                                   fill="none"
+                                   xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path d="M3.14645 5.64645C3.34171 5.45118 3.65829 5.45118 3.85355 5.64645L8 9.79289L12.1464 5.64645C12.3417 5.45118 12.6583 5.45118 12.8536 5.64645C13.0488 5.84171 13.0488 6.15829 12.8536 6.35355L8.35355 10.8536C8.15829 11.0488 7.84171 11.0488 7.64645 10.8536L3.14645 6.35355C2.95118 6.15829 2.95118 5.84171 3.14645 5.64645Z"
+                                      fill="currentColor"
+                                >
+                                </path>
+                              </svg>
+                            </i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="n-base-selection-placeholder n-base-selection-overlay">
+                  </div>
+                  <div class="n-base-selection__border">
+                  </div>
+                  <div class="n-base-selection__state-border">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="edit_days narrow_content"
+               data-v-34887b8e
+          >
+            <div class="n-card n-card--bordered n-card--hoverable editDay day1"
+                 data-v-34887b8e
+                 style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-border-radius:3px; --n-color:#fff; --n-color-modal:#fff; --n-color-popover:#fff; --n-color-target:#18a058; --n-text-color:rgb(51, 54, 57); --n-line-height:1.6; --n-action-color:rgb(250, 250, 252); --n-title-text-color:rgb(31, 34, 37); --n-title-font-weight:500; --n-close-color:rgba(122, 122, 122, 1); --n-close-color-hover:rgba(89, 89, 89, 1); --n-close-color-pressed:rgba(149, 149, 149, 1); --n-border-color:rgb(239, 239, 245); --n-box-shadow:0 1px 2px -2px rgba(0, 0, 0, 0.08), 0 3px 6px 0 rgba(0, 0, 0, 0.06), 0 5px 12px 4px rgba(0, 0, 0, 0.04); --n-padding-top:19px; --n-padding-bottom:20px; --n-padding-left:24px; --n-font-size:14px; --n-title-font-size:18px; --n-close-size:18px;"
+            >
+              <div class="n-card__content"
+                   role="none"
+                   style="padding: 0px;"
+              >
+                <div class="editDayCardContent"
+                     data-v-34887b8e
+                >
+                  <div class="editDayTitle"
+                       data-v-34887b8e
+                  >
+                    <b data-v-34887b8e>
+                      Day 1
+                    </b>
+                    <button class="n-button n-button--error-type n-button--medium-type n-button--secondary removeDay right_button"
+                            tabindex="0"
+                            type="button"
+                            data-v-34887b8e
+                            style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:rgba(208, 48, 80, 0.16); --n-color-hover:rgba(208, 48, 80, 0.22); --n-color-pressed:rgba(208, 48, 80, 0.28); --n-color-focus:rgba(208, 48, 80, 0.22); --n-color-disabled:rgba(46, 51, 56, 0.05); --n-ripple-color:#0000; --n-text-color:#d03050; --n-text-color-hover:#d03050; --n-text-color-pressed:#d03050; --n-text-color-focus:#d03050; --n-text-color-disabled:#d03050; --n-border:1px solid #d03050; --n-border-hover:1px solid #de576d; --n-border-pressed:1px solid #ab1f3f; --n-border-focus:1px solid #de576d; --n-border-disabled:1px solid #d03050; --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
+                    >
+                      <span class="n-button__content">
+                        <i role="img"
+                           class="n-icon"
+                           data-v-34887b8e
+                           style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg"
+                               xmlns:xlink="http://www.w3.org/1999/xlink"
+                               viewbox="0 0 512 512"
+                               data-v-34887b8e
+                          >
+                            <path fill="none"
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="32"
+                                  d="M368 368L144 144"
+                            >
+                            </path>
+                            <path fill="none"
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="32"
+                                  d="M368 144L144 368"
+                            >
+                            </path>
+                          </svg>
+                        </i>
+                        Delete this day
+                      </span>
+                      <div aria-hidden="true"
+                           class="n-base-wave"
+                      >
+                      </div>
+                    </button>
+                  </div>
+                  <div class="edit_places editPlaces"
+                       data-v-34887b8e
+                  >
+                    <ul class="places">
+                      <li class="place">
+                        <div class="editPlace place0">
+                          <div class="n-input n-input--resizable n-input--stateful inputPlaceLabel"
+                               style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-count-text-color:rgb(118, 124, 130); --n-color:rgba(255, 255, 255, 1); --n-font-size:14px; --n-border-radius:3px; --n-height:34px; --n-padding-left:12px; --n-padding-right:12px; --n-text-color:rgb(51, 54, 57); --n-caret-color:#18a058; --n-text-decoration-color:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-disabled:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-focus:1px solid #36ad6a; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-icon-size:16px; --n-line-height-textarea:1.6; --n-color-disabled:rgb(250, 250, 252); --n-color-focus:rgba(255, 255, 255, 1); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color:#18a058; --n-caret-color-warning:#f0a020; --n-color-focus-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-loading-color-warning:#f0a020; --n-caret-color-error:#d03050; --n-color-focus-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-loading-color-error:#d03050; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-size:16px; --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-icon-color:rgba(194, 194, 194, 1); --n-icon-color-hover:rgba(146, 146, 146, 1); --n-icon-color-pressed:rgba(175, 175, 175, 1); --n-icon-color-disabled:rgba(209, 209, 209, 1); --n-suffix-text-color:rgb(51, 54, 57);"
+                          >
+                            <div class="n-input-wrapper">
+                              <div class="n-input__input">
+                                <input type="text"
+                                       class="n-input__input-el"
+                                       placeholder="Place Name (eg. Golden Gate Bridge)"
+                                       size="20"
+                                       style
+                                >
+                                <div class="n-input__placeholder">
+                                  <span>
+                                    Place Name (eg. Golden Gate Bridge)
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="n-input__border">
+                            </div>
+                            <div class="n-input__state-border">
+                            </div>
+                          </div>
+                          <div class="n-input n-input--resizable n-input--stateful inputPlaceLink"
+                               style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-count-text-color:rgb(118, 124, 130); --n-color:rgba(255, 255, 255, 1); --n-font-size:14px; --n-border-radius:3px; --n-height:34px; --n-padding-left:12px; --n-padding-right:12px; --n-text-color:rgb(51, 54, 57); --n-caret-color:#18a058; --n-text-decoration-color:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-disabled:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-focus:1px solid #36ad6a; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-icon-size:16px; --n-line-height-textarea:1.6; --n-color-disabled:rgb(250, 250, 252); --n-color-focus:rgba(255, 255, 255, 1); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color:#18a058; --n-caret-color-warning:#f0a020; --n-color-focus-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-loading-color-warning:#f0a020; --n-caret-color-error:#d03050; --n-color-focus-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-loading-color-error:#d03050; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-size:16px; --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-icon-color:rgba(194, 194, 194, 1); --n-icon-color-hover:rgba(146, 146, 146, 1); --n-icon-color-pressed:rgba(175, 175, 175, 1); --n-icon-color-disabled:rgba(209, 209, 209, 1); --n-suffix-text-color:rgb(51, 54, 57);"
+                          >
+                            <div class="n-input-wrapper">
+                              <div class="n-input__input">
+                                <input type="text"
+                                       class="n-input__input-el"
+                                       placeholder="Link (eg. Google Map link)"
+                                       size="20"
+                                       style
+                                >
+                                <div class="n-input__placeholder">
+                                  <span>
+                                    Link (eg. Google Map link)
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="n-input__border">
+                            </div>
+                            <div class="n-input__state-border">
+                            </div>
+                          </div>
+                          <br>
+                          <div class="n-input n-input--textarea n-input--resizable n-input--stateful inputPlaceDesc"
+                               style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-count-text-color:rgb(118, 124, 130); --n-color:rgba(255, 255, 255, 1); --n-font-size:14px; --n-border-radius:3px; --n-height:34px; --n-padding-left:12px; --n-padding-right:12px; --n-text-color:rgb(51, 54, 57); --n-caret-color:#18a058; --n-text-decoration-color:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-disabled:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-focus:1px solid #36ad6a; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-icon-size:16px; --n-line-height-textarea:1.6; --n-color-disabled:rgb(250, 250, 252); --n-color-focus:rgba(255, 255, 255, 1); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color:#18a058; --n-caret-color-warning:#f0a020; --n-color-focus-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-loading-color-warning:#f0a020; --n-caret-color-error:#d03050; --n-color-focus-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-loading-color-error:#d03050; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-size:16px; --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-icon-color:rgba(194, 194, 194, 1); --n-icon-color-hover:rgba(146, 146, 146, 1); --n-icon-color-pressed:rgba(175, 175, 175, 1); --n-icon-color-disabled:rgba(209, 209, 209, 1); --n-suffix-text-color:rgb(51, 54, 57);"
+                          >
+                            <div class="n-input-wrapper">
+                              <div class="n-input__textarea n-scrollbar"
+                                   role="none"
+                                   style="--n-scrollbar-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-scrollbar-color:rgba(0, 0, 0, 0.25); --n-scrollbar-color-hover:rgba(0, 0, 0, 0.4); --n-scrollbar-border-radius:5px; --n-scrollbar-width:5px; --n-scrollbar-height:5px;"
+                              >
+                                <textarea class="n-input__textarea-el"
+                                          rows="3"
+                                          placeholder="Elaborate more about why you include this place in the trip!"
+                                >
+                                </textarea>
+                                <div class="n-input__placeholder"
+                                     style="top: 0px;"
+                                >
+                                  Elaborate more about why you include this place in the trip!
+                                </div>
+                                <div class="n-scrollbar-rail n-scrollbar-rail--vertical n-scrollbar-rail--disabled"
+                                     aria-hidden="true"
+                                >
+                                </div>
+                                <div class="n-scrollbar-rail n-scrollbar-rail--horizontal n-scrollbar-rail--disabled"
+                                     aria-hidden="true"
+                                >
+                                </div>
+                              </div>
+                            </div>
+                            <div class="n-input__border">
+                            </div>
+                            <div class="n-input__state-border">
+                            </div>
+                          </div>
+                          <button class="n-button n-button--error-type n-button--medium-type n-button--secondary removePlace wide_button"
+                                  tabindex="0"
+                                  type="button"
+                                  style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:rgba(208, 48, 80, 0.16); --n-color-hover:rgba(208, 48, 80, 0.22); --n-color-pressed:rgba(208, 48, 80, 0.28); --n-color-focus:rgba(208, 48, 80, 0.22); --n-color-disabled:rgba(46, 51, 56, 0.05); --n-ripple-color:#0000; --n-text-color:#d03050; --n-text-color-hover:#d03050; --n-text-color-pressed:#d03050; --n-text-color-focus:#d03050; --n-text-color-disabled:#d03050; --n-border:1px solid #d03050; --n-border-hover:1px solid #de576d; --n-border-pressed:1px solid #ab1f3f; --n-border-focus:1px solid #de576d; --n-border-disabled:1px solid #d03050; --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
+                          >
+                            <span class="n-button__content">
+                              <i role="img"
+                                 class="n-icon"
+                                 style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
+                              >
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     viewbox="0 0 512 512"
+                                >
+                                  <path fill="none"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="32"
+                                        d="M368 368L144 144"
+                                  >
+                                  </path>
+                                  <path fill="none"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="32"
+                                        d="M368 144L144 368"
+                                  >
+                                  </path>
+                                </svg>
+                              </i>
+                              Delete this place
+                            </span>
+                            <div aria-hidden="true"
+                                 class="n-base-wave"
+                            >
+                            </div>
+                          </button>
+                        </div>
+                      </li>
+                    </ul>
+                    <div role="separator"
+                         class="n-divider n-divider--no-title editPlaceDivider"
+                         style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-color:rgb(239, 239, 245); --n-text-color:rgb(31, 34, 37); --n-font-weight:500;"
+                    >
+                      <div class="n-divider__line n-divider__line--left">
+                      </div>
+                    </div>
+                    <button class="n-button n-button--default-type n-button--medium-type addPlace wide_button"
+                            tabindex="0"
+                            type="button"
+                            style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:#0000; --n-color-hover:#0000; --n-color-pressed:#0000; --n-color-focus:#0000; --n-color-disabled:#0000; --n-ripple-color:#18a058; --n-text-color:rgb(51, 54, 57); --n-text-color-hover:#36ad6a; --n-text-color-pressed:#0c7a43; --n-text-color-focus:#36ad6a; --n-text-color-disabled:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-pressed:1px solid #0c7a43; --n-border-focus:1px solid #36ad6a; --n-border-disabled:1px solid rgb(224, 224, 230); --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
+                    >
+                      <span class="n-button__content">
+                        <i role="img"
+                           class="n-icon"
+                           style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg"
+                               xmlns:xlink="http://www.w3.org/1999/xlink"
+                               viewbox="0 0 512 512"
+                          >
+                            <path fill="none"
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="32"
+                                  d="M256 112v288"
+                            >
+                            </path>
+                            <path fill="none"
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="32"
+                                  d="M400 256H112"
+                            >
+                            </path>
+                          </svg>
+                        </i>
+                        Add another place
+                      </span>
+                      <div aria-hidden="true"
+                           class="n-base-wave"
+                      >
+                      </div>
+                      <div aria-hidden="true"
+                           class="n-button__border"
+                      >
+                      </div>
+                      <div aria-hidden="true"
+                           class="n-button__state-border"
+                      >
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="n-button n-button--default-type n-button--medium-type addDay right_button"
+                    tabindex="0"
+                    type="button"
+                    data-v-34887b8e
+                    style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:#0000; --n-color-hover:#0000; --n-color-pressed:#0000; --n-color-focus:#0000; --n-color-disabled:#0000; --n-ripple-color:#18a058; --n-text-color:rgb(51, 54, 57); --n-text-color-hover:#36ad6a; --n-text-color-pressed:#0c7a43; --n-text-color-focus:#36ad6a; --n-text-color-disabled:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-pressed:1px solid #0c7a43; --n-border-focus:1px solid #36ad6a; --n-border-disabled:1px solid rgb(224, 224, 230); --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
+            >
+              <span class="n-button__content">
+                <i role="img"
+                   class="n-icon"
+                   data-v-34887b8e
+                   style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       xmlns:xlink="http://www.w3.org/1999/xlink"
+                       viewbox="0 0 512 512"
+                       data-v-34887b8e
+                  >
+                    <path fill="none"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="32"
+                          d="M256 112v288"
+                    >
+                    </path>
+                    <path fill="none"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="32"
+                          d="M400 256H112"
+                    >
+                    </path>
+                  </svg>
+                </i>
+                Add another day
+              </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
+            </button>
+          </div>
+          <div class="confirmationButtons narrow_content">
+            <button class="n-button n-button--info-type n-button--medium-type saveEditTrip left_col"
+                    tabindex="0"
+                    type="button"
+                    style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:#2080f0; --n-color-hover:#4098fc; --n-color-pressed:#1060c9; --n-color-focus:#4098fc; --n-color-disabled:#2080f0; --n-ripple-color:#2080f0; --n-text-color:#FFF; --n-text-color-hover:#FFF; --n-text-color-pressed:#FFF; --n-text-color-focus:#FFF; --n-text-color-disabled:#FFF; --n-border:1px solid #2080f0; --n-border-hover:1px solid #4098fc; --n-border-pressed:1px solid #1060c9; --n-border-focus:1px solid #4098fc; --n-border-disabled:1px solid #2080f0; --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
+            >
+              <span class="n-button__content">
+                Save
+              </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
+            </button>
+            <button class="n-button n-button--default-type n-button--medium-type cancelEditTrip right_col"
+                    tabindex="0"
+                    type="button"
+                    style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:#0000; --n-color-hover:#0000; --n-color-pressed:#0000; --n-color-focus:#0000; --n-color-disabled:#0000; --n-ripple-color:#18a058; --n-text-color:rgb(51, 54, 57); --n-text-color-hover:#36ad6a; --n-text-color-pressed:#0c7a43; --n-text-color-focus:#36ad6a; --n-text-color-disabled:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-pressed:1px solid #0c7a43; --n-border-focus:1px solid #36ad6a; --n-border-disabled:1px solid rgb(224, 224, 230); --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
+            >
+              <span class="n-button__content">
+                Cancel
+              </span>
+              <div aria-hidden="true"
+                   class="n-base-wave"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__border"
+              >
+              </div>
+              <div aria-hidden="true"
+                   class="n-button__state-border"
+              >
+              </div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
     <div id="footerMargin">
       <div id="footer">
       </div>
@@ -597,10 +1093,10 @@ exports[`Trips > create new trip 2`] = `
             </div>
           </div>
           <div class="edit_days narrow_content"
-               data-v-5e3be1cc
+               data-v-34887b8e
           >
             <div class="n-card n-card--bordered n-card--hoverable editDay day1"
-                 data-v-5e3be1cc
+                 data-v-34887b8e
                  style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-border-radius:3px; --n-color:#fff; --n-color-modal:#fff; --n-color-popover:#fff; --n-color-target:#18a058; --n-text-color:rgb(51, 54, 57); --n-line-height:1.6; --n-action-color:rgb(250, 250, 252); --n-title-text-color:rgb(31, 34, 37); --n-title-font-weight:500; --n-close-color:rgba(122, 122, 122, 1); --n-close-color-hover:rgba(89, 89, 89, 1); --n-close-color-pressed:rgba(149, 149, 149, 1); --n-border-color:rgb(239, 239, 245); --n-box-shadow:0 1px 2px -2px rgba(0, 0, 0, 0.08), 0 3px 6px 0 rgba(0, 0, 0, 0.06), 0 5px 12px 4px rgba(0, 0, 0, 0.04); --n-padding-top:19px; --n-padding-bottom:20px; --n-padding-left:24px; --n-font-size:14px; --n-title-font-size:18px; --n-close-size:18px;"
             >
               <div class="n-card__content"
@@ -608,30 +1104,30 @@ exports[`Trips > create new trip 2`] = `
                    style="padding: 0px;"
               >
                 <div class="editDayCardContent"
-                     data-v-5e3be1cc
+                     data-v-34887b8e
                 >
                   <div class="editDayTitle"
-                       data-v-5e3be1cc
+                       data-v-34887b8e
                   >
-                    <b data-v-5e3be1cc>
+                    <b data-v-34887b8e>
                       Day 1
                     </b>
                     <button class="n-button n-button--error-type n-button--medium-type n-button--secondary removeDay right_button"
                             tabindex="0"
                             type="button"
-                            data-v-5e3be1cc
+                            data-v-34887b8e
                             style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:rgba(208, 48, 80, 0.16); --n-color-hover:rgba(208, 48, 80, 0.22); --n-color-pressed:rgba(208, 48, 80, 0.28); --n-color-focus:rgba(208, 48, 80, 0.22); --n-color-disabled:rgba(46, 51, 56, 0.05); --n-ripple-color:#0000; --n-text-color:#d03050; --n-text-color-hover:#d03050; --n-text-color-pressed:#d03050; --n-text-color-focus:#d03050; --n-text-color-disabled:#d03050; --n-border:1px solid #d03050; --n-border-hover:1px solid #de576d; --n-border-pressed:1px solid #ab1f3f; --n-border-focus:1px solid #de576d; --n-border-disabled:1px solid #d03050; --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
                     >
                       <span class="n-button__content">
                         <i role="img"
                            class="n-icon"
-                           data-v-5e3be1cc
+                           data-v-34887b8e
                            style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg"
                                xmlns:xlink="http://www.w3.org/1999/xlink"
                                viewbox="0 0 512 512"
-                               data-v-5e3be1cc
+                               data-v-34887b8e
                           >
                             <path fill="none"
                                   stroke="currentColor"
@@ -660,7 +1156,7 @@ exports[`Trips > create new trip 2`] = `
                     </button>
                   </div>
                   <div class="edit_places editPlaces"
-                       data-v-5e3be1cc
+                       data-v-34887b8e
                   >
                     <ul class="places">
                       <li class="place">
@@ -831,7 +1327,7 @@ exports[`Trips > create new trip 2`] = `
               </div>
             </div>
             <div class="n-card n-card--bordered n-card--hoverable editDay day2"
-                 data-v-5e3be1cc
+                 data-v-34887b8e
                  style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-border-radius:3px; --n-color:#fff; --n-color-modal:#fff; --n-color-popover:#fff; --n-color-target:#18a058; --n-text-color:rgb(51, 54, 57); --n-line-height:1.6; --n-action-color:rgb(250, 250, 252); --n-title-text-color:rgb(31, 34, 37); --n-title-font-weight:500; --n-close-color:rgba(122, 122, 122, 1); --n-close-color-hover:rgba(89, 89, 89, 1); --n-close-color-pressed:rgba(149, 149, 149, 1); --n-border-color:rgb(239, 239, 245); --n-box-shadow:0 1px 2px -2px rgba(0, 0, 0, 0.08), 0 3px 6px 0 rgba(0, 0, 0, 0.06), 0 5px 12px 4px rgba(0, 0, 0, 0.04); --n-padding-top:19px; --n-padding-bottom:20px; --n-padding-left:24px; --n-font-size:14px; --n-title-font-size:18px; --n-close-size:18px;"
             >
               <div class="n-card__content"
@@ -839,30 +1335,30 @@ exports[`Trips > create new trip 2`] = `
                    style="padding: 0px;"
               >
                 <div class="editDayCardContent"
-                     data-v-5e3be1cc
+                     data-v-34887b8e
                 >
                   <div class="editDayTitle"
-                       data-v-5e3be1cc
+                       data-v-34887b8e
                   >
-                    <b data-v-5e3be1cc>
+                    <b data-v-34887b8e>
                       Day 2
                     </b>
                     <button class="n-button n-button--error-type n-button--medium-type n-button--secondary removeDay right_button"
                             tabindex="0"
                             type="button"
-                            data-v-5e3be1cc
+                            data-v-34887b8e
                             style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:rgba(208, 48, 80, 0.16); --n-color-hover:rgba(208, 48, 80, 0.22); --n-color-pressed:rgba(208, 48, 80, 0.28); --n-color-focus:rgba(208, 48, 80, 0.22); --n-color-disabled:rgba(46, 51, 56, 0.05); --n-ripple-color:#0000; --n-text-color:#d03050; --n-text-color-hover:#d03050; --n-text-color-pressed:#d03050; --n-text-color-focus:#d03050; --n-text-color-disabled:#d03050; --n-border:1px solid #d03050; --n-border-hover:1px solid #de576d; --n-border-pressed:1px solid #ab1f3f; --n-border-focus:1px solid #de576d; --n-border-disabled:1px solid #d03050; --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
                     >
                       <span class="n-button__content">
                         <i role="img"
                            class="n-icon"
-                           data-v-5e3be1cc
+                           data-v-34887b8e
                            style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg"
                                xmlns:xlink="http://www.w3.org/1999/xlink"
                                viewbox="0 0 512 512"
-                               data-v-5e3be1cc
+                               data-v-34887b8e
                           >
                             <path fill="none"
                                   stroke="currentColor"
@@ -891,7 +1387,7 @@ exports[`Trips > create new trip 2`] = `
                     </button>
                   </div>
                   <div class="edit_places editPlaces"
-                       data-v-5e3be1cc
+                       data-v-34887b8e
                   >
                     <ul class="places">
                       <li class="place">
@@ -1079,19 +1575,19 @@ exports[`Trips > create new trip 2`] = `
             <button class="n-button n-button--default-type n-button--medium-type addDay right_button"
                     tabindex="0"
                     type="button"
-                    data-v-5e3be1cc
+                    data-v-34887b8e
                     style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:#0000; --n-color-hover:#0000; --n-color-pressed:#0000; --n-color-focus:#0000; --n-color-disabled:#0000; --n-ripple-color:#18a058; --n-text-color:rgb(51, 54, 57); --n-text-color-hover:#36ad6a; --n-text-color-pressed:#0c7a43; --n-text-color-focus:#36ad6a; --n-text-color-disabled:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-pressed:1px solid #0c7a43; --n-border-focus:1px solid #36ad6a; --n-border-disabled:1px solid rgb(224, 224, 230); --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
             >
               <span class="n-button__content">
                 <i role="img"
                    class="n-icon"
-                   data-v-5e3be1cc
+                   data-v-34887b8e
                    style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg"
                        xmlns:xlink="http://www.w3.org/1999/xlink"
                        viewbox="0 0 512 512"
-                       data-v-5e3be1cc
+                       data-v-34887b8e
                   >
                     <path fill="none"
                           stroke="currentColor"
@@ -1367,8 +1863,23 @@ exports[`Trips > search for the trip 1`] = `
             <div class="n-menu-item-content-header"
                  role="none"
             >
-              <a href="/user/testuser2">
-                My Account
+              <a href="/login">
+                Login
+              </a>
+            </div>
+          </div>
+        </div>
+        <div role="menuitem"
+             class="n-menu-item"
+        >
+          <div role="none"
+               class="n-menu-item-content"
+          >
+            <div class="n-menu-item-content-header"
+                 role="none"
+            >
+              <a href="/register">
+                Register
               </a>
             </div>
           </div>
@@ -1382,6 +1893,160 @@ exports[`Trips > search for the trip 1`] = `
          style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-color:rgb(239, 239, 245); --n-text-color:rgb(31, 34, 37); --n-font-weight:500;"
     >
       <div class="n-divider__line n-divider__line--left">
+      </div>
+    </div>
+    <div class="search_trip content"
+         id="content"
+         data-v-2c98b13a
+    >
+      <div class="head"
+           data-v-2c98b13a
+      >
+      </div>
+      <h1 class="title"
+          data-v-2c98b13a
+      >
+        Search Trip
+      </h1>
+      <form class="tripSearchForm"
+            data-v-2c98b13a
+      >
+        <div class="n-input n-input--resizable n-input--stateful tripSearchQueryInput"
+             data-v-2c98b13a
+             style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-count-text-color:rgb(118, 124, 130); --n-color:rgba(255, 255, 255, 1); --n-font-size:14px; --n-border-radius:3px; --n-height:34px; --n-padding-left:12px; --n-padding-right:12px; --n-text-color:rgb(51, 54, 57); --n-caret-color:#18a058; --n-text-decoration-color:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-disabled:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-focus:1px solid #36ad6a; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-icon-size:16px; --n-line-height-textarea:1.6; --n-color-disabled:rgb(250, 250, 252); --n-color-focus:rgba(255, 255, 255, 1); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color:#18a058; --n-caret-color-warning:#f0a020; --n-color-focus-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-loading-color-warning:#f0a020; --n-caret-color-error:#d03050; --n-color-focus-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-loading-color-error:#d03050; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-size:16px; --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-icon-color:rgba(194, 194, 194, 1); --n-icon-color-hover:rgba(146, 146, 146, 1); --n-icon-color-pressed:rgba(175, 175, 175, 1); --n-icon-color-disabled:rgba(209, 209, 209, 1); --n-suffix-text-color:rgb(51, 54, 57);"
+        >
+          <div class="n-input-wrapper">
+            <div class="n-input__input">
+              <input type="text"
+                     class="n-input__input-el"
+                     placeholder="weekend"
+                     size="20"
+                     style
+              >
+              <div class="n-input__placeholder">
+                <span>
+                  weekend
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="n-input__border">
+          </div>
+          <div class="n-input__state-border">
+          </div>
+        </div>
+        <div class="n-select tripSearchCityInput"
+             data-v-2c98b13a
+        >
+          <div class="n-base-selection n-base-selection--multiple"
+               style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-border:1px solid rgb(224, 224, 230); --n-border-active:1px solid #18a058; --n-border-focus:1px solid #36ad6a; --n-border-hover:1px solid #36ad6a; --n-border-radius:3px; --n-box-shadow-active:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-hover:none; --n-caret-color:#18a058; --n-color:rgba(255, 255, 255, 1); --n-color-active:rgba(255, 255, 255, 1); --n-color-disabled:rgb(250, 250, 252); --n-font-size:14px; --n-height:34px; --n-padding-single:0 26px 0 12px; --n-padding-multiple:3px 26px 0 12px; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-text-color:rgb(51, 54, 57); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-arrow-color:rgba(194, 194, 194, 1); --n-arrow-color-disabled:rgba(209, 209, 209, 1); --n-loading-color:#18a058; --n-color-active-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-active-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-hover-warning:none; --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-border-active-warning:1px solid #f0a020; --n-color-active-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-active-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-hover-error:none; --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-border-active-error:1px solid #d03050; --n-clear-size:16px; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-arrow-size:16px;"
+          >
+            <div class="n-base-selection-tags"
+                 tabindex="0"
+            >
+              <div class="n-base-selection-input-tag">
+                <input tabindex="-1"
+                       class="n-base-selection-input-tag__input"
+                >
+                <span class="n-base-selection-input-tag__mirror">
+                </span>
+              </div>
+              <div class="n-base-loading n-base-suffix"
+                   role="img"
+                   aria-label="loading"
+              >
+                <div class="n-base-loading__placeholder">
+                  <div class="n-base-clear">
+                    <div class="n-base-clear__placeholder">
+                      <i class="n-base-icon n-base-suffix__arrow">
+                        <svg viewbox="0 0 16 16"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M3.14645 5.64645C3.34171 5.45118 3.65829 5.45118 3.85355 5.64645L8 9.79289L12.1464 5.64645C12.3417 5.45118 12.6583 5.45118 12.8536 5.64645C13.0488 5.84171 13.0488 6.15829 12.8536 6.35355L8.35355 10.8536C8.15829 11.0488 7.84171 11.0488 7.64645 10.8536L3.14645 6.35355C2.95118 6.15829 2.95118 5.84171 3.14645 5.64645Z"
+                                fill="currentColor"
+                          >
+                          </path>
+                        </svg>
+                      </i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="n-base-selection-placeholder n-base-selection-overlay">
+              City
+            </div>
+            <div class="n-base-selection__border">
+            </div>
+            <div class="n-base-selection__state-border">
+            </div>
+          </div>
+        </div>
+        <button class="n-button n-button--default-type n-button--medium-type tripSearchButton"
+                tabindex="0"
+                type="button"
+                data-v-2c98b13a
+                style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:#0000; --n-color-hover:#0000; --n-color-pressed:#0000; --n-color-focus:#0000; --n-color-disabled:#0000; --n-ripple-color:#18a058; --n-text-color:rgb(51, 54, 57); --n-text-color-hover:#36ad6a; --n-text-color-pressed:#0c7a43; --n-text-color-focus:#36ad6a; --n-text-color-disabled:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-pressed:1px solid #0c7a43; --n-border-focus:1px solid #36ad6a; --n-border-disabled:1px solid rgb(224, 224, 230); --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
+        >
+          <span class="n-button__content">
+            Find
+          </span>
+          <div aria-hidden="true"
+               class="n-base-wave"
+          >
+          </div>
+          <div aria-hidden="true"
+               class="n-button__border"
+          >
+          </div>
+          <div aria-hidden="true"
+               class="n-button__state-border"
+          >
+          </div>
+        </button>
+      </form>
+      <div class="tripSearchInitialMessage"
+           data-v-2c98b13a
+      >
+        <div class="narrow_content"
+             data-v-2c98b13a
+        >
+          <div class="n-alert n-alert--show-icon"
+               role="alert"
+               data-v-2c98b13a
+               style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-color:rgb(250, 250, 252); --n-close-color:rgba(122, 122, 122, 1); --n-close-color-hover:rgba(89, 89, 89, 1); --n-close-color-pressed:rgba(149, 149, 149, 1); --n-icon-color:rgb(51, 54, 57); --n-border:1px solid rgb(239, 239, 245); --n-title-text-color:rgb(31, 34, 37); --n-content-text-color:rgb(51, 54, 57); --n-line-height:1.6; --n-border-radius:3px; --n-font-size:14px; --n-title-font-weight:500; --n-icon-size:26px; --n-icon-margin:12px 8px 0 12px; --n-close-size:16px; --n-close-margin:14px 16px 0 0; --n-padding:15px; --n-icon-margin-left:12px; --n-icon-margin-right:8px;"
+          >
+            <div class="n-alert__icon"
+                 aria-hidden="true"
+            >
+              <i role="img"
+                 class="n-icon"
+                 data-v-2c98b13a
+                 style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                     viewbox="0 0 512 512"
+                     data-v-2c98b13a
+                >
+                  <path d="M456.69 421.39L362.6 327.3a173.81 173.81 0 0 0 34.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.81 173.81 0 0 0 327.3 362.6l94.09 94.09a25 25 0 0 0 35.3-35.3zM97.92 222.72a124.8 124.8 0 1 1 124.8 124.8a124.95 124.95 0 0 1-124.8-124.8z"
+                        fill="currentColor"
+                  >
+                  </path>
+                </svg>
+              </i>
+            </div>
+            <div class="n-alert-body">
+              <div class="n-alert-body__title">
+                Search for a trip!
+              </div>
+              <div class="n-alert-body__content">
+                Try searching for "weekend"
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div id="footerMargin">
@@ -1596,19 +2261,19 @@ exports[`Trips > set trip to public 1`] = `
     </div>
     <div class="get_view_trip content"
          id="content"
-         data-v-62d83764
+         data-v-190a080a
     >
       <div class="head"
-           data-v-62d83764
+           data-v-190a080a
       >
       </div>
       <h1 class="title"
-          data-v-62d83764
+          data-v-190a080a
       >
         Trip
       </h1>
       <div class="trip_info narrow_display_window"
-           data-v-62d83764
+           data-v-190a080a
       >
         <div class="edit_trip_info">
           <div class="edit_trip">
@@ -1786,10 +2451,10 @@ exports[`Trips > set trip to public 1`] = `
                 </div>
               </div>
               <div class="edit_days narrow_content"
-                   data-v-5e3be1cc
+                   data-v-34887b8e
               >
                 <div class="n-card n-card--bordered n-card--hoverable editDay day1"
-                     data-v-5e3be1cc
+                     data-v-34887b8e
                      style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-border-radius:3px; --n-color:#fff; --n-color-modal:#fff; --n-color-popover:#fff; --n-color-target:#18a058; --n-text-color:rgb(51, 54, 57); --n-line-height:1.6; --n-action-color:rgb(250, 250, 252); --n-title-text-color:rgb(31, 34, 37); --n-title-font-weight:500; --n-close-color:rgba(122, 122, 122, 1); --n-close-color-hover:rgba(89, 89, 89, 1); --n-close-color-pressed:rgba(149, 149, 149, 1); --n-border-color:rgb(239, 239, 245); --n-box-shadow:0 1px 2px -2px rgba(0, 0, 0, 0.08), 0 3px 6px 0 rgba(0, 0, 0, 0.06), 0 5px 12px 4px rgba(0, 0, 0, 0.04); --n-padding-top:19px; --n-padding-bottom:20px; --n-padding-left:24px; --n-font-size:14px; --n-title-font-size:18px; --n-close-size:18px;"
                 >
                   <div class="n-card__content"
@@ -1797,30 +2462,30 @@ exports[`Trips > set trip to public 1`] = `
                        style="padding: 0px;"
                   >
                     <div class="editDayCardContent"
-                         data-v-5e3be1cc
+                         data-v-34887b8e
                     >
                       <div class="editDayTitle"
-                           data-v-5e3be1cc
+                           data-v-34887b8e
                       >
-                        <b data-v-5e3be1cc>
+                        <b data-v-34887b8e>
                           Day 1
                         </b>
                         <button class="n-button n-button--error-type n-button--medium-type n-button--secondary removeDay right_button"
                                 tabindex="0"
                                 type="button"
-                                data-v-5e3be1cc
+                                data-v-34887b8e
                                 style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:rgba(208, 48, 80, 0.16); --n-color-hover:rgba(208, 48, 80, 0.22); --n-color-pressed:rgba(208, 48, 80, 0.28); --n-color-focus:rgba(208, 48, 80, 0.22); --n-color-disabled:rgba(46, 51, 56, 0.05); --n-ripple-color:#0000; --n-text-color:#d03050; --n-text-color-hover:#d03050; --n-text-color-pressed:#d03050; --n-text-color-focus:#d03050; --n-text-color-disabled:#d03050; --n-border:1px solid #d03050; --n-border-hover:1px solid #de576d; --n-border-pressed:1px solid #ab1f3f; --n-border-focus:1px solid #de576d; --n-border-disabled:1px solid #d03050; --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
                         >
                           <span class="n-button__content">
                             <i role="img"
                                class="n-icon"
-                               data-v-5e3be1cc
+                               data-v-34887b8e
                                style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
                             >
                               <svg xmlns="http://www.w3.org/2000/svg"
                                    xmlns:xlink="http://www.w3.org/1999/xlink"
                                    viewbox="0 0 512 512"
-                                   data-v-5e3be1cc
+                                   data-v-34887b8e
                               >
                                 <path fill="none"
                                       stroke="currentColor"
@@ -1849,7 +2514,7 @@ exports[`Trips > set trip to public 1`] = `
                         </button>
                       </div>
                       <div class="edit_places editPlaces"
-                           data-v-5e3be1cc
+                           data-v-34887b8e
                       >
                         <ul class="places">
                           <li class="place">
@@ -2022,19 +2687,19 @@ exports[`Trips > set trip to public 1`] = `
                 <button class="n-button n-button--default-type n-button--medium-type addDay right_button"
                         tabindex="0"
                         type="button"
-                        data-v-5e3be1cc
+                        data-v-34887b8e
                         style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:#0000; --n-color-hover:#0000; --n-color-pressed:#0000; --n-color-focus:#0000; --n-color-disabled:#0000; --n-ripple-color:#18a058; --n-text-color:rgb(51, 54, 57); --n-text-color-hover:#36ad6a; --n-text-color-pressed:#0c7a43; --n-text-color-focus:#36ad6a; --n-text-color-disabled:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-pressed:1px solid #0c7a43; --n-border-focus:1px solid #36ad6a; --n-border-disabled:1px solid rgb(224, 224, 230); --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
                 >
                   <span class="n-button__content">
                     <i role="img"
                        class="n-icon"
-                       data-v-5e3be1cc
+                       data-v-34887b8e
                        style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg"
                            xmlns:xlink="http://www.w3.org/1999/xlink"
                            viewbox="0 0 512 512"
-                           data-v-5e3be1cc
+                           data-v-34887b8e
                       >
                         <path fill="none"
                               stroke="currentColor"
@@ -2352,22 +3017,22 @@ exports[`Trips > user 2 can't see private trip 1`] = `
     </div>
     <div class="search_trip content"
          id="content"
-         data-v-7666e094
+         data-v-2c98b13a
     >
       <div class="head"
-           data-v-7666e094
+           data-v-2c98b13a
       >
       </div>
       <h1 class="title"
-          data-v-7666e094
+          data-v-2c98b13a
       >
         Search Trip
       </h1>
       <form class="tripSearchForm"
-            data-v-7666e094
+            data-v-2c98b13a
       >
         <div class="n-input n-input--resizable n-input--stateful tripSearchQueryInput"
-             data-v-7666e094
+             data-v-2c98b13a
              style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-count-text-color:rgb(118, 124, 130); --n-color:rgba(255, 255, 255, 1); --n-font-size:14px; --n-border-radius:3px; --n-height:34px; --n-padding-left:12px; --n-padding-right:12px; --n-text-color:rgb(51, 54, 57); --n-caret-color:#18a058; --n-text-decoration-color:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-disabled:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-focus:1px solid #36ad6a; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-icon-size:16px; --n-line-height-textarea:1.6; --n-color-disabled:rgb(250, 250, 252); --n-color-focus:rgba(255, 255, 255, 1); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color:#18a058; --n-caret-color-warning:#f0a020; --n-color-focus-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-loading-color-warning:#f0a020; --n-caret-color-error:#d03050; --n-color-focus-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-loading-color-error:#d03050; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-size:16px; --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-icon-color:rgba(194, 194, 194, 1); --n-icon-color-hover:rgba(146, 146, 146, 1); --n-icon-color-pressed:rgba(175, 175, 175, 1); --n-icon-color-disabled:rgba(209, 209, 209, 1); --n-suffix-text-color:rgb(51, 54, 57);"
         >
           <div class="n-input-wrapper">
@@ -2391,7 +3056,7 @@ exports[`Trips > user 2 can't see private trip 1`] = `
           </div>
         </div>
         <div class="n-select tripSearchCityInput"
-             data-v-7666e094
+             data-v-2c98b13a
         >
           <div class="n-base-selection n-base-selection--multiple"
                style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-border:1px solid rgb(224, 224, 230); --n-border-active:1px solid #18a058; --n-border-focus:1px solid #36ad6a; --n-border-hover:1px solid #36ad6a; --n-border-radius:3px; --n-box-shadow-active:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-hover:none; --n-caret-color:#18a058; --n-color:rgba(255, 255, 255, 1); --n-color-active:rgba(255, 255, 255, 1); --n-color-disabled:rgb(250, 250, 252); --n-font-size:14px; --n-height:34px; --n-padding-single:0 26px 0 12px; --n-padding-multiple:3px 26px 0 12px; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-text-color:rgb(51, 54, 57); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-arrow-color:rgba(194, 194, 194, 1); --n-arrow-color-disabled:rgba(209, 209, 209, 1); --n-loading-color:#18a058; --n-color-active-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-active-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-hover-warning:none; --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-border-active-warning:1px solid #f0a020; --n-color-active-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-active-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-hover-error:none; --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-border-active-error:1px solid #d03050; --n-clear-size:16px; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-arrow-size:16px;"
@@ -2441,7 +3106,7 @@ exports[`Trips > user 2 can't see private trip 1`] = `
         <button class="n-button n-button--default-type n-button--medium-type tripSearchButton"
                 tabindex="0"
                 type="button"
-                data-v-7666e094
+                data-v-2c98b13a
                 style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:#0000; --n-color-hover:#0000; --n-color-pressed:#0000; --n-color-focus:#0000; --n-color-disabled:#0000; --n-ripple-color:#18a058; --n-text-color:rgb(51, 54, 57); --n-text-color-hover:#36ad6a; --n-text-color-pressed:#0c7a43; --n-text-color-focus:#36ad6a; --n-text-color-disabled:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-pressed:1px solid #0c7a43; --n-border-focus:1px solid #36ad6a; --n-border-disabled:1px solid rgb(224, 224, 230); --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
         >
           <span class="n-button__content">
@@ -2462,14 +3127,14 @@ exports[`Trips > user 2 can't see private trip 1`] = `
         </button>
       </form>
       <div class="tripSearchInitialMessage"
-           data-v-7666e094
+           data-v-2c98b13a
       >
         <div class="narrow_content"
-             data-v-7666e094
+             data-v-2c98b13a
         >
           <div class="n-alert n-alert--show-icon"
                role="alert"
-               data-v-7666e094
+               data-v-2c98b13a
                style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-color:rgb(250, 250, 252); --n-close-color:rgba(122, 122, 122, 1); --n-close-color-hover:rgba(89, 89, 89, 1); --n-close-color-pressed:rgba(149, 149, 149, 1); --n-icon-color:rgb(51, 54, 57); --n-border:1px solid rgb(239, 239, 245); --n-title-text-color:rgb(31, 34, 37); --n-content-text-color:rgb(51, 54, 57); --n-line-height:1.6; --n-border-radius:3px; --n-font-size:14px; --n-title-font-weight:500; --n-icon-size:26px; --n-icon-margin:12px 8px 0 12px; --n-close-size:16px; --n-close-margin:14px 16px 0 0; --n-padding:15px; --n-icon-margin-left:12px; --n-icon-margin-right:8px;"
           >
             <div class="n-alert__icon"
@@ -2477,13 +3142,13 @@ exports[`Trips > user 2 can't see private trip 1`] = `
             >
               <i role="img"
                  class="n-icon"
-                 data-v-7666e094
+                 data-v-2c98b13a
                  style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
               >
                 <svg xmlns="http://www.w3.org/2000/svg"
                      xmlns:xlink="http://www.w3.org/1999/xlink"
                      viewbox="0 0 512 512"
-                     data-v-7666e094
+                     data-v-2c98b13a
                 >
                   <path d="M456.69 421.39L362.6 327.3a173.81 173.81 0 0 0 34.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.81 173.81 0 0 0 327.3 362.6l94.09 94.09a25 25 0 0 0 35.3-35.3zM97.92 222.72a124.8 124.8 0 1 1 124.8 124.8a124.95 124.95 0 0 1-124.8-124.8z"
                         fill="currentColor"

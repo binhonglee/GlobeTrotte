@@ -1,11 +1,11 @@
 {
   "defaultCommandTimeout": 7000,
-  "pluginsFile": "src/cockpit/tests/cypress/plugins.ts",
-  "fixturesFolder": "src/cockpit/tests/cypress/fixtures",
-  "integrationFolder": "src/cockpit/tests/cypress/specs",
+  "pluginsFile": "tests/cypress/plugins.ts",
+  "fixturesFolder": "tests/cypress/fixtures",
+  "integrationFolder": "tests/cypress/specs",
   "screenshotsFolder": "cypress/screenshots",
   "videosFolder": "cypress/videos",
-  "supportFile": "src/cockpit/tests/cypress/support.ts",
+  "supportFile": "tests/cypress/support.ts",
   "baseUrl": "http://localhost:3000",
   "reporter": "junit",
   "reporterOptions": {

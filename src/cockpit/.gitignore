@@ -1,0 +1,5 @@
+/cypress/
+/playwright/
+/playwright_coverage/
+vitest_coverage/
+vitest_junit

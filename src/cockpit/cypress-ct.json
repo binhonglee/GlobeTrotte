@@ -1,15 +1,15 @@
 {
   "defaultCommandTimeout": 7000,
-  "pluginsFile": "src/cockpit/tests/cypress/components/plugins.ts",
-  "fixturesFolder": "src/cockpit/tests/cypress/fixtures",
+  "pluginsFile": "tests/cypress/components/plugins.ts",
+  "fixturesFolder": "tests/cypress/fixtures",
   "screenshotsFolder": "cypress/screenshots",
   "videosFolder": "cypress/videos",
-  "supportFile": "src/cockpit/tests/cypress/support.ts",
+  "supportFile": "tests/cypress/support.ts",
   "reporter": "junit",
   "reporterOptions": {
     "mochaFile": "cypress/junit/[hash].xml",
     "toConsole": false
   },
-  "componentFolder": "src/cockpit/tests/cypress/components",
+  "componentFolder": "tests/cypress/components",
   "testFiles": "**/*_cypress.spec.ts"
 }

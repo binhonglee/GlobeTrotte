@@ -3,21 +3,14 @@ subinclude("//build_defs/npm")
 def vitest_dir(
   name:str,
   srcs:list=[],
-  config:str=None,
   deps:list=[],
   visibility:list=[],
 ):
   cmd = "zip -r " + name + ".vitest_dir ./"
-  if config is not None:
-    cmd = " && ".join([
-      "rm vite.config.ts",
-      "mv " + config + " vite.config.ts",
-      cmd,
-    ])
 
   return build_rule(
     name = name,
-    srcs = srcs + [config],
+    srcs = srcs,
     cmd = cmd,
     outs = [name + ".vitest_dir"],
     deps = deps,
@@ -29,8 +22,12 @@ def vitest_tests(
   name:str,
   srcs:list=[],
   vitest_dirs:list=[],
+  config:str=CONFIG.VITEST_CONFIG,
+  root:str=None,
   deps:list=[],
   visibility:list=[],
+  # pnpm complains about  ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  without first running install
+  run_install:bool=False,
 ):
   test_rules = []
 
@@ -38,9 +35,12 @@ def vitest_tests(
     test = vitest_test(
       name = src[:-8].replace("/", "_"),
       src = src,
+      config = config,
+      root = root,
       vitest_dirs = vitest_dirs,
       deps = deps,
       visibility = visibility,
+      run_install = run_install,
     )
     test_rules += [test]
 
@@ -57,8 +57,12 @@ def vitest_test(
   name:str,
   src:str,
   vitest_dirs:list=[],
+  config:str=CONFIG.VITEST_CONFIG,
+  root:str=None,
   deps:list=[],
   visibility:list=[],
+  # pnpm complains about  ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  without first running install
+  run_install:bool=False,
 ):
   pre_build = _set_node_modules()
   if len(vitest_dirs) > 0:
@@ -70,6 +74,12 @@ def vitest_test(
         "done",
       ]),
     ])
+
+  if root is not None:
+    pre_build += " && cd " + root
+  
+  if run_install:
+    pre_build += " && $TOOLS_NPM i"
 
   out_dir = _vitest_out_dir(name)
   if CONFIG.CORE_FILES != "":
@@ -88,6 +98,8 @@ def vitest_test(
         "--reporter=junit",
         "--run",
         "$PKG_DIR/" + src,
+        "-c",
+        "$TOOLS_CONFIG",
       ]),
       "cp vitest_junit test.results",
       "cp vitest_coverage/coverage-final.json test.coverage",
@@ -97,9 +109,15 @@ def vitest_test(
     test_outputs = [out_dir],
     test = True,
     test_only = True,
+    test_tools = {
+      "config": config,
+      "npm": _get_npm_tool(),
+    },
     visibility = visibility,
     labels = ['vitest'],
   )
 
 def _vitest_out_dir(name: str):
   return name + "/.nyc_output"
+
+CONFIG.setdefault("VITEST_CONFIG", "vite.config.ts")

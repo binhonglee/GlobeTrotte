@@ -13,7 +13,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.please
-        key: ${{ runner.os }}-please
+        key: ${{ hashfiles('**/.plzconfig') }}-please
     - name: Use Go
       uses: actions/setup-go@v2
       with:
@@ -23,7 +23,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-store
+        key: ${{ hashfiles('**/package.json') }}-pnpm-store
     - name: Cache node_modules
       id: cache-node-modules
       uses: actions/cache@v1
@@ -39,7 +39,7 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '16.5'
+        node-version: '16.13.1'
     - name: Use Go
       uses: actions/setup-go@v2
       with:
@@ -47,7 +47,7 @@ jobs:
 
     - run: ./scripts/setup.sh -g -s
     - run: ./pleasew go_mod
-    - run: sudo npm i -g pnpm
+    - run: sudo npm i -g pnpm@7.1.0
     - run: cp config/test.kdl config/config.kdl
 
     - run: ./pleasew build --show_all_output //...
@@ -74,13 +74,13 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.please
-        key: ${{ runner.os }}-please
+        key: ${{ hashFiles('**/.plzconfig') }}-please
     - name: Cache pnpm-store
       id: cache-pnpm-store
       uses: actions/cache@v1
       with:
         path: ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-store
+        key: ${{ hashFiles('**/package.json') }}-pnpm-store
     - name: Cache node_modules
       id: cache-node-modules
       uses: actions/cache@v1
@@ -96,23 +96,27 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '16.5'
+        node-version: '16.13.1'
     - name: Use Go
       uses: actions/setup-go@v2
       with:
         go-version: 1.15.x
 
-    - run: ./scripts/setup.sh -g -s -n
+    - run: sudo npm i -g pnpm
+    # - run: ./scripts/setup.sh -g -s -n
+    - run: pnpm i
     - run: ./pleasew go_mod
     - run: cp config/test.kdl config/config.kdl
 
     - run: ./pleasew build "//src/turbine:main"
     - run: ./pleasew run "//src/turbine:main" -- -toFile=true &
     - run: sleep 3
-    - run: pnpm run serve &
+    - run: pnpm run -r serve &
     - run: sleep 3
-    - run: pnpm run test:cypress:plz
-    - run: pnpm run test:vitest -c vitest_playwright.config.ts
+    - run: pnpm run -r test:cypress:plz
+
+    - run: pnpm run install_playwright 
+    - run: pnpm run -r test:playwright
 
     - uses: actions/upload-artifact@v2
       with:
@@ -122,12 +126,12 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: playwright
-        path: 'playwright/'
+        path: 'src/cockpit/playwright/'
       if: ${{ always() }}
     - uses: actions/upload-artifact@v2
       with:
         name: playwright-coverage
-        path: 'playwright_coverage/'
+        path: 'src/cockpit/playwright_coverage/'
     # - uses: actions/upload-artifact@v2
     #   with:
     #     name: e2e-nyc-output
@@ -136,7 +140,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: cypress
-        path: cypress
+        path: 'src/cockpit/cypress'
       if: ${{ always() }}
 
   turbine:
@@ -157,7 +161,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.please
-        key: ${{ runner.os }}-please
+        key: ${{ hashfiles('**/.plzconfig') }}-please
     - name: Use Go
       uses: actions/setup-go@v2
       with:
@@ -182,13 +186,13 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.please
-        key: ${{ runner.os }}-please
+        key: ${{ hashfiles('**/.plzconfig') }}-please
     - name: Cache pnpm-store
       id: cache-pnpm-store
       uses: actions/cache@v1
       with:
         path: ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-store
+        key: ${{ hashfiles('**/package.json') }}-pnpm-store
     - name: Cache node_modules
       id: cache-node-modules
       uses: actions/cache@v1
@@ -198,19 +202,18 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '16.5'
+        node-version: '16.13.1'
 
     - run: sudo npm i -g pnpm
     - run: pnpm i
-    - run: pnpm run test:vitest
-    - run: ./pleasew test --show_all_output //:tsc
+    - run: pnpm run -r test:vitest
+    - run: ./pleasew test --show_all_output //src/cockpit:vue_tsc
 
     - uses: actions/upload-artifact@v2
       with:
         name: vitest-coverage
-        path: 'vitest_coverage/'
+        path: 'src/cockpit/vitest_coverage/'
       if: ${{ always() }}
-    - run: ./pleasew report --show_all_output
 
   coverage:
     needs: [cockpit, e2e, turbine]
@@ -231,7 +234,6 @@ jobs:
       with:
         name: turbine-output
 
-    - run: ./pleasew report --show_all_output
     - uses: codecov/codecov-action@v1
       with:
         verbose: true

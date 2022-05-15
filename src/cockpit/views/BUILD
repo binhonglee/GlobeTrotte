@@ -1,13 +1,7 @@
 filegroup(
   name = "views",
   srcs = glob(["**/*.vue"]),
-  visibility = [
-    "//:vitest_test_deps",
-    "//:cockpit",
-    "//src/cockpit:core_files",
-    "//src/cockpit/scripts:gen_router",
-    "//src/cockpit/tests/...",
-  ],
+  visibility = ["//src/cockpit/..."],
   deps = [
     "//src/cockpit/wings:wings",
     "//src/cockpit/cache:cache",

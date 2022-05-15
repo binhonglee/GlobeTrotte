@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test } from "vitest";
+import { afterEach, afterAll, describe, expect, test } from "vitest";
 import {
   BASE_URL,
   expectNotification,
@@ -6,6 +6,7 @@ import {
   genLogin,
   genLogout,
   genRegister,
+  genTryLogout,
   goTo,
   PlaywrightEnv,
   type,
@@ -38,7 +39,7 @@ describe("Trips", async () => {
   }, 50000);
 
   afterEach(async () => {
-    await genLogout(page);
+    await genTryLogout(page);
   });
 
   test("create new trip", async () => {
@@ -46,6 +47,7 @@ describe("Trips", async () => {
     await page.locator("text=Trip \u25BE").hover();
     await page.locator("text=New").click();
     await page.waitForURL("**/trip/new");
+    await page.waitForSelector(".new_trip");
 
     expect(await page.innerHTML("#app")).toMatchSnapshot();
     await type(page, ".editTripName", tripName);
@@ -109,7 +111,7 @@ describe("Trips", async () => {
       .locator(".editPrivacyToggle")
       .click();
     await page.locator(".saveEditTrip").click();
-  });
+  }, 20000);
 
   test("user 2 can see public trip", async () => {
     await genLogin(page, email2, password2);
@@ -128,10 +130,10 @@ describe("Trips", async () => {
   });
 
   test("search for the trip", async () => {
-    await genLogin(page, email2, password2);
     await page.locator("text=Trip \u25BE").hover();
     await page.locator("text=Search").click();
     await page.waitForURL("**/trip/search");
+    await page.waitForSelector(".tripSearchForm");
 
     expect(await page.innerHTML("#app")).toMatchSnapshot();
     await type(page, ".tripSearchQueryInput", tripName);

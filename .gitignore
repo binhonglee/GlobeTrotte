@@ -2,10 +2,6 @@
 .nyc_output/
 coverage/
 config.kdl
-jest_coverage/
-vitest_coverage/
-vitest_junit
-/cypress/
 email.config
 dist/
 main
@@ -17,5 +13,3 @@ pnpm-debug.log
 /*.log
 deploy/dist
 deploy/main
-/playwright/
-/playwright_coverage/

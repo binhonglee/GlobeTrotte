@@ -34,8 +34,9 @@ jobs:
       - run: echo 'export DISPLAY=:99' >> $BASH_ENV
       - run: echo 'export PATH=/home/circleci/.nimble/bin:$HOME/wings:$PATH' >> $BASH_ENV
       - run: echo 'export USER="circleci"' >> $BASH_ENV
-      - run: sudo npm i -g pnpm
-      - run: ./scripts/setup.sh -g -s -n
+      - run: sudo npm i -g pnpm@7.1.0
+      - run: pnpm i
+      - run: ./scripts/setup.sh -s
 
       - run: cp config/test.kdl config/config.kdl
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -45,17 +46,21 @@ jobs:
       - run: ./pleasew build --show_all_output
       - run: ./pleasew lint
       - run: ./pleasew cover --show_all_output //src/turbine/...
-      - run: pnpm run check:tsc
+      - run: pnpm run -r check:tsc
       - run:
           command: ./pleasew run "//src/turbine:main"
           background: true
-      - run: sleep 1
+      - run: sleep 3
+      - run:
+          command: ./pleasew show
+          background: true
+      - run: sleep 3
       # - run: ./pleasew test --show_all_output
-      - run: ./pleasew test --show_all_output //:cockpit_cypress
+      - run: ./pleasew test --show_all_output //src/cockpit:cypress
       # - run: ./pleasew test --show_all_output //src/cockpit/tests/components/...
       # - run: ./pleasew test --show_all_output //src/cockpit/tests/views/...
-      - run: pnpm run test:vitest -- -c vitest_circleci.config.ts
-      - run: ./pleasew report
+      - run: pnpm run install_playwright --no-frozen-lockfile 
+      - run: pnpm run -r test:circleci
       - run: ./scripts/leftover.sh
       - save_cache:
           key: please-{{ checksum "pleasew" }}
@@ -74,7 +79,11 @@ jobs:
           paths:
             - node_modules
       - store_artifacts:
-          path: ~/GlobeTrotte/cypress
+          path: ~/GlobeTrotte/src/cockpit/cypress
+      - store_artifacts:
+          path: ~/GlobeTrotte/src/cockpit/playwright
+      - store_artifacts:
+          path: ~/GlobeTrotte/src/cockpit/playwright_coverage
       - store_artifacts:
           path: ~/GlobeTrotte/coverage
       - store_artifacts:

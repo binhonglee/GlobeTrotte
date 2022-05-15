@@ -14,9 +14,12 @@ vitest_tests(
     # Intentionally excluding CViewUser_vitest.test.ts because its failing in
     # please env but passes fine outside of it.
   ],
-  vitest_dirs = ["//:vitest_test_deps"],
+  config = "//src/cockpit/configs:vitest_plz",
+  root = "src/cockpit",
+  vitest_dirs = ["//src/cockpit:vitest_test_deps"],
   deps = [
     "//src/cockpit/tests/mockData",
     "//src/cockpit/components:components",
   ],
+  run_install = True,
 )
