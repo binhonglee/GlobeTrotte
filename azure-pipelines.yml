@@ -33,14 +33,14 @@ jobs:
   - task: Cache@2
     inputs:
       key: "pnpm_store | $(Agent.OS) | package.json"
-      path: "/home/vsts/.pnpm-store"
+      path: "/home/vsts/.local/share/pnpm/store/v3"
     condition: eq(variables['Agent.OS'], 'Linux')
     displayName: Cache pnpm-store (Ubuntu)
 
   - task: Cache@2
     inputs:
       key: "pnpm_store | $(Agent.OS) | package.json"
-      path: "/Users/runner/.pnpm-store"
+      path: "/Users/runner/Library/pnpm/store/v3"
     condition: eq(variables['Agent.OS'], 'Darwin')
     displayName: Cache pnpm-store (MacOS)
 
@@ -116,14 +116,14 @@ jobs:
   - task: Cache@2
     inputs:
       key: "pnpm_store | $(Agent.OS) | package.json"
-      path: "/home/vsts/.pnpm-store"
+      path: "/home/vsts/.local/share/pnpm/store/v3"
     condition: eq(variables['Agent.OS'], 'Linux')
     displayName: Cache pnpm-store (Ubuntu)
 
   - task: Cache@2
     inputs:
       key: "pnpm_store | $(Agent.OS) | package.json"
-      path: "/Users/runner/.pnpm-store"
+      path: "/Users/runner/Library/pnpm/store/v3"
     condition: eq(variables['Agent.OS'], 'Darwin')
     displayName: Cache pnpm-store (MacOS)
 
@@ -250,14 +250,14 @@ jobs:
   - task: Cache@2
     inputs:
       key: "pnpm_store | $(Agent.OS) | package.json"
-      path: "/home/vsts/.pnpm-store"
+      path: "/home/vsts/.local/share/pnpm/store/v3"
     condition: eq(variables['Agent.OS'], 'Linux')
     displayName: Cache pnpm-store (Ubuntu)
 
   - task: Cache@2
     inputs:
       key: "pnpm_store | $(Agent.OS) | package.json"
-      path: "/Users/runner/.pnpm-store"
+      path: "/Users/runner/Library/pnpm/store/v3"
     condition: eq(variables['Agent.OS'], 'Darwin')
     displayName: Cache pnpm-store (MacOS)
 

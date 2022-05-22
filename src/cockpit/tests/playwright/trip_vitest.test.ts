@@ -127,7 +127,7 @@ describe("Trips", async () => {
       .locator(".tripDescription")
       .allInnerTexts();
     expect(description).toContain(tripDescription);
-  });
+  }, 10000);
 
   test("search for the trip", async () => {
     await page.locator("text=Trip \u25BE").hover();

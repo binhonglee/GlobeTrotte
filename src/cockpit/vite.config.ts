@@ -10,9 +10,6 @@ if (config.test.exclude !== undefined) {
 
 config.build = {
   outDir: "./dist",
-  rollupOptions: {
-    external: ["vue", "workbox-window"],
-  },
 };
 
 export default defineConfig(config);
