@@ -1,8 +1,8 @@
-name: Deploy prod
+name: Deploy canary
 on:
   push:
     branches:
-    - main
+    - canary
 
 jobs:
   build:
@@ -55,7 +55,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./deploy
-        publish_branch: deploy
+        publish_branch: canary
         commit_message: ${{ github.event.head_commit.message }}
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
