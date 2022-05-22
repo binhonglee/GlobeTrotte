@@ -1,0 +1,1 @@
+import{C as o}from"./CHead.2661296b.js";import{_ as t,d as a,R as n,k as r,G as s,r as c,o as p,h as d}from"./index.378ebd32.js";import"workbox-window";const i=a({components:{CHead:o},async beforeCreate(){await n.genRedirectTo(r.User,void 0,s.getCurrentUsername())}});function m(_,f,u,C,l,v){const e=c("CHead");return p(),d(e)}var k=t(i,[["render",m]]);export{k as default};
