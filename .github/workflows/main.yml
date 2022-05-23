@@ -22,7 +22,7 @@ jobs:
       id: cache-pnpm-store
       uses: actions/cache@v1
       with:
-        path: ~/.pnpm-store
+        path: ~/.local/share/pnpm/store/v3
         key: ${{ hashfiles('**/package.json') }}-pnpm-store
     - name: Cache node_modules
       id: cache-node-modules
@@ -55,6 +55,11 @@ jobs:
     - run: git checkout third_party/go/BUILD
     - run: ./scripts/leftover.sh
 
+    - name: Push commit
+      uses: EndBug/add-and-commit@v9
+      with:
+        message: 'Push changes into BUILD file'
+
   e2e:
     runs-on: ubuntu-latest
     services:
@@ -79,7 +84,7 @@ jobs:
       id: cache-pnpm-store
       uses: actions/cache@v1
       with:
-        path: ~/.pnpm-store
+        path: ~/.local/share/pnpm/store/v3
         key: ${{ hashFiles('**/package.json') }}-pnpm-store
     - name: Cache node_modules
       id: cache-node-modules
@@ -191,7 +196,7 @@ jobs:
       id: cache-pnpm-store
       uses: actions/cache@v1
       with:
-        path: ~/.pnpm-store
+        path: ~/.local/share/pnpm/store/v3
         key: ${{ hashfiles('**/package.json') }}-pnpm-store
     - name: Cache node_modules
       id: cache-node-modules

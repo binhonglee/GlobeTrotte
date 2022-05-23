@@ -15,17 +15,13 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.please
-        key: ${{ runner.os }}-please
-    - name: Use Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.15.x
+        key: ${{ hashfiles('**/.plzconfig') }}-please
     - name: Cache pnpm-store
       id: cache-pnpm-store
       uses: actions/cache@v1
       with:
-        path: ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-store
+        path: ~/.local/share/pnpm/store/v3
+        key: ${{ hashfiles('**/package.json') }}-pnpm-store
     - name: Cache node_modules
       id: cache-node-modules
       uses: actions/cache@v1
@@ -45,6 +41,9 @@ jobs:
     - name: Install PNPM
       run: sudo npm i -g pnpm@7.1.0
 
+    - name: Run go_mod
+      run: ./pleasew go_mod
+
     - name: Build
       run: ./pleasew build --show_all_output //deploy
     - name: Remove BUILD file in deploy dir
@@ -61,3 +60,8 @@ jobs:
         user_email: 'github-actions[bot]@users.noreply.github.com'
         # Not that this is jekyll but to prevent having the weird '.nojekyll' file
         enable_jekyll: true
+
+    - name: Push commit
+      uses: EndBug/add-and-commit@v9
+      with:
+        message: 'Push go.mod changes to BUILD file'
