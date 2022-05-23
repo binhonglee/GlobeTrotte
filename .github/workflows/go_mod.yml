@@ -1,16 +1,16 @@
 name: Update Go Module
 
-on: pull_request
+on: [push, pull_request]
 
 jobs:
   no_go_mod:
-    if: ${{ !(startsWith(github.event.head_commit.message, 'Update module ') || (startsWith(github.event.head_commit.message, 'Update ') && contains(github.event.head_commit.message, ' commit hash to '))) }}
+    if: ${{ !(startsWith(github.event.head_commit.message, 'Update module ') || (startsWith(github.event.head_commit.message, 'Update ') && contains(github.event.head_commit.message, ' digest to '))) }}
     runs-on: ubuntu-latest
     steps:
     - name: Do nothing and print lol
       run: echo "lol"
   update_go_mod:
-    if: ${{ startsWith(github.event.head_commit.message, 'Update module ') || (startsWith(github.event.head_commit.message, 'Update ') && contains(github.event.head_commit.message, ' commit hash to ')) }}
+    if: ${{ startsWith(github.event.head_commit.message, 'Update module ') || (startsWith(github.event.head_commit.message, 'Update ') && contains(github.event.head_commit.message, ' digest to ')) }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -29,7 +29,6 @@ jobs:
       with:
         go-version: 1.15.x
 
-    - run: ./scripts/setup.sh -g
     - run: ./pleasew go_mod
 
     - name: Push commit
