@@ -7,7 +7,7 @@ import { mount, VueWrapper } from "@vue/test-utils";
 import { WingsStructUtil } from "wings-ts-util";
 import { mountingOptions, Vue, wait } from "../helper";
 import { routerSpy, stub } from "../vitestSpy";
-import R from "@/shared/R";
+import { R } from "@glareshield/all";
 import LoginCredential from "@/wings/LoginCredential";
 import NaiveUtils from "@/shared/NaiveUtils";
 

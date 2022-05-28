@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "strict": true,
+    "target": "esnext"
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    ".eslintrc.js",
+    "dist/**/*"
+  ]
+}

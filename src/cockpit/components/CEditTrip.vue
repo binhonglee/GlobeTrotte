@@ -59,7 +59,7 @@ import TripObj from "@/wings/TripObj";
 import Place from "@/wings/Place";
 import Routes from "@/routes";
 import { WingsStructUtil } from "wings-ts-util";
-import E from "@/shared/E";
+import { E } from "@glareshield/all";
 import Routing from "@/shared/Routing";
 import {
   DESCRIPTION_CHAR_MAX_COUNT,

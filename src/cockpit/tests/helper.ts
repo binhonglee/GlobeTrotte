@@ -1,5 +1,4 @@
 import { MountingOptions } from "@vue/test-utils";
-import router from "@/router";
 import naive from "naive-ui";
 import { createHead } from "@vueuse/head";
 import { GlobalMountOptions } from "@vue/test-utils/dist/types";
@@ -9,28 +8,23 @@ import { FetchedUserObj } from "@/cache/UserCache";
 export type routerFunctions =
   | "replace"
   | "push"
+  | "onError"
+  | "go"
   | "forward"
-  | "options"
-  | "app"
-  | "mode"
-  | "currentRoute"
   | "beforeEach"
   | "beforeResolve"
   | "afterEach"
-  | "go"
   | "back"
-  | "getMatchedComponents"
-  | "onReady"
-  | "onError"
-  | "addRoutes"
-  | "resolve";
-
-interface ElPlus {
-  $router(args: unknown): typeof router;
-}
+  | "resolve"
+  | "addRoute"
+  | "removeRoute"
+  | "hasRoute"
+  | "getRoutes"
+  | "isReady"
+  | "install";
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-export type Vue = any & ElPlus;
+export type Vue = any;
 
 // Sometimes whatever trigger takes a bit of time to come into effect and test
 // runner runs through it too fast that whatever we try to check is still in
@@ -48,9 +42,6 @@ export function mountingOptions(): MountingOptions<Vue, Vue> {
 export function globalMountingOptions(): GlobalMountOptions {
   return {
     plugins: [naive, createHead()],
-    mocks: {
-      $router: router,
-    },
   };
 }
 

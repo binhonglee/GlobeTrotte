@@ -48,6 +48,7 @@ import {
 import { MoonOutline, SunnyOutline } from "@vicons/ionicons5";
 import { BuiltInGlobalTheme } from "naive-ui/lib/themes/interface";
 import Routes from "./routes";
+import router from "./router";
 
 interface Data {
   activeIndex: string;
@@ -161,7 +162,7 @@ export default defineComponent({
                   localStorage.setItem("theme", value ? "dark" : "light");
                   // Text in CTripPreviewCard color is broken if update in place.
                   // this.$data.darkMode = value;
-                  this.$router.go(0);
+                  router.go(0);
                 },
                 defaultValue: this.$data.darkMode,
               },

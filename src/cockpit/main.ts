@@ -6,7 +6,7 @@ import App from "./App.vue";
 import General from "./shared/General";
 import router from "./router";
 import routes from "./routes";
-import R from "./shared/R";
+import { R } from "@glareshield/all";
 
 Axios.defaults.withCredentials = true;
 
@@ -56,7 +56,6 @@ router.beforeEach(
 );
 
 const head = createHead();
-app.config.globalProperties.$router = router;
 app.use(router);
 app.use(head);
 app.mount("#app");

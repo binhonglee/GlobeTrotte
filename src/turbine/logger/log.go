@@ -68,9 +68,9 @@ func getFile() *os.File {
 	// This is pretty arbitrary and might need to be fine
 	// tuned overtime
 	if time.Since(lastFileTime).Hours() > 24.0 {
-		fn := currentFile.Name()
+		// fn := currentFile.Name()
 		currentFile.Close()
-		archiveLog(fn, false)
+		// archiveLog(fn, false)
 		createNewLogFile()
 	}
 	return currentFile

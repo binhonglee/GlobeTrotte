@@ -4,19 +4,26 @@
   "private": true,
   "author": "BinHong Lee <binhong@binhong.me>",
   "scripts": {
-    "build": "pnpm -r run build",
-    "format": "pnpm -r run format",
+    "build": "pnpm run -r build",
+    "format": "pnpm run -r format",
     "install_playwright": "cd src/cockpit && pnpx playwright install && pnpm i",
     "lint": "pnpm -r run lint",
-    "postinstall": "touch node_modules/go.mod"
+    "postinstall": "touch node_modules/go.mod",
+    "test:vitest": "pnpm run --filter src/glareshield/all build && pnpm run -r test:vitest"
   },
   "dependencies": {
   },
   "@comment devDependencies": [
-    "This should really be empty but I'm not sure why it fails without it"
+    "Not sure why we need pug here tbh but it doesn't work in its own project."
   ],
   "devDependencies": {
-    "pug": "3.0.2"
+    "@typescript-eslint/eslint-plugin": "5.25.0",
+    "@typescript-eslint/parser": "5.25.0",
+    "eslint": "8.16.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "prettier": "2.6.2",
+    "pug": "3.0.2",
+    "typescript": "4.6.4"
   },
   "license": "AGPL 3.0"
 }

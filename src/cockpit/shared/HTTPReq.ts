@@ -1,8 +1,8 @@
-import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
-import { useLoadingBar } from "naive-ui";
-import H from "./H";
+import { H } from "@glareshield/all";
+
 import router from "@/router";
 import Routes from "@/routes";
+import Routing from "./Routing";
 
 export default class HTTPReq extends H {
   protected static host =
@@ -14,22 +14,8 @@ export default class HTTPReq extends H {
   protected static pathPrefix = "/api/";
   protected static delPrefix = "del/";
   protected static rateLimited = "ratelimited";
-  protected static router = router;
-
   protected static selfPort =
     process.env.NODE_ENV === "production" ? undefined : 3000;
-  private static loadingBar: LoadingBarApiInjection | undefined = undefined;
-  private static failed = false;
-
-  protected static beforeSendRequest(): void {
-    try {
-      this.loadingBar = useLoadingBar();
-      this.loadingBar.start();
-      this.failed = false;
-    } catch (_) {
-      this.failed = true;
-    }
-  }
 
   public static getAbsoluteURL(routes: Routes, args = ""): string {
     return (
@@ -42,15 +28,13 @@ export default class HTTPReq extends H {
     );
   }
 
-  protected static sendRequestSuccess(): void {
-    if (!this.failed && this.loadingBar !== undefined) {
-      this.loadingBar.finish();
+  protected static async genOnRateLimited(): Promise<void> {
+    const currentPath: string = router.currentRoute.value.path;
+    if (!currentPath.startsWith(this.rateLimited)) {
+      await Routing.genRedirectTo(
+        Routing.addParamNext(this.rateLimited, router.currentRoute.value.path),
+      );
     }
-  }
-
-  protected static sendRequestFailure(): void {
-    if (!this.failed && this.loadingBar !== undefined) {
-      this.loadingBar.error();
-    }
+    return;
   }
 }

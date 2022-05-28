@@ -47,7 +47,7 @@ jobs:
 
     - run: ./scripts/setup.sh -g -s
     - run: ./pleasew go_mod
-    - run: sudo npm i -g pnpm@7.1.0
+    - run: sudo npm i -g pnpm@7.1.6
     - run: cp config/test.kdl config/config.kdl
 
     - run: ./pleasew build --show_all_output //...
@@ -107,7 +107,7 @@ jobs:
       with:
         go-version: 1.15.x
 
-    - run: sudo npm i -g pnpm
+    - run: sudo npm i -g pnpm@7.1.6
     # - run: ./scripts/setup.sh -g -s -n
     - run: pnpm i
     - run: ./pleasew go_mod
@@ -209,9 +209,9 @@ jobs:
       with:
         node-version: '16.13.1'
 
-    - run: sudo npm i -g pnpm
+    - run: sudo npm i -g pnpm@7.1.6
     - run: pnpm i
-    - run: pnpm run -r test:vitest
+    - run: pnpm run test:vitest
     - run: ./pleasew test --show_all_output //src/cockpit:vue_tsc
 
     - uses: actions/upload-artifact@v2
@@ -225,7 +225,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: sudo npm i -g pnpm
+    - run: sudo npm i -g pnpm@7.1.6
     - uses: actions/download-artifact@v2
       with:
         name: vitest-coverage

@@ -1,7 +1,7 @@
 import Routes from "@/routes";
 import { describe, expect, test } from "vitest";
 import { wait } from "../helper";
-import { PlaywrightEnv } from "../playwrightHelper";
+import { PlaywrightEnv } from "./playwrightHelper";
 
 describe("Menubar", async () => {
   Object.values(Routes).forEach((url) => {

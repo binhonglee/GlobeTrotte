@@ -8,6 +8,7 @@ def npm_run_build(
   outs:list,
   make_copy:bool=False,
   copy_path:str="",
+  exported_deps:list=[],
   deps:list=[],
   test_only:bool=False,
   # pnpm doesn't like it when you move / link node_modules around
@@ -36,6 +37,7 @@ def npm_run_build(
     srcs = srcs,
     outs = outs,
     cmd = this_cmd,
+    exported_deps = exported_deps,
     deps = deps,
     test_only = test_only,
     visibility = visibility,

@@ -5,7 +5,6 @@
  * Source: src/cockpit/shared/genRouter.ts
  */
 
-import Vue from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 export default createRouter({

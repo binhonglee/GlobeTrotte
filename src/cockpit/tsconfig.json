@@ -25,9 +25,7 @@
     "**/*.vue"
   ],
   "exclude": [
-    "**/.eslintrc.js",
-    "../../plz-out/",
-    "../../node_modules",
+    ".eslintrc.js",
     "tests/cypress/**/*"
   ]
 }

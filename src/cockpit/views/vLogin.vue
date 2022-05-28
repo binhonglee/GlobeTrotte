@@ -42,7 +42,7 @@ import { NAlert, NButton } from "naive-ui";
 import CEditItem from "@/components/CEditItem.vue";
 import CLink from "@/components/CLink.vue";
 import General from "@/shared/General";
-import E from "@/shared/E";
+import { E } from "@glareshield/all";
 import HTTPReq from "@/shared/HTTPReq";
 import Routing from "@/shared/Routing";
 import UserObj from "@/wings/UserObj";

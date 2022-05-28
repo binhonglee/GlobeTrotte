@@ -11,6 +11,7 @@ import {
   NotificationApiInjection,
   NotificationReactive,
 } from "naive-ui/lib/notification/src/NotificationProvider";
+
 export default class NaiveUtils {
   private static dialog: DialogApiInjection;
   private static message: MessageApiInjection;

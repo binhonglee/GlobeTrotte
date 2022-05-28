@@ -1,10 +1,4 @@
 import { Router, RouteLocationNormalized } from "vue-router";
-import Redirect from "./redirect";
-
-/*
- * R is short for Route so functions included here are loosely related to path
- * routing between views.
- */
 
 export default abstract class R {
   protected static siteURI: string;
@@ -32,43 +26,12 @@ export default abstract class R {
     if (path !== "/") {
       path = this.getSubPath(path, map, id);
     }
-    await Redirect.genRedirect(
-      this.router,
-      path,
-      overrideRateLimit,
-      this.ratelimited,
-    );
+    await this.genRedirect(path, overrideRateLimit);
   }
 
   public static getParamMap(): Map<string, string> {
     const params = this.router.currentRoute.value.params["params"] as string;
     return this.paramMapFromString(params);
-  }
-
-  private static paramMapFromString(s: string): Map<string, string> {
-    if (s === undefined || !s.startsWith(":")) {
-      return new Map();
-    }
-
-    s = s.substring(1);
-    const mapArr = s.split(":");
-    const map = new Map();
-    mapArr.forEach((element) => {
-      const item = element.split("=");
-      if (item.length === 2) {
-        map.set(item[0], item[1]);
-      }
-    });
-
-    return map;
-  }
-
-  private static setParamMap(map: Map<string, string>): string {
-    let toReturn = "";
-    map.forEach((value, key) => {
-      toReturn += ":" + key + "=" + value;
-    });
-    return toReturn;
   }
 
   public static hasNext(): boolean {
@@ -136,6 +99,32 @@ export default abstract class R {
     return this.next(to, map);
   }
 
+  private static paramMapFromString(s: string): Map<string, string> {
+    if (s === undefined || !s.startsWith(":")) {
+      return new Map();
+    }
+
+    s = s.substring(1);
+    const mapArr = s.split(":");
+    const map = new Map();
+    mapArr.forEach((element) => {
+      const item = element.split("=");
+      if (item.length === 2) {
+        map.set(item[0], item[1]);
+      }
+    });
+
+    return map;
+  }
+
+  private static setParamMap(map: Map<string, string>): string {
+    let toReturn = "";
+    map.forEach((value, key) => {
+      toReturn += ":" + key + "=" + value;
+    });
+    return toReturn;
+  }
+
   private static next(
     path: string,
     map: Map<string, string> = new Map<string, string>(),
@@ -157,5 +146,19 @@ export default abstract class R {
     }
 
     return "/" + (path.length > 0 ? path + "/" : "") + this.setParamMap(map);
+  }
+
+  private static async genRedirect(
+    path: string,
+    overrideRateLimit = false,
+  ): Promise<void> {
+    if (
+      this.router.currentRoute.value.path.startsWith(this.ratelimited) &&
+      !overrideRateLimit
+    ) {
+      return;
+    }
+
+    await this.router.push(path);
   }
 }

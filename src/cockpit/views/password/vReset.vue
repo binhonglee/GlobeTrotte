@@ -64,14 +64,16 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { NButton } from "naive-ui";
+import { WingsStructUtil } from "wings-ts-util";
+
+import { E } from "@glareshield/all";
+
 import CEditItem from "@/components/CEditItem.vue";
 import CLink from "@/components/CLink.vue";
-import E from "@/shared/E";
 import Routing from "@/shared/Routing";
 import ResetPassword from "@/wings/ResetPassword";
 import HTTPReq from "@/shared/HTTPReq";
 import Routes from "@/routes";
-import { WingsStructUtil } from "wings-ts-util";
 import NaiveUtils from "@/shared/NaiveUtils";
 
 interface Data {

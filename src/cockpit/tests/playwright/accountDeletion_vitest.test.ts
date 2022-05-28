@@ -7,7 +7,7 @@ import {
   genLogout,
   genRegister,
   PlaywrightEnv,
-} from "../playwrightHelper";
+} from "./playwrightHelper";
 
 const username = "testuserusername";
 const email = "accountDeletionTest@globetrotte.com";

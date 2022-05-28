@@ -11,6 +11,7 @@ filegroup(
     "//src/cockpit/scripts:gen_router",
   ],
   exported_deps = [
+    "//src/glareshield/all:full",
     "//src/cockpit/cache",
     "//src/cockpit/components",
     "//src/cockpit/shared",
@@ -52,7 +53,7 @@ filegroup(
 
 npm_run_build(
   name = "cockpit",
-  cmd = "build",
+  cmd = "build:plz",
   at_source = True,
   srcs = [
     ":index_html",
@@ -69,7 +70,7 @@ npm_run_build(
 
 npm_run(
   name = "serve",
-  cmd = "serve",
+  cmd = "serve:plz",
   deps = [
     ":core_files",
     ":index_html",

@@ -1,0 +1,20 @@
+{
+  "name": "@glareshield/r",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint \"**/*.ts\"",
+    "prepublishOnly": "pnpm run build"
+  },
+  "devDependencies": {
+    "typescript": "4.6.4",
+    "vue": "3.2.36",
+    "vue-router": "4.0.15"
+  },
+  "peerDependencies": {
+    "vue-router": "4"
+  },
+  "license": "MIT"
+}

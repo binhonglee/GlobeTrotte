@@ -1,7 +1,4 @@
 import Axios, { AxiosRequestConfig, Method } from "axios";
-import { Router } from "vue-router";
-import R from "./R";
-import Redirect from "./redirect";
 
 enum AxMethod {
   POST = "POST",
@@ -17,7 +14,7 @@ export default abstract class H {
   protected static pathPrefix: string;
   protected static delPrefix: string;
   protected static rateLimited: string;
-  protected static router: Router;
+  protected static selfPort?: number;
 
   protected static beforeSendRequest(): void {
     return;
@@ -31,21 +28,20 @@ export default abstract class H {
     return;
   }
 
+  protected static async genOnRateLimited(): Promise<void> {
+    return;
+  }
+
   public static async genGET(uri: string): Promise<unknown> {
-    return this.genSendRequest(this.getRouter(), uri, AxMethod.GET);
+    return this.genSendRequest(uri, AxMethod.GET);
   }
 
   public static async genDELETE(uri: string, data = ""): Promise<unknown> {
-    return this.genSendRequest(
-      this.getRouter(),
-      this.delPrefix + uri,
-      AxMethod.POST,
-      data,
-    );
+    return this.genSendRequest(this.delPrefix + uri, AxMethod.POST, data);
   }
 
   public static async genPOST(uri: string, data: string): Promise<unknown> {
-    return this.genSendRequest(this.getRouter(), uri, AxMethod.POST, data);
+    return this.genSendRequest(uri, AxMethod.POST, data);
   }
 
   public static getURI(path: string): string {
@@ -59,7 +55,6 @@ export default abstract class H {
   }
 
   private static async genSendRequest(
-    router: Router,
     uri: string,
     type: Method,
     data = "",
@@ -75,19 +70,9 @@ export default abstract class H {
     }
     try {
       const toRet = (await Axios.request(fullURI))["data"];
-      const currentPath: string = router.currentRoute.value.path;
-      if (
-        !currentPath.startsWith(this.rateLimited) &&
-        toRet === this.rateLimited
-      ) {
+      if (toRet === this.rateLimited) {
         this.sendRequestSuccess();
-        // eslint-disable-next-line @delagen/deprecation/deprecation
-        await Redirect.genRedirect(
-          router,
-          R.addParamNext(this.rateLimited, router.currentRoute.value.path),
-          false,
-          this.rateLimited,
-        );
+        await this.genOnRateLimited();
         return "";
       }
       this.sendRequestSuccess();
@@ -96,12 +81,5 @@ export default abstract class H {
       this.sendRequestFailure();
       return "";
     }
-  }
-
-  protected static getRouter(): Router {
-    if (this.router === undefined || this.router === null) {
-      throw new ReferenceError("Router is null or undefined.");
-    }
-    return this.router;
   }
 }

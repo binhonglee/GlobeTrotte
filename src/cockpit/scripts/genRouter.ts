@@ -37,7 +37,6 @@ const prefix = `/*
 const before =
   prefix +
   `
-import Vue from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 export default createRouter({
@@ -188,7 +187,8 @@ class GenRouter {
       `",` +
       metaTxt +
       `
-      component: () => import("./views/` +
+      component: () => import("./` +
+      viewFolder +
       component +
       `"),
     },`

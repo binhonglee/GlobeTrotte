@@ -1,4 +1,5 @@
-import R from "./R";
+import { R } from "@glareshield/all";
+
 import router from "@/router";
 import Routes from "@/routes";
 

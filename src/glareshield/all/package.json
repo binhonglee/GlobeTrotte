@@ -1,0 +1,26 @@
+{
+  "name": "@glareshield/all",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm run --stream --parallel --filter ../E --filter ../H --filter ../R build && pnpm run build:plz",
+    "build:plz": "tsc",
+    "lint": "eslint \"**/*.ts\"",
+    "prepublishOnly": "pnpm run build"
+  },
+  "devDependencies": {
+    "@glareshield/e": "workspace:../E",
+    "@glareshield/h": "workspace:../H",
+    "@glareshield/r": "workspace:../R",
+    "axios": "0.27.2",
+    "typescript": "4.6.4",
+    "vue": "3.2.36",
+    "vue-router": "4.0.15"
+  },
+  "peerDependencies": {
+    "axios": "0.27",
+    "vue-router": "4"
+  },
+  "license": "MIT"
+}

@@ -4,13 +4,12 @@ import {
   expectNotification,
   genDeleteAccount,
   genLogin,
-  genLogout,
   genRegister,
   genTryLogout,
   goTo,
   PlaywrightEnv,
   type,
-} from "../playwrightHelper";
+} from "./playwrightHelper";
 
 const username1 = "testUser1";
 const email1 = "tripsTest1@globetrotte.com";

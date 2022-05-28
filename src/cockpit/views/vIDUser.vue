@@ -72,7 +72,7 @@ import HTTPReq from "@/shared/HTTPReq";
 import NaiveUtils from "@/shared/NaiveUtils";
 import { WingsStructUtil } from "wings-ts-util";
 import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
-import E from "@/shared/E";
+import { E } from "@glareshield/all";
 import UserBasic from "@/wings/UserBasic";
 import {
   processBioFromStorage,

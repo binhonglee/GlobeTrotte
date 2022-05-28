@@ -1,0 +1,19 @@
+{
+  "name": "@glareshield/h",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint \"**/*.ts\"",
+    "prepublishOnly": "pnpm run build"
+  },
+  "devDependencies": {
+    "axios": "0.27.2",
+    "typescript": "4.6.4"
+  },
+  "peerDependencies": {
+    "axios": "0.27"
+  },
+  "license": "MIT"
+}

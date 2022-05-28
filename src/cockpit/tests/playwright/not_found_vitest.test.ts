@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { wait } from "../helper";
-import { PlaywrightEnv } from "../playwrightHelper";
+import { PlaywrightEnv } from "./playwrightHelper";
 
 describe("404", async () => {
   test("page_not_found", async () => {

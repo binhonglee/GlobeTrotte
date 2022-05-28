@@ -9,7 +9,7 @@ node_modules/
 logs/
 plz-out/
 .plz_clean*
-pnpm-debug.log
+.pnpm-debug.log
 /*.log
 deploy/dist
 deploy/main

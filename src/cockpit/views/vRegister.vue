@@ -61,7 +61,7 @@ import RegistrationResponse from "@/wings/RegistrationResponse";
 import RegistrationError from "@/wings/RegistrationError";
 import CEditItem from "@/components/CEditItem.vue";
 import Routes from "@/routes";
-import E from "@/shared/E";
+import { E } from "@glareshield/all";
 import Routing from "@/shared/Routing";
 import router from "@/router";
 import NaiveUtils from "@/shared/NaiveUtils";

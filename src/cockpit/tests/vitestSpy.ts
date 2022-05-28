@@ -1,6 +1,7 @@
 import { VueWrapper } from "@vue/test-utils";
 import { SpyContext, SpyInstance, vi } from "vitest";
 import { routerFunctions, Vue } from "./helper";
+import router from "@/router";
 
 abstract class spyInterface {
   protected abstract item: SpyInstance;
@@ -38,7 +39,7 @@ export class routerSpy extends spyInterface {
   protected item: SpyInstance;
   public constructor(wrapper: VueWrapper<Vue>, name: routerFunctions) {
     super();
-    this.item = vi.spyOn(wrapper.vm.$router, name);
+    this.item = vi.spyOn(router, name);
   }
 
   public getArg(call = 0): unknown {
