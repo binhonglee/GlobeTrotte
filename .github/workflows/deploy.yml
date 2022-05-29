@@ -46,6 +46,12 @@ jobs:
 
     - name: Build
       run: ./pleasew build --show_all_output //deploy
+
+    - name: Push commit
+      uses: EndBug/add-and-commit@v9
+      with:
+        message: 'Push go.mod changes to BUILD file'
+
     - name: Remove BUILD file in deploy dir
       run: rm deploy/BUILD
 
@@ -60,8 +66,3 @@ jobs:
         user_email: 'github-actions[bot]@users.noreply.github.com'
         # Not that this is jekyll but to prevent having the weird '.nojekyll' file
         enable_jekyll: true
-
-    - name: Push commit
-      uses: EndBug/add-and-commit@v9
-      with:
-        message: 'Push go.mod changes to BUILD file'

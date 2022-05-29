@@ -181,7 +181,7 @@ go_module(
 go_module(
   name = "x_crypto",
   module = "golang.org/x/crypto",
-  version = "v0.0.0-20220518034528-6f7dac969898",
+  version = "v0.0.0-20220525230936-793ad666bf5e",
   install = [
     "bcrypt",
     "blowfish",
@@ -222,7 +222,7 @@ go_module(
 go_module(
   name = "zcache",
   module = "zgo.at/zcache",
-  version = "v1.1.0",
+  version = "v1.2.0",
   install = [
     ".",
   ],

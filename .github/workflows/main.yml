@@ -116,7 +116,8 @@ jobs:
     - run: ./pleasew build "//src/turbine:main"
     - run: ./pleasew run "//src/turbine:main" -- -toFile=true &
     - run: sleep 3
-    - run: pnpm run -r serve &
+    - run: pnpm run -r preflight
+    - run: pnpm run -r serve:plz &
     - run: sleep 3
     - run: pnpm run -r test:cypress:plz
 

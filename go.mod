@@ -6,6 +6,7 @@ require (
 	github.com/binhonglee/kdlgo v0.0.0-20211115042352-099938a8d3fc
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
+	github.com/gorilla/securecookie v1.1.1
 	github.com/gorilla/sessions v1.2.1
 	github.com/jackc/pgtype v1.11.0
 	github.com/jackc/pgx/v4 v4.16.1

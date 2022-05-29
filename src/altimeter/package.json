@@ -1,0 +1,27 @@
+{
+  "name": "@gt/altimeter",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "altimeter": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "pnpm run build:plz",
+    "build:plz": "rm -rf dist && tsc && pnpm run esbuild",
+    "esbuild": "esbuild --bundle --platform=node ./cli.js ./index.ts --outdir=dist --allow-overwrite",
+    "lint": "eslint \"**/*.ts\"",
+    "prepublishOnly": "pnpm run build",
+    "postinstall": "playwright install"
+  },
+  "devDependencies": {
+    "@types/node": "16.11.36",
+    "esbuild": "0.14.38",
+    "playwright-core": "1.22.2",
+    "typescript": "4.6.4"
+  },
+  "peerDependencies": {
+    "playwright-core": "1.22"
+  },
+  "license": "MIT"
+}

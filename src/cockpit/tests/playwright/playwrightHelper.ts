@@ -39,6 +39,7 @@ class Chromium {
         size: { width: width, height: height },
       },
       screen: { width: width, height: height },
+      viewport: { width: width, height: height },
       isMobile: isMobile,
     });
   }
