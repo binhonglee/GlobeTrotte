@@ -104,4 +104,6 @@ async function genScreenShot(
       height: config.height,
     },
   });
+
+  console.log("Generated " + dir + name + ".jpg");
 }

@@ -26,10 +26,11 @@ importers:
       esbuild: 0.14.38
       playwright-core: 1.22.2
       typescript: 4.6.4
+    dependencies:
+      playwright-core: 1.22.2
     devDependencies:
       '@types/node': 16.11.36
       esbuild: 0.14.38
-      playwright-core: 1.22.2
       typescript: 4.6.4
 
   src/cockpit:
@@ -5968,7 +5969,6 @@ packages:
     resolution: {integrity: sha512-w/hc/Ld0RM4pmsNeE6aL/fPNWw8BWit2tg+TfqJ3+p59c6s3B6C8mXvXrIPmfQEobkcFDc+4KirNzOQ+uBSP1Q==}
     engines: {node: '>=14'}
     hasBin: true
-    dev: true
 
   /postcss-selector-parser/6.0.10:
     resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
