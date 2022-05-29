@@ -1,10 +1,10 @@
 {
   "name": "@globetrotte/altimeter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "altimeter": "dist/cli.js"
+    "altimeter": "bin/cli.js"
   },
   "scripts": {
     "build": "pnpm run build:plz",
@@ -14,6 +14,12 @@
     "prepublishOnly": "pnpm run build",
     "postinstall": "playwright install"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/binhonglee/GlobeTrotte.git",
+    "directory": "src/altimeter"
+  },
+  "keywords": ["altimeter", "preview", "screenshot", "link", "image"],
   "devDependencies": {
     "@types/node": "16.11.36",
     "esbuild": "0.14.38",

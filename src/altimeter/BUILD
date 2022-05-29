@@ -11,7 +11,7 @@ filegroup(
 )
 
 npm_run_build(
-  name = "R",
+  name = "altimeter",
   cmd = "build:plz",
   srcs = [],
   at_source = True,
