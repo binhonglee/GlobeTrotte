@@ -12,5 +12,5 @@ require (
 	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
 	golang.org/x/crypto v0.0.0-20220518034528-6f7dac969898
 	golang.org/x/time v0.0.0-20220411224347-583f2d630306
-	zgo.at/zcache v1.1.0
+	zgo.at/zcache v1.2.0
 )
