@@ -56,12 +56,12 @@ Directory where all the preview images should be saved to.
 
 ### **width**
 - Type: `number`
-- Default: `800`
+- Default: `1200`
 
 Width of the preview images.
 
 ### **height**
 - Type: `number`
-- Default: `400`
+- Default: `600`
 
 Height of the preview images.

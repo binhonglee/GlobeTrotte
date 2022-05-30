@@ -11,8 +11,8 @@ export class AltimeterConfig {
   public baseURL?: string;
   public destURLs: AltimeterDestination[] = [];
   public dir = "altimeter";
-  public width = 800;
-  public height = 400;
+  public width = 1200;
+  public height = 600;
 }
 
 export class AltimeterDestination {
