@@ -44,7 +44,7 @@
     "c8": "7.11.3",
     "cypress": "9.7.0",
     "esbuild": "0.14.42",
-    "eslint": "8.16.0",
+    "eslint": "8.17.0",
     "eslint-plugin-vue": "8.7.1",
     "jest-serializer-html": "7.1.0",
     "jsdom": "19.0.0",
