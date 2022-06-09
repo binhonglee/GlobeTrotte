@@ -213,7 +213,7 @@ go_module(
 go_module(
   name = "x_time",
   module = "golang.org/x/time",
-  version = "v0.0.0-20220411224347-583f2d630306",
+  version = "v0.0.0-20220609170525-579cf78fd858",
   install = [
     "rate",
   ],
