@@ -61,7 +61,6 @@ export default function baseConfig(coverage = true): ViteConfig {
       globals: true,
       environment: "jsdom",
       include: ["tests/**/*_vitest.{test,spec}.ts"],
-      exclude: ["tests/cypress/**/*"],
       reporters: ["default", "junit"],
       outputFile: "vitest_junit",
       watch: false,

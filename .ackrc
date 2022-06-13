@@ -1,6 +1,5 @@
 --ignore-dir=.cache
 --ignore-dir=coverage
---ignore-dir=cypress
 --ignore-dir=dist
 --ignore-dir=logs
 --ignore-dir=node_modules

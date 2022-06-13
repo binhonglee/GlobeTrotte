@@ -12,7 +12,7 @@ else
 fi
 
 echo "Removing a bunch of files and directories..."
-sudo rm -rf .nyc_output coverage cypress dist jest_coverage logs node_modules plz-out third_party/go/BUILD .plz_clean*
+sudo rm -rf .nyc_output coverage dist jest_coverage logs node_modules plz-out third_party/go/BUILD .plz_clean*
 
 echo "Removing generated wings files..."
 rm -rf src/cockpit/wings/*.ts src/turbine/wings/*.go

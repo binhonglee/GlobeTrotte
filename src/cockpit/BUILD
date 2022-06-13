@@ -101,23 +101,6 @@ vitest_dir(
 )
 
 npm_test(
-  name = "cypress",
-  srcs = ["cypress.json"],
-  cmd = "test:cypress:plz",
-  result_dir = "cypress/junit",
-  requires_server = 3000,
-  set_home = True,
-  deps = [
-    ":core_files",
-    ":index_html",
-    "//:pnpm_install",
-    "//src/assets:assets",
-    "//src/cockpit/tests/cypress",
-    "//src/cockpit/scripts:check_backend",
-  ],
-)
-
-npm_test(
   name = "vue_tsc",
   srcs = [
     ":tsconfig",

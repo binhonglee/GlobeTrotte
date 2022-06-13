@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  cypress: cypress-io/cypress@2.0.0
-
 jobs:
   build:
     docker:
@@ -23,8 +20,6 @@ jobs:
           key: please-{{ checksum "pleasew" }}
       # - restore_cache:
       #     key: pnpm-store-{{ checksum "package.json" }}
-      - restore_cache:
-          key: cypress-6.5.0
       - restore_cache:
           key: node-modules-{{ checksum "package.json" }}
       - run: sudo apt-get update
@@ -56,7 +51,6 @@ jobs:
           background: true
       - run: sleep 3
       # - run: ./pleasew test --show_all_output
-      - run: ./pleasew test --show_all_output //src/cockpit:cypress
       # - run: ./pleasew test --show_all_output //src/cockpit/tests/components/...
       # - run: ./pleasew test --show_all_output //src/cockpit/tests/views/...
       - run: pnpm run install_playwright --no-frozen-lockfile 
@@ -71,15 +65,9 @@ jobs:
           paths:
             - ~/.pnpm-store
       - save_cache:
-          key: cypress-6.5.0
-          paths:
-            - ~/.cache/Cypress
-      - save_cache:
           key: node-modules-{{ checksum "package.json" }}
           paths:
             - node_modules
-      - store_artifacts:
-          path: ~/GlobeTrotte/src/cockpit/cypress
       - store_artifacts:
           path: ~/GlobeTrotte/src/cockpit/playwright
       - store_artifacts:

@@ -1,4 +1,4 @@
-import { afterAll, describe, test } from "vitest";
+import { afterAll, describe, expect, test } from "vitest";
 import {
   genDeleteAccount,
   genIsLoggedIn,
@@ -64,7 +64,7 @@ describe("User account", async () => {
     await genIsLoggedOut(page);
     await genLogin(page, email, password);
     await genIsLoggedIn(page);
-  });
+  }, 10000);
 
   test("Delete Account", async () => {
     await genIsLoggedIn(page);

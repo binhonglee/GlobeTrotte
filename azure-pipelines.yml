@@ -44,20 +44,6 @@ jobs:
     condition: eq(variables['Agent.OS'], 'Darwin')
     displayName: Cache pnpm-store (MacOS)
 
-  - task: Cache@2
-    inputs:
-      key: "cypress | $(Agent.OS) | package.json"
-      path: "/home/vsts/.cache/Cypress"
-    condition: eq(variables['Agent.OS'], 'Linux')
-    displayName: Cache Cypress (Ubuntu)
-
-  - task: Cache@2
-    inputs:
-      key: "cypress | $(Agent.OS) | package.json"
-      path: "/Users/runner/Library/Caches/Cypress"
-    condition: eq(variables['Agent.OS'], 'Darwin')
-    displayName: Cache Cypress (MacOS)
-
   - script: ./scripts/setup.sh
     displayName: Run install script
 
@@ -127,20 +113,6 @@ jobs:
     condition: eq(variables['Agent.OS'], 'Darwin')
     displayName: Cache pnpm-store (MacOS)
 
-  - task: Cache@2
-    inputs:
-      key: "cypress | $(Agent.OS) | package.json"
-      path: "/home/vsts/.cache/Cypress"
-    condition: eq(variables['Agent.OS'], 'Linux')
-    displayName: Cache Cypress (Ubuntu)
-
-  - task: Cache@2
-    inputs:
-      key: "cypress | $(Agent.OS) | package.json"
-      path: "/Users/runner/Library/Caches/Cypress"
-    condition: eq(variables['Agent.OS'], 'Darwin')
-    displayName: Cache Cypress (MacOS)
-
   - script: ./scripts/setup.sh
     displayName: Run install script
 
@@ -169,14 +141,15 @@ jobs:
   - script: ./pleasew build "//src/turbine:main"
     displayName: Build turbine
 
+  - script: pnpm run -r preflight
+    displayName: Prepare for serve
+
   - script: ./pleasew run "//src/turbine:main" &
     displayName: Run turbine on background
   - script: sleep 1
-  - script: pnpm run -r serve &
+  - script: pnpm run -r serve:plz &
     displayName: Run cockpit on background
   - script: sleep 1
-  - script: pnpm run -r test:cypress:plz
-    displayName: Run e2e tests
   - script: pnpm run install_playwright --no-frozen-lockfile
     displayName: Install playwright
   - script: pnpm run -r test:playwright --coverage=false
@@ -260,20 +233,6 @@ jobs:
       path: "/Users/runner/Library/pnpm/store/v3"
     condition: eq(variables['Agent.OS'], 'Darwin')
     displayName: Cache pnpm-store (MacOS)
-
-  - task: Cache@2
-    inputs:
-      key: "cypress | $(Agent.OS) | package.json"
-      path: "/home/vsts/.cache/Cypress"
-    condition: eq(variables['Agent.OS'], 'Linux')
-    displayName: Cache Cypress (Ubuntu)
-
-  - task: Cache@2
-    inputs:
-      key: "cypress | $(Agent.OS) | package.json"
-      path: "/Users/runner/Library/Caches/Cypress"
-    condition: eq(variables['Agent.OS'], 'Darwin')
-    displayName: Cache Cypress (MacOS)
 
   # - script: ./scripts/setup.sh -n
   #   displayName: Run install script

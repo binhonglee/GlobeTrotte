@@ -21,7 +21,6 @@ _setup.js       text eol=lf linguist-detectable=false
 .prettierrc     text eol=lf linguist-detectable=false
 ava.config.js   text eol=lf linguist-detectable=false
 config.yml      text eol=lf linguist-detectable=false
-cypress.json    text eol=lf linguist-detectable=false
 main.yml        text eol=lf linguist-detectable=false
 go.mod          text eol=lf linguist-detectable=false
 package.json    text eol=lf linguist-detectable=false
