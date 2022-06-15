@@ -41,7 +41,7 @@ importers:
       '@vitejs/plugin-vue': 2.3.2
       '@vue/eslint-config-prettier': 7.0.0
       '@vue/eslint-config-typescript': 10.0.0
-      '@vue/test-utils': 2.0.0
+      '@vue/test-utils': 2.0.1
       '@vueuse/head': 0.7.6
       axios: 0.27.2
       c8: 7.11.3
@@ -75,7 +75,7 @@ importers:
       '@vitejs/plugin-vue': 2.3.2_vite@2.9.12+vue@3.2.37
       '@vue/eslint-config-prettier': 7.0.0_67jp3rdqyfy2wobpxhrxwalz5i
       '@vue/eslint-config-typescript': 10.0.0_o7yw3kwpe6b36wqzg4zwra6quy
-      '@vue/test-utils': 2.0.0_vue@3.2.37
+      '@vue/test-utils': 2.0.1_vue@3.2.37
       c8: 7.11.3
       esbuild: 0.14.43
       eslint: 8.17.0
@@ -1940,8 +1940,8 @@ packages:
   /@vue/shared/3.2.37:
     resolution: {integrity: sha512-4rSJemR2NQIo9Klm1vabqWjD8rs/ZaJSzMxkMNeJS6lHiUjjUeYFbooN19NgFjztubEKh3WlZUeOLVdbbUWHsw==}
 
-  /@vue/test-utils/2.0.0_vue@3.2.37:
-    resolution: {integrity: sha512-zL5kygNq7hONrO1CzaUGprEAklAX+pH8J1MPMCU3Rd2xtSYkZ+PmKU3oEDRg8VAGdL5lNJHzDgrud5amFPtirw==}
+  /@vue/test-utils/2.0.1_vue@3.2.37:
+    resolution: {integrity: sha512-4kt7Sw1gzXeQOsMqrwrQbmEiG8El4MP8P4hfxkmfXdUHf7yHa3xC5CQc0x2YyuhT41w2d4K4O0ZdRvZhGdZlow==}
     peerDependencies:
       vue: ^3.0.1
     dependencies:
