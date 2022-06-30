@@ -34,7 +34,7 @@
     "@vue/eslint-config-typescript": "10.0.0",
     "@vue/test-utils": "2.0.1",
     "c8": "7.11.3",
-    "esbuild": "0.14.45",
+    "esbuild": "0.14.48",
     "eslint": "8.17.0",
     "eslint-plugin-vue": "8.7.1",
     "jest-serializer-html": "7.1.0",
