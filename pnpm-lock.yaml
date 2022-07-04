@@ -58,7 +58,7 @@ importers:
       vite-plugin-pwa: 0.12.2
       vitest: 0.15.1
       vue: 3.2.37
-      vue-router: 4.0.16
+      vue-router: 4.1.0
       vue-tsc: 0.38.2
       wings-ts-util: 0.0.8
       workbox-window: 6.5.3
@@ -88,7 +88,7 @@ importers:
       vite: 2.9.13
       vite-plugin-pwa: 0.12.2_vite@2.9.13
       vitest: 0.15.1_c8@7.11.3+jsdom@20.0.0
-      vue-router: 4.0.16_vue@3.2.37
+      vue-router: 4.1.0_vue@3.2.37
       vue-tsc: 0.38.2_typescript@4.7.4
       workbox-window: 6.5.3
 
@@ -110,11 +110,11 @@ importers:
     specifiers:
       typescript: 4.7.4
       vue: 3.2.37
-      vue-router: 4.0.16
+      vue-router: 4.1.0
     devDependencies:
       typescript: 4.7.4
       vue: 3.2.37
-      vue-router: 4.0.16_vue@3.2.37
+      vue-router: 4.1.0_vue@3.2.37
 
   src/glareshield/all:
     specifiers:
@@ -124,7 +124,7 @@ importers:
       axios: 0.27.2
       typescript: 4.7.4
       vue: 3.2.37
-      vue-router: 4.0.16
+      vue-router: 4.1.0
     devDependencies:
       '@glareshield/e': link:../E
       '@glareshield/h': link:../H
@@ -132,7 +132,7 @@ importers:
       axios: 0.27.2
       typescript: 4.7.4
       vue: 3.2.37
-      vue-router: 4.0.16_vue@3.2.37
+      vue-router: 4.1.0_vue@3.2.37
 
 packages:
 
@@ -4823,8 +4823,8 @@ packages:
       - supports-color
     dev: true
 
-  /vue-router/4.0.16_vue@3.2.37:
-    resolution: {integrity: sha512-JcO7cb8QJLBWE+DfxGUL3xUDOae/8nhM1KVdnudadTAORbuxIC/xAydC5Zr/VLHUDQi1ppuTF5/rjBGzgzrJNA==}
+  /vue-router/4.1.0_vue@3.2.37:
+    resolution: {integrity: sha512-A+dYO0ZXLJFZ40ebW3XtqehCW0Wv2xNH4lFddOByDja4NtItEdyirrShTlvD3UA4xc5a5mG2RRI30BusYpOb9g==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
