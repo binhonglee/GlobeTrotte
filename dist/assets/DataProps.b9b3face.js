@@ -1,4 +1,4 @@
-import{s as ee,u as k,v as S,x as p,y as U,d as oe,z as te,A as ne,B as m,C as ae,D as re,E as se,I as x,J as ce,K as C,L as le,M as ie,O as de,P as he,Q as ue,S as d,U as D,V as t,W as ge,X as be,Y as fe}from"./index.b1d08e31.js";var Ce={color:Object,type:{type:String,default:"default"},round:Boolean,size:{type:String,default:"medium"},closable:Boolean,disabled:{type:Boolean,default:void 0}},ve=ee("tag",`
+import{s as ee,u as k,v as S,x as p,y as U,d as oe,z as te,A as ne,B as m,C as ae,D as re,E as se,I as x,J as ce,K as C,L as le,M as ie,O as de,P as he,Q as ue,S as d,U as D,V as t,W as ge,X as be,Y as fe}from"./index.e8deed49.js";var Ce={color:Object,type:{type:String,default:"default"},round:Boolean,size:{type:String,default:"medium"},closable:Boolean,disabled:{type:Boolean,default:void 0}},ve=ee("tag",`
  white-space: nowrap;
  position: relative;
  box-sizing: border-box;
