@@ -1,5 +1,4 @@
 import CViewTrip from "@/components/CViewTrip.vue";
-import { CityUtil } from "@/shared/CityUtil";
 import { mockTripObj } from "@/tests/mockData/data";
 import { describe, expect, it } from "vitest";
 import { mount } from "@vue/test-utils";
@@ -22,7 +21,9 @@ describe("CViewTrip", () => {
       mockedTrip.trip.details.description,
     );
     expect(wrapper.find(".tripCity").text()).toEqual(
-      CityUtil.toString(mockedTrip.trip.details.cities[0]),
+      mockedTrip.trip.details.cities[0].display +
+        ", " +
+        mockedTrip.trip.details.cities[0].iso2,
     );
     expect(wrapper.find(".tripCreatorInfo").text()).toEqual(
       "Author: " + mockedTrip.trip.user.name,

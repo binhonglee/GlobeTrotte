@@ -11,7 +11,7 @@ package wings
 type TripBasic struct {
 	ID          int               `json:"id"`
 	Name        string            `json:"name"`
-	Cities      []City            `json:"cities"`
+	Cities      []ParsedCity      `json:"cities"`
 	Days        []Day             `json:"days"`
 	Description string            `json:"description"`
 	Private     bool              `json:"private"`

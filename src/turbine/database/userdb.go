@@ -109,7 +109,6 @@ func GetUsernameWithID(id int) string {
 	defer c.Close()
 
 	if err != nil {
-		logger.Debug(err)
 		logger.Failure(logger.Database, "Username not found for "+strconv.Itoa(id)+".")
 	}
 	return username
@@ -143,7 +142,6 @@ func GetUserBasicDBWithID(id int) (wings.UserBasic, UserExtra) {
 	default:
 		logger.Err(logger.Database, err, "")
 	}
-	defer c.Close()
 
 	if bio.Status == pgtype.Present {
 		user.Bio = bio.String
@@ -155,6 +153,7 @@ func GetUserBasicDBWithID(id int) (wings.UserBasic, UserExtra) {
 		user.Username = username.String
 	}
 	extra.TripIDs = intV(trips)
+	c.Close()
 	return user, extra
 }
 

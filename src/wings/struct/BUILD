@@ -69,7 +69,7 @@ wings_lib(
   deps = [
     ":day",
     ":user_access_level",
-    "//src/wings/enum:city",
+    "//src/wings/struct:parsed_city",
   ],
 )
 
@@ -171,4 +171,13 @@ wings_lib(
     ":user_obj",
     "//src/wings/enum:registration_error",
   ],
+)
+
+wings_lib(
+  name = "parsed_city",
+  src = "parsed_city.wings",
+  outs = {
+    "src/cockpit/wings": "ParsedCity.ts",
+    "src/turbine/wings": "parsedcity.go",
+  },
 )

@@ -85,8 +85,6 @@ export default class NaiveUtils {
     message: string,
     type: NotifyType,
   ): NotificationReactive | undefined {
-    console.log(this.shouldRun());
-    console.log(this.notify);
     if (this.shouldRun()) {
       return this.notify[type]({
         content: title,

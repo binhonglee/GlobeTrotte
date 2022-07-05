@@ -1,5 +1,5 @@
-import City from "@/wings/City";
 import Day from "@/wings/Day";
+import ParsedCity from "@/wings/ParsedCity";
 import Place from "@/wings/Place";
 import TravelTime from "@/wings/TravelTime";
 import TripBasic from "@/wings/TripBasic";
@@ -48,6 +48,26 @@ export class mockUserObj {
       time_created: this.timeCreated,
       last_updated: this.lastUpdated,
     });
+  }
+}
+
+export class mockParsedCity {
+  public readonly ID: number;
+  public readonly display: string;
+  public readonly iso2: string;
+  public readonly raw: Record<string, unknown>;
+  public readonly parsedCity: ParsedCity;
+
+  constructor() {
+    this.ID = 1840000455;
+    this.display = "Boston, Massachusetts";
+    this.iso2 = "US";
+    this.raw = {
+      id: this.ID,
+      display: this.display,
+      iso2: this.iso2,
+    };
+    this.parsedCity = new ParsedCity(this.raw);
   }
 }
 
@@ -151,7 +171,7 @@ export class mockDay {
 export class mockTripBasic {
   public readonly ID: number;
   public readonly name: string;
-  public readonly cities: City[];
+  public readonly cities: ParsedCity[];
   public readonly days: Day[];
   public readonly description: string;
   public readonly raw: Record<string, unknown>;
@@ -160,13 +180,13 @@ export class mockTripBasic {
   constructor() {
     this.ID = 99999;
     this.name = "The magical journey";
-    this.cities = [City.SanJoseCAUS];
+    this.cities = [new mockParsedCity().parsedCity];
     this.days = [new mockDay().day];
     this.description = "¯\\_(ツ)_/¯";
     this.raw = {
       id: this.ID,
       name: this.name,
-      cities: this.cities,
+      cities: [new mockParsedCity().raw],
       days: [new mockDay().raw],
       description: this.description,
     };

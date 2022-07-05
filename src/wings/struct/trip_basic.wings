@@ -2,7 +2,7 @@ go-filepath src/turbine/wings
 ts-filepath src/cockpit/wings
 
 ts-import { IWingsStruct }:wings-ts-util
-import src/wings/enum/city.wings
+import src/wings/struct/parsed_city.wings
 import src/wings/struct/day.wings
 import src/wings/struct/user_access_level.wings
 
@@ -13,7 +13,7 @@ ts-implement IWingsStruct
 struct TripBasic {
   id            int     -1
   name          str
-  cities        []City
+  cities        []ParsedCity
   days          []Day
   description   str
   private       bool    true

@@ -37,7 +37,6 @@ import { defineComponent } from "vue";
 import CPlaces from "./CPlaces.vue";
 import CLink from "./CLink.vue";
 import CShare from "./CShare.vue";
-import { CityUtil } from "@/shared/CityUtil";
 import { DataDay } from "@/shared/DataProps";
 import Day from "@/wings/Day";
 import TripObj from "@/wings/TripObj";
@@ -87,7 +86,9 @@ export default defineComponent({
   beforeMount(): void {
     this.$data.cities = [];
     for (let city of this.$props.trip.details.cities) {
-      this.$data.cities.push(CityUtil.toString(city));
+      this.$data.cities.push(
+        city.display.valueOf() + ", " + city.iso2.valueOf(),
+      );
     }
     this.$data.days = (this.$props.trip.details.days.slice(0) as Day[]).map(
       (day) => new DataDay(day),

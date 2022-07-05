@@ -26,9 +26,12 @@
         n-select.editInput(
           v-model:value="cities"
           :options="possibleCities"
+          :loading="cityLoading"
           filterable
           multiple
           placeholder=""
+          @search="searchCity"
+          @update-value="onSelect"
         )
     CEditDays(ref="days" :givenDays="trip.details.days")
     div.confirmationButtons.narrow_content
@@ -51,7 +54,7 @@ import { defineComponent } from "vue";
 import CEditDays from "./CEditDays.vue";
 import CEditItem from "./CEditItem.vue";
 import CEditPlaces from "./CEditPlaces.vue";
-import { CityUtil, Options } from "@/shared/CityUtil";
+import { Options } from "@/shared/CityUtil";
 import TripEditable from "@/shared/TripEditable";
 import HTTPReq from "@/shared/HTTPReq";
 import TripBasic from "@/wings/TripBasic";
@@ -69,9 +72,13 @@ import {
 import { NButton, NSelect, NSwitch } from "naive-ui";
 import NaiveUtils, { NotifyType } from "@/shared/NaiveUtils";
 import { genFetchServerTrip } from "@/cache/TripCache";
+import ParsedCity from "@/wings/ParsedCity";
 
 interface Data {
   cities: Array<string>;
+  cityLoading: boolean;
+  parsedCities: Array<ParsedCity>;
+  parsedCitiesMap: Map<string, ParsedCity>;
   possibleCities: Array<Options>;
   private: boolean;
   saving: boolean;
@@ -109,6 +116,9 @@ export default defineComponent({
   },
   data: (): Data => ({
     cities: [],
+    cityLoading: false,
+    parsedCities: [],
+    parsedCitiesMap: new Map<string, ParsedCity>(),
     possibleCities: [],
     private: false,
     saving: false,
@@ -122,9 +132,10 @@ export default defineComponent({
       return DESCRIPTION_ROW_MIN_COUNT;
     },
   },
-  beforeMount(): void {
+  async beforeMount(): Promise<void> {
     NaiveUtils.init();
     this.update();
+    await this.searchCity("");
   },
   mounted(): void {
     E.get(E.get(this, "name"), "input").focus();
@@ -144,7 +155,18 @@ export default defineComponent({
         return;
       }
       this.$data.saving = true;
-      newTrip.cities = CityUtil.stringToCities(this.$data.cities.join(","));
+      let cities: ParsedCity[] = [];
+      for (const city of this.$data.cities) {
+        const getParsed = this.$data.parsedCitiesMap.get(city);
+        if (getParsed !== undefined) {
+          cities.push(getParsed);
+        } else {
+          const parsedCity = new ParsedCity();
+          parsedCity.ID = +city;
+          cities.push(parsedCity);
+        }
+      }
+      newTrip.cities = cities;
 
       const tripName = E.getVal(this, "name");
       const tripDescription = E.getVal(this, "description")
@@ -268,10 +290,16 @@ export default defineComponent({
       return new TripEditable(itemType, this.$props.trip[itemType]);
     },
     update(): void {
-      this.$data.possibleCities = CityUtil.sortedCityOptions();
-      this.$data.cities = CityUtil.stringToCityStringArray(
-        this.$props.trip.details.cities.join(","),
-      );
+      const cities: string[] = [];
+      for (const city of this.$props.trip.details.cities) {
+        cities.push(city.ID.toString());
+      }
+      this.$data.cities = cities;
+      for (const city of this.$props.trip.details.cities) {
+        this.$data.parsedCitiesMap.set(city.ID.toString(), city);
+        this.$data.parsedCities.push(city);
+      }
+
       this.$data.private = this.$props.trip.details.private.valueOf();
     },
     checkValidNameDescription(name: string, description: string): boolean {
@@ -299,6 +327,64 @@ export default defineComponent({
         content: message,
         positiveText: "OK",
       });
+    },
+    async searchCity(query: string): Promise<void> {
+      this.$data.possibleCities = [];
+      const cityIDs: number[] = [];
+      for (const city of this.$data.parsedCities) {
+        this.$data.possibleCities.push({
+          label: city.display.valueOf() + ", " + city.iso2.valueOf(),
+          value: city.ID.toString(),
+        });
+        cityIDs.push(city.ID.valueOf());
+      }
+      this.$data.cityLoading = true;
+      const searchTerm = JSON.stringify(query);
+      const res = await HTTPReq.genPOST("cities", searchTerm);
+
+      if (res === null) {
+        this.$data.cityLoading = false;
+        return;
+      }
+
+      for (const city of res as Array<unknown>) {
+        const parsedCity = new ParsedCity(city);
+        this.$data.parsedCitiesMap.set(parsedCity.ID.toString(), parsedCity);
+        if (!cityIDs.includes(parsedCity.ID.valueOf())) {
+          this.$data.possibleCities.push({
+            label:
+              parsedCity.display.valueOf() + ", " + parsedCity.iso2.valueOf(),
+            value: parsedCity.ID.toString(),
+          });
+        }
+      }
+      this.$data.cityLoading = false;
+    },
+    onSelect(selectedList: string[]): void {
+      for (const selected of selectedList) {
+        let add = true;
+        for (const city of this.$data.parsedCities) {
+          if (city.ID.toString() === selected) {
+            add = false;
+          }
+        }
+
+        if (add) {
+          const fromMap = this.$data.parsedCitiesMap.get(selected);
+          if (fromMap !== undefined) {
+            this.$data.parsedCities.push(fromMap);
+          }
+        }
+      }
+
+      for (const city of this.$data.parsedCities) {
+        let remove = true;
+        for (const selected of selectedList) {
+          if (city.ID.toString() === selected) {
+            remove = false;
+          }
+        }
+      }
     },
   },
 });

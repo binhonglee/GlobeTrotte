@@ -130,33 +130,31 @@ export abstract class Cache<
 
     let highest = 0;
     if (objs !== null) {
-      let toRemove = 0;
-      let removeSelf = false;
+      const toRemove: number[] = [];
 
       for (const [index, obj] of objs.entries()) {
         if (obj.getKey() === key) {
-          toRemove = index;
-          removeSelf = true;
-          break;
-        }
-
-        if (obj.getOrder() > highest) {
+          toRemove.push(index);
+        } else if (obj.getOrder() > highest) {
           highest = obj.getOrder();
-          toRemove = index;
+          toRemove.push(index);
         }
 
         obj.incrementOrder();
       }
 
-      if (objs.length > this.storeCount || removeSelf) {
-        objs.splice(toRemove, 1);
+      for (const index of toRemove) {
+        if (objs.length === 1) {
+          objs = [];
+        }
+        objs.splice(index, 1);
       }
     } else {
       objs = [];
     }
 
     objs.push(
-      new cacheStorage(CacheStorage.paramsToRecord(highest, value, key)),
+      new cacheStorage(CacheStorage.paramsToRecord(highest, key, value)),
     );
     this.setStorage(objs);
   }

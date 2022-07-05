@@ -1,11 +1,12 @@
 go_library(
   name = "database",
   srcs = [
+    "citiesdb.go",
     "db.go",
-    "helper.go",
-    "structsutil.go",
     "emaildb.go",
+    "helper.go",
     "placedb.go",
+    "structsutil.go",
     "traveltimedb.go",
     "tripdb.go",
     "tripbasicdb.go",

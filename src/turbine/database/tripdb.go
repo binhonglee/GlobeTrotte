@@ -124,7 +124,6 @@ func fetchDay(id int64) wings.Day {
 		sqlStatement,
 		id,
 	)
-	defer c.Close()
 	switch err := row.Scan(
 		&day.ID,
 		&day.TripID,
@@ -143,6 +142,7 @@ func fetchDay(id int64) wings.Day {
 	}
 	day.Places = fetchPlaces(int64V(places))
 	day.TravelTime = fetchTravelTimes(int64V(travelTimes))
+	c.Close()
 	return day
 }
 

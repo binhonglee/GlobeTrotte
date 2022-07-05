@@ -7,16 +7,16 @@
 
 import Day from './Day';
 import { parseArray } from 'wings-ts-util';
+import ParsedCity from './ParsedCity';
 import UserAccessLevel from './UserAccessLevel';
 import { IWingsStruct } from 'wings-ts-util';
-import City from './City';
 
 // Only core information of a trip.
 export default class TripBasic implements IWingsStruct {
   [key: string]: any;
   public ID: Number = -1;
   public name: String = '';
-  public cities: City[] = [];
+  public cities: ParsedCity[] = [];
   public days: Day[] = [];
   public description: String = '';
   public private: Boolean = true;
@@ -26,7 +26,7 @@ export default class TripBasic implements IWingsStruct {
     if (obj) {
       this.ID = obj.id !== undefined && obj.id !== null ? obj.id : -1;
       this.name = obj.name !== undefined && obj.name !== null ? obj.name : '';
-      this.cities = obj.cities !== undefined && obj.cities !== null ? parseArray<City>(City, obj.cities) : [];
+      this.cities = obj.cities !== undefined && obj.cities !== null ? parseArray<ParsedCity>(ParsedCity, obj.cities) : [];
       this.days = obj.days !== undefined && obj.days !== null ? parseArray<Day>(Day, obj.days) : [];
       this.description = obj.description !== undefined && obj.description !== null ? obj.description : '';
       this.private = obj.private !== undefined && obj.private !== null ? obj.private : true;

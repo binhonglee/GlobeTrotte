@@ -13,31 +13,31 @@ import (
 )
 
 var pgxConnString string
-var tableNames = [7]string{
-	"users", "trips", "cities", "days", "places", "travel_time", "emails",
+var tableNames = [8]string{
+	"users", "trips", "cities", "days", "places", "travel_time", "emails", "parsed_cities",
 }
 
 func init() {
-	config := config.GetConfigStringMap("psql")
+	psqlConfig := config.GetConfigStringMap("psql")
 
 	var port int
 	if parsePort, err := strconv.Atoi(
-		strings.TrimSpace(config["port"]),
+		strings.TrimSpace(psqlConfig["port"]),
 	); err == nil {
 		port = parsePort
 	} else {
 		logger.Panic(
 			logger.Database,
-			"Invalid port format: "+strings.TrimSpace(config["port"]),
+			"Invalid port format: "+strings.TrimSpace(psqlConfig["port"]),
 		)
 	}
 
 	pgxConnString = fmt.Sprintf(
 		"postgres://%s:%s@%s:%d//%s",
-		config["user"],
-		config["password"],
-		config["host"], port,
-		config["dbname"],
+		psqlConfig["user"],
+		psqlConfig["password"],
+		psqlConfig["host"], port,
+		psqlConfig["dbname"],
 	)
 
 	conn, err := pgxpool.Connect(
@@ -82,35 +82,7 @@ func initializeDB() {
 		);`
 
 	for _, element := range tableNames {
-		var t bool
 		c := getConn()
-		if err := c.QueryRow(
-			context.Background(), fmt.Sprintf(ifTableExists, element),
-		).Scan(&t); err != nil {
-			switch element {
-			case "users":
-				createUsersTable()
-			case "trips":
-				createTripsTable()
-			case "cities":
-				createCitiesTable()
-			case "days":
-				createDaysTable()
-			case "places":
-				createPlacesTable()
-			case "travel_time":
-				createTravelTimeTable()
-			case "emails":
-				createEmailsTable()
-			default:
-				logger.Panic(
-					logger.Database,
-					"New element was added to 'tableNames' but no creation method is added for it.",
-				)
-			}
-
-			logger.Print(logger.Database, element+" table created successfully.")
-		}
 		_, err := c.Exec(context.Background(), fmt.Sprintf(ifTableExists, element))
 		defer c.Close()
 
@@ -132,6 +104,9 @@ func initializeDB() {
 				createTravelTimeTable()
 			case "emails":
 				createEmailsTable()
+			case "parsed_cities":
+				createParsedCitiesTable()
+				setupCities(config.GetConfigStringMap("city_map"))
 			default:
 				logger.Panic(
 					logger.Database,
@@ -278,4 +253,22 @@ func createEmailsTable() {
 	defer c.Close()
 
 	logger.PanicErr(logger.Database, err, "Failed to create `emails` table.")
+}
+
+func createParsedCitiesTable() {
+	createTable := `
+		CREATE TABLE parsed_cities (
+			id          INT PRIMARY KEY UNIQUE,
+			name        TEXT,
+			search_name TEXT,
+			iso2        TEXT,
+			iso3        TEXT,
+			country     TEXT,
+			population  INT
+		);`
+	c := getConn()
+	_, err := c.Exec(context.Background(), createTable)
+	defer c.Close()
+
+	logger.PanicErr(logger.Database, err, "Failed to create `parsed_cities` table.")
 }

@@ -172,6 +172,12 @@ var actualRoutes = routes{
 		"/session",
 		getSessionUser,
 	},
+	route{
+		"SearchCities",
+		"POST",
+		"/cities",
+		searchCities,
+	},
 	// PROD: Used for testing only. To remove on prod.
 	route{
 		"ForceConfirmEmail",

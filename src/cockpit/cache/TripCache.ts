@@ -36,8 +36,8 @@ export class TripCache extends Cache<TripObj, FetchedTripObj, TripStorage> {
       this.storeObj(
         FetchedTripObj,
         TripStorage,
-        WingsStructUtil.stringify(tripObj),
         tripObj.ID.toString(),
+        WingsStructUtil.stringify(tripObj),
       );
       return tripObj;
     }

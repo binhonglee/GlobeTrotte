@@ -3,8 +3,9 @@ import { wait } from "../helper";
 import { PlaywrightEnv } from "./playwrightHelper";
 
 describe("404", async () => {
+  const env = await PlaywrightEnv.genCreate("not_found", "/sdoighado");
+
   test("page_not_found", async () => {
-    const env = await PlaywrightEnv.genCreate("not_found", "/sdoighado");
     await wait(300);
     const page = env.getPage();
     const text = await page.locator("h3").allInnerTexts();

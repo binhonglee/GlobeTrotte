@@ -23,7 +23,7 @@ func addPlace(newPlace wings.Place) int {
 		newPlace.URL,
 		newPlace.Description,
 	).Scan(&id)
-	defer c.Close()
+	c.Close()
 
 	if err != nil {
 		logger.Failure(logger.Database, "Failed to add new place.")
@@ -63,7 +63,7 @@ func updatePlace(updatedPlace *wings.Place) bool {
 		updatedPlace.URL,
 		updatedPlace.Description,
 	)
-	defer c.Close()
+	c.Close()
 
 	if err != nil {
 		logger.Err(
@@ -106,7 +106,7 @@ func fetchPlace(id int64) wings.Place {
 	default:
 		logger.Err(logger.Database, err, "")
 	}
-	defer c.Close()
+	c.Close()
 	return place
 }
 

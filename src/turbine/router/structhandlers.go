@@ -85,3 +85,9 @@ func getRequestID(req *http.Request) int {
 
 	return id
 }
+
+func searchCities(res http.ResponseWriter, req *http.Request) {
+	var searchTerm string
+	unpackJSON(&res, req, &searchTerm)
+	respond(res, db.GetCitiesDB(searchTerm))
+}

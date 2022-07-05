@@ -183,9 +183,8 @@ func fetchTripBasic(id int) (wings.TripBasic, TripExtra) {
 	}
 
 	defer c.Close()
-
 	extra.ID = trip.ID
-	trip.Cities = cityIDsToEnumArray(int64V(cities))
+	trip.Cities = cityIDsToParsedCities(int64V(cities))
 	trip.Days = fetchDays(int64V(days))
 	return trip, extra
 }
@@ -207,7 +206,7 @@ func addTripBasic(newTrip wings.TripBasic, userID int) int {
 		userID,
 		newTrip.Name,
 		newTrip.Private,
-		cityEnumArrayToIDs(newTrip.Cities),
+		parsedCitiesToIDs(newTrip.Cities),
 		newTrip.Description,
 		daysToIDArray(newTrip.Days),
 		time.Now(),
@@ -280,7 +279,7 @@ func updateTripBasic(updatedTrip wings.TripBasic) bool {
 		updatedTrip.Name,
 		updatedTrip.Private,
 		updatedTrip.Description,
-		cityEnumArrayToIDs(updatedTrip.Cities),
+		parsedCitiesToIDs(updatedTrip.Cities),
 		daysToIDArray(updatedTrip.Days),
 		time.Now(),
 	)

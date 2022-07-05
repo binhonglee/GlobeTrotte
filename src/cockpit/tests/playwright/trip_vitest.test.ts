@@ -48,7 +48,6 @@ describe("Trips", async () => {
     await page.waitForURL("**/trip/new");
     await page.waitForSelector(".new_trip");
 
-    expect(await page.innerHTML("#app")).toMatchSnapshot();
     await type(page, ".editTripName", tripName);
     await type(page, ".editTripDescription", tripDescription);
     await page.locator(".editCity").locator(".editInput").click();
@@ -72,7 +71,6 @@ describe("Trips", async () => {
       .locator(".inputPlaceDesc")
       .click();
     await page.type(".day1", "San Francisco International Airport");
-    expect(await page.innerHTML("#app")).toMatchSnapshot();
     await page.locator(".saveEditTrip").click();
 
     await page.waitForSelector(".view_trip_info");
@@ -89,28 +87,26 @@ describe("Trips", async () => {
       .locator(".n-alert-body__content")
       .allInnerTexts();
     expect(content).toContain("Only you can see this trip.");
-  }, 30000);
+  }, 50000);
 
   test("user 2 can't see private trip", async () => {
     await genRegister(page, username2, email2, password2);
     await goTo(page, newTripURL);
     await expectNotification(page, "Error", "Trip not found.");
     expect(await page.innerHTML("#app")).toMatchSnapshot();
-  }, 20000);
+  }, 30000);
 
   test("set trip to public", async () => {
     await genLogin(page, email1, password1);
     await goTo(page, newTripURL);
 
     await page.locator(".editTripButton").click();
-
-    expect(await page.innerHTML("#app")).toMatchSnapshot();
     await page
       .locator(".editTripPrivacy")
       .locator(".editPrivacyToggle")
       .click();
     await page.locator(".saveEditTrip").click();
-  }, 20000);
+  }, 30000);
 
   test("user 2 can see public trip", async () => {
     await genLogin(page, email2, password2);
@@ -126,7 +122,7 @@ describe("Trips", async () => {
       .locator(".tripDescription")
       .allInnerTexts();
     expect(description).toContain(tripDescription);
-  }, 10000);
+  }, 20000);
 
   test("search for the trip", async () => {
     await page.locator("text=Trip \u25BE").hover();
@@ -178,5 +174,5 @@ describe("Trips", async () => {
       "Trip is successfully deleted!",
     );
     await page.waitForURL(BASE_URL);
-  }, 20000);
+  }, 40000);
 });

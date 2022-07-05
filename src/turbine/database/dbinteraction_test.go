@@ -110,7 +110,13 @@ func TestAddTripDB(t *testing.T) {
 	newTrip = wings.TripBasic{
 		Name:        "DummyTrip",
 		Description: "dummytrip.com",
-		Cities:      []wings.City{wings.SanFranciscoCAUS},
+		Cities: []wings.ParsedCity{
+			{
+				ID:      1840000455,
+				Display: "Boston, Massachusetts",
+				Iso2:    "US",
+			},
+		},
 		Days: []wings.Day{
 			{
 				DayOf: 1,

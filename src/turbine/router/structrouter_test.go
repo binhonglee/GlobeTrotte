@@ -93,8 +93,14 @@ func TestCorrectPasswordLogin(t *testing.T) {
 
 func TestAddTrip(t *testing.T) {
 	var newTrip = wings.TripBasic{
-		Name:   "TestUser",
-		Cities: []wings.City{wings.SanFranciscoCAUS},
+		Name: "TestUser",
+		Cities: []wings.ParsedCity{
+			{
+				ID:      1840000455,
+				Display: "Boston, Massachusetts",
+				Iso2:    "US",
+			},
+		},
 		Days: []wings.Day{
 			{
 				DayOf:  0,

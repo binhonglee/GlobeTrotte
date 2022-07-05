@@ -1,0 +1,14 @@
+go-filepath src/turbine/wings
+ts-filepath src/cockpit/wings
+
+ts-import { IWingsStruct }:wings-ts-util
+
+ts-implement IWingsStruct
+
+# City object queried from DB
+
+struct ParsedCity {
+  id int
+  display str
+  iso2 str
+}

@@ -39,6 +39,27 @@ func cityEnumArrayToIDs(cities []wings.City) []int {
 	return idArray
 }
 
+func parsedCitiesToIDs(cities []wings.ParsedCity) []int {
+	var idArray []int = make([]int, len(cities))
+	for index := range cities {
+		idArray[index] = cities[index].ID
+	}
+	return idArray
+}
+
+func cityIDsToParsedCities(cityIDs []int64) []wings.ParsedCity {
+	var cityArray []wings.ParsedCity = make([]wings.ParsedCity, len(cityIDs))
+	for index := range cityIDs {
+		cityID := int(cityIDs[index])
+		if cityID < 20 {
+			cityID = getNewCityIDFromLegacyCityID(cityID)
+		}
+
+		cityArray[index] = GetCityDB(cityID)
+	}
+	return cityArray
+}
+
 func cityIDsToEnumArray(cityIDs []int64) []wings.City {
 	var cityArray []wings.City = make([]wings.City, len(cityIDs))
 	for index := range cityIDs {

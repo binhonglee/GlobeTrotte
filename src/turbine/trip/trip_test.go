@@ -23,8 +23,14 @@ func TestNewTrip(t *testing.T) {
 	user, _ = database.GetUserBasicDBWithID(id)
 
 	newTrip := wings.TripBasic{
-		Name:   "DummyTrip",
-		Cities: []wings.City{wings.SanFranciscoCAUS},
+		Name: "DummyTrip",
+		Cities: []wings.ParsedCity{
+			{
+				ID:      1840000455,
+				Display: "Boston, Massachusetts",
+				Iso2:    "US",
+			},
+		},
 		Days: []wings.Day{
 			{
 				DayOf: 1,
