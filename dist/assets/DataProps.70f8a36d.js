@@ -1,4 +1,4 @@
-import{z as Y,B as g,P as k,Q as C,A as p,d as Z,V as T,S as ee,U as y,a1 as oe,E as re,a2 as ae,v as P,a3 as te,x as f,aP as ce,a4 as ne,M as se,aa as le,aQ as ie,ad as l,aR as m,aS as de,aT as he,aU as ue}from"./index.87670501.js";var be={color:Object,type:{type:String,default:"default"},round:Boolean,size:{type:String,default:"medium"},closable:Boolean,disabled:{type:Boolean,default:void 0}},fe=Y("tag",`
+import{z as Y,B as g,P as k,Q as C,A as p,d as Z,V as T,S as ee,U as y,a1 as oe,E as re,a2 as ae,v as P,a3 as te,x as f,aP as ce,a4 as ne,M as se,aa as le,aQ as ie,ad as l,aR as m,aS as de,aT as he,aU as ue}from"./index.0600a43b.js";var be={color:Object,type:{type:String,default:"default"},round:Boolean,size:{type:String,default:"medium"},closable:Boolean,disabled:{type:Boolean,default:void 0}},fe=Y("tag",`
  white-space: nowrap;
  position: relative;
  box-sizing: border-box;
