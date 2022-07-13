@@ -21,7 +21,7 @@
   },
   "keywords": ["altimeter", "preview", "screenshot", "link", "image"],
   "dependencies": {
-    "playwright-core": "1.23.2"
+    "playwright-core": "1.23.3"
   },
   "devDependencies": {
     "@types/node": "16.11.43",
