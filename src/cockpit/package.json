@@ -39,7 +39,7 @@
     "eslint-plugin-vue": "8.7.1",
     "jest-serializer-html": "7.1.0",
     "jsdom": "20.0.0",
-    "playwright-core": "1.23.2",
+    "playwright-core": "1.23.3",
     "prettier": "2.7.1",
     "typescript": "4.7.4",
     "vite": "2.9.14",
