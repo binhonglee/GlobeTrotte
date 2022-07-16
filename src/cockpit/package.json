@@ -31,7 +31,7 @@
     "@vicons/ionicons5": "0.12.0",
     "@vitejs/plugin-vue": "2.3.2",
     "@vue/eslint-config-prettier": "7.0.0",
-    "@vue/eslint-config-typescript": "10.0.0",
+    "@vue/eslint-config-typescript": "11.0.0",
     "@vue/test-utils": "2.0.2",
     "c8": "7.11.3",
     "esbuild": "0.14.49",
