@@ -1,0 +1,17 @@
+go-filepath src/turbine/parsing
+ts-filepath src/cockpit/wings
+
+ts-import { IWingsStruct }:wings-ts-util
+import src/wings/enum/parsed_url_error.wings
+
+ts-implement IWingsStruct
+
+# Parsed data from given URL.
+
+struct ParsedURLData {
+  url         str
+  title       str
+  description str
+  site_name   str
+  error       ParsedURLError ParsedURLError.None
+}

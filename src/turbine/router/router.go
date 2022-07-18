@@ -178,6 +178,12 @@ var actualRoutes = routes{
 		"/cities",
 		searchCities,
 	},
+	route{
+		"ParseURL",
+		"POST",
+		"/parseURL",
+		parseURL,
+	},
 	// PROD: Used for testing only. To remove on prod.
 	route{
 		"ForceConfirmEmail",

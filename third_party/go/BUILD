@@ -18,6 +18,26 @@ go_module(
 )
 
 go_module(
+  name = "dyatlov_go-opengraph_opengraph",
+  module = "github.com/dyatlov/go-opengraph/opengraph",
+  version = "v0.0.0-20220524092352-606d7b1e5f8a",
+  install = [
+    ".",
+    "types/actor",
+    "types/article",
+    "types/audio",
+    "types/book",
+    "types/image",
+    "types/music",
+    "types/profile",
+    "types/video",
+  ],
+  deps = [
+    ":x_net",
+  ],
+)
+
+go_module(
   name = "google_uuid",
   module = "github.com/google/uuid",
   version = "v1.3.0",
@@ -186,6 +206,16 @@ go_module(
     "bcrypt",
     "blowfish",
     "pbkdf2",
+  ],
+)
+
+go_module(
+  name = "x_net",
+  module = "golang.org/x/net",
+  version = "v0.0.0-20220520000938-2e3eb7b945c2",
+  install = [
+    "html",
+    "html/atom",
   ],
 )
 

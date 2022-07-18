@@ -73,6 +73,7 @@ import { NButton, NSelect, NSwitch } from "naive-ui";
 import NaiveUtils, { NotifyType } from "@/shared/NaiveUtils";
 import { genFetchServerTrip } from "@/cache/TripCache";
 import ParsedCity from "@/wings/ParsedCity";
+import { processBioToServer } from "@/shared/UserUtil";
 
 interface Data {
   cities: Array<string>;
@@ -169,9 +170,7 @@ export default defineComponent({
       newTrip.cities = cities;
 
       const tripName = E.getVal(this, "name");
-      const tripDescription = E.getVal(this, "description")
-        .split("\n")
-        .join(" ");
+      const tripDescription = processBioToServer(E.getVal(this, "description"));
       const valid = this.checkValidNameDescription(tripName, tripDescription);
       if (!valid) {
         this.$data.saving = false;
@@ -218,7 +217,7 @@ export default defineComponent({
         place.URL = place.URL.trim();
         if (place.label !== "") {
           if (place.URL === "" || this.filterPlace(place)) {
-            place.description = place.description.split("\n").join(" ");
+            place.description = processBioToServer(place.description.valueOf());
             toReturn.push(place);
           } else {
             return null;

@@ -1,0 +1,9 @@
+go-filepath src/turbine/parsing
+ts-filepath src/cockpit/wings
+
+enum ParsedURLError {
+  URLInvalid
+  URLNotFound
+  URLProcessingFailed
+  None
+}

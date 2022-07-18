@@ -36,3 +36,12 @@ wings_lib(
     "src/turbine/wings": "registrationerror.go",
   },
 )
+
+wings_lib(
+  name = "parsed_url_error",
+  src = "parsed_url_error.wings",
+  outs = {
+    "src/cockpit/wings": "ParsedURLError.ts",
+    "src/turbine/parsing": "parsedurlerror.go",
+  },
+)

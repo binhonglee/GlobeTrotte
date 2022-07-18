@@ -8,16 +8,18 @@ type Namespace string
 var namespaceLen = 8
 
 const (
-	Main     = "main"
-	Router   = "router"
+	Main   = "main"
+	Router = "router"
+
+	Access   = "access"
+	Config   = "config"
 	Database = "database"
 	Email    = "email"
 	Flags    = "flags"
-	User     = "user"
-	Access   = "access"
-	Config   = "config"
 	NonProd  = "nonprod"
+	Parsing  = "parsing"
 	Trip     = "trip"
+	User     = "user"
 
 	// These are kept private since they should only be used
 	// in this package anyway

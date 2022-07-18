@@ -17,19 +17,28 @@
         ) Set travel time
         n-divider.editPlaceDivider
       .editPlace(:class="'place' + index")
-        n-input.inputPlaceLabel(
-          v-model:value="propPlace.place.label"
-          type="text"
-          :placeholder="'Place Name' + (index !== 0 ? '' : ' (eg. Golden Gate Bridge)')")
         n-input.inputPlaceLink(
           v-model:value="propPlace.place.URL"
           type="text"
+          :disabled="parsing[index]"
           :placeholder="'Link' + (index !== 0 ? '' : ' (eg. Google Map link)')"
         )
+        n-button.inputPlaceLinkParse(
+          type="default"
+          :disabled="propPlace.place.URL.length === 0 || parsing[index]"
+          :loading="parsing[index]"
+          @click="parse(index)"
+        ) Parse
+        n-input.inputPlaceLabel(
+          v-model:value="propPlace.place.label"
+          type="text"
+          :disabled="parsing[index]"
+          :placeholder="'Place Name' + (index !== 0 ? '' : ' (eg. Golden Gate Bridge)')")
         br
         n-input.inputPlaceDesc(
           v-model:value="propPlace.place.description"
           type="textarea"
+          :disabled="parsing[index]"
           :placeholder="index !== 0 ? 'Description' : 'Elaborate more about why you include this place in the trip!'"
           :rows="3"
         )
@@ -55,6 +64,13 @@ import { defineComponent, PropType } from "vue";
 import { NButton, NDivider, NIcon, NInput, NInputNumber } from "naive-ui";
 import { Add, CloseOutline } from "@vicons/ionicons5";
 import { PropPlace, DataTravelTime } from "@/shared/DataProps";
+import HTTPReq from "@/shared/HTTPReq";
+import ParsedURLData from "@/wings/ParsedURLData";
+import ParsedURLError from "@/wings/ParsedURLError";
+
+interface Data {
+  parsing: Array<boolean>;
+}
 
 export default defineComponent({
   name: "CEditPlaces",
@@ -90,6 +106,12 @@ export default defineComponent({
       },
     },
   },
+  data: (): Data => ({
+    parsing: [],
+  }),
+  beforeMount(): void {
+    this.$props.propPlaces.map(() => this.$data.parsing.push(false));
+  },
   methods: {
     pushPlace(): void {
       this.$props.propPlaces.push(new PropPlace());
@@ -102,11 +124,33 @@ export default defineComponent({
       tt.toPlaceIndex = index;
       this.$props.propPlaces[index].travelTime = tt;
     },
+    async parse(index: number): Promise<void> {
+      this.$data.parsing[index] = true;
+      const searchTerm = JSON.stringify(
+        this.$props.propPlaces[index].place.URL.valueOf().trim(),
+      );
+      const res = await HTTPReq.genPOST("parseURL", searchTerm);
+      if (res === null) {
+        this.$data.parsing[index] = false;
+        return;
+      }
+      const parsedURL = new ParsedURLData(res);
+      if (parsedURL.error !== ParsedURLError.None) {
+        this.$data.parsing[index] = false;
+        return;
+      }
+      console.log(parsedURL);
+      this.$props.propPlaces[index].place.URL = parsedURL.URL.valueOf();
+      this.$props.propPlaces[index].place.label = parsedURL.title.valueOf();
+      this.$props.propPlaces[index].place.description =
+        parsedURL.description.valueOf();
+      this.$data.parsing[index] = false;
+    },
   },
 });
 </script>
 
-<style>
+<style scoped>
 .addPlace {
   margin: 0;
 }
@@ -126,7 +170,16 @@ export default defineComponent({
   width: 100%;
 }
 
-.inputPlaceLink,
+.editPlace .inputPlaceLink {
+  width: 78%;
+}
+
+.inputPlaceLinkParse {
+  float: right;
+  width: 21%;
+}
+
+.inputPlaceLabel,
 .inputPlaceDesc,
 .removePlace {
   margin: 5px 0 0 0;
@@ -138,11 +191,6 @@ export default defineComponent({
 
 .editPlaceDivider {
   margin: 10px 0;
-}
-
-el-input {
-  width: auto;
-  height: auto;
 }
 
 .setTravelTime {

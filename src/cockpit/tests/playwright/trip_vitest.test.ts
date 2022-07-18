@@ -44,7 +44,10 @@ describe("Trips", async () => {
   test("create new trip", async () => {
     await genRegister(page, username1, email1, password1);
     await page.locator("text=Trip \u25BE").hover();
-    await page.locator("text=New").click();
+    await page
+      .locator(".v-binder-follower-container")
+      .locator("text=New")
+      .click();
     await page.waitForURL("**/trip/new");
     await page.waitForSelector(".new_trip");
 

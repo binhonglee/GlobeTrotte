@@ -74,13 +74,7 @@ import { WingsStructUtil } from "wings-ts-util";
 import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
 import { E } from "@glareshield/all";
 import UserBasic from "@/wings/UserBasic";
-import {
-  processBioFromStorage,
-  processBioFromServer,
-  processBioToServer,
-  sameUser,
-  UserSource,
-} from "@/shared/UserUtil";
+import { processBioToServer, sameUser } from "@/shared/UserUtil";
 import { UserCache } from "@/cache/UserCache";
 import { UsernameCache } from "@/cache/UsernameCache";
 
@@ -132,15 +126,7 @@ export default defineComponent({
 
         if (res.promise !== null) {
           const promise = await res.promise;
-          if (
-            promise !== null &&
-            !sameUser(
-              promise,
-              this.$data.user,
-              UserSource.Server,
-              UserSource.Storage,
-            )
-          ) {
+          if (promise !== null && !sameUser(promise, this.$data.user)) {
             this.$data.updated = promise;
           }
         }
@@ -174,13 +160,9 @@ export default defineComponent({
           this.$data.user.ID.valueOf(),
         );
         if (fromStorage) {
-          this.$data.user.details.bio = processBioFromStorage(
-            this.$data.user.details.bio.valueOf(),
-          );
+          this.$data.user.details.bio = this.$data.user.details.bio.valueOf();
         } else {
-          this.$data.user.details.bio = processBioFromServer(
-            this.$data.user.details.bio.valueOf(),
-          );
+          this.$data.user.details.bio = this.$data.user.details.bio.valueOf();
         }
       }
     },

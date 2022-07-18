@@ -4,6 +4,7 @@ go 1.15
 
 require (
 	github.com/binhonglee/kdlgo v0.0.0-20211115042352-099938a8d3fc
+	github.com/dyatlov/go-opengraph/opengraph v0.0.0-20220524092352-606d7b1e5f8a // indirect
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
 	github.com/gorilla/securecookie v1.1.1

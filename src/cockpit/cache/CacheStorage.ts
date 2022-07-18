@@ -101,10 +101,10 @@ export abstract class Cache<
       if (objs !== null) {
         for (const username of objs) {
           if (username.getKey() === key) {
-            toReturn.completed = username.getObj();
-            toReturn.promise = this.genFetch(key);
-            toReturn.fromStorage = true;
-            return toReturn;
+            // toReturn.completed = username.getObj();
+            // toReturn.promise = this.genFetch(key);
+            // toReturn.fromStorage = true;
+            // return toReturn;
           }
         }
       }

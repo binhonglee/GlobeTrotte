@@ -7,6 +7,7 @@ import (
 	db "github.com/binhonglee/GlobeTrotte/src/turbine/database"
 	email "github.com/binhonglee/GlobeTrotte/src/turbine/email"
 	logger "github.com/binhonglee/GlobeTrotte/src/turbine/logger"
+	"github.com/binhonglee/GlobeTrotte/src/turbine/parsing"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/user"
 	wings "github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 
@@ -90,4 +91,10 @@ func searchCities(res http.ResponseWriter, req *http.Request) {
 	var searchTerm string
 	unpackJSON(&res, req, &searchTerm)
 	respond(res, db.GetCitiesDB(searchTerm))
+}
+
+func parseURL(res http.ResponseWriter, req *http.Request) {
+	var url string
+	unpackJSON(&res, req, &url)
+	respond(res, parsing.Parse(url))
 }

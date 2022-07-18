@@ -181,3 +181,15 @@ wings_lib(
     "src/turbine/wings": "parsedcity.go",
   },
 )
+
+wings_lib(
+  name = "parsed_url_data",
+  src = "parsed_url_data.wings",
+  outs = {
+    "src/cockpit/wings": "ParsedURLData.ts",
+    "src/turbine/parsing": "parsedurldata.go",
+  },
+  deps = [
+    "//src/wings/enum:parsed_url_error",
+  ],
+)

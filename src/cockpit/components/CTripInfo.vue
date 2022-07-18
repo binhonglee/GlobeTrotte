@@ -63,8 +63,17 @@ export default defineComponent({
         WingsStructUtil.stringify(tripObj),
       );
       if (success) {
-        this.$data.dtrip = new TripObj(success);
-        this.$data.editMode = false;
+        const newTrip = new TripObj(success);
+        if (newTrip.ID !== -1) {
+          this.$data.dtrip = newTrip;
+          this.$data.editMode = false;
+        } else {
+          NaiveUtils.dialogError({
+            title: "Error",
+            content: "Save was unsuccessful. Please try again later.",
+            positiveText: "OK",
+          });
+        }
       } else {
         NaiveUtils.dialogError({
           title: "Error",
