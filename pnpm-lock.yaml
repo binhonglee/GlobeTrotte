@@ -38,7 +38,7 @@ importers:
       '@glareshield/all': workspace:../glareshield/all
       '@types/node': 16.11.45
       '@vicons/ionicons5': 0.12.0
-      '@vitejs/plugin-vue': 3.0.0
+      '@vitejs/plugin-vue': 3.0.1
       '@vue/eslint-config-prettier': 7.0.0
       '@vue/eslint-config-typescript': 11.0.0
       '@vue/test-utils': 2.0.2
@@ -72,7 +72,7 @@ importers:
       '@glareshield/all': link:../glareshield/all
       '@types/node': 16.11.45
       '@vicons/ionicons5': 0.12.0
-      '@vitejs/plugin-vue': 3.0.0_vite@3.0.0+vue@3.2.37
+      '@vitejs/plugin-vue': 3.0.1_vite@3.0.0+vue@3.2.37
       '@vue/eslint-config-prettier': 7.0.0_vvfpqh5kol6rhqy7beehv5uezq
       '@vue/eslint-config-typescript': 11.0.0_usemwu2orllh6tzptz2hsp6y3e
       '@vue/test-utils': 2.0.2_vue@3.2.37
@@ -1789,9 +1789,9 @@ packages:
     resolution: {integrity: sha512-Iy1EUVRpX0WWxeu1VIReR1zsZLMc4fqpt223czR+Rpnrwu7pt46nbnC2ycO7ItI/uqDLJxnbcMC7FujKs9IfFA==}
     dev: true
 
-  /@vitejs/plugin-vue/3.0.0_vite@3.0.0+vue@3.2.37:
-    resolution: {integrity: sha512-yWP34ArFh/jAeNUDkkLz/kVRLjf5ppJiq4L36f64Cp6dIrMQeYZGDP9xxdemlXfZR9ylN9JgHUl3GzfqOtgYDg==}
-    engines: {node: '>=14.18.0'}
+  /@vitejs/plugin-vue/3.0.1_vite@3.0.0+vue@3.2.37:
+    resolution: {integrity: sha512-Ll9JgxG7ONIz/XZv3dssfoMUDu9qAnlJ+km+pBA0teYSXzwPCIzS/e1bmwNYl5dcQGs677D21amgfYAnzMl17A==}
+    engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^3.0.0
       vue: ^3.2.25
