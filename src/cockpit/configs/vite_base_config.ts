@@ -56,6 +56,7 @@ export default function baseConfig(coverage = true): ViteConfig {
       fs: {
         allow: [".."],
       },
+      port: 3000,
     },
     test: {
       globals: true,

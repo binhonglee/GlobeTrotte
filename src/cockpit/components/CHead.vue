@@ -1,6 +1,6 @@
 <template lang="pug">
 .head
-  Head
+  VHead
     title(v-if="title && title.length > 0") {{ title + " - GlobeTrotte" }}
     title(v-else) GlobeTrotte
     meta(property="og:type" :content="type")
@@ -27,11 +27,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Head } from "@vueuse/head";
+import { Head as VHead } from "@vueuse/head";
 
 export default defineComponent({
   components: {
-    Head,
+    VHead,
   },
   props: {
     title: {

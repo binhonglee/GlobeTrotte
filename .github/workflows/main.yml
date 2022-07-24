@@ -14,10 +14,6 @@ jobs:
       with:
         path: ~/.please
         key: ${{ hashfiles('**/.plzconfig') }}-please
-    - name: Use Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.15.x
     - name: Cache pnpm-store
       id: cache-pnpm-store
       uses: actions/cache@v1
@@ -47,6 +43,7 @@ jobs:
     - run: ./pleasew build --show_all_output //...
     - run: ./pleasew lint --show_all_output
     - run: git checkout third_party/go/BUILD
+    - run: git checkout go.sum
     - run: ./scripts/leftover.sh
 
     - name: Push commit

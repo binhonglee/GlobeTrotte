@@ -149,14 +149,14 @@ export default defineComponent({
       this.$emit("cancel");
     },
     save(): void {
-      let newTrip = new TripBasic();
+      const newTrip = new TripBasic();
 
       if (this.$data.cities.length < 1) {
         this.showAlert("Cities cannot be empty");
         return;
       }
       this.$data.saving = true;
-      let cities: ParsedCity[] = [];
+      const cities: ParsedCity[] = [];
       for (const city of this.$data.cities) {
         const getParsed = this.$data.parsedCitiesMap.get(city);
         if (getParsed !== undefined) {
@@ -211,8 +211,8 @@ export default defineComponent({
       this.$data.saving = false;
     },
     filterPlaces(places: Place[]): Place[] | null {
-      let toReturn: Place[] = [];
-      for (let place of places) {
+      const toReturn: Place[] = [];
+      for (const place of places) {
         place.label = place.label.trim();
         place.URL = place.URL.trim();
         if (place.label !== "") {
@@ -376,14 +376,14 @@ export default defineComponent({
         }
       }
 
-      for (const city of this.$data.parsedCities) {
-        let remove = true;
-        for (const selected of selectedList) {
-          if (city.ID.toString() === selected) {
-            remove = false;
-          }
-        }
-      }
+      // for (const city of this.$data.parsedCities) {
+      //   let remove = true;
+      //   for (const selected of selectedList) {
+      //     if (city.ID.toString() === selected) {
+      //       remove = false;
+      //     }
+      //   }
+      // }
     },
   },
 });

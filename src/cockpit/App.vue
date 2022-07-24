@@ -196,7 +196,7 @@ export default defineComponent({
       this.$data.rightMenuOptions = themeSwtich.concat(options);
     },
     handleSelect(key: string): void {
-      let path = key;
+      const path = key;
       if (path === this.$data.activeIndex || path === null) {
         return;
       }

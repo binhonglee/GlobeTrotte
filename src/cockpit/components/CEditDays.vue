@@ -64,7 +64,7 @@ export default defineComponent({
   },
   methods: {
     pushDay(): void {
-      let day = new DataDay(
+      const day = new DataDay(
         new Day({
           places: [{}],
         }),
@@ -74,8 +74,8 @@ export default defineComponent({
     },
     removeDay(index: number): void {
       this.$data.days.splice(index, 1);
-      let dayMap: { [key: number]: DataDay } = {};
-      for (let day of this.$data.days) {
+      const dayMap: { [key: number]: DataDay } = {};
+      for (const day of this.$data.days) {
         dayMap[day.dayOf] = day;
       }
       const size = this.$data.days.length;

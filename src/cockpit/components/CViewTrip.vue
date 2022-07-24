@@ -85,7 +85,7 @@ export default defineComponent({
   }),
   beforeMount(): void {
     this.$data.cities = [];
-    for (let city of this.$props.trip.details.cities) {
+    for (const city of this.$props.trip.details.cities) {
       this.$data.cities.push(
         city.display.valueOf() + ", " + city.iso2.valueOf(),
       );

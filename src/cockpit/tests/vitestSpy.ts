@@ -1,5 +1,5 @@
 import { VueWrapper } from "@vue/test-utils";
-import { SpyContext, SpyInstance, vi } from "vitest";
+import { MockContext, SpyInstance, vi } from "vitest";
 import { routerFunctions, Vue } from "./helper";
 import router from "@/router";
 
@@ -18,7 +18,7 @@ abstract class spyInterface {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public getMock(): SpyContext<any[], any> {
+  public getMock(): MockContext<any[], any> {
     return this.item.mock;
   }
 
