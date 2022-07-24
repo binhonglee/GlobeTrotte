@@ -1,14 +1,8 @@
 <template>
-  <n-alert
-    v-if="needRefresh"
-    class="pwa-toast"
-    title="Update"
-    type="info"
-    closable
-  >
-    New content available, click on reload button to update.
+  <n-alert v-if="needRefresh" class="pwa-toast" title="Update" type="info">
+    New version available. Click here to update.
     <br />
-    <n-button @click="updateServiceWorker()"> Reload </n-button>
+    <n-button @click="updateServiceWorker()">Update</n-button>
   </n-alert>
 </template>
 
@@ -20,6 +14,10 @@ const { needRefresh, updateServiceWorker } = useRegisterSW();
 </script>
 
 <style>
+#app .dark_mode .pwa-toast {
+  background-color: #15344a;
+}
+
 #app .pwa-toast {
   position: fixed;
   right: 0;
@@ -27,7 +25,6 @@ const { needRefresh, updateServiceWorker } = useRegisterSW();
   margin: 10px;
   z-index: 1;
   text-align: left;
-  background-color: #15344a;
 }
 
 .pwa-toast .n-alert-body {
