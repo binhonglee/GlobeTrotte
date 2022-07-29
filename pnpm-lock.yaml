@@ -42,7 +42,7 @@ importers:
       '@vue/eslint-config-prettier': 7.0.0
       '@vue/eslint-config-typescript': 11.0.0
       '@vue/test-utils': 2.0.2
-      '@vueuse/head': 0.7.7
+      '@vueuse/head': 0.7.8
       axios: 0.27.2
       c8: 7.12.0
       esbuild: 0.14.51
@@ -63,7 +63,7 @@ importers:
       wings-ts-util: 0.0.8
       workbox-window: 6.5.4
     dependencies:
-      '@vueuse/head': 0.7.7_vue@3.2.37
+      '@vueuse/head': 0.7.8_vue@3.2.37
       axios: 0.27.2
       naive-ui: 2.27.0_vue@3.2.37
       vue: 3.2.37
@@ -1962,8 +1962,8 @@ packages:
       vue: 3.2.37
     dev: true
 
-  /@vueuse/head/0.7.7_vue@3.2.37:
-    resolution: {integrity: sha512-umsupiMPYxSMvREskQhcwhQ8zpnv8u1oKSB3Q1gclhsV53XAMTurkX+vPE4aBmGulHI1XEZp3N5ctEABEj3xqQ==}
+  /@vueuse/head/0.7.8_vue@3.2.37:
+    resolution: {integrity: sha512-D0lFcCgynjzTVVHM2RsQShDxKfjgbc2vhzeLqkOyH0lKEV3iv4xJ8ZSIW47V4XC6erGpnM2z2XGnwltMZFn7oA==}
     peerDependencies:
       vue: '>=3'
     dependencies:
