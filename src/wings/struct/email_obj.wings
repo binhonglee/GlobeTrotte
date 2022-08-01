@@ -9,6 +9,5 @@ ts-implement IWingsStruct
 
 struct EmailObj {
   uuid    str
-  email   str
   userid  int
 }

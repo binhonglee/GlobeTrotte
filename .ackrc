@@ -13,4 +13,3 @@
 --ignore-file=is:pleasew
 --ignore-file=is:pnpm-lock.yaml
 --ignore-file=is:vitest_junit
--i

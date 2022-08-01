@@ -45,7 +45,6 @@ export default defineComponent({
       WingsStructUtil.stringify(
         new EmailObj({
           uuid: uuid,
-          email: user.details.email,
           userid: user.ID,
         }),
       ),

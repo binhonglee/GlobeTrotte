@@ -53,13 +53,6 @@ func TestGetUserDB(t *testing.T) {
 	//         newNewUser.Bio,
 	//     )
 	// }
-	if retrievedUser.Email != newNewUser.Email {
-		t.Errorf(
-			"GetUserDB(), given email is %v but expected email is %v.",
-			retrievedUser.Email,
-			retrievedUser.Email,
-		)
-	}
 	/* TODO: Implement test to make sure data is consistent
 	 * Not sure what's a good way to track the accurate timestamp when its added in the DB
 	 */
