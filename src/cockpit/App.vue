@@ -121,7 +121,8 @@ export default defineComponent({
       deep: false,
     },
   },
-  beforeMount(): void {
+  async beforeMount(): Promise<void> {
+    await General.genCurrentUser();
     this.onLoad();
   },
   methods: {

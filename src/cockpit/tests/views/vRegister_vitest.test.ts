@@ -10,6 +10,8 @@ import Routing from "@/shared/Routing";
 import RegistrationResponse from "@/wings/RegistrationResponse";
 import NaiveUtils from "@/shared/NaiveUtils";
 import RegistrationError from "@/wings/RegistrationError";
+import General from "@/shared/General";
+import Auth from "@/wings/Auth";
 
 const name = "Ab Cd";
 const username = "mocked_testuser";
@@ -161,6 +163,7 @@ describe("vRegister", () => {
         return Routing.fakeGetNext(m);
       }),
     );
+    stub(vi.spyOn(General, "genCurrentUser")).resolves(new Auth({}));
     verifyUI(wrapper);
     fillFormAndReg(wrapper, {
       name: name,

@@ -193,3 +193,12 @@ wings_lib(
     "//src/wings/enum:parsed_url_error",
   ],
 )
+
+wings_lib(
+  name = "auth",
+  src = "auth.wings",
+  outs = {
+    "src/cockpit/wings": "Auth.ts",
+    "src/turbine/access": "auth.go",
+  },
+)

@@ -4,6 +4,7 @@ filegroup(
     "//src/wings/enum:city",
     "//src/wings/enum:access_level",
     "//src/wings/enum:registration_error",
+    "//src/wings/struct:auth",
     "//src/wings/struct:day",
     "//src/wings/struct:new_user",
     "//src/wings/struct:place",

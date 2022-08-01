@@ -20,7 +20,7 @@ export default defineComponent({
   },
   async mounted(): Promise<void> {
     const user = await General.genCurrentUser();
-    if (user.details.confirmed) {
+    if (user.confirmed) {
       await Routing.genRedirectTo(Routes.Landing);
       return;
     }

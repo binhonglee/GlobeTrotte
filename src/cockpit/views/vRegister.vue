@@ -66,6 +66,7 @@ import Routing from "@/shared/Routing";
 import router from "@/router";
 import NaiveUtils from "@/shared/NaiveUtils";
 import CHead from "@/components/CHead.vue";
+import General from "@/shared/General";
 
 interface Data {
   loading: boolean;
@@ -168,8 +169,7 @@ export default defineComponent({
         NaiveUtils.messageError("Unknown error. Please try again later.");
         return;
       }
-
-      localStorage.setItem("userobj", WingsStructUtil.stringify(user));
+      await General.genCurrentUser();
       this.$data.loading = false;
       NaiveUtils.messageSuccess("Your account is created successfully!");
 

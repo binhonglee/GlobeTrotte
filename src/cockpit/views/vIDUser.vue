@@ -35,7 +35,6 @@
           label="Username" ref="username"
           :val="user.details.username.valueOf()" placeholder="Set a username"
         )
-        CEditItem(label="Email" ref="email" :val="user.details.email.valueOf()")
         CEditItem(label="Link" ref="link" :val="user.details.link.valueOf()")
         CEditItem(
           label="Bio" type="textarea" ref="bio"
