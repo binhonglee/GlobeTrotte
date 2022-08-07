@@ -139,7 +139,6 @@ export default defineComponent({
         this.$data.parsing[index] = false;
         return;
       }
-      console.log(parsedURL);
       this.$props.propPlaces[index].place.URL = parsedURL.URL.valueOf();
       this.$props.propPlaces[index].place.label = parsedURL.title.valueOf();
       this.$props.propPlaces[index].place.description =

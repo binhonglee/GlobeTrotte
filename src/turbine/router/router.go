@@ -143,6 +143,12 @@ var actualRoutes = routes{
 		whoamiV2,
 	},
 	route{
+		"WhoAmIV3",
+		"GET",
+		"/v3/whoami",
+		whoamiV3,
+	},
+	route{
 		"GetRecentTripObjs",
 		"GET",
 		"/v2/sample_trips",

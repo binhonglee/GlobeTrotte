@@ -106,8 +106,8 @@ export default defineComponent({
         NaiveUtils.messageError("Wrong email or password. Please try again.");
         return;
       }
+      await General.genCurrentUser();
       this.$data.loadingBar?.finish();
-      localStorage.setItem("userobj", WingsStructUtil.stringify(user));
       this.$data.loading = false;
       NaiveUtils.messageSuccess("You are now logged in.");
 

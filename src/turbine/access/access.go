@@ -100,3 +100,12 @@ func Login(u LoginCredential) (user.UserObj, bool) {
 	//lint:ignore SA1019 We only have user email on login
 	return user.GetUserObjWithEmail(u.Email), true
 }
+
+func GetAuth(uid int) Auth {
+	auth := Auth{}
+	currentUser := user.GetUserObj(uid, uid)
+	auth.ID = currentUser.ID
+	auth.Username = currentUser.Details.Username
+	auth.Confirmed = currentUser.Details.Confirmed
+	return auth
+}

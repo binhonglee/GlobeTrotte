@@ -1,9 +1,9 @@
 import { WingsStructUtil } from "wings-ts-util";
 import HTTPReq from "@/shared/HTTPReq";
-import UserObj from "@/wings/UserObj";
 import router from "@/router";
 import { useLoadingBar } from "naive-ui";
 import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
+import Auth from "@/wings/Auth";
 
 export default class General {
   public static paramID(): string | undefined {
@@ -20,7 +20,7 @@ export default class General {
   }
 
   public static getCurrentUsername(): string {
-    const username = this.getCurrentUser().details.username;
+    const username = this.getCurrentUser().username;
     if (username.length > 0) {
       return username.valueOf();
     }
@@ -31,32 +31,33 @@ export default class General {
     await this.genCurrentUser();
   }
 
-  public static async genCurrentUser(): Promise<UserObj> {
-    const user = new UserObj(await HTTPReq.genGET("v2/whoami"));
+  public static async genCurrentUser(): Promise<Auth> {
+    const user = new Auth(await HTTPReq.genGET("v3/whoami"));
     if (user.ID === -1) {
-      localStorage.removeItem("userobj");
+      localStorage.removeItem("auth");
     } else {
-      localStorage.setItem("userobj", WingsStructUtil.stringify(user));
+      localStorage.setItem("auth", WingsStructUtil.stringify(user));
     }
 
     return this.getCurrentUser();
   }
 
-  private static getCurrentUser(): UserObj {
-    const user = localStorage.getItem("userobj");
+  private static getCurrentUser(): Auth {
+    const user = localStorage.getItem("auth");
     if (user !== null) {
-      return new UserObj(JSON.parse(user));
+      return new Auth(JSON.parse(user));
     }
 
-    return new UserObj();
+    return new Auth();
   }
 
   public static authSession(): boolean {
+    console.log(this.getCurrentUser());
     return this.getCurrentUser().ID !== -1;
   }
 
   public static confirmed(): boolean {
-    return this.getCurrentUser().details.confirmed.valueOf();
+    return this.getCurrentUser().confirmed.valueOf();
   }
 
   public static loadingBar(): LoadingBarApiInjection | null {

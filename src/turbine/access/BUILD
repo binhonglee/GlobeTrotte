@@ -2,6 +2,7 @@ go_library(
   name = "access",
   srcs = [
     "access.go",
+    "//src/wings/struct:auth",
     "//src/wings/struct:reset_password",
     "//src/wings/struct:login_credential",
   ],

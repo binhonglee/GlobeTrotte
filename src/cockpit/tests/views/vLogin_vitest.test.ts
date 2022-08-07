@@ -10,6 +10,8 @@ import { routerSpy, stub } from "../vitestSpy";
 import { R } from "@glareshield/all";
 import LoginCredential from "@/wings/LoginCredential";
 import NaiveUtils from "@/shared/NaiveUtils";
+import General from "@/shared/General";
+import Auth from "@/wings/Auth";
 
 const email = "ab@test.com";
 const password = "1234";
@@ -103,6 +105,7 @@ describe("Login", () => {
     const wrapper = mount(vLogin, mountingOptions());
     // const routerPush = new routerSpy(wrapper, "push");
     const notify = stub(vi.spyOn(NaiveUtils, "messageSuccess"));
+    stub(vi.spyOn(General, "genCurrentUser")).resolves(new Auth({}));
     verifyUI(wrapper);
     fillFormAndLogin(wrapper, {
       email: email,
