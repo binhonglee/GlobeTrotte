@@ -1,6 +1,6 @@
 module github.com/binhonglee/GlobeTrotte
 
-go 1.18
+go 1.19
 
 require (
 	github.com/binhonglee/kdlgo v0.0.0-20211115042352-099938a8d3fc
