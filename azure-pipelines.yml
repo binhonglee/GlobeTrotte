@@ -23,7 +23,7 @@ jobs:
         goVersion: "1.16.6"
 
   steps:
-  - task: GoTool@0
+  - task: GoTool@0.207.0
     inputs:
       version: $(goVersion)
   - task: NodeTool@0
@@ -92,7 +92,7 @@ jobs:
       #   goVersion: "1.16.6"
 
   steps:
-  - task: GoTool@0
+  - task: GoTool@0.207.0
     inputs:
       version: $(goVersion)
   - task: NodeTool@0
@@ -170,7 +170,7 @@ jobs:
         goVersion: "1.16.6"
 
   steps:
-  - task: GoTool@0
+  - task: GoTool@0.207.0
     inputs:
       version: $(goVersion)
 
