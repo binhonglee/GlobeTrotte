@@ -30,14 +30,14 @@ jobs:
     inputs:
       versionSpec: $(nodeVersion)
 
-  - task: Cache@2
+  - task: Cache@2.198.0
     inputs:
       key: "pnpm_store | $(Agent.OS) | package.json"
       path: "/home/vsts/.local/share/pnpm/store/v3"
     condition: eq(variables['Agent.OS'], 'Linux')
     displayName: Cache pnpm-store (Ubuntu)
 
-  - task: Cache@2
+  - task: Cache@2.198.0
     inputs:
       key: "pnpm_store | $(Agent.OS) | package.json"
       path: "/Users/runner/Library/pnpm/store/v3"
@@ -99,14 +99,14 @@ jobs:
     inputs:
       versionSpec: $(nodeVersion)
 
-  - task: Cache@2
+  - task: Cache@2.198.0
     inputs:
       key: "pnpm_store | $(Agent.OS) | package.json"
       path: "/home/vsts/.local/share/pnpm/store/v3"
     condition: eq(variables['Agent.OS'], 'Linux')
     displayName: Cache pnpm-store (Ubuntu)
 
-  - task: Cache@2
+  - task: Cache@2.198.0
     inputs:
       key: "pnpm_store | $(Agent.OS) | package.json"
       path: "/Users/runner/Library/pnpm/store/v3"
@@ -220,14 +220,14 @@ jobs:
     inputs:
       versionSpec: $(nodeVersion)
 
-  - task: Cache@2
+  - task: Cache@2.198.0
     inputs:
       key: "pnpm_store | $(Agent.OS) | package.json"
       path: "/home/vsts/.local/share/pnpm/store/v3"
     condition: eq(variables['Agent.OS'], 'Linux')
     displayName: Cache pnpm-store (Ubuntu)
 
-  - task: Cache@2
+  - task: Cache@2.198.0
     inputs:
       key: "pnpm_store | $(Agent.OS) | package.json"
       path: "/Users/runner/Library/pnpm/store/v3"
