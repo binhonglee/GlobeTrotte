@@ -22,21 +22,21 @@ importers:
 
   src/altimeter:
     specifiers:
-      '@types/node': 16.11.49
+      '@types/node': 16.11.51
       esbuild: 0.15.5
       playwright-core: 1.25.0
       typescript: 4.7.4
     dependencies:
       playwright-core: 1.25.0
     devDependencies:
-      '@types/node': 16.11.49
+      '@types/node': 16.11.51
       esbuild: 0.15.5
       typescript: 4.7.4
 
   src/cockpit:
     specifiers:
       '@glareshield/all': workspace:../glareshield/all
-      '@types/node': 16.11.49
+      '@types/node': 16.11.51
       '@vicons/ionicons5': 0.12.0
       '@vitejs/plugin-vue': 3.0.3
       '@vue/eslint-config-prettier': 7.0.0
@@ -70,7 +70,7 @@ importers:
       wings-ts-util: 0.0.8
     devDependencies:
       '@glareshield/all': link:../glareshield/all
-      '@types/node': 16.11.49
+      '@types/node': 16.11.51
       '@vicons/ionicons5': 0.12.0
       '@vitejs/plugin-vue': 3.0.3_vite@3.0.9+vue@3.2.37
       '@vue/eslint-config-prettier': 7.0.0_2xd4q2tc5cqa5as7uugqhp6oue
@@ -1538,8 +1538,8 @@ packages:
     resolution: {integrity: sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==}
     dev: false
 
-  /@types/node/16.11.49:
-    resolution: {integrity: sha512-Abq9fBviLV93OiXMu+f6r0elxCzRwc0RC5f99cU892uBITL44pTvgvEqlRlPRi8EGcO1z7Cp8A4d0s/p3J/+Nw==}
+  /@types/node/16.11.51:
+    resolution: {integrity: sha512-h6p1A77pHBDdOcI9y6Wfh9iRGa8lMUZMk2ebHJTNTtRwgbQzgemZow6PW7+Xs7Z0r0IQFY1+iRlcNAkRrf53nA==}
     dev: true
 
   /@types/node/17.0.35:
