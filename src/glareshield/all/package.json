@@ -15,7 +15,7 @@
     "@glareshield/r": "workspace:../R",
     "axios": "0.27.2",
     "typescript": "4.7.4",
-    "vue": "3.2.37",
+    "vue": "3.2.38",
     "vue-router": "4.1.5"
   },
   "peerDependencies": {
