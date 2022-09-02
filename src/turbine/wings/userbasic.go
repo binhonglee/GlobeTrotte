@@ -12,7 +12,6 @@ type UserBasic struct {
 	ID        int    `json:"id"`
 	Username  string `json:"username"`
 	Name      string `json:"name"`
-	Email     string `json:"email"`
 	Bio       string `json:"bio"`
 	Link      string `json:"link"`
 	Confirmed bool   `json:"confirmed"`

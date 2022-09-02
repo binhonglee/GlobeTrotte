@@ -142,13 +142,12 @@ func ConfirmEmail(confirmation EmailObj) bool {
 	email.id, email.userID, email.emailAddress,
 		email.confirmed = db.GetEmailDB(confirmation.Uuid)
 	if email.id == -1 || email.confirmed ||
-		email.userID != confirmation.Userid ||
-		email.emailAddress != confirmation.Email {
+		email.userID != confirmation.Userid {
 		return false
 	}
 
-	user, _ := db.GetUserBasicDBWithID(email.userID)
-	if user.ID == -1 || user.Email != confirmation.Email {
+	userEmail := db.GetEmailWithUserIDUserDB(email.userID)
+	if userEmail == "" || userEmail != email.emailAddress {
 		return false
 	}
 

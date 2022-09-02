@@ -123,14 +123,13 @@ func GetUserBasicDBWithID(id int) (wings.UserBasic, UserExtra) {
 	var username pgtype.Text
 	var trips pgtype.Int4Array
 	sqlStatement := `
-		SELECT id, username, name, email, bio, confirmed, link, trips, time_created
+		SELECT id, username, name, bio, confirmed, link, trips, time_created
 		FROM users WHERE id=$1;`
 	c := getConn()
 	switch err := c.QueryRow(context.Background(), sqlStatement, id).Scan(
 		&user.ID,
 		&username,
 		&user.Name,
-		&user.Email,
 		&bio,
 		&user.Confirmed,
 		&link,
@@ -199,6 +198,22 @@ func UpdateUserBasicDB(updatedUser wings.UserBasic) bool {
 func AddTripToUserDB(tripID int, user wings.UserBasic) bool {
 	_, extra := GetUserBasicDBWithID(user.ID)
 	return updateTripsInUserDB(user.ID, append(extra.TripIDs, tripID))
+}
+
+func GetEmailWithUserIDUserDB(userID int) string {
+	email := ""
+	sqlStatement := `SELECT email FROM users WHERE id=$1;`
+	c := getConn()
+	switch err := c.QueryRow(
+		context.Background(), sqlStatement, userID,
+	).Scan(&email); err {
+	case pgx.ErrNoRows:
+		return ""
+	default:
+		logger.Err(logger.Database, err, "")
+	}
+
+	return email
 }
 
 func DeleteTripFromUserDB(trip wings.TripBasic, user wings.UserBasic) bool {
@@ -301,10 +316,9 @@ func updatingUser(updatedUser wings.UserBasic) bool {
 		UPDATE users
 		SET name = $2,
 		username = $3,
-		email = $4,
-		bio = $5,
-		link = $6,
-		confirmed = $7
+		bio = $4,
+		link = $5,
+		confirmed = $6
 		WHERE id = $1;`
 
 	c := getConn()
@@ -314,7 +328,6 @@ func updatingUser(updatedUser wings.UserBasic) bool {
 		updatedUser.ID,
 		updatedUser.Name,
 		updatedUser.Username,
-		updatedUser.Email,
 		updatedUser.Bio,
 		updatedUser.Link,
 		updatedUser.Confirmed,

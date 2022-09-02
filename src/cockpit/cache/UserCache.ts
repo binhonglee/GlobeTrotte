@@ -14,8 +14,8 @@ class UserStorage extends CacheStorage<UserObj> {
     return new UserStorage(obj);
   }
 
-  public getObj(): UserObj {
-    return new UserObj(JSON.parse(this.obj));
+  protected getObjImpl(obj: string): UserObj {
+    return new UserObj(JSON.parse(obj));
   }
 }
 
@@ -37,8 +37,8 @@ export class UserCache extends Cache<UserObj, FetchedUserObj, UserStorage> {
       this.storeObj(
         FetchedUserObj,
         UserStorage,
-        WingsStructUtil.stringify(userObj),
         userObj.details.username.valueOf(),
+        WingsStructUtil.stringify(userObj, true),
       );
       return userObj;
     }

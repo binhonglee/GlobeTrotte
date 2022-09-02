@@ -46,14 +46,6 @@ func TestAddUser(t *testing.T) {
 	if returned.User.GetID() == -1 {
 		t.Errorf("User failed to add.")
 	}
-
-	if returned.User.Details.Email != newUser.Email {
-		t.Errorf(
-			"Sent Email is %v but returned Email is %v.",
-			newUser.Email,
-			returned.User.Details.Email,
-		)
-	}
 }
 
 func TestGetUser(t *testing.T) {

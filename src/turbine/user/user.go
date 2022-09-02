@@ -122,6 +122,5 @@ func GetUserObjWithEmail(email string) UserObj {
 func same(a wings.UserBasic, b wings.UserBasic) bool {
 	return a.ID == b.ID &&
 		a.Name == b.Name &&
-		a.Email == b.Email &&
 		a.Bio == b.Bio
 }

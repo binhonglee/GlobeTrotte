@@ -10,7 +10,6 @@ package email
 // EmailObj - Email confirmation object.
 type EmailObj struct {
 	Uuid   string `json:"uuid"`
-	Email  string `json:"email"`
 	Userid int    `json:"userid"`
 }
 

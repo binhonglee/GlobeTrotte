@@ -11,13 +11,11 @@ import { IWingsStruct } from 'wings-ts-util';
 export default class EmailObj implements IWingsStruct {
   [key: string]: any;
   public uuid: String = '';
-  public email: String = '';
   public userid: Number = 0;
 
   public constructor(obj?: any) {
     if (obj) {
       this.uuid = obj.uuid !== undefined && obj.uuid !== null ? obj.uuid : '';
-      this.email = obj.email !== undefined && obj.email !== null ? obj.email : '';
       this.userid = obj.userid !== undefined && obj.userid !== null ? obj.userid : 0;
     }
   }
@@ -26,9 +24,6 @@ export default class EmailObj implements IWingsStruct {
     switch (key) {
       case 'uuid': {
         return 'uuid';
-      }
-      case 'email': {
-        return 'email';
       }
       case 'userid': {
         return 'userid';

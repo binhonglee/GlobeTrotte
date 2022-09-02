@@ -1,4 +1,5 @@
 import PWAUtils from "@/shared/PWAUtils";
+import { stringEscape, stringUnescape } from "wings-ts-util";
 
 export abstract class CacheStorage<T> {
   private order: number;
@@ -36,7 +37,12 @@ export abstract class CacheStorage<T> {
     return this.order;
   }
 
-  public abstract getObj(): T;
+  public getObj(): T {
+    const str = stringUnescape(this.obj).replaceAll("\\'", "'");
+    return this.getObjImpl(str);
+  }
+
+  protected abstract getObjImpl(obj: string): T;
 }
 
 export function fromStorage<T, CS extends CacheStorage<T>>(
@@ -83,6 +89,7 @@ export abstract class Cache<
   protected abstract genFetch(key: string): Promise<T | null>;
 
   protected getStorage(): string | null {
+    // localStorage.setItem(this.storage, null);
     return localStorage.getItem(this.storage);
   }
   protected setStorage(value: unknown[]) {
@@ -97,14 +104,16 @@ export abstract class Cache<
     const toReturn = new fetchedObj();
     if (PWAUtils.isPWA()) {
       const objs = fromStorage<T, CS>(cacheStorage, this.getStorage());
+      console.log(objs);
 
       if (objs !== null) {
         for (const username of objs) {
+          console.log(username);
           if (username.getKey() === key) {
-            // toReturn.completed = username.getObj();
-            // toReturn.promise = this.genFetch(key);
-            // toReturn.fromStorage = true;
-            // return toReturn;
+            toReturn.completed = username.getObj();
+            toReturn.promise = this.genFetch(key);
+            toReturn.fromStorage = true;
+            return toReturn;
           }
         }
       }
@@ -154,7 +163,9 @@ export abstract class Cache<
     }
 
     objs.push(
-      new cacheStorage(CacheStorage.paramsToRecord(highest, key, value)),
+      new cacheStorage(
+        CacheStorage.paramsToRecord(highest, key, stringEscape(value)),
+      ),
     );
     this.setStorage(objs);
   }

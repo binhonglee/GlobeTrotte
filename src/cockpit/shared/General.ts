@@ -52,7 +52,6 @@ export default class General {
   }
 
   public static authSession(): boolean {
-    console.log(this.getCurrentUser());
     return this.getCurrentUser().ID !== -1;
   }
 
