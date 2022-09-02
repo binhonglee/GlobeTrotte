@@ -60,14 +60,14 @@ importers:
       vue: 3.2.38
       vue-router: 4.1.5
       vue-tsc: 0.40.5
-      wings-ts-util: 0.0.8
+      wings-ts-util: 0.0.9
       workbox-window: 6.5.4
     dependencies:
       '@vueuse/head': 0.7.9_vue@3.2.38
       axios: 0.27.2
       naive-ui: 2.27.0_vue@3.2.38
       vue: 3.2.38
-      wings-ts-util: 0.0.8
+      wings-ts-util: 0.0.9
     devDependencies:
       '@glareshield/all': link:../glareshield/all
       '@types/node': 16.11.56
@@ -5222,8 +5222,8 @@ packages:
       isexe: 2.0.0
     dev: true
 
-  /wings-ts-util/0.0.8:
-    resolution: {integrity: sha512-9kVIx5wuvJ/OfeJIUcjB/r6caGF019Uh+dWr9v9RO716IbfWfQWik2ktWiqFZ13+6fgnxulydnBlvqJY3CIcvA==}
+  /wings-ts-util/0.0.9:
+    resolution: {integrity: sha512-tOtSX+GlUKXW/mtnfVB+OcroEUlVx/JbPqJH5YtcZvZTE4BxyWmQNP5/Vt/FhaStUB70f7x//+1aAEWDxmHjNQ==}
     dev: false
 
   /with/7.0.2:
