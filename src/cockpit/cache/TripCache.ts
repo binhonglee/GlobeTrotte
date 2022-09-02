@@ -14,8 +14,8 @@ class TripStorage extends CacheStorage<TripObj> {
     return new TripStorage(obj);
   }
 
-  public getObj(): TripObj {
-    return new TripObj(JSON.parse(this.obj));
+  protected getObjImpl(obj: string): TripObj {
+    return new TripObj(JSON.parse(obj));
   }
 }
 
@@ -37,7 +37,7 @@ export class TripCache extends Cache<TripObj, FetchedTripObj, TripStorage> {
         FetchedTripObj,
         TripStorage,
         tripObj.ID.toString(),
-        WingsStructUtil.stringify(tripObj),
+        WingsStructUtil.stringify(tripObj, true),
       );
       return tripObj;
     }

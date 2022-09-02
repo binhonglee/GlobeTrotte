@@ -12,7 +12,8 @@ class UsernameStorage extends CacheStorage<string> {
     return new UsernameStorage(obj);
   }
 
-  public getObj(): string {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  protected getObjImpl(obj: string): string {
     return this.obj;
   }
 }

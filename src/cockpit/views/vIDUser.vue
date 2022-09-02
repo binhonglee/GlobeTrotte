@@ -122,11 +122,12 @@ export default defineComponent({
           this.$data.user = res.completed;
           this.dataProcessing(res.fromStorage);
         }
-
+        console.log(res.promise);
         if (res.promise !== null) {
           const promise = await res.promise;
           if (promise !== null && !sameUser(promise, this.$data.user)) {
-            this.$data.updated = promise;
+            this.$data.user = promise;
+            this.dataProcessing(false);
           }
         }
       } else {
