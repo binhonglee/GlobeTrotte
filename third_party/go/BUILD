@@ -160,7 +160,7 @@ go_module(
 go_module(
   name = "jackc_pgx_v4",
   module = "github.com/jackc/pgx/v4",
-  version = "v4.17.1",
+  version = "v4.17.2",
   install = [
     ".",
     "internal/sanitize",
