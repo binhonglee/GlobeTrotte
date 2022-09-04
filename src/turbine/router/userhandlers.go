@@ -5,7 +5,6 @@ import (
 
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/binhonglee/GlobeTrotte/src/turbine/access"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/user"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
@@ -111,34 +110,4 @@ func deleteUserObj(res http.ResponseWriter, req *http.Request) {
 	}
 
 	respond(res, user.DeleteUserObj(item, getUserID(req)))
-}
-
-func whoamiV2(
-	res http.ResponseWriter, req *http.Request) {
-	session, _ := store.Get(req, "logged-in")
-	var val int
-
-	if auth, ok := session.Values["authenticated"].(bool); !ok || !auth {
-		val = -1
-	} else if id, ok := session.Values["userid"].(int); ok {
-		val = id
-	} else {
-		val = -1
-	}
-	respond(res, user.GetUserObj(val, val))
-}
-
-func whoamiV3(
-	res http.ResponseWriter, req *http.Request) {
-	session, _ := store.Get(req, "logged-in")
-	var val int
-
-	if auth, ok := session.Values["authenticated"].(bool); !ok || !auth {
-		val = -1
-	} else if id, ok := session.Values["userid"].(int); ok {
-		val = id
-	} else {
-		val = -1
-	}
-	respond(res, access.GetAuth(val))
 }
