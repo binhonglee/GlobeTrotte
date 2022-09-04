@@ -152,12 +152,6 @@ func updateUserTable() {
 	defer c.Close()
 }
 
-func updateDaysTable() {
-	c := getConn()
-	c.Exec(context.Background(), `ALTER TABLE days ADD COLUMN IF NOT EXISTS travel_times INT[];`)
-	defer c.Close()
-}
-
 func createTripsTable() {
 	createTable := `
 		CREATE TABLE trips (
@@ -192,6 +186,12 @@ func createDaysTable() {
 	defer c.Close()
 
 	logger.PanicErr(logger.Database, err, "Failed to create `days` table.")
+}
+
+func updateDaysTable() {
+	c := getConn()
+	c.Exec(context.Background(), `ALTER TABLE days ADD COLUMN IF NOT EXISTS travel_times INT[];`)
+	defer c.Close()
 }
 
 func createPlacesTable() {

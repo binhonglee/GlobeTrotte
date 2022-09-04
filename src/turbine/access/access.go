@@ -103,6 +103,10 @@ func Login(u LoginCredential) (user.UserObj, bool) {
 
 func GetAuth(uid int) Auth {
 	auth := Auth{}
+	if uid < 0 {
+		auth.ID = uid
+		return auth
+	}
 	currentUser := user.GetUserObj(uid, uid)
 	auth.ID = currentUser.ID
 	auth.Username = currentUser.Details.Username

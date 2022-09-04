@@ -89,7 +89,6 @@ export abstract class Cache<
   protected abstract genFetch(key: string): Promise<T | null>;
 
   protected getStorage(): string | null {
-    // localStorage.setItem(this.storage, null);
     return localStorage.getItem(this.storage);
   }
   protected setStorage(value: unknown[]) {
@@ -104,11 +103,9 @@ export abstract class Cache<
     const toReturn = new fetchedObj();
     if (PWAUtils.isPWA()) {
       const objs = fromStorage<T, CS>(cacheStorage, this.getStorage());
-      console.log(objs);
 
       if (objs !== null) {
         for (const username of objs) {
-          console.log(username);
           if (username.getKey() === key) {
             toReturn.completed = username.getObj();
             toReturn.promise = this.genFetch(key);
