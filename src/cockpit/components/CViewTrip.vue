@@ -11,7 +11,8 @@
       v-if="trip.details.description !== ''"
     ) {{ trip.details.description }}
     p.tripCreatorInfo Author: 
-      CLink(:url="'/user/' + trip.user.username") {{ trip.user.name }}
+      CLink(
+        :url="'/user/' + (trip.user.username.valueOf() === '' ? trip.user.ID.toString() : trip.user.username.toString())") {{ trip.user.name }}
     p.tripUpdatedDate Last Updated: {{ lastUpdated }}
     p.tripCreatedDate Created on: {{ created }}
     div.tripCities

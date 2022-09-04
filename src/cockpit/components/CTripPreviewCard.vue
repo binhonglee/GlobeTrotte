@@ -18,7 +18,7 @@
         ) {{ trip.details.description }}
         p
           CLink.tripPreviewUserProfileLink(
-            :url="'/user/' + trip.user.username"
+            :url="'/user/' + (trip.user.username.valueOf() === '' ? trip.user.ID.toString() : trip.user.username.toString())"
             underline="hover"
           ) {{ trip.user.name }}
         .cityTags
