@@ -26,6 +26,13 @@ exports[`vIDUser > Get User - Has user (not self) 1`] = `
         <div class="userInfo narrow_content"
              data-v-2ff30c83
         >
+          <h3 data-v-2ff30c83>
+            <code class="username left_col"
+                  data-v-2ff30c83
+            >
+              @testmockuseraccount
+            </code>
+          </h3>
           <div class="externalLink"
                data-v-2ff30c83
           >
@@ -187,6 +194,13 @@ exports[`vIDUser > Get User - Has user (self, confirmed) 1`] = `
         <div class="userInfo narrow_content"
              data-v-2ff30c83
         >
+          <h3 data-v-2ff30c83>
+            <code class="username left_col"
+                  data-v-2ff30c83
+            >
+              @testmockuseraccount
+            </code>
+          </h3>
           <div class="externalLink"
                data-v-2ff30c83
           >
@@ -414,6 +428,13 @@ exports[`vIDUser > Get User - Has user (self, unconfirmed) 1`] = `
         <div class="userInfo narrow_content"
              data-v-2ff30c83
         >
+          <h3 data-v-2ff30c83>
+            <code class="username left_col"
+                  data-v-2ff30c83
+            >
+              @testmockuseraccount
+            </code>
+          </h3>
           <div class="externalLink"
                data-v-2ff30c83
           >

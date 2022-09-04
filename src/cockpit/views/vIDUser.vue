@@ -135,6 +135,11 @@ export default defineComponent({
         if (username !== null && username !== "") {
           await Routing.genRedirectTo(Routes.User + "/" + username);
           return await this.init();
+        } else {
+          const user = await HTTPReq.genGET("v2/user/" + paramID);
+          if (user !== null) {
+            this.$data.user = new UserObj(user);
+          }
         }
       }
 

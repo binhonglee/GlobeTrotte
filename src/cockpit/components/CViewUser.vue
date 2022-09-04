@@ -1,7 +1,8 @@
 <template lang="pug">
 .view_user
   div.userInfo.narrow_content
-    h2(v-if="showName").userName.left_col {{ user.details.name }}
+    h3(v-if="user.details.username !== ''")
+      code.username.left_col @{{ user.details.username }}
     p.userBio(v-if="user.details.bio !== ''")
       | {{ user.details.bio }}
     .externalLink

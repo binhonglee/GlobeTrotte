@@ -13,9 +13,6 @@ describe("CViewUser", () => {
     });
 
     expect(wrapper.find(".userInfo").exists()).toBeTruthy();
-    expect(wrapper.find(".userName").text()).toMatch(
-      new RegExp(user.details.name.valueOf()),
-    );
     expect(wrapper.find(".userBio").text()).toMatch(
       new RegExp(user.details.bio.valueOf()),
     );
