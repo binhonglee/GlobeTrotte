@@ -26,7 +26,7 @@
   "devDependencies": {
     "@types/node": "16.11.58",
     "esbuild": "0.15.7",
-    "typescript": "4.7.4"
+    "typescript": "4.8.2"
   },
   "license": "MIT"
 }
