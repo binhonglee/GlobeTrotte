@@ -22,7 +22,7 @@
     "@vueuse/head": "0.7.9",
     "axios": "0.27.2",
     "naive-ui": "2.27.0",
-    "vue": "3.2.38",
+    "vue": "3.2.39",
     "wings-ts-util": "0.0.9"
   },
   "devDependencies": {
