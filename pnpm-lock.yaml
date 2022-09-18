@@ -55,7 +55,7 @@ importers:
       prettier: 2.7.1
       typescript: 4.8.3
       vite: 3.1.2
-      vite-plugin-pwa: 0.12.7
+      vite-plugin-pwa: 0.12.8
       vitest: 0.21.1
       vue: 3.2.39
       vue-router: 4.1.5
@@ -86,7 +86,7 @@ importers:
       prettier: 2.7.1
       typescript: 4.8.3
       vite: 3.1.2
-      vite-plugin-pwa: 0.12.7_etjhesf6sppszzcdjjh7iyjgym
+      vite-plugin-pwa: 0.12.8_etjhesf6sppszzcdjjh7iyjgym
       vitest: 0.21.1_c8@7.12.0+jsdom@20.0.0
       vue-router: 4.1.5_vue@3.2.39
       vue-tsc: 0.40.13_typescript@4.8.3
@@ -4790,8 +4790,8 @@ packages:
     resolution: {integrity: sha512-nguyw8L6Un8eelg1vQ31vIU2ESxqid7EYmy8V+MDeMaHBqaRSkg3dTBToC1PR00D89UzS/SLkfYPnx0Wf23IQQ==}
     dev: false
 
-  /vite-plugin-pwa/0.12.7_etjhesf6sppszzcdjjh7iyjgym:
-    resolution: {integrity: sha512-salSwS1wWc1niNWfhX2W6gtfXmk+XESMz62w95EHLq6fSM2bDgDm1APmvq1nkDcxH6Onky7HxysCBKMzvOHXYg==}
+  /vite-plugin-pwa/0.12.8_etjhesf6sppszzcdjjh7iyjgym:
+    resolution: {integrity: sha512-pSiFHmnJGMQJJL8aJzQ8SaraZBSBPMGvGUkCNzheIq9UQCEk/eP3UmANNmS9eupuhIpTK8AdxTOHcaMcAqAbCA==}
     peerDependencies:
       vite: ^2.0.0 || ^3.0.0-0
       workbox-window: ^6.4.0
