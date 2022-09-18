@@ -42,7 +42,7 @@ importers:
       '@vue/eslint-config-prettier': 7.0.0
       '@vue/eslint-config-typescript': 11.0.1
       '@vue/test-utils': 2.0.2
-      '@vueuse/head': 0.7.11
+      '@vueuse/head': 0.7.12
       axios: 0.27.2
       c8: 7.12.0
       esbuild: 0.15.7
@@ -63,7 +63,7 @@ importers:
       wings-ts-util: 0.0.9
       workbox-window: 6.5.4
     dependencies:
-      '@vueuse/head': 0.7.11_vue@3.2.39
+      '@vueuse/head': 0.7.12_vue@3.2.39
       axios: 0.27.2
       naive-ui: 2.27.0_vue@3.2.39
       vue: 3.2.39
@@ -1986,26 +1986,40 @@ packages:
       vue: 3.2.39
     dev: true
 
-  /@vueuse/head/0.7.11_vue@3.2.39:
-    resolution: {integrity: sha512-qW2VbJnQ7c1nHqt1wWQYtPf6pMKghcBsCGQd76zFSzKZXncjOYV1I5dZcmAdj3E30JP0WKWCItVbV/cgSAPipA==}
+  /@vueuse/head/0.7.12_vue@3.2.39:
+    resolution: {integrity: sha512-sRcrE6VohiHInQR0sB0U8H8x2hAKdo+AIhd5PWBLx1jUp2vwyeQyA/4rlCzP5CMDB8z61MLvsOCApFJrRMRtTQ==}
     peerDependencies:
       vue: '>=2.7 || >=3'
     dependencies:
-      '@zhead/schema-vue': 0.7.1_vue@3.2.39
+      '@zhead/schema-vue': 0.7.3_vue@3.2.39
       vue: 3.2.39
+    transitivePeerDependencies:
+      - '@vue/composition-api'
     dev: false
 
-  /@zhead/schema-vue/0.7.1_vue@3.2.39:
-    resolution: {integrity: sha512-puEmNJOjfC5IRJqc5p0GEemWP1B25YYRMZ2RM10UrJXGjR+cGOZ+PYQHoBIl9Nf5kJVzhokg1H99HE6Wnyx+qA==}
+  /@vueuse/shared/9.2.0_vue@3.2.39:
+    resolution: {integrity: sha512-NnRp/noSWuXW0dKhZK5D0YLrDi0nmZ18UeEgwXQq7Ul5TTP93lcNnKjrHtd68j2xFB/l59yPGFlCryL692bnrA==}
+    dependencies:
+      vue-demi: 0.13.11_vue@3.2.39
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
+  /@zhead/schema-vue/0.7.3_vue@3.2.39:
+    resolution: {integrity: sha512-X9wIugL/7fFoeVbxPDgRvBLdKt2k243ZezU4N85iCHjs4OaGTgXUPQVfb9+uP7dSj2kMSAvhvY6fKe7D9TzbHA==}
     peerDependencies:
       vue: '>=2.7 || >=3'
     dependencies:
-      '@zhead/schema': 0.7.1
+      '@vueuse/shared': 9.2.0_vue@3.2.39
+      '@zhead/schema': 0.7.3
       vue: 3.2.39
+    transitivePeerDependencies:
+      - '@vue/composition-api'
     dev: false
 
-  /@zhead/schema/0.7.1:
-    resolution: {integrity: sha512-3FjTUj8YBN45PCW4YSosV9LjBu6HnKetk0aYtaZ7HffgpSlAIl/eCaem8T34KJZ7/lRsvoGPcDDkaAzyvGqi0g==}
+  /@zhead/schema/0.7.3:
+    resolution: {integrity: sha512-z7TDtS5YihDW1w5Xk/P5iZ5bHuEajAGsRFs8ipgVSKZSqHy/7Tc4mC6FUfwFciHOj1efMHWf+tFY+byKUdVKug==}
     dev: false
 
   /abab/2.0.6:
@@ -4890,6 +4904,21 @@ packages:
       vue: ^3.0.0
     dependencies:
       evtd: 0.2.3
+      vue: 3.2.39
+    dev: false
+
+  /vue-demi/0.13.11_vue@3.2.39:
+    resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
       vue: 3.2.39
     dev: false
 
