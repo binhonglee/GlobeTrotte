@@ -13,7 +13,7 @@ require (
 	github.com/jackc/pgx/v4 v4.17.2
 	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
 	golang.org/x/crypto v0.0.0-20220919173607-35f4265a4bc0
-	golang.org/x/time v0.0.0-20220920022843-2ce7c2934d45
+	golang.org/x/time v0.0.0-20220922220347-f3bd1da661af
 	zgo.at/zcache v1.2.0
 )
 
