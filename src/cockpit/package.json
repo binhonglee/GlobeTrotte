@@ -19,7 +19,7 @@
     "xvfb:run": "if [[ \"$OSTYPE\" == \"darwin\"* ]]; then xvfb=\"\"; elif [[ \"$OSTYPE\" == \"linux-gnu\"* ]]; then xvfb=\"xvfb-run -a \"; fi"
   },
   "dependencies": {
-    "@vueuse/head": "0.9.4",
+    "@vueuse/head": "0.9.6",
     "axios": "1.0.0",
     "naive-ui": "2.27.0",
     "vue": "3.2.40",
