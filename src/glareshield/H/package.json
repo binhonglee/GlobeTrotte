@@ -9,7 +9,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
-    "axios": "1.1.0",
+    "axios": "1.1.2",
     "typescript": "4.8.4"
   },
   "peerDependencies": {
