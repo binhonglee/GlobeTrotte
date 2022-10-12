@@ -12,7 +12,7 @@ require (
 	github.com/jackc/pgtype v1.12.0
 	github.com/jackc/pgx/v4 v4.17.2
 	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
-	golang.org/x/crypto v0.0.0-20221010152910-d6f0a8c073c2
+	golang.org/x/crypto v0.0.0-20221012134737-56aed061732a
 	golang.org/x/time v0.0.0-20220922220347-f3bd1da661af
 	zgo.at/zcache v1.2.0
 )
