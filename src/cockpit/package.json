@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@glareshield/all": "workspace:../glareshield/all",
-    "@types/node": "18.11.6",
+    "@types/node": "18.11.7",
     "@vicons/ionicons5": "0.12.0",
     "@vitejs/plugin-vue": "3.2.0",
     "@vue/eslint-config-prettier": "7.0.0",
