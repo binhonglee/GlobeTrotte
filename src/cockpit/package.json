@@ -42,7 +42,7 @@
     "playwright-core": "1.25.2",
     "prettier": "2.7.1",
     "typescript": "4.8.4",
-    "vite": "3.2.1",
+    "vite": "3.2.2",
     "vite-plugin-pwa": "0.12.8",
     "vitest": "0.21.1",
     "vue-router": "4.1.6",
