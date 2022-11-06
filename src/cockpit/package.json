@@ -35,7 +35,7 @@
     "@vue/test-utils": "2.0.2",
     "c8": "7.12.0",
     "esbuild": "0.15.13",
-    "eslint": "8.26.0",
+    "eslint": "8.27.0",
     "eslint-plugin-vue": "9.7.0",
     "jest-serializer-html": "7.1.0",
     "jsdom": "20.0.2",
