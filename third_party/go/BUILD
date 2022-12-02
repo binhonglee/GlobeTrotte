@@ -148,7 +148,7 @@ go_module(
 go_module(
   name = "jackc_pgtype",
   module = "github.com/jackc/pgtype",
-  version = "v1.12.0",
+  version = "v1.13.0",
   install = [
     ".",
   ],
