@@ -14,7 +14,7 @@
     "@glareshield/h": "workspace:../H",
     "@glareshield/r": "workspace:../R",
     "axios": "1.2.1",
-    "typescript": "4.9.3",
+    "typescript": "4.9.4",
     "vue": "3.2.45",
     "vue-router": "4.1.6"
   },
