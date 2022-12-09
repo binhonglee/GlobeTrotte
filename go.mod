@@ -11,7 +11,7 @@ require (
 	github.com/gorilla/sessions v1.2.1
 	github.com/jackc/pgtype v1.13.0
 	github.com/jackc/pgx/v4 v4.17.2
-	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
+	github.com/jordan-wright/email v0.0.0-20200602115436-fd8a7622303e
 	golang.org/x/crypto v0.0.0-20221012134737-56aed061732a
 	golang.org/x/time v0.3.0
 	zgo.at/zcache v1.2.0
