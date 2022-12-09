@@ -192,7 +192,7 @@ go_module(
 go_module(
   name = "jordan-wright_email",
   module = "github.com/jordan-wright/email",
-  version = "v4.0.1-0.20210109023952-943e75fe5223+incompatible",
+  version = "v0.0.0-20200602115436-fd8a7622303e",
   install = [
     ".",
   ],
