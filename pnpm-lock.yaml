@@ -43,7 +43,7 @@ importers:
       '@vue/eslint-config-typescript': 11.0.2
       '@vue/test-utils': 2.0.2
       '@vueuse/head': 1.0.22
-      axios: 1.2.1
+      axios: 1.2.2
       c8: 7.12.0
       esbuild: 0.16.11
       eslint: 8.30.0
@@ -64,7 +64,7 @@ importers:
       workbox-window: 6.5.4
     dependencies:
       '@vueuse/head': 1.0.22_vue@3.2.45
-      axios: 1.2.1
+      axios: 1.2.2
       naive-ui: 2.27.0_vue@3.2.45
       vue: 3.2.45
       wings-ts-util: 0.0.9
@@ -100,10 +100,10 @@ importers:
 
   src/glareshield/H:
     specifiers:
-      axios: 1.2.1
+      axios: 1.2.2
       typescript: 4.9.4
     devDependencies:
-      axios: 1.2.1
+      axios: 1.2.2
       typescript: 4.9.4
 
   src/glareshield/R:
@@ -121,7 +121,7 @@ importers:
       '@glareshield/e': workspace:../E
       '@glareshield/h': workspace:../H
       '@glareshield/r': workspace:../R
-      axios: 1.2.1
+      axios: 1.2.2
       typescript: 4.9.4
       vue: 3.2.45
       vue-router: 4.1.6
@@ -129,7 +129,7 @@ importers:
       '@glareshield/e': link:../E
       '@glareshield/h': link:../H
       '@glareshield/r': link:../R
-      axios: 1.2.1
+      axios: 1.2.2
       typescript: 4.9.4
       vue: 3.2.45
       vue-router: 4.1.6_vue@3.2.45
@@ -2354,8 +2354,8 @@ packages:
     engines: {node: '>= 4.0.0'}
     dev: true
 
-  /axios/1.2.1:
-    resolution: {integrity: sha512-I88cFiGu9ryt/tfVEi4kX2SITsvDddTajXTOFmt2uK1ZVA8LytjtdeyefdQWEf5PU8w+4SSJDoYnggflB5tW4A==}
+  /axios/1.2.2:
+    resolution: {integrity: sha512-bz/J4gS2S3I7mpN/YZfGFTqhXTYzRho8Ay38w2otuuDR322KzFIWm/4W2K6gIwvWaws5n+mnb7D1lN9uD+QH6Q==}
     dependencies:
       follow-redirects: 1.15.0
       form-data: 4.0.0
