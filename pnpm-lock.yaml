@@ -8,15 +8,15 @@ importers:
       '@typescript-eslint/parser': 5.47.1
       eslint: 8.30.0
       eslint-plugin-prettier: 4.2.1
-      prettier: 2.8.1
+      prettier: 2.8.3
       pug: 3.0.2
       typescript: 4.9.4
     devDependencies:
       '@typescript-eslint/eslint-plugin': 5.47.1_txmweb6yn7coi7nfrp22gpyqmy
       '@typescript-eslint/parser': 5.47.1_lzzuuodtsqwxnvqeq4g4likcqa
       eslint: 8.30.0
-      eslint-plugin-prettier: 4.2.1_l5rdqc4k22455lce6ocqroldia
-      prettier: 2.8.1
+      eslint-plugin-prettier: 4.2.1_hbzzpjgpklpwatisxkjenaca7m
+      prettier: 2.8.3
       pug: 3.0.2
       typescript: 4.9.4
 
@@ -52,7 +52,7 @@ importers:
       jsdom: 20.0.3
       naive-ui: 2.27.0
       playwright-core: 1.29.1
-      prettier: 2.8.1
+      prettier: 2.8.3
       typescript: 4.9.4
       vite: 3.2.5
       vite-plugin-pwa: 0.12.8
@@ -73,7 +73,7 @@ importers:
       '@types/node': 18.11.18
       '@vicons/ionicons5': 0.12.0
       '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
-      '@vue/eslint-config-prettier': 7.0.0_l5rdqc4k22455lce6ocqroldia
+      '@vue/eslint-config-prettier': 7.0.0_hbzzpjgpklpwatisxkjenaca7m
       '@vue/eslint-config-typescript': 11.0.2_eh2oupyoc3mviptu6zovyv6md4
       '@vue/test-utils': 2.0.2_vue@3.2.45
       c8: 7.12.0
@@ -83,7 +83,7 @@ importers:
       jest-serializer-html: 7.1.0
       jsdom: 20.0.3
       playwright-core: 1.29.1
-      prettier: 2.8.1
+      prettier: 2.8.3
       typescript: 4.9.4
       vite: 3.2.5_@types+node@18.11.18
       vite-plugin-pwa: 0.12.8_v7patrztka3wxwjwwj7rxgk7ey
@@ -2136,7 +2136,7 @@ packages:
     resolution: {integrity: sha512-JD5fcdIuFxU4fQyXUu3w2KpAJHzTVdN+p4iOX2lMWSHMOoQdMAcpFLZzm9Z/2nmsoZ1a96QEhZ26e50xLBsgOQ==}
     dev: true
 
-  /@vue/eslint-config-prettier/7.0.0_l5rdqc4k22455lce6ocqroldia:
+  /@vue/eslint-config-prettier/7.0.0_hbzzpjgpklpwatisxkjenaca7m:
     resolution: {integrity: sha512-/CTc6ML3Wta1tCe1gUeO0EYnVXfo3nJXsIhZ8WJr3sov+cGASr6yuiibJTL6lmIBm7GobopToOuB3B6AWyV0Iw==}
     peerDependencies:
       eslint: '>= 7.28.0'
@@ -2144,8 +2144,8 @@ packages:
     dependencies:
       eslint: 8.30.0
       eslint-config-prettier: 8.5.0_eslint@8.30.0
-      eslint-plugin-prettier: 4.0.0_kl4pe43v5b43npmso5hoplpbyi
-      prettier: 2.8.1
+      eslint-plugin-prettier: 4.0.0_bxtqutsr77kdjupoaxnvecwq24
+      prettier: 2.8.3
     dev: true
 
   /@vue/eslint-config-typescript/11.0.2_eh2oupyoc3mviptu6zovyv6md4:
@@ -3129,7 +3129,7 @@ packages:
       eslint: 8.30.0
     dev: true
 
-  /eslint-plugin-prettier/4.0.0_kl4pe43v5b43npmso5hoplpbyi:
+  /eslint-plugin-prettier/4.0.0_bxtqutsr77kdjupoaxnvecwq24:
     resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
@@ -3142,11 +3142,11 @@ packages:
     dependencies:
       eslint: 8.30.0
       eslint-config-prettier: 8.5.0_eslint@8.30.0
-      prettier: 2.8.1
+      prettier: 2.8.3
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_l5rdqc4k22455lce6ocqroldia:
+  /eslint-plugin-prettier/4.2.1_hbzzpjgpklpwatisxkjenaca7m:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -3158,7 +3158,7 @@ packages:
         optional: true
     dependencies:
       eslint: 8.30.0
-      prettier: 2.8.1
+      prettier: 2.8.3
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -4363,8 +4363,8 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier/2.8.1:
-    resolution: {integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==}
+  /prettier/2.8.3:
+    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
