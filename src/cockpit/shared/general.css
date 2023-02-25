@@ -22,7 +22,7 @@ h3 {
 }
 
 .left_col {
-  display: inline;
+  display: inline-block;
   line-height: var(--p-height);
 }
 

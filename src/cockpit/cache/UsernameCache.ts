@@ -1,11 +1,6 @@
 import HTTPReq from "@/shared/HTTPReq";
 import PWAUtils from "@/shared/PWAUtils";
-import {
-  Cache,
-  CacheStorage,
-  CacheStorageName,
-  FetchedObj,
-} from "./CacheStorage";
+import { Cache, CacheStorage, FetchedObj } from "./CacheStorage";
 
 class UsernameStorage extends CacheStorage<string> {
   public static fromJSON(obj: Record<string, unknown>): UsernameStorage {
@@ -25,7 +20,7 @@ export class UsernameCache extends Cache<
   FetchedUsername,
   UsernameStorage
 > {
-  protected storage = CacheStorageName.USERNAME;
+  protected storage = "username";
   protected storeCount = 20;
 
   protected async genFetch(id: string): Promise<string | null> {

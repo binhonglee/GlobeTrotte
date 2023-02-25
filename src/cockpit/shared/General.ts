@@ -4,6 +4,7 @@ import router from "@/router";
 import { useLoadingBar } from "naive-ui";
 import { LoadingBarApiInjection } from "naive-ui/lib/loading-bar/src/LoadingBarProvider";
 import Auth from "@/wings/Auth";
+import { getLocal, removeLocal, setLocal } from "./Storage";
 
 export default class General {
   public static paramID(): string | undefined {
@@ -34,16 +35,16 @@ export default class General {
   public static async genCurrentUser(): Promise<Auth> {
     const user = new Auth(await HTTPReq.genGET("v3/whoami"));
     if (user.ID === -1) {
-      localStorage.removeItem("auth");
+      removeLocal("auth");
     } else {
-      localStorage.setItem("auth", WingsStructUtil.stringify(user));
+      setLocal("auth", WingsStructUtil.stringify(user));
     }
 
     return this.getCurrentUser();
   }
 
   private static getCurrentUser(): Auth {
-    const user = localStorage.getItem("auth");
+    const user = getLocal("auth");
     if (user !== null) {
       return new Auth(JSON.parse(user));
     }

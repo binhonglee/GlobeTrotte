@@ -56,6 +56,16 @@ export default createRouter({
       component: () => import("./views/password/vReset.vue"),
     },
     {
+      path: "/saved/trips",
+      name: "saved/Trips",
+      component: () => import("./views/saved/vTrips.vue"),
+    },
+    {
+      path: "/saved/trips/:params",
+      name: "saved/TripsParams",
+      component: () => import("./views/saved/vTrips.vue"),
+    },
+    {
       path: "/trip/view",
       name: "trip/ViewIndex",
       component: () => import("./views/trip/vIDView.vue"),
@@ -136,6 +146,16 @@ export default createRouter({
         guest: true,
       },
       component: () => import("./views/vLogin.vue"),
+    },
+    {
+      path: "/logout",
+      name: "Logout",
+      component: () => import("./views/vLogout.vue"),
+    },
+    {
+      path: "/logout/:params",
+      name: "LogoutParams",
+      component: () => import("./views/vLogout.vue"),
     },
     {
       path: "/myaccount",

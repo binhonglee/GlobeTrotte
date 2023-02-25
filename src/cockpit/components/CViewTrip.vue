@@ -17,7 +17,10 @@
     p.tripCreatedDate Created on: {{ created }}
     div.tripCities
       n-tag.tripCity(v-for="city in cities" type="info") {{ city }}
-    CShare(:shareURL="shareURL")
+    CShare.left_col(:shareURL="shareURL")
+    n-button.right_col(
+      v-if="editable" @click="enableEditMode"
+    ) Edit
   .viewDays
     n-card.viewDayCard(
       v-for="day in days"
@@ -27,10 +30,6 @@
       .viewDayCardContent
         h3.dayTitle Day {{ day.dayOf }}
         CPlaces(:propPlaces="day.propPlaces")
-  .narrow_content.enableTripEdit
-    n-button.editTripButton.right_col(
-      v-if="editable" @click="enableEditMode"
-    ) Edit
 </template>
 
 <script lang="ts">
@@ -163,9 +162,5 @@ export default defineComponent({
 
 .viewDayCardContent {
   padding: 10px 10px 0 10px;
-}
-
-.enableTripEdit {
-  height: 50px;
 }
 </style>

@@ -11,10 +11,9 @@
         :url="user.details.link.valueOf()"
         v-if="user.details.link !== ''"
       ) {{ user.details.link }}
-    CShare(v-if="self" :shareURL="shareURL" :onClick="onShare")
     .userInfoButtonGroups(v-if="self")
-      n-button.myAccountLogout.left_col(type="error" @click="logout") Logout
-      n-button.myAccountEdit.right_col(
+      CShare.left_col( :shareURL="shareURL" :onClick="onShare")
+      n-button.right_col(
         type="default" ref="edit" @click="toggleEdit"
       ) Edit
   n-divider.viewUserDivider
@@ -168,7 +167,6 @@ export default defineComponent({
 
 .userInfoButtonGroups {
   margin-top: 10px;
-  display: inline-block;
   width: 100%;
   text-align: left;
 }

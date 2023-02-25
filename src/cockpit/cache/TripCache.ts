@@ -2,12 +2,7 @@ import HTTPReq from "@/shared/HTTPReq";
 import PWAUtils from "@/shared/PWAUtils";
 import TripObj from "@/wings/TripObj";
 import { WingsStructUtil } from "wings-ts-util";
-import {
-  Cache,
-  CacheStorage,
-  CacheStorageName,
-  FetchedObj,
-} from "./CacheStorage";
+import { Cache, CacheStorage, FetchedObj } from "./CacheStorage";
 
 class TripStorage extends CacheStorage<TripObj> {
   public static fromJSON(obj: Record<string, unknown>): TripStorage {
@@ -22,7 +17,7 @@ class TripStorage extends CacheStorage<TripObj> {
 export class FetchedTripObj extends FetchedObj<TripObj> {}
 
 export class TripCache extends Cache<TripObj, FetchedTripObj, TripStorage> {
-  protected storage = CacheStorageName.TRIP;
+  protected storage = "trip";
   protected storeCount = 10;
 
   protected async genFetch(id: string): Promise<TripObj | null> {

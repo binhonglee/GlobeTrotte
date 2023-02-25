@@ -1,4 +1,5 @@
 import PWAUtils from "@/shared/PWAUtils";
+import { getLocal, setLocal } from "@/shared/Storage";
 import { stringEscape, stringUnescape } from "wings-ts-util";
 
 export abstract class CacheStorage<T> {
@@ -89,10 +90,10 @@ export abstract class Cache<
   protected abstract genFetch(key: string): Promise<T | null>;
 
   protected getStorage(): string | null {
-    return localStorage.getItem(this.storage);
+    return getLocal(this.storage);
   }
   protected setStorage(value: unknown[]) {
-    localStorage.setItem(this.storage, JSON.stringify(value));
+    setLocal(this.storage, JSON.stringify(value));
   }
 
   protected async genObjImpl(
@@ -168,8 +169,4 @@ export abstract class Cache<
   }
 }
 
-export enum CacheStorageName {
-  TRIP = "trip",
-  USER = "user",
-  USERNAME = "username",
-}
+export type CacheStorageName = "trip" | "user" | "username";

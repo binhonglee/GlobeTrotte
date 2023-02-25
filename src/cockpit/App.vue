@@ -29,7 +29,7 @@
 import General from "./shared/General";
 import Routing from "./shared/Routing";
 import CPWA from "./components/CPWA.vue";
-import { defineComponent, h } from "vue";
+import { defineComponent, h, HTMLAttributes } from "vue";
 import {
   lightTheme,
   darkTheme,
@@ -49,6 +49,8 @@ import { MoonOutline, SunnyOutline } from "@vicons/ionicons5";
 import { BuiltInGlobalTheme } from "naive-ui/lib/themes/interface";
 import Routes from "./routes";
 import router from "./router";
+import { getLocal, setLocal } from "./shared/Storage";
+import { MenuMixedOption } from "naive-ui/lib/menu/src/interface";
 
 interface Data {
   activeIndex: string;
@@ -79,11 +81,34 @@ const loggedOutOptions: MenuOption[] = [
   menuItem("Register", Routes.Register),
 ];
 
-function menuItem(label: string, url: string): MenuOption {
+const loggedInOptions: MenuMixedOption[] = [
+  {
+    label: "My Account \u25BE",
+    key: "my_account",
+    children: [
+      menuItem(
+        "View Profile",
+        Routes.User + "/" + General.getCurrentUsername(),
+      ),
+      // menuItem("Saved Trips", Routes.saved_Trips),
+      {
+        key: "logged_in_menu_divider",
+        type: "divider",
+      },
+      menuItem("Logout", Routes.Logout, { id: "menubar_logout" }),
+    ],
+  },
+];
+
+function menuItem(
+  label: string,
+  url: string,
+  p: HTMLAttributes | undefined = undefined,
+): MenuOption {
   return {
     label: () => h("a", { href: url }, label),
     key: url,
-    props: { class: "some_class" },
+    props: p,
   };
 }
 
@@ -152,7 +177,7 @@ export default defineComponent({
       this.$data.activeIndex = path;
     },
     async setTheme(): Promise<void> {
-      this.$data.darkMode = localStorage.getItem("theme") === "dark";
+      this.$data.darkMode = getLocal("theme") === "dark";
       const themeSwtich: MenuOption[] = [
         {
           label: () =>
@@ -160,7 +185,7 @@ export default defineComponent({
               NSwitch,
               {
                 "onUpdate:value": (value: boolean) => {
-                  localStorage.setItem("theme", value ? "dark" : "light");
+                  setLocal("theme", value ? "dark" : "light");
                   // Text in CTripPreviewCard color is broken if update in place.
                   // this.$data.darkMode = value;
                   router.go(0);
@@ -185,12 +210,7 @@ export default defineComponent({
       ];
       let options: MenuOption[];
       if (this.$data.authed) {
-        options = [
-          menuItem(
-            "My Account",
-            Routes.User + "/" + General.getCurrentUsername(),
-          ),
-        ];
+        options = loggedInOptions;
       } else {
         options = loggedOutOptions;
       }
@@ -290,5 +310,15 @@ export default defineComponent({
 
 #footerMessage a:hover {
   text-decoration: underline;
+}
+
+#menubar_logout {
+  background-color: darkred;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+#menubar_logout:hover {
+  background-color: red;
 }
 </style>

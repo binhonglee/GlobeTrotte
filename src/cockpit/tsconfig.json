@@ -26,5 +26,10 @@
   ],
   "exclude": [
     ".eslintrc.js",
-  ]
+  ],
+  "vueCompilerOptions": {
+    "plugins": [
+      "@volar/vue-language-plugin-pug"
+    ]
+  }
 }
