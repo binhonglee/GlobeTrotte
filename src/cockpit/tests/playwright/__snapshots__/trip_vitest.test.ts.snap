@@ -555,8 +555,9 @@ exports[`Trips > user 2 can't see private trip 1`] = `
             </div>
           </div>
         </div>
-        <div role="menuitem"
-             class="n-menu-item"
+        <div class="n-submenu"
+             role="menuitem"
+             aria-expanded="true"
         >
           <div role="none"
                class="n-menu-item-content"
@@ -564,9 +565,7 @@ exports[`Trips > user 2 can't see private trip 1`] = `
             <div class="n-menu-item-content-header"
                  role="none"
             >
-              <a href="/user/testuser2">
-                My Account
-              </a>
+              My Account ▾
             </div>
           </div>
         </div>

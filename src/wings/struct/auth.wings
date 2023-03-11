@@ -2,7 +2,7 @@ go-filepath src/turbine/access
 ts-filepath src/cockpit/wings
 
 struct Auth {
-  id        int   -1
-  username  str
-  confirmed bool
+  id          int   -1
+  username    str
+  confirmed   bool
 }

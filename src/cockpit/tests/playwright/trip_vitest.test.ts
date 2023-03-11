@@ -103,7 +103,8 @@ describe("Trips", async () => {
     await genLogin(page, email1, password1);
     await goTo(page, newTripURL);
 
-    await page.locator(".editTripButton").click();
+    await page.locator(".tripMenu").click();
+    await page.getByText("Edit").click();
     await page
       .locator(".editTripPrivacy")
       .locator(".editPrivacyToggle")
@@ -167,7 +168,8 @@ describe("Trips", async () => {
     await genLogin(page, email1, password1);
     await goTo(page, newTripURL);
 
-    await page.locator(".editTripButton").click();
+    await page.locator(".tripMenu").click();
+    await page.getByText("Edit").click();
     await page.locator(".deleteTrip").click();
     await page.locator("text=Confirm").click();
 

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import Routes from "@/routes";
 import { Browser, BrowserContext, chromium, Page } from "playwright-core";
 import { expect } from "vitest";
 
@@ -162,8 +163,11 @@ export async function genLogin(
 }
 
 export async function genLogout(page: Page) {
-  await page.goto("/myaccount");
-  await page.locator(".myAccountLogout").click();
+  await page.goto(Routes.Logout);
+  await page
+    .locator(".n-dialog__action")
+    .locator(".n-button--error-type")
+    .click();
   await page.waitForURL(BASE_URL);
 }
 
@@ -173,14 +177,14 @@ export async function genTryLogout(page: Page) {
     .locator(".main_menu")
     .locator(".n-menu-item")
     .allInnerTexts();
-  if (menubar.includes("My Account")) {
+  if (!menubar.includes("Register")) {
     await genLogout(page);
   }
 }
 
 export async function genDeleteAccount(page: Page) {
-  await page.goto("/myaccount");
-  await page.locator(".myAccountEdit").click();
+  await page.goto(Routes.MyAccount);
+  await page.locator(".userInfoButtonGroups").locator(".myAccountEdit").click();
   await page.locator(".myAccountDelete").click();
   await page.locator(".n-button--warning-type").click();
   await page.waitForURL(BASE_URL);
@@ -193,7 +197,6 @@ export async function genIsLoggedOut(page: Page) {
     .allInnerTexts();
   expect(menubar).toContain("Register");
   expect(menubar).toContain("Login");
-  expect(menubar).not.toContain("My Account");
 }
 
 export async function genIsLoggedIn(page: Page) {
@@ -203,5 +206,4 @@ export async function genIsLoggedIn(page: Page) {
     .allInnerTexts();
   expect(menubar).not.toContain("Register");
   expect(menubar).not.toContain("Login");
-  expect(menubar).toContain("My Account");
 }

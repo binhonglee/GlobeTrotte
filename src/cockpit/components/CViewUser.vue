@@ -13,7 +13,7 @@
       ) {{ user.details.link }}
     .userInfoButtonGroups(v-if="self")
       CShare.left_col( :shareURL="shareURL" :onClick="onShare")
-      n-button.right_col(
+      n-button.myAccountEdit.right_col(
         type="default" ref="edit" @click="toggleEdit"
       ) Edit
   n-divider.viewUserDivider

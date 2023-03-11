@@ -7,6 +7,16 @@
       type="info"
     ) Only you can see this trip.
     h2.tripName.left_col {{ trip.details.name }}
+    n-dropdown(
+      v-if="menuOptions.length > 0"
+      trigger="click"
+      :options="menuOptions"
+      :show-arrow="true"
+      @select="handleSelectMenu"
+    )
+      n-button.right_col.tripMenu
+        n-icon
+          ellipsis-horizontal-outline
     p.tripDescription(
       v-if="trip.details.description !== ''"
     ) {{ trip.details.description }}
@@ -17,10 +27,7 @@
     p.tripCreatedDate Created on: {{ created }}
     div.tripCities
       n-tag.tripCity(v-for="city in cities" type="info") {{ city }}
-    CShare.left_col(:shareURL="shareURL")
-    n-button.right_col(
-      v-if="editable" @click="enableEditMode"
-    ) Edit
+    CShare(:shareURL="shareURL")
   .viewDays
     n-card.viewDayCard(
       v-for="day in days"
@@ -40,10 +47,19 @@ import CShare from "./CShare.vue";
 import { DataDay } from "@/shared/DataProps";
 import Day from "@/wings/Day";
 import TripObj from "@/wings/TripObj";
-import { NAlert, NButton, NCard, NTag } from "naive-ui";
+import { NAlert, NButton, NCard, NDropdown, NIcon, NTag } from "naive-ui";
+import { EllipsisHorizontalOutline } from "@vicons/ionicons5";
 import HTTPReq from "@/shared/HTTPReq";
 import Routes from "@/routes";
 import General from "@/shared/General";
+
+type MenuList = "edit" | "bookmark";
+
+interface MenuListOption {
+  label: string;
+  key: MenuList;
+  disabled?: boolean;
+}
 
 interface Data {
   days: DataDay[];
@@ -51,6 +67,7 @@ interface Data {
   shareURL: string;
   created: string;
   lastUpdated: string;
+  menuOptions: MenuListOption[];
 }
 
 export default defineComponent({
@@ -59,9 +76,12 @@ export default defineComponent({
     CLink,
     CPlaces,
     CShare,
+    EllipsisHorizontalOutline,
     NAlert,
     NButton,
     NCard,
+    NDropdown,
+    NIcon,
     NTag,
   },
   props: {
@@ -82,6 +102,12 @@ export default defineComponent({
     shareURL: "",
     created: "",
     lastUpdated: "",
+    menuOptions: [
+      // {
+      //   label: "Bookmark",
+      //   key: "bookmark",
+      // },
+    ],
   }),
   beforeMount(): void {
     this.$data.cities = [];
@@ -101,11 +127,26 @@ export default defineComponent({
     this.$data.lastUpdated = General.getDisplayDate(
       this.$props.trip.lastUpdated,
     );
+    if (this.$props.editable) {
+      this.$data.menuOptions.push({
+        label: "Edit",
+        key: "edit",
+      });
+    }
   },
   methods: {
+    handleSelectMenu(key: MenuList) {
+      switch (key) {
+        case "bookmark":
+          return this.save();
+        case "edit":
+          return this.enableEditMode();
+      }
+    },
     enableEditMode(): void {
       this.$emit("enableEditMode");
     },
+    save(): void {},
   },
 });
 </script>
@@ -122,6 +163,10 @@ export default defineComponent({
 
 .tripCity {
   margin: 5px 5px 0 0;
+}
+
+.tripMenu {
+  padding: 0 5px 0 8px;
 }
 
 .dayTitle {

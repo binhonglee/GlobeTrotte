@@ -2,7 +2,12 @@ import HTTPReq from "@/shared/HTTPReq";
 import PWAUtils from "@/shared/PWAUtils";
 import UserObj from "@/wings/UserObj";
 import { WingsStructUtil } from "wings-ts-util";
-import { Cache, CacheStorage, FetchedObj } from "./CacheStorage";
+import {
+  Cache,
+  CacheStorage,
+  CacheStorageName,
+  FetchedObj,
+} from "./CacheStorage";
 
 class UserStorage extends CacheStorage<UserObj> {
   public static fromJSON(obj: Record<string, unknown>): UserStorage {
@@ -17,7 +22,7 @@ class UserStorage extends CacheStorage<UserObj> {
 export class FetchedUserObj extends FetchedObj<UserObj> {}
 
 export class UserCache extends Cache<UserObj, FetchedUserObj, UserStorage> {
-  protected storage = "user";
+  protected storage: CacheStorageName = "user";
   protected storeCount = 10;
 
   protected async genFetch(username: string): Promise<UserObj | null> {
