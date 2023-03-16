@@ -29,7 +29,7 @@
     "@glareshield/all": "workspace:../glareshield/all",
     "@types/node": "18.11.18",
     "@vicons/ionicons5": "0.12.0",
-    "@vitejs/plugin-vue": "3.2.0",
+    "@vitejs/plugin-vue": "4.1.0",
     "@volar/vue-language-plugin-pug": "^1.1.4",
     "@vue/eslint-config-prettier": "7.0.0",
     "@vue/eslint-config-typescript": "11.0.2",
