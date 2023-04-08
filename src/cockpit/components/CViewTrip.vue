@@ -138,7 +138,7 @@ export default defineComponent({
     handleSelectMenu(key: MenuList) {
       switch (key) {
         case "bookmark":
-          return this.save();
+          return this.bookmark();
         case "edit":
           return this.enableEditMode();
       }
@@ -146,7 +146,7 @@ export default defineComponent({
     enableEditMode(): void {
       this.$emit("enableEditMode");
     },
-    save(): void {},
+    bookmark(): void {},
   },
 });
 </script>

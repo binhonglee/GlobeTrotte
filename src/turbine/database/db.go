@@ -134,6 +134,7 @@ func createUsersTable() {
 			link            TEXT,
 			time_created    TIMESTAMPTZ    NOT NULL,
 			trips           INT[],
+			bookmarked      INT[],
 			confirmed       BOOLEAN        NOT NULL
 		);`
 	c := getConn()
@@ -149,6 +150,7 @@ func updateUserTable() {
 	c.Exec(context.Background(), `ALTER TABLE users ADD COLUMN IF NOT EXISTS bio TEXT;`)
 	c.Exec(context.Background(), `ALTER TABLE users ADD COLUMN IF NOT EXISTS trips INT[];`)
 	c.Exec(context.Background(), `ALTER TABLE users ADD COLUMN IF NOT EXISTS username TEXT UNIQUE;`)
+	c.Exec(context.Background(), `ALTER TABLE users ADD COLUMN IF NOT EXISTS bookmarked INT[];`)
 	defer c.Close()
 }
 
