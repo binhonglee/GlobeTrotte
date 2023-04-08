@@ -56,6 +56,7 @@ router.beforeEach(
 );
 
 const head = createHead();
+// @ts-ignore
 app.use(router);
 app.use(head);
 app.mount("#app");

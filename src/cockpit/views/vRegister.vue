@@ -173,6 +173,7 @@ export default defineComponent({
       this.$data.loading = false;
       NaiveUtils.messageSuccess("Your account is created successfully!");
 
+      // @ts-ignore
       let next = Routing.getNext(this.$route);
       if (next === Routes.Landing) {
         next = Routes.User + "/" + user.details.username;

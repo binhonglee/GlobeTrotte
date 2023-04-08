@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Trips > search for the trip 1`] = `
 <div id="app"
@@ -217,24 +217,24 @@ exports[`Trips > search for the trip 1`] = `
       <div class="n-divider__line n-divider__line--left">
       </div>
     </div>
-    <div class="search_trip content"
+    <div data-v-fd72d696
+         class="search_trip content"
          id="content"
-         data-v-fd72d696
     >
-      <div class="head"
-           data-v-fd72d696
+      <div data-v-fd72d696
+           class="head"
       >
       </div>
-      <h1 class="title"
-          data-v-fd72d696
+      <h1 data-v-fd72d696
+          class="title"
       >
         Search Trip
       </h1>
-      <form class="tripSearchForm"
-            data-v-fd72d696
+      <form data-v-fd72d696
+            class="tripSearchForm"
       >
-        <div class="n-input n-input--resizable n-input--stateful tripSearchQueryInput"
-             data-v-fd72d696
+        <div data-v-fd72d696
+             class="n-input n-input--resizable n-input--stateful tripSearchQueryInput"
              style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-count-text-color:rgb(118, 124, 130); --n-color:rgba(255, 255, 255, 1); --n-font-size:14px; --n-border-radius:3px; --n-height:34px; --n-padding-left:12px; --n-padding-right:12px; --n-text-color:rgb(51, 54, 57); --n-caret-color:#18a058; --n-text-decoration-color:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-disabled:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-focus:1px solid #36ad6a; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-icon-size:16px; --n-line-height-textarea:1.6; --n-color-disabled:rgb(250, 250, 252); --n-color-focus:rgba(255, 255, 255, 1); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color:#18a058; --n-caret-color-warning:#f0a020; --n-color-focus-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-loading-color-warning:#f0a020; --n-caret-color-error:#d03050; --n-color-focus-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-loading-color-error:#d03050; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-size:16px; --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-icon-color:rgba(194, 194, 194, 1); --n-icon-color-hover:rgba(146, 146, 146, 1); --n-icon-color-pressed:rgba(175, 175, 175, 1); --n-icon-color-disabled:rgba(209, 209, 209, 1); --n-suffix-text-color:rgb(51, 54, 57);"
         >
           <div class="n-input-wrapper">
@@ -257,8 +257,8 @@ exports[`Trips > search for the trip 1`] = `
           <div class="n-input__state-border">
           </div>
         </div>
-        <div class="n-select tripSearchCityInput"
-             data-v-fd72d696
+        <div data-v-fd72d696
+             class="n-select tripSearchCityInput"
         >
           <div class="n-base-selection n-base-selection--multiple"
                style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-border:1px solid rgb(224, 224, 230); --n-border-active:1px solid #18a058; --n-border-focus:1px solid #36ad6a; --n-border-hover:1px solid #36ad6a; --n-border-radius:3px; --n-box-shadow-active:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-hover:none; --n-caret-color:#18a058; --n-color:rgba(255, 255, 255, 1); --n-color-active:rgba(255, 255, 255, 1); --n-color-disabled:rgb(250, 250, 252); --n-font-size:14px; --n-height:34px; --n-padding-single:0 26px 0 12px; --n-padding-multiple:3px 26px 0 12px; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-text-color:rgb(51, 54, 57); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-arrow-color:rgba(194, 194, 194, 1); --n-arrow-color-disabled:rgba(209, 209, 209, 1); --n-loading-color:#18a058; --n-color-active-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-active-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-hover-warning:none; --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-border-active-warning:1px solid #f0a020; --n-color-active-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-active-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-hover-error:none; --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-border-active-error:1px solid #d03050; --n-clear-size:16px; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-arrow-size:16px;"
@@ -305,10 +305,10 @@ exports[`Trips > search for the trip 1`] = `
             </div>
           </div>
         </div>
-        <button class="n-button n-button--default-type n-button--medium-type tripSearchButton"
+        <button data-v-fd72d696
+                class="n-button n-button--default-type n-button--medium-type tripSearchButton"
                 tabindex="0"
                 type="button"
-                data-v-fd72d696
                 style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:#0000; --n-color-hover:#0000; --n-color-pressed:#0000; --n-color-focus:#0000; --n-color-disabled:#0000; --n-ripple-color:#18a058; --n-text-color:rgb(51, 54, 57); --n-text-color-hover:#36ad6a; --n-text-color-pressed:#0c7a43; --n-text-color-focus:#36ad6a; --n-text-color-disabled:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-pressed:1px solid #0c7a43; --n-border-focus:1px solid #36ad6a; --n-border-disabled:1px solid rgb(224, 224, 230); --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
         >
           <span class="n-button__content">
@@ -328,29 +328,29 @@ exports[`Trips > search for the trip 1`] = `
           </div>
         </button>
       </form>
-      <div class="tripSearchInitialMessage"
-           data-v-fd72d696
+      <div data-v-fd72d696
+           class="tripSearchInitialMessage"
       >
-        <div class="narrow_content"
-             data-v-fd72d696
+        <div data-v-fd72d696
+             class="narrow_content"
         >
-          <div class="n-alert n-alert--show-icon"
+          <div data-v-fd72d696
+               class="n-alert n-alert--show-icon"
                role="alert"
-               data-v-fd72d696
                style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-color:rgb(250, 250, 252); --n-close-color:rgba(122, 122, 122, 1); --n-close-color-hover:rgba(89, 89, 89, 1); --n-close-color-pressed:rgba(149, 149, 149, 1); --n-icon-color:rgb(51, 54, 57); --n-border:1px solid rgb(239, 239, 245); --n-title-text-color:rgb(31, 34, 37); --n-content-text-color:rgb(51, 54, 57); --n-line-height:1.6; --n-border-radius:3px; --n-font-size:14px; --n-title-font-weight:500; --n-icon-size:26px; --n-icon-margin:12px 8px 0 12px; --n-close-size:16px; --n-close-margin:14px 16px 0 0; --n-padding:15px; --n-icon-margin-left:12px; --n-icon-margin-right:8px;"
           >
             <div class="n-alert__icon"
                  aria-hidden="true"
             >
-              <i role="img"
+              <i data-v-fd72d696
+                 role="img"
                  class="n-icon"
-                 data-v-fd72d696
                  style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
               >
-                <svg xmlns="http://www.w3.org/2000/svg"
+                <svg data-v-fd72d696
+                     xmlns="http://www.w3.org/2000/svg"
                      xmlns:xlink="http://www.w3.org/1999/xlink"
                      viewbox="0 0 512 512"
-                     data-v-fd72d696
                 >
                   <path d="M456.69 421.39L362.6 327.3a173.81 173.81 0 0 0 34.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.81 173.81 0 0 0 327.3 362.6l94.09 94.09a25 25 0 0 0 35.3-35.3zM97.92 222.72a124.8 124.8 0 1 1 124.8 124.8a124.95 124.95 0 0 1-124.8-124.8z"
                         fill="currentColor"
@@ -580,24 +580,24 @@ exports[`Trips > user 2 can't see private trip 1`] = `
       <div class="n-divider__line n-divider__line--left">
       </div>
     </div>
-    <div class="search_trip content"
+    <div data-v-fd72d696
+         class="search_trip content"
          id="content"
-         data-v-fd72d696
     >
-      <div class="head"
-           data-v-fd72d696
+      <div data-v-fd72d696
+           class="head"
       >
       </div>
-      <h1 class="title"
-          data-v-fd72d696
+      <h1 data-v-fd72d696
+          class="title"
       >
         Search Trip
       </h1>
-      <form class="tripSearchForm"
-            data-v-fd72d696
+      <form data-v-fd72d696
+            class="tripSearchForm"
       >
-        <div class="n-input n-input--resizable n-input--stateful tripSearchQueryInput"
-             data-v-fd72d696
+        <div data-v-fd72d696
+             class="n-input n-input--resizable n-input--stateful tripSearchQueryInput"
              style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-count-text-color:rgb(118, 124, 130); --n-color:rgba(255, 255, 255, 1); --n-font-size:14px; --n-border-radius:3px; --n-height:34px; --n-padding-left:12px; --n-padding-right:12px; --n-text-color:rgb(51, 54, 57); --n-caret-color:#18a058; --n-text-decoration-color:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-disabled:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-focus:1px solid #36ad6a; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-icon-size:16px; --n-line-height-textarea:1.6; --n-color-disabled:rgb(250, 250, 252); --n-color-focus:rgba(255, 255, 255, 1); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color:#18a058; --n-caret-color-warning:#f0a020; --n-color-focus-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-loading-color-warning:#f0a020; --n-caret-color-error:#d03050; --n-color-focus-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-loading-color-error:#d03050; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-size:16px; --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-icon-color:rgba(194, 194, 194, 1); --n-icon-color-hover:rgba(146, 146, 146, 1); --n-icon-color-pressed:rgba(175, 175, 175, 1); --n-icon-color-disabled:rgba(209, 209, 209, 1); --n-suffix-text-color:rgb(51, 54, 57);"
         >
           <div class="n-input-wrapper">
@@ -620,8 +620,8 @@ exports[`Trips > user 2 can't see private trip 1`] = `
           <div class="n-input__state-border">
           </div>
         </div>
-        <div class="n-select tripSearchCityInput"
-             data-v-fd72d696
+        <div data-v-fd72d696
+             class="n-select tripSearchCityInput"
         >
           <div class="n-base-selection n-base-selection--multiple"
                style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-border:1px solid rgb(224, 224, 230); --n-border-active:1px solid #18a058; --n-border-focus:1px solid #36ad6a; --n-border-hover:1px solid #36ad6a; --n-border-radius:3px; --n-box-shadow-active:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-hover:none; --n-caret-color:#18a058; --n-color:rgba(255, 255, 255, 1); --n-color-active:rgba(255, 255, 255, 1); --n-color-disabled:rgb(250, 250, 252); --n-font-size:14px; --n-height:34px; --n-padding-single:0 26px 0 12px; --n-padding-multiple:3px 26px 0 12px; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-text-color:rgb(51, 54, 57); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-arrow-color:rgba(194, 194, 194, 1); --n-arrow-color-disabled:rgba(209, 209, 209, 1); --n-loading-color:#18a058; --n-color-active-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-active-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-hover-warning:none; --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-border-active-warning:1px solid #f0a020; --n-color-active-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-active-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-hover-error:none; --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-border-active-error:1px solid #d03050; --n-clear-size:16px; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-arrow-size:16px;"
@@ -668,10 +668,10 @@ exports[`Trips > user 2 can't see private trip 1`] = `
             </div>
           </div>
         </div>
-        <button class="n-button n-button--default-type n-button--medium-type tripSearchButton"
+        <button data-v-fd72d696
+                class="n-button n-button--default-type n-button--medium-type tripSearchButton"
                 tabindex="0"
                 type="button"
-                data-v-fd72d696
                 style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:#0000; --n-color-hover:#0000; --n-color-pressed:#0000; --n-color-focus:#0000; --n-color-disabled:#0000; --n-ripple-color:#18a058; --n-text-color:rgb(51, 54, 57); --n-text-color-hover:#36ad6a; --n-text-color-pressed:#0c7a43; --n-text-color-focus:#36ad6a; --n-text-color-disabled:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-pressed:1px solid #0c7a43; --n-border-focus:1px solid #36ad6a; --n-border-disabled:1px solid rgb(224, 224, 230); --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
         >
           <span class="n-button__content">
@@ -691,29 +691,29 @@ exports[`Trips > user 2 can't see private trip 1`] = `
           </div>
         </button>
       </form>
-      <div class="tripSearchInitialMessage"
-           data-v-fd72d696
+      <div data-v-fd72d696
+           class="tripSearchInitialMessage"
       >
-        <div class="narrow_content"
-             data-v-fd72d696
+        <div data-v-fd72d696
+             class="narrow_content"
         >
-          <div class="n-alert n-alert--show-icon"
+          <div data-v-fd72d696
+               class="n-alert n-alert--show-icon"
                role="alert"
-               data-v-fd72d696
                style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-color:rgb(250, 250, 252); --n-close-color:rgba(122, 122, 122, 1); --n-close-color-hover:rgba(89, 89, 89, 1); --n-close-color-pressed:rgba(149, 149, 149, 1); --n-icon-color:rgb(51, 54, 57); --n-border:1px solid rgb(239, 239, 245); --n-title-text-color:rgb(31, 34, 37); --n-content-text-color:rgb(51, 54, 57); --n-line-height:1.6; --n-border-radius:3px; --n-font-size:14px; --n-title-font-weight:500; --n-icon-size:26px; --n-icon-margin:12px 8px 0 12px; --n-close-size:16px; --n-close-margin:14px 16px 0 0; --n-padding:15px; --n-icon-margin-left:12px; --n-icon-margin-right:8px;"
           >
             <div class="n-alert__icon"
                  aria-hidden="true"
             >
-              <i role="img"
+              <i data-v-fd72d696
+                 role="img"
                  class="n-icon"
-                 data-v-fd72d696
                  style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
               >
-                <svg xmlns="http://www.w3.org/2000/svg"
+                <svg data-v-fd72d696
+                     xmlns="http://www.w3.org/2000/svg"
                      xmlns:xlink="http://www.w3.org/1999/xlink"
                      viewbox="0 0 512 512"
-                     data-v-fd72d696
                 >
                   <path d="M456.69 421.39L362.6 327.3a173.81 173.81 0 0 0 34.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.81 173.81 0 0 0 327.3 362.6l94.09 94.09a25 25 0 0 0 35.3-35.3zM97.92 222.72a124.8 124.8 0 1 1 124.8 124.8a124.95 124.95 0 0 1-124.8-124.8z"
                         fill="currentColor"

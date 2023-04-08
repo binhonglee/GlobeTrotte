@@ -9,4 +9,7 @@ module.exports = {
     ecmaVersion: 2020,
     project: "./tsconfig.json"
   },
+  rules: {
+    "@typescript-eslint/ban-ts-comment": "off"
+  },
 }

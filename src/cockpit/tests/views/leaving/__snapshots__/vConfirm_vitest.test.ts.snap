@@ -1,29 +1,33 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`vConfirm - Not a link 1`] = `
-<div class="leaving_confirm narrow_content"
-     data-v-d64eb1bc
+<div data-v-d64eb1bc
+     class="leaving_confirm narrow_content"
 >
-  <div class="brokenLink"
-       data-v-d64eb1bc
+  <div data-v-d64eb1bc
+       class="brokenLink"
   >
-    <h1 class="title"
-        data-v-d64eb1bc
+    <h1 data-v-d64eb1bc
+        class="title"
     >
       Broken link
     </h1>
-    <p class="content"
-       data-v-d64eb1bc
+    <p data-v-d64eb1bc
+       class="content"
     >
       Seems like this link is broken. 😥
     </p>
-    <button class="n-button n-button--default-type n-button--medium-type"
+    <button data-v-d64eb1bc
+            class="n-button n-button--default-type n-button--medium-type"
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-d64eb1bc
     >
-      <transition-stub>
+      <transition-stub name="fade-in-width-expand-transition"
+                       appear="false"
+                       persisted="false"
+                       css="true"
+      >
       </transition-stub>
       <span class="n-button__content">
         Back to GlobeTrotte
@@ -46,36 +50,40 @@ exports[`vConfirm - Not a link 1`] = `
 `;
 
 exports[`vConfirm - Working external link 1`] = `
-<div class="leaving_confirm narrow_content"
-     data-v-d64eb1bc
+<div data-v-d64eb1bc
+     class="leaving_confirm narrow_content"
 >
-  <div class="nonBrokenLink"
-       data-v-d64eb1bc
+  <div data-v-d64eb1bc
+       class="nonBrokenLink"
   >
-    <h1 class="title"
-        data-v-d64eb1bc
+    <h1 data-v-d64eb1bc
+        class="title"
     >
       You are leaving GlobeTrotte...
     </h1>
-    <p class="content"
-       data-v-d64eb1bc
+    <p data-v-d64eb1bc
+       class="content"
     >
       Make sure you want to proceed to
       <br data-v-d64eb1bc>
-      <a class="externalURL"
+      <a data-v-d64eb1bc
+         class="externalURL"
          href="https://youtu.be/dQw4w9WgXcQ"
-         data-v-d64eb1bc
       >
         https://youtu.be/dQw4w9WgXcQ
       </a>
     </p>
-    <button class="n-button n-button--default-type n-button--medium-type backButton"
+    <button data-v-d64eb1bc
+            class="n-button n-button--default-type n-button--medium-type backButton"
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-d64eb1bc
     >
-      <transition-stub>
+      <transition-stub name="fade-in-width-expand-transition"
+                       appear="false"
+                       persisted="false"
+                       css="true"
+      >
       </transition-stub>
       <span class="n-button__content">
         Back to GlobeTrotte
@@ -93,15 +101,19 @@ exports[`vConfirm - Working external link 1`] = `
       >
       </div>
     </button>
-    <a class="n-button n-button--primary-type n-button--medium-type"
+    <a data-v-d64eb1bc
+       class="n-button n-button--primary-type n-button--medium-type"
        tabindex="0"
        type="button"
        style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #18a058; --n-color-hover: #36ad6a; --n-color-pressed: #0c7a43; --n-color-focus: #36ad6a; --n-color-disabled: #18a058; --n-ripple-color: #18a058; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #18a058; --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid #18a058; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
        disabled="false"
        href="https://youtu.be/dQw4w9WgXcQ"
-       data-v-d64eb1bc
     >
-      <transition-stub>
+      <transition-stub name="fade-in-width-expand-transition"
+                       appear="false"
+                       persisted="false"
+                       css="true"
+      >
       </transition-stub>
       <span class="n-button__content">
         Proceed
@@ -124,36 +136,40 @@ exports[`vConfirm - Working external link 1`] = `
 `;
 
 exports[`vConfirm - Working internal link 1`] = `
-<div class="leaving_confirm narrow_content"
-     data-v-d64eb1bc
+<div data-v-d64eb1bc
+     class="leaving_confirm narrow_content"
 >
-  <div class="nonBrokenLink"
-       data-v-d64eb1bc
+  <div data-v-d64eb1bc
+       class="nonBrokenLink"
   >
-    <h1 class="title"
-        data-v-d64eb1bc
+    <h1 data-v-d64eb1bc
+        class="title"
     >
       You are leaving GlobeTrotte...
     </h1>
-    <p class="content"
-       data-v-d64eb1bc
+    <p data-v-d64eb1bc
+       class="content"
     >
       Make sure you want to proceed to
       <br data-v-d64eb1bc>
-      <a class="externalURL"
+      <a data-v-d64eb1bc
+         class="externalURL"
          href="https://globetrotte.com/trip/search"
-         data-v-d64eb1bc
       >
         https://globetrotte.com/trip/search
       </a>
     </p>
-    <button class="n-button n-button--default-type n-button--medium-type backButton"
+    <button data-v-d64eb1bc
+            class="n-button n-button--default-type n-button--medium-type backButton"
             tabindex="0"
             type="button"
             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-            data-v-d64eb1bc
     >
-      <transition-stub>
+      <transition-stub name="fade-in-width-expand-transition"
+                       appear="false"
+                       persisted="false"
+                       css="true"
+      >
       </transition-stub>
       <span class="n-button__content">
         Back to GlobeTrotte
@@ -171,15 +187,19 @@ exports[`vConfirm - Working internal link 1`] = `
       >
       </div>
     </button>
-    <a class="n-button n-button--primary-type n-button--medium-type"
+    <a data-v-d64eb1bc
+       class="n-button n-button--primary-type n-button--medium-type"
        tabindex="0"
        type="button"
        style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #18a058; --n-color-hover: #36ad6a; --n-color-pressed: #0c7a43; --n-color-focus: #36ad6a; --n-color-disabled: #18a058; --n-ripple-color: #18a058; --n-text-color: #FFF; --n-text-color-hover: #FFF; --n-text-color-pressed: #FFF; --n-text-color-focus: #FFF; --n-text-color-disabled: #FFF; --n-border: 1px solid #18a058; --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid #18a058; --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
        disabled="false"
        href="https://globetrotte.com/trip/search"
-       data-v-d64eb1bc
     >
-      <transition-stub>
+      <transition-stub name="fade-in-width-expand-transition"
+                       appear="false"
+                       persisted="false"
+                       css="true"
+      >
       </transition-stub>
       <span class="n-button__content">
         Proceed

@@ -1,113 +1,113 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`vIDUser > Get User - Has user (not self) 1`] = `
-<div class="get_user"
-     data-v-afad819f
+<div data-v-afad819f
+     class="get_user"
 >
-  <div class="head"
-       data-v-afad819f
+  <div data-v-afad819f
+       class="head"
   >
   </div>
-  <div class="userinfo"
-       data-v-afad819f
+  <div data-v-afad819f
+       class="userinfo"
   >
-    <h1 class="title"
-        data-v-afad819f
+    <h1 data-v-afad819f
+        class="title"
     >
       MyAccount Test User
     </h1>
-    <div class="profile_info"
-         data-v-afad819f
+    <div data-v-afad819f
+         class="profile_info"
     >
-      <div class="view_user"
-           data-v-2ff30c83
+      <div data-v-2ff30c83
            data-v-afad819f
+           class="view_user"
       >
-        <div class="userInfo narrow_content"
-             data-v-2ff30c83
+        <div data-v-2ff30c83
+             class="userInfo narrow_content"
         >
           <h3 data-v-2ff30c83>
-            <code class="username left_col"
-                  data-v-2ff30c83
+            <code data-v-2ff30c83
+                  class="username left_col"
             >
               @testmockuseraccount
             </code>
           </h3>
-          <div class="externalLink"
-               data-v-2ff30c83
+          <div data-v-2ff30c83
+               class="externalLink"
           >
           </div>
         </div>
-        <div role="separator"
+        <div data-v-2ff30c83
+             role="separator"
              class="n-divider n-divider--no-title viewUserDivider"
              style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-             data-v-2ff30c83
         >
           <div class="n-divider__line n-divider__line--left">
           </div>
         </div>
-        <div class="viewUserTrips"
-             data-v-2ff30c83
+        <div data-v-2ff30c83
+             class="viewUserTrips"
         >
           <h2 data-v-2ff30c83>
             Trips
           </h2>
-          <div class="trip_preview_card wide_preview_card"
-               data-v-53012b10
+          <div data-v-53012b10
                data-v-2ff30c83
+               class="trip_preview_card wide_preview_card"
           >
-            <div class="n-card n-card--bordered n-card--hoverable widePreviewCard"
+            <div data-v-53012b10
+                 class="n-card n-card--bordered n-card--hoverable widePreviewCard"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-                 data-v-53012b10
             >
               <div class="n-card__content"
                    style="padding: 0px;"
                    role="none"
               >
-                <a class="underline_never color_never tripLink"
+                <a data-v-1c816fec
+                   data-v-53012b10
+                   class="underline_never color_never tripLink"
                    href="/trip/view/5"
                    rel
                    target
-                   data-v-1c816fec
-                   data-v-53012b10
                 >
-                  <h3 class="tripTitleName"
-                      data-v-53012b10
+                  <h3 data-v-53012b10
+                      class="tripTitleName"
                   >
                     some title
                   </h3>
-                  <div role="separator"
+                  <div data-v-53012b10
+                       role="separator"
                        class="n-divider n-divider--no-title"
                        style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                       data-v-53012b10
                   >
                     <div class="n-divider__line n-divider__line--left">
                     </div>
                   </div>
-                  <div class="tripPreviewInfo"
-                       data-v-53012b10
+                  <div data-v-53012b10
+                       class="tripPreviewInfo"
                   >
                     <p data-v-53012b10>
-                      <a class="underline_hover color_always tripPreviewUserProfileLink"
+                      <a data-v-1c816fec
+                         data-v-53012b10
+                         class="underline_hover color_always tripPreviewUserProfileLink"
                          href="/user/testmockuseraccount"
                          rel
                          target
-                         data-v-1c816fec
-                         data-v-53012b10
                       >
                         MyAccount Test User
                       </a>
                     </p>
-                    <div class="cityTags"
-                         data-v-53012b10
+                    <div data-v-53012b10
+                         class="cityTags"
                     >
                     </div>
                     <p data-v-53012b10>
                       Last Updated: Dec 31 2020
                     </p>
                   </div>
-                  <div class="endOfCardPadding"
-                       data-v-53012b10
+                  <div data-v-53012b10
+                       class="endOfCardPadding"
                   >
                   </div>
                 </a>
@@ -122,24 +122,29 @@ exports[`vIDUser > Get User - Has user (not self) 1`] = `
 `;
 
 exports[`vIDUser > Get User - Has user (self, confirmed) 1`] = `
-<div class="get_user"
-     data-v-afad819f
+<div data-v-afad819f
+     class="get_user"
 >
-  <div class="head"
-       data-v-afad819f
+  <div data-v-afad819f
+       class="head"
   >
   </div>
-  <div class="narrow_content accountUnconfirmedAlertBar"
-       data-v-afad819f
+  <div data-v-afad819f
+       class="narrow_content accountUnconfirmedAlertBar"
   >
-    <a class="underline_never color_always unconfirmedEmailLink"
+    <a data-v-1c816fec
+       data-v-afad819f
+       class="underline_never color_always unconfirmedEmailLink"
        href="/unconfirmed/email"
        rel
        target
-       data-v-1c816fec
-       data-v-afad819f
     >
-      <transition-stub data-v-afad819f>
+      <transition-stub data-v-afad819f
+                       name="fade-in-height-expand-transition"
+                       appear="false"
+                       persisted="false"
+                       css="true"
+      >
         <div class="n-alert n-alert--show-icon"
              style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgba(251, 238, 241, 1); --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-icon-color: #d03050; --n-border: 1px solid rgba(243, 203, 211, 1); --n-title-text-color: rgb(31, 34, 37); --n-content-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-border-radius: 3px; --n-font-size: 14px; --n-title-font-weight: 500; --n-icon-size: 26px; --n-icon-margin: 12px 8px 0 12px; --n-close-size: 16px; --n-close-margin: 14px 16px 0 0; --n-padding: 15px; --n-icon-margin-left: 12px; --n-icon-margin-right: 8px;"
              role="alert"
@@ -176,47 +181,51 @@ exports[`vIDUser > Get User - Has user (self, confirmed) 1`] = `
       </transition-stub>
     </a>
   </div>
-  <div class="userinfo"
-       data-v-afad819f
+  <div data-v-afad819f
+       class="userinfo"
   >
-    <h1 class="title"
-        data-v-afad819f
+    <h1 data-v-afad819f
+        class="title"
     >
       MyAccount Test User
     </h1>
-    <div class="profile_info"
-         data-v-afad819f
+    <div data-v-afad819f
+         class="profile_info"
     >
-      <div class="view_user"
-           data-v-2ff30c83
+      <div data-v-2ff30c83
            data-v-afad819f
+           class="view_user"
       >
-        <div class="userInfo narrow_content"
-             data-v-2ff30c83
+        <div data-v-2ff30c83
+             class="userInfo narrow_content"
         >
           <h3 data-v-2ff30c83>
-            <code class="username left_col"
-                  data-v-2ff30c83
+            <code data-v-2ff30c83
+                  class="username left_col"
             >
               @testmockuseraccount
             </code>
           </h3>
-          <div class="externalLink"
-               data-v-2ff30c83
+          <div data-v-2ff30c83
+               class="externalLink"
           >
           </div>
-          <div class="userInfoButtonGroups"
-               data-v-2ff30c83
+          <div data-v-2ff30c83
+               class="userInfoButtonGroups"
           >
-            <div class="share_component left_col"
-                 data-v-2ff30c83
+            <div data-v-2ff30c83
+                 class="share_component left_col"
             >
               <button class="n-button n-button--default-type n-button--medium-type"
                       tabindex="0"
                       type="button"
                       style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
               >
-                <transition-stub>
+                <transition-stub name="fade-in-width-expand-transition"
+                                 appear="false"
+                                 persisted="false"
+                                 css="true"
+                >
                 </transition-stub>
                 <span class="n-button__content">
                   <i role="img"
@@ -269,13 +278,17 @@ exports[`vIDUser > Get User - Has user (self, confirmed) 1`] = `
                 </div>
               </button>
             </div>
-            <button class="n-button n-button--default-type n-button--medium-type myAccountEdit right_col"
+            <button data-v-2ff30c83
+                    class="n-button n-button--default-type n-button--medium-type myAccountEdit right_col"
                     tabindex="0"
                     type="button"
                     style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-                    data-v-2ff30c83
             >
-              <transition-stub>
+              <transition-stub name="fade-in-width-expand-transition"
+                               appear="false"
+                               persisted="false"
+                               css="true"
+              >
               </transition-stub>
               <span class="n-button__content">
                 Edit
@@ -295,76 +308,76 @@ exports[`vIDUser > Get User - Has user (self, confirmed) 1`] = `
             </button>
           </div>
         </div>
-        <div role="separator"
+        <div data-v-2ff30c83
+             role="separator"
              class="n-divider n-divider--no-title viewUserDivider"
              style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-             data-v-2ff30c83
         >
           <div class="n-divider__line n-divider__line--left">
           </div>
         </div>
-        <div class="viewUserTrips"
-             data-v-2ff30c83
+        <div data-v-2ff30c83
+             class="viewUserTrips"
         >
           <h2 data-v-2ff30c83>
             Trips
           </h2>
-          <div class="trip_preview_card wide_preview_card"
-               data-v-53012b10
+          <div data-v-53012b10
                data-v-2ff30c83
+               class="trip_preview_card wide_preview_card"
           >
-            <div class="n-card n-card--bordered n-card--hoverable widePreviewCard"
+            <div data-v-53012b10
+                 class="n-card n-card--bordered n-card--hoverable widePreviewCard"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-                 data-v-53012b10
             >
               <div class="n-card__content"
                    style="padding: 0px;"
                    role="none"
               >
-                <a class="underline_never color_never tripLink"
+                <a data-v-1c816fec
+                   data-v-53012b10
+                   class="underline_never color_never tripLink"
                    href="/trip/view/5"
                    rel
                    target
-                   data-v-1c816fec
-                   data-v-53012b10
                 >
-                  <h3 class="tripTitleName"
-                      data-v-53012b10
+                  <h3 data-v-53012b10
+                      class="tripTitleName"
                   >
                     some title
                   </h3>
-                  <div role="separator"
+                  <div data-v-53012b10
+                       role="separator"
                        class="n-divider n-divider--no-title"
                        style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                       data-v-53012b10
                   >
                     <div class="n-divider__line n-divider__line--left">
                     </div>
                   </div>
-                  <div class="tripPreviewInfo"
-                       data-v-53012b10
+                  <div data-v-53012b10
+                       class="tripPreviewInfo"
                   >
                     <p data-v-53012b10>
-                      <a class="underline_hover color_always tripPreviewUserProfileLink"
+                      <a data-v-1c816fec
+                         data-v-53012b10
+                         class="underline_hover color_always tripPreviewUserProfileLink"
                          href="/user/testmockuseraccount"
                          rel
                          target
-                         data-v-1c816fec
-                         data-v-53012b10
                       >
                         MyAccount Test User
                       </a>
                     </p>
-                    <div class="cityTags"
-                         data-v-53012b10
+                    <div data-v-53012b10
+                         class="cityTags"
                     >
                     </div>
                     <p data-v-53012b10>
                       Last Updated: Dec 31 2020
                     </p>
                   </div>
-                  <div class="endOfCardPadding"
-                       data-v-53012b10
+                  <div data-v-53012b10
+                       class="endOfCardPadding"
                   >
                   </div>
                 </a>
@@ -379,54 +392,58 @@ exports[`vIDUser > Get User - Has user (self, confirmed) 1`] = `
 `;
 
 exports[`vIDUser > Get User - Has user (self, unconfirmed) 1`] = `
-<div class="get_user"
-     data-v-afad819f
+<div data-v-afad819f
+     class="get_user"
 >
-  <div class="head"
-       data-v-afad819f
+  <div data-v-afad819f
+       class="head"
   >
   </div>
-  <div class="userinfo"
-       data-v-afad819f
+  <div data-v-afad819f
+       class="userinfo"
   >
-    <h1 class="title"
-        data-v-afad819f
+    <h1 data-v-afad819f
+        class="title"
     >
       MyAccount Test User
     </h1>
-    <div class="profile_info"
-         data-v-afad819f
+    <div data-v-afad819f
+         class="profile_info"
     >
-      <div class="view_user"
-           data-v-2ff30c83
+      <div data-v-2ff30c83
            data-v-afad819f
+           class="view_user"
       >
-        <div class="userInfo narrow_content"
-             data-v-2ff30c83
+        <div data-v-2ff30c83
+             class="userInfo narrow_content"
         >
           <h3 data-v-2ff30c83>
-            <code class="username left_col"
-                  data-v-2ff30c83
+            <code data-v-2ff30c83
+                  class="username left_col"
             >
               @testmockuseraccount
             </code>
           </h3>
-          <div class="externalLink"
-               data-v-2ff30c83
+          <div data-v-2ff30c83
+               class="externalLink"
           >
           </div>
-          <div class="userInfoButtonGroups"
-               data-v-2ff30c83
+          <div data-v-2ff30c83
+               class="userInfoButtonGroups"
           >
-            <div class="share_component left_col"
-                 data-v-2ff30c83
+            <div data-v-2ff30c83
+                 class="share_component left_col"
             >
               <button class="n-button n-button--default-type n-button--medium-type"
                       tabindex="0"
                       type="button"
                       style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
               >
-                <transition-stub>
+                <transition-stub name="fade-in-width-expand-transition"
+                                 appear="false"
+                                 persisted="false"
+                                 css="true"
+                >
                 </transition-stub>
                 <span class="n-button__content">
                   <i role="img"
@@ -479,13 +496,17 @@ exports[`vIDUser > Get User - Has user (self, unconfirmed) 1`] = `
                 </div>
               </button>
             </div>
-            <button class="n-button n-button--default-type n-button--medium-type myAccountEdit right_col"
+            <button data-v-2ff30c83
+                    class="n-button n-button--default-type n-button--medium-type myAccountEdit right_col"
                     tabindex="0"
                     type="button"
                     style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
-                    data-v-2ff30c83
             >
-              <transition-stub>
+              <transition-stub name="fade-in-width-expand-transition"
+                               appear="false"
+                               persisted="false"
+                               css="true"
+              >
               </transition-stub>
               <span class="n-button__content">
                 Edit
@@ -505,76 +526,76 @@ exports[`vIDUser > Get User - Has user (self, unconfirmed) 1`] = `
             </button>
           </div>
         </div>
-        <div role="separator"
+        <div data-v-2ff30c83
+             role="separator"
              class="n-divider n-divider--no-title viewUserDivider"
              style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-             data-v-2ff30c83
         >
           <div class="n-divider__line n-divider__line--left">
           </div>
         </div>
-        <div class="viewUserTrips"
-             data-v-2ff30c83
+        <div data-v-2ff30c83
+             class="viewUserTrips"
         >
           <h2 data-v-2ff30c83>
             Trips
           </h2>
-          <div class="trip_preview_card wide_preview_card"
-               data-v-53012b10
+          <div data-v-53012b10
                data-v-2ff30c83
+               class="trip_preview_card wide_preview_card"
           >
-            <div class="n-card n-card--bordered n-card--hoverable widePreviewCard"
+            <div data-v-53012b10
+                 class="n-card n-card--bordered n-card--hoverable widePreviewCard"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-                 data-v-53012b10
             >
               <div class="n-card__content"
                    style="padding: 0px;"
                    role="none"
               >
-                <a class="underline_never color_never tripLink"
+                <a data-v-1c816fec
+                   data-v-53012b10
+                   class="underline_never color_never tripLink"
                    href="/trip/view/5"
                    rel
                    target
-                   data-v-1c816fec
-                   data-v-53012b10
                 >
-                  <h3 class="tripTitleName"
-                      data-v-53012b10
+                  <h3 data-v-53012b10
+                      class="tripTitleName"
                   >
                     some title
                   </h3>
-                  <div role="separator"
+                  <div data-v-53012b10
+                       role="separator"
                        class="n-divider n-divider--no-title"
                        style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                       data-v-53012b10
                   >
                     <div class="n-divider__line n-divider__line--left">
                     </div>
                   </div>
-                  <div class="tripPreviewInfo"
-                       data-v-53012b10
+                  <div data-v-53012b10
+                       class="tripPreviewInfo"
                   >
                     <p data-v-53012b10>
-                      <a class="underline_hover color_always tripPreviewUserProfileLink"
+                      <a data-v-1c816fec
+                         data-v-53012b10
+                         class="underline_hover color_always tripPreviewUserProfileLink"
                          href="/user/testmockuseraccount"
                          rel
                          target
-                         data-v-1c816fec
-                         data-v-53012b10
                       >
                         MyAccount Test User
                       </a>
                     </p>
-                    <div class="cityTags"
-                         data-v-53012b10
+                    <div data-v-53012b10
+                         class="cityTags"
                     >
                     </div>
                     <p data-v-53012b10>
                       Last Updated: Dec 31 2020
                     </p>
                   </div>
-                  <div class="endOfCardPadding"
-                       data-v-53012b10
+                  <div data-v-53012b10
+                       class="endOfCardPadding"
                   >
                   </div>
                 </a>
@@ -589,24 +610,24 @@ exports[`vIDUser > Get User - Has user (self, unconfirmed) 1`] = `
 `;
 
 exports[`vIDUser > Get User - No Param 1`] = `
-<div class="get_user"
-     data-v-afad819f
+<div data-v-afad819f
+     class="get_user"
 >
-  <div class="head"
-       data-v-afad819f
+  <div data-v-afad819f
+       class="head"
   >
   </div>
-  <div class="loading_view_user"
-       data-v-31cea62a
+  <div data-v-31cea62a
        data-v-afad819f
+       class="loading_view_user"
   >
-    <div class="n-skeleton loading_user_name"
+    <div data-v-31cea62a
+         class="n-skeleton loading_user_name"
          style="width: 100px; height: 40px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
-         data-v-31cea62a
     >
     </div>
-    <div class="narrow_content"
-         data-v-31cea62a
+    <div data-v-31cea62a
+         class="narrow_content"
     >
       <div class="n-skeleton"
            style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
@@ -629,10 +650,10 @@ exports[`vIDUser > Get User - No Param 1`] = `
       >
       </div>
     </div>
-    <div role="separator"
+    <div data-v-31cea62a
+         role="separator"
          class="n-divider n-divider--no-title"
          style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-         data-v-31cea62a
     >
       <div class="n-divider__line n-divider__line--left">
       </div>
@@ -640,30 +661,30 @@ exports[`vIDUser > Get User - No Param 1`] = `
     <h2 data-v-31cea62a>
       Trips
     </h2>
-    <div class="loading_trip_preview_card wide_preview_card"
-         data-v-4c444afb
+    <div data-v-4c444afb
          data-v-31cea62a
+         class="loading_trip_preview_card wide_preview_card"
     >
-      <div class="n-card n-card--bordered widePreviewCard"
+      <div data-v-4c444afb
+           class="n-card n-card--bordered widePreviewCard"
            style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-           data-v-4c444afb
       >
         <div class="n-card__content"
              style="padding: 0px;"
              role="none"
         >
-          <div class="n-skeleton skeletonTitle"
+          <div data-v-4c444afb
+               class="n-skeleton skeletonTitle"
                style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
-               data-v-4c444afb
           >
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -681,13 +702,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -705,13 +726,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -729,13 +750,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -753,13 +774,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -777,37 +798,37 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="endOfCardPadding"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="endOfCardPadding"
           >
           </div>
         </div>
       </div>
     </div>
-    <div class="loading_trip_preview_card wide_preview_card"
-         data-v-4c444afb
+    <div data-v-4c444afb
          data-v-31cea62a
+         class="loading_trip_preview_card wide_preview_card"
     >
-      <div class="n-card n-card--bordered widePreviewCard"
+      <div data-v-4c444afb
+           class="n-card n-card--bordered widePreviewCard"
            style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-           data-v-4c444afb
       >
         <div class="n-card__content"
              style="padding: 0px;"
              role="none"
         >
-          <div class="n-skeleton skeletonTitle"
+          <div data-v-4c444afb
+               class="n-skeleton skeletonTitle"
                style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
-               data-v-4c444afb
           >
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -825,13 +846,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -849,13 +870,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -873,13 +894,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -897,13 +918,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -921,37 +942,37 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="endOfCardPadding"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="endOfCardPadding"
           >
           </div>
         </div>
       </div>
     </div>
-    <div class="loading_trip_preview_card wide_preview_card"
-         data-v-4c444afb
+    <div data-v-4c444afb
          data-v-31cea62a
+         class="loading_trip_preview_card wide_preview_card"
     >
-      <div class="n-card n-card--bordered widePreviewCard"
+      <div data-v-4c444afb
+           class="n-card n-card--bordered widePreviewCard"
            style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-           data-v-4c444afb
       >
         <div class="n-card__content"
              style="padding: 0px;"
              role="none"
         >
-          <div class="n-skeleton skeletonTitle"
+          <div data-v-4c444afb
+               class="n-skeleton skeletonTitle"
                style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
-               data-v-4c444afb
           >
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -969,13 +990,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -993,13 +1014,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1017,13 +1038,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1041,13 +1062,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1065,37 +1086,37 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="endOfCardPadding"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="endOfCardPadding"
           >
           </div>
         </div>
       </div>
     </div>
-    <div class="loading_trip_preview_card wide_preview_card"
-         data-v-4c444afb
+    <div data-v-4c444afb
          data-v-31cea62a
+         class="loading_trip_preview_card wide_preview_card"
     >
-      <div class="n-card n-card--bordered widePreviewCard"
+      <div data-v-4c444afb
+           class="n-card n-card--bordered widePreviewCard"
            style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-           data-v-4c444afb
       >
         <div class="n-card__content"
              style="padding: 0px;"
              role="none"
         >
-          <div class="n-skeleton skeletonTitle"
+          <div data-v-4c444afb
+               class="n-skeleton skeletonTitle"
                style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
-               data-v-4c444afb
           >
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1113,13 +1134,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1137,13 +1158,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1161,13 +1182,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1185,13 +1206,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1209,37 +1230,37 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="endOfCardPadding"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="endOfCardPadding"
           >
           </div>
         </div>
       </div>
     </div>
-    <div class="loading_trip_preview_card wide_preview_card"
-         data-v-4c444afb
+    <div data-v-4c444afb
          data-v-31cea62a
+         class="loading_trip_preview_card wide_preview_card"
     >
-      <div class="n-card n-card--bordered widePreviewCard"
+      <div data-v-4c444afb
+           class="n-card n-card--bordered widePreviewCard"
            style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-           data-v-4c444afb
       >
         <div class="n-card__content"
              style="padding: 0px;"
              role="none"
         >
-          <div class="n-skeleton skeletonTitle"
+          <div data-v-4c444afb
+               class="n-skeleton skeletonTitle"
                style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
-               data-v-4c444afb
           >
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1257,13 +1278,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1281,13 +1302,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1305,13 +1326,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1329,13 +1350,13 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1353,8 +1374,8 @@ exports[`vIDUser > Get User - No Param 1`] = `
             >
             </div>
           </div>
-          <div class="endOfCardPadding"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="endOfCardPadding"
           >
           </div>
         </div>
@@ -1365,24 +1386,24 @@ exports[`vIDUser > Get User - No Param 1`] = `
 `;
 
 exports[`vIDUser > Get User - Not found 1`] = `
-<div class="get_user"
-     data-v-afad819f
+<div data-v-afad819f
+     class="get_user"
 >
-  <div class="head"
-       data-v-afad819f
+  <div data-v-afad819f
+       class="head"
   >
   </div>
-  <div class="loading_view_user"
-       data-v-31cea62a
+  <div data-v-31cea62a
        data-v-afad819f
+       class="loading_view_user"
   >
-    <div class="n-skeleton loading_user_name"
+    <div data-v-31cea62a
+         class="n-skeleton loading_user_name"
          style="width: 100px; height: 40px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
-         data-v-31cea62a
     >
     </div>
-    <div class="narrow_content"
-         data-v-31cea62a
+    <div data-v-31cea62a
+         class="narrow_content"
     >
       <div class="n-skeleton"
            style="display: inline-block; vertical-align: -0.125em; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
@@ -1405,10 +1426,10 @@ exports[`vIDUser > Get User - Not found 1`] = `
       >
       </div>
     </div>
-    <div role="separator"
+    <div data-v-31cea62a
+         role="separator"
          class="n-divider n-divider--no-title"
          style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-         data-v-31cea62a
     >
       <div class="n-divider__line n-divider__line--left">
       </div>
@@ -1416,30 +1437,30 @@ exports[`vIDUser > Get User - Not found 1`] = `
     <h2 data-v-31cea62a>
       Trips
     </h2>
-    <div class="loading_trip_preview_card wide_preview_card"
-         data-v-4c444afb
+    <div data-v-4c444afb
          data-v-31cea62a
+         class="loading_trip_preview_card wide_preview_card"
     >
-      <div class="n-card n-card--bordered widePreviewCard"
+      <div data-v-4c444afb
+           class="n-card n-card--bordered widePreviewCard"
            style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-           data-v-4c444afb
       >
         <div class="n-card__content"
              style="padding: 0px;"
              role="none"
         >
-          <div class="n-skeleton skeletonTitle"
+          <div data-v-4c444afb
+               class="n-skeleton skeletonTitle"
                style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
-               data-v-4c444afb
           >
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1457,13 +1478,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1481,13 +1502,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1505,13 +1526,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1529,13 +1550,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1553,37 +1574,37 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="endOfCardPadding"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="endOfCardPadding"
           >
           </div>
         </div>
       </div>
     </div>
-    <div class="loading_trip_preview_card wide_preview_card"
-         data-v-4c444afb
+    <div data-v-4c444afb
          data-v-31cea62a
+         class="loading_trip_preview_card wide_preview_card"
     >
-      <div class="n-card n-card--bordered widePreviewCard"
+      <div data-v-4c444afb
+           class="n-card n-card--bordered widePreviewCard"
            style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-           data-v-4c444afb
       >
         <div class="n-card__content"
              style="padding: 0px;"
              role="none"
         >
-          <div class="n-skeleton skeletonTitle"
+          <div data-v-4c444afb
+               class="n-skeleton skeletonTitle"
                style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
-               data-v-4c444afb
           >
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1601,13 +1622,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1625,13 +1646,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1649,13 +1670,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1673,13 +1694,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1697,37 +1718,37 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="endOfCardPadding"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="endOfCardPadding"
           >
           </div>
         </div>
       </div>
     </div>
-    <div class="loading_trip_preview_card wide_preview_card"
-         data-v-4c444afb
+    <div data-v-4c444afb
          data-v-31cea62a
+         class="loading_trip_preview_card wide_preview_card"
     >
-      <div class="n-card n-card--bordered widePreviewCard"
+      <div data-v-4c444afb
+           class="n-card n-card--bordered widePreviewCard"
            style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-           data-v-4c444afb
       >
         <div class="n-card__content"
              style="padding: 0px;"
              role="none"
         >
-          <div class="n-skeleton skeletonTitle"
+          <div data-v-4c444afb
+               class="n-skeleton skeletonTitle"
                style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
-               data-v-4c444afb
           >
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1745,13 +1766,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1769,13 +1790,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1793,13 +1814,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1817,13 +1838,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1841,37 +1862,37 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="endOfCardPadding"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="endOfCardPadding"
           >
           </div>
         </div>
       </div>
     </div>
-    <div class="loading_trip_preview_card wide_preview_card"
-         data-v-4c444afb
+    <div data-v-4c444afb
          data-v-31cea62a
+         class="loading_trip_preview_card wide_preview_card"
     >
-      <div class="n-card n-card--bordered widePreviewCard"
+      <div data-v-4c444afb
+           class="n-card n-card--bordered widePreviewCard"
            style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-           data-v-4c444afb
       >
         <div class="n-card__content"
              style="padding: 0px;"
              role="none"
         >
-          <div class="n-skeleton skeletonTitle"
+          <div data-v-4c444afb
+               class="n-skeleton skeletonTitle"
                style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
-               data-v-4c444afb
           >
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1889,13 +1910,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1913,13 +1934,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1937,13 +1958,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1961,13 +1982,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -1985,37 +2006,37 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="endOfCardPadding"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="endOfCardPadding"
           >
           </div>
         </div>
       </div>
     </div>
-    <div class="loading_trip_preview_card wide_preview_card"
-         data-v-4c444afb
+    <div data-v-4c444afb
          data-v-31cea62a
+         class="loading_trip_preview_card wide_preview_card"
     >
-      <div class="n-card n-card--bordered widePreviewCard"
+      <div data-v-4c444afb
+           class="n-card n-card--bordered widePreviewCard"
            style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border-radius: 3px; --n-color: #fff; --n-color-modal: #fff; --n-color-popover: #fff; --n-color-target: #18a058; --n-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-action-color: rgb(250, 250, 252); --n-title-text-color: rgb(31, 34, 37); --n-title-font-weight: 500; --n-close-color: rgba(122, 122, 122, 1); --n-close-color-hover: rgba(89, 89, 89, 1); --n-close-color-pressed: rgba(149, 149, 149, 1); --n-border-color: rgb(239, 239, 245); --n-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, .08), 0 3px 6px 0 rgba(0, 0, 0, .06), 0 5px 12px 4px rgba(0, 0, 0, .04); --n-padding-top: 19px; --n-padding-bottom: 20px; --n-padding-left: 24px; --n-font-size: 14px; --n-title-font-size: 18px; --n-close-size: 18px;"
-           data-v-4c444afb
       >
         <div class="n-card__content"
              style="padding: 0px;"
              role="none"
         >
-          <div class="n-skeleton skeletonTitle"
+          <div data-v-4c444afb
+               class="n-skeleton skeletonTitle"
                style="width: 60%; height: 30px; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color-start: #eee; --n-color-end: #ddd;"
-               data-v-4c444afb
           >
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -2033,13 +2054,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -2057,13 +2078,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -2081,13 +2102,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -2105,13 +2126,13 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="tripDayPreview"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="tripDayPreview"
           >
-            <div role="separator"
+            <div data-v-4c444afb
+                 role="separator"
                  class="n-divider n-divider--no-title"
                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
-                 data-v-4c444afb
             >
               <div class="n-divider__line n-divider__line--left">
               </div>
@@ -2129,8 +2150,8 @@ exports[`vIDUser > Get User - Not found 1`] = `
             >
             </div>
           </div>
-          <div class="endOfCardPadding"
-               data-v-4c444afb
+          <div data-v-4c444afb
+               class="endOfCardPadding"
           >
           </div>
         </div>

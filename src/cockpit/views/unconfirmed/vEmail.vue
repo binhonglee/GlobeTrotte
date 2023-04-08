@@ -49,7 +49,8 @@ export default defineComponent({
     if (General.confirmed()) {
       await Routing.genRedirectTo(
         Routing.hasNext()
-          ? Routing.getNext(this.$route)
+          ? // @ts-ignore
+            Routing.getNext(this.$route)
           : Routes.User + "/" + General.getCurrentUsername(),
       );
     }

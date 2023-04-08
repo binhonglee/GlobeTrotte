@@ -73,7 +73,7 @@ jobs:
     displayName: Lint changes
 
   - script: |
-      git checkout src/wings/wings.json
+      git checkout src/wings/wings.json go.sum go.mod pnpm-lock.yaml
       ./scripts/leftover.sh
     displayName: Check for leftover
 

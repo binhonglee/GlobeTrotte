@@ -88,7 +88,7 @@ go_module(
 go_module(
   name = "jackc_pgconn",
   module = "github.com/jackc/pgconn",
-  version = "v1.13.0",
+  version = "v1.14.0",
   install = [
     ".",
     "internal/ctxwatch",
@@ -126,7 +126,7 @@ go_module(
 go_module(
   name = "jackc_pgproto3_v2",
   module = "github.com/jackc/pgproto3/v2",
-  version = "v2.3.1",
+  version = "v2.3.2",
   install = [
     ".",
   ],
@@ -139,7 +139,7 @@ go_module(
 go_module(
   name = "jackc_pgservicefile",
   module = "github.com/jackc/pgservicefile",
-  version = "v0.0.0-20200714003250-2b9c44734f2b",
+  version = "v0.0.0-20221227161230-091c0ba34f0a",
   install = [
     ".",
   ],
@@ -148,7 +148,7 @@ go_module(
 go_module(
   name = "jackc_pgtype",
   module = "github.com/jackc/pgtype",
-  version = "v1.13.0",
+  version = "v1.14.0",
   install = [
     ".",
   ],
@@ -160,7 +160,7 @@ go_module(
 go_module(
   name = "jackc_pgx_v4",
   module = "github.com/jackc/pgx/v4",
-  version = "v4.17.2",
+  version = "v4.18.1",
   install = [
     ".",
     "internal/sanitize",
@@ -192,7 +192,7 @@ go_module(
 go_module(
   name = "jordan-wright_email",
   module = "github.com/jordan-wright/email",
-  version = "v0.0.0-20200602115436-fd8a7622303e",
+  version = "v4.0.1-0.20210109023952-943e75fe5223+incompatible",
   install = [
     ".",
   ],
@@ -201,7 +201,7 @@ go_module(
 go_module(
   name = "x_crypto",
   module = "golang.org/x/crypto",
-  version = "v0.0.0-20221012134737-56aed061732a",
+  version = "v0.8.0",
   install = [
     "bcrypt",
     "blowfish",
@@ -212,7 +212,7 @@ go_module(
 go_module(
   name = "x_net",
   module = "golang.org/x/net",
-  version = "v0.0.0-20220520000938-2e3eb7b945c2",
+  version = "v0.9.0",
   install = [
     "html",
     "html/atom",
@@ -222,7 +222,7 @@ go_module(
 go_module(
   name = "x_text",
   module = "golang.org/x/text",
-  version = "v0.3.7",
+  version = "v0.9.0",
   install = [
     ".",
     "cases",
