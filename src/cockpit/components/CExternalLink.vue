@@ -34,19 +34,42 @@ export default defineComponent({
     finalizedURL: "",
   }),
   beforeMount(): void {
-    this.$data.finalizedURL = Routing.getSubPath(
-      Routes.leaving_Confirm,
-      new Map<string, string>(
-        Object.entries({
-          link: encodeURIComponent(this.$props.url.valueOf())
-            .split("%")
-            .join(".pct.")
-            .split(".")
-            .join("&dots&"),
-        }),
-      ),
-      "",
-    );
+    this.$data.finalizedURL = this.isWhitelistedURL(this.$props.url.valueOf())
+      ? this.$props.url.valueOf()
+      : Routing.getSubPath(
+          Routes.leaving_Confirm,
+          new Map<string, string>(
+            Object.entries({
+              link: encodeURIComponent(this.$props.url.valueOf())
+                .split("%")
+                .join(".pct.")
+                .split(".")
+                .join("&dots&"),
+            }),
+          ),
+          "",
+        );
+  },
+  methods: {
+    isWhitelistedURL(url: string): boolean {
+      const whitelistURLs = [
+        "https://goo.gl/maps/",
+        "https://google.com/maps/",
+        "https://www.google.com/maps/",
+        "https://maps.google.com/",
+        "https://maps.app.goog.gl/",
+        "https://www.openstreetmap.org/way/",
+        "https://www.bing.com/maps?",
+        "https://www.yelp.com/biz/",
+      ];
+
+      for (const whitelistURL of whitelistURLs) {
+        if (url.startsWith(whitelistURL)) {
+          return true;
+        }
+      }
+      return false;
+    },
   },
 });
 </script>

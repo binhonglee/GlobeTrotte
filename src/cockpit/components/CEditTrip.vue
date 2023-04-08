@@ -185,18 +185,6 @@ export default defineComponent({
       for (const day in days.days) {
         const currentDay = days.days[day].toDay();
         const places = this.filterPlaces(currentDay.places);
-        if (places === null) {
-          NaiveUtils.dialogError({
-            title: "Invalid Link",
-            content:
-              "We currently only support links to limited " +
-              "websites including OpenStreetMap, Google " +
-              "Map, Bing Maps and Yelp.",
-            positiveText: "OK",
-          });
-          this.$data.saving = false;
-          return;
-        }
         if (places.length > 0) {
           currentDay.places = places;
           currentDay.dayOf = currentDay.dayOf - offBy;
@@ -210,40 +198,17 @@ export default defineComponent({
       this.$emit("save", newTrip);
       this.$data.saving = false;
     },
-    filterPlaces(places: Place[]): Place[] | null {
+    filterPlaces(places: Place[]): Place[] {
       const toReturn: Place[] = [];
       for (const place of places) {
         place.label = place.label.trim();
         place.URL = place.URL.trim();
         if (place.label !== "") {
-          if (place.URL === "" || this.filterPlace(place)) {
-            place.description = processBioToServer(place.description.valueOf());
-            toReturn.push(place);
-          } else {
-            return null;
-          }
+          place.description = processBioToServer(place.description.valueOf());
+          toReturn.push(place);
         }
       }
       return toReturn;
-    },
-    filterPlace(place: Place): boolean {
-      // TODO: Move (or clone) this check on server side
-      const whitelistURLs = [
-        "https://goo.gl/maps/",
-        "https://google.com/maps/",
-        "https://www.google.com/maps/",
-        "https://maps.google.com/",
-        "https://www.openstreetmap.org/way/",
-        "https://www.bing.com/maps?",
-        "https://www.yelp.com/biz/",
-      ];
-
-      for (const whitelistURL of whitelistURLs) {
-        if (place.URL.startsWith(whitelistURL)) {
-          return true;
-        }
-      }
-      return false;
     },
     confirmDelete(): void {
       NaiveUtils.dialogWarning({
