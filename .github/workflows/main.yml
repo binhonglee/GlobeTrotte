@@ -44,10 +44,14 @@ jobs:
     - run: ./pleasew lint --show_all_output
     - run: git checkout third_party/go/BUILD
     - run: git checkout go.sum
+    - run: git checkout pnpm-lock.yaml
+      if: github.actor == 'renovate[bot]'
+
     - run: ./scripts/leftover.sh
 
     - name: Push commit
       uses: EndBug/add-and-commit@v9
+      if: github.actor != 'renovate[bot]'
       with:
         message: 'Push changes into BUILD file'
 
