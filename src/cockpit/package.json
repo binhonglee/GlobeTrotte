@@ -32,7 +32,7 @@
     "@vitejs/plugin-vue": "4.1.0",
     "@vitest/coverage-c8": "0.31.0",
     "@volar/vue-language-plugin-pug": "^1.1.4",
-    "@vue/eslint-config-prettier": "7.0.0",
+    "@vue/eslint-config-prettier": "7.1.0",
     "@vue/eslint-config-typescript": "11.0.3",
     "@vue/test-utils": "2.3.2",
     "c8": "7.12.0",

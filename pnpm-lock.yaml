@@ -41,7 +41,7 @@ importers:
       '@vitejs/plugin-vue': 4.1.0
       '@vitest/coverage-c8': 0.31.0
       '@volar/vue-language-plugin-pug': ^1.1.4
-      '@vue/eslint-config-prettier': 7.0.0
+      '@vue/eslint-config-prettier': 7.1.0
       '@vue/eslint-config-typescript': 11.0.3
       '@vue/test-utils': 2.3.2
       '@vueuse/head': 1.1.26
@@ -77,7 +77,7 @@ importers:
       '@vitejs/plugin-vue': 4.1.0_vite@4.2.1+vue@3.2.47
       '@vitest/coverage-c8': 0.31.0_vitest@0.31.0
       '@volar/vue-language-plugin-pug': 1.2.0
-      '@vue/eslint-config-prettier': 7.0.0_aq37wtubambsjkbuajxtwljxa4
+      '@vue/eslint-config-prettier': 7.1.0_aq37wtubambsjkbuajxtwljxa4
       '@vue/eslint-config-typescript': 11.0.3_qbx6qg4rxrnnkjxbgyy4xng3fa
       '@vue/test-utils': 2.3.2_vue@3.2.47
       c8: 7.12.0
@@ -2368,8 +2368,8 @@ packages:
     resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==}
     dev: true
 
-  /@vue/eslint-config-prettier/7.0.0_aq37wtubambsjkbuajxtwljxa4:
-    resolution: {integrity: sha512-/CTc6ML3Wta1tCe1gUeO0EYnVXfo3nJXsIhZ8WJr3sov+cGASr6yuiibJTL6lmIBm7GobopToOuB3B6AWyV0Iw==}
+  /@vue/eslint-config-prettier/7.1.0_aq37wtubambsjkbuajxtwljxa4:
+    resolution: {integrity: sha512-Pv/lVr0bAzSIHLd9iz0KnvAr4GKyCEl+h52bc4e5yWuDVtLgFwycF7nrbWTAQAS+FU6q1geVd07lc6EWfJiWKQ==}
     peerDependencies:
       eslint: '>= 7.28.0'
       prettier: '>= 2.0.0'
