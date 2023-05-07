@@ -1,1 +1,0 @@
-import{W as r}from"./index-147973cf.js";function n(t){return t.sort((e,s)=>s.lastUpdated.getTime()-e.lastUpdated.getTime())}function a(t,e){return t.user.bio="",e.user.bio="",r.stringify(t)===r.stringify(e)}export{n as a,a as s};
