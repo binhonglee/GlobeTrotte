@@ -342,3 +342,4 @@ zgo.at/zcache v1.1.0 h1:vyhyZBlXBtALNMIdsVbpV5nwDYsqMZkA1/Qjj+2rafg=
 zgo.at/zcache v1.1.0/go.mod h1:xWQo2ha/bamTmx8CbfrZl9Nf8AoT5uNh2hWfbQi8TiE=
 zgo.at/zcache v1.2.0 h1:++0dNWOrmUBa10WSja+eHx5bEO2PzZLRY6MJlBD47yk=
 zgo.at/zcache v1.2.0/go.mod h1:xWQo2ha/bamTmx8CbfrZl9Nf8AoT5uNh2hWfbQi8TiE=
+zgo.at/zcache/v2 v2.1.0/go.mod h1:gyCeoLVo01QjDZynjime8xUGHHMbsLiPyUTBpDGd4Gk=
