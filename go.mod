@@ -15,6 +15,7 @@ require (
 	golang.org/x/crypto v0.8.0
 	golang.org/x/time v0.3.0
 	zgo.at/zcache v1.2.0
+	zgo.at/zcache/v2 v2.1.0
 )
 
 require (
