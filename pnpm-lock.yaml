@@ -24,10 +24,10 @@ importers:
     specifiers:
       '@types/node': 18.16.6
       esbuild: 0.17.18
-      playwright-core: 1.29.2
+      playwright-core: 1.48.1
       typescript: 4.9.5
     dependencies:
-      playwright-core: 1.29.2
+      playwright-core: 1.48.1
     devDependencies:
       '@types/node': 18.16.6
       esbuild: 0.17.18
@@ -53,7 +53,7 @@ importers:
       jest-serializer-html: 7.1.0
       jsdom: 22.0.0
       naive-ui: 2.27.0
-      playwright-core: 1.29.2
+      playwright-core: 1.48.1
       prettier: 2.8.8
       typescript: 4.9.5
       vite: 4.3.5
@@ -86,7 +86,7 @@ importers:
       eslint-plugin-vue: 9.12.0_eslint@8.40.0
       jest-serializer-html: 7.1.0
       jsdom: 22.0.0
-      playwright-core: 1.29.2
+      playwright-core: 1.48.1
       prettier: 2.8.8
       typescript: 4.9.5
       vite: 4.3.5_@types+node@18.16.6
@@ -4624,9 +4624,9 @@ packages:
       pathe: 1.1.0
     dev: true
 
-  /playwright-core/1.29.2:
-    resolution: {integrity: sha512-94QXm4PMgFoHAhlCuoWyaBYKb92yOcGVHdQLoxQ7Wjlc7Flg4aC/jbFW7xMR52OfXMVkWicue4WXE7QEegbIRA==}
-    engines: {node: '>=14'}
+  /playwright-core/1.48.1:
+    resolution: {integrity: sha512-Yw/t4VAFX/bBr1OzwCuOMZkY1Cnb4z/doAFSwf4huqAGWmf9eMNjmK7NiOljCdLmxeRYcGPPmcDgU0zOlzP0YA==}
+    engines: {node: '>=18'}
     hasBin: true
 
   /postcss-selector-parser/6.0.11:
