@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/golang:1.17.5-node
+      - image: cimg/go:1.24.0-node
       - image: circleci/postgres:latest-postgis
         environment:
           POSTGRES_USER: test

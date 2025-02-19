@@ -89,8 +89,8 @@ func createNewLogFile() {
 }
 
 // Exit - This is used for logging in cleanup functions. Calls
-//   here are not guaranteed to be stored into the log files
-//   but will always be displayed in the terminal.
+// here are not guaranteed to be stored into the log files
+// but will always be displayed in the terminal.
 func Exit(namespace Namespace, message string) {
 	if currentFile != nil {
 		Print(namespace, message)
@@ -120,8 +120,7 @@ func Panic(namespace Namespace, message string) {
 	panic(message)
 }
 
-// PanicErr - Triggers Panic() on the condition that
-//   `if err != nil`
+// PanicErr - Triggers Panic() on the condition when `if err != nil`
 func PanicErr(
 	namespace Namespace, err error, message string) {
 	if err != nil {
@@ -131,8 +130,7 @@ func PanicErr(
 }
 
 // Err - Prints message in red indicating its an error
-//   (`if err != nil`) but does not call `panic()` nor ends
-// the program
+// (`if err != nil`) but does not call `panic()` nor ends the program
 func Err(namespace Namespace, err error, message string) {
 	if err != nil {
 		s := message
@@ -143,8 +141,7 @@ func Err(namespace Namespace, err error, message string) {
 	}
 }
 
-// Debug - This will print message to the terminal but not
-//   into the log file.
+// Debug - This will print message to the terminal but not into the log file.
 // Deprecated: DO NOT COMMIT USE OF THIS FUNCTION.
 func Debug(message ...interface{}) {
 	debugPrint(yellowC, message)

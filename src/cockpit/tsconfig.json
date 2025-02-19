@@ -13,7 +13,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
-    "typeRoots": ["./node_modules/@types"],
+    "typeRoots": ["./node_modules/@types", "./types", "./node_modules"],
     "types": ["node", "vite/client", "vite-plugin-pwa/client", "vitest"],
     "paths": {
       "@/*": ["./*"]
@@ -29,7 +29,7 @@
   ],
   "vueCompilerOptions": {
     "plugins": [
-      "@volar/vue-language-plugin-pug"
+      "@vue/language-plugin-pug"
     ]
   }
 }

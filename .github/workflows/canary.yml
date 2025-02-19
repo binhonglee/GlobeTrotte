@@ -19,7 +19,7 @@ jobs:
     - name: Use Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.15.x
+        go-version: 1.24.0
     - name: Cache pnpm-store
       id: cache-pnpm-store
       uses: actions/cache@v1
@@ -36,14 +36,14 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '16.13.1'
+        node-version: '23.8.0'
     - name: Use Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.15.x
+        go-version: 1.24.0
 
     - name: Install PNPM
-      run: sudo npm i -g pnpm@7.1.0
+      run: sudo npm i -g pnpm@10.4.1
 
     - name: Build
       run: ./pleasew build --show_all_output //deploy

@@ -5,7 +5,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: Cache please
@@ -29,21 +29,22 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '16.13.1'
+        node-version: '23.8.0'
     - name: Use Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.15.x
+        go-version: 1.24.0
 
     - run: ./scripts/setup.sh -g -s
     - run: ./pleasew go_mod
-    - run: sudo npm i -g pnpm@7.1.6
+    - run: sudo npm i -g pnpm@10.4.1
     - run: cp config/test.kdl config/config.kdl
 
     - run: ./pleasew build --show_all_output //...
     - run: ./pleasew lint --show_all_output
     - run: git checkout third_party/go/BUILD
     - run: git checkout go.sum
+    - run: git checkout src/cockpit/wings
     - run: git checkout pnpm-lock.yaml
       if: github.actor == 'renovate[bot]'
 
@@ -56,7 +57,7 @@ jobs:
         message: 'Push changes into BUILD file'
 
   e2e:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     services:
       postgres:
         image: postgres
@@ -90,13 +91,13 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '16.13.1'
+        node-version: '23.8.0'
     - name: Use Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.15.x
+        go-version: 1.24.0
 
-    - run: sudo npm i -g pnpm@7.1.6
+    - run: sudo npm i -g pnpm@10.4.1
     # - run: ./scripts/setup.sh -g -s -n
     - run: pnpm i
     - run: ./pleasew go_mod
@@ -112,28 +113,28 @@ jobs:
     - run: pnpm run install_playwright 
     - run: pnpm run -r test:playwright
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: logs
         path: logs
       if: ${{ always() }}
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: playwright
         path: 'src/cockpit/playwright/'
       if: ${{ always() }}
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: playwright-coverage
         path: 'src/cockpit/playwright_coverage/'
-    # - uses: actions/upload-artifact@v2
+    # - uses: actions/upload-artifact@v4
     #   with:
     #     name: e2e-nyc-output
     #     path: '.nyc_output'
     #   if: ${{ always() }}
 
   turbine:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     services:
       postgres:
         image: postgres
@@ -154,20 +155,20 @@ jobs:
     - name: Use Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.15.x
+        go-version: 1.24.0
 
     - run: ./scripts/setup.sh -g
     - run: cp config/test.kdl config/config.kdl
     - run: ./pleasew go_mod
     - run: ./pleasew cover --show_all_output //src/turbine/...
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: turbine-output
         path: 'plz-out/log'
       if: ${{ always() }}
 
   cockpit:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: Cache please
@@ -191,14 +192,14 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '16.13.1'
+        node-version: '23.8.0'
 
-    - run: sudo npm i -g pnpm@7.1.6
+    - run: sudo npm i -g pnpm@10.4.1
     - run: pnpm i
     - run: pnpm run test:vitest
     - run: ./pleasew test --show_all_output //src/cockpit:vue_tsc
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: vitest-coverage
         path: 'src/cockpit/vitest_coverage/'
@@ -206,20 +207,20 @@ jobs:
 
   coverage:
     needs: [cockpit, e2e, turbine]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-    - run: sudo npm i -g pnpm@7.1.6
-    - uses: actions/download-artifact@v2
+    - run: sudo npm i -g pnpm@10.4.1
+    - uses: actions/download-artifact@v4
       with:
         name: vitest-coverage
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v4
       with:
         name: playwright-coverage
-    # - uses: actions/download-artifact@v2
+    # - uses: actions/download-artifact@v4
     #   with:
     #     name: e2e-nyc-output
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v4
       with:
         name: turbine-output
 

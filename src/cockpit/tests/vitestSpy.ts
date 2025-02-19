@@ -18,7 +18,7 @@ abstract class spyInterface {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public getMock(): MockContext<any[], any> {
+  public getMock(): MockContext<any[]> {
     return this.item.mock;
   }
 

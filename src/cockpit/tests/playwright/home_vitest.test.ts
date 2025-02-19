@@ -14,9 +14,10 @@ describe("Menubar", async () => {
         .locator(".n-menu-item")
         .allInnerTexts();
       expect(menubar[0]).toEqual("Home");
-      expect(menubar[1]).toEqual("Dark mode\nLight mode");
-      expect(menubar[2]).toEqual("Login");
-      expect(menubar[3]).toEqual("Register");
+      expect(menubar[1]).toEqual("Trip ▾");
+      expect(menubar[2]).toEqual("Dark mode\nLight mode");
+      expect(menubar[3]).toEqual("Login");
+      expect(menubar[4]).toEqual("Register");
       const tripMenu = await page
         .locator(".main_menu")
         .locator(".n-submenu")

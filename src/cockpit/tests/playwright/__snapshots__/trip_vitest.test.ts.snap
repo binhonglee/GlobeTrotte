@@ -6,9 +6,9 @@ exports[`Trips > search for the trip 1`] = `
 >
   <div class="n-config-provider">
     <div class="main_menu dark_mode">
-      <div role="menubar"
-           class="n-menu n-menu--horizontal navBarLeftMenu"
-           style="--n-divider-color:rgba(255, 255, 255, 0.09); --n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-font-size:14px; --n-border-color-horizontal:#0000; --n-border-radius:3px; --n-item-height:42px; --n-group-text-color:rgba(255, 255, 255, 0.52); --n-color:#0000; --n-item-text-color:rgba(255, 255, 255, 0.82); --n-item-text-color-hover:rgba(255, 255, 255, 0.82); --n-item-text-color-active:#63e2b7; --n-item-text-color-child-active:#63e2b7; --n-item-text-color-active-hover:#63e2b7; --n-item-icon-color:rgba(255, 255, 255, 0.9); --n-item-icon-color-hover:rgba(255, 255, 255, 0.9); --n-item-icon-color-active:#63e2b7; --n-item-icon-color-active-hover:#63e2b7; --n-item-icon-color-child-active:#63e2b7; --n-item-icon-color-collapsed:rgba(255, 255, 255, 0.9); --n-item-text-color-horizontal:rgba(255, 255, 255, 0.82); --n-item-text-color-hover-horizontal:#7fe7c4; --n-item-text-color-active-horizontal:#63e2b7; --n-item-text-color-child-active-horizontal:#63e2b7; --n-item-text-color-active-hover-horizontal:#63e2b7; --n-item-icon-color-horizontal:rgba(255, 255, 255, 0.9); --n-item-icon-color-hover-horizontal:#7fe7c4; --n-item-icon-color-active-horizontal:#63e2b7; --n-item-icon-color-active-hover-horizontal:#63e2b7; --n-item-icon-color-child-active-horizontal:#63e2b7; --n-arrow-color:rgba(255, 255, 255, 0.82); --n-arrow-color-hover:rgba(255, 255, 255, 0.82); --n-arrow-color-active:#63e2b7; --n-arrow-color-active-hover:#63e2b7; --n-arrow-color-child-active:#63e2b7; --n-item-color-hover:rgba(255, 255, 255, 0.09); --n-item-color-active:rgba(99, 226, 183, 0.15); --n-item-color-active-hover:rgba(99, 226, 183, 0.15); --n-item-color-active-collapsed:rgba(99, 226, 183, 0.15);"
+      <div class="navBarLeftMenu n-menu n-menu--horizontal"
+           role="menubar"
+           style="--n-divider-color: rgba(255, 255, 255, 0.09); --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-font-size: 14px; --n-border-color-horizontal: #0000; --n-border-radius: 3px; --n-item-height: 42px; --n-group-text-color: rgba(255, 255, 255, 0.52); --n-color: #0000; --n-item-text-color: rgba(255, 255, 255, 0.82); --n-item-text-color-hover: rgba(255, 255, 255, 0.82); --n-item-text-color-active: #63e2b7; --n-item-text-color-child-active: #63e2b7; --n-item-text-color-child-active-hover: #63e2b7; --n-item-text-color-active-hover: #63e2b7; --n-item-icon-color: rgba(255, 255, 255, 0.9); --n-item-icon-color-hover: rgba(255, 255, 255, 0.9); --n-item-icon-color-active: #63e2b7; --n-item-icon-color-active-hover: #63e2b7; --n-item-icon-color-child-active: #63e2b7; --n-item-icon-color-child-active-hover: #63e2b7; --n-item-icon-color-collapsed: rgba(255, 255, 255, 0.9); --n-item-text-color-horizontal: rgba(255, 255, 255, 0.82); --n-item-text-color-hover-horizontal: #7fe7c4; --n-item-text-color-active-horizontal: #63e2b7; --n-item-text-color-child-active-horizontal: #63e2b7; --n-item-text-color-child-active-hover-horizontal: #63e2b7; --n-item-text-color-active-hover-horizontal: #63e2b7; --n-item-icon-color-horizontal: rgba(255, 255, 255, 0.9); --n-item-icon-color-hover-horizontal: #7fe7c4; --n-item-icon-color-active-horizontal: #63e2b7; --n-item-icon-color-active-hover-horizontal: #63e2b7; --n-item-icon-color-child-active-horizontal: #63e2b7; --n-item-icon-color-child-active-hover-horizontal: #63e2b7; --n-arrow-color: rgba(255, 255, 255, 0.82); --n-arrow-color-hover: rgba(255, 255, 255, 0.82); --n-arrow-color-active: #63e2b7; --n-arrow-color-active-hover: #63e2b7; --n-arrow-color-child-active: #63e2b7; --n-arrow-color-child-active-hover: #63e2b7; --n-item-color-hover: rgba(255, 255, 255, 0.09); --n-item-color-active: rgba(99, 226, 183, 0.15); --n-item-color-active-hover: rgba(99, 226, 183, 0.15); --n-item-color-active-collapsed: rgba(99, 226, 183, 0.15);"
       >
         <div role="menuitem"
              class="n-menu-item"
@@ -26,24 +26,28 @@ exports[`Trips > search for the trip 1`] = `
           </div>
         </div>
         <div class="n-submenu"
-             role="menuitem"
+             role="menu"
              aria-expanded="true"
         >
-          <div role="none"
-               class="n-menu-item-content n-menu-item-content--child-active"
+          <div class="n-menu-item"
+               role="menuitem"
           >
-            <div class="n-menu-item-content-header"
-                 role="none"
+            <div role="none"
+                 class="n-menu-item-content n-menu-item-content--child-active"
             >
-              Trip ▾
+              <div class="n-menu-item-content-header"
+                   role="none"
+              >
+                Trip ▾
+              </div>
             </div>
           </div>
         </div>
       </div>
       <br class="navBarNewLine">
-      <div role="menubar"
-           class="n-menu n-menu--horizontal navBarRightMenu"
-           style="--n-divider-color:rgba(255, 255, 255, 0.09); --n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-font-size:14px; --n-border-color-horizontal:#0000; --n-border-radius:3px; --n-item-height:42px; --n-group-text-color:rgba(255, 255, 255, 0.52); --n-color:#0000; --n-item-text-color:rgba(255, 255, 255, 0.82); --n-item-text-color-hover:rgba(255, 255, 255, 0.82); --n-item-text-color-active:#63e2b7; --n-item-text-color-child-active:#63e2b7; --n-item-text-color-active-hover:#63e2b7; --n-item-icon-color:rgba(255, 255, 255, 0.9); --n-item-icon-color-hover:rgba(255, 255, 255, 0.9); --n-item-icon-color-active:#63e2b7; --n-item-icon-color-active-hover:#63e2b7; --n-item-icon-color-child-active:#63e2b7; --n-item-icon-color-collapsed:rgba(255, 255, 255, 0.9); --n-item-text-color-horizontal:rgba(255, 255, 255, 0.82); --n-item-text-color-hover-horizontal:#7fe7c4; --n-item-text-color-active-horizontal:#63e2b7; --n-item-text-color-child-active-horizontal:#63e2b7; --n-item-text-color-active-hover-horizontal:#63e2b7; --n-item-icon-color-horizontal:rgba(255, 255, 255, 0.9); --n-item-icon-color-hover-horizontal:#7fe7c4; --n-item-icon-color-active-horizontal:#63e2b7; --n-item-icon-color-active-hover-horizontal:#63e2b7; --n-item-icon-color-child-active-horizontal:#63e2b7; --n-arrow-color:rgba(255, 255, 255, 0.82); --n-arrow-color-hover:rgba(255, 255, 255, 0.82); --n-arrow-color-active:#63e2b7; --n-arrow-color-active-hover:#63e2b7; --n-arrow-color-child-active:#63e2b7; --n-item-color-hover:rgba(255, 255, 255, 0.09); --n-item-color-active:rgba(99, 226, 183, 0.15); --n-item-color-active-hover:rgba(99, 226, 183, 0.15); --n-item-color-active-collapsed:rgba(99, 226, 183, 0.15);"
+      <div class="navBarRightMenu n-menu n-menu--horizontal"
+           role="menubar"
+           style="--n-divider-color: rgba(255, 255, 255, 0.09); --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-font-size: 14px; --n-border-color-horizontal: #0000; --n-border-radius: 3px; --n-item-height: 42px; --n-group-text-color: rgba(255, 255, 255, 0.52); --n-color: #0000; --n-item-text-color: rgba(255, 255, 255, 0.82); --n-item-text-color-hover: rgba(255, 255, 255, 0.82); --n-item-text-color-active: #63e2b7; --n-item-text-color-child-active: #63e2b7; --n-item-text-color-child-active-hover: #63e2b7; --n-item-text-color-active-hover: #63e2b7; --n-item-icon-color: rgba(255, 255, 255, 0.9); --n-item-icon-color-hover: rgba(255, 255, 255, 0.9); --n-item-icon-color-active: #63e2b7; --n-item-icon-color-active-hover: #63e2b7; --n-item-icon-color-child-active: #63e2b7; --n-item-icon-color-child-active-hover: #63e2b7; --n-item-icon-color-collapsed: rgba(255, 255, 255, 0.9); --n-item-text-color-horizontal: rgba(255, 255, 255, 0.82); --n-item-text-color-hover-horizontal: #7fe7c4; --n-item-text-color-active-horizontal: #63e2b7; --n-item-text-color-child-active-horizontal: #63e2b7; --n-item-text-color-child-active-hover-horizontal: #63e2b7; --n-item-text-color-active-hover-horizontal: #63e2b7; --n-item-icon-color-horizontal: rgba(255, 255, 255, 0.9); --n-item-icon-color-hover-horizontal: #7fe7c4; --n-item-icon-color-active-horizontal: #63e2b7; --n-item-icon-color-active-hover-horizontal: #63e2b7; --n-item-icon-color-child-active-horizontal: #63e2b7; --n-item-icon-color-child-active-hover-horizontal: #63e2b7; --n-arrow-color: rgba(255, 255, 255, 0.82); --n-arrow-color-hover: rgba(255, 255, 255, 0.82); --n-arrow-color-active: #63e2b7; --n-arrow-color-active-hover: #63e2b7; --n-arrow-color-child-active: #63e2b7; --n-arrow-color-child-active-hover: #63e2b7; --n-item-color-hover: rgba(255, 255, 255, 0.09); --n-item-color-active: rgba(99, 226, 183, 0.15); --n-item-color-active-hover: rgba(99, 226, 183, 0.15); --n-item-color-active-collapsed: rgba(99, 226, 183, 0.15);"
       >
         <div role="menuitem"
              class="n-menu-item"
@@ -56,9 +60,9 @@ exports[`Trips > search for the trip 1`] = `
             >
               <div role="switch"
                    aria-checked="false"
-                   class="n-switch n-switch--icon n-switch--round"
+                   class="n-switch n-switch--icon n-switch--round n-switch--rubber-band"
                    tabindex="0"
-                   style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-button-border-radius:3px; --n-button-box-shadow:0px 2px 4px 0 rgba(0, 0, 0, 0.4); --n-button-color:#FFF; --n-button-width:18px; --n-button-width-pressed:24px; --n-button-height:18px; --n-height:22px; --n-offset:2px; --n-opacity-disabled:0.38; --n-rail-border-radius:3px; --n-rail-color:rgba(255, 255, 255, 0.2); --n-rail-color-active:rgb(42, 148, 125); --n-rail-height:22px; --n-rail-width:40px; --n-width:40px; --n-box-shadow-focus:0 0 8px 0 rgba(99, 226, 183, 0.3); --n-loading-color:rgb(42, 148, 125); --n-text-color:rgba(255, 255, 255, 0.82); --n-icon-color:#000;"
+                   style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-button-border-radius: 3px; --n-button-box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.4); --n-button-color: #FFF; --n-button-width: 18px; --n-button-width-pressed: 24px; --n-button-height: 18px; --n-height: max(22px, 18px); --n-offset: calc((22px - 18px) / 2); --n-opacity-disabled: 0.38; --n-rail-border-radius: 3px; --n-rail-color: rgba(255, 255, 255, .20); --n-rail-color-active: rgb(42, 148, 125); --n-rail-height: 22px; --n-rail-width: 40px; --n-width: max(40px, calc(40px + 18px - 22px)); --n-box-shadow-focus: 0 0 8px 0 rgba(99, 226, 183, 0.3); --n-loading-color: rgb(42, 148, 125); --n-text-color: rgba(255, 255, 255, 0.82); --n-icon-color: #000;"
               >
                 <div class="n-switch__rail"
                      aria-hidden="true"
@@ -81,7 +85,7 @@ exports[`Trips > search for the trip 1`] = `
                     <div class="n-switch__button-icon">
                       <i role="img"
                          class="n-icon"
-                         style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
+                         style="--n-bezier: cubic-bezier(.4, 0, .2, 1);"
                       >
                         <svg xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -212,7 +216,7 @@ exports[`Trips > search for the trip 1`] = `
   <div class="n-config-provider">
     <div role="separator"
          class="n-divider n-divider--no-title navBarBorder"
-         style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-color:rgb(239, 239, 245); --n-text-color:rgb(31, 34, 37); --n-font-weight:500;"
+         style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
     >
       <div class="n-divider__line n-divider__line--left">
       </div>
@@ -235,7 +239,7 @@ exports[`Trips > search for the trip 1`] = `
       >
         <div data-v-fd72d696
              class="n-input n-input--resizable n-input--stateful tripSearchQueryInput"
-             style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-count-text-color:rgb(118, 124, 130); --n-color:rgba(255, 255, 255, 1); --n-font-size:14px; --n-border-radius:3px; --n-height:34px; --n-padding-left:12px; --n-padding-right:12px; --n-text-color:rgb(51, 54, 57); --n-caret-color:#18a058; --n-text-decoration-color:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-disabled:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-focus:1px solid #36ad6a; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-icon-size:16px; --n-line-height-textarea:1.6; --n-color-disabled:rgb(250, 250, 252); --n-color-focus:rgba(255, 255, 255, 1); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color:#18a058; --n-caret-color-warning:#f0a020; --n-color-focus-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-loading-color-warning:#f0a020; --n-caret-color-error:#d03050; --n-color-focus-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-loading-color-error:#d03050; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-size:16px; --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-icon-color:rgba(194, 194, 194, 1); --n-icon-color-hover:rgba(146, 146, 146, 1); --n-icon-color-pressed:rgba(175, 175, 175, 1); --n-icon-color-disabled:rgba(209, 209, 209, 1); --n-suffix-text-color:rgb(51, 54, 57);"
+             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-count-text-color: rgb(118, 124, 130); --n-count-text-color-disabled: rgba(194, 194, 194, 1); --n-color: rgba(255, 255, 255, 1); --n-font-size: 14px; --n-font-weight: 400; --n-border-radius: 3px; --n-height: 34px; --n-padding-left: 12px; --n-padding-right: 12px; --n-text-color: rgb(51, 54, 57); --n-caret-color: #18a058; --n-text-decoration-color: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-disabled: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-focus: 1px solid #36ad6a; --n-placeholder-color: rgba(194, 194, 194, 1); --n-placeholder-color-disabled: rgba(209, 209, 209, 1); --n-icon-size: 16px; --n-line-height-textarea: 1.6; --n-color-disabled: rgb(250, 250, 252); --n-color-focus: rgba(255, 255, 255, 1); --n-text-color-disabled: rgba(194, 194, 194, 1); --n-box-shadow-focus: 0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color: #18a058; --n-caret-color-warning: #f0a020; --n-color-focus-warning: rgba(255, 255, 255, 1); --n-box-shadow-focus-warning: 0 0 0 2px rgba(240, 160, 32, 0.2); --n-border-warning: 1px solid #f0a020; --n-border-focus-warning: 1px solid #fcb040; --n-border-hover-warning: 1px solid #fcb040; --n-loading-color-warning: #f0a020; --n-caret-color-error: #d03050; --n-color-focus-error: rgba(255, 255, 255, 1); --n-box-shadow-focus-error: 0 0 0 2px rgba(208, 48, 80, 0.2); --n-border-error: 1px solid #d03050; --n-border-focus-error: 1px solid #de576d; --n-border-hover-error: 1px solid #de576d; --n-loading-color-error: #d03050; --n-clear-color: rgba(194, 194, 194, 1); --n-clear-size: 16px; --n-clear-color-hover: rgba(146, 146, 146, 1); --n-clear-color-pressed: rgba(175, 175, 175, 1); --n-icon-color: rgba(194, 194, 194, 1); --n-icon-color-hover: rgba(146, 146, 146, 1); --n-icon-color-pressed: rgba(175, 175, 175, 1); --n-icon-color-disabled: rgba(209, 209, 209, 1); --n-suffix-text-color: rgb(51, 54, 57);"
         >
           <div class="n-input-wrapper">
             <div class="n-input__input">
@@ -243,7 +247,7 @@ exports[`Trips > search for the trip 1`] = `
                      class="n-input__input-el"
                      placeholder="weekend"
                      size="20"
-                     style
+                     value
               >
               <div class="n-input__placeholder">
                 <span>
@@ -261,7 +265,7 @@ exports[`Trips > search for the trip 1`] = `
              class="n-select tripSearchCityInput"
         >
           <div class="n-base-selection n-base-selection--multiple"
-               style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-border:1px solid rgb(224, 224, 230); --n-border-active:1px solid #18a058; --n-border-focus:1px solid #36ad6a; --n-border-hover:1px solid #36ad6a; --n-border-radius:3px; --n-box-shadow-active:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-hover:none; --n-caret-color:#18a058; --n-color:rgba(255, 255, 255, 1); --n-color-active:rgba(255, 255, 255, 1); --n-color-disabled:rgb(250, 250, 252); --n-font-size:14px; --n-height:34px; --n-padding-single:0 26px 0 12px; --n-padding-multiple:3px 26px 0 12px; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-text-color:rgb(51, 54, 57); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-arrow-color:rgba(194, 194, 194, 1); --n-arrow-color-disabled:rgba(209, 209, 209, 1); --n-loading-color:#18a058; --n-color-active-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-active-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-hover-warning:none; --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-border-active-warning:1px solid #f0a020; --n-color-active-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-active-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-hover-error:none; --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-border-active-error:1px solid #d03050; --n-clear-size:16px; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-arrow-size:16px;"
+               style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border: 1px solid rgb(224, 224, 230); --n-border-active: 1px solid #18a058; --n-border-focus: 1px solid #36ad6a; --n-border-hover: 1px solid #36ad6a; --n-border-radius: 3px; --n-box-shadow-active: 0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-focus: 0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-hover: none; --n-caret-color: #18a058; --n-color: rgba(255, 255, 255, 1); --n-color-active: rgba(255, 255, 255, 1); --n-color-disabled: rgb(250, 250, 252); --n-font-size: 14px; --n-height: 34px; --n-padding-single-top: 0; --n-padding-multiple-top: 3px; --n-padding-single-right: 26px; --n-padding-multiple-right: 26px; --n-padding-single-left: 12px; --n-padding-multiple-left: 12px; --n-padding-single-bottom: 0; --n-padding-multiple-bottom: 0; --n-placeholder-color: rgba(194, 194, 194, 1); --n-placeholder-color-disabled: rgba(209, 209, 209, 1); --n-text-color: rgb(51, 54, 57); --n-text-color-disabled: rgba(194, 194, 194, 1); --n-arrow-color: rgba(194, 194, 194, 1); --n-arrow-color-disabled: rgba(209, 209, 209, 1); --n-loading-color: #18a058; --n-color-active-warning: rgba(255, 255, 255, 1); --n-box-shadow-focus-warning: 0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-active-warning: 0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-hover-warning: none; --n-border-warning: 1px solid #f0a020; --n-border-focus-warning: 1px solid #fcb040; --n-border-hover-warning: 1px solid #fcb040; --n-border-active-warning: 1px solid #f0a020; --n-color-active-error: rgba(255, 255, 255, 1); --n-box-shadow-focus-error: 0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-active-error: 0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-hover-error: none; --n-border-error: 1px solid #d03050; --n-border-focus-error: 1px solid #de576d; --n-border-hover-error: 1px solid #de576d; --n-border-active-error: 1px solid #d03050; --n-clear-size: 16px; --n-clear-color: rgba(194, 194, 194, 1); --n-clear-color-hover: rgba(146, 146, 146, 1); --n-clear-color-pressed: rgba(175, 175, 175, 1); --n-arrow-size: 16px; --n-font-weight: 400;"
           >
             <div class="n-base-selection-tags"
                  tabindex="0"
@@ -269,6 +273,7 @@ exports[`Trips > search for the trip 1`] = `
               <div class="n-base-selection-input-tag">
                 <input tabindex="-1"
                        class="n-base-selection-input-tag__input"
+                       value
                 >
                 <span class="n-base-selection-input-tag__mirror">
                 </span>
@@ -297,7 +302,9 @@ exports[`Trips > search for the trip 1`] = `
               </div>
             </div>
             <div class="n-base-selection-placeholder n-base-selection-overlay">
-              City
+              <div class="n-base-selection-placeholder__inner">
+                City
+              </div>
             </div>
             <div class="n-base-selection__border">
             </div>
@@ -309,7 +316,7 @@ exports[`Trips > search for the trip 1`] = `
                 class="n-button n-button--default-type n-button--medium-type tripSearchButton"
                 tabindex="0"
                 type="button"
-                style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:#0000; --n-color-hover:#0000; --n-color-pressed:#0000; --n-color-focus:#0000; --n-color-disabled:#0000; --n-ripple-color:#18a058; --n-text-color:rgb(51, 54, 57); --n-text-color-hover:#36ad6a; --n-text-color-pressed:#0c7a43; --n-text-color-focus:#36ad6a; --n-text-color-disabled:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-pressed:1px solid #0c7a43; --n-border-focus:1px solid #36ad6a; --n-border-disabled:1px solid rgb(224, 224, 230); --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
+                style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; --n-font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
         >
           <span class="n-button__content">
             Find
@@ -337,15 +344,17 @@ exports[`Trips > search for the trip 1`] = `
           <div data-v-fd72d696
                class="n-alert n-alert--show-icon"
                role="alert"
-               style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-color:rgb(250, 250, 252); --n-close-color:rgba(122, 122, 122, 1); --n-close-color-hover:rgba(89, 89, 89, 1); --n-close-color-pressed:rgba(149, 149, 149, 1); --n-icon-color:rgb(51, 54, 57); --n-border:1px solid rgb(239, 239, 245); --n-title-text-color:rgb(31, 34, 37); --n-content-text-color:rgb(51, 54, 57); --n-line-height:1.6; --n-border-radius:3px; --n-font-size:14px; --n-title-font-weight:500; --n-icon-size:26px; --n-icon-margin:12px 8px 0 12px; --n-close-size:16px; --n-close-margin:14px 16px 0 0; --n-padding:15px; --n-icon-margin-left:12px; --n-icon-margin-right:8px;"
+               style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(250, 250, 252); --n-close-icon-size: 16px; --n-close-border-radius: 3px; --n-close-color-hover: rgba(0, 0, 0, .09); --n-close-color-pressed: rgba(0, 0, 0, .13); --n-close-icon-color: rgba(102, 102, 102, 1); --n-close-icon-color-hover: rgba(102, 102, 102, 1); --n-close-icon-color-pressed: rgba(102, 102, 102, 1); --n-icon-color: rgb(51, 54, 57); --n-border: 1px solid rgb(239, 239, 245); --n-title-text-color: rgb(31, 34, 37); --n-content-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-border-radius: 3px; --n-font-size: 14px; --n-title-font-weight: 500; --n-icon-size: 24px; --n-icon-margin: 11px 8px 0 12px; --n-icon-margin-rtl: 11px 12px 0 8px; --n-close-size: 20px; --n-close-margin: 13px 14px 0 0; --n-close-margin-rtl: 13px 0 0 14px; --n-padding: 13px; --n-icon-margin-left: 12px; --n-icon-margin-right: 8px;"
           >
+            <div class="n-alert__border">
+            </div>
             <div class="n-alert__icon"
                  aria-hidden="true"
             >
               <i data-v-fd72d696
                  role="img"
                  class="n-icon"
-                 style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1);"
               >
                 <svg data-v-fd72d696
                      xmlns="http://www.w3.org/2000/svg"
@@ -359,7 +368,7 @@ exports[`Trips > search for the trip 1`] = `
                 </svg>
               </i>
             </div>
-            <div class="n-alert-body">
+            <div class="n-alert-body n-alert-body--bordered">
               <div class="n-alert-body__title">
                 Search for a trip!
               </div>
@@ -385,9 +394,9 @@ exports[`Trips > user 2 can't see private trip 1`] = `
 >
   <div class="n-config-provider">
     <div class="main_menu dark_mode">
-      <div role="menubar"
-           class="n-menu n-menu--horizontal navBarLeftMenu"
-           style="--n-divider-color:rgba(255, 255, 255, 0.09); --n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-font-size:14px; --n-border-color-horizontal:#0000; --n-border-radius:3px; --n-item-height:42px; --n-group-text-color:rgba(255, 255, 255, 0.52); --n-color:#0000; --n-item-text-color:rgba(255, 255, 255, 0.82); --n-item-text-color-hover:rgba(255, 255, 255, 0.82); --n-item-text-color-active:#63e2b7; --n-item-text-color-child-active:#63e2b7; --n-item-text-color-active-hover:#63e2b7; --n-item-icon-color:rgba(255, 255, 255, 0.9); --n-item-icon-color-hover:rgba(255, 255, 255, 0.9); --n-item-icon-color-active:#63e2b7; --n-item-icon-color-active-hover:#63e2b7; --n-item-icon-color-child-active:#63e2b7; --n-item-icon-color-collapsed:rgba(255, 255, 255, 0.9); --n-item-text-color-horizontal:rgba(255, 255, 255, 0.82); --n-item-text-color-hover-horizontal:#7fe7c4; --n-item-text-color-active-horizontal:#63e2b7; --n-item-text-color-child-active-horizontal:#63e2b7; --n-item-text-color-active-hover-horizontal:#63e2b7; --n-item-icon-color-horizontal:rgba(255, 255, 255, 0.9); --n-item-icon-color-hover-horizontal:#7fe7c4; --n-item-icon-color-active-horizontal:#63e2b7; --n-item-icon-color-active-hover-horizontal:#63e2b7; --n-item-icon-color-child-active-horizontal:#63e2b7; --n-arrow-color:rgba(255, 255, 255, 0.82); --n-arrow-color-hover:rgba(255, 255, 255, 0.82); --n-arrow-color-active:#63e2b7; --n-arrow-color-active-hover:#63e2b7; --n-arrow-color-child-active:#63e2b7; --n-item-color-hover:rgba(255, 255, 255, 0.09); --n-item-color-active:rgba(99, 226, 183, 0.15); --n-item-color-active-hover:rgba(99, 226, 183, 0.15); --n-item-color-active-collapsed:rgba(99, 226, 183, 0.15);"
+      <div class="navBarLeftMenu n-menu n-menu--horizontal"
+           role="menubar"
+           style="--n-divider-color: rgba(255, 255, 255, 0.09); --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-font-size: 14px; --n-border-color-horizontal: #0000; --n-border-radius: 3px; --n-item-height: 42px; --n-group-text-color: rgba(255, 255, 255, 0.52); --n-color: #0000; --n-item-text-color: rgba(255, 255, 255, 0.82); --n-item-text-color-hover: rgba(255, 255, 255, 0.82); --n-item-text-color-active: #63e2b7; --n-item-text-color-child-active: #63e2b7; --n-item-text-color-child-active-hover: #63e2b7; --n-item-text-color-active-hover: #63e2b7; --n-item-icon-color: rgba(255, 255, 255, 0.9); --n-item-icon-color-hover: rgba(255, 255, 255, 0.9); --n-item-icon-color-active: #63e2b7; --n-item-icon-color-active-hover: #63e2b7; --n-item-icon-color-child-active: #63e2b7; --n-item-icon-color-child-active-hover: #63e2b7; --n-item-icon-color-collapsed: rgba(255, 255, 255, 0.9); --n-item-text-color-horizontal: rgba(255, 255, 255, 0.82); --n-item-text-color-hover-horizontal: #7fe7c4; --n-item-text-color-active-horizontal: #63e2b7; --n-item-text-color-child-active-horizontal: #63e2b7; --n-item-text-color-child-active-hover-horizontal: #63e2b7; --n-item-text-color-active-hover-horizontal: #63e2b7; --n-item-icon-color-horizontal: rgba(255, 255, 255, 0.9); --n-item-icon-color-hover-horizontal: #7fe7c4; --n-item-icon-color-active-horizontal: #63e2b7; --n-item-icon-color-active-hover-horizontal: #63e2b7; --n-item-icon-color-child-active-horizontal: #63e2b7; --n-item-icon-color-child-active-hover-horizontal: #63e2b7; --n-arrow-color: rgba(255, 255, 255, 0.82); --n-arrow-color-hover: rgba(255, 255, 255, 0.82); --n-arrow-color-active: #63e2b7; --n-arrow-color-active-hover: #63e2b7; --n-arrow-color-child-active: #63e2b7; --n-arrow-color-child-active-hover: #63e2b7; --n-item-color-hover: rgba(255, 255, 255, 0.09); --n-item-color-active: rgba(99, 226, 183, 0.15); --n-item-color-active-hover: rgba(99, 226, 183, 0.15); --n-item-color-active-collapsed: rgba(99, 226, 183, 0.15);"
       >
         <div role="menuitem"
              class="n-menu-item"
@@ -405,24 +414,28 @@ exports[`Trips > user 2 can't see private trip 1`] = `
           </div>
         </div>
         <div class="n-submenu"
-             role="menuitem"
+             role="menu"
              aria-expanded="true"
         >
-          <div role="none"
-               class="n-menu-item-content n-menu-item-content--child-active"
+          <div class="n-menu-item"
+               role="menuitem"
           >
-            <div class="n-menu-item-content-header"
-                 role="none"
+            <div role="none"
+                 class="n-menu-item-content n-menu-item-content--child-active"
             >
-              Trip ▾
+              <div class="n-menu-item-content-header"
+                   role="none"
+              >
+                Trip ▾
+              </div>
             </div>
           </div>
         </div>
       </div>
       <br class="navBarNewLine">
-      <div role="menubar"
-           class="n-menu n-menu--horizontal navBarRightMenu"
-           style="--n-divider-color:rgba(255, 255, 255, 0.09); --n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-font-size:14px; --n-border-color-horizontal:#0000; --n-border-radius:3px; --n-item-height:42px; --n-group-text-color:rgba(255, 255, 255, 0.52); --n-color:#0000; --n-item-text-color:rgba(255, 255, 255, 0.82); --n-item-text-color-hover:rgba(255, 255, 255, 0.82); --n-item-text-color-active:#63e2b7; --n-item-text-color-child-active:#63e2b7; --n-item-text-color-active-hover:#63e2b7; --n-item-icon-color:rgba(255, 255, 255, 0.9); --n-item-icon-color-hover:rgba(255, 255, 255, 0.9); --n-item-icon-color-active:#63e2b7; --n-item-icon-color-active-hover:#63e2b7; --n-item-icon-color-child-active:#63e2b7; --n-item-icon-color-collapsed:rgba(255, 255, 255, 0.9); --n-item-text-color-horizontal:rgba(255, 255, 255, 0.82); --n-item-text-color-hover-horizontal:#7fe7c4; --n-item-text-color-active-horizontal:#63e2b7; --n-item-text-color-child-active-horizontal:#63e2b7; --n-item-text-color-active-hover-horizontal:#63e2b7; --n-item-icon-color-horizontal:rgba(255, 255, 255, 0.9); --n-item-icon-color-hover-horizontal:#7fe7c4; --n-item-icon-color-active-horizontal:#63e2b7; --n-item-icon-color-active-hover-horizontal:#63e2b7; --n-item-icon-color-child-active-horizontal:#63e2b7; --n-arrow-color:rgba(255, 255, 255, 0.82); --n-arrow-color-hover:rgba(255, 255, 255, 0.82); --n-arrow-color-active:#63e2b7; --n-arrow-color-active-hover:#63e2b7; --n-arrow-color-child-active:#63e2b7; --n-item-color-hover:rgba(255, 255, 255, 0.09); --n-item-color-active:rgba(99, 226, 183, 0.15); --n-item-color-active-hover:rgba(99, 226, 183, 0.15); --n-item-color-active-collapsed:rgba(99, 226, 183, 0.15);"
+      <div class="navBarRightMenu n-menu n-menu--horizontal"
+           role="menubar"
+           style="--n-divider-color: rgba(255, 255, 255, 0.09); --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-font-size: 14px; --n-border-color-horizontal: #0000; --n-border-radius: 3px; --n-item-height: 42px; --n-group-text-color: rgba(255, 255, 255, 0.52); --n-color: #0000; --n-item-text-color: rgba(255, 255, 255, 0.82); --n-item-text-color-hover: rgba(255, 255, 255, 0.82); --n-item-text-color-active: #63e2b7; --n-item-text-color-child-active: #63e2b7; --n-item-text-color-child-active-hover: #63e2b7; --n-item-text-color-active-hover: #63e2b7; --n-item-icon-color: rgba(255, 255, 255, 0.9); --n-item-icon-color-hover: rgba(255, 255, 255, 0.9); --n-item-icon-color-active: #63e2b7; --n-item-icon-color-active-hover: #63e2b7; --n-item-icon-color-child-active: #63e2b7; --n-item-icon-color-child-active-hover: #63e2b7; --n-item-icon-color-collapsed: rgba(255, 255, 255, 0.9); --n-item-text-color-horizontal: rgba(255, 255, 255, 0.82); --n-item-text-color-hover-horizontal: #7fe7c4; --n-item-text-color-active-horizontal: #63e2b7; --n-item-text-color-child-active-horizontal: #63e2b7; --n-item-text-color-child-active-hover-horizontal: #63e2b7; --n-item-text-color-active-hover-horizontal: #63e2b7; --n-item-icon-color-horizontal: rgba(255, 255, 255, 0.9); --n-item-icon-color-hover-horizontal: #7fe7c4; --n-item-icon-color-active-horizontal: #63e2b7; --n-item-icon-color-active-hover-horizontal: #63e2b7; --n-item-icon-color-child-active-horizontal: #63e2b7; --n-item-icon-color-child-active-hover-horizontal: #63e2b7; --n-arrow-color: rgba(255, 255, 255, 0.82); --n-arrow-color-hover: rgba(255, 255, 255, 0.82); --n-arrow-color-active: #63e2b7; --n-arrow-color-active-hover: #63e2b7; --n-arrow-color-child-active: #63e2b7; --n-arrow-color-child-active-hover: #63e2b7; --n-item-color-hover: rgba(255, 255, 255, 0.09); --n-item-color-active: rgba(99, 226, 183, 0.15); --n-item-color-active-hover: rgba(99, 226, 183, 0.15); --n-item-color-active-collapsed: rgba(99, 226, 183, 0.15);"
       >
         <div role="menuitem"
              class="n-menu-item"
@@ -435,9 +448,9 @@ exports[`Trips > user 2 can't see private trip 1`] = `
             >
               <div role="switch"
                    aria-checked="false"
-                   class="n-switch n-switch--icon n-switch--round"
+                   class="n-switch n-switch--icon n-switch--round n-switch--rubber-band"
                    tabindex="0"
-                   style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-button-border-radius:3px; --n-button-box-shadow:0px 2px 4px 0 rgba(0, 0, 0, 0.4); --n-button-color:#FFF; --n-button-width:18px; --n-button-width-pressed:24px; --n-button-height:18px; --n-height:22px; --n-offset:2px; --n-opacity-disabled:0.38; --n-rail-border-radius:3px; --n-rail-color:rgba(255, 255, 255, 0.2); --n-rail-color-active:rgb(42, 148, 125); --n-rail-height:22px; --n-rail-width:40px; --n-width:40px; --n-box-shadow-focus:0 0 8px 0 rgba(99, 226, 183, 0.3); --n-loading-color:rgb(42, 148, 125); --n-text-color:rgba(255, 255, 255, 0.82); --n-icon-color:#000;"
+                   style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-button-border-radius: 3px; --n-button-box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.4); --n-button-color: #FFF; --n-button-width: 18px; --n-button-width-pressed: 24px; --n-button-height: 18px; --n-height: max(22px, 18px); --n-offset: calc((22px - 18px) / 2); --n-opacity-disabled: 0.38; --n-rail-border-radius: 3px; --n-rail-color: rgba(255, 255, 255, .20); --n-rail-color-active: rgb(42, 148, 125); --n-rail-height: 22px; --n-rail-width: 40px; --n-width: max(40px, calc(40px + 18px - 22px)); --n-box-shadow-focus: 0 0 8px 0 rgba(99, 226, 183, 0.3); --n-loading-color: rgb(42, 148, 125); --n-text-color: rgba(255, 255, 255, 0.82); --n-icon-color: #000;"
               >
                 <div class="n-switch__rail"
                      aria-hidden="true"
@@ -460,7 +473,7 @@ exports[`Trips > user 2 can't see private trip 1`] = `
                     <div class="n-switch__button-icon">
                       <i role="img"
                          class="n-icon"
-                         style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
+                         style="--n-bezier: cubic-bezier(.4, 0, .2, 1);"
                       >
                         <svg xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -556,16 +569,20 @@ exports[`Trips > user 2 can't see private trip 1`] = `
           </div>
         </div>
         <div class="n-submenu"
-             role="menuitem"
+             role="menu"
              aria-expanded="true"
         >
-          <div role="none"
-               class="n-menu-item-content"
+          <div class="n-menu-item"
+               role="menuitem"
           >
-            <div class="n-menu-item-content-header"
-                 role="none"
+            <div role="none"
+                 class="n-menu-item-content"
             >
-              My Account ▾
+              <div class="n-menu-item-content-header"
+                   role="none"
+              >
+                My Account ▾
+              </div>
             </div>
           </div>
         </div>
@@ -575,7 +592,7 @@ exports[`Trips > user 2 can't see private trip 1`] = `
   <div class="n-config-provider">
     <div role="separator"
          class="n-divider n-divider--no-title navBarBorder"
-         style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-color:rgb(239, 239, 245); --n-text-color:rgb(31, 34, 37); --n-font-weight:500;"
+         style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(239, 239, 245); --n-text-color: rgb(31, 34, 37); --n-font-weight: 500;"
     >
       <div class="n-divider__line n-divider__line--left">
       </div>
@@ -598,7 +615,7 @@ exports[`Trips > user 2 can't see private trip 1`] = `
       >
         <div data-v-fd72d696
              class="n-input n-input--resizable n-input--stateful tripSearchQueryInput"
-             style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-count-text-color:rgb(118, 124, 130); --n-color:rgba(255, 255, 255, 1); --n-font-size:14px; --n-border-radius:3px; --n-height:34px; --n-padding-left:12px; --n-padding-right:12px; --n-text-color:rgb(51, 54, 57); --n-caret-color:#18a058; --n-text-decoration-color:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-disabled:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-focus:1px solid #36ad6a; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-icon-size:16px; --n-line-height-textarea:1.6; --n-color-disabled:rgb(250, 250, 252); --n-color-focus:rgba(255, 255, 255, 1); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color:#18a058; --n-caret-color-warning:#f0a020; --n-color-focus-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-loading-color-warning:#f0a020; --n-caret-color-error:#d03050; --n-color-focus-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-loading-color-error:#d03050; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-size:16px; --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-icon-color:rgba(194, 194, 194, 1); --n-icon-color-hover:rgba(146, 146, 146, 1); --n-icon-color-pressed:rgba(175, 175, 175, 1); --n-icon-color-disabled:rgba(209, 209, 209, 1); --n-suffix-text-color:rgb(51, 54, 57);"
+             style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-count-text-color: rgb(118, 124, 130); --n-count-text-color-disabled: rgba(194, 194, 194, 1); --n-color: rgba(255, 255, 255, 1); --n-font-size: 14px; --n-font-weight: 400; --n-border-radius: 3px; --n-height: 34px; --n-padding-left: 12px; --n-padding-right: 12px; --n-text-color: rgb(51, 54, 57); --n-caret-color: #18a058; --n-text-decoration-color: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-disabled: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-focus: 1px solid #36ad6a; --n-placeholder-color: rgba(194, 194, 194, 1); --n-placeholder-color-disabled: rgba(209, 209, 209, 1); --n-icon-size: 16px; --n-line-height-textarea: 1.6; --n-color-disabled: rgb(250, 250, 252); --n-color-focus: rgba(255, 255, 255, 1); --n-text-color-disabled: rgba(194, 194, 194, 1); --n-box-shadow-focus: 0 0 0 2px rgba(24, 160, 88, 0.2); --n-loading-color: #18a058; --n-caret-color-warning: #f0a020; --n-color-focus-warning: rgba(255, 255, 255, 1); --n-box-shadow-focus-warning: 0 0 0 2px rgba(240, 160, 32, 0.2); --n-border-warning: 1px solid #f0a020; --n-border-focus-warning: 1px solid #fcb040; --n-border-hover-warning: 1px solid #fcb040; --n-loading-color-warning: #f0a020; --n-caret-color-error: #d03050; --n-color-focus-error: rgba(255, 255, 255, 1); --n-box-shadow-focus-error: 0 0 0 2px rgba(208, 48, 80, 0.2); --n-border-error: 1px solid #d03050; --n-border-focus-error: 1px solid #de576d; --n-border-hover-error: 1px solid #de576d; --n-loading-color-error: #d03050; --n-clear-color: rgba(194, 194, 194, 1); --n-clear-size: 16px; --n-clear-color-hover: rgba(146, 146, 146, 1); --n-clear-color-pressed: rgba(175, 175, 175, 1); --n-icon-color: rgba(194, 194, 194, 1); --n-icon-color-hover: rgba(146, 146, 146, 1); --n-icon-color-pressed: rgba(175, 175, 175, 1); --n-icon-color-disabled: rgba(209, 209, 209, 1); --n-suffix-text-color: rgb(51, 54, 57);"
         >
           <div class="n-input-wrapper">
             <div class="n-input__input">
@@ -606,7 +623,7 @@ exports[`Trips > user 2 can't see private trip 1`] = `
                      class="n-input__input-el"
                      placeholder="weekend"
                      size="20"
-                     style
+                     value
               >
               <div class="n-input__placeholder">
                 <span>
@@ -624,7 +641,7 @@ exports[`Trips > user 2 can't see private trip 1`] = `
              class="n-select tripSearchCityInput"
         >
           <div class="n-base-selection n-base-selection--multiple"
-               style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-border:1px solid rgb(224, 224, 230); --n-border-active:1px solid #18a058; --n-border-focus:1px solid #36ad6a; --n-border-hover:1px solid #36ad6a; --n-border-radius:3px; --n-box-shadow-active:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-focus:0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-hover:none; --n-caret-color:#18a058; --n-color:rgba(255, 255, 255, 1); --n-color-active:rgba(255, 255, 255, 1); --n-color-disabled:rgb(250, 250, 252); --n-font-size:14px; --n-height:34px; --n-padding-single:0 26px 0 12px; --n-padding-multiple:3px 26px 0 12px; --n-placeholder-color:rgba(194, 194, 194, 1); --n-placeholder-color-disabled:rgba(209, 209, 209, 1); --n-text-color:rgb(51, 54, 57); --n-text-color-disabled:rgba(194, 194, 194, 1); --n-arrow-color:rgba(194, 194, 194, 1); --n-arrow-color-disabled:rgba(209, 209, 209, 1); --n-loading-color:#18a058; --n-color-active-warning:rgba(255, 255, 255, 1); --n-box-shadow-focus-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-active-warning:0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-hover-warning:none; --n-border-warning:1px solid #f0a020; --n-border-focus-warning:1px solid #fcb040; --n-border-hover-warning:1px solid #fcb040; --n-border-active-warning:1px solid #f0a020; --n-color-active-error:rgba(255, 255, 255, 1); --n-box-shadow-focus-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-active-error:0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-hover-error:none; --n-border-error:1px solid #d03050; --n-border-focus-error:1px solid #de576d; --n-border-hover-error:1px solid #de576d; --n-border-active-error:1px solid #d03050; --n-clear-size:16px; --n-clear-color:rgba(194, 194, 194, 1); --n-clear-color-hover:rgba(146, 146, 146, 1); --n-clear-color-pressed:rgba(175, 175, 175, 1); --n-arrow-size:16px;"
+               style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-border: 1px solid rgb(224, 224, 230); --n-border-active: 1px solid #18a058; --n-border-focus: 1px solid #36ad6a; --n-border-hover: 1px solid #36ad6a; --n-border-radius: 3px; --n-box-shadow-active: 0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-focus: 0 0 0 2px rgba(24, 160, 88, 0.2); --n-box-shadow-hover: none; --n-caret-color: #18a058; --n-color: rgba(255, 255, 255, 1); --n-color-active: rgba(255, 255, 255, 1); --n-color-disabled: rgb(250, 250, 252); --n-font-size: 14px; --n-height: 34px; --n-padding-single-top: 0; --n-padding-multiple-top: 3px; --n-padding-single-right: 26px; --n-padding-multiple-right: 26px; --n-padding-single-left: 12px; --n-padding-multiple-left: 12px; --n-padding-single-bottom: 0; --n-padding-multiple-bottom: 0; --n-placeholder-color: rgba(194, 194, 194, 1); --n-placeholder-color-disabled: rgba(209, 209, 209, 1); --n-text-color: rgb(51, 54, 57); --n-text-color-disabled: rgba(194, 194, 194, 1); --n-arrow-color: rgba(194, 194, 194, 1); --n-arrow-color-disabled: rgba(209, 209, 209, 1); --n-loading-color: #18a058; --n-color-active-warning: rgba(255, 255, 255, 1); --n-box-shadow-focus-warning: 0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-active-warning: 0 0 0 2px rgba(240, 160, 32, 0.2); --n-box-shadow-hover-warning: none; --n-border-warning: 1px solid #f0a020; --n-border-focus-warning: 1px solid #fcb040; --n-border-hover-warning: 1px solid #fcb040; --n-border-active-warning: 1px solid #f0a020; --n-color-active-error: rgba(255, 255, 255, 1); --n-box-shadow-focus-error: 0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-active-error: 0 0 0 2px rgba(208, 48, 80, 0.2); --n-box-shadow-hover-error: none; --n-border-error: 1px solid #d03050; --n-border-focus-error: 1px solid #de576d; --n-border-hover-error: 1px solid #de576d; --n-border-active-error: 1px solid #d03050; --n-clear-size: 16px; --n-clear-color: rgba(194, 194, 194, 1); --n-clear-color-hover: rgba(146, 146, 146, 1); --n-clear-color-pressed: rgba(175, 175, 175, 1); --n-arrow-size: 16px; --n-font-weight: 400;"
           >
             <div class="n-base-selection-tags"
                  tabindex="0"
@@ -632,6 +649,7 @@ exports[`Trips > user 2 can't see private trip 1`] = `
               <div class="n-base-selection-input-tag">
                 <input tabindex="-1"
                        class="n-base-selection-input-tag__input"
+                       value
                 >
                 <span class="n-base-selection-input-tag__mirror">
                 </span>
@@ -660,7 +678,9 @@ exports[`Trips > user 2 can't see private trip 1`] = `
               </div>
             </div>
             <div class="n-base-selection-placeholder n-base-selection-overlay">
-              City
+              <div class="n-base-selection-placeholder__inner">
+                City
+              </div>
             </div>
             <div class="n-base-selection__border">
             </div>
@@ -672,7 +692,7 @@ exports[`Trips > user 2 can't see private trip 1`] = `
                 class="n-button n-button--default-type n-button--medium-type tripSearchButton"
                 tabindex="0"
                 type="button"
-                style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-bezier-ease-out:cubic-bezier(0, 0, 0.2, 1); --n-ripple-duration:0.6s; --n-opacity-disabled:0.5; --n-wave-opacity:0.6; font-weight: 400; --n-color:#0000; --n-color-hover:#0000; --n-color-pressed:#0000; --n-color-focus:#0000; --n-color-disabled:#0000; --n-ripple-color:#18a058; --n-text-color:rgb(51, 54, 57); --n-text-color-hover:#36ad6a; --n-text-color-pressed:#0c7a43; --n-text-color-focus:#36ad6a; --n-text-color-disabled:rgb(51, 54, 57); --n-border:1px solid rgb(224, 224, 230); --n-border-hover:1px solid #36ad6a; --n-border-pressed:1px solid #0c7a43; --n-border-focus:1px solid #36ad6a; --n-border-disabled:1px solid rgb(224, 224, 230); --n-width: initial; --n-height:34px; --n-font-size:14px; --n-padding:0 14px; --n-icon-size:18px; --n-icon-margin:6px; --n-border-radius:3px;"
+                style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; --n-font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
         >
           <span class="n-button__content">
             Find
@@ -700,15 +720,17 @@ exports[`Trips > user 2 can't see private trip 1`] = `
           <div data-v-fd72d696
                class="n-alert n-alert--show-icon"
                role="alert"
-               style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1); --n-color:rgb(250, 250, 252); --n-close-color:rgba(122, 122, 122, 1); --n-close-color-hover:rgba(89, 89, 89, 1); --n-close-color-pressed:rgba(149, 149, 149, 1); --n-icon-color:rgb(51, 54, 57); --n-border:1px solid rgb(239, 239, 245); --n-title-text-color:rgb(31, 34, 37); --n-content-text-color:rgb(51, 54, 57); --n-line-height:1.6; --n-border-radius:3px; --n-font-size:14px; --n-title-font-weight:500; --n-icon-size:26px; --n-icon-margin:12px 8px 0 12px; --n-close-size:16px; --n-close-margin:14px 16px 0 0; --n-padding:15px; --n-icon-margin-left:12px; --n-icon-margin-right:8px;"
+               style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-color: rgb(250, 250, 252); --n-close-icon-size: 16px; --n-close-border-radius: 3px; --n-close-color-hover: rgba(0, 0, 0, .09); --n-close-color-pressed: rgba(0, 0, 0, .13); --n-close-icon-color: rgba(102, 102, 102, 1); --n-close-icon-color-hover: rgba(102, 102, 102, 1); --n-close-icon-color-pressed: rgba(102, 102, 102, 1); --n-icon-color: rgb(51, 54, 57); --n-border: 1px solid rgb(239, 239, 245); --n-title-text-color: rgb(31, 34, 37); --n-content-text-color: rgb(51, 54, 57); --n-line-height: 1.6; --n-border-radius: 3px; --n-font-size: 14px; --n-title-font-weight: 500; --n-icon-size: 24px; --n-icon-margin: 11px 8px 0 12px; --n-icon-margin-rtl: 11px 12px 0 8px; --n-close-size: 20px; --n-close-margin: 13px 14px 0 0; --n-close-margin-rtl: 13px 0 0 14px; --n-padding: 13px; --n-icon-margin-left: 12px; --n-icon-margin-right: 8px;"
           >
+            <div class="n-alert__border">
+            </div>
             <div class="n-alert__icon"
                  aria-hidden="true"
             >
               <i data-v-fd72d696
                  role="img"
                  class="n-icon"
-                 style="--n-bezier:cubic-bezier(0.4, 0, 0.2, 1);"
+                 style="--n-bezier: cubic-bezier(.4, 0, .2, 1);"
               >
                 <svg data-v-fd72d696
                      xmlns="http://www.w3.org/2000/svg"
@@ -722,7 +744,7 @@ exports[`Trips > user 2 can't see private trip 1`] = `
                 </svg>
               </i>
             </div>
-            <div class="n-alert-body">
+            <div class="n-alert-body n-alert-body--bordered">
               <div class="n-alert-body__title">
                 Search for a trip!
               </div>
