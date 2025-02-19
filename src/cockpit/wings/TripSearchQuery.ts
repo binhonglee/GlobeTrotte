@@ -5,9 +5,9 @@
 // and run the following command:
 // plz build //src/wings/...
 
-import { parseArray } from 'wings-ts-util';
 import { IWingsStruct } from 'wings-ts-util';
 import City from './City';
+import { parseArray } from 'wings-ts-util';
 
 // Search query for trips
 export default class TripsSearchQuery implements IWingsStruct {

@@ -85,6 +85,34 @@ def wings_lib(
     visibility = visibility,
   )
 
+def wings_filegroup(
+  name:str, srcs:list, filetype:str, outs:list, test_only=False, visibility:list=None, deps:list=[],
+):
+  build_rule(
+    name = f"_{name}#from_wings",
+    srcs = srcs,
+    cmd = " && ".join([
+      "FILES_TO_MOVE=$(find . -name \"*." + filetype + "\" -print)",
+      "for i in $FILES_TO_MOVE; do mv \"$i\" .; done"
+    ]),
+    outs = outs,
+    visibility = visibility,
+    binary = False,
+    test_only = test_only,
+    needs_transitive_deps = True,
+  )
+
+  return filegroup(
+    name = name,
+    srcs = [f":_{name}#from_wings"],
+    deps = deps,
+    needs_transitive_deps = True,
+    test_only = test_only,
+    binary = False,
+    requires = ["wings"],
+    visibility = visibility,
+  )
+
 CONFIG.setdefault("WINGS_TOOL", "wings")
 CONFIG.setdefault("WINGS_CONFIG_RULE", "")
 CONFIG.setdefault("WINGS_FORMATTER_GO", "")

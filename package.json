@@ -11,8 +11,7 @@
     "postinstall": "touch node_modules/go.mod",
     "test:vitest": "pnpm run --filter src/glareshield/all build && pnpm run -r test:vitest"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "@comment devDependencies": [
     "Not sure why we need pug here tbh but it doesn't work in its own project."
   ],

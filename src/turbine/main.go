@@ -27,7 +27,7 @@ func main() {
 	logger.PanicErr(
 		logger.Main,
 		http.ListenAndServe("127.0.0.1:"+port, r),
-		"",
+		"Server failed",
 	)
 }
 

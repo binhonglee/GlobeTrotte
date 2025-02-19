@@ -5,9 +5,9 @@
 // and run the following command:
 // plz build //src/wings/...
 
-import TripBasic from './TripBasic';
-import UserBasic from './UserBasic';
 import { IWingsStruct } from 'wings-ts-util';
+import UserBasic from './UserBasic';
+import TripBasic from './TripBasic';
 
 // All information of a single trip.
 export default class TripObj implements IWingsStruct {

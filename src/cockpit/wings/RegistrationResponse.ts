@@ -5,9 +5,9 @@
 // and run the following command:
 // plz build //src/wings/...
 
-import UserObj from './UserObj';
-import RegistrationError from './RegistrationError';
 import { IWingsStruct } from 'wings-ts-util';
+import RegistrationError from './RegistrationError';
+import UserObj from './UserObj';
 
 // Response for registration attempt
 export default class RegistrationResponse implements IWingsStruct {

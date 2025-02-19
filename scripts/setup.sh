@@ -3,7 +3,7 @@
 ARCH=$(uname -m)
 OS=$(uname -s)
 SUPPORTED_OS="Darwin Linux"
-INSTALL_GO_VERSION="1.16.6"
+INSTALL_GO_VERSION="1.24.0"
 
 toPrint=""
 
@@ -109,6 +109,9 @@ installGo() {
         ;;
       "ARMv8")
         ARCH="armv64"
+        ;;
+      "arm64")
+        ARCH="arm64"
         ;;
       "ppx64le")
         ARCH="ppx64le"
@@ -227,6 +230,16 @@ installShellcheck() {
   esac
 }
 
+installWings() {
+  TEST_WINGS=$(wings -v)
+
+  if [ "$TEST_WINGS" != "" ]; then
+    echo "Seems like \`wings\` is already installed. Skipping..."
+  else
+    curl -s https://wings.sh/install.sh | sh
+  fi
+}
+
 if ! echo "$SUPPORTED_OS" | grep -w "$OS" > /dev/null; then
   echo "Unfortunately this is an unsupported OS."
   exit 1
@@ -238,10 +251,11 @@ if [ ${#*} -lt 1 ]; then
   installPNPM
   installPostgreSQL
   installShellcheck
+  installWings
   config
 fi
 
-while getopts cghnpqs opt; do
+while getopts cghnpqsw opt; do
   case $opt in
     c)
       config
@@ -263,6 +277,9 @@ while getopts cghnpqs opt; do
       ;;
     s)
       installShellcheck
+      ;;
+    w)
+      installWings
       ;;
     *)
       "Invalid flag $opt. Use -h to show usage."

@@ -5,10 +5,10 @@
 // and run the following command:
 // plz build //src/wings/...
 
-import { parseArray } from 'wings-ts-util';
-import TripObj from './TripObj';
-import UserBasic from './UserBasic';
 import { IWingsStruct } from 'wings-ts-util';
+import UserBasic from './UserBasic';
+import TripObj from './TripObj';
+import { parseArray } from 'wings-ts-util';
 
 // All information of a single user.
 export default class UserObj implements IWingsStruct {

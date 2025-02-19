@@ -1,5 +1,5 @@
 [Please]
-Version = 16.18.0
+Version = 17.13.1
 
 [Build]
 PassEnv = PATH
@@ -40,8 +40,18 @@ cmd = run "//:lint_all"
 [Alias "wings"]
 cmd = build "//src/wings/..."
 
-[Go]
+[parse]
+preloadsubincludes = ///shell//build_defs:shell
+preloadsubincludes = ///go//build_defs:go
+
+[Plugin "shell"]
+Target = //plugins:shell
+
+[Plugin "go"]
+Target = //plugins:go
 ImportPath = github.com/binhonglee/GlobeTrotte
+STDLib = //third_party/go:std
+GoTool = //third_party/go:toolchain|go
 
 [Display]
 SystemStats = True
@@ -55,11 +65,11 @@ npx-tool = "pnpm"
 # npm-rule = "//:pnpm"
 typescript-tool = "esbuild"
 core-files = "//src/cockpit:core_files"
-
 # wings
 wings-tool = "//src/wings:wings_binary"
 wings-config-rule = "//src/wings:wings_config"
 wings-formatter-go = "gofmt -s -w $FILE"
+
 
 # eslint is really slow :( just ignoring them for now.
 # wings-formatter-ts = "pnpx eslint $FILE --fix"

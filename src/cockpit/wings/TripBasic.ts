@@ -5,11 +5,11 @@
 // and run the following command:
 // plz build //src/wings/...
 
-import Day from './Day';
-import { parseArray } from 'wings-ts-util';
-import ParsedCity from './ParsedCity';
-import UserAccessLevel from './UserAccessLevel';
 import { IWingsStruct } from 'wings-ts-util';
+import { parseArray } from 'wings-ts-util';
+import Day from './Day';
+import UserAccessLevel from './UserAccessLevel';
+import ParsedCity from './ParsedCity';
 
 // Only core information of a trip.
 export default class TripBasic implements IWingsStruct {

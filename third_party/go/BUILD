@@ -8,6 +8,13 @@
 
 package(default_visibility = ["PUBLIC"])
 
+go_toolchain(
+    name = "toolchain",
+    version = "1.24.0",
+)
+
+go_stdlib(name = "std")
+
 go_module(
   name = "binhonglee_kdlgo",
   module = "github.com/binhonglee/kdlgo",

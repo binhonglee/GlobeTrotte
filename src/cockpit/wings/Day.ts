@@ -5,10 +5,10 @@
 // and run the following command:
 // plz build //src/wings/...
 
-import { parseArray } from 'wings-ts-util';
+import { IWingsStruct } from 'wings-ts-util';
 import TravelTime from './TravelTime';
 import Place from './Place';
-import { IWingsStruct } from 'wings-ts-util';
+import { parseArray } from 'wings-ts-util';
 
 // A day of a trip.
 export default class Day implements IWingsStruct {

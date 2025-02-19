@@ -89,6 +89,13 @@ func main() {
 # Source: src/turbine/scripts/genBUILD.go
 
 package(default_visibility = ["PUBLIC"])
+
+go_toolchain(
+    name = "toolchain",
+    version = "1.24.0",
+)
+
+go_stdlib(name = "std")
 `)
 
 	for i := 0; i < len(row); i++ {
