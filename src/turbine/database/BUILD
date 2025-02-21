@@ -11,6 +11,7 @@ go_library(
     "tripdb.go",
     "tripbasicdb.go",
     "userdb.go",
+    "imagedb.go",
   ],
   deps = [
     "//third_party/go:jackc_pgtype",

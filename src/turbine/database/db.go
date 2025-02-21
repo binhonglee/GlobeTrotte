@@ -13,8 +13,8 @@ import (
 )
 
 var pgxConnString string
-var tableNames = [8]string{
-	"users", "trips", "cities", "days", "places", "travel_time", "emails", "parsed_cities",
+var tableNames = [9]string{
+	"users", "trips", "cities", "days", "places", "travel_time", "emails", "parsed_cities", "images",
 }
 
 func init() {
@@ -107,6 +107,8 @@ func initializeDB() {
 			case "parsed_cities":
 				createParsedCitiesTable()
 				setupCities(config.GetConfigStringMap("city_map"))
+			case "images":
+				createImagesTable()
 			default:
 				logger.Panic(
 					logger.Database,
@@ -273,4 +275,19 @@ func createParsedCitiesTable() {
 	defer c.Close()
 
 	logger.PanicErr(logger.Database, err, "Failed to create `parsed_cities` table.")
+}
+
+func createImagesTable() {
+	createTable := `
+		CREATE TABLE images (
+			id      SERIAL PRIMARY KEY,
+			userid  INT NOT NULL,
+			trip_id INT
+		);
+	`
+	c := getConn()
+	_, err := c.Exec(context.Background(), createTable)
+	defer c.Close()
+
+	logger.PanicErr(logger.Database, err, "Failed to create `images` table.")
 }

@@ -3,7 +3,6 @@ package router
 import (
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"regexp"
 	"strings"
@@ -38,11 +37,11 @@ func allowCORS(res *http.ResponseWriter) {
 }
 
 func unpackJSON(
-	res *http.ResponseWriter,
+	_ *http.ResponseWriter,
 	req *http.Request,
 	objType interface{},
 ) {
-	body, err := ioutil.ReadAll(
+	body, err := io.ReadAll(
 		io.LimitReader(req.Body, 1048576),
 	)
 	logger.Err(logger.Router, err, "")

@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"os/exec"
 	"sort"
@@ -60,7 +60,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	byteValue, _ := ioutil.ReadAll(jsonFile)
+	byteValue, _ := io.ReadAll(jsonFile)
 	json.Unmarshal(byteValue, &config)
 	var wg sync.WaitGroup
 	wg.Add(2)

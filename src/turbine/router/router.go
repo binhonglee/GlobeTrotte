@@ -190,6 +190,12 @@ var actualRoutes = routes{
 		"/parseURL",
 		parseURL,
 	},
+	route{
+		"UploadImage",
+		"POST",
+		"/image_upload",
+		uploadImages,
+	},
 	// PROD: Used for testing only. To remove on prod.
 	route{
 		"ForceConfirmEmail",

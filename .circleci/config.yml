@@ -29,13 +29,13 @@ jobs:
       - run: echo 'export DISPLAY=:99' >> $BASH_ENV
       - run: echo 'export PATH=/home/circleci/.nimble/bin:$HOME/wings:$PATH' >> $BASH_ENV
       - run: echo 'export USER="circleci"' >> $BASH_ENV
-      - run: sudo npm i -g pnpm@7.1.0
+      - run: sudo npm i -g pnpm@10.4.1
       - run: pnpm i
       - run: ./scripts/setup.sh -s
 
       - run: cp config/test.kdl config/config.kdl
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run: ./pleasew go_mod
+      # - run: ./pleasew go_mod
 
       # run tests
       - run: ./pleasew build --show_all_output

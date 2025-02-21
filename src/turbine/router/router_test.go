@@ -3,7 +3,7 @@ package router
 import (
 	"bytes"
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strconv"
@@ -40,7 +40,7 @@ func addTest(
 	NewRouter().ServeHTTP(res, req)
 
 	if unmarshalBody {
-		bodyData, err := ioutil.ReadAll(res.Body)
+		bodyData, err := io.ReadAll(res.Body)
 		if err != nil {
 			t.Errorf("Adding failed.")
 		}
@@ -89,7 +89,7 @@ func getTest(path string, t *testing.T, objType interface{}, expectedCode int) {
 	res := get(path, t, expectedCode)
 
 	if expectedCode == http.StatusOK {
-		data, err := ioutil.ReadAll(res.Body)
+		data, err := io.ReadAll(res.Body)
 		if err != nil {
 			t.Errorf("Adding failed.")
 		}
@@ -115,7 +115,7 @@ func updateTest(
 		req.AddCookie(cookies)
 	}
 	NewRouter().ServeHTTP(res, req)
-	data, _ = ioutil.ReadAll(res.Body)
+	data, _ = io.ReadAll(res.Body)
 	json.Unmarshal(data, objType)
 
 	if res.Code != expectedCode {
@@ -136,7 +136,7 @@ func deleteTest(path string, t *testing.T, toDelete interface{}) bool {
 	NewRouter().ServeHTTP(res, req)
 
 	var success bool
-	data, _ = ioutil.ReadAll(res.Body)
+	data, _ = io.ReadAll(res.Body)
 	json.Unmarshal(data, &success)
 	if res.Code != http.StatusOK {
 		t.Errorf(
