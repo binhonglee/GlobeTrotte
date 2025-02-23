@@ -37,8 +37,8 @@ importers:
         version: 1.29.2
     devDependencies:
       '@types/node':
-        specifier: 18.16.6
-        version: 18.16.6
+        specifier: 18.19.76
+        version: 18.19.76
       esbuild:
         specifier: 0.25.0
         version: 0.25.0
@@ -1330,8 +1330,8 @@ packages:
   '@types/lodash@4.17.15':
     resolution: {integrity: sha512-w/P33JFeySuhN6JLkysYUK2gEmy9kHHFN7E8ro0tkfmlDOgxBDzWEZ/J8cWA+fHqFevpswDTFZnDx+R9lbL6xw==}
 
-  '@types/node@18.16.6':
-    resolution: {integrity: sha512-N7KINmeB8IN3vRR8dhgHEp+YpWvGFcpDoh5XZ8jB5a00AdFKCKEyyGTOPTddUf4JqU1ZKTVxkOxakDvchNVI2Q==}
+  '@types/node@18.19.76':
+    resolution: {integrity: sha512-yvR7Q9LdPz2vGpmpJX5LolrgRdWvB67MJKDPSgIIzpFbaf9a1j/f5DnLp5VDyHGMR0QZHlTr1afsD87QCXFHKw==}
 
   '@types/node@22.13.4':
     resolution: {integrity: sha512-ywP2X0DYtX3y08eFVx5fNIw7/uIv8hYUKgXoK8oayJlLnKcRfEYCxWMVE1XagUdVtCJlZT1AU4LXEABW+L1Peg==}
@@ -3390,6 +3390,9 @@ packages:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
     engines: {node: '>= 0.4'}
 
+  undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+
   undici-types@6.20.0:
     resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
 
@@ -4889,7 +4892,9 @@ snapshots:
 
   '@types/lodash@4.17.15': {}
 
-  '@types/node@18.16.6': {}
+  '@types/node@18.19.76':
+    dependencies:
+      undici-types: 5.26.5
 
   '@types/node@22.13.4':
     dependencies:
@@ -7347,6 +7352,8 @@ snapshots:
       has-bigints: 1.1.0
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
+
+  undici-types@5.26.5: {}
 
   undici-types@6.20.0: {}
 
