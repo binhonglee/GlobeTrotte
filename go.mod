@@ -1,6 +1,6 @@
 module github.com/binhonglee/GlobeTrotte
 
-go 1.23
+go 1.23.0
 
 toolchain go1.24.0
 
@@ -16,7 +16,7 @@ require (
 	github.com/jackc/pgtype v1.14.4
 	github.com/jackc/pgx/v4 v4.18.2
 	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
-	golang.org/x/crypto v0.33.0
+	golang.org/x/crypto v0.35.0
 	golang.org/x/time v0.10.0
 	zgo.at/zcache v1.2.0
 	zgo.at/zcache/v2 v2.1.0
