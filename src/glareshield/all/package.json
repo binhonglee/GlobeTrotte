@@ -13,13 +13,13 @@
     "@glareshield/e": "workspace:../E",
     "@glareshield/h": "workspace:../H",
     "@glareshield/r": "workspace:../R",
-    "axios": "1.7.9",
+    "axios": "1.8.1",
     "typescript": "5.7.3",
     "vue": "3.2.45",
     "vue-router": "4.1.6"
   },
   "peerDependencies": {
-    "axios": "0.27 || 1.0 || 1.1 || 1.2 || 1.4 || 1.7",
+    "axios": "0.27 || 1.0 || 1.1 || 1.2 || 1.4 || 1.7 || 1.8",
     "vue-router": "4"
   },
   "license": "MIT"
