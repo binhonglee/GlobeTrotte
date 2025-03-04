@@ -68,7 +68,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_config",
   module = "github.com/aws/aws-sdk-go-v2/config",
-  version = "v1.29.8",
+  version = "v1.29.9",
   install = [
     ".",
   ],
@@ -91,7 +91,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_credentials",
   module = "github.com/aws/aws-sdk-go-v2/credentials",
-  version = "v1.17.61",
+  version = "v1.17.62",
   install = [
     ".",
     "ec2rolecreds",
@@ -236,7 +236,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_service_s3",
   module = "github.com/aws/aws-sdk-go-v2/service/s3",
-  version = "v1.78.0",
+  version = "v1.78.1",
   install = [
     ".",
     "internal/arn",
@@ -261,7 +261,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_service_sso",
   module = "github.com/aws/aws-sdk-go-v2/service/sso",
-  version = "v1.25.0",
+  version = "v1.25.1",
   install = [
     ".",
     "internal/endpoints",
@@ -278,7 +278,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_service_ssooidc",
   module = "github.com/aws/aws-sdk-go-v2/service/ssooidc",
-  version = "v1.29.0",
+  version = "v1.29.1",
   install = [
     ".",
     "internal/endpoints",
@@ -295,7 +295,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_service_sts",
   module = "github.com/aws/aws-sdk-go-v2/service/sts",
-  version = "v1.33.16",
+  version = "v1.33.17",
   install = [
     ".",
     "internal/endpoints",
