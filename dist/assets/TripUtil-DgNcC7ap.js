@@ -1,0 +1,1 @@
+import{j as r}from"./index-CVwEz7sZ.js";function n(t){return t.sort((s,e)=>e.lastUpdated.getTime()-s.lastUpdated.getTime())}function o(t,s){return t.user.bio="",s.user.bio="",r.WingsStructUtil.stringify(t)===r.WingsStructUtil.stringify(s)}export{n as a,o as s};

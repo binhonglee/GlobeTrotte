@@ -1,0 +1,1 @@
+import{C as o}from"./CHead-DB__Oa_T.js";import{d as n,R as t,e as a,G as s,_ as r,i as c,r as p,o as d}from"./index-CVwEz7sZ.js";const i=n({components:{CHead:o},async beforeCreate(){await t.genRedirectTo(a.User,void 0,s.getCurrentUsername())}});function _(m,f,u,C,l,R){const e=p("CHead");return d(),c(e)}const v=r(i,[["render",_]]);export{v as default};
