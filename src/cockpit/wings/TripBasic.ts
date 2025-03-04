@@ -21,6 +21,7 @@ export default class TripBasic implements IWingsStruct {
   public description: String = '';
   public private: Boolean = true;
   public sharedWith: UserAccessLevel[] = [];
+  public photos: Number[] = [];
 
   public constructor(obj?: any) {
     if (obj) {
@@ -31,6 +32,7 @@ export default class TripBasic implements IWingsStruct {
       this.description = obj.description !== undefined && obj.description !== null ? obj.description : '';
       this.private = obj.private !== undefined && obj.private !== null ? obj.private : true;
       this.sharedWith = obj.shared_with !== undefined && obj.shared_with !== null ? parseArray<UserAccessLevel>(UserAccessLevel, obj.shared_with) : [];
+      this.photos = obj.photos !== undefined && obj.photos !== null ? parseArray<Number>(Number, obj.photos) : [];
     }
   }
 
@@ -56,6 +58,9 @@ export default class TripBasic implements IWingsStruct {
       }
       case 'sharedWith': {
         return 'shared_with';
+      }
+      case 'photos': {
+        return 'photos';
       }
       default: {
         return key;

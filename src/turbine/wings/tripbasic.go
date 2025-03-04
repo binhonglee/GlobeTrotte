@@ -16,6 +16,7 @@ type TripBasic struct {
 	Description string            `json:"description"`
 	Private     bool              `json:"private"`
 	SharedWith  []UserAccessLevel `json:"shared_with"`
+	Photos      []int             `json:"photos"`
 }
 
 // GetID (istruct) - Returns the trip ID.

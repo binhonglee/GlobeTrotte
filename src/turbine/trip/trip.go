@@ -1,6 +1,8 @@
 package trip
 
 import (
+	"slices"
+
 	"github.com/binhonglee/GlobeTrotte/src/turbine/database"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/logger"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
@@ -16,6 +18,11 @@ func NewTrip(newTrip wings.TripBasic, self wings.UserBasic) TripObj {
 	id := database.AddTripDB(newTrip, self.ID)
 	if id == -1 {
 		return DummyTripObj()
+	}
+	for _, image := range newTrip.Photos {
+		if database.CheckImageOwner(image, self.ID) {
+			database.AttachTripToImage(image, id)
+		}
 	}
 	return GetTripObj(id, self)
 }
@@ -49,6 +56,18 @@ func UpdateTripObj(toUpdate TripObj, self wings.UserBasic) TripObj {
 	}
 
 	if database.UpdateTripDB(toUpdate.Details, self.ID) {
+		images := database.FetchImagesForTrip(toUpdate.ID)
+		for _, image := range images {
+			if !slices.Contains(toUpdate.Details.Photos, image) {
+				database.DeleteImageDB(image)
+			}
+		}
+
+		for _, image := range toUpdate.Details.Photos {
+			if database.CheckImageOwner(image, self.ID) {
+				database.AttachTripToImage(image, toUpdate.ID)
+			}
+		}
 		return GetTripObj(toUpdate.ID, self)
 	}
 

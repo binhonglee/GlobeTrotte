@@ -330,7 +330,7 @@ func updatingUser(updatedUser wings.UserBasic) bool {
 		updatedUser.Username,
 		updatedUser.Bio,
 		updatedUser.Link,
-		updatedUser.Confirmed,
+		existingUser.Confirmed,
 	)
 	defer c.Close()
 

@@ -6,25 +6,25 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
 
     - name: Cache please
       id: cache-please
-      uses: actions/cache@v1
+      uses: actions/cache@v4
       with:
         path: ~/.please
         key: ${{ hashfiles('**/.plzconfig') }}-please
     - name: Cache pnpm-store
       id: cache-pnpm-store
-      uses: actions/cache@v1
+      uses: actions/cache@v4
       with:
         path: ~/.local/share/pnpm/store/v3
         key: ${{ hashfiles('**/package.json') }}-pnpm-store
     - name: Cache node_modules
       id: cache-node-modules
-      uses: actions/cache@v1
+      uses: actions/cache@v4
       with:
         path: node_modules
         key: ${{ hashFiles('**/package.json') }}-pnpm

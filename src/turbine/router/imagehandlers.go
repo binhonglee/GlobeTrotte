@@ -15,13 +15,12 @@ import (
 )
 
 func uploadImages(res http.ResponseWriter, req *http.Request) {
-	for _, files := range req.MultipartForm.File {
-		for _, file := range files {
-			if file.Size > (10 << 20) {
-				respond(res, []int{}) // File too large
-				return
-			}
-		}
+	req.ParseMultipartForm(10 << 32)
+	form := req.MultipartForm
+	if form == nil {
+		respond(res, []int{})
+		logger.Failure(logger.Router, "Received empty request")
+		return
 	}
 
 	sdkConfig, err := config.LoadDefaultConfig(context.Background())
@@ -41,12 +40,14 @@ func uploadImages(res http.ResponseWriter, req *http.Request) {
 			file, err := handler.Open()
 			if err != nil {
 				failed = true
+				logger.Failure(logger.Database, "Failed to open file: "+err.Error())
 				break
 			}
 			defer file.Close()
 			key := database.NewImageDB(getCaller(req).ID)
 			if key == -1 {
 				failed = true
+				logger.Failure(logger.Database, "Failed to add to DB")
 				break
 			}
 			stringKey := strconv.Itoa(key)
@@ -58,7 +59,7 @@ func uploadImages(res http.ResponseWriter, req *http.Request) {
 			})
 
 			if err != nil {
-				logger.Failure(logger.Router, "Couldn't upload file "+stringKey)
+				logger.Failure(logger.Router, "Couldn't upload file "+stringKey+" to S3")
 				failed = true
 				break
 			} else {
@@ -84,10 +85,11 @@ func uploadImages(res http.ResponseWriter, req *http.Request) {
 				Bucket: aws.String(bucketName),
 				Key:    aws.String(stringKey),
 			})
-			logger.Err(logger.Router, err, "Failed to delete file"+stringKey)
+			logger.Err(logger.Router, err, "Failed to delete file "+stringKey)
 			database.DeleteImageDB(key)
 		}
 		respond(res, []int{})
+		return
 	}
 
 	logger.Success(logger.Router, "Files uploaded successfully.")

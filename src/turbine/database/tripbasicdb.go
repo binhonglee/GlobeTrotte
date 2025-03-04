@@ -186,6 +186,7 @@ func fetchTripBasic(id int) (wings.TripBasic, TripExtra) {
 	extra.ID = trip.ID
 	trip.Cities = cityIDsToParsedCities(int64V(cities))
 	trip.Days = fetchDays(int64V(days))
+	trip.Photos = FetchImagesForTrip(trip.ID)
 	return trip, extra
 }
 

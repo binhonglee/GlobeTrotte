@@ -9,10 +9,10 @@ import (
 )
 
 func NewImageDB(userID int) int {
-	if userID == -1 {
-		logger.Print(logger.Database, "User adding image is not found.")
-		return -1
-	}
+	// if userID == -1 {
+	// 	logger.Failure(logger.Database, "User adding image is not found.")
+	// 	return -1
+	// }
 
 	sqlStatement := `
 		INSERT INTO images (userid)
@@ -31,7 +31,7 @@ func NewImageDB(userID int) int {
 		logger.Err(logger.Database, err, "")
 		return -1
 	}
-	logger.Print(logger.Database, "New image ID is: "+strconv.Itoa(id))
+	logger.Failure(logger.Database, "New image ID is: "+strconv.Itoa(id))
 	return id
 }
 
@@ -76,11 +76,6 @@ func AttachTripToImage(imageID int, tripID int) bool {
 }
 
 func FetchImagesForTrip(tripID int) []int {
-	existingTrip, _ := fetchTripBasic(tripID)
-	if existingTrip.GetID() == -1 {
-		return []int{}
-	}
-
 	imageIDs := make([]int, 0)
 	sqlStatement := `SELECT id FROM images WHERE trip_id=$1;`
 	c := getConn()
@@ -96,6 +91,22 @@ func FetchImagesForTrip(tripID int) []int {
 	}
 
 	return imageIDs
+}
+
+func CheckImageOwner(imageID int, owner int) bool {
+	sqlStatement := `SELECT userid FROM images WHERE id=$1;`
+	c := getConn()
+	row := c.QueryRow(context.Background(), sqlStatement, imageID)
+	var actualOwner int
+	switch err := row.Scan(&actualOwner); err {
+	case pgx.ErrNoRows:
+		logger.Print(logger.Database, "Image not found.")
+		return false
+	default:
+		logger.Err(logger.Database, err, "")
+	}
+	defer c.Close()
+	return actualOwner == owner
 }
 
 func DeleteImageDB(imageID int) bool {

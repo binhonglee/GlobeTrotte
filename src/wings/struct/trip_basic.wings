@@ -18,6 +18,7 @@ struct TripBasic {
   description   str
   private       bool    true
   shared_with   []UserAccessLevel
+  photos        []int
 }
 
 go-func(
