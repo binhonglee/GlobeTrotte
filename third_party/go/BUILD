@@ -18,7 +18,7 @@ go_stdlib(name = "std")
 go_module(
   name = "aws_aws-sdk-go-v2",
   module = "github.com/aws/aws-sdk-go-v2",
-  version = "v1.36.2",
+  version = "v1.36.3",
   install = [
     ".",
     "aws",
@@ -68,7 +68,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_config",
   module = "github.com/aws/aws-sdk-go-v2/config",
-  version = "v1.29.7",
+  version = "v1.29.8",
   install = [
     ".",
   ],
@@ -91,7 +91,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_credentials",
   module = "github.com/aws/aws-sdk-go-v2/credentials",
-  version = "v1.17.60",
+  version = "v1.17.61",
   install = [
     ".",
     "ec2rolecreds",
@@ -118,7 +118,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_feature_ec2_imds",
   module = "github.com/aws/aws-sdk-go-v2/feature/ec2/imds",
-  version = "v1.16.29",
+  version = "v1.16.30",
   install = [
     ".",
     "internal/config",
@@ -132,7 +132,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_internal_configsources",
   module = "github.com/aws/aws-sdk-go-v2/internal/configsources",
-  version = "v1.3.33",
+  version = "v1.3.34",
   install = [
     ".",
   ],
@@ -145,7 +145,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_internal_endpoints_v2",
   module = "github.com/aws/aws-sdk-go-v2/internal/endpoints/v2",
-  version = "v2.6.33",
+  version = "v2.6.34",
   install = [
     ".",
   ],
@@ -167,7 +167,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_internal_v4a",
   module = "github.com/aws/aws-sdk-go-v2/internal/v4a",
-  version = "v1.3.33",
+  version = "v1.3.34",
   install = [
     ".",
     "internal/crypto",
@@ -194,7 +194,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_service_internal_checksum",
   module = "github.com/aws/aws-sdk-go-v2/service/internal/checksum",
-  version = "v1.6.1",
+  version = "v1.6.2",
   install = [
     ".",
   ],
@@ -208,7 +208,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_service_internal_presigned-url",
   module = "github.com/aws/aws-sdk-go-v2/service/internal/presigned-url",
-  version = "v1.12.14",
+  version = "v1.12.15",
   install = [
     ".",
   ],
@@ -221,7 +221,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_service_internal_s3shared",
   module = "github.com/aws/aws-sdk-go-v2/service/internal/s3shared",
-  version = "v1.18.14",
+  version = "v1.18.15",
   install = [
     ".",
     "arn",
@@ -236,7 +236,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_service_s3",
   module = "github.com/aws/aws-sdk-go-v2/service/s3",
-  version = "v1.77.1",
+  version = "v1.78.0",
   install = [
     ".",
     "internal/arn",
@@ -261,7 +261,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_service_sso",
   module = "github.com/aws/aws-sdk-go-v2/service/sso",
-  version = "v1.24.16",
+  version = "v1.25.0",
   install = [
     ".",
     "internal/endpoints",
@@ -278,7 +278,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_service_ssooidc",
   module = "github.com/aws/aws-sdk-go-v2/service/ssooidc",
-  version = "v1.28.15",
+  version = "v1.29.0",
   install = [
     ".",
     "internal/endpoints",
@@ -295,7 +295,7 @@ go_module(
 go_module(
   name = "aws_aws-sdk-go-v2_service_sts",
   module = "github.com/aws/aws-sdk-go-v2/service/sts",
-  version = "v1.33.15",
+  version = "v1.33.16",
   install = [
     ".",
     "internal/endpoints",
@@ -539,7 +539,7 @@ go_module(
 go_module(
   name = "x_crypto",
   module = "golang.org/x/crypto",
-  version = "v0.33.0",
+  version = "v0.35.0",
   install = [
     "bcrypt",
     "blowfish",

@@ -5,8 +5,8 @@
 // and run the following command:
 // plz build //src/wings/...
 
-import { IWingsStruct } from 'wings-ts-util';
 import ParsedURLError from './ParsedURLError';
+import { IWingsStruct } from 'wings-ts-util';
 
 // Parsed data from given URL.
 export default class ParsedURLData implements IWingsStruct {
