@@ -582,7 +582,7 @@ go_module(
 go_module(
   name = "x_time",
   module = "golang.org/x/time",
-  version = "v0.10.0",
+  version = "v0.11.0",
   install = [
     "rate",
   ],
