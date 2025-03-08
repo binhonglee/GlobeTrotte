@@ -3,6 +3,7 @@ package router
 import (
 	"net/http"
 
+	"github.com/binhonglee/GlobeTrotte/src/turbine/agent"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/trip"
 	"github.com/binhonglee/GlobeTrotte/src/turbine/wings"
 )
@@ -66,4 +67,10 @@ func searchTripObjs(res http.ResponseWriter, req *http.Request) {
 	var item trip.TripsSearchQuery
 	unpackJSON(&res, req, &item)
 	respond(res, trip.SearchTrips(item, getCaller(req)))
+}
+
+func generateTrip(res http.ResponseWriter, req *http.Request) {
+	var query agent.AgentRequest
+	unpackJSON(&res, req, &query)
+	respond(res, agent.GetAgentResult(query))
 }

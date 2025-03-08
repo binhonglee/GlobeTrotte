@@ -19,6 +19,7 @@ go_library(
     "//third_party/go:aws_aws-sdk-go-v2_config",
     "//third_party/go:aws_aws-sdk-go-v2_service_s3",
     "//src/turbine/access:access",
+    "//src/turbine/agent:agent",
     "//src/turbine/config:config",
     "//src/turbine/database:database",
     "//src/turbine/email:email",

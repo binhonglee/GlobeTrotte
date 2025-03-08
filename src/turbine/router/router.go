@@ -196,6 +196,12 @@ var actualRoutes = routes{
 		"/image_upload",
 		uploadImages,
 	},
+	route{
+		"GenerateTrip",
+		"POST",
+		"/generate_trip",
+		generateTrip,
+	},
 	// PROD: Used for testing only. To remove on prod.
 	route{
 		"ForceConfirmEmail",

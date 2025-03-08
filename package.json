@@ -6,7 +6,7 @@
   "scripts": {
     "build": "pnpm run -r build",
     "format": "pnpm run -r format",
-    "install_playwright": "cd src/cockpit && pnpx playwright install && pnpm i",
+    "install_playwright": "cd src/cockpit && pnpx playwright install-deps && pnpx playwright install && pnpm i",
     "lint": "pnpm -r run lint",
     "postinstall": "touch node_modules/go.mod",
     "test:vitest": "pnpm run --filter src/glareshield/all build && pnpm run -r test:vitest"

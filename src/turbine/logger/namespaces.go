@@ -12,6 +12,7 @@ const (
 	Router = "router"
 
 	Access   = "access"
+	Agent    = "agent"
 	Config   = "config"
 	Database = "database"
 	Email    = "email"
