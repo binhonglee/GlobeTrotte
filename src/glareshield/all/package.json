@@ -13,7 +13,7 @@
     "@glareshield/e": "workspace:../E",
     "@glareshield/h": "workspace:../H",
     "@glareshield/r": "workspace:../R",
-    "axios": "1.8.1",
+    "axios": "1.8.2",
     "typescript": "5.8.2",
     "vue": "3.2.45",
     "vue-router": "4.1.6"
