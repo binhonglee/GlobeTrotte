@@ -539,7 +539,7 @@ go_module(
 go_module(
   name = "x_crypto",
   module = "golang.org/x/crypto",
-  version = "v0.35.0",
+  version = "v0.36.0",
   install = [
     "bcrypt",
     "blowfish",
@@ -560,7 +560,7 @@ go_module(
 go_module(
   name = "x_text",
   module = "golang.org/x/text",
-  version = "v0.22.0",
+  version = "v0.23.0",
   install = [
     ".",
     "cases",
